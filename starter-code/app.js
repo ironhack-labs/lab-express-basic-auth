@@ -5,7 +5,12 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const session = require("express-session");
+const createMongoStorage = require("connect-mongo")
+const MongoStore = createMongoStorage(session);
 
+
+var index  = require('./routes/index')
 // Controllers
 
 // Mongoose configuration
@@ -25,8 +30,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 * 5 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
 
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
 // Routes
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
