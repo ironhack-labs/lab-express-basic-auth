@@ -27,6 +27,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+const index = require('./routes/index.js');
+const authRoutes = require('./routes/auth-routes.js');
+app.use('/', index);
+app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
