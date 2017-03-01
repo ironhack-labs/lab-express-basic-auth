@@ -1,0 +1,22 @@
+{
+  "name": "lab-express-basic-auth",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "~1.16.0",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "ejs": "~2.5.5",
+    "express": "~4.14.1",
+    "express-ejs-layouts": "~2.2.0",
+    "express-session": "^1.15.1",
+    "mongoose": "~4.8.5",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.2"
+  }
+}
