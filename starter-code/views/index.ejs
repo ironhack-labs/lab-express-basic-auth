@@ -5,6 +5,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
+    <% if(loggedUser){ %>
+      Hello, <%= loggedUser.username %><br>
+      <a href="/logout">logut</a><br>
+      <a href="/secret">secret</a>
+    <% } else { %>
+
+      <h1>Welcome:</h1>
+      <a href="/signup">Signup</a><br>
+      <a href="/login">Login</a>
+   <%  }%>
+
   </body>
 </html>
