@@ -53,6 +53,47 @@ authRoutes.post('/signup', (req, res, next) => {
 
 });
 
+authRoutes.get('/login', (req, res, next) => {
+  res.render('auth/login');
+  // res.send('login page');
+});
 
+authRoutes.post('/login', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  if (username === '' || password === '') {
+    res.render('auth/login-view.ejs', {
+      errorMessage: 'Indicate a username and password to log in.'
+    });
+    return;
+  }
+
+  User.findOne({ username: username }, (err, user) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    if (!user) {
+      res.render('auth/login-view.ejs', {
+        errorMessage: 'The username doesn\'t exist'
+      });
+      return;
+    }
+
+    // This is the more important part of the code to verify password..
+    if (bcrypt.compareSync(password, user.password)) {
+      // Current will have sometingin there if user logged in succesfully.
+      req.session.currentUser = user;
+      res.redirect('/');
+    } else {
+      res.render('auth/login-view.ejs', {
+        errorMessage: 'The password is incorrect'
+      });
+      return;
+    }
+  });
+});
 
 module.exports = authRoutes;

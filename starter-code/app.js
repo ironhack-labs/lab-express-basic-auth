@@ -30,6 +30,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+app.use(session({
+  // secret is key of encryption. It is different in every session
+  secret: 'Sessions are hard dude',
+  // idle time in mili seconds, can be set to null
+  cookie: { maxAge: 6000},
+  resave:true,
+  saveUnitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
 
 // Routes
 app.use('/', index);
