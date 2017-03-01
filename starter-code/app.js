@@ -4,16 +4,22 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
-const app            = express();
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Controllers
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
+const app = express();
+const index = require('./routes/index');
+const authRoutes = require('./routes/auth-routes');
+
+app.use('/', index);
+app.use('/', authRoutes);
 // Middlewares configuration
 app.use(logger("dev"));
-
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
