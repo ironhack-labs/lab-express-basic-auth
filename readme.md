@@ -39,7 +39,7 @@ Please, push every file needed to make your app properly on Github before creati
 
 In this Pair Programming exercise, we are going to create a project where we will have all the basic authorization and authentication processes and features that you would in a real application.
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dc768775637b02ee201ec3412eaf7bee.png)
+![](images/incorrect.png)
 
 We provide you starter code that includes some of the packages you will need to complete the exercise. These packages are `ejs`, `mongodb`, and `mongoose`. In addition, we have generated the project using Express Generator.
 
@@ -91,7 +91,7 @@ Finally, we will add a jQuery plugin to measure the password strength when we si
 
 Once finished, the result should be something like this:
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_59bb37a85da33b090817fcb181dc7a33.png)
+![](images/signup.png)
 
 This is a very common and helpful feature for users, as many do not know anything about password strength. 
 
