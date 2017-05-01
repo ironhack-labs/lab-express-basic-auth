@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Sign Up</title>
+</head>
+<body>
+  <h2> Please complete the following form to sign up </h2>
+  <form action="/signup" method="post">
+    <label for="username">Username: </label>
+    <input type="text" name="username" placeholder="Select username" required><br><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Select a strong password" required><br><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <button class="button">Create Account</button>
+  </form>
+  <br><br>
+  If you have an account please login: <br> <a href="/login">Login</a>
+
+</body>
