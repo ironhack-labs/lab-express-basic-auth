@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Sign Up</title>
+<script src="/javascripts/zxcvbn.js"></script>
+</head>
+<body>
+<form action="/login" method="POST" id="form">
+  <h2>Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" required placeholder="obiwan">
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" required placeholder="thatsnomoon">
+
+
+  <% if (typeof errorMessage !== "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+  <div id="password_strength">
+
+  </div>
+  <button>Sign in</button>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
+<script   src="https://code.jquery.com/jquery-3.2.1.js"   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="   crossorigin="anonymous"></script>
+<script src="/javascripts/password_strength.js"></script>
+
+</body>
+</html>
