@@ -33,13 +33,13 @@ In the Pull Request name, add your Campus city, your name, and your last name se
 
 ## Deliverables
 
-Please, push every file needed to make your app properly on Github before creating the pull request.
+Please, push every file needed to make your app properly to Github before creating the pull request.
 
 ## Introduction
 
 In this Pair Programming exercise, we are going to create a project where we will have all the basic authorization and authentication processes and features that you would in a real application.
 
-![](images/incorrect.png)
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_044a7b23c9b4cf082e1c4fadcd12d308.png)
 
 We provide you starter code that includes some of the packages you will need to complete the exercise. These packages are `ejs`, `mongodb`, and `mongoose`. In addition, we have generated the project using Express Generator.
 
@@ -73,7 +73,7 @@ At this point, we have implemented basic authentication features. Now, we have t
 Let's create two different routes protected by authentication:
 
 - `/main` - Add a funny picture of a cat and a link back to the home page
-- `/private` - Add your favorite `gif` and an `<h1>` denoting the page as private. 
+- `/private` - Add your favorite `gif` and an `<h1>` denoting the page as private.
 
 Create the views and add the middleware configuration to avoid accessing these routes without being authenticated.
 
@@ -81,7 +81,7 @@ Create the views and add the middleware configuration to avoid accessing these r
 
 Let's add validations to our forms. Remember we have two different forms: sign up and login.
 
-Remember, when a user signs up or logs in, both the username and password fields must be filled in. 
+Remember, when a user signs up or logs in, both the username and password fields must be filled in.
 
 Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Data_form_validation) at MDN. See if you can find a *constraint* that requires the user to fill a field prior to submission.
 
@@ -91,9 +91,9 @@ Finally, we will add a jQuery plugin to measure the password strength when we si
 
 Once finished, the result should be something like this:
 
-![](images/signup.png)
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_b5907d78d23d2a6757a365df56bd34b9.png)
 
-This is a very common and helpful feature for users, as many do not know anything about password strength. 
+This is a very common and helpful feature for users, as many do not know anything about password strength.
 
 ## Summary
 
