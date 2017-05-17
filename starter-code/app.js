@@ -6,6 +6,8 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 // Controllers
 
 // Mongoose configuration
@@ -13,6 +15,17 @@ mongoose.connect("mongodb://localhost/basic-auth");
 
 // Middlewares configuration
 app.use(logger("dev"));
+
+
+
+app.use(session({
+  secret:'secret',
+  cookie:{MaxAge:60000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24*60*60
+  })
+}));
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +40,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+
+const index = require('./routes/index.js');
+const authRoutes = require('./routes/auth-routes.js');
+const siteRoutes = require('./routes/site-routes.js');
+app.use('/', index);
+app.use('/', authRoutes);
+app.use('/', siteRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Log In </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/login" method="POST" id="form">
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="obiwan">
+      <br><br>
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="thatsnomoon">
+      <% if (typeof errorMessage !== "undefined") { %>
+        <div class="error-message"><%= errorMessage %></div>
+      <% } %>
+      <br><br>
+      <button>Sign in</button>
+      <br><br>
+      <p class="account-message">
+        Don't have an account? <a href="/signup">Sign up</a>
+      </p>
+    </form>
+
+  </body>
+</html>
