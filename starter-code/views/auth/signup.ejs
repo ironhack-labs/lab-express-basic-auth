@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascript/strength.js"></script>
+  <title>Sign Up</title>
+</head>
+
+<body>
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Frodo Baggins">
+
+    <br><br>
+    <label for="password">Password</label><br>
+    <input id="myPassword" type="password" name="password"
+      placeholder="The Shire">
+    <br><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <br><button>Create account</button>
+  </form>
+
+<script>$('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show password',
+        strengthButtonTextToggle: 'Hide Password'
+    });
+</script>
+
+</body>
+</html>
