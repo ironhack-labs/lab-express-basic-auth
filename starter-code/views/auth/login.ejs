@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+<form action="/login" method="POST" id="form">
+
+
+<label for="userName">Enter Username</label>
+<input type="text" name="userName">
+
+<label for="password">Enter Password</label>
+<input type="password" name="password" id="password">
+
+<button type="submit">Submit</button>
+
+<% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+
+
+</form>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="strength.js"></script>
+  </body>
+</html>

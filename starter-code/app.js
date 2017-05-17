@@ -5,6 +5,13 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+
+
+var index = require("./routes/index");
+var user = require("./routes/user");
 
 // Controllers
 
@@ -19,12 +26,29 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
+
+//jquery
+// app.use('jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+
 // Access POST params with body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
 // Authentication
 app.use(cookieParser());
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+app.use("/", index);
+app.use("/user", user);
 
 // Routes
 
