@@ -5,6 +5,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
+    <h1>Welcome to the Home Page!</h1>
+    Welcome
+    <br>
+    <br>
+    <% if (typeof errorMessage !== 'undefined') { %>
+      <div class="error-message"> <%= errorMessage %> </div>
+    <% } %>
+    <div>
+      <form action="/" method="POST">
+        <label for="username"> Username: </label>
+        <input type="text" id="username" name="username" placeholder="Enter Username">
+        <label for="password"> Password: </label>
+        <input type="password" id="password" name="password" placeholder="Enter Password">
+        <button>Submit</button>
+      </form>
+    </div>
+    <ul>
+      <li>
+        <a href="/signup">Sign Up</a>
+      </li>
+    </ul>
   </body>
 </html>

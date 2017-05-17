@@ -1,0 +1,27 @@
+<link rel='stylesheet' href='/stylesheets/strength.css' />
+<h1> Sign Up </h1>
+
+<% if( typeof errorMessage !== 'undefined') { %>
+  <div> <%= errorMessage %> </div>
+<% } %>
+
+
+<form action='/signup' method="POST">
+  <ul>
+    <li>
+      <label for="name">Username: </label>
+      <input id="username" type="text" name="username" placeholder="Enter Username">
+    </li>
+    <br>
+    <li>
+      <label for="password">Password: </label>
+      <input id="password" type="text" name="password" placeholder="Enter Password">
+    </li>
+    <br>
+    <li>
+      <input id="submit" type="submit" name="submit">
+    </li>
+  </ul>
+</form>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/strength.js"></script>
