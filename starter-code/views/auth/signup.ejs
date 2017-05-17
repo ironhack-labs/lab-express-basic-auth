@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/strength.js"></script>
+  <script type="text/javascript" src="/js.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel='stylesheet' href='/stylesheets/strength.css' />
+  <title>Sign Up</title>
+</head>
+
+<body>
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Donald Duck">
+
+    <br><br>
+    <label for="password">Password</label><br>
+    <input id="myPassword" type="password" name="password"
+      placeholder="Quack">
+    <br><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+    <button>Create account</button>
+  </form>
+  <script>$('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show password',
+        strengthButtonTextToggle: 'Hide Password'
+    });   </script>
+
+  <div>Already have an account? <a href="/login">Sign In</a></div>
+</body>
+</html>
