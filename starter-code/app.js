@@ -1,3 +1,5 @@
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
 const express        = require("express");
 const path           = require("path");
 const logger         = require("morgan");
@@ -7,12 +9,23 @@ const mongoose       = require("mongoose");
 const app            = express();
 
 // Controllers
+const authController = require('./routes/authController');
+const siteController = require('./routes/siteController');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
 // Middlewares configuration
 app.use(logger("dev"));
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +40,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', authController);
+app.use('/', siteController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
