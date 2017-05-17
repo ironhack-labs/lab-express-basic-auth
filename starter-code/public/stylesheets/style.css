@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+img {
+  width: 250px;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
+input:invalid {
+  border: 3px solid red;
+}
+
+ul {
+  list-style: none;
+  line-height: 25px;
+}

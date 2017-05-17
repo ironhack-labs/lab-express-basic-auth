@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Login to the Site</title>
+</head>
+<body>
+  <h2> Enter Username and Password to access our exclusive Members Area! </h2>
+  <form action="/login" method="post">
+    <label for="username">Username: </label>
+    <input type="text" name="username" placeholder="Select username" required><br><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Select a strong password" required><br><br>
+    <% if (typeof(errorMessage) != "undefined") { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <button class="button">Login</button>
+  </form>
+  <br><br>
+  If you do not have an account yet, please sign up: <br> <a href="/signup">Sign Up</a>
+
+</body>
