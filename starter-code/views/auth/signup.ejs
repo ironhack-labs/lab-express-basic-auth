@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/strength.js"></script>
+  </head>
+  <body>
+    <h2>Signup</h2>
+    <form action="/signup" method="POST" id="form-container">
+      <label for="username">Username</label>
+      <input type="text" name="username"
+        placeholder="JonSnow">
+      <br><br>
+      <label for="password">Password</label>
+      <input id="myPassword" type="password" name="password"
+        placeholder="Your password">
+      <br><br>
+      <button>Create account</button>
+    </form>
+  </body>
+<script>$('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show password',
+        strengthButtonTextToggle: 'Hide Password'
+    });     </script>
+</html>
