@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Basic Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
+<head>
+  <title><% title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  Hello world
+  <ul>
+    <% if (typeof loggedUser !== 'undefined') { %>
+      Hello,<%= loggedUser.username %>!
+      <li> <a href="/logout">Log Out</a> </li>
+      <li> <a href="/secret">Secret Logged In Page Only Shhh</a> </li>
+      <% } else { %>
+        <li> <a href="/signup">Sign Up </a> </li>
+        <li> <a href="/login">Login In Homie </a> </li>
+        <% } %>
+      </ul>
+    </body>
+    </html>
