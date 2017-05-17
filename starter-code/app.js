@@ -4,16 +4,21 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
-const app            = express();
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Controllers
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
+const app = express();
+const index = require('./routes/index');
+const authRoutes = require('./routes/auth-routes');
+
+
 // Middlewares configuration
 app.use(logger("dev"));
-
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -25,9 +30,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+app.use(session({
+  // secret is key of encryption. It is different in every session
+  secret: 'Sessions are hard dude',
+  // idle time in mili seconds, can be set to null
+  cookie: { maxAge: 6000},
+  resave:true,
+  saveUnitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
 
 // Routes
-
+app.use('/', index);
+app.use('/', authRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
