@@ -61,7 +61,6 @@ router.get("/login", (req, res, next) => {
 router.post("/login", (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
-
   if (username === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Indicate a username and a password to sign up"
@@ -70,6 +69,8 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ "username": username }, (err, user) => {
+    console.log(req.session);
+    console.log(user);
       if (err || !user) {
         res.render("auth/login", {
           errorMessage: "The username doesn't exist"

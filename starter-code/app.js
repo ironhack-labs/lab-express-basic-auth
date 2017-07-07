@@ -29,11 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
-
-// Routes
-app.use('/auth', auth);
-app.use('/', index);
-
 app.use(session({
   secret: "basic-auth-secret",
   cookie: { maxAge: 60000 },
@@ -42,6 +37,13 @@ app.use(session({
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
+
+// Routes
+app.use('/auth', auth);
+app.use('/', index);
+
+
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   const err = new Error("Not Found");
