@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Basic Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    Hello world
+
+<head>
+  <title>Basic Auth</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  Hello world
   <a href="/auth/signup">Signup</a>
-  <a href="/auth/login">Login</a>
   <a href="/main">Main</a>
-  <a href="/private">Private</a>
-  </body>
+
+
+  <% if (typeof errorMessage !== "undefined") { %>
+    <div class="error-message">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+      <a href="/auth/login">Login</a>
+      <a href="/private">Private</a>
+      <a href="/auth/logout">Logout</a>
+
+</body>
+
 </html>

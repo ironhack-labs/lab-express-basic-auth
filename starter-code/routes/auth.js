@@ -69,8 +69,6 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ "username": username }, (err, user) => {
-    console.log(req.session);
-    console.log(user);
       if (err || !user) {
         res.render("auth/login", {
           errorMessage: "The username doesn't exist"
@@ -80,6 +78,7 @@ router.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
+        console.log('te has logueado');
         res.redirect("/");
       } else {
         res.render("auth/login", {
@@ -91,7 +90,7 @@ router.post("/login", (req, res, next) => {
 
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) =>{
-    res.render('/');
+    res.redirect('/');
   });
 });
 
