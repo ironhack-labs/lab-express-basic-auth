@@ -51,8 +51,39 @@ authController.post('/signup', function (req, res, next) {
 	})
 });
 
-authController.get('/signup', function (req, res, next) {
-	res.render('auth/signup', {});
+authController.get('/login', function (req, res, next) {
+
+	res.render('auth/login', {});
+});
+
+authController.post('/login', function (req, res, next) {
+	let { username, password } = req.body;
+
+	if (username === "" || password === "") {
+		res.render('auth/login', {
+			errorMessage: "Indicate a username and a passwor to log in"
+		});
+		return;
+	}
+	User.findOne({ username }, (err, user) => {
+		if (err || !user) {
+			res.render('auth/login', {
+				errorMessage: "The username doesn't exist"
+			});
+			return;
+		} else {
+			console.log(password, user);
+			if (bcrypt.compareSync(password, user.password)) {
+				console.log("Loged");
+				req.session.currentUser = user;
+				res.redirect('/');
+			} else {
+				res.render('auth/login', {
+					errorMessage: "Incorrect password"
+				});
+			}
+		}
+	});
 });
 
 module.exports = authController;
