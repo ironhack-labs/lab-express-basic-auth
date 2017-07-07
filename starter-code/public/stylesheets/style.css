@@ -58,3 +58,10 @@ a {
   padding: 20px;
   width: 100%;
 }
+
+.homeDiv{
+  display:block;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: bold;
+}
