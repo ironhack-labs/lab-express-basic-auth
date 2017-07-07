@@ -27,13 +27,13 @@ app.use(logger("dev"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);
 app.use('/users', users);
 
 // Access POST params with body parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());

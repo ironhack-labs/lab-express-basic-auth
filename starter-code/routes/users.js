@@ -1,16 +1,19 @@
 let express = require('express');
+const morgan = require('morgan');
 let router = express.Router();
 const User           = require("../models/user");
 // BCrypt to encrypt passwords
-const bcrypt         = require("bcrypt-pbkdf");
+const bcrypt         = require("bcrypt");
 const bcryptSalt     = 10;
 
 /* GET home page. */
 router.get('/signup', function(req, res, next) {
+  console.log("Hola, estoy en signup GET");
   res.render('auth/signup', { title: 'signup' });
 });
 
-authRoutes.post("/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
+  console.log("HOLAAA ESTOY EN SIGNUP POST!!");
   let username = req.body.username;
   let password = req.body.password;
   let salt     = bcrypt.genSaltSync(bcryptSalt);
@@ -27,7 +30,9 @@ authRoutes.post("/signup", (req, res, next) => {
       console.log(err);
     } else {
       console.log(usr);
-      res.redirect("/");
+      res.redirect("/users/signup", {
+        msg: "Usuario creado con éxito"
+      });
     }
   });
 });
