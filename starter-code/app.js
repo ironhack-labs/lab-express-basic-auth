@@ -5,6 +5,9 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const authRoutes = require('./routes/auth-routes');
+const index = require('./routes/index');
+//const users = require('./routes/users');
 
 // Controllers
 
@@ -19,12 +22,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-// Access POST params with body parser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use('/', authRoutes);
+app.use('/', index);
+
 
 // Authentication
-app.use(cookieParser());
 
 // Routes
 
