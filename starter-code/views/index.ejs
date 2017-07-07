@@ -5,6 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
-  </body>
+    <h2><%= title %></h2>
+
+<% if (typeof session == "undefined") { %>
+  <a href="/auth/signup">Register</a>
+  <a href="/auth/login">Login</a>
+<% }else{ %>
+  <a href="/auth/logout">Logout</a>
+<% } %>
+
+<a href="/private">Go to private page</a>
+<a href="/main">Go to main page</a>
+<% if (typeof errorMessage !== "undefined") { %>
+<div class="error-message"><%= errorMessage %></div>
+<% } %>
 </html>
