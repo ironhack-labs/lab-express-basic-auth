@@ -16,7 +16,7 @@ router.get('/main', function(req, res, next) {
   }else{
     res.render('index', {
       title: 'Express',
-      errorMessage: "ESTO ES SECRETO, no puedes pasar!"
+      errorMessage: "Para acceder debes iniciar sesion primero!"
      });
   }
 });
@@ -32,7 +32,7 @@ router.get('/private', function(req, res, next) {
   }else{
     res.render('index', {
       title: 'Express',
-      errorMessage: "ESTO ES SECRETO, no puedes pasar!"
+      errorMessage: "Para acceder debes iniciar sesion primero!"
      });
   }
 });
