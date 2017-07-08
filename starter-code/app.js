@@ -4,8 +4,17 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const index          = require("./routes/index");
+const auth          = require("./routes/auth");
+// BCrypt to encrypt passwords
+const tweetnacl      = require("tweetnacl");
+const bcryptSalt     = 10;
 const app            = express();
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const salt           = bcrypt.genSaltSync(saltRounds);
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
 // Controllers
 
 // Mongoose configuration
@@ -18,10 +27,13 @@ app.use(logger("dev"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-
-// Access POST params with body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/', index);
+app.use('/auth', auth);
+
+// Access POST params with body parser
 
 // Authentication
 app.use(cookieParser());
