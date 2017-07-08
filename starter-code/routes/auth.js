@@ -13,14 +13,12 @@ function withTitle(c, title) {
 
 /* GET home page. */
 router.get('/signup', function(req, res, next) {
-  console.log("Hola, estoy en signup GET");
   res.render('auth/signup', {
     title: 'signup'
   });
 });
 
 router.post("/signup", (req, res, next) => {
-  console.log("Heeeyyyy estoy entrando en POST!!");
   if (req.body.username === "" || req.body.password === "") {
     return res.render('auth/signup',
       withTitle({
@@ -32,14 +30,12 @@ router.post("/signup", (req, res, next) => {
     "username": req.body.username
   }, "username", (err, user) => {
     if (user !== null) {
-      console.log("EL usuario existe");
       return res.render('auth/signup',
         withTitle({
           errorMessage: "The username already exists"
         }));
     }
 
-    console.log("HOLAAA ESTOY EN SIGNUP POST!!");
     let username = req.body.username;
     let password = req.body.password;
     let salt = bcrypt.genSaltSync(bcryptSalt);
@@ -56,7 +52,6 @@ router.post("/signup", (req, res, next) => {
           errorMessage: "Something went wrong"
         }));
       } else {
-        console.log("OK");
         res.redirect("/");
       }
     });
@@ -78,41 +73,26 @@ router.post('/login', function(req, res, next) {
       errorMessage: "Indicate a username and a password to sign up"
     }, 'Login Formulario'));
   }
-  console.log("Imprimo USER");
-  console.log(username);
-  console.log("Ahora imprimo el user directo");
-  console.log(username.username);
-
   User.findOne({
     "username": username
   }, (err, user) => {
-    console.log("IMPRIMO USER DENTRO DE FINDONE");
-    console.log(user.username);
     if (user === null) {
-
-
-      if (err) {
-        console.log("Eeyyy que doy error al comprobar el user");
-        return res.render("auth/login", withTitle({
-          errorMessage: err
-        }, 'Login Formulario'));
-      } else {
-        console.log(user);
-        // Comprobamos que el hash del password del objeto
-        //  user sea igual al hash que recibo en el POST
-        if (bcrypt.compareSync(password, user.password)) {
-          // BIEN! El password es correcto
-          console.log("Password correcto");
-          return res.redirect("/auth/login");
-        } else {
-          console.log("Password incorrecto");
-          return res.render("auth/login", withTitle({
-            errorMessage: "Oye tio, pon bien el password"
-          }, 'Login Formulario'));
-        }
-      }
+      return res.render("auth/login", withTitle({
+        errorMessage: "El usuario no existe"
+      }, 'Login Formulario'));
+    }
+    if (err) {
+      return res.render("auth/login", withTitle({
+        errorMessage: err
+      }, 'Login Formulario'));
     } else {
-      console.log("USUARIO NO EXISTE");
+      if (bcrypt.compareSync(password, user.password)) {
+        return res.redirect("/auth/login");
+      } else {
+        return res.render("auth/login", withTitle({
+          errorMessage: "Oye tio, pon bien el password"
+        }, 'Login Formulario'));
+      }
     }
   });
 
