@@ -1,0 +1,22 @@
+<h2>Signup</h2>
+<form action="/auth/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input type="text" name="username"
+    placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password"
+    placeholder="Your password">
+  <br><br>
+  <button>Create account</button>
+
+  <% if (typeof(errorMessage) !== "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+  <% if (typeof(successMessage) !== "undefined") { %>
+    <div class="error-message"><%= successMessage %></div>
+  <% } %>
+
+</form>
+<div><a href="/">Go homepage</a>
+</div>
