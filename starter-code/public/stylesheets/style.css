@@ -5,6 +5,8 @@ body {
 
 a {
   color: #00B7FF;
+  display: block;
+  margin: 20px;
 }
 
 #form {
@@ -48,4 +50,18 @@ a {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background;
+}
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.auth-link{
+  padding:10px;
+  display: block;
 }

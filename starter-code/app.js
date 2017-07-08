@@ -5,7 +5,7 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const index          = require("./routes/index");
-const users          = require("./routes/users");
+const auth          = require("./routes/auth");
 // BCrypt to encrypt passwords
 const tweetnacl      = require("tweetnacl");
 const bcryptSalt     = 10;
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/auth', auth);
 
 // Access POST params with body parser
 
