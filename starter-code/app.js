@@ -6,6 +6,9 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+const bcrypt         = require('bcrypt');
+const authRoutes     = require('./routes/auth-routes');
+
 // Controllers
 
 // Mongoose configuration
@@ -27,6 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', authRoutes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
