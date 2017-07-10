@@ -5,6 +5,7 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const expressLayouts = require('express-ejs-layouts');
 
 const login          = require('./routes/login');
 const index = require('./routes/index');
@@ -12,6 +13,8 @@ const signup = require('./routes/signup');
 
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+
+app.use(expressLayouts);
 
 // Controllers
 
@@ -30,6 +33,7 @@ app.use(session({
 }));
 
 // View engine configuration
+app.set('layout','layouts/app');
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
