@@ -28,7 +28,7 @@ router.post("/", (req, res, next) => {
 
       if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user;
-        res.redirect('/');
+        res.redirect('/main');
       } else{
         res.render('index', {
           errorMessage:" You shouldn't be here"

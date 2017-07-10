@@ -11,8 +11,9 @@ const expressLayouts = require('express-ejs-layouts');
 
 
 // Controllers
-var index = require("./routes/index");
-const signUp = require('./routes/signUp');
+var index            = require("./routes/index");
+const signUp         = require('./routes/signUp');
+const authRoutes     = require('./routes/authRoutes');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/lab-basic-auth");
@@ -42,7 +43,7 @@ app.use(session({
 }));
 app.use("/", index);
 app.use("/signUp", signUp);
-
+app.use("/", authRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
