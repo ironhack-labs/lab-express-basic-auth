@@ -1,0 +1,21 @@
+<h1> Log In Page:</h1>
+
+<form id="form" action="/login" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="AnakinSkywalker">
+
+ <br><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="DeathStar">
+  <br><br>
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+      <button>Sign In</button>
+
+  <p class="account-message">
+   Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
