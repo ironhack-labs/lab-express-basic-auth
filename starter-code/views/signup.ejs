@@ -1,0 +1,10 @@
+<form action="/<%= type %>" method="post">
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username">
+  <label for="password">Password:</label>
+  <input type="text" name="password" id="password">
+  <button type="submit" name="button"><%= textButton %></button>
+</form>
+<% if( type === "login" ) { %>
+  <a href="/signup"> Sign Up </a>
+<% } %>
