@@ -1,18 +1,14 @@
-<h2>Login</h2>
-<form class="form" action="/" method="post">
+<h2>Sign Up</h2>
+<form class="form" action="/signUp" method="post">
   <label for="username">Username:</label>
   <input type="text" name="username" placeholder="Your name...">
 
   <label for="password">Password:</label>
-  <input type="password" name="password" placeholder="Your password...">
+  <input type="password" name="password" id="myPassword" placeholder="Your password...">
 
   <% if (typeof errorMessage !== "undefined") { %>
     <div class="error-message"><%= errorMessage %></div>
   <% } %>
 
-  <button>Log in!</button>
+  <button>Sign Up!</button>
 </form>
-
-<p class="account-message">
-  Don't have an account? <a href="/signup">Sign up</a>
-</p>
