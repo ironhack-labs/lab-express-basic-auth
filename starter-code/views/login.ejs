@@ -1,6 +1,6 @@
-<h1> Sign up page </h1>
+<h1> Log In Page:</h1>
 
-<form id="form" action="/signup" method="POST">
+<form id="form" action="/login" method="POST">
   <label for="username">Username</label><br>
   <input type="text" name="username" placeholder="AnakinSkywalker">
 
@@ -13,9 +13,9 @@
       <%= errorMessage %>
     </div>
     <% } %>
-      <button>Create account</button>
+      <button>Sign In</button>
 
-      <p class="account-message">
-       Have an account? <a href="/login">Log In</a>
-      </p>
+  <p class="account-message">
+   Don't have an account? <a href="/signup">Sign up</a>
+  </p>
 </form>
