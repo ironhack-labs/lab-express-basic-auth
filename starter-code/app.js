@@ -5,6 +5,8 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
 const app            = express();
 
 // Controllers
@@ -32,6 +34,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use(session({
+  secret: "myLittleSecret",
+  cookie: {maxAge: 600000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 
+  })
+}));
 app.use("/", index);
 app.use("/signUp", signUp);
 
