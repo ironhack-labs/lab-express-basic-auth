@@ -12,6 +12,7 @@ const app            = express();
 // Controllers
 const index = require('./routes/index');
 const signUp = require("./routes/signUp");
+const authRoutes = require("./routes/authRoutes");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/lab-basic-auth");
@@ -39,11 +40,12 @@ app.use(session({
   cookie: {maxAge: 600000},
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 
+    ttl: 24 * 60 * 60
   })
 }));
 app.use("/", index);
 app.use("/signUp", signUp);
+app.use("/", authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
