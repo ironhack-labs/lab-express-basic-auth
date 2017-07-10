@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
 User.findOne({"username": username}, (error, user) => {
   if(user !== null) {
     res.render('signUp', {
-      errorMessage: "The username already exists"
+      errorMessage: "You can't pass due to some issues with your account"
     });
     return;
   }
