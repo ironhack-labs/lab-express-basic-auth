@@ -8,6 +8,12 @@ const app            = express();
 
 const bcrypt         = require('bcrypt');
 const authRoutes     = require('./routes/auth-routes');
+const siteRoutes     = require('./routes/site-routes');
+
+const session        = require("express-session");
+const userData       = require('connect-mongo') (session);
+
+
 
 // Controllers
 
@@ -16,6 +22,15 @@ mongoose.connect("mongodb://localhost/basic-auth");
 
 // Middlewares configuration
 app.use(logger("dev"));
+
+app.use(session ({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 30000 },
+  store: new userData({
+    mongooseConnection: mongoose.connection,
+  ttl: 24 * 60 * 60
+  })
+}));
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -31,6 +46,7 @@ app.use(cookieParser());
 
 // Routes
 app.use('/', authRoutes);
+app.use('/', siteRoutes);
 
 
 
