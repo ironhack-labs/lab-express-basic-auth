@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="strength.js"></script>
+  <script type="text/javascript" src="js.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>Signup</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body>
+    <h2 class="centerText">This is the signup page!</h2>
+    <form id="form" action="/signup" method="POST">
+      <label for="username">Username</label><br>
+      <input type="text" name="username" placeholder="Your username2">
+
+      <br><br>
+      <label for="password">Password</label><br>
+      <input id="signUpPassword" type="password" name="password" placeholder="password2">
+      <br><br>
+
+      <% if (typeof(errorMessage) != "undefined") { %>
+        <div class="error-message"><%= errorMessage %></div>
+      <% } %>
+
+      <button type="submit">Create Account</button>
+    </form>
+    <p><a href="/">Home</a></p>
+  </body>
+</html>
