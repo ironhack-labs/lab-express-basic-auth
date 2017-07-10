@@ -13,10 +13,10 @@
   <h2>Login</h2>
 
   <label for="username">Username</label>
-  <input type="text" name="username" placeholder="obiwan">
+  <input type="text" name="username" placeholder="obiwan" required>
 
   <label for="password">Password</label>
-  <input id="myPassword" type="password" name="password" placeholder="thatsnomoon" class="strength" data-password="myPassword">
+  <input id="myPassword" type="password" name="password" placeholder="thatsnomoon" class="strength" data-password="myPassword" required>
   <% if (typeof errorMessage !== "undefined") { %>
     <div class="error-message"><%= errorMessage %></div>
   <% } %>
