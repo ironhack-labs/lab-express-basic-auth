@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="strength.js"></script>
+  <script type="text/javascript" src="js.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form id="form" action="/login" method="POST">
+      <h2>Login</h2>
+
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="Username">
+
+      <label for="password">Password</label>
+      <input id="loginPassword" type="password" name="password" placeholder="Password">
+
+      <% if (typeof errorMessage !== 'undefined') { %>
+        <div class="error-message"> <%= errorMessage %> </div>
+      <% } %>
+
+      <button type="submit">Sign In</button>
+
+      <p class="account-message">
+        Don't have an account? <a href="/signup">Sign up here!</a>
+      </p>
+    </form>
+
+    <p><a href="/">Home</a></p>
+  </body>
+</html>
