@@ -1,0 +1,26 @@
+<h2>Login</h2>
+<nav>
+   <a href="/">Index</a> |
+   <a href="/login">login</a> |
+   <a href="/secret">Secret</a> |
+   <a href="/logout">Log out</a>
+</nav>
+
+
+<form action="/login" method="POST" id="form-container" class="login">
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="Your username">
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Your password">
+  <br><br>
+  <button>Sign in</button>
+
+  <% if (typeof(errorMessage) !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+
+  <p class="account-message">
+    Dont have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
