@@ -19,34 +19,27 @@
   </head>
   <body>
     
-<div class="container">
-	<div class="login-container">
-            <div id="output"></div>
-            <div class="avatar"></div>
-            <div class="form-box">
 
-                <form action="/login" method="POST">
-                    <input name="user" type="text" placeholder="username" required autofocus>
-                    <input name="password" type="password" placeholder="password"required >
-                    <button class="btn btn-info btn-block login" type="submit">Login</button>
-
-                    <a href="/sign-up" class="btn btn-success btn-block login" type="submit">Sign up for free!</a>
+    <div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    
+            <form class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input name="user" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input name="password"type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                
 
 
-                </form>
-            </div>
-        </div>
-        
-</div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
+            </form><!-- /form -->
 
 
-
-
-
-
-
-
-
+            <a href="/" class="forgot-password">
+                Home page
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
 
 
     <!-- jQuery -->
