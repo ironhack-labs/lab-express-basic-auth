@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>   
+ <script type="text/javascript" src="javascripts/strength.js"></script>
+
+   <link rel="stylesheet" href="stylesheets/strength.css">
+  </head>
+  <body>
+    <form action="/" method="POST">
+<input type="text" placeholder="Username" name="username" required/>
+<input id="myPassword"  type="password" placeholder="password" name="password" required/>
+<input type="submit" value="Submit"/> 
+</form>
+
+    <script>
+$(document).ready(function ($) {
+
+    $('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show password',
+        strengthButtonTextToggle: 'Hide Password'
+    });
+
+});
+</script>
+  </body>
+</html>
