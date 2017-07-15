@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Render home page
 router.get('/', (req, res, next) =>{
-  res.render('index');
+  res.send('HOME IS WHERE I BELOOOONG');
 });
 
 module.exports = router;

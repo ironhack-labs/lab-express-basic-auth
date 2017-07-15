@@ -26,7 +26,7 @@
             <div class="form-box">
 
                 <form action="/login" method="POST">
-                    <input name="user" type="text" placeholder="username" required autofocus>
+                    <input name="username" type="text" placeholder="username" required autofocus>
                     <input name="password" type="password" placeholder="password"required >
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
 
@@ -34,6 +34,9 @@
 
 
                 </form>
+                       <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
             </div>
         </div>
         
