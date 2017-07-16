@@ -6,10 +6,17 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
-// Controllers
+//mongoose connection
+mongoose.connect('mongodb://localhost:27017/lab-basic-auth'); //BBDDD que te quieres conectar
+//session 
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+
+// Controllers
+var auth = require('./routes/auth');
+
+
 
 // Middlewares configuration
 app.use(logger("dev"));
@@ -24,9 +31,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
-app.use(cookieParser());
+app.use(cookieParser()); //??
 
 // Routes
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
