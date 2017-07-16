@@ -6,18 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/strength.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/strength.js"></script>
+
+
     <title>Sign Up</title>
 </head>
 
 <body>
-    <h1>LAB-BASIC-AUTH</h1>
-    <form id="form" action="/signup" method="POST">
+
+<!--     <form id="form" action="/signup" method="POST">
+ -->            <form id="form" action="/signup" method="POST" accept-charset="utf-8">
+        <h1>LAB-BASIC-AUTH</h1>
+
         <label for="username">Username</label><br>
         <input type="text" name="username" placeholder="AnakinSkywalker">
 
         <br><br>
         <label for="password">Password</label><br>
-        <input type="password" name="password" placeholder="DeathStar">
+        <input id="myPassword" type="password" name="password" placeholder="DeathStar">
         <br><br>
 
         <button>Create account</button>
@@ -29,11 +37,14 @@
         Do you already have an account? <a href="/login">Login</a>
     </p>
 
-            <% if (typeof(errorMessage) !== "undefined") { %>
-            <div class="error-message">
-                <%= errorMessage %>
-            </div>
-            <% } %>
+    <% if (typeof(errorMessage) !== "undefined") { %>
+        <div class="error-message">
+            <%= errorMessage %>
+        </div>
+        <% } %>
+             <script type="text/javascript" src="js/js.js"></script>
+
 </body>
+
 
 </html>
