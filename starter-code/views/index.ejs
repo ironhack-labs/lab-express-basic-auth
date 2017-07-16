@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    User logged
+    User profile
+                <% if (typeof(user) !== "undefined") { %>
+            <div class="error-message">
+                <%= user.username %>
+            </div>
+            <% } %>
   </body>
 </html>

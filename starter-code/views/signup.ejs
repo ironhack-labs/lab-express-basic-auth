@@ -21,10 +21,19 @@
         <br><br>
 
         <button>Create account</button>
-
         <!--  <%= //if(errorMessage){%>
          -->
+
     </form>
+    <p class="account-message">
+        Do you already have an account? <a href="/login">Login</a>
+    </p>
+
+            <% if (typeof(errorMessage) !== "undefined") { %>
+            <div class="error-message">
+                <%= errorMessage %>
+            </div>
+            <% } %>
 </body>
 
 </html>

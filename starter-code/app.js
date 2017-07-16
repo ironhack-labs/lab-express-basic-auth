@@ -15,6 +15,7 @@ const MongoStore = require("connect-mongo")(session);
 
 // Controllers
 var auth = require('./routes/auth');
+var index = require('./routes/index');
 
 
 
@@ -26,6 +27,22 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
+/**
+ * The session package creates a new session middleware with the specified options. Here are the options we are using:
+
+secret: Used to sign the session ID cookie (required)
+cookie: Object for the session ID cookie. In this case, we only set the maxAge attribute, which configures the expiration date of the cookie (in milliseconds).
+store: Sets the session store instance. In this case, we create a new instance of connect-mongo, so we can store the session information in our Mongo database.
+ */
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Access POST params with body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,6 +51,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser()); //??
 
 // Routes
+app.use('/', index);
 app.use('/', auth);
 
 // catch 404 and forward to error handler

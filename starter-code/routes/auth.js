@@ -13,7 +13,7 @@ router.get('/signup', function (req, res, next) {
     res.render('signup');
 });
 
-
+/* POST users listing. */
 router.post("/signup", (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -48,9 +48,57 @@ router.post("/signup", (req, res, next) => {
         });
       } else {
         // User has been created...now what?
-        res.render('index');
+        //res.render('index');
+        res.redirect("/login");
       }
     });
+  });
+});
+
+//login view
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+/**
+ we will check out if the user has inserted his data correctly, 
+*  and we will save his data in the session if he logs in successful
+ */
+ router.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("login", {
+      errorMessage: "Indicate a username and a password to log in"
+    });
+    return;
+  }
+
+  User.findOne({ "username": username },
+    "_id username password following",
+    (err, user) => {
+      if (err || !user) {
+        res.render("login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      } else {
+        if (bcrypt.compareSync(password, user.password)) {
+          console.log(`SESSION: ${JSON.stringify(req.session)}`);
+          req.session.currentUser = user;
+          console.log(`CURRENT USER: ${JSON.stringify(req.session.currentUser)}`);
+                       res.render("index", {
+            user: user
+          });
+
+          // logged in
+        } else {
+          res.render("login", {
+            errorMessage: "Incorrect password"
+          });
+        }
+      }
   });
 });
 
