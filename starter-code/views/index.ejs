@@ -5,7 +5,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    User profile
+ <div id="container">
+     <a href="/index">Home</a>
+  <a href="/signup">Sign up</a>
+  <a href="/login">Login</a>
+  <a href="/private">Protected page (requires authentication)</a>
+  <a href="/logout">Logout</a>
+</div>  
                 <% if (typeof(user) !== "undefined") { %>
             <div class="error-message">
                 <%= user.username %>

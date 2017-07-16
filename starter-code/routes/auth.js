@@ -57,6 +57,7 @@ router.post("/signup", (req, res, next) => {
 
 //login view
 router.get("/login", (req, res, next) => {
+  console.log(`LOGIN SESSION: ${JSON.stringify(req.session)}`);
   res.render("login");
 });
 
@@ -99,6 +100,14 @@ router.get("/login", (req, res, next) => {
           });
         }
       }
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  console.log(`LOGOUT SESSION: ${JSON.stringify(req.session)}`);
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
   });
 });
 
