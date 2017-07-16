@@ -54,13 +54,20 @@ router.post('/login', (req, res, next) => {
         }
         if (bcrypt.compareSync(password, user.password)) {
             req.session.currentUser = user;
-            res.redirect('/');
+            res.redirect('/secret');
         } else {
             res.render("login", { errorMessage: "Incorrect password"});
         }
     });
 });
 
+router.get('/secret', (req, res, next ) => {
+    if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+});
 
 
 module.exports = router;
