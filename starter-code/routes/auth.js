@@ -14,33 +14,53 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
-    const salt     = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-    const catchUser = null;
-    const newUser =  User({
-        username,
-        password: hashPass
-    });
+
+    User.findOne({username}, "username", (err, user) => {
+        if (user !== null ) {
+            res.render('signup', { message: "This user already exists"});
+            return;
+        }
     
-    // const User = mongoose.model('User', userSchema );
-    
-    User.findOne({ 'username': username }, (err, user) => {
-        if (err) {
-            throw err;
-        } else {
-            catchUser = user;
+        const salt     = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(password, salt);
+
+        const newUser =  User({
+            username,
+            password: hashPass
+        });
+        
+        newUser.save((err) => {
+            if (err) {
+                res.render('signup', { message: "something went wrong"});
+            } else {
+                res.redirect('/');
             }
-    })
-
-    if (catchUser === null) {
-            newUser.save((err) => {
-            res.redirect('/secret');
-        })
-    } else {
-        res.render('signup' , { "message": "Already exists" })
-    }
-
-    
+        }); 
+    });
 });
+
+router.get('/login', (req, res, next) => {
+    res.render('login');
+})
+
+router.post('/login', (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({ "username": username}, (err, user) => {
+        if (err || !user) {
+            res.render('login', { errorMessage: "The username doesn't exist"});
+            return;
+        }
+        if (bcrypt.compareSync(password, user.password)) {
+            req.session.currentUser = user;
+            res.redirect('/');
+        } else {
+            res.render("login", { errorMessage: "Incorrect password"});
+        }
+    });
+});
+
+
 
 module.exports = router;

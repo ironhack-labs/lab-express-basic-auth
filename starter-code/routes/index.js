@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/secret', (req, res, next) => {
-  res.send('secret',{"message": "dd"} );
+  res.send('secret');
 })
 
 

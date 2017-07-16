@@ -1,10 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://static.pexels.com/photos/1380/black-and-white-city-skyline-buildings.jpg");
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
 
 body {
