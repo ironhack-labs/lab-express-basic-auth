@@ -9,6 +9,8 @@ const app            = express();
 
 const authRoutes = require('./routes/signup');
 
+const signIn = require('./routes/signin');
+
 // Controllers
 
 // Mongoose configuration
@@ -27,6 +29,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/', authRoutes);
+app.use('/', signIn);
 
 // Authentication
 app.use(cookieParser());
