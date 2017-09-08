@@ -12,7 +12,6 @@ const app            = express();
 const authRoutes = require('./routes/signup');
 const indexRoutes = require('./routes/index');
 const privateRoutes = require('./routes/private');
-
 const signIn = require('./routes/signin');
 
 // Controllers
