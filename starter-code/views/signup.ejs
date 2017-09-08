@@ -9,6 +9,8 @@
     <label for="password"> New password: </label>
     <input type="password" name="password">
   </div>
-
+  <% if (typeof(errorMessage) != "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+  <% } %>
   <button> Sign up </button>
 </form>

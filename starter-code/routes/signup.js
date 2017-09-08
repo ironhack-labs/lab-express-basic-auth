@@ -9,12 +9,11 @@ router.get('/signup',(req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-  console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
 
     if (username === "" || password === "") {
-        res.render("/signup", {
+        res.render("signup", {
             errorMessage: "Indicate a username and a password to sign up"
         });
         return;
@@ -22,7 +21,7 @@ router.post('/signup', (req, res, next) => {
 
     userModel.findOne({ "username": username }, "username", (err, user) => {
         if (user !== null) {
-            res.render("/signup", {
+            res.render("signup", {
                 errorMessage: "The username already exists"
             });
             return;
@@ -39,12 +38,11 @@ router.post('/signup', (req, res, next) => {
 
         newUser.save((err) => {
             if (err) {
-                res.render("/signup", {
+                res.render("signup", {
                     errorMessage: "Something went wrong when signing up"
                 });
             } else {
                 res.redirect('/');
-                console.log(`-------${newUser} is saved!`);
             }
         });
 
