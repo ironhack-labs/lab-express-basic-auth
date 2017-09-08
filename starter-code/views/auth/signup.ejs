@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication</title>
+    <link rel='stylesheet' href='./stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <form class="form" action="/signup" method="POST">
+        <h2>Sign Up</h2>
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="AnakinSkywalker">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="DeathStar">
+
+        <% if (typeof(errorMessage) != 'undefined') { %>
+          <div class="error-message"><%= errorMessage %></div>
+        <%  } %>
+        <button>Create account</button>
+        <p class="account-message">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </form>
+
+
+    </div>
+  </body>
+</html>
