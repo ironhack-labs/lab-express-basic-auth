@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
     return;
   }
 
-  User.findOne({ "username": username }).then(user =>{
+  User.findOne({ "name": username }).then(user =>{
     if(user){
       res.render("auth/signup", {
         errorMessage: "User already exists"
@@ -39,6 +39,48 @@ router.post('/signup', (req, res) => {
       .save()
       .then(() => res.redirect('/'))
       .catch(e => next(e));
+  });
+});
+
+router.get('/login', (req, res) => {
+  res.render('auth/login', {
+    title: 'Login Here!'
+  });
+});
+
+router.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+    return;
+  }
+
+  User.findOne({ "name": username }, (err, user) => {
+      if (err || !user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/profile");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
   });
 });
 
