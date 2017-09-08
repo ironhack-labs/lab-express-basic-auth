@@ -27,11 +27,7 @@ router.post('/', (req, res, next) => {
         //   });
         } else {
           // req.session.currentUser = newUser;
-<<<<<<< HEAD
-          // res.render('home', { newUser });
-=======
-          res.render('welcome', { user: newUser });
->>>>>>> 17ec7b5af81d8c23c10f78d4840b9eab7c9b0d69
+          res.render('home', { newUser });
         }
     });
 });
