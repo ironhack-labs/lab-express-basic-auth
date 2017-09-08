@@ -9,7 +9,7 @@ authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-//create a user and encrypt password
+//create a user and encrypt password check if user exists
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -22,33 +22,32 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 
   if (username === "" || password === "") {
-  res.render("auth/signup", {
-    errorMessage: "Indicate a username and a password to sign up"
-  });
-  return;
+    res.render("auth/signup", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+    return;
   }
 
-  User.findOne({ "username": username },
-    "username",
-    (err, user) => {
-      if (user !== null) {
-        res.render("auth/signup", {
-          errorMessage: "The username already exists"
-        });
-        return;
-      }
-  });
-
-  newUser.save((err) => {
-    if (err) {
+  User.findOne({ "username": username }, "username",  (err, user) => {
+    if (user !== null) {
       res.render("auth/signup", {
-        errorMessage: "Something went wrong"
+        errorMessage: "The username already exists"
       });
-    } else {
-      res.redirect("/");
+      return;
     }
-  });
 
+
+    newUser.save((err) => {
+      if (err) {
+        res.render("auth/signup", {
+          errorMessage: "Something went wrong"
+        });
+      } else {
+        res.redirect("/");
+      }
+    });
+
+  });
 });
 
 

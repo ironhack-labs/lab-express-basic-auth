@@ -5,9 +5,11 @@
 
     <br><br>
     <label for="password">Password</label><br>
-    <input type="password" name="password" 
+    <input type="password" name="password"
       placeholder="DeathStar">
     <br><br>
-
+    <% if (typeof(errorMessage) != 'undefined') { %>
+      <div class="error-message"><%= errorMessage %></div>
+  <%  } %>
     <button>Create account</button>
   </form>
