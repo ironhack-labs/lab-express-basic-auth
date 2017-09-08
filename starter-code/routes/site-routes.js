@@ -13,7 +13,7 @@ siteRoutes.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
-    res.redirect("/main");
+    res.redirect("main");
   }
 });
 

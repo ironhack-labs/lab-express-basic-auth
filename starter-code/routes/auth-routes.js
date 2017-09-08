@@ -77,7 +77,7 @@ authRoutes.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("private");
       } else {
         res.render("auth/login", {
           errorMessage: "Incorrect password"
