@@ -19,12 +19,28 @@ router.post('/', (req, res, next) => {
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
     });
 
+    if (newUser.username === "" || newUser.password === "") {
+        res.render("sign-up/index", {
+          errorMessage: "All fields required to sign-up"
+        });
+        return;
+    };
+
+    User.findOne({ "username": newUser.username }, "username", (err, user) => {
+        if (user !== null) {
+          res.render("sign-up/index", {
+            errorMessage: "That username already exists"
+          });
+          return;
+        }
+    })
+
    newUser.save((err) => {
         if (err) {
             return next(err);
-        //   res.render("sign-up/index", {
-        //     errorMessage: "Something went wrong when signing up"
-        //   });
+            res.render("sign-up/index", {
+               errorMessage: "Something went wrong when signing up"
+             });
         } else {
           // req.session.currentUser = newUser;
 
