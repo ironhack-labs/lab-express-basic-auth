@@ -1,22 +1,33 @@
 
-<div class="wrapper">
-  <form action="/login" method="POST" id="form">
-    <h2>Login</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication</title>
+    <link rel='stylesheet' href='./stylesheets/style.css' />
+  </head>
+  <body>
 
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="obiwan">
+    <div class="wrapper">
+      <form action="/login" method="POST" class="form">
+        <h2>Login</h2>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="thatsnomoon">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="obiwan">
 
-    <% if (typeof errorMessage !== "undefined") { %>
-      <div class="error-message"><%= errorMessage %></div>
-    <% } %>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="thatsnomoon">
 
-    <button>Sign in</button>
+        <% if (typeof errorMessage !== "undefined") { %>
+          <div class="error-message"><%= errorMessage %></div>
+        <% } %>
 
-    <p class="account-message">
-      Don't have an account? <a href="/signup">Sign up</a>
-    </p>
-  </form>
-</div>
+        <button>Sign in</button>
+
+        <p class="account-message">
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
+      </form>
+    </div>
+
+  </body>
+</html>

@@ -1,18 +1,31 @@
 
-<div class="wrapper">
-  <form id="form" action="/signup" method="POST">
-    <label for="username">Username</label><br>
-    <input type="text" name="username"
-      placeholder="AnakinSkywalker">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication</title>
+    <link rel='stylesheet' href='./stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="wrapper">
 
-    <br><br>
-    <label for="password">Password</label><br>
-    <input type="password" name="password"
-      placeholder="DeathStar">
-    <br><br>
-    <% if (typeof(errorMessage) != 'undefined') { %>
-      <div class="error-message"><%= errorMessage %></div>
-    <%  } %>
-    <button>Create account</button>
-  </form>
-</div>  
+      <form class="form" action="/signup" method="POST">
+        <h2>Sign Up</h2>
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="AnakinSkywalker">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="DeathStar">
+
+        <% if (typeof(errorMessage) != 'undefined') { %>
+          <div class="error-message"><%= errorMessage %></div>
+        <%  } %>
+        <button>Create account</button>
+        <p class="account-message">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </form>
+
+
+    </div>
+  </body>
+</html>
