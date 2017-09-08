@@ -15,6 +15,21 @@ router.get('/', (req, res, next) => {
   })
 });
 
+
+router.post("/", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  var hashPass = bcrypt.hashSync(password);
+
+  var newUser  = SignUp({
+    username,
+    password: hashPass
+  });
+
+  newUser.save((err) => {
+    res.redirect("/");
+  });
+});
 //
 // router.get('/drones/new', (req, res, next) => {
 //   res.render('drones/new')

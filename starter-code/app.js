@@ -4,13 +4,17 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const bcrypt         = require("bcrypt");
 const app            = express();
 
 // Routes
 const signup = require('./routes/signup');
+// const authRoutes = require('./routes/auth-routes');
 
 // Controllers
 app.use('/', signup);
+// app.use('/auth-routes', authRoutes);
+
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
@@ -29,10 +33,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
-
-// Routes
-const SignUp = require('./routes/signup');
-
 
 
 // catch 404 and forward to error handler
