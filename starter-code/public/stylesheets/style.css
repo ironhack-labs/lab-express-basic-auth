@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   color: #1B5E20;
+  transition: all 300ms ease
 }
 
 *:focus {
@@ -37,7 +38,7 @@ ul {
   list-style: none;
 }
 
-.container {
+.container, input, label {
   margin: auto;
   text-align: center;
 }
@@ -68,11 +69,13 @@ input {
   width: 300px;
   height: 30px;
   margin-bottom: 20px;
-  border: 3px solid #1B5E20;
+  border: 1px solid #1B5E20;
   padding: 2px 5px;
   font-family: 'Raleway', sans-serif;
   color: #1B5E20;
   display: block;
+  text-align: left;
+  box-shadow: 2px 2px 10px #888888;
 }
 
 
@@ -105,7 +108,7 @@ button:hover {
 
 label {
   width: 300px;
-  text-align:right;
+  text-align:center;
   font-family: "Lato", sans-serif;
   display: block;
 }
