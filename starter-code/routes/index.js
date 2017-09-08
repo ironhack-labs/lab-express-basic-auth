@@ -1,8 +1,10 @@
 /*jshint esversion: 6 */
 
-const express = require('express');
-const router = express.Router();
-const User = require("../models/user");
+const express      = require('express');
+const router       = express.Router();
+const User         = require("../models/user");
+const bcrypt       = require("bcrypt");
+const saltRounds   = 10;
 
 /* GET home page. */
 
@@ -11,24 +13,21 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    console.log(req.body)
+
     const newUser = User({
         username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
     });
 
    newUser.save((err) => {
         if (err) {
-            return next(err)
+            return next(err);
         //   res.render("/", {
         //     errorMessage: "Something went wrong when signing up"
         //   });
         } else {
-        //  req.session.currentUser = newUser;
-          res.render('sign-up/index', { newUser });
+          // req.session.currentUser = newUser;
+          res.render('home', { newUser });
         }
     });
 });
