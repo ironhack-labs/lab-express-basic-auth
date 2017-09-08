@@ -68,19 +68,26 @@ authRoutes.post("/login", (req, res, next) => {
   }
 
   User.findOne({ "username": username }, (err, user) => {
-      if (err || !user) {
+      if (err) {
         res.render("auth/login", {
-          errorMessage: "The username doesn't exist"
+          errorMessage: "Something went wrong!"
         });
         return;
       }
+      else if (!user) {
+        res.render("auth/login", {
+          errorMessage: "Username doesn't exist!"
+        });
+        return;
+      }
+
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
         res.redirect("private");
       } else {
         res.render("auth/login", {
-          errorMessage: "Incorrect password"
+          errorMessage: "Incorrect Details."
         });
       }
   });

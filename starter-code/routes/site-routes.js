@@ -6,9 +6,9 @@ siteRoutes.get('/', function(req, res, next) {
   res.render('index');
 });
 
-module.exports = siteRoutes;
 
-//iteration 3: create private page
+
+//Check if user is valid to go to welcome or not (if logged in).
 siteRoutes.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
@@ -20,3 +20,8 @@ siteRoutes.use((req, res, next) => {
 siteRoutes.get("/private", (req, res, next) => {
   res.render("private");
 });
+
+
+
+
+module.exports = siteRoutes;
