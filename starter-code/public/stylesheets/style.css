@@ -1,8 +1,114 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  box-sizing: border-box;
+  color: #1B5E20;
+  transition: all 300ms ease
+}
+
+*:focus {
+  outline: none;
+}
+
+h1, h4 {
+  font-family: 'Arvo', serif;
+}
+
+h2, h5 {
+  font-family: 'Lato', sans-serif;
+}
+
+h3, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+p {
+  font-family: 'Arvo', sans-serif;
+}
+
+img {
+  margin-top: 30px;
+  border-radius: 45px;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+ul {
+  list-style: none;
+}
+
+.container, input, label {
+  margin: auto;
+  text-align: center;
+}
+
+.items-box-horizontal {
+  display: flex;
+  justify-content: space-around;
+}
+
+.items-box-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  width: 33.4%;
+  border: 2px solid #1B5E20;
+  height: 60px;
+}
+
+.items:hover {
+  background-color: rgba(17, 88, 17, 0.10);
+  font-size: 1.05em;
+}
+
+input {
+  line-height: 20px;
+  width: 300px;
+  height: 30px;
+  margin-bottom: 20px;
+  border: 1px solid #1B5E20;
+  padding: 2px 5px;
+  font-family: 'Raleway', sans-serif;
+  color: #1B5E20;
+  display: block;
+  text-align: left;
+  box-shadow: 2px 2px 10px #888888;
+}
+
+
+
+input:focus {
+  border: none;
+  border-bottom: 3px solid #1B5E20;
+}
+
+button {
+  height: 30px;
+  color: #1B5E20;
+  display: inline;
+  border: 3px solid #1B5E20;
+  background-color: white;
+  font-family: 'Raleway', sans-serif;
+  ;
+}
+
+button:hover {
+  background-color:#1B5E20;
+  color: white;
+  border: 3px solid white;
+
+}
+
+.error-message {
+  color: red;
+}
+
+label {
+  width: 300px;
+  text-align:center;
+  font-family: "Lato", sans-serif;
+  display: block;
 }

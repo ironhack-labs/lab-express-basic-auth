@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h2>Log In</h2>
+
+    <form action="/login" method="POST">
+
+      <label for="username">Enter Your Username</label>
+      <input type="text" name="username" id="username" placeholder="Enter username here...">
+
+      <label for="password">Enter Your Password</label>
+      <input type="password" name="password" id="password" placeholder="Enter password here...">
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+    <% if (typeof(errorMessage) !== "undefined") { %>
+
+      <div class="error-message"><%= errorMessage %></div>
+
+    <% } %>
+
+  </div>
