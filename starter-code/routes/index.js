@@ -43,7 +43,6 @@ router.post('/', (req, res, next) => {
              });
         } else {
           // req.session.currentUser = newUser;
-
           res.render('welcome', { user: newUser });
         }
     });
