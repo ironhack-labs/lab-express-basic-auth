@@ -12,6 +12,10 @@ router.get('/', (req, res, next) => {
   res.render('sign-up/index');
 });
 
+router.get('/welcome', (req, res, next) => {
+  res.render('welcome')
+})
+
 router.post('/', (req, res, next) => {
 
     const newUser = User({
@@ -43,7 +47,7 @@ router.post('/', (req, res, next) => {
              });
         } else {
           // req.session.currentUser = newUser;
-          res.render('welcome', { user: newUser });
+          res.redirect('welcome');
         }
     });
 });
@@ -77,9 +81,7 @@ router.post('/login', (req, res, next) => {
 
     User.findOne({ "username": newUser.username }, (err, user) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
-          res.render("welcome",
-            { user: user }
-          );
+          res.redirect("welcome");
           return;
         } else {
           res.render("log-in/index", {
