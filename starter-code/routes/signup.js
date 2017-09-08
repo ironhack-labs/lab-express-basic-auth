@@ -1,5 +1,8 @@
 const express = require('express');
+const bcrypt = require("bcrypt");
+
 const SignUp = require('../models/signup')
+
 // require the Drone model here
 
 const router = express.Router();
@@ -17,19 +20,25 @@ router.get('/', (req, res, next) => {
 
 
 router.post("/", (req, res, next) => {
-  var username = req.body.username;
-  var password = req.body.password;
-  var hashPass = bcrypt.hashSync(password);
+  let newUserInfo = {
+    username: req.body.username,
+    password: req.body.password,
+    hashPass: bcrypt.hashSync(password),
+  }
+  const newUser  = new SignUp(newUserInfo);
+    newUser = SignUp ({
+      username,
+      password: hashPass
+    }),
 
-  var newUser  = SignUp({
-    username,
-    password: hashPass
+    newUser.save((err)=> {
+      if (err) {next(err);}
+      else{
+        res.redirect('/');
+      }
+    })
   });
 
-  newUser.save((err) => {
-    res.redirect("/");
-  });
-});
 //
 // router.get('/drones/new', (req, res, next) => {
 //   res.render('drones/new')
