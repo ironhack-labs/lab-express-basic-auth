@@ -53,6 +53,7 @@ router.get('/login', (req, res, next) => {
   });
 
 router.post('/login', (req, res, next) => {
+    
     const newUser = User({
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
