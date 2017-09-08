@@ -43,8 +43,8 @@ app.use(session({
 
 app.use('/', indexRoutes);
 app.use('/', authRoutes);
-app.use('/', privateRoutes);
 app.use('/', signIn);
+app.use('/welcome', privateRoutes);
 
 // Authentication
 app.use(cookieParser());
