@@ -7,6 +7,8 @@ const mongoose       = require("mongoose");
 const bcrypt     	 = require("bcrypt");
 const app            = express();
 
+const authRoutes = require('./routes/signup');
+
 // Controllers
 
 // Mongoose configuration
@@ -19,6 +21,8 @@ app.use(logger("dev"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use('/', authRoutes);
 
 // Access POST params with body parser
 app.use(bodyParser.json());
