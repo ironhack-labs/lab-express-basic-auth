@@ -9,7 +9,7 @@ privateRoutes.use((req, res, next) => {
   }
 });
 
-privateRoutes.get('/welcome',(req, res, next) => {
+privateRoutes.get('/',(req, res, next) => {
     res.render('welcome');
 });
 
