@@ -6,6 +6,9 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+// Routes
+const signup = require('./routes/signup');
+
 // Controllers
 app.use('/', signup);
 
@@ -28,7 +31,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
-const SignUp = require('.routes/signup');
+const SignUp = require('./routes/signup');
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
