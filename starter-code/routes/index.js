@@ -63,7 +63,7 @@ router.post('/login', (req, res, next) => {
           errorMessage: "All fields required to log-in"
         });
         return;
-    };
+    }
 
     User.findOne({ "username": newUser.username }, "username", (err, user) => {
         if (user == null) {
@@ -72,8 +72,21 @@ router.post('/login', (req, res, next) => {
           });
           return;
         }
-    })
-   
+    });
+
+    User.findOne({ "username": newUser.username }, (err, user) => {
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+          res.render("welcome",
+            { user: user }
+          );
+          return;
+        } else {
+          res.render("log-in/index", {
+            errorMessage: "Incorrect details"
+          });
+        }
+    });
+
 });
 
 module.exports = router;
