@@ -46,11 +46,6 @@ router.get('/', (req, res, next) => {
     const salt     = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser  = SignUp({
-      username,
-      password: hashPass
-    });
-
     if (username === "" || password === "") {
       res.render("signup", {
         errorMessage: "Please enter a username and a password to sign up"
@@ -77,8 +72,14 @@ router.get('/', (req, res, next) => {
     });
 
     newUser.save((err) => {
-      res.redirect("/");
+      res.render("welcome")
+      res.redirect("/welcome");
     });
+  });
+
+  const newUser  = SignUp({
+    username,
+    password: hashPass
   });
 
   });

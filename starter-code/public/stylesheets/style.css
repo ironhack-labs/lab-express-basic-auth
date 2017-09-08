@@ -1,10 +1,16 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 0 auto;
 }
 
 a {
   color: #00B7FF;
+}
+
+h2 {
+  text-align: center;
 }
 
 #form {
@@ -15,7 +21,7 @@ a {
 #form label {
   color: #666;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-align: center;
   width: 100%;
 }
@@ -27,6 +33,7 @@ a {
   outline: 0;
   padding: 4px;
   width: 100%;
+  margin-bottom: 15px;
 }
 
 #form button {
@@ -48,4 +55,14 @@ a {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background;
+}
+
+.error-message {
+  text-align: center;
+  color: red;
+  background-color: #a411290;
+}
+
+.login {
+  text-align: center;
 }
