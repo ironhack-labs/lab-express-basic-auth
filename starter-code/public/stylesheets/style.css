@@ -72,6 +72,7 @@ input {
   padding: 2px 5px;
   font-family: 'Raleway', sans-serif;
   color: #1B5E20;
+  display: block;
 }
 
 
@@ -95,7 +96,7 @@ button:hover {
   background-color:#1B5E20;
   color: white;
   border: 3px solid white;
-  
+
 }
 
 .error-message {
@@ -103,8 +104,8 @@ button:hover {
 }
 
 label {
-  float: left;
   width: 300px;
   text-align:right;
   font-family: "Lato", sans-serif;
+  display: block;
 }
