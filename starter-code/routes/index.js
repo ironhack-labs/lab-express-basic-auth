@@ -76,11 +76,10 @@ router.post('/login', (req, res, next) => {
           res.render("log-in/index", {
             errorMessage: "That username doesn't exist"
           });
-          return;
         }
     });
 
-    User.findOne({ "username": existingUser.username }, (err, user) => {
+    User.findOne({ "username": existingUser.username }, "username", (err, user) => {
         if (user && existingUser.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
           res.redirect("welcome");
         } else {
