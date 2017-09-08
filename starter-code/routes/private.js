@@ -1,8 +1,16 @@
 const express 	   = require("express");
 const privateRoutes       = express.Router();
 
-privateRoutes.get('/private',(req, res, next) => {
-    res.render('private');
+privateRoutes.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+});
+
+privateRoutes.get('/welcome',(req, res, next) => {
+    res.render('welcome');
 });
 
 module.exports = privateRoutes;

@@ -18,7 +18,7 @@ router.post("/signin", (req, res, next) => {
     return;
   }
 
-  userModel.findOne({ "username": username }, (err, user) => {
+  userModel.findOne({ "username": username }, "username password", (err, user) => {
       if (err || !user) {
         res.render("signin", {
           errorMessage: "User or password incorrect"
@@ -28,7 +28,7 @@ router.post("/signin", (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the signin in the session!
         req.session.currentUser = user;
-        res.redirect("/welcome");
+        res.redirect("welcome");
       } else {
         res.render("signin", {
           errorMessage: "User or password incorrect"

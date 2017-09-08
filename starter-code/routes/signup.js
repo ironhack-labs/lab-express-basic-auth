@@ -42,6 +42,7 @@ router.post('/signup', (req, res, next) => {
                     errorMessage: "Something went wrong when signing up"
                 });
             } else {
+                req.session.currentUser = newUser;
                 res.redirect('welcome');
             }
         });
