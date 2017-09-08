@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
    newUser.save((err) => {
         if (err) {
             return next(err);
-        //   res.render("/", {
+        //   res.render("sign-up/index", {
         //     errorMessage: "Something went wrong when signing up"
         //   });
         } else {
