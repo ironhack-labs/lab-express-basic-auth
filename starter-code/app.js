@@ -7,8 +7,8 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
-const bcrypt         = require("bcrypt");
-const saltRounds     = 10;
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
 
 const index          = require('./routes/index');
 
@@ -31,6 +31,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Authentication
 app.use(cookieParser());
 
+// Cookies
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
+
 // Routes
 app.use('/', index);
 
@@ -51,7 +63,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   console.log("UNEXPECTED ERROR", req.method, req.path, err);
 
-  //if (res not sent) 
+  //if (res not sent)
   res.status(err.status || 500);
   res.render("error");
 });

@@ -5,15 +5,25 @@ const router       = express.Router();
 const User         = require("../models/user");
 const bcrypt       = require("bcrypt");
 const saltRounds   = 10;
+const session      = require("express-session");
+const MongoStore   = require("connect-mongo")(session);
 
 /* GET home page. */
 
 router.get('/', (req, res, next) => {
-  res.render('sign-up/index');
+  if (req.session.currentUser) {
+    res.redirect('welcome');
+  } else {
+    res.render('sign-up/index');
+  }
 });
 
 router.get('/welcome', (req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect('/');
+  } else {
   res.render('welcome');
+  }
 });
 
 router.post('/', (req, res, next) => {
@@ -24,8 +34,6 @@ router.post('/', (req, res, next) => {
     });
 
     if (req.body.username === "" || req.body.password === "") {
-      console.log(newUser.username);
-      console.log(newUser.password);
         res.render("sign-up/index", {
           errorMessage: "All fields required to sign-up"
         });
@@ -39,33 +47,34 @@ router.post('/', (req, res, next) => {
           });
           return;
         }
-    })
+    });
 
    newUser.save((err) => {
         if (err) {
-            return next(err);
-            res.render("sign-up/index", {
-               errorMessage: "Something went wrong when signing up"
-             });
+          res.render("sign-up/index", {
+             errorMessage: "Something went wrong when signing up"
+           });
         } else {
-          console.log(newUser.username);
-          console.log(newUser.password);
-          // req.session.currentUser = newUser;
+          req.session.currentUser = newUser;
           res.redirect('welcome');
         }
     });
 });
 
 router.get('/login', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.redirect('welcome');
+  } else {
     res.render('log-in/index');
-  });
+  }
+});
 
 router.post('/login', (req, res, next) => {
+
     const existingUser = User({
         username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
+        password: req.body.password
     });
-
 
     if (existingUser.username === "" || existingUser.password === "") {
         res.render("log-in/index", {
@@ -74,17 +83,15 @@ router.post('/login', (req, res, next) => {
         return;
     }
 
-
-    User.findOne({ "username": existingUser.username }, "username", (err, user) => {
-        if (!user) {
+    User.findOne({ "username": existingUser.username }, "username password", (err, user) => {
+        if (err || !user) {
           res.render("log-in/index", {
             errorMessage: "That username doesn't exist"
           });
+          return;
         }
-    });
-
-    User.findOne({ "username": existingUser.username }, "username", (err, user) => {
-        if (user && existingUser.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
+        else if (user && existingUser.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
+          req.session.currentUser = user;
           res.redirect("welcome");
         } else {
           res.render("log-in/index", {
@@ -94,5 +101,6 @@ router.post('/login', (req, res, next) => {
     });
 
 });
+
 
 module.exports = router;
