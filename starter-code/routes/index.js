@@ -58,12 +58,12 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     
-    const newUser = User({
+    const existingUser = User({
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
     });
 
-    if (newUser.username === "" || newUser.password === "") {
+    if (existingUser.username === "" || newUser.password === "") {
         res.render("log-in/index", {
           errorMessage: "All fields required to log-in"
         });
@@ -71,7 +71,7 @@ router.post('/login', (req, res, next) => {
     }
 
     User.findOne({ "username": newUser.username }, "username", (err, user) => {
-        if (user == null) {
+        if (!user) {
           res.render("log-in/index", {
             errorMessage: "That username doesn't exist"
           });
@@ -82,7 +82,6 @@ router.post('/login', (req, res, next) => {
     User.findOne({ "username": newUser.username }, (err, user) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           res.redirect("welcome");
-          return;
         } else {
           res.render("log-in/index", {
             errorMessage: "Incorrect details"
