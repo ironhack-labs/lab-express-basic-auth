@@ -43,7 +43,6 @@ router.post('/signup', (req, res, next) => {
                 });
             } else {
                 res.redirect('/');
-                console.log(`-------${newUser} is saved!`);
             }
         });
 
