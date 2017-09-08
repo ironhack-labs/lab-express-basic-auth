@@ -3,10 +3,12 @@ const userModel = require('../model/user.js');
 
 const router = express.Router();
 
-router.get('/',(req, res, next) => {
-
+router.get('/signup',(req, res, next) => {
+    res.render('signup');
 });
 
 router.post('/', (req, res, next) => {
 
 });
+
+module.exports = router;
