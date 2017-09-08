@@ -11,6 +11,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    console.log(req.body)
     const newUser = User({
         username: req.body.username,
         firstName: req.body.firstName,
@@ -26,8 +27,8 @@ router.post('/', (req, res, next) => {
         //     errorMessage: "Something went wrong when signing up"
         //   });
         } else {
-          req.session.currentUser = newUser;
-          res.render('/', { newUser });
+        //  req.session.currentUser = newUser;
+          res.render('sign-up/index', { newUser });
         }
     });
 });
