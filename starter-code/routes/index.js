@@ -19,7 +19,16 @@ router.post('/', (req, res, next) => {
         password: req.body.password
     });
 
-
+   newUser.save((err) => {
+        if (err) {
+            return next(err)
+        //   res.render("/", {
+        //     errorMessage: "Something went wrong when signing up"
+        //   });
+        } else {
+          req.session.currentUser = newUser;
+          res.render('home', { newUser });
+        }
+    });
 });
-
 module.exports = router;
