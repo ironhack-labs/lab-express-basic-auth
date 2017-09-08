@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const express        = require("express");
 const path           = require("path");
 const logger         = require("morgan");
@@ -6,10 +8,13 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+const index = require('./routes/index');
+
 // Controllers
+app.use('/', index);
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+mongoose.connect("mongodb://localhost/basic-auth", {useMongoClient: true});
 
 // Middlewares configuration
 app.use(logger("dev"));

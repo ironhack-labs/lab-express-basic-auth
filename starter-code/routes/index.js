@@ -1,6 +1,8 @@
+/*jshint esversion: 6 */
+
 const express = require('express');
 const router = express.Router();
-const User = require("../../models/user");
+const User = require("../models/user");
 
 /* GET home page. */
 
