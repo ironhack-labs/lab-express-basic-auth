@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-    res.render('login/index');
+    res.render('log-in/index');
   });
 
 router.post('/login', (req, res, next) => {
