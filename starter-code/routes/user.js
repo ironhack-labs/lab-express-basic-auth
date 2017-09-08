@@ -18,17 +18,17 @@ router.post("/signup", (req, res, next)=>{
     })
     return
   }
-  User.find({"name": myUserName},(err,doc) =>{
-    if(doc !== null){
+  User.findOne({"name": myUserName},(err,user) =>{
+    if(user !== null){
       res.render('index', {errorMessage : "User name already exists"})
       return
     }
     var salt = bcrypt.genSaltSync(bcryptSalt)
-    var hashPass = bcrypt.hashSync(password, salt)
+    var hashPass = bcrypt.hashSync(myUserPass, salt)
 
     var newUser = User({
-      name,
-      pass : hashPass
+      name: myUserName,
+      password : hashPass
     });
     newUser.save((err)=>{
       if(err){
