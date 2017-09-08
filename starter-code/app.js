@@ -5,6 +5,8 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const bcrypt     	 = require("bcrypt");
+const session        = require("express-session");
+const MongoSession   = require("connect-mongo")(session);
 const app            = express();
 
 const authRoutes = require('./routes/signup');
@@ -28,6 +30,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+//session
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoSession({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 app.use('/', indexRoutes);
 app.use('/', authRoutes);
