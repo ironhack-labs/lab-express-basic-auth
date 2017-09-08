@@ -13,8 +13,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/welcome', (req, res, next) => {
-  res.render('welcome')
-})
+  res.render('welcome');
+});
 
 router.post('/', (req, res, next) => {
 
@@ -23,12 +23,14 @@ router.post('/', (req, res, next) => {
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
     });
 
-    if (newUser.username === "" || newUser.password === "") {
+    if (req.body.username === "" || req.body.password === "") {
+      console.log(newUser.username);
+      console.log(newUser.password);
         res.render("sign-up/index", {
           errorMessage: "All fields required to sign-up"
         });
         return;
-    };
+    }
 
     User.findOne({ "username": newUser.username }, "username", (err, user) => {
         if (user !== null) {
@@ -46,6 +48,8 @@ router.post('/', (req, res, next) => {
                errorMessage: "Something went wrong when signing up"
              });
         } else {
+          console.log(newUser.username);
+          console.log(newUser.password);
           // req.session.currentUser = newUser;
           res.redirect('welcome');
         }
@@ -82,7 +86,6 @@ router.post('/login', (req, res, next) => {
     User.findOne({ "username": existingUser.username }, (err, user) => {
         if (user && existingUser.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
           res.redirect("welcome");
-          return;
         } else {
           res.render("log-in/index", {
             errorMessage: "Incorrect details"
