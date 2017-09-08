@@ -1,0 +1,13 @@
+<form class="" action="/signup" method="post">
+  <label for="user">User name</label>
+  <input id="user" type="text" name="username" value="">
+
+  <label for="pws">password</label>
+  <input id="pws" type="password" name="password" value="">ç
+
+  <button type="submit" name="button">Sign Up</button>
+
+  <% if (typeof(errorMessage) != 'undefined') { %>
+    <div class="error-message"> <%= errorMessage %> </div>
+  <% } %>
+</form>
