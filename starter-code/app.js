@@ -49,6 +49,9 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
+  console.log("UNEXPECTED ERROR", req.method, req.path, err);
+
+  //if (res not sent) 
   res.status(err.status || 500);
   res.render("error");
 });
