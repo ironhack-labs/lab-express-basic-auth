@@ -17,16 +17,16 @@ mongoose.connect("mongodb://localhost/basic-auth");
 // Middlewares configuration
 app.use(logger("dev"));
 
+// Access POST params with body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/', authRoutes);
-
-// Access POST params with body parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());

@@ -1,6 +1,6 @@
 const express = require("express");
 const userModel = require('../model/user');
-
+const bcrypt = require("bcrypt");
 const router = express.Router();
 const bcryptSalt = 10;
 
@@ -9,6 +9,7 @@ router.get('/signup',(req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+  console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
 
@@ -30,7 +31,7 @@ router.post('/signup', (req, res, next) => {
         var salt = bcrypt.genSaltSync(bcryptSalt);
         var hashPass = bcrypt.hashSync(password, salt);
 
-        var newUser = User({
+        var newUser = new userModel({
             username,
             password: hashPass
 
@@ -43,6 +44,7 @@ router.post('/signup', (req, res, next) => {
                 });
             } else {
                 res.redirect('/');
+                console.log(`-------${newUser} is saved!`);
             }
         });
 
