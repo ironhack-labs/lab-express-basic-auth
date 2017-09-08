@@ -34,4 +34,10 @@
 
     </form>
 
+    <% if (typeof(errorMessage) !== "undefined") { %>
+
+      <div class="error-message"><%= errorMessage %></div>
+      
+    <% } %>
+
   </div>
