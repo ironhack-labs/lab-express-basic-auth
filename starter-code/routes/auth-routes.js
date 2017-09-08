@@ -50,6 +50,7 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 });
 
+//--------------------------LOGIN
 //redirect to login page
 authRoutes.get("/login", (req, res, next) => {
   res.render("auth/login");
