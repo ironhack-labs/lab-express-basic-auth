@@ -42,7 +42,7 @@ router.post('/signup', (req, res, next) => {
                     errorMessage: "Something went wrong when signing up"
                 });
             } else {
-                res.redirect('/');
+                res.redirect('welcome');
             }
         });
 

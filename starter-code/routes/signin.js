@@ -7,7 +7,6 @@ router.get('/signin',(req, res, next) => {
     res.render('signin');
 });
 
-
 router.post("/signin", (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -22,7 +21,7 @@ router.post("/signin", (req, res, next) => {
   userModel.findOne({ "username": username }, (err, user) => {
       if (err || !user) {
         res.render("signin", {
-          errorMessage: "The username doesn't exist"
+          errorMessage: "User or password incorrect"
         });
         return;
       }
@@ -32,7 +31,7 @@ router.post("/signin", (req, res, next) => {
         res.redirect("/");
       } else {
         res.render("signin", {
-          errorMessage: "Incorrect password"
+          errorMessage: "User or password incorrect"
         });
       }
   });
