@@ -10,9 +10,6 @@ const app            = express();
 const index          = require('./routes/index');
 
 
-// Controllers
-app.use('/', index);
-
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth", {useMongoClient: true});
 
