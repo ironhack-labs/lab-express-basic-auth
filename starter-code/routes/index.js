@@ -47,4 +47,9 @@ router.post('/', (req, res, next) => {
         }
     });
 });
+
+router.get('/login', (req, res, next) => {
+    res.render('login/index');
+  });
+
 module.exports = router;
