@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.main-cat {
+  width: 100%;
+  background-image: url('./images/main-cat.jpg');
+}
