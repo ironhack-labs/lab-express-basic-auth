@@ -52,4 +52,28 @@ router.get('/login', (req, res, next) => {
     res.render('login/index');
   });
 
+router.post('/login', (req, res, next) => {
+    const newUser = User({
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(saltRounds))
+    });
+
+    if (newUser.username === "" || newUser.password === "") {
+        res.render("log-in/index", {
+          errorMessage: "All fields required to log-in"
+        });
+        return;
+    };
+
+    User.findOne({ "username": newUser.username }, "username", (err, user) => {
+        if (user == null) {
+          res.render("log-in/index", {
+            errorMessage: "That username doesn't exist"
+          });
+          return;
+        }
+    })
+   
+});
+
 module.exports = router;
