@@ -4,12 +4,12 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
+//redirect to signup page
 authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-
+//create a user and encrypt password
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -20,6 +20,13 @@ authRoutes.post("/signup", (req, res, next) => {
     username,
     password: hashPass
   });
+
+  if (username === "" || password === "") {
+  res.render("auth/signup", {
+    errorMessage: "Indicate a username and a password to sign up"
+  });
+  return;
+  }
 
   User.findOne({ "username": username },
     "username",

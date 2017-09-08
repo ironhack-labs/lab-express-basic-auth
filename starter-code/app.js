@@ -11,7 +11,7 @@ const authRoutes     = require("./routes/auth-routes");
 const siteRoutes     = require("./routes/site-routes");
 
 const session        = require("express-session");
-const userData       = require("mongo-connect");
+const userData       = require("connect-mongo") (session);
 
 // Controllers
 
