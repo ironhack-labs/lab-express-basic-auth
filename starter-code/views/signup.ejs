@@ -1,11 +1,15 @@
 <h2>Sign Up</h2>
 <form id = 'form' method='POST' action='/signup'>
     <label for='username'>Username</label>
-    <input type= 'text' id='username' name='username'>  
+    <input type= 'text' id='username' name='username'>
 
     <label for='password'>Password</label>
-    <input type= 'password' id='password' name='password'>  
+    <input type= 'password' id='password' name='password'>
 
     <button type='submit'>Create Account</button>
 </form>
 Already have an account? <a href='/login'>Login</a>
+
+<% if (typeof(errorMessage) != "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

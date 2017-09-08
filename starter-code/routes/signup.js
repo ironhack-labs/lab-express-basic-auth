@@ -40,6 +40,7 @@ router.get('/', (req, res, next) => {
 
 
   router.post("/", (req, res, next) => {
+
     const username = req.body.username;
     const password = req.body.password;
     const salt     = bcrypt.genSaltSync(bcryptSalt);
@@ -50,32 +51,37 @@ router.get('/', (req, res, next) => {
       password: hashPass
     });
 
+    if (username === "" || password === "") {
+      res.render("signup", {
+        errorMessage: "Please enter a username and a password to sign up"
+      });
+      return;
+    }
+
+  SignUp.findOne({ "username": username },
+  "username",
+  (err, user) => {
+    if (user !== null) {
+      res.render("signup", {
+        errorMessage: "The username already exists"
+      });
+      return
+    }
+
+    var salt     = bcrypt.genSaltSync(bcryptSalt);
+    var hashPass = bcrypt.hashSync(password, salt);
+
+    var newUser = SignUp({
+      username,
+      password: hashPass
+    });
+
     newUser.save((err) => {
       res.redirect("/");
     });
   });
 
-//
-// router.get('/drones/new', (req, res, next) => {
-//   res.render('drones/new')
-// });
-//
-//
-// router.post('/drones', (req, res, next) => {
-//   const newDroneInfo = {
-//     droneName: req.body.droneName,
-//     propellers: req.body.propellers,
-//     maxSpeed: req.body.maxSpeed
-//   }
-//   const newDrone = new Drone(newDroneInfo);
-//
-//   newDrone.save((err) => {
-//     if (err) {
-//       next(err);
-//     } else {
-//       return res.redirect('../drones')
-//     }
-//   });
-// });
+  });
+
 
 module.exports = router;
