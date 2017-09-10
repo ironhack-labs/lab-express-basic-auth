@@ -1,16 +1,12 @@
-const express = require('express');
+const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const router = express.Router();
 const User = require('../models/User');
 const bcryptSalt = 10;
 
 // SIGNUP: Print form
 router.get('/signup', (req, res) => {
-  res.render('auth/signup', {
-    title: 'Signup'
-  });
+  res.render('auth/signup', { title: 'Signup'});
 });
-
 // SIGNUP: Create user in db
 router.post('/signup', function(req, res, next) {
   const username = req.body.username;
@@ -37,7 +33,10 @@ router.post('/signup', function(req, res, next) {
         password: hashPass
       })
       .save()
-      .then(() => res.redirect('/'))
+      .then(() => {
+        res.redirect('/');
+        console.log("registered user successfully!")
+      })
       .catch(e => next(e));
   });
 

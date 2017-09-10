@@ -1,28 +1,25 @@
 
 const app = require('express')();
-const mongoose = require("mongoose");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
 const globals = require('./config/globals');
 
-// Mongoose configuration
-mongoose.connect(globals.dbUrl);
+//conexion a bd
+require('mongoose').connect(globals.dbUrl).then( () => console.log("Connected to db!"));
 
-// Express configuration
+//config express
 require('./config/express')(app);
 
-// title default - locals
-app.use((req, res, next) => {
-  res.locals.title = 'lab-express-basic-auth';
-  next();
-});
-
-// Routes
+//Requerir Rutas
+const homeRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
+
+// default value for title local
+app.locals.title = 'Express-PP-Basic-Auth';
+
+//usar rutas
+app.use('/', homeRouter);
 app.use('/', authRouter);
 
+//gestion errores
 require('./config/error-handler')(app);
 
 module.exports = app;

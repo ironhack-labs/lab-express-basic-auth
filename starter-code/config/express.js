@@ -1,27 +1,21 @@
-const express = require("express");
-const path = require("path");
-const logger = require("morgan");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+const express = require('express');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const layouts = require('express-ejs-layouts');
+const path = require('path');
+const mongoose = require('mongoose');
 
 module.exports = (app) => {
-  // Middlewares configuration
-  app.use(logger("dev"));
+  // view engine setup
+  app.set('views', path.join(__dirname, '../views'));
+  app.set('view engine', 'ejs');
+  app.set('layout','layouts/main-layout');
 
-  // View engine configuration /setup
-  app.set("views", path.join(__dirname, "views"));
-  app.set("view engine", "ejs");
-  app.set('layouts', 'layout/main-layout'); //---< ????
-  app.use(express.static(path.join(__dirname, "public")));
-  app.use(layouts);
-
-  // Access POST params with body parser
+  app.use(logger('dev'));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: false
-  }));
-
-  // Authentication
+  app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
-}
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(layouts);
+};
