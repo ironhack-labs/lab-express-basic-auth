@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Basic Auth</title>
+    <title>Basic Authentication</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
+    <div class="container">
+      <h1>Create User Account</h1>
+      <div>
+        <p>Create an account by submitting a username and password</p>
+      </div>
+      <form id="form" class="form" action="/" method="post">
+        <label for="username">Select username</label>
+        <input id="username" name="username">
+
+        <label for="password">Select password</label>
+        <input id="password" name="password">
+        <button type="submit">Create User Account</button>
+      </form>
+    </div>
+
   </body>
 </html>

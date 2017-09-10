@@ -7,6 +7,11 @@ const mongoose       = require("mongoose");
 const app            = express();
 
 // Controllers
+const index = require("./routes/index");
+const logIn = require("./routes/logIn");
+const welcome = require("./routes/welcome");
+
+
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
@@ -27,6 +32,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use("/", index);
+app.use("/", logIn);
+app.use("/welcome", welcome);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
