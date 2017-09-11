@@ -4,25 +4,35 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const expressLayouts = require("express-ejs-layouts");
+
+const index = require('./routes/user');
+
 const app            = express();
 
 // Controllers
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
-
+mongoose.connect("mongodb://localhost/basic-auth",{useMongoClient: true})
+        .then(()=>console.log("Connected to DB"));
 // Middlewares configuration
-app.use(logger("dev"));
+
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("layout","layout");
+
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // Access POST params with body parser
+app.use(expressLayouts);
+app.use(logger("dev"));app.use(expressLayouts);
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use('/', index);
 // Authentication
 app.use(cookieParser());
 
