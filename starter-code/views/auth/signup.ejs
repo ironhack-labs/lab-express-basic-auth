@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
     <h2>Sign Up</h2>
     <form id='form' method='POST' action='/signup'>
         <label for='username'>Username</label>
@@ -22,5 +15,3 @@
     <% if (typeof(errorMessage) != "undefined") { %>
       <div class="error-message"><%= errorMessage %></div>
     <% } %>
-  </body>
-</html>

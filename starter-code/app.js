@@ -5,33 +5,50 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
+const expressLayouts = require('express-ejs-layouts');
+
+
+const routes = require('./routes/index');
+const authController = require('./routes/authController');
+const welcomeController = require('./routes/welcomeController');
 
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
-// Middlewares configuration
-app.use(logger("dev"));
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+app.set("layout", "layouts/main-layout");
 
-// Access POST params with body parser
+
+app.use(logger("dev"));
+app.use(expressLayouts);
+app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// Authentication
 app.use(cookieParser());
 
+// Session Middleware
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Routes
-const signup = require('./routes/signup');
-// const authRoutes = require('./routes/auth-routes');
+
 
 // Controllers
-app.use('/signup', signup);
-// app.use('/auth-routes', authRoutes);
+app.use('/', routes);
+app.use('/', authController);
+app.use('/welcome', welcomeController);
 
 
 // catch 404 and forward to error handler
