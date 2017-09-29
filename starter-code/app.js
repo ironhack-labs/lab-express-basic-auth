@@ -10,6 +10,7 @@ const bcrypt = require ("bcrypt");
 const saltRounds = 10;
 const salt  = bcrypt.genSaltSync(saltRounds);
 const authRoutes = require('./routes/auth-routes');
+const siteRoutes = require('./routes/site-routes');
 const session = require ("express-session");
 const MongoStore = require ("connect-mongo")(session);
 
@@ -44,6 +45,8 @@ app.use(cookieParser());
 
 // Routes
 app.use('/',authRoutes);
+app.use('/', siteRoutes);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
