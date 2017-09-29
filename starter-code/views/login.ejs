@@ -1,0 +1,25 @@
+<link rel='stylesheet' href='/stylesheets/style.css' />
+
+<h2>Login Page</h2>
+
+<form action="/login" method="POST">
+  <label>
+    Username:
+  </label>
+  <input type="text" name="username">
+  <label>
+    Password:
+  </label>
+  <input type="password" name="password">
+
+  <% if (typeof errorMessage !== "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div>
+  <% } %>
+
+
+  <input type="submit" value="Sign up">
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
