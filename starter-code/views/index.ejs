@@ -6,5 +6,27 @@
   </head>
   <body>
     Hello world
+    <form action="/login" method="POST" id="form">
+      <h2>Login</h2>
+    
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="obiwan">
+    
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="thatsnomoon">
+      
+      <% if (typeof errorMessage !== "undefined") { %>
+        <div class="error-message"><%= errorMessage %></div>
+      <% } %>
+    
+      <button>Sign in</button>
+    </form>
+
+    <p class="account-message">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+    <a href="/logout">Logout</a>
+    <a href="/main">main</a>
+    <a href="/private">private</a>
   </body>
 </html>
