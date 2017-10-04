@@ -1,3 +1,6 @@
+const bcrypt     = require("bcrypt");
+const saltRounds = 10;
+
 const express        = require("express");
 const path           = require("path");
 const logger         = require("morgan");
@@ -5,6 +8,8 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+// const authRoutes = require('./routes/');
+const myroutes = require('./routes/myroutes');
 
 // Controllers
 
@@ -13,7 +18,7 @@ mongoose.connect("mongodb://localhost/basic-auth");
 
 // Middlewares configuration
 app.use(logger("dev"));
-
+// app.use('/', authRoutes);
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -29,11 +34,14 @@ app.use(cookieParser());
 // Routes
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  const err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-});
+// app.use(function(req, res, next) {
+//   const err = new Error("Not Found");
+//   err.status = 404;
+//   next(err);
+// });
+
+app.use("/", myroutes);
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -47,3 +55,8 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+app.listen(3000, () => {
+  console.log('up and running');
+});
