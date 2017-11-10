@@ -4,15 +4,22 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const debug = require('debug')('basic-auth:'+ path.basename(__filename));
+const expressLayouts = require('express-ejs-layouts');
+const authRoutes = require('./routes/auth');
+
 const app            = express();
 
 // Controllers
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+const dbName = "mongodb://localhost/basic-auth";
+mongoose.connect("mongodb://localhost/basic-auth")
+        .then(() => debug(`Connected to db: ${dbName}`));
 
 // Middlewares configuration
 app.use(logger("dev"));
+app.use('/', authRoutes);
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
