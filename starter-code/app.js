@@ -1,17 +1,23 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const app = express();
 
+
+const authRoutes = require("./routes/auth");
+const indexRoutes = require("./routes/index");
 // Controllers
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
-// Middlewares configuration
+// Middlewares configuration;
 app.use(logger("dev"));
 
 // View engine configuration
@@ -21,22 +27,26 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Access POST params with body parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 // Authentication
 app.use(cookieParser());
 
 // Routes
+app.use('/', indexRoutes);
+app.use('/auth', authRoutes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
