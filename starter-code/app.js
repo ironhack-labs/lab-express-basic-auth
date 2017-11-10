@@ -1,10 +1,13 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const app = express();
+
+const auth = require("./routes/auth");
+const index = require("./routes/index");
 
 // Controllers
 
@@ -27,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use("/", index);
+app.use("/auth", auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
