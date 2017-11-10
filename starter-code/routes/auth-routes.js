@@ -31,35 +31,28 @@ router.post('/signup', (req, res, next) => {
     return;
   }
 
-  User.findOne({
-    "username": username
-  }, "username", (err, user) => {
-    if (user !== null) {
-      res.render("auth/signup", {
-        errorMessage: "The username already exists"
-      });
-      return;
-    }
 
-    var salt = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
-
-    var newUser = User({
-      username,
-      password: hashPass
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        res.render("auth/signup", {
-          errorMessage: "Something went wrong when signing up"
-        });
-      } else {
-        req.session.currentUser = user;
-        res.redirect('/');
-      }
+  User.findOne({ "username": username }, (err, user) => {
+        if (err || !user) {
+          res.render("auth/login", {
+            errorMessage: "The username doesn't exist"
+          });
+          return;
+        }
+        if (bcrypt.compareSync(password, user.password)) {
+          // Save the login in the session!
+          req.session.currentUser = user;
+          res.redirect("/");
+        } else {
+          res.render("auth/login", {
+            errorMessage: "Incorrect password"
+          });
+        }
     });
   });
-});
+
+  router.get("/login", (req, res) => {
+    res.render("auth/login");
+  });
 
 module.exports = router;
