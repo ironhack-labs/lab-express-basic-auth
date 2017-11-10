@@ -4,6 +4,7 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const authRoutes = require("./routes/auth");
 const app            = express();
 
 // Controllers
@@ -27,6 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
