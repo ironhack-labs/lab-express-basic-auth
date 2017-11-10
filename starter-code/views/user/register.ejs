@@ -1,0 +1,14 @@
+<h1>Register</h1>
+
+<% console.log(typeof(errorMessage));
+if( typeof(errorMessage)!= "undefined" ){   %>
+  <p><%= errorMessage %></p>
+<% } %>
+
+<form action="/" method="post">
+  <label for="">Username</label>
+  <input type="text" name="_username">
+  <label for="">Password</label>
+  <input type="text" name="_password"e>
+  <button type="submit" name="button">pkmonGO</button>
+</form>

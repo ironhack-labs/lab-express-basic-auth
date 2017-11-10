@@ -2,14 +2,20 @@ const express        = require("express");
 const path           = require("path");
 const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
+const session = require("express-session");
+const mongoStore = require("connect-mongo")(session);
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const debug = require('debug')('basic-auth:'+ path.basename(__filename));
 
 // Controllers
+const registerRouter = require('./routes/auth')
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+const dbName = "mongodb://localhost/basic-auth";
+mongoose.connect(dbName, {useMongoClient:true})
+        .then(() => debug(`Connected to db: ${dbName}`));
 
 // Middlewares configuration
 app.use(logger("dev"));
@@ -26,7 +32,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Authentication
 app.use(cookieParser());
 
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie:{maxAge:60*60*24*2},
+  store: new mongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24*60*60
+  })
+}));
+
+
+
+app.use((req,res,next) =>{
+  res.locals.title = "TITULO POR DEFECTO";
+  res.locals.user = req.session.currentUser;
+  next();
+})
+
 // Routes
+app.use('/', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
