@@ -6,6 +6,7 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const debug = require('debug')('basic-auth:'+path.basename(__filename));
 const authRoutes = require('./routes/auth');
+const secretRoute = require('./routes/secret');
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
@@ -46,6 +47,8 @@ app.use(cookieParser());
 
 // Routes
 app.use('/', authRoutes);
+app.use('/', secretRoute);
+
 
 
 // catch 404 and forward to error handler
