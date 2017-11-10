@@ -7,6 +7,11 @@ a {
   color: #00B7FF;
 }
 
+h1{
+  font-family: sans-serif;
+  color: #37BBCB;
+}
+
 #form {
   margin: 30px auto;
   width: 380px;
