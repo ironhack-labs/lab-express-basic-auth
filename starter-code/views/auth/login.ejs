@@ -14,10 +14,10 @@
   <form action="/login" method="POST" id="form">
 
     <label for="username">Username</label>
-    <input id="username" type="text" name="username" placeholder="JonSnow" required>
+    <input id="username" type="text" name="username" placeholder="Enter your username" required>
 
     <label for="password">Password</label>
-    <input id="password" type="password" name="password" placeholder="Your password" required>
+    <input id="password" type="password" name="password" placeholder="Enter your password" required>
 
     <% if (typeof errorMessage !== "undefined") { %>
       <div class="error-message">
@@ -25,10 +25,10 @@
       </div>
       <% } %>
 
-        <button>Let's Go</button>
+        <button>Log in</button>
 
         <p class="account-message">
-          You don't have an account?
+          Create new account?
           <a href="/signup"> Sign up</a>
         </p>
         </p>
