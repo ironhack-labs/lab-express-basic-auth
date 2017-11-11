@@ -1,9 +1,8 @@
-const express = require('express');
+const router = require('express').Router();
 const User = require('../models/User');
-const path = require('path');
-//const debug = require('debug')('basic-auth:'+ path.basename(__filename));
-const router = express.Router();
-  const bcrypt = require('bcrypt');
+
+// Modules for encription
+const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 router.get('/', (req, res) => {
@@ -14,63 +13,68 @@ router.get('/signup', (req, res) => {
   res.render('auth/signup');
 });
 
-router.post("/signup", (req, res) => {
+router.post('/signup', (req, res, next) => {
   console.log(req.body);
-  var username = req.body.username;
-  var password = req.body.password;
-  var salt     = bcrypt.genSaltSync(bcryptSalt);
-  var hashPass = bcrypt.hashSync(password, salt);
+  const username = req.body.username;
+  const password = req.body.password;
 
-  console.log(username, password);
+  if (username === '' || password === '') {
+    res.render('auth/signup', { errorMessage: 'Indicate a username and a password to sign up' });
+    return;
+  }
 
-  var newUser  = new User({
-    username,
-    password: hashPass
-  });
+  User.findOne({ username }, 'username', (err, user) => {
+    if (user !== null) {
+      res.render('auth/signup', { errorMessage: 'The username already exists' });
+      return;
+    }
 
-  console.log(newUser);
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const password = bcrypt.hashSync(req.body.password, salt);
 
-  newUser.save((err) => {
-    res.redirect("/");
+    const newUser  = new User({
+      username: username,
+      password: password
+    });
+
+    newUser.save((err) => {
+      if (err) {
+          res.render('auth/signup', { message: 'There has been an error'});
+      } else {
+          res.redirect('/');
+      }
+    });
   });
 });
-// router.post('/signup', (req, res) => {
-//   console.log("HELLO");
-//   console.log(req.body);
-//   const user = req.body.username;
-//   const password = req.body.password;
-//   console.log(username,password);
-//   console.log("VOLO");
-//   if (username === "" || password === "") {
-//     res.render("auth/signup", {
-//       errorMessage: "Indicate a username and a password to sign up"
-//     });
-//     return;
-//   }
-//
-//   User.findOne({ "username": username },
-//     "username",
-//     (err, user) => {
-//       if (user !== null) {
-//         res.render("auth/signup", {
-//           errorMessage: "The username already exists"
-//         });
-//         return;
-//       }
-//
-//       var salt     = bcrypt.genSaltSync(bcryptSalt);
-//       var hashPass = bcrypt.hashSync(password, salt);
-//
-//       var newUser = User({
-//         username,
-//         password: hashPass
-//       });
-//
-//       newUser.save((err) => {
-//         res.redirect("/");
-//       });
-//     });
-//
-// });
+
+router.get('/login', (req, res, next) => {
+    res.render('auth/login');
+});
+
+router.post('/login', (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({ 'username': username}, (err, user) => {
+        if (err || !user) {
+            res.render('auth/login', { errorMessage: "That username doesn't exist in the DB"});
+            return;
+        }
+        if (bcrypt.compareSync(password, user.password)) {
+            req.session.currentUser = user;
+            res.redirect('auth/secret');
+        } else {
+            res.render('auth/login', { errorMessage: 'Wrong password'});
+        }
+    });
+});
+
+router.get('/secret', (req, res, next ) => {
+    if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect('auth/login');
+  }
+});
 
 module.exports = router;
