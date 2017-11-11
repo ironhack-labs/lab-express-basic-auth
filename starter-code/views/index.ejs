@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html>
+<div class="navbar">
+  <ul class="nav-list">
+    <li>
+      <a href="/auth/login">LOGIN</a>
+    </li>
+    <li>
+      <a href="/auth/signup">SIGNUP BITCH</a>
+    </li>
+    <li>
+      <a href="/auth/main">MAIN PAGE</a>
+    </li>
+    <li>
+      <a href="/auth/private">PRIVATE GIF</a>
+    </li>
+    <li>
+      <a href="/auth/logout">LOG OUT</a>
+    </li>
+  </ul>
 
-<head>
-  <title>Basic Auth</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <h1>
-    Hello
-    <%= title %>
-  </h1>
-
-
-  <a href="/auth/login">LOGIN</a>
-  <a href="/auth/signup">SIGNUP BITCH</a>
-  <a href="/auth/main">MAIN PAGE</a>
-  <a href="/auth/private">PRIVATE GIF</a>
-
-</body>
-
-</html>
+</div>
+<h1>
+  Hello
+  <% if(username) { %>
+    <%= username.username %>
+      <% } else { %>
+        somebody
+        <% } %>
+</h1>

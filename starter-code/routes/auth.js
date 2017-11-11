@@ -22,8 +22,8 @@ router.post("/login", (req, res, next) => {
     return;
   }
 
-  var username = req.body.username;
-  var password = req.body.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
   if (username === "" || password === "") {
     res.render("auth/login", {
@@ -64,6 +64,7 @@ router.post("/signup", (req, res, next) => {
     res.redirect("/auth/private");
     return;
   }
+
   const username = req.body.username;
   const password = req.body.password;
   const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -74,13 +75,28 @@ router.post("/signup", (req, res, next) => {
     password: hashPass
   });
 
+  if (username === "" || password === "") {
+    res.render("auth/signup", {
+      errorMessage: "Please type in your username and password"
+    });
+    return;
+  }
+
+  User.findOne({ username: username }, "username", (err, user) => {
+    if (user !== null) {
+      res.render("auth/signup", {
+        errorMessage: "Username already exists"
+      });
+      return;
+    }
+    newUser.save(err => {
+      req.session.currentUser = newUser;
+      res.redirect("/");
+    });
+  });
+
   // @todo verify if User.findOne with that username
   // if exists re render signup with error "already exists"
-
-  newUser.save(err => {
-    req.session.currentUser = newUser;
-    res.redirect("/");
-  });
 });
 
 // PROTECTED PAGES
@@ -99,6 +115,12 @@ router.get("/private", (req, res, next) => {
   } else {
     res.redirect("/auth/login");
   }
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
