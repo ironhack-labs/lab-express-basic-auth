@@ -12,7 +12,7 @@ router.get("/login", (req, res, next) => {
     return;
   }
   // @todo if req.session.currentUser redirect to private
-  res.render("auth/login");
+  res.render("auth/login", { title: "login" });
 });
 
 router.post("/login", (req, res, next) => {
@@ -55,7 +55,7 @@ router.get("/signup", (req, res, next) => {
     res.redirect("/auth/private");
     return;
   }
-  res.render("auth/signup");
+  res.render("auth/signup", { title: "signup" });
 });
 
 router.post("/signup", (req, res, next) => {
@@ -103,7 +103,7 @@ router.post("/signup", (req, res, next) => {
 
 router.get("/main", (req, res, next) => {
   if (req.session.currentUser) {
-    res.render("auth/main");
+    res.render("auth/main", { title: "main page" });
   } else {
     res.redirect("/auth/login");
   }
@@ -111,7 +111,7 @@ router.get("/main", (req, res, next) => {
 
 router.get("/private", (req, res, next) => {
   if (req.session.currentUser) {
-    res.render("auth/private");
+    res.render("auth/private", { title: "private page" });
   } else {
     res.redirect("/auth/login");
   }

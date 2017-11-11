@@ -4,7 +4,8 @@ const User = require("../models/user").User;
 
 router.get("/", (req, res, next) => {
   const data = {
-    username: req.session.currentUser
+    username: req.session.currentUser,
+    title: "homepage"
   };
   console.log(data);
   res.render("index", data);
