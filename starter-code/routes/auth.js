@@ -69,11 +69,19 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-router.get('/secret', (req, res, next ) => {
+router.get('/main', (req, res, next ) => {
     if (req.session.currentUser) {
-    next();
+    res.render('main');
   } else {
-    res.redirect('auth/login');
+    res.redirect('/login');
+  }
+});
+
+router.get('/private', (req, res, next ) => {
+    if (req.session.currentUser) {
+    res.render('private');
+  } else {
+    res.redirect('/login');
   }
 });
 
