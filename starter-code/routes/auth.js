@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res) => {
   const username = req.body._username;
   const password = req.body._password;
+
   if (username === '' || password === '') {
     res.render('user/login', {
       errorMessage: "Indicate a username and password please"
@@ -27,10 +28,7 @@ router.post('/login', (req, res) => {
     return;
   }
 
-
-    User.findOne({
-      "username": username
-    }, (err, user) => {
+    User.findOne({ "username": username }, (err, user) => {
       if (err || !user) {
         res.render("auth/login", {
           errorMessage: "The username doesn't exist"
@@ -54,11 +52,7 @@ router.post('/', (req, res) => {
   const username = req.body._username;
   const password = req.body._password;
 
-  User.findOne({ 
-    "username": username
-  },
-  "_username",
-  (err, user) => {
+  User.findOne({ "username": username }, "_username", (err, user) => {
     if (user != null) {
       res.render('user/register', {
         errorMessage: "User already exists"
@@ -82,15 +76,22 @@ router.post('/', (req, res) => {
   });
 
 });
-router.get('/home',(req,res) =>{
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next(); }
+  else { res.redirect("/login"); }
+});
+
+router.get('/home', isloggedIn,(req,res) =>{
   res.render('user/home');
 
 });
 
-router.get('/logout',isloggedIn,(req,res)=>{
-req.session.destroy(error => {
-  res.redirect('/login');
-});
+router.get('/logout',(req,res)=>{
+  req.session.destroy(error => {
+    res.redirect('/login');
+  });
 });
 
 module.exports = router;
