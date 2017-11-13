@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Log in</title>
+</head>
+
+<body>
+  <h1>Log in</h1>
+
+  <form action="/login" method="POST" id="form">
+
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" placeholder="Enter your username" required>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Enter your password" required>
+
+    <% if (typeof errorMessage !== "undefined") { %>
+      <div class="error-message">
+        <%= errorMessage %>
+      </div>
+      <% } %>
+
+        <button>Log in</button>
+
+        <p class="account-message">
+          Create new account?
+          <a href="/signup"> Sign up</a>
+        </p>
+        </p>
+  </form>
+</body>
+
+</html>
