@@ -5,6 +5,15 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
+    <% if (typeof errorMessage !== "undefined") { %>
+  <p class="error-message">
+   <%= errorMessage %>
+  </p>
+<%} %>
+    <form class="" action="/" method="post">
+      <input type="text" name="userName" placeholder="Enter a username">
+      <input type="password" name="userPassword" placeholder="Enter a password">
+      <button>Submit</button>
+    </form>
   </body>
 </html>
