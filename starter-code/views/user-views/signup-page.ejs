@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        Express Users
+      </h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/signup">Sign Up</a>
+      </nav>
+    </header>
+    <p>Hello World</p>
+
+    <%if (typeof errorMessage !== "undefined") {%>
+      <p class="error-message">
+          <%=errorMessage%>
+      </p>
+    <%}%>
+
+
+    <form id="form" method="post" action="/process-signup">
+      <label for="username-input">Username</label>
+      <input id="username-input" type="text" placeholder="e.g. DogLover"
+        name="signupUsername">
+      <br>
+      <label for="password-input">Password</label>
+      <input id="password-input" type="password" placeholder="e.g. Spike"
+        name="signupPassword">
+      <br>
+      <button>Sign Up</button>
+    </form>
+
+    <footer>
+      Made by Jess and Imran at Ironhack.
+    </footer>
+  </body>
+</html>
