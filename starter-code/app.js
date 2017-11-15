@@ -4,6 +4,10 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+const layouts      = require('express-ejs-layouts');
+
+require("./config/mongoose-setup");
+
 const app            = express();
 
 // Controllers
@@ -18,6 +22,7 @@ app.use(logger("dev"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(layouts);
 
 // Access POST params with body parser
 app.use(bodyParser.json());
@@ -27,6 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+const index = require('./routes/index');
+app.use('/', index);
+
+const myUserRouter = require("./routes/user-router");
+app.use(myUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
