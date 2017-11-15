@@ -5,6 +5,7 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const layouts        = require('express-ejs-layouts');
 
 // Controllers
 
@@ -27,6 +28,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+
+const index = require('./routes/index');
+app.use('/', index);
+
+const myUserRouter = require('./routes/user-router');
+app.use(myUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
