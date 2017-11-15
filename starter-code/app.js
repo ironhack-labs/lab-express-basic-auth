@@ -6,7 +6,11 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+
+require('./config/mongoose-setup');
+
 // Controllers
+
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
@@ -23,10 +27,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
 // Authentication
 app.use(cookieParser());
 
 // Routes
+
+const index = require('./routes/index');
+app.use('/', index);
+
+
+const myUserRouter = require('./routes/user-router');
+
+app.use(myUserRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
