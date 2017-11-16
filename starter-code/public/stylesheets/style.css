@@ -2,10 +2,16 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: aquamarine;
+  background-image: url("https://media.giphy.com/media/5LssmzTeXsRk4/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: 104em;
+  color: greenyellow;
+  background-blend-mode: darken;
 }
 
 a {
   color: #00B7FF;
+  padding-left: 6px;
 }
 
 img {
