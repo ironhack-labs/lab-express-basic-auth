@@ -1,0 +1,90 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-image: url("http://www.crvdmedia.com/crvd/wp-content/uploads/2013/02/Wood_Background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-size: 1em;
+
+}
+
+a {
+  color: #00B7FF;
+}
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+  color: #FFF;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+#form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
+}
+
+.error-message {
+  background: #C70039;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 50%;
+}
+nav{
+
+  float: right;
+
+}
+.nav{
+  text-decoration: none;
+
+
+}
+
+h1{
+  margin-top: 200px;
+  color: white;
+}
+.food{
+  float: left;
+  margin-top: 300px;
+}
+.h1{
+  font-size: 5em;
+
+
+}
