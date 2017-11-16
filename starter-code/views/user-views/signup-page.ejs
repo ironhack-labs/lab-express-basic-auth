@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Sign Up </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <header>
+      <h2> Sign Up </h2>
+
+      <nav>
+        <a href="/"> Home </a>
+        <a href="/"> Sign Up </a>
+      </nav>
+    </header>
+
+    <% if(typeof errorMessage !== "undefined") { %>
+          <p class="error-message">
+          <%= errorMessage %>
+          </p>
+    <% } %>
+
+    <form id="form" method="post" action="/process-signup" />
+      <label for="username-input"> username </label>
+      <input id="username-input" type="text" placeholder="e.g. bigtyrion"
+          name="signupUsername" />
+      <br />
+
+      <label for="password-input"> Password </label>
+      <input id="password-input" type="password" placeholder="e.g. killedMyDad"
+          name="signupPassword" />
+      <br />
+
+    <button> Sign Up </button>
+  </form>
+
+
+  </body>
+</html>
