@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+.veryweak{
+  background-color:red;
+  color:white;
+}
+.weak{
+  background-color:orange;
+  color:white;
+}
+.medium{
+  background-color:yellow;
+  color:black;
+}
+.strong{
+  background-color:lightgreen;
+  color:white;
+}
+
