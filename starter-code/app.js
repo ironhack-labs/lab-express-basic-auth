@@ -14,6 +14,7 @@ const MongoStore = require("connect-mongo")(session);
 require('./config/db.config');
 
 // Routes variables
+var index = require('./routes/index.routes');
 var auth = require('./routes/auth.routes');
 
 // Mongoose configuration
@@ -37,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', index);
 app.use('/', auth);
 
 // catch 404 and forward to error handler
