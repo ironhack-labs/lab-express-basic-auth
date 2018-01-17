@@ -1,18 +1,24 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+const express         = require("express");
+const path            = require("path");
+const logger          = require("morgan");
+const cookieParser    = require("cookie-parser");
+const bodyParser      = require("body-parser");
+const mongoose        = require("mongoose");
+const expressLayouts  = require("express-ejs-layouts");
+const app             = express();
 
 // Controllers
+const auth = require('./routes/auth.routes');
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+require('./config/db.config');
 
 // Middlewares configuration
 app.use(logger("dev"));
+
+// Layouts
+app.use(expressLayouts);
+app.set('layout', 'layouts/main');
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
