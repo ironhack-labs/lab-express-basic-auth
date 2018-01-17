@@ -6,8 +6,8 @@ router.get('/signup', authController.signup);
 router.post('/signup', authController.doSignup);
 router.get('/signok', authController.signok);
 
-// router.get('/login', authController.login);
-// router.post('/login', authController.doLogin);
+router.get('/login', authController.login);
+router.post('/login', authController.doLogin);
 
 // router.get('/logout', authController.logout);
 

@@ -32,3 +32,50 @@ module.exports.doSignup = (req, res, next) => {
 module.exports.signok = (req, res, next) => {
   res.render('auth/signok');
 };
+
+module.exports.login = (req, res, next) => {
+  // console.log(req.session.currentUser);
+  res.render('auth/login');
+};
+
+module.exports.doLogin = (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  if (!username || !password) {
+      res.render('auth/login', { 
+          user: { username: username }, 
+          error: {
+              username: username ? '' : 'Username is required',
+              password: password ? '' : 'Password is required'
+          }
+      });
+  } else {
+      User.findOne({ username: username})
+          .then(user => {
+            // console.log('Invalid username or password');            
+              errorData = {
+                  user: { username: username },
+                  error: { password: 'Invalid username or password' }
+              };
+              if (user) {
+                  user.checkPassword(password)
+                      .then(match => {
+                          if (!match) {
+                            console.log(errorData);                            
+                            res.render('auth/login', errorData);
+                          } else {
+                            // req.session.currentUser = user;
+                            console.log('/user/profile'); 
+                            res.send("You are login")                           
+                            // res.redirect('/user/profile');
+                          }
+                      })
+                      .catch(error => next(error));
+              } else {
+                  res.render('auth/login', errorData);
+              }
+          })
+          .catch(error => next(error));
+  }
+
+};
