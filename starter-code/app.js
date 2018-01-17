@@ -16,6 +16,7 @@ require('./config/db.config');
 // Routes variables
 var index = require('./routes/index.routes');
 var auth = require('./routes/auth.routes');
+var user = require('./routes/user.routes');
 
 // Mongoose configuration
 // mongoose.connect("mongodb://localhost/basic-auth");
@@ -54,6 +55,7 @@ app.use(session({
 // Routes
 app.use('/', index);
 app.use('/', auth);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
