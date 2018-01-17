@@ -1,7 +1,10 @@
 <h1>you are in MAIN user  </h1>
+<div>
+  <p>Connected username: <%= typeof user != 'undefined' && user.username ? user.username : '' %></p>
+  
+  <a class="btn btn-primary" href="/user/private">CLICK HERE to go to your private site</a>
 
-<p>Connected username: <%= typeof user != 'undefined' && user.username ? user.username : '' %></p>
-
+</div>
 
 <div class="col-xs-12 col-sm-4 col-sm-offset-4">
   <hr>
