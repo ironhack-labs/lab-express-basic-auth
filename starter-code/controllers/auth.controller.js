@@ -16,7 +16,7 @@ module.exports.doSignup = (req, res, next) => {
             user.save()
               .then(() => {
                 console.log("User created");                      
-                res.redirect('/signup');
+                res.redirect('/signok');
               }).catch(error => {
                 if (error instanceof mongoose.Error.ValidationError) {
                   res.render('auth/signup', { user: user, error: error.errors })                      } else {
@@ -27,4 +27,8 @@ module.exports.doSignup = (req, res, next) => {
         })
         //QUE SIGNIFICA ESTO?????
       .catch(error => next(error));
+};
+
+module.exports.signok = (req, res, next) => {
+  res.render('auth/signok');
 };
