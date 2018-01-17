@@ -36,6 +36,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+app.use(session({
+  secret: 'Super Secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 1000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
 
 // Routes
 app.use('/', index);

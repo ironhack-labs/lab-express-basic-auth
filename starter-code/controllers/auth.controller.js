@@ -64,8 +64,8 @@ module.exports.doLogin = (req, res, next) => {
                             console.log(errorData);                            
                             res.render('auth/login', errorData);
                           } else {
-                            // req.session.currentUser = user;
-                            console.log('/user/profile'); 
+                            req.session.currentUser = user;
+                            console.log('/user/profile'+user); 
                             res.send("You are login")                           
                             // res.redirect('/user/profile');
                           }
