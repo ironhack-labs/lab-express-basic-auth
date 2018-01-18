@@ -30,6 +30,7 @@ app.set('layout', 'layouts/main');
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static("public"));
 
 // Access POST params with body parser
 app.use(bodyParser.json());
