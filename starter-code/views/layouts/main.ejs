@@ -19,8 +19,8 @@
             <a class="navbar-text" href="/">Home </a>
             <a class="navbar-text" href="/signup">Sign up </a>
             <a class="navbar-text" href="/login">Log in </a>
-            <p class="navbar-text"><%= typeof user != 'undefined' && user.username ? "Welcome: " +user.username : '' %></p>
-            <a class="navbar-text" href="/logout"><%= typeof user != 'undefined' && user.username ? "DISCONECT" : '' %></a>
+            <p class="navbar-text"><%= typeof userValidated != 'undefined' && userValidated.username ? "Welcome: " +userValidated.username : '' %></p>
+            <a class="navbar-text" href="/logout"><%= typeof userValidated != 'undefined' && userValidated.username ? "DISCONECT" : '' %></a>
         </div>
     </nav>
     <br>

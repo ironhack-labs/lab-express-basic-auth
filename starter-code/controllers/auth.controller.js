@@ -6,27 +6,42 @@ module.exports.signup = (req, res, next) => {
 };
 
 module.exports.doSignup = (req, res, next) => {
-  User.findOne({ username: req.body.username })
-      .then(user => {
-          if (user != null) {
-            console.log("Username already exists");            
-            res.render('auth/signup', { user: user, error: { username: 'Username already exists'} })
-          } else {
-            user = new User(req.body);
-            user.save()
-              .then(() => {
-                console.log("User created");                      
-                res.redirect('/signok');
-              }).catch(error => {
-                if (error instanceof mongoose.Error.ValidationError) {
-                  res.render('auth/signup', { user: user, error: error.errors })                      } else {
-                  next(error)
-                }
-              });
-          }  
-        })
-        //QUE SIGNIFICA ESTO?????
-      .catch(error => next(error));
+    const username = req.body.username;
+    const password = req.body.password;
+    if (!username || !password) {
+        res.render('auth/signup', { 
+            user: { username: username }, 
+            error: {
+                username: username ? '' : 'Username is required',
+                password: password ? '' : 'Password is required'
+            }
+        });
+    }else{   
+        User.findOne({ username: req.body.username })
+            .then(user => {
+                errorData = {
+                    error: { username: 'Username already exists' }
+                };
+                if (user != null) {
+                    console.log("Username already exists");            
+                    res.render('auth/signup', errorData);
+                } else {
+                    user = new User(req.body);
+                    user.save()
+                    .then(() => {
+                        console.log("User created");                      
+                        res.redirect('/signok');
+                    }).catch(error => {
+                        if (error instanceof mongoose.Error.ValidationError) {
+                        res.render('auth/signup', { user: user, error: error.errors })                      } else {
+                        next(error)
+                        }
+                    });
+                }  
+                })
+                //QUE SIGNIFICA ESTO?????
+            .catch(error => next(error));
+    }
 };
 
 module.exports.signok = (req, res, next) => {
