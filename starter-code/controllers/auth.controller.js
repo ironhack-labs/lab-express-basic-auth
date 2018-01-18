@@ -39,7 +39,6 @@ module.exports.doSignup = (req, res, next) => {
                     });
                 }  
                 })
-                //QUE SIGNIFICA ESTO?????
             .catch(error => next(error));
     }
 };
@@ -66,17 +65,17 @@ module.exports.doLogin = (req, res, next) => {
       });
   } else {
       User.findOne({ username: username})
-          .then(user => {
-            // console.log('Invalid username or password');            
+          .then(user => {          
               errorData = {
                   user: { username: username },
-                  error: { password: 'Invalid username or password' }
+                  error: { username: 'Invalid username or password',
+                           password: 'Invalid username or password' }
               };
               if (user) {
                   user.checkPassword(password)
                       .then(match => {
                           if (!match) {
-                            console.log(errorData);                            
+                            // console.log(errorData);                            
                             res.render('auth/login', errorData);
                           } else {
                             req.session.currentUser = user;
