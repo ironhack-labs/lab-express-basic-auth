@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "dev": "DEBUG=lab-express-basic-auth:* nodemon ./bin/www"
   },
   "dependencies": {
@@ -14,6 +14,8 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "express-ejs-layouts": "^2.3.1",
+    "express-session": "^1.15.6",
+    "mongo-connect": "0.0.6",
     "mongodb": "^2.2.22",
     "mongoose": "^4.8.0",
     "morgan": "~1.7.0",
