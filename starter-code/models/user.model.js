@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-// userSchema.pre('save', (next) => { }) no funciona
+// userSchema.pre('save', (next) => { }) NOFUNCIONA
 userSchema.pre('save', function(next) {
     const user = this;
     if(!user.isModified('password')) {
@@ -33,7 +33,8 @@ userSchema.pre('save', function(next) {
         .catch( error => next(error) );
 });
 
-userSchema.methods.checkPassword = password => {
+// userSchema.methods.checkPassword = password => {  NO FUNCIONA
+userSchema.methods.checkPassword = function(password) {
     return bcrypt.compare(password, this.password);
 }
 
