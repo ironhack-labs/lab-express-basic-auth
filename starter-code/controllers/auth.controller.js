@@ -9,7 +9,7 @@ module.exports.doSignup = (req, res, next) => {
     User.findOne({ username: req.body.username })
         .then(user => {
             if(user != null) {
-                res.render('auth/signup', { user: user, error: { user: "Username already exists" } })
+                res.render('auth/signup', { user: user, error: { username: "Username already exists" } })
             }
             else {
                 user = new User(req.body);
