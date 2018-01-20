@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="col-12 col-sm-8 offset-sm-2">
             <form action="/login" method="post">
 
                 <div class="form-group <%= typeof error != 'undefined' ? 'has-error' : '' %> ">
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-user"></i>
-                        </span>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text fa fa-user"></div>
+                        </div>
                         <input type="text" name="username" class="form-control" placeholder="Username"></input>
                     </div>
                     <% if (typeof error != 'undefined' && error.username ) { %>
@@ -17,9 +17,9 @@
                 
                 <div class="form-group <%= typeof error != 'undefined' ? 'has-error' : '' %>">
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-lock"></i>
-                        </span>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text fa fa-lock"></div>
+                            </div>
                         <input type="password" name="password" class="form-control" placeholder="Password"></input>
                     </div>
                     <% if (typeof error != 'undefined' && error.password) { %>
@@ -32,7 +32,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="col-12 col-sm-8 offset-sm-2">
             <hr>
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
