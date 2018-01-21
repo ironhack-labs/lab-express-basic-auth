@@ -14,7 +14,8 @@ module.exports.doSignup = (req, res, next) => {
                 user = new User(req.body);
                 user.save()
                     .then(() => {
-                        res.redirect('auth/signup');
+                      req.session.currentUser = req.login;
+                      res.redirect('/user/profile');
                     }).catch(error => {
                         if (error instanceof mongoose.Error.ValidationError) {
                             res.render('auth/signup', { user: user, error: error.errors })
