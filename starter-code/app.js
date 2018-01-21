@@ -10,11 +10,12 @@ const MongoStore = require("connect-mongo")(session);
 
 require('./configs/db.config');
 
+
 const app            = express();
 
 // Controllers
 var auth = require('./routes/auth.routes');
-//var user = require('./routes/user.routes');
+var user = require('./routes/user.routes');
 
 // Middlewares configuration
 app.use(logger("dev"));
@@ -50,7 +51,7 @@ app.use(session({
 // Routes
 
 app.use('/', auth);
-//app.use('/user', user);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
