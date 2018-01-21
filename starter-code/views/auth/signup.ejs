@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2">
+      <form action="/signup" method="POST">
+
+        <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                  <div class="input-group-text fa fa-user"></div>
+              </div>
+            <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
+          </div>
+          <% if (typeof(error) != 'undefined' && error.username) { %>
+            <label class="control-label">
+              <%= error.username %>
+            </label>
+            <% } %>
+        </div>
+
+        <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                  <div class="input-group-text fa fa-lock"></div>
+              </div>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+          </div>
+          <% if (typeof(error) != 'undefined' && error.password) { %>
+            <label class="control-label">
+              <%= error.password %>
+            </label>
+            <% } %>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-block btn-primary">Signup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <% if (typeof username != 'undefined') { %>
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2">
+      <hr>
+      <p class="text-center text-success">User <%= username %> created <a href="/login">Log in</a></p>
+      <hr>
+    </div>
+  </div>
+    <% } %>
+</div>
