@@ -8,7 +8,7 @@ const app            = express();
 const authRoutes = require('./routes/auth-routes');
 const bcrypt         = require('bcrypt');
 // Controllers
-
+mongoose.Promise = global.Promise;
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
