@@ -5,7 +5,7 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
-const mainRoutes     = require('./routes/main.routes');
+const authRoutes = require('./routes/auth-routes');
 const bcrypt         = require('bcrypt');
 // Controllers
 
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
-app.use('/', mainRoutes);
+app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
