@@ -1,0 +1,19 @@
+<h1>Sign up</h1>
+
+<form action="/signup" method="post">
+    <div class="form-group <%= typeof error != 'undefined' && error.username ? 'has-error' : '' %>">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Introduce your username" name="username">
+        <% if (typeof(error) != 'undefined' && error.username) { %>
+            <label class="control-label"> <%= error.username %> </label>
+        <% } %>
+    </div>
+    <div class="form-group <%= typeof error != 'undefined' && error.password ? 'has-error' : '' %>">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+        <% if (typeof(error) != 'undefined' && error.password) { %>
+            <label class="control-label"><%= error.password %></label>
+        <% } %>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

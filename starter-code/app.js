@@ -1,27 +1,52 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
-
-// Controllers
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require("connect-mongo")(session);
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+require('./configs/db.config');
 
-// Middlewares configuration
-app.use(logger("dev"));
+const auth = require('./routes/auth.routes');
+const user = require('./routes/user.routes');
+
+const app = express();
 
 // View engine configuration
+app.use(expressLayouts);
+app.set('layout', 'layout/main-layout');
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-// Access POST params with body parser
+// Middlewares configuration
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({
+  secret: 'Super Secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 1000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}))
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', auth);
+app.use('/user', user);
 
 // Authentication
 app.use(cookieParser());
