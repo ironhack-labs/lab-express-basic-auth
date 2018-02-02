@@ -1,6 +1,6 @@
 const express = require("express");
 const authRoutes = express.Router();
-const User       = require("../models/user");
+const User       = require("../models/users");
 
 // BCrypt to encrypt passwords
 const bcrypt         = require("bcrypt");
@@ -28,7 +28,7 @@ authRoutes.post("/login", (req, res, next) => {
 
   
     if (username === "" || password === "") {
-      res.render("auth/login", {
+      res.render("auth/index", {
         errorMessage: "Indicate a username and a password to sign up"
       });
       return;
