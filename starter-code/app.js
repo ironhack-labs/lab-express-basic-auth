@@ -9,8 +9,10 @@ const app            = express();
 const bcrypt         = require("bcrypt")
 const saltRounds     = 20;
 const index = require ("./routes/index")
-const authRoutes = require ("./routes/auth-routes")
-//const session = require("express-session");
+const session = require ("express-session");
+const MongoStore = require ("connect-mongo")(session);
+const authRoutes = require ("./routes/auth-routes");
+const homeRoutes = require ("./routes/home");
 
 
 
@@ -35,21 +37,21 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(session({
-//   secret: "basic-auth-secret",
-//   cookie: { maxAge: 60000 },
-//   store: new MongoStore({
-//     mongooseConnection: mongoose.connection,
-//     ttl: 24 * 60 * 60 // 1 day
-//   })
-// }));
-// app.use((req, res, next) => {
-//   res.locals = {
-//     title: 'DEFAULT',
-//     user: req.session.currentUser || null
-//   }
-//   next();
-// });
+ app.use(session({
+   secret: "basic-auth-secret",
+   cookie: { maxAge: 60000 },
+   store: new MongoStore({
+     mongooseConnection: mongoose.connection,
+     ttl: 24 * 60 * 60 // 1 day
+   })
+ }));
+ app.use((req, res, next) => {
+   res.locals = {
+     title: 'DEFAULT',
+     user: req.session.currentUser || null
+   }
+   next();
+ });
 
 // Authentication
 app.use(cookieParser());
@@ -57,6 +59,8 @@ app.use(cookieParser());
 // Routes
 app.use("/", index);
 app.use("/auth", authRoutes);
+app.use("/", homeRoutes);
+
 
 
 // catch 404 and forward to error handler
