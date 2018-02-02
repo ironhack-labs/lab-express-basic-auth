@@ -6,16 +6,28 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const expressLayouts = require("express-ejs-layouts")
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 // Controllers
 const signup = require('./routes/signup');
-const index = require('./routes/index')
+const index = require('./routes/index');
+const login = require('./routes/login');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth").then(() => (console.log("conectado")));
 
 // Middlewares configuration
 app.use(logger("dev"));
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -28,13 +40,12 @@ app.set('layout', 'layouts/main-layout');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-
 // Authentication
 app.use(cookieParser());
 
 // Routes
 app.use('/signup', signup);
+app.use('/login', login);
 app.use('/', index);
 
 
