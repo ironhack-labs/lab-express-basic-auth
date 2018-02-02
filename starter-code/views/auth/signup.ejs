@@ -6,19 +6,21 @@
   </head>
   <body>
     
-
-
   <form action="/signup" method="POST" id="form">
-  <h2>LOGIN</h2>
+  <h2>SIGN UP</h2>
     <label for="username">Username</label>
     <input type="text" id="username" name="username">
 
     <label for="password">Password</label>
     <input type="text" id="password" name="password">
   
-    <button type="submit">SIGN IN</button>
+      
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"> <%= errorMessage %> </div>
+  <% } %>
+
+    <button type="submit">Create Account</button>
   </form>
-  
 
   </body>
 </html>
