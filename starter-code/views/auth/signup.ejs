@@ -6,8 +6,6 @@
   </head>
   <body>
     
-
-
   <form action="/signup" method="POST" id="form">
   <h2>LOGIN</h2>
     <label for="username">Username</label>
@@ -19,6 +17,9 @@
     <button type="submit">SIGN IN</button>
   </form>
   
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message"> <%= errorMessage %> </div>
+  <% } %>
 
   </body>
 </html>
