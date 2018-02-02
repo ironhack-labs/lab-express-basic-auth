@@ -5,6 +5,20 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const bcrypt     = require("bcryptjs");
+const saltRounds = 14;
+
+const plainPassword1 = "HelloWorld";
+const plainPassword2 = "helloworld";
+
+const salt  = bcrypt.genSaltSync(saltRounds);
+const hash1 = bcrypt.hashSync(plainPassword1, salt);
+const hash2 = bcrypt.hashSync(plainPassword2, salt);
+const authRoutes = require('./routes/auth-routes');
+const page = require ('./routes/index');
+console.log("Hash 1 -", hash1);
+console.log("Hash 2 -", hash2);
+
 
 // Controllers
 
@@ -27,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', authRoutes);
+app.use('/', page);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
