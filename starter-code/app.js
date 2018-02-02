@@ -1,10 +1,11 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const app = express();
+const authRoutes = require("./routes/auth-routes");
 
 // Controllers
 
@@ -14,14 +15,21 @@ mongoose.connect("mongodb://localhost/basic-auth");
 // Middlewares configuration
 app.use(logger("dev"));
 
-// View engine configuration
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+var index = require("./routes/index");
+var users = require("./routes/users");
 
 // Access POST params with body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use("/", index);
+app.use("/users", users);
+app.use("/", authRoutes);
+
+// View engine configuration
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 
 // Authentication
 app.use(cookieParser());
