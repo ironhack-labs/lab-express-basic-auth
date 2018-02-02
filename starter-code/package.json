@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "~1.15.2",
+    "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
