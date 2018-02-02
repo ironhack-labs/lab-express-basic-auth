@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-//const User = require('../models/User');
+const User = require('../models/User');
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
+const path = require('path');
+const debug = require('debug')(`m2-0118-basic-auth:${path.basename(__filename).split('.')[0]}`);
+
 
 router.get('/home', function(req, res, next) {
     res.render('auth/home');
@@ -35,7 +40,7 @@ router.post("/login", (req, res, next) => {
           // Save the login in the session!
           req.session.currentUser = user;
           debug(`${user.username} is now logged in`);
-          res.redirect("/");
+          res.redirect("/private");
         } else {
           res.render("auth/login", {
             errorMessage: "Incorrect password"
