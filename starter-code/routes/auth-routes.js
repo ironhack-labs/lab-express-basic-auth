@@ -11,46 +11,50 @@ authRoutes.get("/signup", (req, res, next) => {
   
 });
 
-authRoutes.post("/login", (req, res, next) => {
-    var username = req.body.username;
-    var password = req.body.password;
-    var salt     = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
-      
-    var newUser  = User({
-        username,
-        password: hashPass
+authRoutes.post("/signup", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  var salt = bcrypt.genSaltSync(bcryptSalt);
+  var hashPass = bcrypt.hashSync(password, salt);
+  if (username === "" || password === "") {
+    res.send({
+      errorMessage: "Indicate a username and a password to sign up"
     });
-      
-    newUser.save((err) => {
-        res.redirect("/");
-        });
+    return;
+  }
 
-  
-    if (username === "" || password === "") {
-      res.render("auth/index", {
-        errorMessage: "Indicate a username and a password to sign up"
+  User.findOne({ username: username }, (err, user) => {
+    if (err || !user) {
+      res.render("auth/signup", {
+        errorMessage: "The username doesn't exist"
       });
       return;
     }
-  
-    User.findOne({ "username": username }, (err, user) => {
-        if (err || !user) {
-          res.render("auth/login", {
-            errorMessage: "The username doesn't exist"
-          });
-          return;
-        }
-        if (bcrypt.compareSync(password, user.password)) {
-          // Save the login in the session!
-          req.session.currentUser = user;
-          res.redirect("/");
-        } else {
-          res.render("auth/login", {
-            errorMessage: "Incorrect password"
-          });
-        }
-        });
-    });
+    if (bcrypt.compareSync(password, user.password)) {
+      // Save the login in the session!
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else {
+      res.render("auth/signup", {
+        errorMessage: "Incorrect password"
+      });
+    }
+  });
 
-  module.exports = authRoutes;
+  var newUser = User({
+    username,
+    password: hashPass
+  });
+
+  newUser.save(err => {
+    if (err) {
+      res.render("auth/signup", {
+        errorMessage: "Something went wrong"
+      });
+    } else {
+      res.redirect("/views/index");
+    }
+  });
+});
+
+module.exports = authRoutes;
