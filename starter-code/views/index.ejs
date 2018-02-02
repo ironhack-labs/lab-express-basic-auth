@@ -1,5 +1,12 @@
-    <h1>Hello world</h1>
-    <br>
-    <a href="/signup">Sign up!</a>
-    <br>
-    <a href="/login">Log in!</a>
+
+    <h2>ESTA ES LA HOME DE BASIC AUTH</h2>
+
+<% if(user){ %>
+    <h2>Hola <%=  user.username %></h2>
+    <a href="/logout">Logout</a>
+    <a href="/private">PRIVATE PAGE</a>
+<% } else {%>   
+    <a href="/signup">SignUp</a>
+    <a href="/login">Login</a>  
+    <a href="/private">PRIVATE PAGE (Only logged in users)</a>
+<% } %>

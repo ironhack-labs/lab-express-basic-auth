@@ -13,6 +13,8 @@ const MongoStore = require("connect-mongo")(session);
 const signup = require('./routes/signup');
 const index = require('./routes/index');
 const login = require('./routes/login');
+const private = require('./routes/private');
+const main = require('./routes/main');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth").then(() => (console.log("conectado")));
@@ -28,6 +30,13 @@ app.use(session({
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
+
+app.use((req, res, next) => {
+  res.locals = {
+    user: req.session.currentUser || null
+  }
+  next();
+});
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
@@ -46,6 +55,8 @@ app.use(cookieParser());
 // Routes
 app.use('/signup', signup);
 app.use('/login', login);
+app.use('/private', private);
+app.use('/main', main);
 app.use('/', index);
 
 
