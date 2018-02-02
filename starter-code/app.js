@@ -1,15 +1,31 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const app = express();
+const authRoutes = require("./routes/auth-routes");
+
+const bcrypt     = require("bcrypt");
+const saltRounds = 10;
+
+const plainPassword1 = "HelloWorld";
+const plainPassword2 = "helloworld";
+
+const salt  = bcrypt.genSaltSync(saltRounds);
+const hash1 = bcrypt.hashSync(plainPassword1, salt);
+const hash2 = bcrypt.hashSync(plainPassword2, salt);
+
+console.log("Hash 1 -", hash1);
+console.log("Hash 2 -", hash2);
 
 // Controllers
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+mongoose.connect("mongodb://localhost/auth-dev").then(() => {
+  console.log(`Conectado a la BBDD mongodb://localhost/auth-dev`)
+});
 
 // Middlewares configuration
 app.use(logger("dev"));
@@ -27,6 +43,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
