@@ -1,0 +1,18 @@
+<h2>Create an account</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="JonSnow" required>
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <input id="myPassword" type="password" name="password" placeholder="Your password" required>
+  <br>
+  <% if ( typeof(error) != "undefined") { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+      <br>
+      <button>Create account</button>
+</form>
