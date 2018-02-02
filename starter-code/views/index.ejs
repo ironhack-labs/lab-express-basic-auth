@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
+<h2>ESTA ES LA HOME DE BASIC AUTH</h2>
+
+<% if(user){ %>
+    <h2>Hola <%=  user.username %></h2>
+    <a href="/auth/logout">Logout</a>
+    <a href="/private">PRIVATE PAGE</a>
+<% } else {%>   
+    <a href="/auth/signup">SignUp</a>
+    <a href="/auth/login">Login</a>    
+<% } %>
