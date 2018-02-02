@@ -1,10 +1,10 @@
-const express        = require("express");
-const path           = require("path");
-const logger         = require("morgan");
-const cookieParser   = require("cookie-parser");
-const bodyParser     = require("body-parser");
-const mongoose       = require("mongoose");
-const app            = express();
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const app = express();
 
 // Controllers
 
@@ -25,9 +25,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
-
+app.get("/", (request, response, next) => {
+  response.send("Login");
+});
 // Routes
-
+app.get("/login", (request, response, next) => {
+  response.render("index");
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
@@ -35,7 +39,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -45,5 +49,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
+app.listen(3000, () => {
+  console.log("My first app listening on port 3000!");
+});
 module.exports = app;
