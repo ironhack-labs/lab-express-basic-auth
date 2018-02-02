@@ -14,12 +14,13 @@
     <label for="password">Password</label>
     <input type="text" id="password" name="password">
   
-    <button type="submit">SIGN IN</button>
-  </form>
-  
+      
   <% if (typeof(errorMessage) != "undefined") { %>
     <div class="error-message"> <%= errorMessage %> </div>
   <% } %>
+
+    <button type="submit">SIGN IN</button>
+  </form>
 
   </body>
 </html>

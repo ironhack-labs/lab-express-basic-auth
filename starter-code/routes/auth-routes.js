@@ -26,17 +26,29 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  let salt = bcrypt.genSaltSync(bcryptSalt);
-  let hashPass = bcrypt.hashSync(password, salt);
+  User.findOne({"username": username},
+    "username",
+    (err, user) => {
+      if (user !==  null){
+        res.render("auth/signup",{
+          errorMessage: "The username already exists"
+        });
+        return;
+      }
+      let salt = bcrypt.genSaltSync(bcryptSalt);
+      let hashPass = bcrypt.hashSync(password, salt);
+    
+      let newUser = User({
+        username,
+        password: hashPass
+      });
+    
+      newUser.save(err => {
+        res.redirect("/signup");
+      });
 
-  let newUser = User({
-    username,
-    password: hashPass
-  });
+    }) 
 
-  newUser.save(err => {
-    res.redirect("/signupt");
-  });
 });
 
 module.exports = router;
