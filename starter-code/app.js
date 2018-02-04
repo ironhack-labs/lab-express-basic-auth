@@ -6,11 +6,17 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const expressLayouts = require('express-ejs-layouts');
 const app            = express();
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Controllers
+const index = require('./routes/index');
+const auth = require('./routes/auth');
+const main = require('./routes/main');
+const private = require('./routes/private');
 
 // Mongoose configuration
-mongoose.connect('mongodb://localhost/mongoose-movies-development', {
+mongoose.connect('mongodb://localhost/mongoose-auth-boiler', {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE
 });
@@ -29,10 +35,34 @@ app.set('layout', 'layouts/main');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Authentication
+// Authentication / Session
 app.use(cookieParser());
 
+app.use(
+  session({
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
+    secret: 'foobar',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000
+    }
+  })
+);
+
+app.use(function(req, res, next) {
+  app.locals.user = req.session.currentUser;
+  next();
+});
+
 // Routes
+app.use('/', index);
+app.use('/auth', auth);
+app.use('/main', main);
+app.use('/private', private);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
