@@ -11,6 +11,7 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/auth-routes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const siteRoutes = require('./routes/site-routes');
 
 // Controllers
 
@@ -43,6 +44,7 @@ app.use(cookieParser());
 // Routes
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', siteRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
