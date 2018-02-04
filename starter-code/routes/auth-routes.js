@@ -66,7 +66,7 @@ authRoutes.post("/login", (req, res, next) => {
 
   if (username === "" || password === "") {
     res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to sign up"
+      errorMessage: "Indicate a username and a password to Login"
     });
     return;
   }
