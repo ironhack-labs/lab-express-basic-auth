@@ -13,8 +13,8 @@ siteRoutes.use((req, res, next) => {
   }
 });
 
-siteRoutes.get("/secret", (req, res, next) => {
-  res.render("secret");
-});
+siteRoutes.get("/main", (req, res, next) => {
+  res.render("main");
+}); 
 
 module.exports = siteRoutes;
