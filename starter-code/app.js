@@ -6,6 +6,10 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+
+const authRoutes = require('./routes/auth-routes');
+
+
 // Controllers
 
 // Mongoose configuration
@@ -25,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+app.use('/', authRoutes);
 
 // Routes
 
