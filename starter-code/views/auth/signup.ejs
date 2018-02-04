@@ -21,6 +21,9 @@
     <br><br>
 
     <button>Create account</button>
+    <% if (typeof(errorMessage) != "undefined") { %>
+        <div class="error-message"><%= errorMessage %></div>
+      <% } %>
   </form>
 </body>
 </html>
