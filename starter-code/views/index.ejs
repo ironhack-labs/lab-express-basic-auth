@@ -5,6 +5,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    Hello world
+    <div class="container">
+      <h1>new world</h1>
+      <% if (user) { %>
+        Logged in as <%= user.username %>
+        <form method="post" action="/logout">
+          <button>Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+      <% } %>
+    </div>
   </body>
 </html>
