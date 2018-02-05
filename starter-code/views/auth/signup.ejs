@@ -1,0 +1,21 @@
+
+<h2> Join us!</h2>
+
+    <a href="/auth/signup">Sign up</a>
+    <a href="/auth/login">Log in</a>
+  <form id="form" action="/auth/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Pick Username">
+    <br><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="password"
+      placeholder="Pick Password">
+    <br><br>
+ 
+      <% if (typeof errorMessage !== 'undefined') {%>
+        <%= errorMessage %>
+      <% } %>
+    <button>Create account</button>
+    <a href="/auth/login">Already have an account?</a>
+  </form>
