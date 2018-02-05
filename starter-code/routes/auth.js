@@ -46,10 +46,51 @@ auth.post("/signup", (req, res, next) => {
           errorMessage: "Something went wrong when signing up"
         });
       } else {
-        // User has been created...now what?
+        res.redirect("/login");
       }
     });
   });
+});
+
+
+auth.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+auth.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to log in"
+    });
+    return;
+  }
+
+  User.findOne({ "username": username },
+    "_id username password following",
+    (err, user) => {
+      if (err || !user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      } else {
+        if (bcrypt.compareSync(password, user.password)) {
+          req.session.currentUser = user;
+          // logged in
+        } else {
+          res.render("auth/login", {
+            errorMessage: "Incorrect password"
+          });
+        }
+      }
+  });
+});
+
+auth.get("/", (req, res) => {
+  res.redirect("/login");
 });
 
 module.exports = auth;
