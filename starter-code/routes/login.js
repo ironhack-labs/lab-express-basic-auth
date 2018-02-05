@@ -19,7 +19,6 @@ router.post('/', (req, res, next) => {
 
   if (username === '' || password === '') {
     const data = {
-      title: 'Login',
       message: 'Indicate a username and a password to sign in'
     }
     return res.render('login', data)
@@ -31,7 +30,6 @@ router.post('/', (req, res, next) => {
     }
     if (!user) {
       const data = {
-        title: 'Login',
         message: 'Username or password are incorrect'
       }
       return res.render('login', data)
@@ -39,7 +37,6 @@ router.post('/', (req, res, next) => {
 
     if (bcrypt.compareSync(password, user.password)) {
       const data = {
-        title: 'Login',
         message: 'Username or password are incorrect'
       }
       res.render('index', data)

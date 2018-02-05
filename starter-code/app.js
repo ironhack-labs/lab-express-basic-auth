@@ -11,6 +11,8 @@ const users = require('./routes/users')
 const login = require('./routes/login')
 const index = require('./routes/index')
 const signup = require('./routes/signup')
+const pic = require('./routes/pic')
+const gif = require('./routes/gif')
 const MongoStore = require('connect-mongo')(session)
 
 const app = express()
@@ -65,6 +67,8 @@ app.use('/', index)
 app.use('/login', login)
 app.use('/signup', signup)
 app.use('/users', users)
+app.use('/pic', pic)
+app.use('/gif', gif)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
