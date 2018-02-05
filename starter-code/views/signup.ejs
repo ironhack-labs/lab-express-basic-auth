@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Auth</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+<h2>Signup</h2>
+
+<form action="/signup" method="POST" >
+  <div class="field">
+    <label for="username"> Username </label>
+    <input type="text" name="username" id="username">
+  </div>
+  <div class="field">
+    <label for="password"> password </label>
+    <input type="password" name="password" id="password">
+  </div>
+  <div class="field control">
+    <button class="btn submit">Signup</button>
+    <% if (typeof message !== 'undefined') { %>
+      <p class="error"><%= message %></p>
+    <% } %>
+  </div>
+</form>
+
+<a href="/login">Already have an account? Login here</a>
+<a href="/">Go Back</a>
+</body>
+</html>
