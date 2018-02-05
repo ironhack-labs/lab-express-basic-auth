@@ -9,9 +9,15 @@ const bcrypt         = require("bcrypt");
 const app            = express();
 
 // Controllers
+const auth = require('./routes/auth');
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/basic-auth", {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+});
+
 
 // Middlewares configuration
 app.use(logger("dev"));
@@ -29,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Routes
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,7 +49,8 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-
+  res.render("error");
+  
   // render the error page
   res.status(err.status || 500);
   res.render("error");

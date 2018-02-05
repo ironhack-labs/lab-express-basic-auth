@@ -1,14 +1,26 @@
-<h2>Signup</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <title>Sign Up</title>
+</head>
 
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input type="text" name="username"
-    placeholder="username">
-  <br><br>
-  <label for="password">Password</label>
-  <input type="password" name="password"
-    placeholder="Your password">
-  <br><br>
-  <button>Create account</button>
-</form>
+<body>
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Insert Name">
 
+    <br><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="password"
+      placeholder="Insert Password">
+    <br><br>
+
+    <button>Create account</button>
+  </form>
+</body>
+</html>
