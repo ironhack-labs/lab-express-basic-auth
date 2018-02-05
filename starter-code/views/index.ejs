@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
+<h3>Hi there cowboy!</h3>
+
+<a href="/auth/signup">Sign-up here!</a>
+<a href="/auth/login">Login here!</a>
+<a href="/main">Cat pic anyone?</a>
+<a href="/private">Private eyes only</a>
+
+<div class="infoText">
+    <% if (typeof message !== 'undefined') { %>
+        <p class="error">
+            <%= message %>
+        </p>
+        <% } %>
+</div>
