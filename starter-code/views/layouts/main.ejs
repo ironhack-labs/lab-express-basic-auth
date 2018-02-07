@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header id="site-header">
+      <div class="container">
+        <h1>Hello user</h1>
+        <% if (user) { %>
+          Logged in as <%= user.username %>
+          <form method="post" action="/auth/logout">
+            <button>Logout</button>
+          </form>
+        <% } else { %>
+          <a href="/auth/signup">Signup</a>
+          <a href="/auth/login">Login</a>
+        <% } %>
+      </div>
+    </header>
+    <div id="site-main" class="container">
+      <%- body %>
+    </div>
+    <footer id="site-footer">
+      <div class="container">
+        <p>&copy; Footer</p>
+      </div>
+    </footer>
+  </body>
+</html>
