@@ -5,6 +5,8 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const session = require("express-session");
+const MongoStore =require("connect-mongo")(session);
 
 // Controllers
 
@@ -24,6 +26,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
+app.use(session({
+  secret: "Enrique",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 app.use(cookieParser());
 
 // Routes
