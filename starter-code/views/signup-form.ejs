@@ -1,6 +1,10 @@
-<h1>Sign up</h1>
-<form action="/signUp" method="post">
+
+<%if(error){%>
+  <h2 style="color:red"><%=error%></h2>
+<%}%>
+<form action="/signup" method="post">
   <input type="text" name="userName" placeholder="Enter Name">
-  <input type="password" name="password" placeholder="Enter Password">
+  <input type="password" name="password" placeholder="Enter Password" required>
+  <input type="password" name="password2" placeholder="Enter Password Again" required>
   <input type="submit">
 </form>
