@@ -5,6 +5,11 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
+
+var index = require('./routes/index');
+
 
 // Controllers
 
@@ -25,6 +30,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Authentication
 app.use(cookieParser());
+
+//Routes
+app.use('/', index);
+
+//Sesiones de usuario
+app.use(session({
+  secret: "secret-word",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+
+// const mongoose = require("mongoose");
+//  mongoose.connect("mongodb://localhost:27017/ironAccount");//db name
 
 // Routes
 
