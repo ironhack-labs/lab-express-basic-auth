@@ -1,0 +1,12 @@
+
+    <form action="/users/logIn" method="POST">
+        <h2>Please Log In</h2>
+        <h3> <%=logError%></h3>
+        <input id="name" name="name" type="text" placeholder="Username" required>
+    
+        <input id="password" name="password" type="password" placeholder="Your Password" required>
+    
+        <button type="submit">Submit</button>
+
+        <a href="/users/signUp" >Not a member yet? Sign up</a>
+        </form>

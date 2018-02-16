@@ -1,0 +1,17 @@
+
+
+<% if (message){ %>
+    <h2> Welcome <%=name%></h2>
+
+    <a href="/main" >Check this secret page</a>
+
+    <a href="/private"> This one is even better</a>
+
+<%} else {%>
+
+    <a href="/users/signUp"> Sign up</a>
+
+    <br>
+    
+    <a href="/users/logIn"> Log in</a>
+<%}%>
