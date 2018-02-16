@@ -4,6 +4,15 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 
+//pagina de private
+router.get('/private', function(req, res, next) {
+  res.render('private');
+});
+//pagina de main
+router.get('/main', function(req, res, next) {
+  res.render('main');
+});
+
 //signup route
 router.get("/signup", (req,res)=>{
     res.render("signup_form", {error:null});
@@ -35,18 +44,25 @@ router.get("/signup", (req,res)=>{
 router.get("/login", (req,res)=>{
     console.log(req)
     if(req.session.currentUser){
-      return res.redirect("/signup");
+      return res.redirect("/private");
+    
+    } else {
+      res.render("login_form", {error:null})
     }
-    res.render("login_form", {error:null})
+    
   })
   .post("/login", (req,res)=>{
    
     User.findOne({userName:req.body.userName}, (err,doc)=>{
         console.log(doc)
-      if(err) return res.render("login_form", {error:"tu nombre de usuario es incorrecto"})
+        if(!req.session.currentUser){
+          return res.redirect("/main");
+        }
+      if(err) return res.render("/login", {error:"tu nombre de usuario es incorrecto"})
       if(bcrypt.compareSync(req.body.password, doc.password)){
         req.session.currentUser = doc;
-        res.redirect("/");
+        
+        res.redirect("/main");
       }
     });
   });
