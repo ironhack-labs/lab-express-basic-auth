@@ -1,0 +1,15 @@
+<h2>Welcome, you can register here</h2>
+
+<%if(error){%>
+    <h2 style="color:red"><%=error%></h2>
+<%}%>
+
+<form action="/signup" method="post">
+
+<input placeholder="Your Name" type="text" name="userName" >
+<input placeholder="Your Password" type="password" name="password">
+<input placeholder="Your Password again" type="password" name="password2">
+<input type="submit">
+
+
+</form>
