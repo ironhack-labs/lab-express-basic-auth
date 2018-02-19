@@ -5,8 +5,14 @@ const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
-
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 // Controllers
+
+
+// Routes
+const authRoutes = require('./routes/auth-routes');
+const siteRoutes = require('./routes/site-routes');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
@@ -26,11 +32,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Authentication
 app.use(cookieParser());
 
-// Routes
+// configure express session / connect mongo - 6000 is how long, 6 secnonds, before must re login
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+//middleware => routes
+app.use('/', authRoutes);
+app.use('/', siteRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error("Not Found");
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -39,11 +57,11 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 module.exports = app;
