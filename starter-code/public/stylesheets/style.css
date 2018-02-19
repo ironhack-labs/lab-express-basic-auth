@@ -6,3 +6,77 @@ body {
 a {
   color: #00B7FF;
 }
+
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+  color: black;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 5px;
+  width: 100%;
+}
+
+#form button {
+  background: #0deaf1;
+  border: 1px solid #0deaf1;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: black;
+  transition: .3s ease background;
+}
+
+.error-message {
+  background: red;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 25px auto;
+  padding: 25px;
+  /* width: ; */
+}
+h2{
+  text-align: center;
+}
+
+/* #home{
+ font-size: 35px;
+ display: flex;
+ flex-direction: column;
+ position: relative;
+ justify-content: space-between;
+ padding-top: 150px;
+} */
+
+h1{
+  font-size: 40px;
+  text-align: center;
+}
+
+.main{
+  text-align: center;
+  font-size: 45px;
+}
