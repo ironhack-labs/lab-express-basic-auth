@@ -12,7 +12,7 @@ router.get("/signup", (req,res)=>{
         return res.render("users", {error:"You need complete all the fields! Please, try again."})
     }
     if(req.body.password2 !== req.body.password){
-      return res.render("users", {error:"Your passwords don't match duh!"})
+      return res.render("users", {error:"Your passwords don't match! Duh!"})
     }
     User.findOne({username:req.body.username}, (err,doc)=>{
       if(doc){
@@ -68,4 +68,4 @@ router.get("/logout", (req,res)=>{
     res.redirect("/users/login");
 });
 
-  module.exports = router;
+module.exports = router;
