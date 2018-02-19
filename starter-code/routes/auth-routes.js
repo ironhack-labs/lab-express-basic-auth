@@ -10,7 +10,18 @@ const bcryptSalt  = 10;
 
 authRoutes.get("/signup", (req, res, next) => {
     res.render("auth/signup");
-  });
+});
+
+authRoutes.get("/login", (req, res, next) => {
+    res.render("auth/login");
+});
+
+authRoutes.get("/logout", (req, res, next) => {
+    req.session.destroy((err) => {
+      // cannot access session here
+      res.redirect("/login");
+    });
+});
 
   //Route to Handle Signup Form Permission
 authRoutes.post("/signup", (req, res, next) => {
@@ -54,5 +65,38 @@ authRoutes.post("/signup", (req, res, next) => {
         });
     });
 });
+
+authRoutes.post("/login", (req, res, next) => {
+    var username = req.body.username;
+    var password = req.body.password;
+  
+    if (username === "" || password === "") {
+      res.render("auth/login", {
+        errorMessage: "Indicate a username and a password to log in"
+      });
+      return;
+    }
+  
+    User.findOne({ "username": username }, (err, user) => {
+      //check whether user exists
+        if (err || !user) {
+          res.render("auth/login", {
+            errorMessage: "The username doesn't exist"
+          });
+          return;
+        }
+      //check whether password is correct  
+        if (bcrypt.compareSync(password, user.password)) {
+          // Save the login in the session!
+          req.session.currentUser = user;
+          res.redirect("/");
+        } else {
+          res.render("auth/login", {
+            errorMessage: "Incorrect password"
+          });
+        }
+    });
+  });
+  
 
 module.exports = authRoutes;

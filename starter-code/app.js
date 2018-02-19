@@ -1,3 +1,5 @@
+const session        = require("express-session");
+const MongoStore     = require("connect-mongo")(session);
 const express        = require("express");
 const path           = require("path");
 const favicon        = require("serve-favicon");
@@ -7,8 +9,19 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 //Routes
 const authRoutes     = require('./routes/auth-routes');
+const siteRoutes     = require('./routes/site-routes');
 
 
 // Mongoose configuration
@@ -26,6 +39,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Middlewares configuration
 app.use('/', authRoutes);
+app.use('/', siteRoutes);
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Authentication
 app.use(cookieParser());

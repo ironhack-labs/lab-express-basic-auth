@@ -58,3 +58,25 @@ a {
   padding: 25px;
   /* width: ; */
 }
+h2{
+  text-align: center;
+}
+
+/* #home{
+ font-size: 35px;
+ display: flex;
+ flex-direction: column;
+ position: relative;
+ justify-content: space-between;
+ padding-top: 150px;
+} */
+
+h1{
+  font-size: 40px;
+  text-align: center;
+}
+
+.main{
+  text-align: center;
+  font-size: 45px;
+}
