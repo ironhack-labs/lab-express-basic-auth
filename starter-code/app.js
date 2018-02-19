@@ -8,6 +8,9 @@ const app            = express();
 
 // Controllers
 
+
+// Routes
+const authRoutes = require('./routes/auth-routes');
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/basic-auth");
 
@@ -26,7 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Authentication
 app.use(cookieParser());
 
-// Routes
+// Middleware
+app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
