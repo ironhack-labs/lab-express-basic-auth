@@ -1,6 +1,14 @@
 const express = require('express');
 const siteRouter = express.Router();
 
+siteRouter.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect('auth/signup');
+  }
+});
+
 siteRouter.get('/', (req, res, next) => {
   res.render('home', {
     user: req.session.currentUser
@@ -15,7 +23,6 @@ siteRouter.use((req, res, next) => {
    
   } else {
     res.redirect('/login');
-    console.log('login mid ware')
   }
 });
 

@@ -21,10 +21,12 @@ const users = require('./routes/users');
 
 app.use(session({
   secret: 'basic-auth-secret',
-  cookie: { maxAge: 6000 },
+  // cookie: { maxAge: 6000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 //1 day
+    ttl: 24 * 60 * 60, 
+    resave: true,
+    saveUninitialized: true
   })
 }));
 // view engine setup
