@@ -1,0 +1,24 @@
+
+<%if(error){%>
+  <h2 style="color:red"><%=error%></h2>
+<%}%>
+
+<form action="/signup "method="POST">
+  <h2>Please Signup</h2>
+  <label for="username">Username</label>
+  <input type="text" name="userName"
+    placeholder="Enter your name" required>
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password"
+    placeholder="Your password" required>
+  <br><br>
+  <label for="password">Password</label>
+  <input type="password" name="password2"
+    placeholder="Enter password again" required>
+  <br><br>
+
+  <button>Create account</button>
+  <br />
+  <a href="/login">Already a member? Log in!</a>
+</form> 

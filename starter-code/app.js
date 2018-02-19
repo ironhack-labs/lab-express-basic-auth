@@ -6,18 +6,34 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
-// Controllers
+ //Session 
+ const session       = require("express-session");
+ const MongoStore    = require("connect-mongo")(session);
 
-// Mongoose configuration
-mongoose.connect("mongodb://localhost/basic-auth");
+ const index = require('./routes/index');
 
-// Middlewares configuration
-app.use(logger("dev"));
+
+// Mongoose configuration Db
+mongoose.connect("mongodb://localhost/ironAccount");
+
+//Sesiones de usuario
+app.use(session({
+  secret: "secret-word",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 
 // View engine configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+// Middlewares configuration
+app.use(logger("dev"));
 
 // Access POST params with body parser
 app.use(bodyParser.json());
@@ -26,7 +42,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Authentication
 app.use(cookieParser());
 
-// Routes
+//Routes
+app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
