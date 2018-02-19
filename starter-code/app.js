@@ -6,8 +6,12 @@ const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
 const app            = express();
 
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 // Routes
 const authRoutes = require("./routes/auth-routes");
+const siteRoutes = require("./routes/site-routes");
 
 mongoose.connect("mongodb://localhost/basic-auth-pair");
 
@@ -25,8 +29,18 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Middleware
-app.use('/', authRoutes); 
+app.use('/', authRoutes);
+app.use('/', siteRoutes);
 
 // Authentication
 app.use(cookieParser());
