@@ -1,0 +1,11 @@
+<% if(error){%>
+    <h2><%=error%></h2>
+    <%}%>
+
+<h2>Bienvenido! REGISTRATE aqui! y empieza a disfrutar</h2>
+<form action="/signup" method="post">
+    <input placeholder="Tu correo" type="text" name="userName">
+    <input placeholder="Tu password" type="password" name="password">
+    <input placeholder="Tu password otra vez" type="password" name="password2">
+    <input type="submit">
+</form>
