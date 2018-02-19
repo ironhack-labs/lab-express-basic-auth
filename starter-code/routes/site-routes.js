@@ -17,4 +17,14 @@ siteRoutes.get("/secret", (req, res, next) => {
   res.render("secret");
 });
 
+siteRoutes.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+siteRoutes.get("/private", (req, res, next) => {
+  res.render("private");
+});
+
+
+
 module.exports = siteRoutes;
