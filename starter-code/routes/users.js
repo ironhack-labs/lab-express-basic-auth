@@ -64,7 +64,8 @@ router.get("/private", (req,res)=>{
 });
 
 router.get("/logout", (req,res)=>{
-    res.redirect("/");
+    req.session.destroy();
+    res.redirect("/users/login");
 });
 
   module.exports = router;
