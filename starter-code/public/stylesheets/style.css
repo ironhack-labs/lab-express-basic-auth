@@ -1,8 +1,10 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
 }
 
-a {
-  color: #00B7FF;
+.jumbotron {
+  width: 50%;
+  margin: 0 auto;
 }
