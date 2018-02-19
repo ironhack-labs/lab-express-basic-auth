@@ -1,0 +1,21 @@
+
+   <body class="text-center">
+    <h4 class="mb-4">Sign Up</h4>
+    <form class="text-center " id="form" action="/signup" method="POST">
+      <input class="text-center" type="text" name="username" placeholder="Username">
+      <br><br>
+      <input class="text-center" type="password" name="password"
+        placeholder="Password">
+      <br><br>
+      <% if (typeof(errorMessage) != "undefined") { %>
+        <span class="alert alert-danger error-message pt-2"><%= errorMessage %></span> <br> <br>
+      <% } %>
+   
+      <button class="btn btn-success mb-3" >Create account</button>
+      <p class="account-message">
+          Already have an account? <a href="/login">Log in</a>
+        </p>
+        <p class="account-message">
+            <a href="/">Go Back Home</a>
+    </form>
+   </body>

@@ -1,0 +1,23 @@
+<body class="text-center">
+
+    <form action="/login" method="POST" id="form">
+       <h4 class="mb-4" >Login</h4>
+    
+       <input class="text-center" type="text" name="username" placeholder="Username"> 
+       <br><br>
+       <input class="text-center" type="password" name="password" placeholder="Password"> 
+       <br><br>
+       <% if (typeof errorMessage !== "undefined") { %>
+         <span class="error-message alert alert-danger pt-2"><%= errorMessage %></span> <br> <br>
+       <% } %>
+     
+       <button class="btn btn-primary mb-3">Sign in</button>
+     
+       <p class="account-message">
+               Don't have an account? <a href="/signup">Sign up</a>
+             </p>
+             <p class="account-message">
+                 <a href="/">Go Back Home</a>
+     </form>
+    
+    </body>

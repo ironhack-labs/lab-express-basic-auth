@@ -1,0 +1,19 @@
+
+<div id="container" class="jumbotron">
+    <h1 class="display-3"><%= title %></h1>
+    <a role="button" class="btn btn-info" href="/signup">Sign up</a>
+    <a role="button" class="btn btn-info" href="/login">Login</a>
+
+    <br> <br>
+
+    <div class="list group">
+        <a href="/secret" class="list-group-item list-group-item-action active">
+            Protected Page (requires authentication)</a>
+
+        <a href="/main" class="list-group-item list-group-item-action">
+            Cat Gif Page (requires authentication)</a>
+
+        <a href="/private" class="list-group-item list-group-item-action disabled">
+            Private Page (requires authentication)</a>
+    </div>
+</div>
