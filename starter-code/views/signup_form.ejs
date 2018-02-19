@@ -1,0 +1,12 @@
+<h2>Sign Up</h2>
+
+<%if (error){%>
+  <h2><%=error%></h2>
+<% } %>
+
+<form action="/signup" method="post">
+  <input placeholder="User Name" type="text" name="userName">
+  <input placeholder="Password" type="password" name="password">
+
+  <input type="submit">
+</form>
