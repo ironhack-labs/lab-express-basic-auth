@@ -35,6 +35,9 @@ authRoutes.post("/signup", (req, res, next) => {
       return;
     }
 
+    var salt     = bcrypt.genSaltSync(bcryptSalt);
+    var hashPass = bcrypt.hashSync(password, salt);
+
     var newUser = User({
       username,
       password: hashPass
@@ -48,8 +51,8 @@ authRoutes.post("/signup", (req, res, next) => {
       } else {
       res.redirect("/");
       }
-    })
-  })
+    });
+  });
 });
 
 authRoutes.get("/login", (req, res, next) => {
