@@ -90,5 +90,12 @@ authRoutes.post("/login", (req, res, next) => {
         }
     });
   });
+
+  authRoutes.get("/logout", (req, res, next) => {
+    req.session.destroy((err) => {
+      // cannot access session here
+      res.redirect("/login");
+    });
+  });
         
         module.exports = authRoutes;
