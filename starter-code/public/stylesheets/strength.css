@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+.strength_meter{
+	height: 23px;
+	width: 100%;
+	background: silver;
+	border-radius: 5px;
+}
+
+.strength_meter div{
+	height: 23px;
+	width: 100%;
+	height: 23px;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	line-height: 23px;
+}
+
+.veryweak{
+	background-color: #FFA0A0;
+	border-color: #F04040!important;
+	border-radius: 5px;
+}
+
+.weak{
+	background-color: #FFB78C;
+	border-color: #FF853C!important;
+	border-radius: 5px;
+}
+
+.medium{
+	background-color: #FFEC8B;
+	border-color: #FC0!important;
+	border-radius: 5px;
+}
+
+.strong{
+	background-color: #C3FF88;
+	border-color: #8DFF1C!important;
+	border-radius: 5px;
+}
+

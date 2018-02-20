@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: bisque;
 }
 
 a {
@@ -57,4 +58,40 @@ a {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+
+.account-message {
+  text-align: center;
+}
+
+.page-titles {
+  text-align: center;
+}
+
+.page-images {
+  text-align: center;
+}
+
+.buttbeav {
+  width: 50%;
+  border: solid 5px black;
+  border-radius: 5px;
+}
+
+.kitty {
+  width: 40%;
+  border: solid 5px black;
+  border-radius: 5px;
+}
+
+.page-links {
+  text-align: center;
+}
+
+a.button_strength {
+  padding-left: 36%;
+}
+
+.back-button {
+  text-align: center;
 }
