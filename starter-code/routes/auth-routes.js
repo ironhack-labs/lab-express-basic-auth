@@ -15,6 +15,9 @@ authRoutes.get("/home", (req, res, next) => {
 });
 
 
+
+// AUTHENTICATION
+
 // Route to diaply signup form
 authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -60,6 +63,8 @@ authRoutes.post("/signup", (req, res, next) => {
 });
 
 
+
+// AUTHENTICATION
 
 // route to handle login form
 authRoutes.get("/login", (req, res, next) => {
