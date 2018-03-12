@@ -41,7 +41,7 @@ In this Pair Programming exercise, we are going to create a project where we wil
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_044a7b23c9b4cf082e1c4fadcd12d308.png)
 
-We provide you starter code that includes some of the packages you will need to complete the exercise. These packages are `ejs`, `mongodb`, and `mongoose`. In addition, we have generated the project using Express Generator.
+Go ahead and generate a new project using Ironhack Generator.
 
 ## Iteration 1 - Sign Up
 
@@ -68,7 +68,6 @@ Again, we have to check out that the fields are correctly filled before try to a
 ## Iteration 3 - Protected Routes
 
 At this point, we have implemented basic authentication features. Now, we have to create some routes that are protected, meaning that users can't visit these routes unless they're authenticated.
-
 
 Let's create two different routes protected by authentication:
 
