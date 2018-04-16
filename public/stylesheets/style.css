@@ -1,8 +1,293 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* ---------- RESET ---------- */
+
+html {
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
-a {
-  color: #00B7FF;
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+
+body {
+  color: #111;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 147%;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* ---------- BOOTSTRAP HELPERS---------- */
+
+/* .container {
+  padding-top: 150px;
+  margin-bottom: 200px;
+} */
+
+.row-spacing {
+  margin-bottom: 80px;
+}
+
+/* ---------- HOME LAYOUT ---------- */
+
+#site-main { 
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: -100px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 200px;
+  width: 400px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.main-title {
+  font-size: 50px;
+  color: lightgray;
+  font-weight: 100;
+  display: inline-block;
+  line-height: 50px;
+}
+
+.ih-logo {
+  height: 50px;
+  margin: 0px 40px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .main-title {
+  font-size: 16px;
+  color: lightgray;
+  font-weight: 100;
+  display: inline-block;
+  line-height: 16px;
+}
+
+.navbar .ih-logo {
+  height: 20px;
+  margin: 0px 10px;
+}
+
+.btn-holder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.btn-holder a {
+  width: 100px;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar {
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  background: #F4F4F4;
+  height: 70px;
+  padding: 0px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 3333;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.navbar .main-title:hover {
+  color: #3D7DB1;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-item {
+  cursor: pointer;
+  padding: 0 20px;
+}
+
+.navbar-link {
+  color: #616668;
+  font-size: 14px;
+  text-decoration: none;
+}
+.navbar-link:hover {
+  color: #3D7DB1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+  background: #F4F4F4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: rgba(0,0,0,0.3);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: lightgray;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  color: #3D7DB1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer .fa-heart {
+  color: #D23333;
+  margin: auto 10px;
+}
+
+.footer-copyright {
+  font-weight: 100;
+}
+
+/* ---------- FORM ---------- */
+
+.form-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: lightgray;
+  padding: 50px;
+}
+
+.form-container form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+form.is-processing {
+	opacity: 0.5;
+}
+
+form .field {
+  margin-bottom: 20px;
+}
+
+.form-container .main-title {
+  color: black;
+  font-size: 20px;
+}
+
+.form-container .logo {
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 100px;
+  margin-bottom: 40px;
+}
+
+.form-container .ih-logo{
+  height: 30px;
+  margin: 0px;
+}
+
+.form-container .form-title {
+  text-align: center;
+  font-weight: 100;
+  margin-bottom: 40px;
+}
+
+form label {
+  display: inline-block;
+	margin-bottom: 10px;
+	font-style: bold;
+}
+
+form input {
+  padding: 20px;
+  font-size: 16px;
+  height: 40px;
+  width: 400px;
+  border: none;
+  border-radius: 2px;
+}
+
+form textarea {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  height: 160px;
+  width: 400px;
+  border: none;
+  border-radius: 2px;
+}
+
+form .submit {
+  padding-top: 20px;
+  width: 400px;
+  text-align: end;
+  margin-bottom: 0px;
+}
+
+form .submit button {
+  padding: 5px 20px;
+  text-align: center;
+  font-size: 16px;
+  width: 30%;
+  background-color: #3D7DB1;
+  cursor: pointer;
 }
