@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session)
 
 
 mongoose.Promise = Promise;
@@ -25,10 +27,18 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60*60*24*2 }, // 2 days to expire cookie
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24*60*60*2 // 1 day
+  })
+}));
 
 // Express View engine setup
 
@@ -51,8 +61,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+const homeRouter = require('./routes/homeRouter');
+app.use('/', homeRouter);
+
+const authRouter = require("./routes/authRouter");
+app.use("/auth", authRouter);
 
 
 module.exports = app;
