@@ -2,5 +2,10 @@
 <p>Welcome to {{title}}</p>
 
 
-<a href="/signup"> holaa
-</a>
+<a href="/auth/signup"> Sign up</a>
+
+<a href="/auth/login"> Log in</a>
+
+{{#if user}}
+<h1> hola {{user.username}}</h1>
+{{/if}}
