@@ -1,0 +1,11 @@
+<h1>{{title}}</h1>
+{{#if user}}
+    <p>Holi Caracoli {{user.username}}</p>
+    <a href="/auth/logout">Logout</a>
+{{else}}
+    <h2>You are not caracoli in!</h2>
+    <a href="/auth/signup">Signup/Caracoli</a>
+    </br>
+    <a href="/auth/login">Login</a>
+{{/if}}
+
