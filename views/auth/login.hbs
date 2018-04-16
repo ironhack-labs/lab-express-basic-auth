@@ -1,0 +1,19 @@
+<div class="login__container">
+    <form id="form" action="/login" method="POST">
+        <h4>Log In</h4>
+        <label for="username">Username</label>
+        <br>
+        <input type="text" name="username" placeholder="AnakinSkywalker">
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" name="password" placeholder="DeathStar">
+        <br> {{#if errorMessage}}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+        <br>
+        <button type="submit">Log in</button>
+        <p>Don`t have an accound? <a href="/signup">Sign up!</a></p>
+    </form>
+</div>
