@@ -1,0 +1,15 @@
+<h1>This is the main page! Heyo</h1>
+{{!-- 
+{{#if user.username}} --}}
+  <form method="POST" action = "/auth/logout">
+    <button>Logout</button>
+  </form>
+{{!-- {{else}} --}}
+  <a href= "/auth/login">Login</a>
+{{!-- {{/if}} --}}
+
+<a href="/auth/signup">Sign Up</a>
+
+{{!-- THIS PART ISNT WORKING RIGHT NOW :( 
+Cant get the username to generate on the page and cant get the if else 
+statemnt to selectively show the login v logout- how can we access the global username?--}}
