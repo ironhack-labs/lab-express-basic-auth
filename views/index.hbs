@@ -1,3 +1,11 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<a href="/auth/signup" class="btn btn-default">Sign Up</a>
+{{#if user}}
+    <p>Welcome, {{user.username}}</p>
+    <a href="/auth/logout" class="btn btn-default">Logout</a>
+    <a href="/main" class="btn btn-info">Main</a>
+    <a href="/protected" class="btn btn-info">Protected</a>
+{{else}}
+    <h2>You are not logged in!</h2>
+    <a href="/auth/signup" class="btn btn-default">Signup</a>
+    <a href="/auth/login" class="btn btn-default">Login</a>
+{{/if}}

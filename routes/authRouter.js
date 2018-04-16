@@ -35,4 +35,47 @@ router.post("/signup", (req, res) => {
   });
 });
 
+/* Auth: show signup form */
+router.get("/login", (req, res) => {
+  res.render("auth/login");
+});
+
+/* Auth: Check user and log it in */
+router.post("/login", (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to login"
+    });
+    return;
+  }
+
+  User.findOne({ username: username }, (err, user) => {
+    if (err || !user) {
+      res.render("auth/login", {
+        errorMessage: "The username doesn't exist"
+      });
+      return;
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      // Save the login in the session!
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else {
+      res.render("auth/login", {
+        errorMessage: "Incorrect password"
+      });
+    }
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/");
+  });
+});
+
 module.exports = router;
