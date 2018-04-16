@@ -1,0 +1,22 @@
+<form id="form" action="/signup" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username"
+    placeholder="AnakinSkywalker">
+
+  <br><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password"
+    placeholder="DeathStar">
+  <br><br>
+
+  <button>Create account</button>
+</form>
+
+<div>
+  {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+</div>
+
+
+<a href="/">Go Home Page</a>
