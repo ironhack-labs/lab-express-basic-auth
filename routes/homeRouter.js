@@ -11,9 +11,17 @@ router.get("/", (req, res) => {
 
 
 /* Auth: show signup form */
-router.get("/protected", (req, res) => {
+router.get("/main", (req, res) => {
   if(req.session.currentUser){
-   res.render("protected",{user:req.session.currentUser});
+   res.render("main");
+  }else{
+    res.redirect("/")
+  }
+});
+
+router.get("/private", (req, res) => {
+  if(req.session.currentUser){
+   res.render("private");
   }else{
     res.redirect("/")
   }
