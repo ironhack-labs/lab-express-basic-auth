@@ -47,4 +47,40 @@ router.post("/signup", (req, res, next) => {
   )
 });
 
+// GET login
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+// POST login
+router.post("/login", (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;  
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to login"
+    });
+    return;
+  }
+
+  User.findOne( {"username":username}, (err, user) => {
+    if( err || !user) {
+      res.render("auth/login", {
+        errorMessage: "The username doesn't exist"
+      });
+      return;
+    }
+
+    if( bcrypt.compareSync(password, user.password)) {
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else {
+      res.render("auth/login", {
+        errorMessage: "Incorrect password"
+      })
+    }
+  })
+});
+
 module.exports = router;
