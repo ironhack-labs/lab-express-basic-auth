@@ -1,0 +1,19 @@
+<form id="form" action="/auth/login" method="POST">
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username" placeholder="user">
+
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" placeholder="pass">
+    <br>
+    <br>
+
+    <button>Log in</button>
+
+    {{#if errorMessage}}
+    {{errorMessage}}
+    {{/if }}
+</form>
