@@ -10,15 +10,9 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync(password, salt);
-  const newUser = User({
-    username,
-    password: hashPass
-  });
+
+router.post("/signup", (req, res) => {
+  let { username, password } = req.body;
   User.findOne({ username: username }, "username", (err, user) => {
     if (user !== null) {
       res.render("auth/signup", {
@@ -26,17 +20,27 @@ router.post("/signup", (req, res, next) => {
       });
       return;
     }
+    if (username === "" || password === "") {
+      res.render("auth/signup", {
+        errorMessage: "Indicate a username and a password to sign up"
+      });
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
+
+    const newUser = User({
+      username,
+      password: hashPass
+    });
+
     newUser.save(err => {
       res.redirect("/");
     });
   });
-  if (username === "" || password === "") {
-    res.render("auth/signup", {
-      errorMessage: "Indicate a username and a password to sign up"
-    });
-    return;
-  }
 });
+
 
 //LOG IN
 router.get("/login", (req, res, next) => {
@@ -48,7 +52,7 @@ router.post("/login", (req, res, next) => {
 
   if (username === "" || password === "") {
     res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to sign up"
+      errorMessage: "Indicate a username and a password to log in"
     });
     return;
   }
