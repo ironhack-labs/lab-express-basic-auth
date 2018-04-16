@@ -1,0 +1,8 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<a href="/auth/signup" >SIGN UP</a>
+<a href="/auth/login">LOG IN</a>
+ <a href="/auth/private">Protected page (requires authentication)</a>
+{{#if user}}
+<p>hola {{user.username}}</p>
+{{/if}}
