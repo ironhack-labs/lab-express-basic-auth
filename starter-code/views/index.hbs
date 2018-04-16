@@ -1,0 +1,14 @@
+<section class=“section”>
+    <ul>
+        {{#each movies}}
+        <li>
+            <p>{{this.name}}</p>
+            <p>{{this.year}}</p>
+            <a href="/movies/{{this.id}}">Details</a>
+
+        </li>
+        {{/each}}
+    </ul>
+
+    <a href="/movies/create"><button>Create a Movie</button></a>
+</section>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title> Lab Auth </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <header id="site-header">
+    <div class="container">
+      <nav>
+        <a href="/">Home</a>
+        {{req.session.currentUser}}
+        {{!-- Me falta hacer el if, pero no tengo claro como pasar los datos de las cookies hacia el layout --}}
+               
+        <a href="/auth/login/"><button>Login</button></a>
+        <a href="/auth/signup/"><button>Signup</button></a>
+        <form method="POST" action="/auth/logout">
+          <button type="submit">Logout</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+  <div class="container section">
+
+    {{{body}}}
+
+  </div>
+  <footer id="site-footer">
+    <div class="container">
+      2018 Ironhack
+    </div>
+  </footer>
+</body>
+
+</html>
