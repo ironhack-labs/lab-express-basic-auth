@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: "pp-secret",
+  secret: "ironhack-secret",
   cookie: { maxAge: 60*60*24*2 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
@@ -67,5 +67,8 @@ app.use("/", index);
 
 const auth = require("./routes/auth");
 app.use("/auth", auth);
+
+const siteRoutes = require("./routes/site-routes");
+app.use("/secret", siteRoutes);
 
 module.exports = app;
