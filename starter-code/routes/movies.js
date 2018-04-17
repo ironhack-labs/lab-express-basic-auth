@@ -29,11 +29,13 @@ router.post('/create', (req, res, next) => {
 /* GET movies ID. */
 router.get('/:id', (req, res, next) => {
   const movieId = req.params.id;
+  const user = req.session.currentUser;
 
   Movie.findById(movieId)
     .then((result) => {
       const data = {
-        movies: result
+        movies: result,
+        user
       };
       res.render('movies', data);
     })
