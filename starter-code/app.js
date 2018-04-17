@@ -3,7 +3,6 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');

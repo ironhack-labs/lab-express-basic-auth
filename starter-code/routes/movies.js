@@ -6,17 +6,24 @@ const Movie = require('../models/movies');
 
 /* GET movies create. */
 router.get('/create', (req, res, next) => {
-  res.render('movies-create');
+  if (req.session.currentUser) {
+    res.render('movies-create');
+  } else {
+    res.redirect('/');
+  }
 });
 
 router.post('/create', (req, res, next) => {
-  const { name, year } = req.body;
-  const newMovie = new Movie({ name, year });
+  if (req.session.currentUser) {
+    const { name, year } = req.body;
+    const newMovie = new Movie({ name, year });
 
-  newMovie.save()
-    .then((movie) => {
-      res.redirect('/');
-    });
+    newMovie.save()
+      .then((movie) => {
+        res.redirect('/');
+      })
+      .catch(next);
+  }
 });
 
 /* GET movies ID. */
@@ -29,16 +36,22 @@ router.get('/:id', (req, res, next) => {
         movies: result
       };
       res.render('movies', data);
-    });
+    })
+    .catch(next);
 });
 
 router.post('/:id/delete', (req, res, next) => {
-  const movieId = req.params.id;
+  if (req.session.currentUser) {
+    const movieId = req.params.id;
 
-  Movie.findByIdAndRemove(movieId)
-    .then((result) => {
-      res.redirect('/');
-    });
+    Movie.findByIdAndRemove(movieId)
+      .then((result) => {
+        res.redirect('/');
+      })
+      .catch(next);
+  } else {
+    res.redirect('/');
+  }
 });
 
 module.exports = router;
