@@ -20,11 +20,13 @@
       <p class="navbar-item navbar-link">Welcome <%= currentUser.username %></p>
       <form method="POST" action="/auth/logout">
         <div>
-          <button type="submit" class="no-btn">Log Out</button>
+          <button type="submit" class="no-btn">Log out</button>
         </div>
       </form>
     <% } else { %>
-      <a href="/auth/login" class="navbar-item navbar-link">Login</a>
+      <a href="/auth/login" class="navbar-item navbar-link">Log in</a>
+      <p class="navbar-item navbar-or">or</p>
+      <a href="/auth/signup" class="navbar-item navbar-link">Sign up</a>
     <% }; %>
   </div>
 </div>

@@ -9,6 +9,7 @@ const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
 
 // ---------- CONFIGURE THE ROUTES ----------
 const index = require('./routes/index');
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
   console.log('USER SESSION', req.session.id);
   next();
 });
+app.use(flash());
 
 // ---------- ROUTES ----------
 app.use('/', index);
@@ -60,14 +62,14 @@ app.use('/auth', auth);
 // ---------- 404 AND ERROR HANDLER ----------
 app.use((req, res, next) => {
   res.status(404);
-  res.render('errors/404');
+  res.render('pages/errors/404');
 });
 
 app.use((err, req, res, next) => {
   console.error('ERROR', req.method, req.path, err);
   if (!res.headersSent) {
     res.status(500);
-    res.render('errors/500');
+    res.render('pages/errors/500');
   }
 });
 
