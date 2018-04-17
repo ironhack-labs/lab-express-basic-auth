@@ -43,17 +43,6 @@ p {
   margin: 0;
 }
 
-/* ---------- BOOTSTRAP HELPERS---------- */
-
-/* .container {
-  padding-top: 150px;
-  margin-bottom: 200px;
-} */
-
-.row-spacing {
-  margin-bottom: 80px;
-}
-
 /* ---------- HOME LAYOUT ---------- */
 
 #site-main { 
@@ -119,6 +108,22 @@ p {
 
 .btn-holder a {
   width: 100px;
+}
+
+.no-btn {
+  border: none;
+  background: initial;
+  color: #616668;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 20px;
+}
+
+.no-btn:hover {
+  color: #3D7DB1;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 /* ---------- NAVBAR ---------- */
@@ -201,6 +206,146 @@ p {
 
 .footer-copyright {
   font-weight: 100;
+}
+
+/* ---------- STUDENT CARD ---------- */
+
+.cards-container {
+  padding-top: 150px;
+  margin-bottom: 200px;
+}
+
+.row-spacing {
+  margin-bottom: 80px;
+}
+
+.student-card {
+  margin: 0 auto;
+  background-color: #F4F4F4;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+  width: 300px;
+  height: 400px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.student-card img {
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid darkgray;
+  position: absolute;
+  top: 25px;
+  right: 100px;
+}
+
+.student-card-top .title {
+  font-size: 25px;
+  font-weight: 100;
+  width: 300px;
+  padding: 0 10px;
+  color: black !important;
+  position: absolute;
+  top: 140px;
+  text-align: center;
+}
+
+.student-card-top .occupation {
+  font-size: 15px;
+  font-weight: 100;
+  width: 300px;
+  padding: 0 10px;
+  color: black !important;
+  position: absolute;
+  top: 170px;
+  text-align: center;
+}
+
+.student-card .phrase {
+  font-size: 20px;
+  font-weight: 100;
+  width: 300px;
+  padding: 0 10px;
+  color: black !important;
+  position: absolute;
+  bottom: 100px;
+  left: 0px;
+  text-align: center;
+}
+
+.student-card-top .btn-danger {
+  position: absolute;
+  bottom: 25px;
+  right: 50px;
+  z-index: 40;
+}
+
+.student-card-top .btn-success {
+  position: absolute;
+  bottom: 25px;
+  left: 50px;
+  z-index: 40;
+}
+
+.student-card .link {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  text-decoration: none;
+  z-index: 30;
+}
+
+.student-card .link:hover {
+  cursor: pointer;
+}
+
+/* ---------- STUDENT SHOW PAGE ---------- */
+
+
+.student-container {
+  width: 90%;
+  position: relative;
+  background-color: white;
+  height: 700px;
+}
+
+.student-container .name {
+  font-weight: 100;
+  font-size: 100px;
+  line-height: 100px;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+}
+
+.student-container .avatar {
+  position: absolute;
+  border-radius: 50%;
+  top: 0px;
+  right: 0px;
+  height: 200px;
+}
+
+.student-container .occupation {
+  font-weight: 100;
+  font-size: 30px;
+  line-height: 30px;
+  position: absolute;
+  top: 150px;
+  left: 0px;
+}
+
+.student-container .phrase {
+  font-weight: 100;
+  font-size: 80px;
+  line-height: 70px;
+  color: black;
+  width: 100%;
+  position: absolute;
+  top: 400px;
+  left: 0px;
+  text-align: center;
 }
 
 /* ---------- FORM ---------- */
@@ -290,4 +435,27 @@ form .submit button {
   width: 30%;
   background-color: #3D7DB1;
   cursor: pointer;
+}
+
+/* ---------- FILTER CONTAINER ---------- */
+
+.filter-container {
+  margin-bottom: 40px;
+  margin-left: 40px;
+  text-align: center;
+}
+.filter-container select {
+  margin-right: 30px;
+  border-radius: 2px;
+  height: 30px;
+  width: 200px;
+}
+
+.filter-container .btn-submit {
+  height: 30px;
+  width: 100px;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 16px;
+
 }

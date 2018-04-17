@@ -1,0 +1,26 @@
+<div class="form-container">
+  <div class="logo">
+    <h1 class="main-title">IRON</h1>
+    <img class="ih-logo" src="../images/logo.png" alt="">
+    <h1 class="main-title">QUOTES</h1>
+  </div>
+  <h1 class="form-title">Create your Iron quote</h1>
+  <form method="POST" action="/quotes">
+
+    <div class="field">
+      <input type="text" placeholder="Name" name="name" />
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="Batch" name="batch" />
+    </div>
+
+    <div class="field">
+      <textarea placeholder="Quote" name="quote"></textarea>
+    </div>
+
+    <div class="field submit">
+      <button type="submit" class="btn btn-submit">Send quote</button>
+    </div>
+  </form>
+</div>

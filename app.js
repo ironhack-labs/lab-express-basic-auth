@@ -1,55 +1,74 @@
-'use strict'
+'use strict';
 
-const createError = require('http-errors');
+// ---------- PACKAGES REQUIRED ----------
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const expressLayouts = require('express-ejs-layouts');
-const logger = require('morgan');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
-// ---------- Configure the views ----------
+// ---------- CONFIGURE THE ROUTES ----------
 const index = require('./routes/index');
-const users = require('./routes/users');
+const quotes = require('./routes/quotes');
+const auth = require('./routes/auth');
 
-
-// ---------- Start the APP ----------
+// ---------- CREATE THE APP ----------
 const app = express();
 
-// view engine setup
+// ---------- CONFIGURE THE VIEWS ----------
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// ---------- Connect the database ----------
-mongoose.connect('mongodb://127.0.0.1:27017/express-basic-auth');
+// ---------- COOKIES AND SESSIONS ----------
+app.use(session({
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 30 * 24 * 60 * 60 // 1 day
+  }),
+  secret: 'some-string',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000
+  }
+}));
 
-// ---------- Middlewares ----------
+// ---------- CONNECT THE DATABASE ----------
+mongoose.connect('mongodb://127.0.0.1:27017/iron-dixit');
+
+// ---------- MIDDLEWARES ----------
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// ---------- Routes ----------
-app.use('/', index);
-app.use('/users', users);
-
-
-
-// catch 404 and forward to error handler
+app.use(expressLayouts);
 app.use((req, res, next) => {
-  next(createError(404));
+  app.locals.currentUser = req.session.user;
+  console.log('USER SESSION', req.session.id);
+  next();
 });
 
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// ---------- ROUTES ----------
+app.use('/', index);
+app.use('/quotes', quotes);
+app.use('/auth', auth);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// ---------- 404 AND ERROR HANDLER ----------
+app.use((req, res, next) => {
+  res.status(404);
+  res.render('errors/404');
+});
+
+app.use((err, req, res, next) => {
+  console.error('ERROR', req.method, req.path, err);
+  if (!res.headersSent) {
+    res.status(500);
+    res.render('errors/500');
+  }
 });
 
 module.exports = app;
