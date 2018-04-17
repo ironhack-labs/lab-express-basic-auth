@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
 
   User.findOne({ username: username })
     .then(result => {
-      if (result) {
+      if (!result) {
         return res.redirect('/auth/signup');
       } else {
         const user = User({
@@ -45,7 +45,8 @@ router.post('/signup', (req, res, next) => {
           })
           .catch(next);
       };
-    });
+    })
+    .catch(next);
 });
 
 // ---------- Login ---------- //
