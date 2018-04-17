@@ -1,18 +1,18 @@
 'use strict';
 
 // -- require npm packages
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 // -- require your own modules (router, models)
-var indexRouter = require('./routes/index');
-var moviesRouter = require('./routes/movies');
-var usersRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const moviesRouter = require('./routes/movies');
+const usersRouter = require('./routes/auth');
 
 // Mongoose configuration
 mongoose.Promise = Promise;
@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost/mongoose-movies', {
 });
 
 // -- setup the app
-var app = express();
+const app = express();
 
 // -- sessions and cookies
 app.use(session({
