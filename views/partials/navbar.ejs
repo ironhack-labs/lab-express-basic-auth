@@ -1,0 +1,32 @@
+<div class="navbar">
+  <!-- Logo -->
+  <a class="logo-link" href="/">
+    <div class="navbar-logo">
+      <h1 class="main-title">IRON</h1>
+      <img class="ih-logo"src="/images/logo.png" alt="">
+      <h1 class="main-title">QUOTES</h1>
+    </div>
+  </a>
+  <div>
+    <a href="/quotes/random" class="navbar-item navbar-link">Random!</a>
+    <a href="/quotes" class="navbar-item navbar-link">List</a>
+    <% if (currentUser) { %>
+      <a href="/quotes/new" class="navbar-item navbar-link">Add</a>
+     <% }; %>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-right">
+    <% if (currentUser) { %>
+      <p class="navbar-item navbar-link">Welcome <%= currentUser.username %></p>
+      <form method="POST" action="/auth/logout">
+        <div>
+          <button type="submit" class="no-btn">Log out</button>
+        </div>
+      </form>
+    <% } else { %>
+      <a href="/auth/login" class="navbar-item navbar-link">Log in</a>
+      <p class="navbar-item navbar-or">or</p>
+      <a href="/auth/signup" class="navbar-item navbar-link">Sign up</a>
+    <% }; %>
+  </div>
+</div>

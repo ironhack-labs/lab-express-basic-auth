@@ -1,0 +1,71 @@
+<div class="cards-container">
+  <div class="filter-container">
+    <form method="GET" action="/quotes">
+      <select name="bootcamp">
+        <option value="bootcamp" selected>Bootcamp</option>
+        <option value="WebDev">WebDev</option>
+        <option value="UX/UI">UX/UI</option>
+      </select>
+      <select name="month">
+        <option value="month" selected>Month</option>
+        <option value="Jan">Jan</option>
+        <option value="Feb">Feb</option>
+        <option value="Mar">Mar</option>
+        <option value="Apr">Apr</option>
+        <option value="May">May</option>
+        <option value="Jun">Jun</option>
+        <option value="Jul">Jul</option>
+        <option value="Ago">Ago</option>
+        <option value="Sep">Sep</option>
+        <option value="Oct">Oct</option>
+        <option value="Nov">Nov</option>
+        <option value="Dec">Dec</option>
+        <option value="Apr">Apr</option>
+      </select>
+      <select name="year">
+        <option value="year" selected>Year</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+      </select>
+      <select name="city">
+        <option value="city" selected>City</option>
+        <option value="BCN">BCN</option>
+        <option value="PAR">PAR</option>
+        <option value="MAD">MAD</option>
+        <option value="AMS">AMS</option>
+        <option value="BER">BER</option>
+        <option value="MEX">MEX</option>
+      </select>
+      <button type="submit" class="btn btn-success  btn-submit">Filter</button>
+    </form>
+  </div>
+  <div class="row">
+    <% quotes.forEach((quote) => { %>
+      <div class="col-xs-12 col-sm-4 row-spacing">
+        <div class="student-card">
+          <div class="student-card-top">
+            <!-- <img src="<%= quote.photo %>" alt=""> -->
+            <h3 class="title"><%= quote.name %></h3>
+            <p class="occupation"><%= quote.batch %></p>
+            <form method="POST" action="/quotes/<%= quote._id %>/delete">
+              <button class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </form>
+            <form method="GET" action="/quotes/<%= quote._id %>/edit">
+              <button class="btn btn-success">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </form>
+          </div>
+          <p class="phrase"><em>"<%= quote.quote %>"</em></p>
+          <a class="link" href="/quotes/<%= quote._id%>"></a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
