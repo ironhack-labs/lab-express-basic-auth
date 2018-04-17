@@ -37,7 +37,7 @@ router.post('/login', (req, res, next) => {
         });
       } else if (bcrypt.compareSync(password, result.password)) {
         // here says user undefined and crash!!!!!HELP!!!!!
-        // req.session.user = result;
+        req.session.user = result;
         res.redirect('/welcome');
       } else {
         res.render('auth/login', {
