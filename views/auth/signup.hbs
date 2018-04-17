@@ -8,8 +8,9 @@
         <br>
         <label for="password">Password</label>
         <br>
-        <input type="password" name="password" placeholder="DeathStar">
-        <br> {{#if errorMessage}}
+        <input id="myPassword" type="password" name="password" >
+         <br>
+        {{#if errorMessage}}
         <div class="error-message">{{ errorMessage }}</div>
         {{/if}}
         <br>

@@ -36,7 +36,7 @@ router.post("/signup", (req, res) => {
     });
 
     newUser.save(err => {
-      res.redirect("/");
+      res.redirect("/login");
     });
   });
 });
@@ -52,7 +52,7 @@ router.post("/login", (req, res, next) => {
 
   if (username === "" || password === "") {
     res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to log in"
+      errorMessage: "Indicate a username and a password to log"
     });
     return;
   }
