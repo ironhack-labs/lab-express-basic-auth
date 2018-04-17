@@ -8,9 +8,9 @@ const Movie = require('../models/movies');
 router.get('/create', (req, res, next) => {
   if (req.session.currentUser) {
     res.render('movies-create');
-  } else {
-    res.redirect('/');
+    return;
   }
+  res.redirect('/');
 });
 
 router.post('/create', (req, res, next) => {
@@ -23,7 +23,9 @@ router.post('/create', (req, res, next) => {
         res.redirect('/');
       })
       .catch(next);
+    return;
   }
+  res.redirect('/');
 });
 
 /* GET movies ID. */
@@ -51,9 +53,9 @@ router.post('/:id/delete', (req, res, next) => {
         res.redirect('/');
       })
       .catch(next);
-  } else {
-    res.redirect('/');
+    return;
   }
+  res.redirect('/');
 });
 
 module.exports = router;

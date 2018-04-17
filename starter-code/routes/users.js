@@ -21,22 +21,25 @@ router.post('/login', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    if (!username || !password) {
+      res.redirect('login');
+      return;
+    }
+
     User.findOne({ 'username': username })
       .then((result) => {
         if (result) {
           if (bcrypt.compareSync(password, result.password)) {
             req.session.currentUser = result;
             res.redirect('/');
-          } else {
-            res.redirect('/auth/login');
+            return;
           }
-        } else {
           res.redirect('/auth/login');
+          return;
         }
+        res.redirect('/auth/login');
       })
       .catch(next);
-  } else {
-    res.redirect('/');
   }
 });
 
@@ -53,6 +56,11 @@ router.post('/signup', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    if (!username || !password) {
+      res.redirect('/auth/signup');
+      return;
+    }
+
     User.findOne({ 'username': username })
       .then((result) => {
         if (!result) {
@@ -68,23 +76,23 @@ router.post('/signup', (req, res, next) => {
             .then(() => {
               res.redirect('/');
             });
-        } else {
-          res.redirect('/auth/signup');
+          return;
         }
+        res.redirect('/auth/signup');
       })
       .catch(next);
-  } else {
-    res.redirect('/');
+    return;
   }
+  res.redirect('/');
 });
 
 router.post('/logout', (req, res, next) => {
   if (req.session.currentUser) {
     req.session.currentUser = null;
     res.redirect('/');
-  } else {
-    res.redirect('/');
+    return;
   }
+  res.redirect('/');
 });
 
 module.exports = router;

@@ -13,7 +13,9 @@
     <div class="container">
       <nav>
         <a href="/">Home</a>
-        {{req.session.currentUser}}
+        {{#if app.locals.user}}
+        xxxxxxxxxxxxxxxxxxx
+        {{/if}}
                
         <a href="/auth/login/"><button>Login</button></a>
         <a href="/auth/signup/"><button>Signup</button></a>
