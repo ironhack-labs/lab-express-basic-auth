@@ -1,0 +1,12 @@
+
+{{movies.name}} 
+{{movies.year}}
+
+{{#if user}}
+<form method="POST" action="./{{movies.id}}/delete">
+
+    <div class="field submit">
+        <button type="submit">Delete</button>
+    </div>
+{{/if}}
+</form> 
