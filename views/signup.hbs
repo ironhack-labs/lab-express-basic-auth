@@ -1,0 +1,13 @@
+<h2>Registrate!</h2>
+{{#if error}}
+<h3 class="error" > {{error}}</h3>
+{{/if}}
+<form validated action="/signup" method="post">
+<input {{#if name}}value="{{name}}"{{/if}} required  type="text" name="name" placeholder="Username">
+<br/>
+<input {{#if password1}}value="{{password1}}"{{/if}} required type="password" name="password" placeholder="Password">
+<br/>
+
+
+<input type="submit">
+</form>
