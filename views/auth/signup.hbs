@@ -1,0 +1,31 @@
+<div class="aaa">
+
+<h1>Sign up</h1>
+
+
+ {{#if error}}
+<h3>{{error}}</h3>
+
+ {{/if}}
+<form action="/signup" method="post">
+<p>
+    <input required type="text" placeholder="Dame tu nombre" name="name" id="">
+</p>
+<p>
+    <input required type="text" placeholder="Dame tu apellido" name="lastname" id="">
+</p>
+<p>
+    <input required type="text" placeholder="Dame tu nombre de usuario" name="username" id="">
+</p>
+<p>
+    <input required  type="password" name="password1" placeholder="Dame tu contra" id="">
+</p>
+<p>
+    <input required type="password" name="password2" placeholder="Repitela y no la cagues" id="">
+</p>
+
+<input type="submit" value="Puchame">
+
+</form>
+
+</div>
