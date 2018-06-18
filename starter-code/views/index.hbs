@@ -1,0 +1,25 @@
+<h1>Landing page</h1>
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<div id="container">
+  <ul>
+    <li>
+     <a href="/signup">Sign Up</a>
+   </li>
+   <li>
+     <a href="/login">Login</a>
+   </li>
+   <li>
+     <a href="/home">Home (requires authentication)</a>
+   </li>
+    <li>
+      <a href="/main">Main page (requires authentication)</a>
+    </li>
+    <li>
+      <a href="/private">Private page (requires authentication)</a>
+    </li>
+    {{#if isLogged}}
+      <li><a href="/logout">Logout</a></li>
+    {{/if}}
+  </ul>
+</div>
