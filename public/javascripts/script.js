@@ -4,3 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }, false);
 
+$(document).ready(function ($) {
+
+  $("#password").strength();
+
+});
