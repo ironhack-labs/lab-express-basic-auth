@@ -1,0 +1,56 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #ddd;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+#auth-form {
+  margin: auto;
+  background: #fff;
+  padding: 45px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 35vw;
+  min-width: 450px;
+}
+
+.form-group{
+  width:100%;
+}
+
+.form-group button {
+  border: 1px solid;
+  padding: 10px 40px;
+}
+
+.strength_meter {
+  width: 100%;
+  height: unset;
+  margin: 0 0 30px;
+}
+
+.strength_meter>div {
+  padding: 15px;
+  height: inherit;
+}
+
+a.button_strength {
+  margin: 20px;
+  display: inline-block;
+  font-size: 17px;
+  text-decoration: underline;
+}
+
+.error-message {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  background: #ffbeb8;
+  margin: 20px 0;
+}
