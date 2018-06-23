@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+//Session Controls
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose.Promise = Promise;
 mongoose
@@ -23,6 +26,16 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+//Setup Auth TOcken and Session Params
+app.use(session({
+  secret: "lkadsmjf89yjkashdf8234hb3244bv",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -44,15 +57,17 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
-
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
 const index = require('./routes/index');
 app.use('/', index);
+
+const auth = require('./routes/auth-route');
+app.use('/', auth);
+
+const private = require('./routes/protected-routes');
+app.use('/', private);
 
 
 module.exports = app;

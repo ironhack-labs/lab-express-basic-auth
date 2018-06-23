@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+jQuery(document).ready(($)=>{
 
-  console.log('IronGenerator JS imported successfully!');
+    $(".signup input[type='password']").strength({
+      strengthClass:'form-control'
+    });
 
-}, false);
+})
