@@ -1,0 +1,21 @@
+<h2>Welcome to an alternate experience</h2>
+
+<form action="/login" method="POST" id="form">
+  <h2>Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="yodawg">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="whatsyoursectret">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Sign in</button>
+
+  <p class="account-message">
+    Don't have an account? What are you waiting for? <a href="/signup">Get it!</a>
+  </p>
+</form>
