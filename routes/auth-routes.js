@@ -23,7 +23,7 @@ authRoutes.post("/signup", (req,res,next) =>{
 
     if(username === "" || password === ""){
         res.render("auth/signup", {
-            errorMessage: "Llena los campos carajo :)"
+            errorMessage: "Fill in the blanks 🐸"
         });
         return;
     }
@@ -31,7 +31,7 @@ authRoutes.post("/signup", (req,res,next) =>{
     User.findOne({"username": username}, "username", (err,user) => {
         if( user !== null){
             res.render("auth/signup", {
-                errorMessage: "Ten más creatividad con tu nombre. ALV (ahora loggeate vien) :)"
+                errorMessage: "Change the username"
             })            
             return;
         }
