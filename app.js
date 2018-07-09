@@ -2,12 +2,14 @@ require('dotenv').config();
 
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
+const express = require('express');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose.Promise = Promise;
@@ -29,6 +31,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+ secret: "basic-auth-secret",
+ cookie: { maxAge: 60*60*24*2 }, // 2 days to expire cookie
+ store: new MongoStore({
+   mongooseConnection: mongoose.connection,
+   ttl: 24*60*60*2 // 1 day
+ })
+}));
 
 // Express View engine setup
 
@@ -47,12 +57,15 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Login Logout';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
-
+const authRouter = require('./routes/authRouter');
+app.use('/auth', authRouter);
+const indexRouter = require('./routes/indexRouter');
+app.use('/', indexRouter);
+const siteRouter = require('./routes/siteRouter');
+app.use('/', siteRouter);
 
 module.exports = app;
