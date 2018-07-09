@@ -6,7 +6,7 @@ const router = express.Router();
 const bcryptSalt = 10;
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup", { title: "Signup" });
+  res.render("auth/signup");
 });
 
 router.post("/signup", (req, res, next) => {
@@ -45,6 +45,46 @@ router.post("/signup", (req, res, next) => {
     })
     .catch(err => {
       res.render("auth/signup", {
+        errorMessage: err.message
+      });
+    });
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+
+  var fieldsPromise = new Promise((resolve, reject) => {
+    if (username === "" || password === "") {
+      reject(new Error("Indicate a username and a password to log in"));
+    } else {
+      resolve();
+    }
+  });
+
+  fieldsPromise
+    .then(() => {
+      return User.findOne({ username });
+    })
+    .then(user => {
+      if (!user) {
+        throw new Error("The username not exists");
+      }
+
+      //  Check password hash is correct
+      if (!bcrypt.compareSync(password, user.password)) {
+        throw new Error("Incorrect Password");
+      }
+      // Save the login in the session!
+      req.session.currentUser = user;
+      console.log(`LOGGED AS USER ${user.username}`);
+      res.redirect("/");
+    })
+    .catch(err => {
+      res.render("auth/login", {
         errorMessage: err.message
       });
     });
