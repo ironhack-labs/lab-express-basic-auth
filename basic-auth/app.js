@@ -7,14 +7,14 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 
 const app = express();
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Link to database
 const dbName = 'basic-auth';
@@ -46,6 +46,11 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+
+app.use(function (req, res, next) {
+  app.locals.user = req.session.currentUser;
+  next();
+});
 
 // -- 404 and error handler
 

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+var app = express();
 
 const User = require('../models/users');
 
@@ -9,8 +10,8 @@ const User = require('../models/users');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-const session = require('express-session'); // Do I need this?
-const MongoStore = require('connect-mongo')(session);
+// const session = require('express-session'); // Do I need this?
+// const MongoStore = require('connect-mongo')(session);
 
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup'); // without /auth!!
@@ -61,6 +62,11 @@ router.post('/login', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  // if (req.session.currentUser !== undefined) {
+  //   res.redirect('/');
+  //   return;
+  // }
+
   if (username === '' || password === '') { // Missing to check if username is unique
     res.redirect('/auth/login');
     return;
@@ -70,7 +76,11 @@ router.post('/login', (req, res, next) => {
     .then(user => {
       if (user) {
         if (bcrypt.compareSync(password, user.password)) {
-          req.session.currentUser = user;
+          if (req.session.currentUser) { // CurrentUser key does not exist!! WHY ??
+            req.session.currentUser = user;
+          } else {
+
+          }
           res.redirect('/');
           return;
         } else {
