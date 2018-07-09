@@ -1,0 +1,11 @@
+{{#unless user}}
+    <a href="/login">Log In</a> <br>
+    <a href="/signup">Sign Up</a>
+{{/unless}}
+
+{{#if user}}
+    <h2>Welcome {{user.username}}</h2>
+    <a href="/private">Super Private Page</a> <br>
+    <a href="/main">Private page</a> <br>
+    <a href="/logout">Log out</a>
+{{/if}}
