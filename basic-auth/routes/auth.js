@@ -17,7 +17,7 @@ router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  if (username === '' || password === '') {
+  if (username === '' || password === '') { // Missing to check if username is unique
     res.render('auth/signup');
     return;
   }
@@ -48,6 +48,35 @@ router.post('/signup', (req, res, next) => {
     .catch(error => {
       next(error);
     });
+});
+
+router.get('/login', (req, res, next) => {
+  res.render('auth/login');
+});
+
+router.post('/login', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  if (username === '' || password === '') { // Missing to check if username is unique
+    res.redirect('/auth/login');
+    return;
+  }
+
+  User.findOne({ username })
+    .then(user => {
+      if (user !== null) {
+        if (bcrypt.compareSynd(password, user.password)) {
+          req.session.currentUser = user;
+          res.redirect('/');
+          return;
+        } else {
+          res.redirect('auth/login');
+          return;
+        }
+      };
+    })
+    .catch(next());
 });
 
 module.exports = router;

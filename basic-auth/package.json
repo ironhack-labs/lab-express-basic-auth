@@ -8,6 +8,7 @@
     "seed": "node ./bin/seed.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
