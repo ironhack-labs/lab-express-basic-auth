@@ -9,4 +9,12 @@ router.get('/', (req, res, next) => {
 
 router.use(authRoutes);
 
+router.get('/main', (req,res) => {
+  res.render('main')
+})
+router.get('/private', (req,res) => {
+ if(req.session.currentUser) res.render('private')
+ else res.redirect('/')
+})
+
 module.exports = router;
