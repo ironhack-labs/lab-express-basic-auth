@@ -9,6 +9,9 @@ const User = require('../models/users');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
+const session = require('express-session'); // Do I need this?
+const MongoStore = require('connect-mongo')(session);
+
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup'); // without /auth!!
 });
@@ -65,13 +68,13 @@ router.post('/login', (req, res, next) => {
 
   User.findOne({ username })
     .then(user => {
-      if (user !== null) {
-        if (bcrypt.compareSynd(password, user.password)) {
+      if (user) {
+        if (bcrypt.compareSync(password, user.password)) {
           req.session.currentUser = user;
           res.redirect('/');
           return;
         } else {
-          res.redirect('auth/login');
+          res.redirect('/auth/login');
           return;
         }
       };
