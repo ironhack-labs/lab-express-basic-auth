@@ -7,21 +7,7 @@
 </head>
 
 <body>
-  <ul>
-    {{#if user}}
-    <li>
-      <a href="/">Home</a>
-    </li>
-    <li>
-      <a href="/private">PRIVATE PAGE</a>
-    </li>
-    <li>
-      <a href="/auth/logout">Logut</a>
-    </li>
-    {{/if}} {{#unless user}}
-    {{/unless}}
-  </ul>
-
+ 
   {{{body}}}
 
   <script src='/javascripts/script.js'></script>

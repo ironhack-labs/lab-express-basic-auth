@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.get('/private',(req,res) => {
   if(req.session.currentUser){
-      res.render('private-page');
+      res.render('private');
   }else{
       res.redirect('/');
   }
