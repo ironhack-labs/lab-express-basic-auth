@@ -1,0 +1,19 @@
+{{#if error}}
+<h1>hola</h1>
+{{/if}}
+<h1>Crea tu cuenta :)</h1>
+<form action="/signup" method="POST">
+    <p>Username:
+        <input type="username" name="username" required>
+    </p>
+    <p>Email:
+        <input type="email" name="email" required>
+    </p>
+    <p>Contraseña:
+        <input type="password" name="password" required>
+    </p>
+    <p>Vuelve a escribir tu contraseña:
+        <input type="password" name="password2" required>
+    </p>
+    <input type="submit">
+</form>
