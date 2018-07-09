@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/strength.css' />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/strength.min.js"></script>
+<script type="text/javascript" src="/javascripts/script.js"></script>
+
+  </head>
+  <body>
+    <ul>
+
+      {{#if user}}
+
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/private">PRIVATE PAGE</a></li>
+
+        <li><a href="/auth/logout">Log out</a></li>
+
+      {{/if}}
+
+      {{#unless user}}
+
+        <li><a href="/auth/signup"> Sign up</a></li>
+
+        <li><a href="/auth/login">Login</a></li>
+
+      {{/unless}}
+
+    </ul>
+    {{{body}}}
+
+    <script src='/javascripts/script.js'></script>
+  </body>
+</html>
