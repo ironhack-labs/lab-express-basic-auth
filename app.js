@@ -59,7 +59,12 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.use((req, res, next) => {
+  res.locals.title = 'Express - Generated with IronGenerator';
+  res.locals.user = req.session.currentUser;
+
+  next();
+})
 
 
 

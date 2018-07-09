@@ -6,6 +6,18 @@
   </head>
   <body>
 
+    <ul>
+      <li><a href="/">Home</a></li>
+      {{#if user}}
+      <li><a href="/main">Main</a></li>
+      <li><a href="/private">Private</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+      {{else}}
+      <li><a href="/auth/signup">Sign up</a></li>
+      <li><a href="/auth/login">Log in</a></li>
+      {{/if}}
+    </ul>
+
     {{{body}}}
 
     <script src='/javascripts/script.js'></script>

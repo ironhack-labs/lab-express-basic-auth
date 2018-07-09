@@ -90,4 +90,9 @@ router.post("/login", (req, res, next) => {
     });
 });
 
+router.get('/logout' , (req,res) => {
+  req.session.currentUser = null;
+  res.redirect('/');
+})
+
 module.exports = router;
