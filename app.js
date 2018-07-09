@@ -9,10 +9,12 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const dbUrl = process.env.DBURL;
+
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/lab-express-basic-auth', {useMongoClient: true})
+  .connect(dbUrl, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -53,6 +55,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/auth', auth);
 
 
 module.exports = app;
