@@ -48,7 +48,7 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-  app.locals.user = req.session.currentUser;
+  app.locals.user = req.session.currentUser; // How to access currentUser from other routes?????
   next();
 });
 
