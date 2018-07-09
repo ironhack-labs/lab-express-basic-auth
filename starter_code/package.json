@@ -18,7 +18,8 @@
     "mongoose": "~4.13.4",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.11.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
