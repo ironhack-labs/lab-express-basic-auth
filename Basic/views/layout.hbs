@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="/stylesheets/strength.css">
+</head>
+
+<body>
+  {{#if user}}
+    <ul>
+      <li><a href="/auth/logout">Logout</a></li>
+      <li><a href="/private">Protected page</a></li>
+      <li><a href="/">Home</a></li>
+    </ul>
+  {{/if}}
+
+  {{#unless user}}
+  <ul>
+    <li><a href="/auth/login">Login</a></li>
+    <li><a href="/auth/signup">Signup</a></li>
+    <li><a href="/">Home</a></li>
+  </ul>
+  {{/unless}}
+
+  {{{body}}}
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="javascripts/strength.min.js"></script>
+  <script src='/javascripts/script.js'></script>
+</body>
+
+</html>
