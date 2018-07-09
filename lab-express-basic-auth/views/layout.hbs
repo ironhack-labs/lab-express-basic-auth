@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <ul>
+    {{#if user}}
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/private">private</a>
+    </li>
+    <li>
+      <a href="/main">main</a>
+    </li>
+    {{/if}} 
+    {{#unless user}}
+    <li>
+      <a href="/">Registrate (signup)</a>
+    </li>
+    <li>
+      <a href="/auth/login">Login</a>
+    </li>
+    {{/unless}}
+  </ul>
+
+  {{{body}}}
+
+  <script src='/javascripts/script.js'></script>
+</body>
+
+</html>
