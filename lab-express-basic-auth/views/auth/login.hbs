@@ -1,0 +1,14 @@
+{{#if error}}
+<h1 style="color: red">{{error}}</h1> {{/if}}
+
+<form action="/login" method="POST">
+
+  <p> Tu Email
+    <input name="email" type="email" />
+  </p>
+  <p> Tu Password
+    <input name="password" type="password" />
+  </p>
+  <input type="submit" />
+
+</form>
