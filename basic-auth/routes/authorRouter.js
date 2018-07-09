@@ -31,7 +31,7 @@ router.post("/signup", (req, res, next) => {
       return newUser.save();
     })
     .then(user => {
-      res.redirect("/");
+      res.render("/");
     })
     .catch(err => {
       console.log(err);
@@ -87,15 +87,11 @@ router.post("/login", (req, res, next) => {
 
   })
   .catch( e => {
-    res.render("auth/login", {
+    res.render("author/login", {
       errorMessage: e.message
     });
   });
 });
 
-// router.get("/logout", (req, res) => {
-//  req.logout();
-//  res.redirect("/");
-// });
 
 module.exports = router;

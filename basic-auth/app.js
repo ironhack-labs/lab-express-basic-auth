@@ -10,7 +10,7 @@ const logger = require('morgan');
 const path = require('path');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-//const flash = require("connect-flash");
+// const flash = require("connect-flash");
 
 
 mongoose.Promise = Promise;
@@ -44,9 +44,9 @@ app.use(session({
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
-//app.use(flash());
+// app.use(flash());
 
-//require('./passport')(app);
+// require('./passport')(app);
 
 // Express View engine setup
 
@@ -64,11 +64,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 app.use((req,res,next) => {
- // default value for title local
- res.locals.title = 'User login';
- res.locals.user = req.user;
- //res.locals.message = req.flash("error");
- next();
+  // default value for title local
+  res.locals.title = 'Express - Generated with IronGenerator';
+  res.locals.user = req.session.currentUser;
+  // res.locals.message = req.flash("error");
+  next();
 }) 
 
 
