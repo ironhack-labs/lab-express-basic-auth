@@ -22,19 +22,19 @@ router.post('/signup', (req, res, next) => {
   const password = req.body.password;
 
   if (req.session.currentUser) {
-    res.redirect('/');
+    res.redirect('/'); // Never render !! (would be like starting from scratch) --> when refreshing the page, does not send the form
     return;
   }
 
   if (username === '' || password === '') {
-    res.render('auth/signup');
+    res.redirect('/auth/signup');
     return;
   }
 
   User.findOne({ username })
     .then(user => {
       if (user !== null) { // Checks if username is unique
-        res.render('auth/signup');
+        res.redirect('/auth/signup');
         return;
       }
 
@@ -48,7 +48,7 @@ router.post('/signup', (req, res, next) => {
 
       newUser.save((err) => { // Should always go inside findOne, otherwise runs at the same time and findOne does not have time to finish
         if (err) {
-          res.render('auth/signup');
+          res.redirect('/auth/signup');
         } else {
           req.session.currentUser = newUser;
           res.redirect('/');
