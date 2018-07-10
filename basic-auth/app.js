@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
+app.use(session({ // Always before using the routes!!!!!!!
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
@@ -48,7 +48,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
-  app.locals.user = req.session.currentUser; // How to access currentUser from other routes?????
+  app.locals.user = req.session.currentUser; // How to access currentUser from other routes????? --> order matters!!
   next();
 });
 

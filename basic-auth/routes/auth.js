@@ -10,12 +10,21 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 router.get('/signup', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
   res.render('auth/signup'); // without /auth!!
 });
 
 router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+
+  if (req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
 
   if (username === '' || password === '') { // Missing to check if username is unique
     res.render('auth/signup');
@@ -41,6 +50,7 @@ router.post('/signup', (req, res, next) => {
         if (err) {
           res.render('auth/signup');
         } else {
+          req.session.currentUser = newUser;
           res.redirect('/');
         }
       });
@@ -55,7 +65,6 @@ router.get('/login', (req, res, next) => {
     res.redirect('/');
     return;
   }
-
   res.render('auth/login');
 });
 
@@ -88,5 +97,7 @@ router.post('/login', (req, res, next) => {
     })
     .catch(next); // next without ()!!!!!!!!!
 });
+
+// LOG OUT!!!
 
 module.exports = router;
