@@ -47,6 +47,11 @@ app.use(session({
   }
 }));
 
+app.use(function (req, res, next) {
+  app.locals.user = req.session.currentUser;
+  next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -57,11 +62,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-
-app.use(function (req, res, next) {
-  app.locals.user = req.session.currentUser;
-  next();
-});
 
 // -- 404 and error handler
 

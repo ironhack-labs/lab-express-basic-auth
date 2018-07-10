@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')(session);
 
 /* GET sign up page. */
 router.get('/', (req, res, next) => {
-  return res.render('auth/signup');
+  res.render('auth/signup');
 });
 
 router.post('/', (req, res, next) => {
@@ -32,7 +32,7 @@ router.post('/', (req, res, next) => {
     return;
   }
 
-  const newUser = User({
+  const newUser = new User({
     username: username,
     password: hashPass
   });
