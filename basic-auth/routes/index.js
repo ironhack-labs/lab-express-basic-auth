@@ -6,7 +6,7 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (!req.session.currentUser) {
-    res.render('auth/signup');
+    res.render('auth/login');
     return;
   }
   res.render('index', { title: 'Express' });

@@ -98,6 +98,10 @@ router.post('/login', (req, res, next) => {
     .catch(next); // next without (), otherwise it calls next() always !!!!!!!!!
 });
 
-// LOG OUT!!!
+// LOG OUT
+router.get('/logout', (req, res, next) => {
+  delete req.session.currentUser; // IMPORTANT TO KNOW HOW TO DELETE!
+  res.redirect('/auth/login');
+});
 
 module.exports = router;
