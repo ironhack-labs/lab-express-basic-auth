@@ -26,7 +26,8 @@ router.post('/signup', (req, res, next) => {
     return;
   }
 
-  if (username === '' || password === '') {
+  if (!username || !password) {
+    // message 'please provide a username and a password
     res.redirect('/auth/signup');
     return;
   }
@@ -34,6 +35,7 @@ router.post('/signup', (req, res, next) => {
   User.findOne({ username })
     .then(user => {
       if (user !== null) { // Checks if username is unique
+        // message 'that username is already taken'
         res.redirect('/auth/signup');
         return;
       }
@@ -46,18 +48,23 @@ router.post('/signup', (req, res, next) => {
         password: hashPass
       });
 
-      newUser.save((err) => { // Should always go inside findOne, otherwise runs at the same time and findOne does not have time to finish
-        if (err) {
-          res.redirect('/auth/signup');
-        } else {
+      newUser.save() // Should always go inside findOne, otherwise runs at the same time and findOne does not have time to finish
+        .then(() => {
           req.session.currentUser = newUser;
           res.redirect('/');
-        }
-      });
+        })
+        .catch(next);
+
+      // newUser.save((err) => {
+      //   if (err) {
+      //     res.redirect('/auth/signup');
+      //   } else {
+      //     req.session.currentUser = newUser;
+      //     res.redirect('/');
+      //   }
+      // });
     })
-    .catch(error => {
-      next(error);
-    });
+    .catch(next);
 });
 
 router.get('/login', (req, res, next) => {
@@ -77,23 +84,28 @@ router.post('/login', (req, res, next) => {
     return;
   }
 
-  if (username === '' || password === '') {
+  if (!username || !password) {
+    // message 'please provide a username and a password'
     res.redirect('/auth/login');
     return;
   }
 
   User.findOne({ username })
     .then(user => {
-      if (user) {
-        if (bcrypt.compareSync(password, user.password)) {
-          req.session.currentUser = user;
-          res.redirect('/');
-          return;
-        } else {
-          res.redirect('/auth/login');
-          return;
-        }
-      };
+      if (!user) {
+        // message 'username or password are incorrect'
+        res.redirect('/auth/login');
+        return;
+      }
+
+      if (!bcrypt.compareSync(password, user.password)) {
+        // message 'username or password are incorrect'
+        res.redirect('/auth/login');
+        return;
+      }
+
+      req.session.currentUser = user;
+      res.redirect('/');
     })
     .catch(next); // next without (), otherwise it calls next() always !!!!!!!!!
 });
