@@ -97,4 +97,19 @@ router.post('/login', (req, res, next) => {
     });
 });
 
+router.get('/logout', (req, res, next) => {
+  // Check that the user is logged in
+  if (!req.session.currentUser) {
+    return res.redirect('/');
+  };
+
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      next();
+    }
+    res.redirect('/auth/login');
+  });
+});
+
 module.exports = router;

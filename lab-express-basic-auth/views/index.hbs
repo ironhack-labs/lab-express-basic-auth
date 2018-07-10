@@ -9,3 +9,8 @@
     <a href="/auth/login">Login</a>
   </li>
 </ul>
+
+{{#if user}} Logged in as: {{user.username}}
+<P>
+  <a href="auth/logout">Logout</a>
+</P>{{/if}}

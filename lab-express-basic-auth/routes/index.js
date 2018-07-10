@@ -5,7 +5,8 @@ router.use('/auth', require('./auth'));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  const user = { user: req.session.currentUser };
+  res.render('index', user);
 });
 
 module.exports = router;
