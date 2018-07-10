@@ -9,9 +9,6 @@ const User = require('../models/users');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-// const session = require('express-session'); // Do I need this?
-// const MongoStore = require('connect-mongo')(session);
-
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup'); // without /auth!!
 });
@@ -54,6 +51,11 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
+
   res.render('auth/login');
 });
 
@@ -61,10 +63,10 @@ router.post('/login', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  // if (req.session.currentUser !== undefined) {
-  //   res.redirect('/');
-  //   return;
-  // }
+  if (req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
 
   if (username === '' || password === '') { // Missing to check if username is unique
     res.redirect('/auth/login');
@@ -75,11 +77,7 @@ router.post('/login', (req, res, next) => {
     .then(user => {
       if (user) {
         if (bcrypt.compareSync(password, user.password)) {
-          if (req.session.currentUser) { // CurrentUser key does not exist!! WHY ??
-            req.session.currentUser = user;
-          } else {
-
-          }
+          req.session.currentUser = user;
           res.redirect('/');
           return;
         } else {
@@ -88,7 +86,7 @@ router.post('/login', (req, res, next) => {
         }
       };
     })
-    .catch(next());
+    .catch(next); // next without ()!!!!!!!!!
 });
 
 module.exports = router;

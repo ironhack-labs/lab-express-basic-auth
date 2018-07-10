@@ -30,10 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-
 app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
@@ -46,6 +42,10 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
   app.locals.user = req.session.currentUser; // How to access currentUser from other routes?????
