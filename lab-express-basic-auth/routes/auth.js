@@ -8,6 +8,10 @@ const User = require('../models/users');
 const saltRounds = 10;
 
 router.get('/signup', function (req, res, next) {
+  // Check if user is logged in
+  if (req.session.currentUser) {
+    return res.redirect('/');
+  }
   res.render('auth/signup', { title: 'Express' });
 });
 
@@ -15,6 +19,9 @@ router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   // Check if user is logged in
+  if (req.session.currentUser) {
+    return res.redirect('/');
+  }
 
   // Check if username and password params have been sent
   if (!username || !password) {
@@ -44,16 +51,25 @@ router.post('/signup', (req, res, next) => {
       console.log(err);
       next();
     });
+});
 
-  router.get('/login', function (req, res, next) {
-    res.render('auth/login', { title: 'Express' });
-  });
+router.get('/login', function (req, res, next) {
+  // Check if user is logged in
+  if (req.session.currentUser) {
+    return res.redirect('/');
+  }
+  res.render('auth/login', { title: 'Express' });
 });
 
 router.post('/login', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+
   // Check if user is logged in
+  if (req.session.currentUser) {
+    return res.redirect('/');
+  }
+
   // Check if username and password params have been sent
   if (!username || !password) {
     console.log('username or password param not supplied');
@@ -70,6 +86,8 @@ router.post('/login', (req, res, next) => {
       }
       if (bcrypt.compareSync(password, user.password)) {
         console.log('log in successful');
+        // Save session info
+        req.session.currentUser = user;
         res.redirect('/');
       }
     })
