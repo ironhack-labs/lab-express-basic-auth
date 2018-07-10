@@ -5,7 +5,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const User = require('./models/user.js');
+// const User = require('./models/user.js');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,27 +23,16 @@ app.set('view engine', 'hbs');
 const dbName = 'ironhack-auth-exercice';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
-User.create()
-  .then(() => {
-    console.log(`Created damn user`);
-    // mongoose.connection.close(); // I don't understand this line if i uncomment it i can't use the debugger anymore :/
-  })
-  .catch((err) => {
-    throw (err);
-  });
+// User.create()
+//   .then(() => {
+//     console.log(`Created user`);
+//     // mongoose.connection.close(); // I don't understand this line if i uncomment it i can't use the debugger anymore :/
+//   })
+//   .catch((err) => {
+//     throw (err);
+//   });
 
 // MIDDLEWARES
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
 
 app.use(session({
   store: new MongoStore({
@@ -57,6 +46,17 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 app.use(function (req, res, next) {
   app.locals.user = req.session.currentUser;

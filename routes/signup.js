@@ -22,12 +22,12 @@ router.post('/', (req, res, next) => {
   // IF i uncomment the following code an error will occurs if the user don't provide
   // a username and password but instead it should redirect to signup page as the if statement is telling :(
 
-  // if (req.session.currentUser) {
-  //   res.redirect('/');
-  //   return;
-  // }
+  if (req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
 
-  if (!req.body.username || req.body.password) {
+  if (!req.body.username || !req.body.password) {
     res.redirect('/signup');
     return;
   }
