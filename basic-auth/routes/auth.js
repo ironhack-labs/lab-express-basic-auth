@@ -26,14 +26,14 @@ router.post('/signup', (req, res, next) => {
     return;
   }
 
-  if (username === '' || password === '') { // Missing to check if username is unique
+  if (username === '' || password === '') {
     res.render('auth/signup');
     return;
   }
 
   User.findOne({ username })
     .then(user => {
-      if (user !== null) {
+      if (user !== null) { // Checks if username is unique
         res.render('auth/signup');
         return;
       }
@@ -46,7 +46,7 @@ router.post('/signup', (req, res, next) => {
         password: hashPass
       });
 
-      newUser.save((err) => {
+      newUser.save((err) => { // Should always go inside findOne, otherwise runs at the same time and findOne does not have time to finish
         if (err) {
           res.render('auth/signup');
         } else {
@@ -77,7 +77,7 @@ router.post('/login', (req, res, next) => {
     return;
   }
 
-  if (username === '' || password === '') { // Missing to check if username is unique
+  if (username === '' || password === '') {
     res.redirect('/auth/login');
     return;
   }
@@ -95,7 +95,7 @@ router.post('/login', (req, res, next) => {
         }
       };
     })
-    .catch(next); // next without ()!!!!!!!!!
+    .catch(next); // next without (), otherwise it calls next() always !!!!!!!!!
 });
 
 // LOG OUT!!!
