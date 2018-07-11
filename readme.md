@@ -1,3 +1,5 @@
+Assignment completed in collaboration with Rodrigo and Jackson on 7/11/18
+
 ![](https://i.imgur.com/1QgrNNw.png)
 
 # PP | Basic Auth
