@@ -4,19 +4,19 @@
 
 <div class ="login-page">
 <label for="username">Username: </label>
-<input type="text" name="theUsername" id="username">
+<input type="text" name="username" id="username">
 <br>
 <br>
 <label for="password">Password: </label>
-<input type="password" name="thePassword" id="password">
+<input type="password" name="password" id="password">
 <br>
 <br>
 <button>Log In</button>
 </div>
 </form>
 
-{{#if errorMessage}}
+{{#if message}}
 
-<div>{{errorMessage}}</div>
+<div>{{message}}</div>
 
 {{/if}}
