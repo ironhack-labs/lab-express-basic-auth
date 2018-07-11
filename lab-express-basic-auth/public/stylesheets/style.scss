@@ -1,8 +1,103 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/red-img.jpg");
+  background-size: cover;
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(194, 208, 214);
 }
+
+h1, p, h3, label {
+  color: white;
+}
+
+.index-header {
+  font-size: 33px;
+  text-align: center;
+}
+
+.index-info {
+  margin-left: 34%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.index-info button {
+  margin-left: 3.8rem;
+  font-size: 16px;
+  height: 4rem;
+  width: 10rem;
+  background-color: black;
+  border-radius: 20px;
+  border-color: black;
+}
+
+.index-info button a {
+  text-decoration: none;
+}
+
+.login-info {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.main-info {
+  margin-left: 34%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.main-info a {
+  margin-left: 10rem;
+  font-size: 16px;
+}
+
+.private-info {
+  margin-left: 34%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.private-info a {
+  margin-left: 5rem;
+  font-size: 16px;
+}
+
+.signup-info {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+button {
+  width: 10rem;
+  margin-left: 3rem;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-left: 10rem;
+}
+
+#cat {
+  height: 25rem; 
+  width: 25rem;
+}
+
+#private-header {
+  margin-left: 34%;
+}
+
+
+

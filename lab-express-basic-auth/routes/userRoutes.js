@@ -117,5 +117,4 @@ userRouter.get('/logout', (req, res, next)=>{
     })
 });
 
-
 module.exports = userRouter;

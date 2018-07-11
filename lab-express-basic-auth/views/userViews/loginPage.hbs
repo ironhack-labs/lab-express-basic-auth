@@ -1,15 +1,22 @@
 <h1>Login Here</h1>
 
 <form action="/login" method="post">
+<div class="login-info">
 
     <label>Username</label>
     <input type="text" name="theUsername">
+    <br>
+    <br>
 
     <label>Password</label>
     <input type="text" name="thePassword">
+    <br>
+    <br>
 
     <button>Submit</button>
+</div>
 </form>
+
 
 {{#if errorMessage}}
 <div>{{errorMessage}}</div>
