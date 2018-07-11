@@ -1,0 +1,17 @@
+<h1>Sign up</h1>
+
+<form action="/authRoutes/signup" method="post">
+
+<label for="username">Username</label>
+<input type="text" name="theUsername">
+
+<label for="password">Password</label>
+<input type="text" id="password" name="thePassword">
+
+<button type="submit">Submit</button>
+
+</form>
+
+{{#if errorMessage}}
+<div>{{errorMessage}}</div>
+{{/if}}
