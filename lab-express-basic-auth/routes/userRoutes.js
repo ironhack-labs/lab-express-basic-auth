@@ -1,7 +1,9 @@
-const express = require('express');
-const userRouter = express.Router();
-const User = require('../models/user');
-const bcrypt = require('bcryptjs');
+const express     = require('express');
+const userRouter  = express.Router();
+const User        = require('../models/user');
+const bcrypt      = require('bcryptjs');
+const ensureLogin = require('connect-ensure-login');
+const passport    = require('passport');
 
 userRouter.get('/signup', (req, res, next)=>{
     res.render('userViews/signupPage');
@@ -67,54 +69,31 @@ userRouter.post('/signup', (req, res, next)=>{
 
 });
 
+userRouter.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next)=>{
+        
+         res.render('main', {theUser: req.user});
+});
+
+userRouter.get('/private',ensureLogin.ensureLoggedIn(), (req, res, next)=>{
+  
+        res.render('private', {theUser: req.user});
+});
+
 userRouter.get('/login', (req, res, next)=>{
-    res.render('userViews/loginPage')
+    res.render('userViews/loginPage', {"mesage": req.flash("error")})
 })
-
-userRouter.get('/main',(req, res, next)=>{
-        const data = {};
-        if(req.session.currentUser){
-          data.theUser = req.session.currentUser;
-        }
-        res.render('main', data);
-      });
-
-userRouter.get('/private',(req, res, next)=>{
-  const data = {};
-  if(req.session.currentUser){
-    data.theUser = req.session.currentUser;
-  }
-  res.render('private', data);
-});
       
-      
-userRouter.post('/login', (req, res, next)=>{
-    const theUsername = req.body.theUsername;
-    const thePassword = req.body.thePassword;
+userRouter.post('/login', passport.authenticate("local",{
+    successRedirect: "/main",
+    failureRedirect: "/login",
+    failureFlash: true,
+    passReqCallback: true
+}));
     
-    
-    if(theUsername === "" || thePassword === ""){
-        res.render("userViews/loginPage", {errorMessage: "Indicate a username and password"})
-        return;
-    }
-    User.findOne({"username": theUsername}, (err, user)=>{
-        if(err || !user){
-            res.render("userViews/loginPage", {errorMessage: "Sorry, that username doesnt exist"})
-            return;
-        }
-        if(bcrypt.compareSync(thePassword, user.password)) {
-            req.session.currentUser = user;
-            res.redirect('/main')
-        } else {
-            res.render('userViews/loginPage', {errorMessage: "Incorrect Password"})
-        }
-    })
-});
 
 userRouter.get('/logout', (req, res, next)=>{
-    req.session.destroy((err)=>{
+    req.logout();
         res.redirect("/login")
-    })
 });
 
 module.exports = userRouter;
