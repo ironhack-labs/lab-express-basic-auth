@@ -1,0 +1,24 @@
+<h1>Login Here</h1>
+
+<form action="/login" method="post">
+<div class="login-info">
+
+    <label>Username</label>
+    <input type="text" name="username">
+    <br>
+    <br>
+
+    <label>Password</label>
+    <input type="text" name="password">
+    <br>
+    <br>
+
+    <button>Submit</button>
+</div>
+</form>
+<br>
+<br>
+
+{{#if message}}
+<div class="message">{{message}}</div>
+{{/if}}
