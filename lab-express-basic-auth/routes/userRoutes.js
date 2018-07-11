@@ -80,7 +80,7 @@ userRouter.get('/private',ensureLogin.ensureLoggedIn(), (req, res, next)=>{
 });
 
 userRouter.get('/login', (req, res, next)=>{
-    res.render('userViews/loginPage', {"mesage": req.flash("error")})
+    res.render('userViews/loginPage', {"message": req.flash("error")})
 })
       
 userRouter.post('/login', passport.authenticate("local",{
@@ -90,7 +90,6 @@ userRouter.post('/login', passport.authenticate("local",{
     passReqCallback: true
 }));
     
-
 userRouter.get('/logout', (req, res, next)=>{
     req.logout();
         res.redirect("/login")
