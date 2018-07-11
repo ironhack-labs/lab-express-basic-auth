@@ -65,6 +65,10 @@ h1, p, h3, label {
   flex-direction: column;
   width: 20%; }
 
+.message {
+  color: white;
+  font-size: 14px; }
+
 button {
   width: 10rem;
   margin-left: 3rem; }
