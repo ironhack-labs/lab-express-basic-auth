@@ -1,0 +1,24 @@
+<div class="row home-row">
+  <h1>HOME</h1>
+  <div class="col-sm-12 home-row">
+
+    <a class="btn" href="/authRoutes/signup">Signup</a>
+
+    <a class="btn" href="/authRoutes/login">Login</a>
+
+    <a class="btn" href="/authRoutes/logout">Logout</a>
+
+    <a class="btn" href="/main">Main</a>
+
+    <a class="btn" href="/private">Private</a>
+
+
+  </div>
+</div>
+
+
+{{#if theUser}}
+<div>
+  {{theUser.username}} {{theUser.password}}
+</div>
+{{/if}}
