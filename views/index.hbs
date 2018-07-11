@@ -1,2 +1,9 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h3>Welcome to the home page</h3>
+{{#if user}}
+  <h3>Logged in as {{user.username}}</h3>
+{{else}}
+  <a href="/login">Login</a> <br> <br>
+{{/if}}
+<a href="/main">Your Main Page</a> <br> <br> <br>
+<a href="/private">Your Private Page</a> <br> <br>
