@@ -41,13 +41,22 @@ userRouter.get('/login', (req, res, next)=>{
     res.render('loginPage')
 })
 
-userRouter.get('/main', (req, res, next)=>{
-    res.render('main');
-})
 
-userRouter.get('/private', (req, res, next)=>{
-    res.render('private');
-})
+userRouter.get('/main', (req, res, next) => {
+    const data = {};
+    if(req.session.currentUser){
+      data.theUser = req.session.currentUser;
+    }
+    res.render('main', data);
+  });
+
+  userRouter.get('/private', (req, res, next) => {
+    const data = {};
+    if(req.session.currentUser){
+      data.theUser = req.session.currentUser;
+    }
+    res.render('private', data);
+  });
 
 userRouter.post('/login', (req, res, next)=> {
     const theUsername = req.body.theUsername;
