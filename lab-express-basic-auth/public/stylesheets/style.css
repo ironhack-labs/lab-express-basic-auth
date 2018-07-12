@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/backgroundpic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+a {
+  text-decoration: none;
+  color: black; }
+
+h1 {
+  text-align: center;
+  margin-top: 5rem;
+  color: black;
+  font-size: 50px; }
+
+.auth-btn {
+  text-align: center;
+  margin-top: 3rem; }
+
+button {
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 20px;
+  background-color: gray; }
+
+.login-page {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */

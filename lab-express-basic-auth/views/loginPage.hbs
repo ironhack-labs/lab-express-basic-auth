@@ -1,0 +1,22 @@
+
+<h1>Welcome back! <br>Please Log In</h1>
+<form action="/login" method="post">
+
+<div class ="login-page">
+<label for="username">Username: </label>
+<input type="text" name="username" id="username">
+<br>
+<br>
+<label for="password">Password: </label>
+<input type="password" name="password" id="password">
+<br>
+<br>
+<button>Log In</button>
+</div>
+</form>
+
+{{#if message}}
+
+<div>{{message}}</div>
+
+{{/if}}
