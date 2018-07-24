@@ -70,4 +70,9 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/logout', (req, res, nect) => {
+  delete req.session.currentUser;
+  res.redirect('/auth/login');
+});
+
 module.exports = router;

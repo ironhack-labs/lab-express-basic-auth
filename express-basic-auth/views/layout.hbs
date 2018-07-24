@@ -6,7 +6,12 @@
   </head>
   <body>
     <nav>
-      <p>Logged as: {{ currentUser.username }}</p>
+      {{#if currentUser}}
+        <p>logged as: {{currentUser.username}}</p>
+        <form action="/auth/logout" method="post">
+          <input type="submit" value="logout">
+        </form>
+     {{/if}}
     </nav>
     {{{body}}}
   </body>
