@@ -1,0 +1,15 @@
+<h2>Signup</h2>
+<form action="/auth/signup" method="POST">
+  <div class="field">
+    <label for="">Username</label>
+    <input type="text" name="username" required>
+  </div>
+  <div class="field">
+    <label for="">Password</label>
+    <input type="password" name="password" required>
+  </div>
+  {{ message }}
+  <div class="field submit">
+    <button type="submit">Sign up</button>
+  </div>
+</form>

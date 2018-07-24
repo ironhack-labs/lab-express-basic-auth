@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    {{#if currentUser}}
+    <nav>User: {{ currentUser.username }}</nav>
+    <form action="/auth/logout" method="POST">
+      <input type="submit" value="LOGOUT">
+    </form>
+    {{/if}}
+    <ul>
+      <li><a href="/auth/login">Login</a></li>
+      <li><a href="/auth/signup">Sign up</a></li>
+      <li><a href="/main">Main</a></li>
+      <li><a href="/private">Private</a></li>
+    </ul>
+    {{{body}}}
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="strength.js"></script>
+  <script type="text/javascript" src="js.js"></script>
+
+  </body>
+</html>
