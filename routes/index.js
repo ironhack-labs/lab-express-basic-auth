@@ -25,12 +25,15 @@ router.post('/signup', (req, res, next) => {
                 const salt  = bcrypt.genSaltSync(saltRounds);
                 const hashedPassword = bcrypt.hashSync(password, salt);
                 const newUser = new User({username, password: hashedPassword});
-                return newUser.save();
+                return newUser.save()
+                    .then(user => {
+                        req.session.currentUser = user;
+                        res.redirect('/');
+                    })
+                    .catch(error => {
+                        next(error);
+                    });
             }
-        })
-        .then(user => {
-            req.session.currentUser = user;
-            res.redirect('/');
         })
         .catch(error => {
             next(error);
