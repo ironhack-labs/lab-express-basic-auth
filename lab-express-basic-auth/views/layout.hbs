@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <nav>
+    <form action="/auth/logout" method="post">
+      <p>Logged in as: {{ currentUser.username }}</p>
+      <input type="submit" value="logout">
+    </form>
+  </nav>
+
+  {{{ body }}}
+
+</body>
+
+</html>
