@@ -1,0 +1,15 @@
+<h2>Login</h2>
+<form action="/auth/login" method="post">
+    <div class="field">
+        <label>Username</label>
+        <input type="text" name="username">
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password">
+    </div>
+    {{ message }}
+    <div class="field submit">
+        <button type="submit">Login</button>
+    </div>
+</form>
