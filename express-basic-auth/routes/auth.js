@@ -6,18 +6,23 @@ const saltRounds = 10;
 const User = require('../models/user');
 
 router.get('/signup', (req, res, next) => {
-  res.render('auth/signup');
+  const data = {
+    messages: req.flash('message-name')
+  };
+  res.render('auth/signup', data);
 });
 
 router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    return res.render('auth/signup', { message: 'Introducir usuario y password' });
+    req.flash('message-name', 'Introducir usuario y password');
+    return res.redirect('/auth/signup');
   }
   User.findOne({ username })
     .then((user) => {
       if (user) {
-        return res.render('auth/signup', { message: 'Usuario ya existente' });
+        req.flash('message-name', 'Usuario ya existente');
+        return res.redirect('/auth/signup');
       } else {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(password, salt);
@@ -35,25 +40,31 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('auth/login');
+  const data = {
+    messages: req.flash('message-name')
+  };
+  res.render('auth/login', data);
 });
 
 router.post('/login', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    return res.render('auth/login', { message: 'Introducir usuario y password' });
+    req.flash('message-name', 'Introducir usuario y password');
+    return res.redirect('/auth/login');
   }
   User.findOne({ username })
     .then(user => {
       if (!user) {
-        return res.render('auth/login', { message: 'usuario o password incorrecto' });
+        req.flash('message-name', 'usuario o password incorrecto');
+        return res.redirect('/auth/login');
       }
       if (bcrypt.compareSync(password /* provided password */, user.password/* hashed password */)) {
         // Save the login in the session!
         req.session.currentUser = user;
         res.redirect('/');
       } else {
-        return res.render('auth/login', { message: 'usuario o password incorrecto' });
+        req.flash('message-name', 'usuario o password incorrecto');
+        return res.redirect('/auth/login');
       }
     })
     .catch(next);
