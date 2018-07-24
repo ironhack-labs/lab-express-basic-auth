@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/strength.css">
+  </head>
+  <body>
+        <nav>
+        {{#if currentUser}}
+                <p>Logged: {{currentUser.username}}</p>
+                <a href="/">Home</a>
+                <a href="/main">Main</a>
+                <a href="/private">Private</a>
+                <form action="/logout" method="post">
+                    <input type="submit" value="Logout">
+                </form>
+        {{/if}}
+        </nav>
+        {{{body}}}
+        <script src="https://code.jquery.com/jquery-3.3.1.js" 
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
+        <script src="/javascripts/strength.js"></script>
+        <script src="/javascripts/main.js"></script>
+  </body>
+</html>
