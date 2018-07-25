@@ -1,0 +1,16 @@
+<h2>Login</h2>
+<form method="POST" action="/login">
+    <div class="field">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+    </div>
+
+    <div class="field">
+        <label>Password:</label>
+        <input type="password" name="password" required>
+    </div>
+    {{message}}
+    <div class="field">
+        <button type="submit">Login</button>
+    </div>
+</form>
