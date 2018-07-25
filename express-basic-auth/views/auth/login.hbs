@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h1>Login</h1>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-3 mx-auto">
+      <form method="POST" action="/auth/login">
+
+        <div class="field" >
+          <label>Username</label>
+          <input class="form-control" type="text" name="username"/>
+        </div>
+
+        <div class="field mt-4" >
+          <label>Password</label>
+          <input class="form-control"  type="password" name="password"/>
+        </div>
+
+        <div class="field submit mt-4 text-center">
+          <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+
+        {{#if messages.length}}
+          <ul class="validation">
+            {{#each messages}}<li>{{this}}</li>{{/each}}
+          </ul>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+</section>
