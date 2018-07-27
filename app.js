@@ -12,8 +12,9 @@ const flash = require('express-flash');
 const dbName = 'auth-lab';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const siteRouter = require('./routes/site');
 
 var app = express();
 
@@ -43,6 +44,14 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/site', (req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    req.flash('info', 'You must be logged in to see this page!');
+    res.redirect('/auth/login');
+  }
+}, siteRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

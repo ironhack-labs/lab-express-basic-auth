@@ -7,7 +7,7 @@ const User = require('../models/user.js');
 const router = express.Router();
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup');
+  res.render('auth/signup');
 });
 
 router.post('/signup', (req, res, next) => {
@@ -17,13 +17,13 @@ router.post('/signup', (req, res, next) => {
 
   if (!username || !password) {
     req.flash('info', 'All fields all required!');
-    res.redirect('signup');
+    res.redirect('auth/signup');
   } else {
     User.findOne({ username })
       .then((user) => {
         if (user) {
           req.flash('info', 'Username is not available!');
-          res.redirect('signup');
+          res.redirect('auth/signup');
         } else {
           User.create({ username, password: encryptedPassword });
           req.flash('info', 'User created');
@@ -37,7 +37,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('login');
+  res.render('auth/login');
 });
 
 router.post('/login', (req, res, next) => {
@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
 
   if (!username || !password) {
     req.flash('info', 'All fields are required!');
-    res.redirect('login');
+    res.redirect('auth/login');
   } else {
     User.findOne({ username })
       .then((user) => {
@@ -54,7 +54,7 @@ router.post('/login', (req, res, next) => {
           res.redirect('/');
         } else {
           req.flash('info', 'Incorrect username or password!');
-          res.redirect('login');
+          res.redirect('auth/login');
         }
       })
       .catch((err) => {
