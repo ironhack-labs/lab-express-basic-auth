@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <nav>
+      {{#if messages.info}}
+        <p>{{messages.info}}</p>
+      {{/if}}
+    </nav>
     {{#if currentUser}}
       <p>Hello {{currentUser.username}}</p>
       <form action="/auth/logout" method="POST">
