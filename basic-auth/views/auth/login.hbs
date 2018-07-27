@@ -1,0 +1,15 @@
+<!--layout.hbs-->
+<div class="container">
+    <form method="post" action="/auth/login">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="myPassword" placeholder="Password" name="password" required>
+        </div>
+        {{messages}}<br/>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
