@@ -1,0 +1,19 @@
+<h2>SingUp form</h2>
+<div class="centered">
+  <form action="/auth/signup/" method="post">
+    <label for="user">Username:</label>
+    <input type="text" name="user" id="user">
+    <br>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <br>
+    <br>
+    <div class="centered">
+      <button type="submit">SignUp</button>
+    </div>
+  </form>
+</div>
+<div class="centered red">
+  <p>{{ messages }}</p>
+</div>

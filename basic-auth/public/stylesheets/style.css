@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+*{
+  border: #00B7FF dashed 1px;
+}
+div.centered{
+  /* height: 150px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.red{
+  color: red;
+}
