@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Auth</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <nav>
+<html lang="en">
+<head>
+  <title>Auth</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body class="container d-flex">
+  <nav class="row d-flex">
+    <div class="col nav-links d-flex">
+      <ul>
+        {{#if currentUser}}
+          <li><a href="/site/main">Main</a></li>
+          <li><a href="/site/private">Private</a></li>
+          <li>Logged in as: {{currentUser.username}}</li>
+          <li>
+            <form action="/auth/logout" method="POST" class="test">
+              <button class="btn btn-style" type="submit" value="logout">Log out</button>
+            </form>
+          </li>
+        {{else}}
+          <li><a href="/auth/signup">Sign Up</a></li>
+          <li><a href="/auth/login">Log in</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row content d-flex">
+    {{{body}}}
+    <div class="messages">
       {{#if messages.info}}
         <p>{{messages.info}}</p>
       {{/if}}
-    </nav>
-    {{#if currentUser}}
-      <p>Hello {{currentUser.username}}</p>
-      <form action="/auth/logout" method="POST">
-        <button type="submit" value="logout">Log out</button>
-      </form>
-    {{/if}}
-    {{{body}}}
-  </body>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
 </html>
