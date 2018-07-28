@@ -10,8 +10,7 @@ router.get('/signup', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-  const {user, password } = req.body;
-  console.log(user + password);
+  const {user, password } = req.body
   
   if (!user || !password) { //without user or pwrd
     req.flash('error', 'Username and Password are required')
