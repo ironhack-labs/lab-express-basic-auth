@@ -1,0 +1,63 @@
+body {
+  background: #44A08D;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #093637, #44A08D);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #093637, #44A08D);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container {
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #093637;
+}
+
+.btn-style {
+  border: 1px solid #DDD;
+}
+.btn-style:hover, .btn-style :active {
+  color: #FFF;
+  background: #093637;
+}
+
+nav {
+  background: #FFF;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.nav-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li {
+  display: inline;
+  margin: 1em;
+}
+.nav-links a {
+  color: #2B5759;
+}
+.nav-links a:hover {
+  color: #093637;
+}
+.nav-links form {
+  display: inline;
+}
+
+.content {
+  flex-direction: column;
+  justify-content: center;
+  background: #FFF;
+  margin-top: 0.2em;
+  padding: 5em;
+  border-radius: 10px;
+}
+.content .btn-style {
+  margin-top: 0.5em;
+}
+
+/*# sourceMappingURL=style.css.map */
