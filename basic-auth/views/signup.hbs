@@ -1,19 +1,27 @@
-<h2>SingUp form</h2>
-<div class="centered">
-  <form action="/auth/signup/" method="post">
-    <label for="user">Username:</label>
-    <input type="text" name="user" id="user">
+<link rel='stylesheet' href='/stylesheets/strength.css' />
+
+
+<div class="centered white">
+  <h2>SingUp</h2>
+  <form class="centered" id="myform" action="/auth/signup" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username">
     <br>
     <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
+    <label for="password">Password:   </label>
+    <input type="password" name="password" id="newPassword">
     <br>
     <br>
     <div class="centered">
-      <button type="submit">SignUp</button>
+      <button class="button-send" type="submit">Sign Up</button>
     </div>
   </form>
-</div>
-<div class="centered red">
-  <p>{{ messages}}</p>
+  <div class="centered ">
+    <p>Have an account?
+      <a href="/auth/login">Log In</a>
+    </p>
+  </div>
+  <div class="centered red">
+    <p>{{ error }}</p>
+  </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="centered white">
+  <h2>Log In</h2>
+  <form action="/auth/login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <br>
+    <br>
+    <label for="password">Password:  </label>
+    <input type="password" name="password">
+    <br>
+    <br>
+    <div class="centered">
+      <button class="button-send" type="submit">Log In</button>
+    </div>
+  </form>
+  <div class="centered ">
+    <p>Don't have an account?
+      <a href="/auth/signup">Sign Up</a>
+    </p>
+  </div>
+  <div class="centered red">
+    <p>{{ error }}</p>
+  </div>
+</div>

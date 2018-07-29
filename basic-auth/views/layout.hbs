@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <nav>
-      <h2>Basic Authentication</h2>
-    </nav>
+
+<head>
+  <title>{{title}}</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="grey">
+  <nav class="yellow">
+    <ul>
+      <li>
+        <a href="/main">main page</a>
+      </li>
+      <li>
+        <a href="/private">Private page</a>
+      </li>
+    </ul>
+    {{#if currentUser}}
+    <ul>
+      <li>
+        hello: {{ currentUser }}
+      </li>
+      <li>
+        <form action="/auth/logout" method='POST'>
+          <input type="submit" value="logout">
+        </form>
+      </li>
+      {{/if}}
+    </ul>
+  </nav>
+  <div class="centered grey">
     {{{body}}}
-  </body>
+  </div>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/strength.js"></script>
+  <script type="text/javascript" src="/javascripts/js.js"></script>
+
+</body>
+
 </html>
