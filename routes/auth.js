@@ -11,16 +11,37 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-router.post('/signup', (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const { name, username, password } = req.body;
-  const newUser = new User({ name, username, password })
-  newUser.save()
-  .then((user) => {
-    res.redirect('success')
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+
+  if (!username || !password) {
+    res.render("signup", { message: "Please fill all the required fields" });
+  } else {
+    User.findOne({ username }).then(user => {
+      if (user) {
+        res.render("signup", {
+          message:
+            "User already exists in our database, pick a different username"
+        });
+      } else {
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hashedPassword = bcrypt.hashSync(password, salt);
+        const newUser = new User({
+          name: name,
+          username: username,
+          password: hashedPassword
+        });
+        newUser
+          .save()
+          .then(user => {
+            res.redirect("success");
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    });
+  }
 });
 
 router.get("/success", (req, res, next) => {
@@ -28,3 +49,4 @@ router.get("/success", (req, res, next) => {
 });
 
 module.exports = router;
+
