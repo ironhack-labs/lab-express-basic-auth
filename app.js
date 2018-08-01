@@ -44,11 +44,11 @@ app.use(session({
   }
 }));
 
+app.use(flash())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(flash())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -57,7 +57,7 @@ app.use('/private', (req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
-    req.flash('info', 'You have to log in!');
+    req.flash('info', 'You have to login!');
     res.redirect('/auth/login');
   }
 }, privRouter);
