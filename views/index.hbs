@@ -1,0 +1,15 @@
+<!-- layout.hbs -->
+<h3>Home :)</h3>
+<form action="/auth/signup" method="GET">
+  <button>Sign up</button>
+</form>
+<form action="/auth/login" method="GET">
+  <button>Login</button>
+</form>
+
+{{#if currentUser}}
+<p>Hey {{ currentUser.username }}</p>
+<form action="/auth/logout" method="POST">
+  <input type="submit" value="logout">
+</form>
+{{/if}}

@@ -1,0 +1,16 @@
+<h3>Login</h3>
+<form action="/auth/login" method="POST">
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" placeholder="username" required>
+  <br>
+  <label for="password"></label>
+  <br>
+  <label for="password">Password</label>
+  <br>
+  <input type="password" value="password" name="password" required>
+  <br>
+  {{message}}
+  <br> 
+  <input type="submit" value="Login">
+</form>
