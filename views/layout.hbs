@@ -8,6 +8,15 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
+  {{#if currentUser}}
+  <p>Hey {{ currentUser.username }}</p>
+  <form action="/auth/logout" method="POST">
+    <input type="submit" value="logout">
+  </form>
+  <form action="/private" method="GET">
+    <button>My secret place</button>
+  </form>
+  {{/if}}
   {{{body}}}
 </body>
 </html>

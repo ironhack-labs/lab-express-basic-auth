@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const hbs = require('hbs');
+// const hbs = require('hbs');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -23,13 +23,14 @@ db.on('open', () => {
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const privRouter = require('./routes/private');
+const mainRouter = require('./routes/main');
 
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerPartials(path.join(__dirname, '/views/partials'));
+// hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
 app.use(session({
   store: new MongoStore({
@@ -44,7 +45,7 @@ app.use(session({
   }
 }));
 
-app.use(flash())
+app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -61,6 +62,14 @@ app.use('/private', (req, res, next) => {
     res.redirect('/auth/login');
   }
 }, privRouter);
+app.use('/main', (req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    req.flash('info', 'You have to login!');
+    res.redirect('/auth/login');
+  }
+}, mainRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
