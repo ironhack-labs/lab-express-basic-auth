@@ -62,6 +62,7 @@ app.use('/private', (req, res, next) => {
     res.redirect('/auth/login');
   }
 }, privRouter);
+
 app.use('/main', (req, res, next) => {
   if (req.session.currentUser) {
     next();
