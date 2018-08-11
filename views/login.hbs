@@ -1,0 +1,14 @@
+<h2>Sign into your account</h2>
+<form action="/auth/login" method='post'>
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" placeholder="username">
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <br>
+  <input type="password" name="password" placeholder="password">
+  <br>
+  <br> {{ messages }}
+  <input type="submit" value="Log in">
+</form>
