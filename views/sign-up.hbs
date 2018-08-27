@@ -1,0 +1,32 @@
+<h1>Sign up</h1>
+
+<form action="/sign-up" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" required id="email" value="test@test.com" required>
+    <br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <br>
+
+    <button type="submit">Sign up!</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>--}}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/438937/strength.min.js"></script>
+<script src='/javascripts/script.js'></script>
+<script>
+    $(document).ready(function ($) {
+
+        $('#password').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
+    });
+</script>
