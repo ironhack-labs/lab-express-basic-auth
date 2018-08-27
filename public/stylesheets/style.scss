@@ -1,8 +1,215 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0;
+    font: 16px 'Montserrat', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.container {
+    padding: 25px calc((100% - 960px) / 2);
+}
+
+.card {
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 a {
-  color: #00B7FF;
+    color: RGB(49, 186, 141);
+    text-decoration: none;
+    transition: 200ms all ease-in-out;
+
+    &::visited {
+        color: RGB(49, 186, 141);
+    }
+
+    &:hover {
+        color: RGBA(49, 186, 141, 0.7);
+    }
+}
+
+button {
+    outline: none;
+    background-color: rgb(157, 172, 28);
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: 200ms all ease-in-out;
+    transform-origin: 50% 50%;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.list-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+input,
+textarea {
+    margin-top: 25px;
+    width: 200px;
+    border: 1px solid rgb(180, 180, 180);
+    padding: 5px 10px;
+}
+
+.go-btn {
+    margin-top: 50px;
+}
+
+.btn-delete {
+    background-color: red;
+}
+
+.sign-btn {
+    outline: none;
+    background-color: rgb(32, 167, 230);
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: 200ms all ease-in-out;
+    transform-origin: 50% 50%;
+    font-size: 13px;
+    width: 150px;
+    text-align: center;
+}
+
+.sign-btn:hover,
+.choice-btn:hover,
+.logout-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+
+.account-question {
+    padding-top: 20px;
+    font-size: 12px;
+}
+
+.main-page,
+.sign-page,
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-page p,
+a,
+h1 {
+    align-self: center;
+}
+
+.sign-page form,
+p,
+h1 {
+    align-self: center;
+}
+
+input {
+    border-radius: 4px;
+    height: 40px;
+    width: 250px;
+}
+
+form {
+    justify-content: flex-start;
+}
+
+.main-cat,
+.cat-gif {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.back {
+    outline: none;
+    background-color: rgb(200, 218, 42);
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: 200ms all ease-in-out;
+    transform-origin: 50% 50%;
+    font-size: 13px;
+    width: 150px;
+    text-align: center;
+}
+
+.back:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+
+.main-cat img,
+.cat-gif img {
+    width: 40%;
+    align-self: center;
+    margin: 30px;
+}
+
+.choice-btn {
+    outline: none;
+    background-color: rgb(218, 192, 45);
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: 200ms all ease-in-out;
+    transform-origin: 50% 50%;
+    font-size: 13px;
+    width: 150px;
+    text-align: center;
+    margin: 5px;
+}
+
+.logout-btn {
+    outline: none;
+    background-color: rgb(218, 149, 45);
+    color: #fff;
+    border-radius: 25px;
+    padding: 5px 8px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: 200ms all ease-in-out;
+    transform-origin: 50% 50%;
+    font-size: 13px;
+    width: 150px;
+    text-align: center;
+    margin: 5px;
 }
