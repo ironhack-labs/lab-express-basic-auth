@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
 
-    {{{body}}}
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
-    <script src='/javascripts/script.js'></script>
-  </body>
+<body>
+
+  <nav>
+    <a href="/auth/signup">Signup</a>
+  </nav>
+  {{{body}}}
+
+
+  <script src='/javascripts/script.js'></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="strength.js"></script>
+  <script type="text/javascript" src="js.js"></script>
+
+</body>
+
 </html>
