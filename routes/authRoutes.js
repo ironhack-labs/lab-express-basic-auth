@@ -24,14 +24,16 @@ authRoutes.post("/auth/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
 
-  //finally creates new user and add to Moddel/databse
+  //finally creates new user and add to Model/databse
   //use Model.create()
 
+  //create new user object with entered username and encrypted password
   const newUserObject = {
     username: username,
     password: hashPass
   };
 
+  // if neither password nor username is entered, then render error
   if (
     !username ||
     !password ||
@@ -41,9 +43,11 @@ authRoutes.post("/auth/signup", (req, res, next) => {
     password === ""
   ) {
     res.render("signup", {
-      errorMessage: "Indicate a username and a password to sign up"
+      errorMessage: "Enter username and a password for signup"
     });
   }
+
+  // search if username already exists, elses render error
 
   UserModel.findOne({ username: username })
     .then(user => {
@@ -54,6 +58,7 @@ authRoutes.post("/auth/signup", (req, res, next) => {
         return;
       }
 
+      // if username does not exist, create new Model
       UserModel.create(newUserObject)
         .then(createdUser => {
           console.log("User was successfully created");
@@ -72,6 +77,66 @@ authRoutes.post("/auth/signup", (req, res, next) => {
 
 //#2 - Login
 
-//#2
+//GET route to ACCESS login form
+authRoutes.get("/auth/login", (req, res, next) => {
+  res.render("login");
+});
+
+//POST route to SUBMIT login form
+authRoutes.post("/auth/login", (req, res, next) => {
+  //capture username and password
+
+  const username = req.body.username;
+  const password = req.body.password;
+
+  // assess whether password/ username is blank = error
+
+  if (
+    !username ||
+    !password ||
+    username === null ||
+    password === null ||
+    username === "" ||
+    password === ""
+  ) {
+    res.render("login", {
+      errorMessage: "Username and password required to login"
+    });
+    return;
+  }
+
+  // search if username exists, elses render error
+
+  UserModel.findOne({ username: username })
+    .then(user => {
+      if (!user) {
+        //if no user found...
+        res.render("login", {
+          errorMessage: "Sorry, the username doesn't exist"
+        });
+        return;
+      }
+      //pass password to bcrypt and determine match with hash in database
+      if (bcrypt.compareSync(password, user.password)) {
+        // Save the login in the session!
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+authRoutes.get("/auth/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    // cannot access session here
+    res.redirect("/login");
+  });
+});
 
 module.exports = authRoutes;

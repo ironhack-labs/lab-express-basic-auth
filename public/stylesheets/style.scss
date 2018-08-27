@@ -1,13 +1,16 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: white;
+  background-color: lightblue;
 }
 
 a {
   color: #00b7ff;
 }
 
+// h2 {
+//   text-align: center;
+// }
 .error-message {
   background: #f02b63;
   box-sizing: border-box;
@@ -15,6 +18,11 @@ a {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+  text-align: center;
+}
+
+.account-message {
+  text-align: center;
 }
 
 #form {

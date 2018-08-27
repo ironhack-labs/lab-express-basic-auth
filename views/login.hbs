@@ -2,13 +2,11 @@
   <h2>Login</h2>
 
   <label for="username">Username</label>
-  <input type="text" name="username" placeholder="username">
+  <input type="text" name="username" placeholder="username"><br><br>
 
   <label for="password">Password</label>
-  <input id="myPassword" type="password" name="password" placeholder="password"> {{#if errorMessage }}
-  <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
-
+  <input id="myPassword" type="password" name="password" placeholder="password"><br><br> {{#if errorMessage }}
+  <div class="error-message">{{ errorMessage }}</div> {{/if}}
   <button>Sign In</button>
 
   <p class="account-message">
