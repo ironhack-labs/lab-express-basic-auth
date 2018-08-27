@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="card">
+    <h1>Register</h1>
+
+    <form action="/auth/register" method='POST'>
+      <input type="text" name='username' required='true'>
+      <br>
+      <input id="myPassword" type="password" name='password' required='true'>
+      <br>
+      <br>
+      <button type='submit'>Create my User Account</button>
+      <br>
+      <br> {{#if error}}
+      <p>ERROR: {{error}}</p>
+      {{/if}}
+    </form>
+  </div>
+</div>
