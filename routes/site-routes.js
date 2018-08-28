@@ -16,7 +16,7 @@ router.use((req, res, next) => {
   }
 });
 
-//if session is met, the GET for /secret will be load
+//if session is met, the GET for secret will be accessible
 router.get("/secret", (req, res, next) => {
   res.render("secret");
 });

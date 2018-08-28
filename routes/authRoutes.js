@@ -122,7 +122,7 @@ authRoutes.post("/auth/login", (req, res, next) => {
         req.session.currentUser = user;
         res.redirect("/");
       } else {
-        res.render("auth/login", {
+        res.render("login", {
           errorMessage: "Incorrect password"
         });
       }
