@@ -1,0 +1,27 @@
+<h2>Log to our site</h2>
+
+{{>flash_messages}}
+
+<form action="/process-login" method="POST">
+
+<label>
+  <input type="text" name="userName" required>
+</label>
+<br />
+
+<label>
+  <input type="password" name="originalPassword" required>
+</label>
+<br />
+
+<button>Login</button>
+
+</form>
+
+<button>
+  <a href="/">Get Back to Home</a>
+</button>
+<br />
+<button>
+  <a href="/signup">Sign Up</a>
+</button>
