@@ -1,0 +1,23 @@
+<h2>Log In</h2>
+
+{{#each messages}}
+<p> {{this}} </p>
+{{/each}}
+
+
+<form action="/process-login" method="POST">
+  <label>
+    USERNAME:
+    <input type="text" name="userName" placeholder="username...">
+  </label>
+  <br/>
+
+  <label>
+    PASSWORD:
+    <input type="password" name="userPassword" placeholder="password...">
+  </label>
+  <br/>
+  <button>
+    Log In
+  </button>
+</form>
