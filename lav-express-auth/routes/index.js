@@ -6,4 +6,9 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+/* GET main page */
+router.get('/main', (req, res, next) => {
+    res.render('content/main');
+});
+
 module.exports = router;

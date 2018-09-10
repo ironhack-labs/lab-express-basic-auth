@@ -1,30 +1,25 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input,
 #form button {
@@ -32,8 +27,7 @@ a {
   font-size: 14px;
   outline: 0;
   padding: 4px;
-  width: 100%;
-}
+  width: 100%; }
 
 #form button {
   background: #43a3e6;
@@ -48,14 +42,12 @@ a {
   text-transform: uppercase;
   transition: .3s ease background;
   width: 100%;
-  margin-top: 20px;
-}
+  margin-top: 20px; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
 
 .error-message {
   background: #F02B63;
@@ -63,52 +55,46 @@ a {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-}
+  width: 100%; }
 
 nav {
   width: 80%;
   margin: 0 auto;
   padding: 50px;
-  background: grey;
-}
+  background: grey; }
 
 nav ul {
   width: 100%;
   display: flex;
   flex-direction: row;
-  list-style: none;
-}
+  list-style: none; }
 
 nav li a {
   text-decoration: none;
   display: inline-block;
   padding: 10px;
-  box-shadow: 0 0 2px rgba(0,0,0, 0.5);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  border: 2px solid transparent;
-}
+  border: 2px solid transparent; }
 
 nav li a:hover {
   border: 2px solid deepskyblue;
   color: white;
-  transition: all 300ms ease-in;
-}
+  transition: all 300ms ease-in; }
 
 nav li {
-  padding-right: 15px;
-}
+  padding-right: 15px; }
 
 main {
-  width:80%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 60vh;
-  align-items: center;
-}
+  align-items: center; }
 
 main img {
-  width: 30vw;
-}
+  width: 30vw; }
+
+/*# sourceMappingURL=style.css.map */

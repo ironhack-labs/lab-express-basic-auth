@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const Schema = mongoose.Schema;
 
-const User = new Schema({
+const userSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -15,7 +15,14 @@ const User = new Schema({
         required: true,
         minLength: 8
     }
+}, {
+    timestamps: {
+        createdAt: "created_at",
+        updatedAt: "updated_at"
+    }
 });
+
+const User = mongoose.model("User", userSchema);
 
 function validateUser(userData) {
     let user = {
@@ -26,11 +33,7 @@ function validateUser(userData) {
     let result = Joi.validate(userData, user);
     let { error } =  result;
 
-    if(error) {
-        return false;
-    } else {
-        return true;
-    }
+   return error;
 
 }
 
