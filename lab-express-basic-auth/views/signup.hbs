@@ -1,0 +1,18 @@
+<div class="signup">
+
+  <form action="/signup" method="POST">
+    <label for="">Username</label>
+    <input type="text" name="newUsername">
+    <label for="">Password</label>
+    <input type="text" name="newPassword">
+    <button> Create the profile!</button>
+  </form>
+
+  {{#if errorMessage}}
+  <div class="error">
+      {{errorMessage}}
+  </div>
+  {{/if}}
+
+
+</div>

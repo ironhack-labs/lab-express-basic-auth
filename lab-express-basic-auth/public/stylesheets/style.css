@@ -1,0 +1,31 @@
+body {
+  color: #ce410e;
+  background-color: rgba(198, 128, 71, 0.2);
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+html a:visited, a {
+  text-decoration: underline;
+  color: #f2804b; }
+
+.background {
+  color: #ce410e;
+  background-color: rgba(198, 128, 71, 0.2); }
+
+.index, .signup, .login-page, .secret, .private {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center; }
+
+.error {
+  color: white;
+  background-color: #dd4837;
+  width: 20vw; }
+
+img {
+  width: 50vw;
+  height: 50%; }
+
+/*# sourceMappingURL=style.css.map */
