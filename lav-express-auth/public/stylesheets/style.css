@@ -158,4 +158,32 @@ input:valid {
   height: 100%;
   padding: 15px 5px; }
 
+.button_strength {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid deepskyblue;
+  color: deepskyblue;
+  text-decoration: none;
+  margin-top: 10px;
+  text-transform: uppercase;
+  border-radius: 5px; }
+
+form {
+  position: relative; }
+
+.button_strength + div {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid deepskyblue;
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 102px;
+  right: 0;
+  color: green;
+  border-radius: 5px; }
+
+.veryweak, .weak {
+  color: red; }
+
 /*# sourceMappingURL=style.css.map */
