@@ -42,7 +42,10 @@ a {
   text-transform: uppercase;
   transition: .3s ease background;
   width: 100%;
-  margin-top: 20px; }
+  margin-top: 10px; }
+
+.cr-account {
+  margin-top: 40px; }
 
 #form button:hover {
   background: #fff;
@@ -166,7 +169,13 @@ input:valid {
   text-decoration: none;
   margin-top: 10px;
   text-transform: uppercase;
-  border-radius: 5px; }
+  border-radius: 5px;
+  width: 100%;
+  text-align: center; }
+
+.button_strength:hover {
+  background: deepskyblue;
+  color: white; }
 
 form {
   position: relative; }
@@ -176,14 +185,20 @@ form {
   padding: 5px;
   border: 1px solid deepskyblue;
   font-weight: bold;
-  font-size: 1.2rem;
   position: absolute;
-  bottom: 102px;
+  bottom: 80px;
   right: 0;
   color: green;
-  border-radius: 5px; }
+  border-radius: 5px;
+  letter-spacing: 5px;
+  text-transform: uppercase; }
 
 .veryweak, .weak {
   color: red; }
+
+.strength_meter {
+  width: 100%;
+  text-align: center;
+  position: relative; }
 
 /*# sourceMappingURL=style.css.map */

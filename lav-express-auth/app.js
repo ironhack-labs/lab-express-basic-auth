@@ -32,8 +32,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-    secret: "basic-auth-secret",
-    cookie: { maxAge: 30000 },
+    secret: ["my-secret-key", "super-secret-key"],
+    cookie: {
+        maxAge: 60000
+    },
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
         ttl: 24 * 60 * 60 // 1 day
@@ -41,7 +43,6 @@ app.use(session({
 }));
 
 // Express View engine setup
-
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
