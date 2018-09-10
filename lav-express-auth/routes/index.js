@@ -4,7 +4,12 @@ const middleAuth = require('../middle/auth');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+
+  const username = req.session.currentUser ? req.session.currentUser.username : null;
+
+  res.render('index', {
+    username
+  });
 });
 
 /* GET main page */

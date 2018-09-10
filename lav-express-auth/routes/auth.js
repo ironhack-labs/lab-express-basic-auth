@@ -132,4 +132,11 @@ router.post('/login', async function(req, res, next)  {
 
 });
 
+router.get("/logout", (req, res, next) => {
+    req.session.destroy((err) => {
+        // cannot access session here
+        res.redirect("/auth/login");
+    });
+});
+
 module.exports = router;

@@ -141,3 +141,45 @@ main a:hover {
   background: deepskyblue;
   color: grey;
 }
+
+.main-header {
+  text-align: center;
+  letter-spacing: 10px;
+  font-size: 3rem;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.logout-btn {
+  background: orange;
+  color: white;
+}
+.prot-btn {
+  background: red;
+  color: white;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+}
+
+.main-header {
+  height: 60px;
+}
+
+.main-header span {
+  display: inline-block;
+  background-color: grey;
+  color: blue;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  height: 100%;
+  padding: 15px 5px;
+}

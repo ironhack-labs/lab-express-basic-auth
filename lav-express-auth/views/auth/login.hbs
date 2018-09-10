@@ -2,10 +2,23 @@
     <h2>Login</h2>
 
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Enter your namne" value="{{ username }}">
+    <input
+            type="text" name="username"
+            placeholder="Enter your namne"
+            value="{{ username }}"
+            required
+            maxlength="50"
+    >
 
     <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Enter your password" value="{{ password }}">
+    <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value="{{ password }}"
+            required
+            minlength="8"
+    >
 
     {{#if errorMessage }}
         <div class="error-message">{{ errorMessage }}</div>

@@ -1,15 +1,24 @@
 <form id="form" action="/auth/signup" method="POST">
     <h2>Sign up</h2>
     <label for="username">Username</label><br>
-    <input type="text" name="username"
-           value="{{ username }}"
-           placeholder="Enter your name">
+    <input
+            type="text" name="username"
+            placeholder="Enter your namne"
+            value="{{ username }}"
+            required
+            maxlength="50"
+    >
 
     <br><br>
     <label for="password">Password</label><br>
-    <input type="password" name="password"
-           value="{{ password }}"
-           placeholder="Enter your password">
+    <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value="{{ password }}"
+            required
+            minlength="8"
+    >
     <br><br>
 
     {{#if errorMessage}}
