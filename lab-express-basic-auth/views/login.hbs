@@ -5,14 +5,14 @@
   <form action="/login" method="POST">
 
     <label for="">Username</label>
-    <input type="text" name="theUsername">
+    <input type="text" name="username">
     <label for="">Password</label>
-    <input type="text" name="thePassword">
+    <input type="text" name="password">
 
 
-    {{#if errorMessage}}
+    {{#if message}}
       <div class="error">
-          {{errorMessage}}
+          {{message}}
       </div>
      {{/if}}
      

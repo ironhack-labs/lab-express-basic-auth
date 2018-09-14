@@ -40,6 +40,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Express View engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+// default value for title local
+app.locals.title = 'Express - Generated with IronGenerator';
+
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -56,6 +63,11 @@ app.use(session({
 }));
 
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 passport.serializeUser((user, cb) => {
   cb(null, user._id);
 });
@@ -70,30 +82,23 @@ passport.deserializeUser((id, cb) => {
 app.use(flash());
 
 passport.use(new LocalStrategy((theUsername, thePassword, next) => {
-  User.findOne({ theUsername }, (err, user) => {
+  console.log('=---=-=-==-=-=-=', theUsername, thePassword)
+  User.findOne({ username: theUsername }, (err, user) => {
     if (err) {
       return next(err);
     }
     if (!user) {
-      return next(null, false, { errorMessage: "Incorrect username" });
+      return next(null, false, { message: "Incorrect username" });
     }
     if (!bcrypt.compareSync(thePassword, user.password)) {
-      return next(null, false, { errorMessage: "Incorrect password" });
+      return next(null, false, { message: "Incorrect password" });
     }
     
     return next(null, user);
   });
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
 
 
 

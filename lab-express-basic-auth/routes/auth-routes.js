@@ -20,14 +20,14 @@ router.post('/signup', (req,res,next)=>{
   
   if(theUsername === "" || thePassword === ""){
     req.flash('error', 'please specify a username and password to sign up')
-    res.render('signup', {errorMessage: req.flash('error')});
+    res.render('signup', {message: req.flash('error')});
     return;
   }
   
-  User.findOne({"username": theUsername})
+  User.findOne({theUsername})
   .then((user)=>{
     if(user !== null){
-      res.render('signup', {errorMessage: "this user already exists"})
+      res.render('signup', {errorMessage: req.flash('error')});
       return;
     }
     
@@ -85,13 +85,16 @@ router.post('/signup', (req,res,next)=>{
 
 
 router.post("/login", passport.authenticate('local', {
-  successRedirect: "/",
+  successRedirect: "/private",
   failureRedirect: "/login",
   failureFlash: true,
   successFlash: true,
   passReqToCallback: true
 }));
 
+router.get('/private',(req,res,next)=>{
+  res.render('private');
+})
 router.get('/logout', (req, res, next)=>{
   req.logout()
 res.redirect('/')
