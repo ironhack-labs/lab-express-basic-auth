@@ -1,0 +1,15 @@
+<h2>Sign up to join us</h2>
+
+<form action="/newUser" method="post">
+  <label for="">User:</label>
+  <input type="text" name="user" placeholder="Write a valid user name">
+
+  <label for="">Password:</label>
+  <input type="text" name="password" placeholder="Write a valid & strong password">
+
+  <button type="submit">Sing Up</button>
+
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
+</form>

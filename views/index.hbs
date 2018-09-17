@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<p><a href="/singUp">Sing Up</a> or <a href="/login">Log in</a></p>
+
+{{#if link }}
+    <div >
+    <a href="/main">{{link}}</a>
+    </div>
+  {{/if}}
+
+  {{#if vip }}
+    <div >
+    <a href="/private">{{vip}}</a>
+    </div>
+  {{/if}}
