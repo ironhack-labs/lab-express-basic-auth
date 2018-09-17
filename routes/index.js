@@ -7,11 +7,18 @@ const bcryptSalt = 10;
 
 /* GET home page */
 router.get("/", (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render("index", {
+      link: "Go to the Welcome Page",
+      vip: "Go to the VIP ZONE"
+    });
+    return;
+  }
   res.render("index");
 });
 
-router.get("/singUp", (req, res, next) => {
-  res.render("singUp");
+router.get("/signUp", (req, res, next) => {
+  res.render("signUp");
 });
 
 router.post("/newUser", (req, res, next) => {
@@ -45,7 +52,7 @@ router.post("/login", (req, res, next) => {
 
   if (user === "" || password === "") {
     res.render("login", {
-      errorMessage: "Indicate a username and a password to log in"
+      errorMessage: "Indicate a username and a password valid to log in"
     });
     return;
   }
@@ -71,6 +78,22 @@ router.post("/login", (req, res, next) => {
   .catch(error => {
     next(error)
   })
+});
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+router.get("/private", (req, res, next) => {
+  res.render("private");
 });
 
 module.exports = router;
