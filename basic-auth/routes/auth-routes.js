@@ -90,7 +90,7 @@ router.post('/login', (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("/main");
       } else {
         res.render("auth/login", {
           errorMessage: "Incorrect password"
@@ -101,6 +101,24 @@ router.post('/login', (req, res, next) => {
       next(error)
     })
 });
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get('/main', (req,res,next) => {
+  res.render('private/main')
+})
+
+router.get('/userprivate', (req,res,next) => {
+  res.render('private/userprivate')
+})
+
+
 
 
 
