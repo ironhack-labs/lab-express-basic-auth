@@ -1,0 +1,18 @@
+<body>
+    <form id="form" action="/signup" method="POST">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" placeholder="AnakinSkywalker" required minlength="2">
+
+        <br><br>
+        <label for="password">Password</label><br>
+        <input id="signPass" type="password" name="password" placeholder="DeathStar" required minlength="8" maxlength="16">
+        <br><br>
+
+        <button>Create account</button>
+
+        {{#if errorMessage}}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+
+    </form>
+</body>

@@ -1,0 +1,21 @@
+<body>
+    <form action="/login" method="POST" id="form">
+        <h2>Login</h2>
+
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="obiwan" required minlength="2">
+
+        <label for="password">Password</label>
+        <input id="logPass" type="password" name="password" placeholder="thatsnomoon" required minlength="8" maxlength="16">
+
+        {{#if errorMessage }}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+
+        <button>Sign in</button>
+
+        <p class="account-message">
+            Don't have an account? <a href="/signup">Sign up</a>
+        </p>
+    </form>
+</body>
