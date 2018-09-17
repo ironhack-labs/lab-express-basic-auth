@@ -1,0 +1,19 @@
+<h1>Registrate en nuestra base de datos</h1>
+<form action="/signup" method="post">
+<p>
+<label for="username">Escribe tu nombre de usuario:</label>
+    <input type="text"  name="username" id="username" value="{{userinput.username}}">
+</p>
+<p>
+<label for="password">Escribe tu password:</label>
+    <input type="password"  name="password" id="password" value="{{userinput.password}}">
+</p>
+<label for="password2">Repite tu password:</label>
+    <input type="password"  name="password2" id="password2" value="{{userinput.password2}}">
+</p>
+<button type="submit" value="Registrate">Registrarse</button>
+</form>
+<p>{{error}}</p>
+<p>{{error.errmesg}}</p>
+<p>{{warning}}</p>
+<p>{{suggestions.[0]}}</p>
