@@ -34,8 +34,6 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt); 
 
-
-
   const newUser = new User({ username, password: hashPass});
   newUser
     .save()
@@ -65,14 +63,14 @@ router.post('/login', (req, res, next) => {
       res.render('./login', {errorMessage: "User name not found"})
       return;
     }
-    if(bcrypt.compareSync(password, user.password)){
+    if (bcrypt.compareSync(password, user.password)){
+      req.session.currentUser = user;
       res.redirect('/')
     } else {
       res.render('./login', {errorMessage: "Incorrect password"})
     }
   })
-  .catch(error => next(error))
+  .catch(error => next(error))  
 })
-
 
 module.exports = router;
