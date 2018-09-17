@@ -47,31 +47,8 @@ app.use(require('node-sass-middleware')({
 	sourceMap: true
 }));
 
-
 app.use(session({
 	secret: "basic-auth-secret",
-	cookie: {
-		maxAge: 60000
-	},
-	store: new MongoStore({
-		mongooseConnection: mongoose.connection,
-		ttl: 24 * 60 * 60 // 1 day
-	})
-}));
-
-app.use(session({
-	main: "basic-auth-secret",
-	cookie: {
-		maxAge: 60000
-	},
-	store: new MongoStore({
-		mongooseConnection: mongoose.connection,
-		ttl: 24 * 60 * 60 // 1 day
-	})
-}));
-
-app.use(session({
-	private: "basic-auth-secret",
 	cookie: {
 		maxAge: 60000
 	},
