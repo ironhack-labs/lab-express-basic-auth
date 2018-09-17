@@ -49,4 +49,30 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
+router.get('/login', (req, res, next) => { //LOG IN
+  res.render('./login')
+})
+
+router.post('/login', (req, res, next) => {
+  let username = req.body.username;
+  let password = req.body.password;
+  if (username === "" || password === "") {
+    res.render('./login', {errorMessage: "Fill the fields to log in"});
+    return;
+  }
+  User.findOne({username})
+    .then( user => {if (!user) {
+      res.render('./login', {errorMessage: "User name not found"})
+      return;
+    }
+    if(bcrypt.compareSync(password, user.password)){
+      res.redirect('/')
+    } else {
+      res.render('./login', {errorMessage: "Incorrect password"})
+    }
+  })
+  .catch(error => next(error))
+})
+
+
 module.exports = router;
