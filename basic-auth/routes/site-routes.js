@@ -19,5 +19,12 @@ router.get("/secret", (req, res, next) => {
 	res.render("secret");
 });
 
+router.get("/secret/main", (req, res, next) => {
+	res.render("auth/main");
+});
+
+router.get("/secret/private", (req, res, next) => {
+	res.render("auth/private");
+});
 
 module.exports = router;

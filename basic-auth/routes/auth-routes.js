@@ -16,6 +16,7 @@ authRoutes.get("/login", (req, res, next) => {
 	res.render("auth/login");
 });
 
+
 authRoutes.post("/signup", (req, res, next) => {
 	const username = req.body.username;
 	const password = req.body.password;
@@ -84,7 +85,7 @@ authRoutes.post("/login", (req, res, next) => {
 			if (bcrypt.compareSync(password, user.password)) {
 				// Save the login in the session!
 				req.session.currentUser = user;
-				res.redirect("/");
+				res.render("./home");
 			} else {
 				res.render("auth/login", {
 					errorMessage: "Incorrect password"
