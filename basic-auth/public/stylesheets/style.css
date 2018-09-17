@@ -16,15 +16,18 @@ a {
   text-align: center;
   width: 100%; }
 
-#form input,
-#form button {
+input,
+button {
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
-  padding: 4px;
-  width: 100%; }
+  padding: 15px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #43a3e6;
+  margin-bottom: 5px; }
 
-#form button {
+button {
   background: #43a3e6;
   border: 1px solid #43a3e6;
   border-radius: 4px;
@@ -32,13 +35,13 @@ a {
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
-  padding: 8px 16px;
+  padding: 15px 16px;
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
   width: 100%; }
 
-#form button:hover {
+button:hover {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background; }
@@ -50,5 +53,23 @@ a {
   margin: 20px auto;
   padding: 20px;
   width: 100%; }
+
+.btn-group {
+  width: 400px; }
+  .btn-group > button {
+    margin-top: 5px;
+    margin-bottom: 5px; }
+  .btn-group > button:hover a {
+    color: #43a3e6; }
+  .btn-group a {
+    color: #fff;
+    text-decoration: none;
+    display: block; }
+
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both; }
 
 /*# sourceMappingURL=style.css.map */
