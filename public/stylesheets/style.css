@@ -5,4 +5,20 @@ body {
 a {
   color: #00B7FF; }
 
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%; }
+
+.acount-message {
+  background: yellow;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%; }
+
 /*# sourceMappingURL=style.css.map */
