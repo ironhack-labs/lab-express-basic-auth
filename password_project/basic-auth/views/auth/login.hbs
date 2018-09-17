@@ -1,19 +1,22 @@
-<form action="/login" method="POST" id="form">
-  <h2>Login</h2>
+<form action="/login" method="POST">
+  <h2>Log In</h2>
 
-  <label for="username">Username</label>
-  <input type="text" name="username" placeholder="obiwan">
+  <div class="form-group">
+    <label for="username">User Name</label>
+    <input type="text" class="form-control" name="username" placeholder="Enter Name">
+  </div>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="thatsnomoon">
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
 
-  {{#if errorMessage }}
-    <div class="error-message">{{ errorMessage }}</div>
+  {{#if errorMessage}}
+  <div class="invalid-feedback" style="display:block">{{ errorMessage }}</div>
   {{/if}}
-
-  <button>Sign in</button>
-
-  <p class="account-message">
+  
+  <button type="submit" class="btn btn-primary">Log In</button>
+  <p>
     Don't have an account? <a href="/signup">Sign up</a>
   </p>
 </form>
