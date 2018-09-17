@@ -13,8 +13,12 @@ router.use((req, res, next) => {
   }
 });
 
-router.get("/secret", (req, res, next) => {
-  res.render("secret");
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+router.get("/private", (req, res, next) => {
+  res.render("private");
 });
 
 module.exports = router;
