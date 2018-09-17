@@ -1,0 +1,21 @@
+<h2>Sign up</h2>
+
+<form action="/signup" method="post">
+  <p>
+    <label for="username">Username :</label>
+    <input type="text" name="username" id="username" value="{{userinput.username}}" required>
+  </p>
+  <p>
+    <label for="password">Password :</label>
+    <input type="password" name="password" id="password" value="{{userinput.password}}" required>
+  </p>
+  <p>
+    <label for="password2">Repite Password :</label>
+    <input type="password" name="password2" id="password2" value="{{userinput.password2}}" required>
+  </p>
+  <input type="submit" value="Registrate">
+</form>
+
+<p>{{error}}</p>
+
+<p>{{warning}}</p>
