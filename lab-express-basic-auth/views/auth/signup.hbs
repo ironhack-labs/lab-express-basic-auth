@@ -1,0 +1,41 @@
+<form action="/signup" method="post">
+  <p>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" value="{{userinput.username}}">
+  </p>
+  {{!-- <p>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" value="{{userinput.password}}">
+    <a href="">Show password</a>
+  </p> --}}
+  <p>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" value="">
+
+  </p>
+  <input type="submit" value="Create account">
+</form>
+
+
+<p>Already have an account?<a href="">Login</a></p>
+
+<p>{{error}}</p>
+
+
+<script>
+    $(document).ready(function($) {
+    
+$('#password').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
+});
+
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="strength.js"></script>
+<script type="text/javascript" src="js.js"></script>
