@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +12,17 @@
 <body>
   <form id="form" action="/signup" method="POST">
     <label for="username">Username</label><br>
-    <input type="text" name="username"
-      placeholder="AnakinSkywalker">
+    <input type="text" name="username" placeholder="AnakinSkywalker" required>
 
     <br><br>
     <label for="password">Password</label><br>
-    <input type="password" name="password"
-      placeholder="DeathStar">
-    <br><br>
-
-  {{#if errorMessage}}
+    <input id="myPassword" type="password" name="password" placeholder="DeathStar" required>
+    <br><br> {{#if errorMessage}}
     <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
-  
+    {{/if}}
+
     <button>Create account</button>
   </form>
 </body>
+
 </html>
