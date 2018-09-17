@@ -31,6 +31,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Express View engine setup
 
@@ -56,14 +64,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const authRoutes = require('./routes/auth-routes');
 app.use('/', authRoutes);
 
-app.use(session({
-  secret: "basic-auth-secret",
-  cookie: { maxAge: 60000 },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
-}));
+const router = require('./routes/site-routes');
+app.use('/', router);
+
+
 
 
 module.exports = app;
