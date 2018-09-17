@@ -1,0 +1,22 @@
+<h1>CREATE ACCOUNT IN MUTHAF*KA</h1>
+
+{{#if errorMessage}}
+<p>Wrong, bitch {{errorMessage}}</p>
+{{/if}}
+<form  action="/auth/signup" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/strength.js"></script>
+<script type="text/javascript" src="/javascripts/script.js"></script>
