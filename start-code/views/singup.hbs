@@ -1,0 +1,16 @@
+<form action="/singup" method="POST" id="form">
+  <h2>Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="obiwan">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="thatsnomoon">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Sing up</button>
+
+</form>
