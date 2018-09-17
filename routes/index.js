@@ -52,6 +52,7 @@ router.post("/login", (req, res, next) => {
 
   Login.findOne({ "user": user})
   .then(user => {
+    console.log(user)
       if (!user) {
         res.render("login", {
           errorMessage: "The username doesn't exist"
