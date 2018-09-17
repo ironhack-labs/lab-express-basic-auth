@@ -30,7 +30,13 @@ router.post("/signup", (req, res, next) => {
       return;
     }
   });
-  let newUser = new User({ username, password });
+
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(password, salt); 
+
+
+
+  const newUser = new User({ username, password: hashPass});
   newUser
     .save()
     .then(() => {
@@ -38,8 +44,8 @@ router.post("/signup", (req, res, next) => {
         successMessage: "User created"
       });
     })
-    .catch(e => {
-      console.log(e);
+    .catch(error => {
+      next(error);
     });
 });
 
