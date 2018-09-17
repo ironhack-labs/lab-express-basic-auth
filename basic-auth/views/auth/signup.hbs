@@ -1,0 +1,13 @@
+<form id="form" action="/signup" method="POST">
+  <label for="username">Username</label><br>
+  <input class="signuser" type="text" name="username" placeholder="AnakinSkywalker" required>
+
+  <br><br>
+  <label for="password">Password</label><br>
+  <input  id="myPassword" class="signpass" type="password" name="password" placeholder="DeathStar" required>
+  <div class="strength"><p></p></div>
+  <br><br>
+  {{errorMessage}}
+
+  <button>Create account</button>
+</form>
