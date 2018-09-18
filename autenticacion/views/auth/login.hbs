@@ -1,0 +1,14 @@
+<h2>Login</h2>
+<form action="/login" method="post">
+  <p>
+    <label for="username"  >Escribe tu nombre de usuario </label>
+    <input type="text" name="username" id="username">
+  </p>
+  <p>
+    <label for="password">Escribe una contraseña</label>
+    <input type="password" name="password" id="password">
+  </p>
+  <input type="submit" value="Login">
+  <p>Si no tienes cuenta <a href="/signup">click aqui</a></p>
+</form>
+<p>{{error}} </p>
