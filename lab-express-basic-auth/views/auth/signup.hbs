@@ -1,0 +1,30 @@
+<form action="/" method="post" >
+
+
+<p><label for="username">Escribe tu nombre de Usuario:</label>
+<input type="text"  name="username" id="username" value="{{userinput.username}}" >
+</p>
+
+<p>
+  <label for="password">Escribe una contraseña segura:</label>
+  <input type="password" name="password" id="password" value="{{userinput.password}}" >
+</p>
+
+<p>
+  <label for="password2">Repite tu contraseña:</label>
+  <input type="password" name="password2" id="password2" value="{{userinput.password2}}" >
+</p>
+
+<input type="submit" value="Registrate">
+
+
+
+</form>
+
+
+<h3>Already have an account ? <a href="./login"> Login</a></h3>
+
+
+<p>{{error}}</p>
+<p>{{warning}}</p>
+<p>{{suggestions.[0]}}</p>
