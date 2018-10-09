@@ -1,0 +1,7 @@
+<h1>Current user</h1>
+
+{{#if current.username}}
+  <a href="/user/{{current.username}}">{{current.username}}</a>
+  {{else}}
+  <p>No user logged in</p>
+{{/if}}

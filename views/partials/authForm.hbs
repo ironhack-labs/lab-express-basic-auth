@@ -1,0 +1,22 @@
+<form
+  {{#if signup}}
+    action="/signup"
+    {{else if login}}
+      action="/login"
+  {{/if}}
+method="POST" enctype="application/x-www-form-urlencoded">
+  <input type="text" placeholder="&ensp;Username" name="username" required>
+  <br>
+  <input type="password" placeholder="&ensp;Password" name="password" required id="passForm">
+  <br>
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
+  <button type="submit">
+    {{#if signup}}
+      Register
+      {{else if login}}
+        Log in
+    {{/if}}
+  </button>
+</form>
