@@ -8,7 +8,7 @@ const bcryptSalt = 10;
 /* GET home page */
 
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('home');
 });
 
 
@@ -29,6 +29,47 @@ router.post("/signup", (req, res, next) => {
 
   newUser.save((err) => {
     res.redirect("/");
+
+  });
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+router.post("/login", (req, res, next) => {
+  const name = req.body.name;
+  const password = req.body.password;
+
+  if (name === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Coloca un usuario"
+    });
+    return;
+  }
+
+  User.findOne({ "name": name }, (err, user) => {
+      if (err || !user) {
+        res.render("/login", {
+          errorMessage: "El usuario no existe"
+        });
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("/login", {
+          errorMessage: "Password incorrecto"
+        });
+      }
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
   });
 });
 

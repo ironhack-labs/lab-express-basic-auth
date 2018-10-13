@@ -1,0 +1,20 @@
+<form action="/login" method="POST" id="form">
+  <h2>Ingresa aqui!</h2>
+
+  <label for="name">Nombre de usuario</label>
+  <input type="text" name="name" placeholder="Coloca tu nombre de usuario">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Ahora tu contraseña">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button class="button">Ingresa ya!</button>
+
+  <p class="account-message">
+    Aún no tienes una cuenta? <a href="/signup">Creala ya!</a>
+  </p>
+</form>
+
