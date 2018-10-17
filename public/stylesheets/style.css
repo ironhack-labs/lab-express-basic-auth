@@ -26,7 +26,16 @@ nav a{
   width: 50%;
   margin: 0 auto;
 }
+.formulario{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.formulario form{
+  display: flex;
+  flex-direction: row;
+}
 /* CSS Document */
 
 .strength_meter{
