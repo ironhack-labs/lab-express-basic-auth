@@ -1,0 +1,12 @@
+<h1>Log in</h1>
+<form action="/users/login" method="post">
+  <label for="Username">Username</label>
+  <input type="text" name="username">
+  <label for="Username">Password</label>
+  <input type="password" name="password">
+  <input type="submit" value="Create account">
+</form>
+<% if (error) { %>
+ <p><%= error %><p>
+<% } %>
+ 

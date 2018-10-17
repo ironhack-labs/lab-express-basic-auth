@@ -1,0 +1,27 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Intranet Ironhack</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/strength.js"></script>
+  <script type="text/javascript" src="/javascripts/js.js"></script>
+</head>
+
+<body>
+  <nav>
+  <% if(user){ %>
+    <p> Bienvenido SR. <%= user.username %> </p>
+  <%} else{ %>
+  <a href="/users/signup"> Sign Up</a>
+  <a href="/users/login"> Log In</a>
+ <% } %> 
+  </nav>
+  <%- body  %> 
+ 
+</body>
+</html>

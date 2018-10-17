@@ -1,0 +1,15 @@
+<h1>Signup</h1>
+<form action="/users/signup" method="post">
+  <label for="Username">Username</label>
+  <input type="text" name="username">
+  <label for="Username">Password</label>
+  <input type="password" name="password"  id="myPassword">
+ 
+  <input type="submit" value="Create account">
+</form>
+<% if (error) { %>
+ <p><%= error %><p>
+<% } %>
+<p>Already have an account? <a href="/users/login"> Login</a>
+ 
+<script src="/javascripts/main.js"></script>
