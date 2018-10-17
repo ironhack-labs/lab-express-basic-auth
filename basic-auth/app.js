@@ -4,8 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-//const session = require('express-session');
-//const MongoStore = require('connect-mongo')/*(session)*/;
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const authRouter = require('./routes/auth');
 
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*app.use(session({
+app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
@@ -38,7 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
   }
-}));*/
+}));
+
+app.use((req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
+  res.locals.currentUser = req.session.currentUser;
+  next();
+ });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
