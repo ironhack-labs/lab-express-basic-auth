@@ -1,47 +1,34 @@
-![](https://i.imgur.com/1QgrNNw.png)
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# PP | Basic Auth
+# Basic Auth
 
-## Learning Goals
-
-After this learning unit, you will be able to:
-
-- Implement basic authorization, using Express, BCrypt, Mongo, and Mongoose.
-- Implement basic authentication, using Express, BCrypt, Mongo, and Mongoose.
-- Handle server-side errors.
-- Validate fields on the client side.
-- Create a *protected* route.
-
-## Requirements
-
-- [Fork this repo](https://guides.github.com/activities/forking/)
-- Clone this repo into your `~/code/labs/` folder
-
-## Submission
-
-Upon completion, run the following commands:
-
-```bash
-$ git add .
-$ git commit -m "done"
-$ git push origin master
-```
-
-Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
-
-In the Pull Request name, add your Campus city, your name, and your last name separated by a dash.
-
-## Deliverables
-
-Please, push every file needed to make your app properly to Github before creating the pull request.
 
 ## Introduction
 
-In this Pair Programming exercise, we are going to create a project where we will have all the basic authorization and authentication processes and features that you would in a real application.
+In this exercise, we are going to create a project where we will have all the basic authorization and authentication processes and features that you would in a real application.
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_044a7b23c9b4cf082e1c4fadcd12d308.png)
 
-Go ahead and generate a new project using Ironhack Generator.
+
+## Requirements
+
+- Fork this repo
+- Clone this repo
+
+## Submission
+
+- Upon completion, run the following commands:
+
+  ```
+  git add .
+  git commit -m "done"
+  git push origin master
+  ```
+
+- Create Pull Request so your TAs can check up your work.
+
+
+## Instructions
 
 ## Iteration 1 - Sign Up
 
@@ -76,7 +63,7 @@ Let's create two different routes protected by authentication:
 
 Create the views and add the middleware configuration to avoid accessing these routes without being authenticated.
 
-## Bonus - Front-End validations
+## Bonus - Frontend validations
 
 Let's add validations to our forms. Remember we have two different forms: sign up and login.
 
@@ -94,11 +81,10 @@ Once finished, the result should be something like this:
 
 This is a very common and helpful feature for users, as many do not know anything about password strength.
 
-## Summary
-
-Once you are done with this exercise, you will have an excellent [boilerplate](https://en.wikipedia.org/wiki/Boilerplate_code) that will include the basics of authorization and authentication.
 
 ## Extra Resources
 
-- [Boilerplate](https://en.wikipedia.org/wiki/Boilerplate_code)
 - [HTML5 Form Validations](http://www.the-art-of-web.com/html/html5-form-validation/)
+
+
+Happy coding! :heart:
