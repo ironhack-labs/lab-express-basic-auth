@@ -1,0 +1,18 @@
+<form id="form" action="/signup" method="POST" class="text-center form-group">
+  <h2>Sign Up</h2>
+  <label for="username">Username</label>
+  <input type="text" class="form-control" name="username" placeholder="Ray Charles">
+
+  <label for="password">Password</label>
+  <input id="pass" type="password" class="form-control" name="password" placeholder="myBlindHorse" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+  {{#if errorMessage }}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button type="submit">Create Account</button>
+</form>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/strength.js"></script>
+<script type="text/javascript" src="/javascripts/js.js"></script>
