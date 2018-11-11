@@ -1,0 +1,9 @@
+{{#if errorMessage}}
+    <div>{{errorMessage}}</div>
+{{/if}}
+
+<form action="/signup" method="POST">
+    <input name="username" type="text" placeholder="AnakinSkywalker" required>
+    <input name="password" type="password" placeholder="******" required>
+    <button>Sign Up</button>
+</form>
