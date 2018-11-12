@@ -2,10 +2,10 @@
   <form id="form" action="/signup" method="POST">
     <h2>Signup</h2>
     <label for="username">Username</label><br>
-    <input type="text" name="username" placeholder="AnakinSkywalker" min="4" max="10"  required>
+    <input type="text" name="username" placeholder="AnakinSkywalker" minlength=4  required>
 
     <label for="password">Password</label><br>
-    <input id="myPassword" type="password" name="password" placeholder="DeathStar" required>
+    <input id="myPassword" type="password" name="password" placeholder="DeathStar" minlength=6 required>
 
     {{#if errorMessage}}
     <div class="error-message">{{ errorMessage }}</div>

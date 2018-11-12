@@ -22,7 +22,7 @@ router.post("/signup", (req, res, next) => {
     .then(user => {
       if (user != null) {
         res.render("auth/signup", {
-          errorMessage: "Oh man... this usernam is taken already. Try other."
+          errorMessage: "Oh man... this username is taken already. Try other."
         });
         return;
       }
