@@ -1,19 +1,21 @@
-<form action="/login" method="POST" id="form">
-  <h2>Login</h2>
+<div class="auth-form">
+  <form action="/login" method="POST" id="form">
+    <h2>Login</h2>
 
-  <label for="username">Username</label>
-  <input type="text" name="username" placeholder="obiwan" required  min="4" max="10">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="obiwan" min="4" max="10"  required>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="thatsnomoon" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="thatsnomoon" required>
 
-  {{#if errorMessage }}
+    {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
+    {{/if}}
 
-  <button>Sign in</button>
+    <button>Sign in</button>
 
-  <p class="account-message">
-    Don't have an account? <a href="/signup">Sign up</a>
-  </p>
-</form>
+    <p class="account-message">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+  </form>
+</div>

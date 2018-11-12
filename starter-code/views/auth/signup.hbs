@@ -1,15 +1,18 @@
+<div class="auth-form">
   <form id="form" action="/signup" method="POST">
+    <h2>Signup</h2>
     <label for="username">Username</label><br>
-    <input type="text" name="username"
-      placeholder="AnakinSkywalker" min="4" max="10" required>
+    <input type="text" name="username" placeholder="AnakinSkywalker" min="4" max="10"  required>
 
-    <label for="password" >Password</label><br>
-    <input id="myPassword" type="password" name="password"
-      placeholder="DeathStar" required>
+    <label for="password">Password</label><br>
+    <input id="myPassword" type="password" name="password" placeholder="DeathStar" required>
 
-  {{#if errorMessage}}
-  <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
-
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
     <button>Create account</button>
+    <p class="account-message">
+      Already have an account? <a href="/login">Sign in</a>
+    </p>
   </form>
+</div>

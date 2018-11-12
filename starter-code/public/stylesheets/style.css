@@ -1,8 +1,123 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+  background-color: rgba(128, 128, 128, 0.123);
+  height: 950px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 a {
   color: #00B7FF; }
+
+.auth-form {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 80px;
+  background-color: #fff;
+  border: 1px solid rgba(128, 128, 128, 0.329);
+  border-radius: 10px;
+}
+
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 20px 10px;
+  line-height: 2em;
+}
+
+.auth-form input, input:active, button, .error-message  {
+  margin-bottom: 20px;
+  border-radius: 2px;
+  border: 1px solid rgba(128, 128, 128, 0.329);
+  padding: 10px;
+}
+
+.auth-form input:valid {
+  border: 2.5px solid #00B7FF;
+}
+
+.auth-form button {
+  align-self: center;
+  width: 33%;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.705);
+  border: 2.5px solid rgba(0, 0, 0, 0.703);
+  transition: background-color 0.5;
+}
+
+.auth-form button:active {
+  border: 2.5px solid rgba(128, 128, 128, 0.329);
+}
+
+.auth-form button:hover {
+  color: #00B7FF;
+}
+
+.auth-form h2 {
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.703);
+}
+
+.auth-form label, p, button, .error-message  {
+  font-size: 1.25em;
+  color: rgba(0, 0, 0, 0.703);
+  font-weight: 500;
+}
+
+.error-message {
+  background-color: #ffbe91;
+  border: none;
+  font-weight: 600;
+}
+
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
+  right: 0;
+  left: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.nav form {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  float: right;
+  margin: 0;
+  margin-right: 10px;
+  width: 100px;
+}
+.nav button {
+  margin: 10px;
+  border-color: transparent;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.nav .logout {
+  float: left;
+}
+
+.index {
+  margin: 80px;
+  padding-top: 50px;
+  text-align: center;
+  width: 100%;
+}
 
 /*# sourceMappingURL=style.css.map */

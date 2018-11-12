@@ -11,76 +11,83 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
 
-    if (username === "" || password === "") {
-        res.render("auth/signup", {
-            errorMessage: "Ops! You forgot to type the Username or Password."
-        });
-        return;
-    }
+  if (username === "" || password === "") {
+    res.render("auth/signup", {
+      errorMessage: "Ops! You forgot to type the Username or Password."
+    });
+    return;
+  }
 
-    User.findOne({ "username": username })
+  User.findOne({ username: username })
     .then(user => {
-        if (user != null) {
+      if (user != null) {
         res.render("auth/signup", {
-            errorMessage: "Oh man... this usernam is taken already. Try other."
+          errorMessage: "Oh man... this usernam is taken already. Try other."
         });
         return;
-        }
-        const salt = bcrypt.genSaltSync(bcryptSalt);
-        const hashPass = bcrypt.hashSync(password, salt);
+      }
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-        const newUser = User({
-            username,
-            password: hashPass
-          });
-          newUser
-            .save()
-            .then(user => {
-              res.redirect("/");
+      const newUser = User({
+        username,
+        password: hashPass
+      });
+      newUser
+        .save()
+        .then(user => {
+          res.redirect("/");
         })
         .catch(error => {
-            next(error);
-        })
+          next(error);
+        });
     })
     .catch(error => {
-        next(error);
+      next(error);
     });
 });
 
 router.get("/login", (req, res, next) => {
-    res.render("auth/login");
+  res.render("auth/login");
 });
 
 router.post("/login", (req, res, next) => {
-    const { username, password } = req.body;
-  
-    if (username === "" || password === "") {
-      res.render("auth/login", {
-        errorMessage: "Indicate a username and a password to sign up"
-      });
-      return;
-    }
-  
-    User.findOne({ "username": username })
+  const { username, password } = req.body;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+    return;
+  }
+
+  User.findOne({ username: username })
     .then(user => {
-        if (!user) {
-          res.render("auth/login", {
-            errorMessage: "The username doesn't exist"
-          });
-          return;
-        }
-        if (bcrypt.compareSync(password, user.password)) {
-          req.session.currentUser = user;
-          res.redirect("/");
-        } else {
-          res.render("auth/login", {
-            errorMessage: "Incorrect password"
-          });
-        }
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
     })
     .catch(error => {
-      next(error)
-    })
+      next(error);
+    });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
   });
+});
 
 module.exports = router;
