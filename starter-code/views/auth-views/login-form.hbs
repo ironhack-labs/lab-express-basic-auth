@@ -1,0 +1,29 @@
+<div class="global-ctn">
+	
+
+<div class="form-ctn">
+
+
+<h2>Log in</h2>
+
+{{>flash_messages}}
+
+	<form action="/process-login" method="POST">
+		<label>
+			Username:
+			<input type="text" name="userName">
+		</label>
+
+		<label>
+			Password:
+			<input class="pwd" type="password" name="originalPassword">
+		</label>
+
+
+		<button>Log in</button>
+	</form>
+
+	<p>Don't have an account ? <a href="/signup">Sign up</a></p>
+</div>
+</div>
+
