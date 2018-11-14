@@ -1,0 +1,15 @@
+<h2>Log In</h2>
+
+{{> flash_messages
+}}
+<form action="/process-login" method="POST">
+<label>
+  User Name:
+  <input type="text" name="userName" placeholder="User Name">
+</label>
+<label>
+  Password:
+  <input type="password" name="originalPassword" placeholder="It's a secret">
+</label>
+<button>Log In!</button>
+</form>

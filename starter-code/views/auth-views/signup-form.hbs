@@ -1,0 +1,19 @@
+<h2>Sign Up</h2>
+
+{{> flash_messages}}
+
+<form action="/process-signup" method="POST" class="signup-form">
+  <label>
+    <p>Your User Name:</p>
+    <input type="text" name="userName" placeholder="User Name">
+  </label>
+  <label>
+    <p>Password:</p>
+    <input id="myPassword" type="password" name="originalPassword" placeholder="It's a secret">
+  </label>
+
+  <button class="signup-btn">Sign Up</button>
+
+  <p>Already have an account? <a href="/login">Log In</a>.</p>
+</form>
+

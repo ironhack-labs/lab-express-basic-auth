@@ -6,3 +6,42 @@ body {
 a {
   color: #00B7FF;
 }
+
+h1 {
+  color: deeppink;
+}
+
+h2 { 
+  color: blueviolet;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  text-align: center;
+}
+
+.signup-form > input {
+width: 400px;
+}
+
+.signup-form > label {
+  width: 400px;
+}
+
+.button_strength {
+  display: block;
+   width: 400px;
+}
+
+.strength_meter {
+  width: 400px;
+  background-color: tomato;
+}
+
+.signup-btn {
+  width: 100px;
+  border-radius: 5px;
+}
