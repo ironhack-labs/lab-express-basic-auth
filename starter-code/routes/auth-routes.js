@@ -74,7 +74,7 @@ router.get("/main", (req, res, next) => {
 
 router.get("/private", (req, res, next) => {
   if (req.session.isLogged) {
-    res.render("auth-views/main");
+    res.render("auth-views/private");
   }
   else {
     req.flash("error", "You've got to be logged in to see this page. 🛑")
