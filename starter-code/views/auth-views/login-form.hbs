@@ -1,0 +1,15 @@
+<h2>Log In</h2>
+
+{{> flashms}}
+
+<form action="/process-login" method="POST">
+  <label>
+    Username: <input type="text" name="username" placeholder="Type your username...">
+  </label>
+
+  <label>
+    Password: <input type="password" name="originalPassword" placeholder="Password...">
+  </label>
+
+  <button>Log In</button>
+</form>

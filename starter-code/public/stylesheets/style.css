@@ -1,11 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .error-message {
   border: 3px solid;
@@ -13,8 +11,7 @@ a {
   color: tomato;
   padding: 10px;
   width: 300px;
-  margin: 10px 0px;
-}
+  margin: 10px 0px; }
 
 .success-message {
   border: 3px solid;
@@ -22,5 +19,6 @@ a {
   color: chartreuse;
   padding: 10px;
   width: 300px;
-  margin: 10px 0px;
-}
+  margin: 10px 0px; }
+
+/*# sourceMappingURL=style.css.map */
