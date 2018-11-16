@@ -39,23 +39,38 @@ router.post('/signup', (req, res, next) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
+  if (myUser == "" || hashedPassword == "") res.redirect('/signup');
+
   genericUser.username = myUser;
   genericUser.password = hashedPassword;
 
-  if (!genericUser.username) {
-    return res.redirect('/signup');
-  } else if ( User.find({ username: genericUser.username } == true)) {
-    return res.redirect('/signup');
-  } else {
-    genericUser.save()
-      .then(() => {
-        console.log(req.session.InSession);
-        req.session.InSession = true;
-        res.redirect('/');
-      })
-  }
+  genericUser.save()
+    .then(() => {
+      console.log(req.session.InSession);
+      req.session.InSession = true;
+      res.redirect('/');
+    })
 });
 
 router.get('/login', (req, res, next) => res.render('login'));
+
+router.post('/login', (req, res, next) => {
+  if (req.body.username == "" || req.body.password == "") res.redirect('/login');
+  User.findOne({
+    username: req.body.username
+  })
+    .then((found) => {
+      const matches = bcrypt.compareSync(req.body.password, found.password)
+
+      if (matches) {
+        req.session.InSession = true;
+        req.session.user = req.body.username;
+        res.redirect('/')
+      } else {
+        req.session.InSession = false;
+        res.redirect('/login');
+      }
+    })
+})
 
 module.exports = router;
