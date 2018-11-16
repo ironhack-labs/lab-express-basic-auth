@@ -13,7 +13,7 @@ const session = require("express-session");
 const router = express.Router();
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
-const User = require("./models/user");
+const User = require("./models/User");
 const genericUser = new User();
 
 
