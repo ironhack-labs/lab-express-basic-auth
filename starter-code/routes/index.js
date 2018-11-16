@@ -32,6 +32,7 @@ router.use(session({
   }),
 }));
 
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -115,6 +116,22 @@ router.post("/login", (req, res, next) => {
   .catch(error => {
     next(error)
   })
+});
+
+router.get('/main', (req, res) => {
+  res.render('main');
+});
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+		res.redirect('/login')
+  }
+});
+
+router.get('/private', (req, res) => {
+  res.render('private');
 });
 
 module.exports = router;
