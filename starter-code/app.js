@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+// const port         = 3000;
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -14,6 +15,7 @@ mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    console.log("hola")
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)
@@ -44,6 +46,41 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//añadido por nosotros
+app.get('/success', (req, res) => {
+  if (req.session.inSession) {
+    const sessionData = { ...req.session  };
+    res.render('success', {
+      sessionData,
+    });
+  } else {
+    res.render('404');
+  }
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', (req, res) => {
+  User.findOne({
+    user: req.body.user,
+  }).then((found) => {
+    const matches = bcrypt.compareSync(req.body.password, found.password);
+
+    if (matches) {
+      req.session.inSession = true;
+      req.session.user = req.body.user;
+
+      res.redirect('success');
+    } else {
+      req.session.inSession = false;
+      res.redirect('login');
+    }
+  });
+});
+
+// fin añadido por nosotros
 
 
 // default value for title local
