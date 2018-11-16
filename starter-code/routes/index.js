@@ -27,7 +27,13 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/signup', (req, res, next) => res.render('signup'));
+router.get('/signup', (req, res, next) => {
+  if (!req.session.InSession) {
+    res.render('signup');
+  } else {
+    res.redirect('/');
+  }
+})
 
 router.post('/signup', (req, res, next) => {
   const saltRounds = 5;
@@ -52,7 +58,13 @@ router.post('/signup', (req, res, next) => {
     })
 });
 
-router.get('/login', (req, res, next) => res.render('login'));
+router.get('/login', (req, res, next) => {
+  if (!req.session.InSession) {
+    res.render('login');
+  } else {
+    res.redirect('/');
+  }
+})
 
 router.post('/login', (req, res, next) => {
   if (req.body.username == "" || req.body.password == "") res.redirect('/login');
@@ -71,6 +83,28 @@ router.post('/login', (req, res, next) => {
         res.redirect('/login');
       }
     })
+})
+
+router.get('/private', (req, res, next) => {
+  if (req.session.InSession) {
+    res.render('private');
+  } else {
+    res.redirect('/');
+  }
+})
+
+router.get('/main', (req, res, next) => {
+  if (req.session.InSession) {
+    res.render('main');
+  } else {
+    res.redirect('/');
+  }
+})
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect('/');
+  })
 })
 
 module.exports = router;
