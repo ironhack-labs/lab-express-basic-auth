@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
 			req.session.inSession = true
 			req.session.user = req.body.user
 
-			res.redirect('private')
+			res.redirect('main')
 		} else {
 			req.session.inSession = false
 			res.redirect('login')
@@ -86,19 +86,34 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/private',(req,res)=>{
-	if (req.session.inSession) {
-		let sessionData = { ...req.session
-		}
-		res.render('private', {
-			sessionData
-		})
-	} else {
-		res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to sign up"
-    });
-	}
+	
+  checkSession(req.session, res,'private');
+
 })
 
+router.get('/main',(req,res)=>{
+	
+  checkSession(req.session, res,'main');
+
+})
+
+router.get('/logout',(req,res)=>{
+  req.session.destroy(()=>{
+    res.redirect('login');
+  })
+
+})
+let checkSession = (reqSession,res, page) => {
+  if (reqSession.inSession){
+    let sessionData = {...reqSession}
+    res.render(page,{sessionData});
+  }
+  else{
+    res.render(`login`, {
+          errorMessage: "You must be logged to access this page"
+        });
+  }
+}
 
 
 module.exports = router;
