@@ -4,5 +4,10 @@ body {
 
 a {
   color: #00B7FF; }
+#signup-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 
 /*# sourceMappingURL=style.css.map */

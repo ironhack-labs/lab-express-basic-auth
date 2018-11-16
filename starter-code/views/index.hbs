@@ -1,9 +1,12 @@
-<h1>Signup</h1>
-<form action="/createUser" method="post">
+<div id="signup-container">
+  <h1>Signup</h1>
+  <form action="/createUser" method="post">
     <h2>Username</h2>
-	<input type="text" name="user" placeholder="user"  autocomplete="username">
+    <input type="text" name="user" placeholder="user" required="required" autocomplete="username">
     <h2>Password</h2>
-	<input type="password" name="password" placeholder="pwd" autocomplete="current-password">
+    <input type="password" name="password" placeholder="pwd" required="required" autocomplete="current-password">
     <a href="">Show Password</a>
-	<input type="submit" value="Create account" >
-</form>
+    <input type="submit" value="Create account">
+    <p>Already have an acount?<a href="/login">Login</a></p>
+  </form>
+</div>
