@@ -1,0 +1,10 @@
+
+{{#if errorMessage}}
+  <div>{{ errorMessage }}</div>
+{{/if}}
+
+<form action="/signup" method="post">
+	<input type="text" name="user" autocomplete="username">
+	<input type="password" name="password" autocomplete="current-password">
+	<input type="submit" value="Login">
+</form>
