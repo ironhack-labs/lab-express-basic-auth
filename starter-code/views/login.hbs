@@ -1,6 +1,8 @@
-{{#if errorMessage}}
-  <div>{{ errorMessage }}</div>
-{{/if}}
+<div>
+  {{#if errorMessage}}
+    {{ errorMessage }}
+  {{/if}}
+</div>
 
 <form action="/login" method="post">
 	<input type="text" name="user" value="" autocomplete="username">
