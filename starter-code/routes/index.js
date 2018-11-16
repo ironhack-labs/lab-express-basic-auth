@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
+const MongoStore = require("connect-mongo")(session);
 
 const User = require ('../models/User');
 const mongoose = require ('mongoose');
@@ -15,7 +17,7 @@ router.post('/', (req, res, next) => {
   let name= req.body.user;
   let password = req.body.password
   if (name === "" || password === "") {
-    res.render("auth/login", {
+    res.render("index", {
       errorMessage: "Indicate a username and a password to sign up"
     });
     return;
@@ -28,30 +30,75 @@ router.post('/', (req, res, next) => {
         console.log('An error happened:', err);
       })
       .then((user) => {
-        console.log('The user has been saved', user.name)
+        console.log('The user has been saved', user.name);
+        res.redirect('/login');
       });
 
 });
 
 
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
 
-// app.post('/login', function (req, res) {
-// 	User.findOne({
-// 		user: req.body.user
-// 	}).then(found => {
-// 		const matches = bcrypt.compareSync(req.body.password, found.password)
 
-// 		if (matches) {
-// 			req.session.inSession = true
-// 			req.session.user = req.body.user
+router.use(session({
+	secret: "basic-auth-secret",
+	cookie: {
+		maxAge: 60000
+	},
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection,
+		ttl: 24 * 60 * 60 // 1 day
+	})
+}));
 
-// 			res.redirect('secret')
-// 		} else {
-// 			req.session.inSession = false
-// 			res.redirect('login')
-// 		}
-// 	})
-// })
+router.post('/login', (req, res) => {
+  let name= req.body.user;
+  let password = req.body.password
+  if (name === "" || password === "") {
+    res.render("login", {
+      errorMessage: "Indicate a username and a password to login"
+    });
+    return;
+  }
+	User.findOne({
+		name: req.body.user
+	}).then(found => {
+		const matches = bcrypt.compareSync( req.body.password, found.password)
+
+		if (matches) {
+			req.session.inSession = true
+			req.session.user = req.body.user
+
+			res.redirect('private')
+		} else {
+			req.session.inSession = false
+			res.redirect('login')
+		}
+  })
+  .catch(()=>{
+    res.render("auth/login", {
+      errorMessage: "Invalid username"
+    });
+    return;
+  })
+})
+
+router.get('/private',(req,res)=>{
+	if (req.session.inSession) {
+		let sessionData = { ...req.session
+		}
+		res.render('private', {
+			sessionData
+		})
+	} else {
+		res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+	}
+})
+
 
 
 module.exports = router;
