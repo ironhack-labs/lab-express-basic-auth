@@ -4,10 +4,22 @@ body {
 
 a {
   color: #00B7FF; }
+
+  /* .index-div{
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    width: 100%;
+    height: 100%;
+  } */
 #signup-container{
+  width: 40%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
