@@ -16,19 +16,30 @@ router.get('/login', (req, res, next) => {
 router.get('/error', (req, res, next) => {
   res.render('error');
 });
-// router.get('/secret', (req, res, next) => {
+// router.get('/private', (req, res, next) => {
 //   res.render('secret');
 // });
 
-router.get('/secret', (req, res) => {
+router.get('/private', (req, res) => {
   if (req.session.inSession) {
     const sessionData = { ...req.session  };
-    res.render('secret', {
+    res.render('private', {
       sessionData,
     });
   } else {
-    res.render('404');
+    res.render('main');
   }
+});
+
+router.get('/main', (req, res) => {
+    res.render('main');
+});
+
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    // req.session = null;
+    res.redirect('/');
+  });
 });
 
 
@@ -75,13 +86,15 @@ router.post('/login', (req, res, next) => {
       if (match) {
         req.session.inSession = true;
         req.session.user = req.body.user;
-        res.redirect('secret');
+        res.redirect('private');
       } else {
         req.session.inSession = false;
         res.redirect('login');
       }
     })
 });
+
+
 
 
 
