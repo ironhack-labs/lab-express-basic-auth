@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<form action="/signUp" method="post">
+	<input type="text" name="username" value="" autocomplete="username">
+	<input type="password" name="password" value="" autocomplete="current-password">
+	<input type="submit" value="sign up">
+</form>
+
+{{errorMessage}}
