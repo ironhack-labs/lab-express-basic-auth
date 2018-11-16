@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="login">
+  <h1>SignUp</h1>
+  <form action="/createdUser" method="post">
+  <p>Username</p>
+	<input id="user" type="text" name="user" value="" autocomplete="username"><br><br>
+  <p>Password</p>
+	<input id="pass" type="password" name="password" value="" autocomplete="current-password"><br><br>
+	<input id="button" type="submit" value="Create account">
+</form>
+<p>Already hava an account? <a href="">Login</a></p>
+</div>

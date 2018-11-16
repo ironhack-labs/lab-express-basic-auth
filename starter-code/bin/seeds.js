@@ -4,7 +4,7 @@ const User = require('../model/user');
 
 
 mongoose
-.connect('mongodb://localhost/usersLogin', {useNewUrlParser: true})
+.connect('mongodb://localhost/usersDB', {useNewUrlParser: true})
 .then(x => {
   console.log(`Connected to Mongo!`)
 })

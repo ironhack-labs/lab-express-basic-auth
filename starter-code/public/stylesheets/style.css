@@ -1,33 +1,29 @@
 body {
-  // padding: 50px;
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
-  margin-top: 15%;
-}
+  margin-top: 15%; }
 
 a {
-  color: #00B7FF;
-}
-.login{
-  text-align: center;
-}
+  color: #00B7FF; }
 
-#user{
+.login {
+  text-align: center; }
+
+#user {
   width: 300px;
   height: 35px;
-  font-size: 20px;
-}
-#pass{
+  font-size: 20px; }
+
+#pass {
   width: 300px;
   height: 35px;
-  font-size: 20px;
+  font-size: 20px; }
 
-}
-#button{
+#button {
   width: 150px;
-  height: 35px;
+  height: 35px; }
 
-}
+/*# sourceMappingURL=style.css.map */
