@@ -1,14 +1,16 @@
 <div class="index-div">
-<div id="signup-container">
-  <h1>Signup</h1>
-  <form action="/createUser" method="post">
-    <h2>Username</h2>
-    <input type="text" name="user" placeholder="user" required="required" autocomplete="username">
-    <h2>Password</h2>
-    <input type="password" name="password" placeholder="pwd" required="required" autocomplete="current-password">
-    <br><a href="">Show Password</a>
-    <br><input type="submit" value="Create account">
-    <p>Already have an acount?<a href="/login">Login</a></p>
-  </form>
+    <div id="signup-container">
+        <h1><span>Signup</span></h1>
+        <form id="myform" action="/createUser" method="post" accept-charset="utf-8">
+            <br>
+
+            <h2>Username</h2>
+            <input type="text" name="user" placeholder="user" required="required" autocomplete="username">
+            <h2>Password</h2>
+            <input id="myPassword" type="password" name="password" placeholder="pwd" required="required" autocomplete="current-password">
+            <br><input id="submit" type="submit" value="Create account">
+            <p>Already have an acount?   <a href="/login">  Login</a> </p>
+        </form>
+    </div>
 </div>
-</div>
+

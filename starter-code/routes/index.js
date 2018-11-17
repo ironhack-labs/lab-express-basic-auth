@@ -4,16 +4,18 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const genericUser = new User();
 
-// router.use((req, res, next) => {
-// 	if (req.session.currentUser) {
-// 		next();
-// 	} else {
-// 		res.redirect("/login");
-// 	}
-// });
+router.use((req, res, next) => {
+	if (req.session.inSession) {
+		next();
+	} else {
+		res.redirect("/login");
+	}
+});
 
 /* GET home page */
 router.get('/', (req, res, next) => {
+    req.session.inSession = false;
+    console.log(req.session.inSession)
     res.render('index');
 });
 /* GET login page */
