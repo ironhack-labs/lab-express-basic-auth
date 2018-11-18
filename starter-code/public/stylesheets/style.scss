@@ -14,13 +14,23 @@ button, button:focus :focus {
   width: 80%;
   height: 100%;
   margin: 0 auto;
+  margin-top: -4em;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  #form {
+  h1 {
+    font-weight: bold;
+    font-size: calc(1.8vh + 1.8vw + 1.8em);
+  }
+  h2 {
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-decoration: underline;
+  }
+  form {
     width: 25em;
-    margin-top: -4em;
+    position: relative;
     label {
       color: #666;
       display: inline-block;
@@ -35,6 +45,7 @@ button, button:focus :focus {
     }
     input, button {
       box-sizing: border-box;
+      background:transparent;
       font-size: 14px;
       outline: 0;
       padding: .5em 1em;
@@ -44,8 +55,6 @@ button, button:focus :focus {
       border-radius: 2em;
     }
     button {
-      background: #43a3e6;
-      border: 1px solid #43a3e6;
       border-radius: 2em;
       color: #fff;
       cursor: pointer;
@@ -54,16 +63,35 @@ button, button:focus :focus {
       font-weight: bold;
       padding: 8px 16px;
       margin-top: 1.5em;
+      margin-bottom: .7em;
       text-decoration: none;
       text-transform: uppercase;
       transition: .3s ease background;
       width: 100%;
       &:hover {
-        background: #fff;
-        color: #43a3e6;
         transition: .3s ease background;
       }
+      &.signupBut {
+        background: #43a3e6;
+        border: 2px solid #43a3e6;
+        &:hover {
+          background: #fff;
+          color: #43a3e6;
+        }
+      }
+      &.loginBut {
+        background: #00a388;
+        border: 2px solid #00a388;
+        &:hover {
+          background: #fff;
+          color: #00a388;
+        }
+      }
     }
+  }
+  .account-message {
+    font-size: .7em;
+    text-align: center;
   }
 }
 
@@ -74,4 +102,83 @@ button, button:focus :focus {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+
+.strength_meter {
+  position: absolute;
+  left: 0px;
+  top: 118px;
+  width: 100%;
+  z-index: -1;
+  border-radius: 5px;
+  div {
+    width: 0%;
+    height: 32px;
+    text-align: right;
+    color: #000;
+    line-height: 32px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    padding: 0 1em;
+    border-radius: 2em;
+    p {
+      position: absolute;
+      top: 22px;
+      right: 0px;
+      color: #FFF;
+      font-size:13px;
+    }
+  }
+}
+
+.button_strength {
+  text-decoration: none;
+  color: #43a3e6;
+  font-size: 13px;
+  opacity: 1;
+  &:hover {
+    text-decoration: none;
+    opacity: .5;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+}
+
+.veryweak{
+  background-color: #FFA0A0;
+  border-color: #F04040!important;
+  width:33%!important;
+}
+.weak{
+  background-color: #FFB78C;
+  border-color: #FF853C!important;
+  width:50%!important;
+}
+.medium{
+  background-color: #FFEC8B;
+  border-color: #FC0!important;
+  width:75%!important;
+}
+.strong{
+  background-color: #C3FF88;
+  border-color: #8DFF1C!important;
+  width:100%!important;
+}
+h1{
+  color:white;
+  font-size:50px;
+  text-align:center;
+  padding-top:30px;
+  margin-bottom:20px;
+}
+h1 span{
+  font-weight:bold;
+  color:white;
+  opacity:.3;
 }
