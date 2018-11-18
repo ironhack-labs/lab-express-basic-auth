@@ -64,6 +64,9 @@ form button {
   padding: 4px;
   width: 100%; }
 
+#myPassword:valid {
+  background-color: #CEF19E; }
+
 form button {
   display: flex;
   flex-flow: row nowrap;

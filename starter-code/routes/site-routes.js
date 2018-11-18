@@ -2,7 +2,12 @@ const express    = require("express");
 const siteRoutes = express.Router();
 
 siteRoutes.get("/", (req, res, next) => {
-  res.render("home");
+  if(req.session.currentUser==null){
+    res.render("home");
+  } else {
+    res.render("home",req.session.currentUser);
+  }
+  
 });
 
 siteRoutes.use((req, res, next) => {
@@ -14,11 +19,11 @@ siteRoutes.use((req, res, next) => {
 });
 
 siteRoutes.get("/main", (req, res, next) => {
-  res.render("main");
+  res.render("main",req.session.currentUser);
 });
 
 siteRoutes.get("/private", (req, res, next) => {
-  res.render("private");
+  res.render("private",req.session.currentUser);
 });
 
 module.exports = siteRoutes;

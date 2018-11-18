@@ -17,17 +17,27 @@
   <nav>
     <ul class="navbarLinks navStyle">
       <li><a href="/">Home</a></li>
+      {{#if this.username}}
+      <li><a href="/main"><i class="fas fa-unlock-alt"></i> Main</a></li>
+      <li><a href="/private"><i class="fas fa-unlock-alt"></i> Private</a></li>
+      {{else}}
       <li><a href="/main"><i class="fas fa-lock"></i> Main</a></li>
       <li><a href="/private"><i class="fas fa-lock"></i> Private</a></li>
+      {{/if}}
     </ul>
+
+    {{#if this.username}}
+    <p>You are Logged {{this.username}}</p>
+    {{/if}}
+
     <ul class="navbarAuth navStyle">
-      
+      {{#if this.username}}
+      <li><a href="/auth/logout">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+      {{else}}
       <li><a href="/auth/signup">Sign Up <i class="fas fa-user-plus"></i></a></li>
       <li><a href="/auth/login"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
-     
-      
-      <li><a href="/auth/logout">Logout <i class="fas fa-sign-out-alt"></i></a></li>
-      
+      {{/if}}
+
     </ul>
   </nav>
 

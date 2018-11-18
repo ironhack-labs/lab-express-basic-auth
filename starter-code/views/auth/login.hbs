@@ -3,10 +3,10 @@
   <form action="/auth/login" method="POST" id="form">
 
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="obiwan">
+    <input type="text" name="username" placeholder="username" required>
 
     <label for="password">Password</label>
-    <input type="password" name="password" placeholder="thatsnomoon">
+    <input type="password" name="password" placeholder="password" required>
 
     {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>

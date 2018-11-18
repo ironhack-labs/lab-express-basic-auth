@@ -77,6 +77,10 @@ form button {
   width: 100%;
 }
 
+#myPassword:valid{
+  background-color:#CEF19E;
+}
+
 form button {
   display: flex;
   flex-flow: row nowrap;
@@ -110,3 +114,5 @@ form button {
 
   color: #fff;
 }
+
+
