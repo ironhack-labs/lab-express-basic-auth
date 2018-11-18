@@ -1,16 +1,13 @@
 html {
-  background-color: #f8b195;
-}
+  background-color: #f8b195; }
 
 body {
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
   text-decoration: none;
-  color: #355c7d;
-}
+  color: #355c7d; }
 
 nav {
   background-color: #c06c84;
@@ -22,51 +19,42 @@ nav {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-content: center;
-  align-items: center;
-  .navStyle {
+  align-items: center; }
+  nav .navStyle {
     display: flex;
     flex-flow: row nowrap;
     list-style: none;
-    padding: 5px 10px;
-    li {
-      padding-left: 5px;
-    }
-  }
-  .navbarAuth li {
+    padding: 5px 10px; }
+    nav .navStyle li {
+      padding-left: 5px; }
+  nav .navbarAuth li {
     border: 1px solid #355c7d;
     border-radius: 5px;
     padding: 5px 10px;
-    margin-left: 5px;
-  }
-}
+    margin-left: 5px; }
 
 .container {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 70px 20px;
-}
+  padding: 70px 20px; }
 
 form {
   display: flex;
   flex-flow: column nowrap;
-
   width: 350px;
   padding: 20px 20px;
-
   border: 1px solid #c06c84;
   border-radius: 10px;
-  background-color: #c06c84;
-}
+  background-color: #c06c84; }
 
 form label {
   display: flex;
   flex-flow: row;
   justify-content: center;
   color: #355c7d;
-  padding: 10px 10px;
-}
+  padding: 10px 10px; }
 
 form input,
 form button {
@@ -74,8 +62,7 @@ form button {
   font-size: 14px;
   outline: 0;
   padding: 4px;
-  width: 100%;
-}
+  width: 100%; }
 
 form button {
   display: flex;
@@ -85,28 +72,24 @@ form button {
   border: 1px solid #355c7d;
   border-radius: 5px;
   color: #fff;
-
   font-size: 14px;
   padding: 10px 10px;
   margin: 10px 0;
   text-decoration: none;
   text-transform: uppercase;
-  transition: 0.3s ease background;
-  &:hover {
+  transition: 0.3s ease background; }
+  form button:hover {
     background: #c06c84;
     color: #355c7d;
-    transition: 0.3s ease background;
-  }
-}
+    transition: 0.3s ease background; }
 
 .error-message {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-
   padding: 10px 10px;
   margin: 10px 0;
   background: #f67280;
+  color: #fff; }
 
-  color: #fff;
-}
+/*# sourceMappingURL=style.css.map */

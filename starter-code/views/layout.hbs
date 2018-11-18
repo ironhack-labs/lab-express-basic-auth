@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/strength.css" />
+
 </head>
+
 <body>
+  <nav>
+    <ul class="navbarLinks navStyle">
+      <li><a href="/">Home</a></li>
+      <li><a href="/main"><i class="fas fa-lock"></i> Main</a></li>
+      <li><a href="/private"><i class="fas fa-lock"></i> Private</a></li>
+    </ul>
+    <ul class="navbarAuth navStyle">
+      
+      <li><a href="/auth/signup">Sign Up <i class="fas fa-user-plus"></i></a></li>
+      <li><a href="/auth/login"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
+     
+      
+      <li><a href="/auth/logout">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+      
+    </ul>
+  </nav>
 
   {{{body}}}
 
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/strength.js"></script>
+  <script type="text/javascript" src="/javascript/strength.min.js"></script>
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>
