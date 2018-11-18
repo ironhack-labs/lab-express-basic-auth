@@ -1,8 +1,8 @@
 <a href="/">Home</a>
 
-<h2>Log in</h2>
+<h2>Sign up</h2>
 
-<form method="POST" action="/login/">
+<form method="POST" action="/signup/">
   <label for="username">Username:</label><br>
   <input name="username" id="username" type="text"><br><br>
   <label for="password">Password:</label><br>
@@ -12,10 +12,5 @@
       <div class="error-message"></div>{{errorMessage}}</div><br>
     {{/if}}
   
-  <button type="submit">Log in</button>
-
-  <p class="account-message">
-    Aun no tienes cuenta <a href="/signup">Sign up</a>
-  </p>
-
+  <button type="submit">Sign up</button>
 </form>
