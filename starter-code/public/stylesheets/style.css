@@ -3,12 +3,10 @@ body, html {
   height: 100%;
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 button, button:focus :focus {
-  outline: none;
-}
+  outline: none; }
 
 .container {
   width: 80%;
@@ -17,23 +15,21 @@ button, button:focus :focus {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
-  #form {
+  align-items: center; }
+  .container #form {
     width: 25em;
-    margin-top: -4em;
-    label {
+    margin-top: -4em; }
+    .container #form label {
       color: #666;
       display: inline-block;
       margin-bottom: 10px;
       text-align: center;
       font-weight: bold;
       width: 100%;
-      margin-top: 1em;
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-    input, button {
+      margin-top: 1em; }
+      .container #form label:first-child {
+        margin-top: 0; }
+    .container #form input, .container #form button {
       box-sizing: border-box;
       font-size: 14px;
       outline: 0;
@@ -41,9 +37,8 @@ button, button:focus :focus {
       margin-bottom: 1em;
       width: 100%;
       border: 2px solid #eee;
-      border-radius: 2em;
-    }
-    button {
+      border-radius: 2em; }
+    .container #form button {
       background: #43a3e6;
       border: 1px solid #43a3e6;
       border-radius: 2em;
@@ -57,12 +52,10 @@ button, button:focus :focus {
       text-decoration: none;
       text-transform: uppercase;
       transition: .3s ease background;
-      width: 100%;
-      &:hover {
+      width: 100%; }
+      .container #form button:hover {
         background: #fff;
         color: #43a3e6;
-        transition: .3s ease background;
-      }
-    }
-  }
-}
+        transition: .3s ease background; }
+
+/*# sourceMappingURL=style.css.map */
