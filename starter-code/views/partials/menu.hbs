@@ -9,15 +9,18 @@
       </li>
     </ul>
     <ul class="navbar-nav my-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="/signup">SignUp</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">LogIn</a>
-      </li>
-      {{!-- <li class="nav-item">
-        <a class="nav-link" href="/">LogOut</a>
-      </li> --}}
+      {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/">LogOut</a>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">SignUp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">LogIn</a>
+        </li>
+      {{/if}}
     </ul>
   </div>
 </nav>

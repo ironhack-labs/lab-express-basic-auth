@@ -18,17 +18,31 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const salt = bcrypt.genSaltSync(10);
-  const hashPass = bcrypt.hashSync(password, salt);
-
-  const newUser = User({
-    username,
-    password: hashPass
-  });
-
-  newUser.save((err) => {
-    res.redirect("/");
-  });
+  if (username === "" || password === "") {
+    res.render("auth/signup", {
+      errorMessage: "Indicate an username and a password"
+    });
+    return;
+  } else {
+    User.findOne({"username": username}, "username",
+      (err, user) => {
+        if (user !== null) {
+          res.render("auth/signup", {
+            errorMessage: "The username already exists"
+          });
+          return;
+        }
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
+      const newUser = User({
+        username,
+        password: hashPass
+      });
+      newUser.save((err) => {
+        res.redirect("/");
+      });
+    });
+  }
 });
 
 module.exports = router;
