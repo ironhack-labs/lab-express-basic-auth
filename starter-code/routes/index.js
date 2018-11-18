@@ -6,7 +6,7 @@ const User = require("../models/user");
 const MongoStore = require("connect-mongo")(session);//registro de sesiones
 const mongoose = require("mongoose")
 const genericUser = new User();
-/* GET home page */
+
 router.get("/", (req, res, next) => {
   res.render("index");
 });
@@ -36,8 +36,7 @@ router.post("/", (req, res, next) => {
     genericUser.password = hash;
   
     genericUser.save().then(user => {
-      req.session.inSession = true
-      res.render("main", { user: user.user });
+      res.redirect("/login");
     });
   }
 });
@@ -46,9 +45,6 @@ router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
-router.get("/main", (req, res, next) => {
-  res.render("main");
-});
 
 router.post("/login", (req, res, next) => {
   const user = req.body.user;
@@ -61,27 +57,56 @@ router.post("/login", (req, res, next) => {
     return;
   }
 
-  User.findOne({ "user": user })
+  User.findOne({ user: user })
   .then(user => {
-      if (!user) {
-        res.render("login", {
-          errorMessage: "The username doesn't exist"
-        });
-        return;
-      }
+      // if (!user) {
+      //   res.render("login", {
+      //     errorMessage: "The username doesn't exist"
+      //   });
+      //   return;
+      // }
       if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
+        console.log('Hay match')
+        req.session.inSession = true;
         req.session.currentUser = user;
         res.redirect("/main");
       } else {
-        res.render("login", {
-          errorMessage: "Incorrect password"
-        });
+        res.session.inSession = false;
+        res.redirect('/')
+        // res.render("login", {
+        //   errorMessage: "Incorrect password"
+        // });
       }
   })
   .catch(error => {
     next(error)
   })
 });
+
+router.get('/main', function (req, res) {
+  if (req.session.inSession) {
+    let sessionData = {
+      ...req.session
+    }
+    res.render('main', {
+      sessionData
+    })
+  } else {
+    res.render('404')
+  }
+})
+
+router.get('/private', function (req, res) {
+  if (req.session.inSession) {
+    let sessionData = {
+      ...req.session
+    }
+    res.render('private', {
+      sessionData
+    })
+  } else {
+    res.render('404')
+  }
+})
 
 module.exports = router;
