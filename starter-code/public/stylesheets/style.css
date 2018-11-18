@@ -148,16 +148,4 @@ button, button:focus :focus {
   border-color: #8DFF1C !important;
   width: 100% !important; }
 
-h1 {
-  color: white;
-  font-size: 50px;
-  text-align: center;
-  padding-top: 30px;
-  margin-bottom: 20px; }
-
-h1 span {
-  font-weight: bold;
-  color: white;
-  opacity: .3; }
-
 /*# sourceMappingURL=style.css.map */
