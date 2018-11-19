@@ -8,8 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const monoStore = require('connect-mongo')(session);
 const User         = require('./models/User');
-
 
 mongoose
   .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
