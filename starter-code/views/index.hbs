@@ -1,6 +1,7 @@
-<h1>{{title}}</h1>
 {{#if user}}
-  <p>Welcome, {{user.username}}</p>
+  <h1>Welcome, <span class="capitalize">{{user.username}}</span></h1>
+  <h2>You are mega awesome!</h2>
 {{else}}
-  <p>You are not logged in!</p>
+  <h1>{{title}}</h1>
+  <h2>You need to log in to see the contents!</h2>
 {{/if}}

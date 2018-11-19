@@ -4,11 +4,6 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 
-/* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
-});
-
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -78,7 +73,7 @@ router.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/secret");
+        res.redirect("/private");
       } else {
         res.render("auth/login", {
           errorMessage: "Incorrect password"

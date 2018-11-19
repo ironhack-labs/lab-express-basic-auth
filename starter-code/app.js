@@ -57,8 +57,7 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
-  }),
-  //user: session.currentUser
+  })
 }));
 
 

@@ -22,8 +22,7 @@ button, button:focus :focus {
     font-size: calc(1.8vh + 1.8vw + 1.8em); }
   .container h2 {
     font-weight: bold;
-    margin-bottom: 1em;
-    text-decoration: underline; }
+    margin-bottom: 1em; }
   .container form {
     width: 25em;
     position: relative; }
@@ -78,6 +77,23 @@ button, button:focus :focus {
   .container .account-message {
     font-size: .7em;
     text-align: center; }
+
+a.roundedBtn {
+  border-radius: 4em;
+  margin-top: 1em; }
+  a.roundedBtn:hover {
+    opacity: .5;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out; }
+
+.capitalize {
+  text-transform: capitalize; }
+
+.underline {
+  text-decoration: underline; }
 
 .error-message {
   background: #F02B63;

@@ -11,17 +11,20 @@
     <ul class="navbar-nav my-lg-0">
       {{#if user}}
         <li class="nav-item">
-          <a class="nav-link" href="/secret">SecretPage</a>
+          <a class="nav-link" href="/main">Main</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">LogOut</a>
+          <a class="nav-link" href="/private">Private</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log out</a>
         </li>
       {{else}}
         <li class="nav-item">
-          <a class="nav-link" href="/signup">SignUp</a>
+          <a class="nav-link" href="/signup">Sign up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">LogIn</a>
+          <a class="nav-link" href="/login">Log in</a>
         </li>
       {{/if}}
     </ul>

@@ -1,3 +1,11 @@
+@mixin transition {
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
 body, html {
   width: 100%;
   height: 100%;
@@ -26,7 +34,6 @@ button, button:focus :focus {
   h2 {
     font-weight: bold;
     margin-bottom: 1em;
-    text-decoration: underline;
   }
   form {
     width: 25em;
@@ -95,6 +102,23 @@ button, button:focus :focus {
   }
 }
 
+a.roundedBtn {
+  border-radius: 4em;
+  margin-top: 1em;
+  &:hover {
+    opacity: .5;
+    @include transition;
+  }
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 .error-message {
   background: #F02B63;
   box-sizing: border-box;
@@ -117,11 +141,7 @@ button, button:focus :focus {
     text-align: right;
     color: #000;
     line-height: 32px;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+    @include transition;
     padding: 0 1em;
     border-radius: 2em;
     p {

@@ -1,9 +1,11 @@
-<h2>Log In</h2>
+<h2 class="underline">Log In</h2>
 <form id="form" action="/login" method="POST">
   <label for="username">Username</label>
-  <input type="text" name="username" placeholder="AnakinSkywalker">
+  <input type="text" name="username">
   <label for="password">Password</label>
-  <input type="password" name="password" placeholder="DeathStar">
+  <input type="password" name="password" autocomplete="off" readonly onfocus="if (this.hasAttribute('readonly')) {
+  this.removeAttribute('readonly');
+  this.blur(); this.focus();}"/>
   {{> error}}
   <button class="loginBut">Log in</button>
   <p class="account-message">Don't have an account? <a href="/signup">Sign up</a></p>
