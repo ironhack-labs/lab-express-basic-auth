@@ -6,30 +6,23 @@ const bcrypt = require("bcryptjs");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  const user = req.session.currentUser;
-  if(req.session.currentUser){
-    res.render('index', {user});
-  } else{
-    res.render('index');
+  res.render('index');
+});
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/login");
   }
 });
 
 router.get("/main", (req, res, next) => {
-  const user = req.session.currentUser;
-  if(req.session.currentUser){
-    res.render("main", {user});
-  } else{
-    res.redirect("/")
-  }
+  res.render("main");
 });
 
 router.get("/private", (req, res, next) => {
-  const user = req.session.currentUser;
-  if(req.session.currentUser){
-    res.render("private", {user});
-  } else{
-    res.redirect("/")
-  }
+  res.render("private");
 });
 
 

@@ -60,6 +60,10 @@ app.use(session({
   })
 }));
 
+app.use((req,res,next) => {
+  res.locals.user = req.session.currentUser;
+  next();
+});
 
 // default value for title local
 app.locals.title = 'Authentication';

@@ -64,21 +64,21 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ "username": username }, (err, user) => {
-      if (err || !user) {
-        res.render("auth/login", {
-          errorMessage: "The username doesn't exist"
-        });
-        return;
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect("/private");
-      } else {
-        res.render("auth/login", {
-          errorMessage: "Incorrect password"
-        });
-      }
+    if (err || !user) {
+      res.render("auth/login", {
+        errorMessage: "The username or password are incorrect"
+      });
+      return;
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      // Save the login in the session!
+      req.session.currentUser = user;
+      res.redirect("/private");
+    } else {
+      res.render("auth/login", {
+        errorMessage: "The username or password are incorrect"
+      });
+    }
   });
 });
 
