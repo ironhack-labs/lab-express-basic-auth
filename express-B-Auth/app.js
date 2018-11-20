@@ -37,6 +37,8 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60, // 1 day
+    resave:true,
+
     
   })
 }));
@@ -67,6 +69,9 @@ app.use('/', authRoutes);
 
 const router = require('./routes/site-routes');
 app.use('/',router);
+
+var port = process.env.port || 3000;
+app.listen(port);
 
 
 module.exports = app;
