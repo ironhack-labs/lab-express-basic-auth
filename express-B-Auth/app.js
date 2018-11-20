@@ -38,6 +38,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60, // 1 day
     resave:true,
+    saveUninitialized: true
 
     
   })
@@ -54,6 +55,7 @@ app.use(require('node-sass-middleware')({
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
@@ -70,8 +72,8 @@ app.use('/', authRoutes);
 const router = require('./routes/site-routes');
 app.use('/',router);
 
-var port = process.env.port || 3000;
-app.listen(port);
+
+app.listen(3000);
 
 
 module.exports = app;
