@@ -8,13 +8,13 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 authRoutes.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+  res.render("/signup");
 });
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   if (username === "" || password === "") {
-    res.render("auth/signup", {
+    res.render("/signup", {
       errorMessage: "Indicate a username and a password to sign up"
     });
     return;
@@ -23,7 +23,7 @@ authRoutes.post("/signup", (req, res, next) => {
     .then(user => {
       if (user !== null) {
           console.log("eooo");
-        res.render("auth/signup", {
+        res.render("/signup", {
           errorMessage: "The username already exists"
         });
         return;
@@ -47,13 +47,13 @@ authRoutes.post("/signup", (req, res, next) => {
 });
 
 authRoutes.get("/login", (req, res, next) => {
-  res.render("auth/login");
+  res.render("/login");
 });
 authRoutes.post("/login", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   if (username === "" || password === "") {
-    res.render("auth/login", {
+    res.render("/login", {
       errorMessage: "Indicate a username and a password to sign up"
     });
     return;
@@ -61,7 +61,7 @@ authRoutes.post("/login", (req, res, next) => {
   User.findOne({ username: username })
     .then(user => {
       if (!user) {
-        res.render("auth/login", {
+        res.render("/login", {
           errorMessage: "The username doesn't exist"
         });
         return;
@@ -70,7 +70,7 @@ authRoutes.post("/login", (req, res, next) => {
         req.session.currentUser = user;
         res.redirect("/");
       } else {
-        res.render("auth/login", {
+        res.render("/login", {
           errorMessage: "The username doesn't exist"
         });
       }
