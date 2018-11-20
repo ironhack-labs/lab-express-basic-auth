@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const privateRouter = require('./routes/private');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/private', privateRouter);
 
 mongoose.connect('mongodb://localhost/database', {
   keepAlive: true,
