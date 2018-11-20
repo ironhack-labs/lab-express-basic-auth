@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Sign Up</title>
+</head>
+
+<body>
+
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Choose your username">
+
+    <br><br>
+    <label for="password">Password</label><br>
+    <input id="myPassword" type="password" name="password" placeholder="Choose your password" required minlength="6">
+    <br><br>
+
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+
+    <button>Create account</button>
+  </form>
+
+
+<script>
+$(document).ready(function($) {
+	
+$('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+});
+</script>
+  
+</body>
+</html>
