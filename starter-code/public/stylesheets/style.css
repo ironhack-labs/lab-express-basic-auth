@@ -1,29 +1,22 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
-
+  color: #00B7FF; }
 
 ::selection {
-  background-color: #b5e2e7;
-}
+  background-color: #b5e2e7; }
 
 ::-moz-selection {
-  background-color: #8ac7d8;
-}
+  background-color: #8ac7d8; }
 
 body {
-  background: #3CC;
-}
+  background: #3CC; }
 
 .container {
   display: -webkit-flex;
   display: flex;
-  height: 100%;
-}
+  height: 100%; }
 
 #logbox {
   padding: 10px;
@@ -32,19 +25,16 @@ body {
   background-color: #fff;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-}
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); }
 
 h1 {
   text-align: center;
   font-size: 175%;
   color: #757575;
-  font-weight: 300;
-}
+  font-weight: 300; }
 
 h1, input {
-  font-family: "Open Sans", Helvetica, sans-serif;
-}
+  font-family: "Open Sans", Helvetica, sans-serif; }
 
 .input {
   width: 75%;
@@ -53,22 +43,20 @@ h1, input {
   margin: 0 auto 15px;
   padding: 0 15px;
   border: none;
-  border-bottom: 2px solid #ebebeb;
-}
+  border-bottom: 2px solid #ebebeb; }
+
 .input:focus {
   outline: none;
-  border-bottom-color: #3CC !important;
-}
+  border-bottom-color: #3CC !important; }
+
 .input:hover {
-  border-bottom-color: #dcdcdc;
-}
+  border-bottom-color: #dcdcdc; }
+
 .input:invalid {
-  box-shadow: none;
-}
+  box-shadow: none; }
 
 .pass:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px white inset;
-}
+  -webkit-box-shadow: 0 0 0 1000px white inset; }
 
 .inputButton {
   position: relative;
@@ -81,18 +69,19 @@ h1, input {
   border: none;
   -webkit-box-shadow: 0 5px 0 #2CADAD;
   -moz-box-shadow: 0 5px 0 #2CADAD;
-  box-shadow: 0 5px 0 #2CADAD;
-}
+  box-shadow: 0 5px 0 #2CADAD; }
+
 .inputButton:hover {
   top: 2px;
   -webkit-box-shadow: 0 3px 0 #2CADAD;
   -moz-box-shadow: 0 3px 0 #2CADAD;
-  box-shadow: 0 3px 0 #2CADAD;
-}
+  box-shadow: 0 3px 0 #2CADAD; }
+
 .inputButton:active {
   top: 5px;
-  box-shadow: none;
-}
+  box-shadow: none; }
+
 .inputButton:focus {
-  outline: none;
-}
+  outline: none; }
+
+/*# sourceMappingURL=style.css.map */
