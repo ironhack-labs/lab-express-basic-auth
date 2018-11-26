@@ -44,5 +44,37 @@ router.post('/signup', (req, res, next) => {
   })
 });
 
+router.get('/login', (req, res) => {
+  res.render('auth/login');
+});
+
+router.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+  User.findOne({ username })
+  .then(user => {
+    if (user === null) {
+      return res.render('auth/login', {
+        message: 'This user doesnt exist, please sign up first'
+      })
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      req.session.currentUser = user;
+      res.redirect('/profile');
+    } else {
+      return res.render('auth/login', {
+        message: 'The Password is incorrect'
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err);
+  })
+});
+
+
+
+
+
+
 
 module.exports = router;
