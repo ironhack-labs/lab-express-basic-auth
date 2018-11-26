@@ -1,28 +1,23 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 h1 {
-  text-align: center;
-}
+  text-align: center; }
 
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input,
 #form .submit {
@@ -31,8 +26,7 @@ h1 {
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form .submit {
   background: #43a3e6;
@@ -46,16 +40,12 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 100%;
-}
+  width: 100%; }
 
 #form .submit:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
-
-
+  transition: .3s ease background; }
 
 button {
   text-decoration: none;
@@ -64,8 +54,7 @@ button {
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 button {
   background: #43a3e6;
@@ -79,12 +68,12 @@ button {
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 200px;
-}
+  width: 200px; }
 
 button:hover {
   text-decoration: none;
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
+
+/*# sourceMappingURL=style.css.map */
