@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+// $(document).ready(function($) {
+//   $("#myPassword").strength();
+// });
 
-  console.log('IronGenerator JS imported successfully!');
-
-}, false);
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    console.log("IronGenerator JS imported successfully!");
+  },
+  false
+);
