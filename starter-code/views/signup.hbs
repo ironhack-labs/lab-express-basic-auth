@@ -1,0 +1,16 @@
+{{#if errorMessage}}
+<h2 style="color: red;">{{errorMessage}}</h2>
+{{/if}}
+
+<h2>SIGNUP HERE</h2>
+<br>
+<form id="form" action="/signup" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="Enter Username">
+
+  <br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="Enter Password">
+  <br>
+  <button>Create account</button>
+</form>

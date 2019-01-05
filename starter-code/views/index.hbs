@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if errorMessage}}
+<h2 style="color: red;">{{errorMessage}}</h2>
+{{/if}}
+
+
+<h1>Axels extremely secret Database</h1>
+
+<div id="container">
+  <a href="/signup">Sign up</a><br>
+  <a href="/login">Login</a><br>
+  <a href="/secret">Your secret page (requires authentication)</a>
+</div>
