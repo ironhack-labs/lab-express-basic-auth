@@ -1,0 +1,19 @@
+{{#if errorMessage}}
+<h1>{{errorMessage}}</h1>
+{{/if}}
+
+<h3>Log In</h3>
+
+<form id="form" action="/login" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="AnakinSkywalker">
+  <br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="DeathStar">
+
+  <button>Log In</button>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
