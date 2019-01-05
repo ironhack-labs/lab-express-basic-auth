@@ -87,4 +87,16 @@ router.post('/signup', (req, res) => {
     }
   });
 
+// protected routes
+  router.get("/main", (req,res) => {
+    res.render("main")
+  })
+
+  router.get("/logout", (req, res, next) => {
+    req.session.destroy((err) => {
+      // cannot access session here
+      res.redirect("/login");
+    });
+  });
+
 module.exports = router;
