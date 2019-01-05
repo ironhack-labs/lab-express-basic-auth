@@ -27,7 +27,7 @@ router.post('/login', (req,res) => {
     if (bcrypt.compareSync(password, user.password)) {
       // create a session ( meaning: a cookie with session ID )
       req.session.currentUser = user;
-      res.redirect("/");
+      res.redirect("/main");
       res.send('LogedIn')
     }
   })  
