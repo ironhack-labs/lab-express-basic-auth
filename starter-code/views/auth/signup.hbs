@@ -1,0 +1,28 @@
+<form id="form" action="/signup" method="POST">
+  <label for="username">Username</label><br>
+  <input id="username" type="text" name="username" placeholder="AnakinSkywalker">
+
+  <label for="password">Password</label><br>
+  <input id="password" type="password" name="password" placeholder="DeathStar">
+
+
+  <div class="g-recaptcha" data-sitekey="6LfGD4cUAAAAAKdMzBP_P0_kX5iYfctjiLjWrQOk" data-theme="dark"></div>
+  <button type="submit">Create account</button>
+  
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  {{#if suggestion}}
+  <div class="error-message">
+    <ul>
+    {{#each suggestion}}
+      <li>{{ this }}</li>
+    {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+
+</form>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
