@@ -6,6 +6,9 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
+const passport = require("passport");
+
+
 var zxcvbn = require('zxcvbn');
 
 var Recaptcha = require('express-recaptcha').Recaptcha;
@@ -14,57 +17,71 @@ var options = {'theme':'dark'};
 var recaptcha = new Recaptcha('6LfGD4cUAAAAAKdMzBP_P0_kX5iYfctjiLjWrQOk', '6LfGD4cUAAAAAJvNb8VZkIOhKNelRRMqgJiEvL55', options);
 
 /* GET home page */
-// router.get('/',(req, res, next) => {
-//   res.render("auth/signup");
-// });
+
 router.get('/signup',(req, res, next) => {
   res.render("auth/signup");
 });
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login");
+router.get("/auth/slack", passport.authenticate("slack"));
+
+router.get("/auth/slack/callback", passport.authenticate("slack", {
+  successRedirect: "/private",
+  failureRedirect: "/"
+}));
+
+router.get('/login', (req, res, next) => {
+  res.render('auth/login', { message: req.flash('error') });
 });
 
-router.post("/login", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/private',
+  failureRedirect: '/login',
+  failureFlash: true,
+  passReqToCallback: true,
+}));
 
-  if (username === "" || password === "") {
-    res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to sign up"
-    });
-    return;
-  }
+// router.post("/login", (req, res, next) => {
+//   const username = req.body.username;
+//   const password = req.body.password;
 
-  User.findOne({ "username": username })
-  .then((user,err) => {
-      if (err || !user) {
-        res.render("auth/login", {
-          errorMessage: "The username doesn't exist"
-        });
-        return;
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect("/");
-      } else {
-        res.render("auth/login", {
-          errorMessage: "Incorrect password"
-        });
-      }
-  })
-  .catch(error => {
-    next(error)
-  })
-});
+//   if (username === "" || password === "") {
+//     res.render("auth/login", {
+//       errorMessage: "Indicate a username and a password to sign up"
+//     });
+//     return;
+//   }
+
+//   User.findOne({ "username": username })
+//   .then((user,err) => {
+//       if (err || !user) {
+//         res.render("auth/login", {
+//           errorMessage: "The username doesn't exist"
+//         });
+//         return;
+//       }
+//       if (bcrypt.compareSync(password, user.password)) {
+//         // Save the login in the session!
+//         req.session.currentUser = user;
+//         res.redirect("/");
+//       } else {
+//         res.render("auth/login", {
+//           errorMessage: "Incorrect password"
+//         });
+//       }
+//   })
+//   .catch(error => {
+//     next(error)
+//   })
+// });
 
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     // cannot access session here
-    res.redirect("/login");
+    res.redirect("/home");
   });
 });
+
+
 
 router.post("/signup", recaptcha.middleware.verify, (req, res, next) => {
   const username = req.body.username;
