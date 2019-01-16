@@ -1,0 +1,7 @@
+<div class="row">
+    <form action="/register" method="POST">
+        <input type="email" name="email" class="form-control {{#if errors.email}} is-invalid {{/if}}" placeholder="email" value="{{user.email}}">
+        <input type="password" name="pasword" class="form-control {{#if errors.password}} is-invalid {{/if}}" placeholder="password">
+        <button type="submit">Register</button>
+    </form>
+</div>
