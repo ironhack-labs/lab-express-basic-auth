@@ -4,7 +4,7 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 const Schema = new mongoose.Schema({
     email: {
         type: String,
-        required: [True, 'Email is required'],
+        required: [true, 'Email is required'],
         unique: true,
         match: [EMAIL_REGEX, 'invalid email format'],
         lowercase: true,

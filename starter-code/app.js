@@ -11,6 +11,8 @@ const path         = require('path');
 
 require('./config/db.config');
 
+const authRouter = require('./routes/auth.router');
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -41,7 +43,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
+app.use('/auth', authRouter);
 
 const index = require('./routes/index');
 app.use('/', index);
