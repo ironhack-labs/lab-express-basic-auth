@@ -1,2 +1,20 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<div class="landing">
+  {{#if user}}
+  Welcome, {{user.username}}!
+  {{/if}}
+  {{#unless user}}
+  Welcome, guest!
+  {{/unless}}
+</div>
+<div class="links">
+  <a href="/login">Login</a> 
+  <br> 
+  <a href="/signup">Sign up</a>
+  <br>
+  <a href="/main">Main page</a>
+  <br>
+  <a href="/secret">Only registered users!</a>
+</div>
