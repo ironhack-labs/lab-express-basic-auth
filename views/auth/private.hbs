@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+        <img style="height: 85px;" src="https://d2culxnxbccemt.cloudfront.net/car/content/uploads/2015/06/21181536/classic-car-logo.png" alt="logo" href="#">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Budgets <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Invoices</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Chat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >Your Cars</a>
+            </li>
+            </ul>
+            
+        </div>
+    <div>
+        <a class="btn btn-light btn-sm ml-3 active" href="/index" role="button">Log Out</a>
+     </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2>Welcome {{ user.name }}</h2>
+            <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select your car</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Select your reparation type</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
