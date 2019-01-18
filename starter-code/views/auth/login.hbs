@@ -1,9 +1,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-        <h1>Sign Up</h1>
-
-        <form id="form" action="/signup" method="POST">
+        <h1>Log in</h1>
+        <form id="form" action="/login" method="POST">
             <div class="form-group">
                 <label for="username">User name:</label>
                 <input type="text" class="form-control" name="username" placeholder="UserName">
@@ -13,7 +11,7 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary" name="button">Sign Up</button>
+            <button type="submit" class="btn btn-primary" name="button">Log in</button>
         </form>
         <br>
         {{#if errorMessage}}
