@@ -1,0 +1,21 @@
+<div class="fondo">
+  <div class="contenedor">
+    <h2>Sign up</h2>
+    <form id="form" action="/signup" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" value="" placeholder="Username">
+      <br>
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" placeholder="Password">
+      <button type="submit" name="button">Create account</button>
+      {{#if errorMessage}}
+      <div class="error-message">
+        {{errorMessage}}
+      </div>
+      {{/if}}
+      <p class="account-message">
+        Already have an account? <a href="/login">Login</a>
+      </p>
+    </form>    
+  </div>
+</div>
