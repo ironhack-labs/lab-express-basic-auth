@@ -68,13 +68,11 @@ app.use(session({
   })
 }));
 
-
-
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
-
 const auth = require("./routes/auth");
-// app.use("/", index);
+const siteRoutes = require('./routes/site-routes')
 app.use("/", auth);
+app.use('/', siteRoutes)
 
 module.exports = app;

@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 //Route HomePage
-router.get("/", (req, res) => {
-  res.render("index");
-});
+// router.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 //Route get for sign up
 router.get("/signup", (req, res) => {
@@ -107,6 +107,9 @@ router.post("/login", (req, res) => {
       console.log(err);
     });
 });
+
+
+
 
 
 module.exports = router;
