@@ -87,6 +87,11 @@ module.exports.doRegister = (req, res, next) => {
     }
   }
 
+  module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/login');
+  }
+
   module.exports.profile = (req, res, next) => {
       const user = req.session.user;
       res.render('auth/profile', {
