@@ -11,17 +11,19 @@ module.exports.doRegister = (req, res, next) => {
             if (user) {
                 res.render('auth/register', { 
                     user: req.body,
-                    errors: 'email alredy registered' 
+                    errors: {
+                        email: 'email alredy registered' ,
+                    }
                 })
             } else {
                 user = new User({
                     email: req.body.email,
                     password: req.body.password
                 })
+                return user.save()
+                    .then(user => res.redirect('/auth/login'))
             }
-
-            return user.save()
-            .then(user => res.render('auth/register'))
+           
         })
         .catch(error => {
             if (error instanceof mongoose.Error.ValidationError) {
@@ -33,4 +35,60 @@ module.exports.doRegister = (req, res, next) => {
                 next(error);
             }
         });
+}
+
+module.exports.login = (req, res, next) => {
+    res.render('auth/login');
+}
+
+module.exports.doLogin = (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!email || !password){
+        res.render('auth/login',{
+            user: req.body,
+            errors: {
+                email: email ? undefined : 'Email is required',
+            }
+        })
+    } else {
+        User.findOne({ email: email })
+        .then(user => {
+            if (!user){
+                res.render('auth/login',{
+                    user: req.body,
+                    errors: {
+                        email: 'Invalid email or password', 
+                    }
+                })
+            } else {
+                return user.checkPassword(password)
+                .then(match => {
+                    if (!match){
+                        res.render('auth/login', {
+                            user: req.body,
+                            errors: {
+                              email: 'Invalid email or password',
+                            }
+                        })
+                    } else {
+                        req.session.user = user;
+                        res.redirect('/auth/main');
+                    }
+                })
+            }
+        })
+        .catch(error => next(error));
+    }
+}
+
+module.exports.main = (req, res, next) => {
+    const user = req.session.user;
+    res.render('auth/main', { user: user });
+}
+
+module.exports.private = (req, res, next) => {
+    const user = req.session.user;
+    res.render('auth/private', { user: user });
 }
