@@ -11,17 +11,19 @@ module.exports.doRegister = (req, res, next) => {
             if (user) {
                 res.render('auth/register', { 
                     user: req.body,
-                    errors: 'email alredy registered' 
+                    errors: { email:'email alredy registered'} 
                 })
             } else {
                 user = new User({
                     email: req.body.email,
                     password: req.body.password
+                    
                 })
+                return user.save()
+                    .then(user => res.render('auth/login'))
             }
-
-            return user.save()
-            .then(user => res.render('auth/login'))
+         
+            
         })
         .catch(error => {
             if (error instanceof mongoose.Error.ValidationError) {
@@ -57,26 +59,24 @@ module.exports.doLogin = (req, res, next) => {
                     errror: 'Invalid email or password'
                 })
             } else {
-                console.log(password);
-                return user.checkPassword(password)
-                .then(match => {
-                    console.log(match);
-                    if (!match){
-                        res.render('auth/login', {
-                            user: req.body,
-                            errors: {
-                              email: 'Invalid email or password',
-                            }
-                        })
-                    } else {
-                        req.session.user = user;
-                        res.redirect('auth/main');
-                    }
-                })
-            }
-        })
-        .catch(error => next(error));
-    }
+          return user.checkPassword(password)
+            .then(match => {
+              if (!match) {
+                res.render('auth/login', {
+                  user: req.body,
+                  errors: {
+                    email: 'Invalid email or password',
+                  }
+                });
+              } else {
+                req.session.user = user;
+                res.render('auth/main');
+              }
+            })
+        }
+      })
+      .catch(error => next(error));
+  }
 }
 
 module.exports.main = (req, res, next) => {

@@ -41,12 +41,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(session({
   name: 'register_lab',
-  secret: process.env.COOKIE_SECRET || 'SuperSecret',
+  secret: process.env.SESSION_SECRET || 'SuperSecret',
   resave: true,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    secure: process.env.COOKIE_SECURE || false,
+    secure: process.env.SESSION_SECURE || false,
     expires: 60 * 60 * 24 * 1000 * 7
   },
   store: new MongoStore({
