@@ -50,3 +50,12 @@ a {
   color: #43a3e6;
   transition: .3s ease background;
 }
+
+.error-message {
+  background: rgb(99, 240, 43);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}

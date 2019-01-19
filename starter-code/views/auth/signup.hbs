@@ -2,8 +2,11 @@
   <label for="username">Cual es tu nombre de usuario?</label>
   <input type="text" name="username" placeholder="Vato Loco">
     <br>
-  <label for="password">Cual es tu contraseña? (tal vez tu fecha de cumpleaños)</label>
+  <label for="password">Cual es tu contraseña? (tal vez tu fecha de cumpleaños?)</label>
   <input type="password" name="password" placeholder="Gatit0$">
     <br>
   <button>Crea mi cuenta</button>
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
 </form>
