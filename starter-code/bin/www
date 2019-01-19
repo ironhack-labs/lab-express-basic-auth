@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const http = require('http');
-
+const PORT = process.env.PORT || 3000;
 let app = require('../app');
 
 // catch 404 and render a not-found.hbs template
@@ -29,11 +29,11 @@ server.on('error', error => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`Port ${process.env.PORT} requires elevated privileges`);
+      console.error(`Port ${PORT} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`Port ${process.env.PORT} is already in use`);
+      console.error(`Port ${PORT} is already in use`);
       process.exit(1);
       break;
     default:
@@ -41,6 +41,6 @@ server.on('error', error => {
   }
 });
 
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
+server.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`)
 });
