@@ -1,13 +1,15 @@
 <div class="container">
-    <div class="row">
-        <form action="/auth/register" method="POST">
-            <div class="form-group"></div>
-                <h2>Register page:</h2>
-                <input type="text" name="email" class="form-control {{#if errors.email}} is-invalid {{/if}}" placeholder="email" value="{{user.email}}">
-                {{#if errors.email }} <div class="invalid-feedback">{{ errors.email }}</div> {{/if}}
-                <input type="password" name="password" class="form-control {{#if errors.password}} is-invalid {{/if}}" placeholder="password">
-                {{#if errors.password }} <div class="invalid-feedback">{{ errors.password }}</div> {{/if}}
-                <button type="submit">Register</button>
-            </div>    
+    <div class="container">
+        <form class="form-signin text-center" action="/auth/register" method="POST">
+            <img class="mb-4" src="/starter-code/public/images/zoom-button.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Register page</h1>
+            <input type="text" name="email" class="form-control {{#if errors.email}} is-invalid {{/if}}" placeholder="Email adress"
+                value="{{user.email}}">
+            {{#if errors.email }} <div class="invalid-feedback">{{ errors.email }}</div> {{/if}}
+            <input type="password" name="password" class="form-control {{#if errors.password}} is-invalid {{/if}}"
+                placeholder="password">
+            {{#if errors.password }} <div class="invalid-feedback">{{ errors.password }}</div> {{/if}}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
     </div>
+</div>
