@@ -8,6 +8,9 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 
 require("./config/db.config");
 
@@ -39,6 +42,26 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+app.use(session({
+  name: 'basic-auth',
+  secret: process.env.COOKIE_SECRET || 'SuperSecret',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.COOKIE_SECURE || false,
+    expires: 60 * 60 * 24 * 1000 * 7
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 60 * 60 * 24 * 1000 * 7
+  })
+}));
+
+
+app.get('/', (req, res, next) => {
+  res.render('index');
+});
 
 app.use('/', authRouter);
 
