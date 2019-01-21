@@ -4,6 +4,18 @@
   position: fixed;
   top: -400px; 
   left: 0; 
+  z-index: -1;
+	
+  /* Preserve aspet ratio */
+  max-width: 100%;
+  max-width: 100%
+}
+
+#bg2 {
+  position: fixed;
+  top: 0px; 
+  left: 0; 
+  z-index: -1;
 	
   /* Preserve aspet ratio */
   max-width: 100%;
@@ -16,6 +28,14 @@
   top: 75%;
   font-size: 30px;
 }
+
+#back {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  font-size: 30px;
+}
+
 body {
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +66,7 @@ body {
   z-index: 2;
 }
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: -10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -54,4 +74,55 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.strength_meter{
+	height:23px;
+width: 154px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.strength_meter div{
+	height:23px;
+	width:100%;
+  height:23px;
+	text-align:center;
+	font-weight:bold;
+  line-height:23px;
+  
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 27px;
+
+  margin-top: 10px;
+
+}
+.veryweak{
+	background-color: #FFA0A0;
+border-color: #F04040!important;
+}
+.weak{
+background-color: #FFB78C;
+border-color: #FF853C!important;
+}
+.medium{
+background-color: #FFEC8B;
+border-color: #FC0!important;
+}
+.strong{
+background-color: #C3FF88;
+border-color: #8DFF1C!important;
+
+}
+.strength {
+  width: 100%;
+  height: 46px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-bottom: 10px;
 }

@@ -1,15 +1,17 @@
+<img src="/images/rawpixel-558599-unsplash.jpg" id="bg2">
 <div class="container">
     <div class="container">
         <form class="form-signin text-center" action="/auth/register" method="POST">
-            <img class="mb-4" src="/starter-code/public/images/zoom-button.png" alt="" width="72" height="72">
+            <img class="mb-4" src="/images/zoom-button.png"  alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Register page</h1>
             <input type="text" name="email" class="form-control {{#if errors.email}} is-invalid {{/if}}" placeholder="Email adress"
                 value="{{user.email}}">
             {{#if errors.email }} <div class="invalid-feedback">{{ errors.email }}</div> {{/if}}
-            <input type="password" name="password" class="form-control {{#if errors.password}} is-invalid {{/if}}"
+            <input id="myPassword" value="" type="password" name="password" class="form-control {{#if errors.password}} is-invalid {{/if}}"
                 placeholder="password">
             {{#if errors.password }} <div class="invalid-feedback">{{ errors.password }}</div> {{/if}}
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <p class="mt-2">Already Registered? <a href="/auth/login">click here</a></p>
         </form>
     </div>
 </div>
