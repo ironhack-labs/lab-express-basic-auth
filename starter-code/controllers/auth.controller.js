@@ -93,8 +93,8 @@ module.exports.profile = (req, res, next) => {
   });
 }
 
-module.exports.main = (req, res, next) => {
-  res.render('auth/main');
+module.exports.secret = (req, res, next) => {
+  res.render('auth/secret');
 }
 
 module.exports.logout = (req, res, next) => {

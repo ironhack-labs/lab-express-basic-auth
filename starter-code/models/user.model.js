@@ -6,7 +6,7 @@ const WORK_FACTOR = 10;
 const schema = new mongoose.Schema({
   username:{
     type: String,
-    required: true,
+    required: [true, 'Username is required'],
     unique: true,
     lowercase: true,
     trim: true
@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
   password:{
     type: String,
     required: true,
-    minlength: 3
+    minlength: [8, 'Needs at least 8 characters']
   }
 }, { timestamps: true });
 

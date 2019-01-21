@@ -11,7 +11,7 @@ router.post("/login", authRouter.doLogin);
 
 router.get('/profile', secure.isAuthenticated, authRouter.profile);
 
-router.get('/main', secure.isAuthenticated, authRouter.main)
+router.get('/secret', secure.isAuthenticated, authRouter.secret)
 
 router.get("/logout", authRouter.logout);
 

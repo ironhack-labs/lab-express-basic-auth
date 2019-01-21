@@ -6,15 +6,19 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-user"></i></span>
           </div>
-          <input type="text" name="username" class="form-control"  placeholder="Username">
-        </div>
+          <input type="text" name="username" class="form-control {{#if errors.username }} is-invalid {{/if}} {{#if errors.global }} is-invalid {{/if}}"  placeholder="Username"
+          value="{{ user.username }}">
+          {{#if errors.username }} <div class="invalid-feedback">{{ errors.username }}</div> {{/if}}
+      </div>
       </div>
       <div class="form-group">
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-lock"></i></span>
           </div>
-          <input id="myPassword" type="password" name="password" class="form-control" placeholder="password">
+          <input id="myPassword" type="password" name="password" class="form-control {{#if errors.password }} is-invalid {{/if}} {{#if errors.global }} is-invalid {{/if}}" placeholder="password">
+          {{#if errors.password }} <div class="invalid-feedback">{{ errors.password }}</div> {{/if}}
+          {{#if errors.global }} <div class="invalid-feedback">{{ errors.global }}</div> {{/if}}
         </div>
       </div>
       <div class="actions-group">
