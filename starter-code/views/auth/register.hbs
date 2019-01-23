@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row border p-2">
+    <h1 class="col-12 text-center py-2">SIGN UP</h1>
+    <div class="col-4 mx-auto">
+      <form action="/register" method="POST">
+        <div class="form-group col-12 py-2 text-center">
+          <label for="username" class="font-weight-bold">Username</label>
+          <input type="username" id="username" name="username" class="form-control {{#if errors.username }} is-invalid {{/if}}" placeholder="Username"
+            value="{{ user.username }}">
+          {{#if errors.username}}<div class="invalid-feedback">{{errors.username}}</div>{{/if}}
+        </div>
+        <div class="form-group col-12 py-2 text-center">
+          <label for="password" class="font-weight-bold">Password</label>
+          <input type="password" id="myPassword" name="password" class="form-control {{#if errors.password }} is-invalid {{/if}}" placeholder="Password"
+            value="{{ user.password }}">
+          {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
+        </div>
+        <div class="actions-group">
+          <button type="submit" class="btn btn-primary btn-block">Create account</button>  
+        </div>
+        <div class="col-12 text-center py-2">Already have an account? <a href="../login" class="font-weight-bold"><u>Log in</u></a></div>
+      </form>
+    </div>
+  </div>
+</div>
