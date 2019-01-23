@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const http = require('http');
-
+var debug = require('debug')('basic-auth:server');
 let app = require('../app');
 
 // catch 404 and render a not-found.hbs template
@@ -41,6 +41,6 @@ server.on('error', error => {
   }
 });
 
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
+server.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on http://localhost:${process.env.PORT || 3000}`);
 });

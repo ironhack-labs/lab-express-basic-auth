@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 
 mongoose
@@ -26,6 +28,7 @@ const app = express();
 
 // Middleware Setup
 app.use(logger('dev'));
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -43,16 +46,49 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
+app.use(session({
+  name: 'vero',
+  secret: process.env.COOKIE_SECRET || 'SuperSecret',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.COOKIE_SECURE || false,
+    expires: 60 * 60 * 24 * 1000 * 7
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 60 * 60 * 24 * 1000 * 7
+  })
+}));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Iron Lab: Basic Authorization';
 
+const authRouter = require('./routes/auth.router');
+app.use('/', authRouter);
 
+// render the index page:
+app.get('/', (req, res, next) => {
+  res.render('index');
+});
 
-const index = require('./routes/index');
-app.use('/', index);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 module.exports = app;
