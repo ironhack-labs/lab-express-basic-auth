@@ -1,8 +1,16 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
 
 a {
   color: #00B7FF; }
 
+.btn-group div{
+  margin: 0px 15px;
+}
+.btn-group{
+  width: 500px;
+}
 /*# sourceMappingURL=style.css.map */
