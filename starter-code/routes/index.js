@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const userSchema = require("../models/user");
-const checkFields = require("../src/js/fieldsVerification")
-const encriptPassword = require("../src/js/bcrypt")
+const checker = require("../src/js/fieldsVerification")
+const bcrypt = require("../src/js/bcrypt")
+const encriptPassword = bcrypt.encriptPassword
+const checkPassword = bcrypt.checkPassword
+const checkFields = checker.checkFields
+const checkUser = checker.checkUser
 
 
 /* GET home page */
@@ -15,11 +19,12 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  if (req.body.username === "" || req.body.password === "") {
+  console.log(checkUser(req.body.username))
+  if (checkFields(req.body.username, req.body.password)) {
     res.render("signup", {
       errorMessage: "Indicate a username and a password to sign up"
     })
-  } else if (checkFields(req.body.username)) {
+  } else if (checkUser(req.body.username)) {
     res.render("signup", {
       errorMessage: "The username already exists!"
     })
@@ -31,6 +36,55 @@ router.post("/signup", (req, res, next) => {
       })
       .catch(err => console.log("An error ocurred:", err))
   }
+})
+
+router.get("/login", (req, res, next) => {
+  res.render("login")
+})
+
+router.post("/login", (req, res, next) => {
+  if (checkFields(req.body.username, req.body.password)) {
+    res.render("signup", {
+      errorMessage: "Indicate a username and a password to sign up"
+    })
+  } else {
+    userSchema
+      .findOne({ username: req.body.username })
+      .then(user => {
+        if(!user) {
+          res.render("login", {
+            errorMessage: "The username doesn't exist"
+          })
+          return
+        }
+        if(checkPassword(req.body.password, user.password)) {
+          req.session.currentUser = user
+          res.redirect("/")
+        } else {
+          res.render("login", {
+            errorMessage: "Incorrect Password"
+          })
+        }
+      })
+      .catch(err => console.log("An error ocurred:", err))
+  }
+
+  router.use((req, res, next) => {
+    if (req.session.currentUser) {
+      next();
+    } else {
+      res.redirect("/login");
+    }
+  });
+  
+  router.get("/main", (req, res, next) => {
+    res.render("main");
+  });
+
+  router.get("/logout", (req, res, next) => {
+    req.session.destroy(() => res.redirect("/login"))
+  })
+
 })
 
 module.exports = router;

@@ -1,8 +1,18 @@
 const userSchema = require("../../models/user")
 
-const checkFields = user => {
-    const result = userSchema.findOne({ "username": user })
-    return result !== null ? true : false
+const checkUser = username => {
+    //todo
+return userSchema.findOne({ "username": username })
+    .then(user => {
+        return user !== null ? true : false
+    })
 }
 
-module.exports = checkFields
+const checkFields = (username, password) => {
+    return (username === "" || password === "") ? true : false
+}
+
+module.exports = {
+    checkFields,
+    checkUser
+}

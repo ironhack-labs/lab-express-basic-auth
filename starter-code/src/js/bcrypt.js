@@ -1,8 +1,12 @@
-const bcrypt       = require("bcrypt");
-const saltRounds   = 10;
-
-const salt = bcrypt.genSaltSync(saltRounds);
-const encriptPassword = password =>bcrypt.hashSync(password, salt);
+const bcrypt = require("bcrypt");
+const salt = bcrypt.genSaltSync(10);
 
 
-module.exports = encriptPassword;
+const encriptPassword = password => bcrypt.hashSync(password, salt);
+const checkPassword = (password, userPassword) => bcrypt.compareSync(password, userPassword)
+
+
+module.exports = {
+    encriptPassword,
+    checkPassword
+}
