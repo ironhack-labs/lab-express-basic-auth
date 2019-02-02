@@ -1,0 +1,22 @@
+
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="AnakinSkywalker">
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password"
+      placeholder="DeathStar">
+
+    <button>Create account</button>
+    {{{captcha}}}
+    <div class="g-recaptcha" data-sitekey="6LdSro4UAAAAAFV9fNPEBExJkXIHY0_OjqBkQ3O7">
+       {{{captcha}}}
+    </div>
+
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+    
+  </form>
