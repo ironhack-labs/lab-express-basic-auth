@@ -1,39 +1,33 @@
 body {
   margin: 0 auto;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('/images/background.jpeg');
+  background-image: url("/images/background.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  color: white;
-}
+  color: white; }
 
 nav {
   background-color: darkblue;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
-}
+  justify-content: space-between; }
 
 nav > div > a {
   padding: 10px;
   text-decoration: none;
-  color: white;
-}
+  color: white; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 form > p > a {
-  color: darkblue;
-}
+  color: darkblue; }
 
 .home-title {
   color: white;
   margin-top: 200px;
-  font-size: 40px;
-}
+  font-size: 40px; }
 
 #form label {
   color: white;
@@ -41,8 +35,7 @@ form > p > a {
   margin-bottom: 10px;
   margin-top: 20px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input {
   box-sizing: border-box;
@@ -51,8 +44,7 @@ form > p > a {
   padding: 4px;
   width: 40%;
   text-align: center;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form button {
   background: #43a3e6;
@@ -67,14 +59,12 @@ form > p > a {
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 40%;
-}
+  width: 40%; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
 
 .error-message {
   background: #F02B63;
@@ -82,5 +72,6 @@ form > p > a {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-}
+  width: 100%; }
+
+/*# sourceMappingURL=style.css.map */
