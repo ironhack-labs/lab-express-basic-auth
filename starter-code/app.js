@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require("express-session");
+const MongoStore   = require("connect-mongo")(session);
 
 
 mongoose
@@ -29,6 +31,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "this is my little secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Express View engine setup
 
@@ -51,8 +61,10 @@ app.locals.title = 'Auth';
 
 
 
-const router = require('./routes/auth');
-app.use('/', router);
+app.use('/', require('./routes/auth'));
+// app.use('/', require('./routes/auth-routes'));
+app.use('/', require('./routes/site-routes'));
+
 
 
 module.exports = app;

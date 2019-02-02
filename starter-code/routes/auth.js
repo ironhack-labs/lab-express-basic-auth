@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const express     = require("express");
+const router      = express.Router();
 
 // User model
 const User           = require("../models/user");
@@ -17,9 +17,9 @@ const Recaptcha = require('express-recaptcha').Recaptcha;
 const recaptcha = new Recaptcha('6LdSro4UAAAAAFV9fNPEBExJkXIHY0_OjqBkQ3O7', '6LdSro4UAAAAAMFpuj58J1IRC6ZkaB0WCMnr5vfE');
 
 //Routes
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+// router.get("/", (req, res, next) => {
+//   res.render("home");
+// });
 
 router.get("/signup", recaptcha.middleware.render, (req, res, next) => {
   res.render("auth/signup", { captcha:res.recaptcha });
@@ -79,6 +79,51 @@ router.post("/signup", recaptcha.middleware.verify, (req, res, next) => {
     });
 
   }
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+    return;
+  }
+
+  User.findOne({ "username": username })
+  .then(user => {
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        // Save the login in the session!
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+  })
+  .catch(error => {
+    next(error)
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;
