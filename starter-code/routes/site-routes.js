@@ -6,7 +6,15 @@ router.get("/", (req, res, next) => {
   });
 
 //protected routes
-router.use((req, res, next) => {
+router.use("/private", (req, res, next) => {
+    if (req.session.currentUser) {
+      next();
+    } else {
+      res.redirect("/login");
+    }
+  });
+
+  router.use("/main", (req, res, next) => {
     if (req.session.currentUser) {
       next();
     } else {
