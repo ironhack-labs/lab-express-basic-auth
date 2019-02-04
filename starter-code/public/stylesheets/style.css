@@ -9,6 +9,9 @@ a {
   margin: 30px auto;
   width: 380px; }
 
+h2 {
+  text-align: center; }
+
 #form label {
   color: #666;
   display: inline-block;
@@ -26,8 +29,8 @@ a {
   margin-bottom: 20px; }
 
 #form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
+  background: #f7a96a;
+  border: 1px solid #f7a96a;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -43,5 +46,13 @@ a {
   background: #fff;
   color: #43a3e6;
   transition: 0.3s ease background; }
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
