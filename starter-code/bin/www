@@ -1,8 +1,17 @@
 #!/usr/bin/env node
+require('dotenv').config();
 
 const http = require('http');
 
 let app = require('../app');
+
+
+
+/* GET home page */
+
+
+
+
 
 // catch 404 and render a not-found.hbs template
 app.use((req, res, next) => {
@@ -41,6 +50,11 @@ server.on('error', error => {
   }
 });
 
+
+
+
+
 server.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
+
 });
+
