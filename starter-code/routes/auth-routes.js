@@ -50,4 +50,41 @@ authRoutes.post("/signup", (req, res, next) => {
   })
 });
 
+authRoutes.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+authRoutes.post("/login", (req, res, next) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+
+  if (theUsername === "" || thePassword === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
+
+  User.findOne({ "username": theUsername })
+  .then(user => {
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist."
+        });
+        return;
+      }
+      if (bcrypt.compareSync(thePassword, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+  })
+  .catch(error => {
+    next(error);
+  })
+});
+
 module.exports = authRoutes;
