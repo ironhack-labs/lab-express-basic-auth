@@ -1,9 +1,13 @@
-const express = require('express');
-const router  = express.Router();
+// routes/auth-routes.js
+const express = require("express");
+const authRoutes = express.Router();
+
+// User model
+const User = require("../models/user");
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+authRoutes.get('/', (req, res, next) => {
   res.render('index');
 });
 
-module.exports = router;
+module.exports = authRoutes;
