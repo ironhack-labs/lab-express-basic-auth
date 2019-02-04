@@ -30,6 +30,24 @@ In this exercise, we are going to create a project where we will have all the ba
 
 ## Instructions
 
+### Iteration 0 | Initialize the project
+
+After forking and cloning the project, you will have to add a `starter_code/.env` file:
+
+```
+PORT=3000
+```
+
+And you have to install all the dependencies:
+
+
+```sh
+$ cd starter_code
+$ npm install
+```
+
+Now you are ready to start 🚀
+
 ## Iteration 1 - Sign Up
 
 We have to create the signup of the application, that allow our users to register. The users have to provide the following information:
