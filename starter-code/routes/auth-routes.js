@@ -5,14 +5,21 @@ const User = require("../models/user-model");
 // BCrypt to encrypt passwords
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
+//Use zxcvbn to enforce password strenght
+const zxcvbn         = require('zxcvbn');
+
+//Bonus - Password Strength Measurement
+const Recaptcha = require('express-recaptcha').Recaptcha;
+const recaptcha = new Recaptcha('6Lccdo8UAAAAAIhKr0zf4bYmjcQ09r6QKzkoGd61','6Lccdo8UAAAAAGJFpua4w3Hs74Myq1lh83JmO1O9');
 
 //Iteration 1 - Sign Up
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+router.get("/signup", recaptcha.middleware.render, (req, res, next) => {
+  res.render("auth/signup", { captcha:res.recaptcha });
 });
 
 //Post request ====> http://localhost:3000/signup
-router.post('/signup', (req,res, next) =>{
+router.post('/signup', recaptcha.middleware.verify, (req,res, next) =>{
+  if (!req.recaptcha.error){
   const username = req.body.username;
   const password = req.body.password;
   if( username == ""|| password == ""){
@@ -38,6 +45,11 @@ router.post('/signup', (req,res, next) =>{
         .catch(err => console.log('Error while creating the user'))
     })
     .catch(err => console.log('Error while searching for the user in DB: ', err))
+  } else {
+    res.render('auth/signup', {
+      errorMessage: 'Wrong Captcha'
+    })
+  }
 })
 
 //Iteration 2 - Login
