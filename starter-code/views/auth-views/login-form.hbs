@@ -1,0 +1,18 @@
+<h2>Log In</h2>
+
+{{> flash_messages}}
+
+<form action="/process-login" method="POST">
+  <label>
+    Username:
+    <input type="text" name="userName" placeholder="pablo@escobar.com" required>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" name="originalPassword" placeholder="Plata o Plomo" required>
+  </label>
+
+  <button>Log In</button>
+
+</form>
