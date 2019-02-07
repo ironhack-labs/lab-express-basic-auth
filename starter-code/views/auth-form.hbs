@@ -1,0 +1,19 @@
+<h2>Auth form</h2>
+
+{{> flash_messages}}
+
+<form action="/process-signup" method="POST">
+
+  <label for="">
+    User Name:
+    <input type="text" name="userName" placeholder="Bob" required />
+  </label>
+
+  <label for="">
+    Password:
+    <input type="password" name="originalUserPass" placeholder="It's a secret" required />
+  </label>
+
+  <button>Submit</button>
+
+</form>
