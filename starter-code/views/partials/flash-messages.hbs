@@ -1,0 +1,17 @@
+{{#each messages}}
+{{!-- use the message's TYPE as part of the class --}}
+{{!-- (success-message, error-message, etc...) --}}
+<div class="{{@key}}-message">
+  {{this}}
+</div>
+
+{{/each}}
+
+
+{{!--
+Example structure of "messages" (types are key)
+{
+success: "Great job!",
+error: "Wrong username!"
+}
+--}}

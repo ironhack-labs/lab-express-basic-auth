@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+{{!--
+<script type="text/javascript" src="https://raw.githubusercontent.com/thecreation/jquery-strength/master/examples/js/jquery.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/thecreation/jquery-strength/master/examples/js/password_strength.js"></script>
+<script type="text/javascript" src="js.js"></script> --}}
+
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +14,23 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+  <header>
+    <h1>{{title}}</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/signup">Sign Up</a>
+      <a href="/login">Log In</a>
+    </nav>
+  </header>
 
   {{{body}}}
 
+  <footer>
+    <p>Made with CAFFEINE @ Ironhack</p>
+  </footer>
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,30 @@
+{{> flash_messages}}
+
+<h2>Sign Up</h2>
+
+<form id="myform" action="/process-signup" method="POST">
+
+  <label>
+    Your Username (2 characters or more):
+    <input type="text" name="userName" placeholder="Leia Organa" minlength="1" required />
+  </label>
+
+  <label>
+    Password (must contain a digit 0-9):
+    <input id="myPassword" type="password" name="originalPassword" placeholder="It's a secret" minlength="1" required />
+  </label>
+
+  <button>Sign Up</button>
+</form>
+
+<script>
+  $(document).ready(function ($) {
+    $("#myPassword").strength({
+      strengthClass: "strength",
+      strengthMeterClass: "strength_meter",
+      strengthButtonClass: "button_strength",
+      strengthButtonText: "Show password",
+      strengthButtonTextToggle: "Hide Password"
+    });
+  });
+</script>
