@@ -1,0 +1,48 @@
+<div class="container">
+	<h2 class="well">Hi there ! <small class="text-muted">Fill form to sign up..</small></h2>
+	<div class="col-lg-12 well bg-light">
+		<div class="row">
+
+			<form action="/signup-process" method="POST">
+
+				<div class="col-md-12">
+
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label> Name</label>
+							<input type="text" placeholder="Name *" name="name" class="form-control" required minlength="3">
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Surname</label>
+							<input type="text" placeholder="Surname" name="surname" class="form-control">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<input type="password" placeholder="Password" name="originalPassword" class="form-control" required minlength="6"
+							 maxlength="256">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label>Email Address</label>
+							<input type="email" placeholder="Enter Email *" name="email" class="form-control">
+						</div>
+						<div class="form-group col-md-4">
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+								<label class="form-check-label" for="terms">Accept terms of service (<a href="/CGU" target="_blank">CGU</a>)</label>
+							</div>
+						</div>
+					</div>
+
+					<button class="btn btn-success btn-lg m-2">Submit</button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
