@@ -50,7 +50,7 @@ router.post('/signup-process', (req, res, next) => {
 		})
 		.catch(err => {
 			console.log(err);
-			res.redirect('/404'); // 404 error
+			res.redirect('/errorAtUserCreation'); // 404 error
 		});
 
 });

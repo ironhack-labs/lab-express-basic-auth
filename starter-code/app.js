@@ -8,7 +8,8 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-
+const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 
 mongoose
 	.connect('mongodb://localhost/lab-express-basic-auth', {
@@ -49,9 +50,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
 
+// Express session handling
+// app.use(session({
+// 	saveUninitialized: true,
+// 	resave: true,
+// 	secret: process.env.SECRET
+// }));
+
+app.use(session({
+	secret: 'llamas are rulers of this world but spice must flow',
+	store: new MongoStore({
+		url: 'mongodb://localhost/lab-express-basic-auth',
+		autoRemove: 'interval',
+		autoRemoveInterval: 15 // In minutes. Default
+	})
+}));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Dalek Social Network !';
 
 
 
