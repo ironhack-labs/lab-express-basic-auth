@@ -1,0 +1,13 @@
+<h2>Sign Up</h2>
+
+{{>flash_messages}}
+
+<form action="/process-signup" method="POST">
+  <label>Enter a username
+    <input type="text" name="username" placeholder="Celine Desnoe" required minlength="1">
+  </label>
+  <label>Enter a password
+    <input type="password" name="originalPassword" placeholder="I won't tell you" required minlength="1">
+  </label>
+  <button>Submit</button>
+</form>
