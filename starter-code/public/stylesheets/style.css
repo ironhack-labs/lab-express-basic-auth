@@ -1,17 +1,15 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 html {
   background: #4ec094;
   font-family: "Lato", sans-serif;
-  color: white;
-}
+  color: white; }
+
 #myform input[type="password"],
 #myform input[type="text"] {
   background: transparent;
@@ -34,18 +32,18 @@ html {
   -o-transition: border 0.25s linear, color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear;
   -webkit-backface-visibility: hidden;
-  width: 100%;
-}
+  width: 100%; }
+
 #myform input[type="password"]:focus,
 #myform input[type="text"]:focus {
-  outline: 0;
-}
+  outline: 0; }
+
 #myform {
   width: 500px;
   margin: 0 auto;
   position: relative;
-  margin-bottom: 60px;
-}
+  margin-bottom: 60px; }
+
 .strength_meter {
   position: absolute;
   left: 0px;
@@ -54,13 +52,13 @@ html {
   height: 43px;
   z-index: -1;
   border-radius: 5px;
-  padding-right: 13px;
-}
+  padding-right: 13px; }
+
 .button_strength {
   text-decoration: none;
   color: #fff;
-  font-size: 13px;
-}
+  font-size: 13px; }
+
 .strength_meter div {
   width: 0%;
   height: 43px;
@@ -73,45 +71,45 @@ html {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   padding-right: 12px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
+
 .strength_meter div p {
   position: absolute;
   top: 22px;
   right: 0px;
   color: #fff;
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .veryweak {
   background-color: #ffa0a0;
   border-color: #f04040 !important;
-  width: 25% !important;
-}
+  width: 25% !important; }
+
 .weak {
   background-color: #ffb78c;
   border-color: #ff853c !important;
-  width: 50% !important;
-}
+  width: 50% !important; }
+
 .medium {
   background-color: #ffec8b;
   border-color: #fc0 !important;
-  width: 75% !important;
-}
+  width: 75% !important; }
+
 .strong {
   background-color: #c3ff88;
   border-color: #8dff1c !important;
-  width: 100% !important;
-}
+  width: 100% !important; }
+
 h1 {
   color: white;
   font-size: 50px;
   text-align: center;
   padding-top: 30px;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
+
 h1 span {
   font-weight: bold;
   color: white;
-  opacity: 0.3;
-}
+  opacity: 0.3; }
+
+/*# sourceMappingURL=style.css.map */

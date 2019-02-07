@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+<script type="text/javascript" src="/javascripts/strength.js"></script>
+<script type="text/javascript" src="/javascripts/js.js"></script>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +15,25 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
 
+<body>
+  <header>
+    <nav>
+      <a href="/">home</a>
+      <a href="/signup">signup</a>
+      <a href="/login">login</a>
+    </nav>
+  </header>
   {{{body}}}
 
-  <script src="/javascripts/script.js"></script>
+  <footer>this is a footer! isn't that coooooL?!</footer>
+
+
+
+  {{!-- LIBRARIES --}}
+{{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
+
+<script src="/javascripts/script.js"></script>
 </body>
+
 </html>

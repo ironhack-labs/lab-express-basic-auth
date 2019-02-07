@@ -1,0 +1,16 @@
+<h2>login</h2>
+
+<div>{{>flashMessages}}</div>
+
+<form method="POST" action="/process-login">
+  <label>
+    username
+    <input type="string" name="username" placeholder="clownface74" />
+  </label>
+  <label>
+    password
+    <input type="string" name="originalPassword" placeholder="the key to all your data on this website!" />
+  </label>
+
+  <button>login</button>
+</form>

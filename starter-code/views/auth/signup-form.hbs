@@ -1,0 +1,41 @@
+{{!-- <h2>sign up!</h2>
+
+<div>{{>flashMessages}}</div>
+
+<form id="myform" method="POST" action="/process-signup" accept-charset="utf-8">
+  <label>
+    username
+    <input type="string" name="username" placeholder="clownface74" />
+  </label>
+  <label>
+    password
+    <input class="strength strength_meter button_strength Show Password Hide Password" id="myPassword" type="password" name="originalPassword" placeholder="the key to all your data on this website!" />
+  </label>
+<button class="">hide password</button>
+
+  <button>create your account!</button>
+</form> --}}
+
+
+<h2>sign up!</h2>
+<div>{{>flashMessages}}</div>
+
+<form id="myform" method="POST" action="/process-signup" accept-charset="utf-8">
+  <label>
+    username
+    <input type="string" name="username" placeholder="clownface74" />
+  </label>
+
+  <label>
+    password
+    <input id="myPassword" type="password" name="originalPassword" class="password-input form-control" value="">
+  </label>
+
+    <button>create your account!</button>
+
+ </form>
+
+{{!-- LIBRAIRIES --}}
+{{!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/strength.js"></script>
+<script type="text/javascript" src="/javascripts/js.js"></script> --}}
