@@ -61,10 +61,18 @@ router.post("/process-login", (req, res, next) => {
         return;
       }
 
+      req.session.currentUser = userDoc;
       req.flash("success", "Log in success");
       res.redirect("/");
     })
     .catch(err => next(err));
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    // can't access session here
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;

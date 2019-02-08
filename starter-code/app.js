@@ -80,4 +80,6 @@ app.use("/", index);
 const auth = require("./routes/auth-router");
 app.use("/", auth);
 
+app.use("/", require("./routes/site-routes"));
+
 module.exports = app;
