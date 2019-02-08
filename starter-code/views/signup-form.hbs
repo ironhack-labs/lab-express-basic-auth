@@ -1,0 +1,16 @@
+<h2>Sign Up</h2>
+
+
+<form action="/process-signup" method="POST">
+  <label>
+    Username:
+    <input type="text" name="userName" placeholder="Modjijo" minlength="2" required unique />
+  </label>
+
+  <label>
+    Password:
+    <input type="password" name="originalPassword" placeholder="You'll never guess..." required />
+  </label>
+
+  <button>Sign Up</button>
+</form>
