@@ -1,0 +1,7 @@
+{{#each messages}}
+<!-- use the message's TYPE (@key) as part of the class
+(success-message, error-message, etc ...) -->
+<div class="{{@key}}-message">
+  {{this}}
+</div>
+{{/each}}
