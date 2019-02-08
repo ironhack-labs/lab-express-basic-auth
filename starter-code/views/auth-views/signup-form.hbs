@@ -1,0 +1,19 @@
+<div class="row">
+  <h1>Sign Up</h1>
+  {{!-- {{> flash-messages}} --}}
+
+  <form action="/process-signup" method="POST">
+    <label>
+      Username: <em>* choose a unique name</em><br />
+      <input type="text" name="username" placeholder="username" />
+    </label>
+
+    <label>
+      Password: <em>* can't be left blank</em><br />
+      <input type="password" name="originalPassword" placeholder="password" />
+    </label>
+
+    <button>Sign Up</button>
+
+  </form>
+</div>
