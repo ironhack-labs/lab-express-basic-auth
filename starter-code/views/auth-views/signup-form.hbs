@@ -1,0 +1,23 @@
+<h2>Sign Up</h2>
+
+{{> flash_messages}}
+
+<form action="/process-signup" method="POST">
+  <label>
+    Username:
+    <input type="text" name="username" placeholder="Your username..." required>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" id="myPassword" name="originalPassword" placeholder="Choose a password..." required>
+  </label>
+
+  <button>Sign Up</button>
+</form>
+
+<script>
+  $(document).ready(function () {
+    $("#myPassword").strength();
+  });
+</script>

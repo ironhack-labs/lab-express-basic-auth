@@ -1,0 +1,36 @@
+body {
+  padding: 50px;
+  font: 24px "Pacifico", cursive;
+  color: #524d81;
+  background: #0f0c29;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+
+a {
+  color: #77631d;
+  display: block;
+  transition: all 0.5s ease; }
+
+.link:hover {
+  color: #ba9863;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+
+label {
+  display: block; }
+
+.error-message {
+  border: 3px solid;
+  border-radius: 3px;
+  color: red;
+  padding: 10px; }
+
+.success-message {
+  border: 3px solid;
+  border-radius: 3px;
+  color: green;
+  padding: 10px; }
+
+/*# sourceMappingURL=style.css.map */
