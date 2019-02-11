@@ -1,0 +1,12 @@
+<h2>Log in a tu cuenta</h2>
+<form action="/login" method="POST">
+  <p>Usuario:
+    <input value="{{username}}" name="username" type="text">    
+  </p>
+  <p>Escribe tu contraseña:
+    <input value="{{password}}" name="password" type="password">
+  </p>
+  <p style="color:red">{{error}}</p>
+  <input type="submit" value="Log In">
+</form>
+<a href="/signup"><button>Sign Up</button></a>

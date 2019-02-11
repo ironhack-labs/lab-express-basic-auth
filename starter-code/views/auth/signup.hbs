@@ -1,0 +1,15 @@
+<h2>Crear tu cuenta</h2>
+<form action="/signup" method="POST">
+  <p>Nombre de Usuario:
+    <input value="{{username}}" name="username" type="text">
+    <p style="color:red">{{errors.username}}</p>
+  </p>
+  <p>Escribe tu contraseña:
+    <input value="{{password}}" name="password" type="password">
+  </p>
+   <p>Escribe tu contraseña nuevamente:
+    <input name="password2" type="password">
+    <p style="color:red">{{errors.password}}</p>
+  </p>
+  <input type="submit" value="Crear Cuenta">
+</form>
