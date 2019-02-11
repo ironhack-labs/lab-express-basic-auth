@@ -2,9 +2,7 @@ const router = require('express').Router()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const strength = require('strength');
-let pwSignup = document.querySelector('input[name="password"]');
 
-console.log(howStrong); // 0
 
 // Session
 function isAuth(req,res,next) {
@@ -72,16 +70,20 @@ req.body.password = hash
 
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup')
-  document.addEventListener('DOMContentLoaded',function() {
-    document.querySelector('select[name="ice-cream"]').onchange=changeEventHandler;
-},false);
+//   document.addEventListener('DOMContentLoaded',function() {
+//   document.querySelector('input[name="password"]').onchange=changeEventHandler;
+// },false);
 
-function changeEventHandler(event) {
-    // You can use “this” to refer to the selected element.
-    if(!event.target.value) alert('Please Select One');
-    else alert('You like ' + event.target.value + ' ice cream.'); 
-} 
-  var howStrong = strength(password);
+// function changeEventHandler(event) {
+//   if (strength(password) > 6) {
+//     console.log('Password strength: Strong!')
+//   } else if (strength(password) > 4) {
+//     console.log('Your password is not super safe')
+//   } else {
+//     console.log('Your password is weak!')
+//   }
+// } 
+
 })
 
 module.exports  = router
