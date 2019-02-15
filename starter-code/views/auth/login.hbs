@@ -4,8 +4,11 @@
   <label for="username">Username</label>
   <input type="text" name="username">
 
-  <label for="password">Password</label>
-  <input type="password" name="password">
+  {{!-- <label for="password">Password</label>
+  <input type="password" name="password"> --}}
+
+  <label for="username">Password</label>
+  <input type="password" name="password" value="">
 
   {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
