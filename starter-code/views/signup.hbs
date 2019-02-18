@@ -1,0 +1,25 @@
+
+
+<form id="form" action="/FromSignup" method="POST">
+      <h1>Sing up</h1>
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Your username">
+
+    <label for="password">Password</label><br>
+    <input type="number" name="password"
+      placeholder="********">
+
+    <button type="submit">Create account</button>
+ 
+
+  
+ {{#if ErrUsername}}
+  <div class = "ErrUsername">{{ErrUsername}}</div>
+  {{/if}}
+
+  {{#if ErrPassword}}    
+  <div class = "ErrPassword">{{ErrPassword}}</div>
+  {{/if}}
+
+ </form>

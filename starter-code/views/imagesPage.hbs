@@ -1,0 +1,28 @@
+<h3>Uplond your image</h3>
+<form action="/addImg" method="post" enctype="multipart/form-data">
+
+<label>Title</label>
+<input type="text" name="title">
+
+<label>Description</label>
+<input type="text" name="description">
+
+<label>Poster</label>
+<input type ="file" name ="Photo">
+<input type="submit" value="SAVE">
+</form>
+
+
+
+<h1> My Images</h1>
+<div class="img-wrapper">
+  {{#each img}}
+    <div class="img-item">
+      <img src="{{this.imgPath}}" alt="">
+      <h4>{{this.title}}</h4>
+      <p>{{this.description}}</p>
+    </div>
+  {{else}}
+    <p>There are no movies yet! :(</p>
+  {{/each}}
+</div>

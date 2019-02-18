@@ -1,0 +1,32 @@
+<form action="/FromLogin" method="POST" id="form">
+  <h1>Login</h1>
+
+  <label for="username">Username</label>
+  <input type="text" name="username">
+
+  <label for="password">Password</label>
+  <input type="number" name="password">
+    <button>Sign in</button>
+  {{!-- <button ><a href ="yourLoginFine">Sign in</a></button> --}}
+  
+
+  {{#if ErrUsername}}
+  <div class = "ErrUsername">{{ErrUsername}}</div>
+  {{/if}}
+
+  {{#if ErrPassword}}    
+  <div class = "ErrPassword">{{ErrPassword}}</div>
+  {{/if}}
+
+
+  {{#if ErrMessage}}
+  <div class="errLogin">{{errLogin}}</div>
+  {{/if}}
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+
+
+
+</form>
