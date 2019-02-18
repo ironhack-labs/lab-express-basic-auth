@@ -27,7 +27,11 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.get('/imagesPage', (req, res, next) => {
-  res.render('imagesPage');
+  //res.render('imagesPage');
+  User.find().then(imgLink=>{
+    console.log('imgupland...........................', imgLink)
+    res.render('imagesPage',{img:imgLink});
+  })
 });
 
 
@@ -64,12 +68,12 @@ User.findOne({'username':username}).then(user =>{
     // Save the login in the session!
    if(bcrypt.compareSync(password, user.password)){
     // Save the login in the session!
-    console.log('workkkkkkkkk')
+    console.log('login workkkkkkkkk')
     req.session.currentUser =user;
     res.redirect('/yourLoginFine')
     
     .catch(error => {
-      console.log('Someting Wronge...........',error)
+      console.log('login Someting Wronge...........',error)
     })
    }else{
 
@@ -92,7 +96,7 @@ router.post('/addImg', uploadCloud.single('Photo'),(req,res,next)=>{
     const {title, description} = req.body;
     const imgPath = req.file.url;
     const imgName = req.file.originalname;
-    const newAddImg = new UserSchema ({title, description, imgPath, imgName})
+    const newAddImg = new User ({title, description, imgPath, imgName})
     newAddImg.save()
     .then(images => {
       res.redirect('/')

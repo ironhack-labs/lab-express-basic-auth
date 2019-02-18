@@ -1,6 +1,6 @@
 <h3>Uplond your image</h3>
 <form action="/addImg" method="post" enctype="multipart/form-data">
-
+<!--POST to http://localhost:3000/addImg-->
 <label>Title</label>
 <input type="text" name="title">
 
@@ -14,13 +14,23 @@
 
 
 
-<h1> My Images</h1>
-<div class="img-wrapper">
-  {{#each img}}
+ {{!-- {{#each img}}
     <div class="img-item">
       <img src="{{this.imgPath}}" alt="">
       <h4>{{this.title}}</h4>
       <p>{{this.description}}</p>
+    </div>
+  {{else}}
+    <p>There are no movies yet! :(</p>
+  {{/each}}
+</div> --}}
+
+
+ {{#each img}}
+    <div class="img-item">
+      <img src="{{imgPath}}" alt="">
+      <h4>{{title}}</h4>
+      <p>{{description}}</p>
     </div>
   {{else}}
     <p>There are no movies yet! :(</p>
