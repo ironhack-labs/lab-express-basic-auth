@@ -9,6 +9,10 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+//Required for authentication and sessions
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
+
 
 mongoose
   .connect('mongodb://localhost/basic-auth', {useNewUrlParser: true})
@@ -29,6 +33,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Middleware required for authentication and sessions
+app.use(session({
+  secret: 'basic-auth-secret',
+  cookie: {maxAge: 120000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+
 
 // Express View engine setup
 

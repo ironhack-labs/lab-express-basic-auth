@@ -10,13 +10,25 @@
   <br>
   <label for="password">Password</label>
   <br>
-  <input type="text" name="password" id="password" required="true">
+  <input type="password" name="password" id="password" required="true">
   <br>
   <br>
   <button type="submit">Login</button>
 </form>
 <br>
+{{#if failure}}
+  <p style="color: red;">INCORRECT USERNAME OR PASSWORD</p>
+  <br>
+  <br>
+{{/if}}
+{{#if protected}}
+  <p style="color: red;">THAT PAGE IS PROTECTED, YOU MUST LOGIN TO BE GRANTED ACCESS</p>
+  <br>
+  <br>
+{{/if}}
 <a href="/signup">Don't have an account? Sign up here!</a>
-
+<br>
+<br>
+<a href="/private">Go to the private page! Requires user to have recently logged in.</a>
 
 
