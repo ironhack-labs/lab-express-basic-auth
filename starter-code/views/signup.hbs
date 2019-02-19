@@ -1,0 +1,27 @@
+
+<h1>Sign Up</h1>
+<h4>Passwords Encrypted with Bcrypt</h4>
+<br>
+<form action="/signup" method="POST">
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" id="username">
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <br>
+  <input type="text" name="password" id="password">
+  <br>
+  <br>
+  <button type="submit">Sign Up!</button>
+</form>
+<br>
+{{#if success}}
+  <p style="color: green;">SIGNUP SUCCESSFUL!</p>
+  <br>
+{{/if}}
+{{#if failure}}
+  <p style="color: red;">SORRY, THAT USERNAME ALREADY EXISTS!</p>
+  <br>
+{{/if}}
+<a href="/">Don't want to sign up? Return to the home page.</a>

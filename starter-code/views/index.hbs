@@ -1,2 +1,22 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<h1>Basic Authentication Lab</h1>
+<h4>Passwords Encrypted with Bcrypt</h4>
+<br>
+<form action="/login" method="POST">
+  <label for="username">Username</label>
+  <br>
+  <input type="text" name="username" id="username" required="true">
+  <br>
+  <br>
+  <label for="password">Password</label>
+  <br>
+  <input type="text" name="password" id="password" required="true">
+  <br>
+  <br>
+  <button type="submit">Login</button>
+</form>
+<br>
+<a href="/signup">Don't have an account? Sign up here!</a>
+
+
+
