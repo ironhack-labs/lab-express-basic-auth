@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const User    = require('../models/user.js');
 const bcrypt  = require('bcrypt');
+const parser  = require('../configs/cloudinary');
 
 
 /* GET home page */
@@ -82,7 +83,37 @@ router.use((req, res, next) => {
 
 router.get('/private', (req, res, next) => {
   let maxAge = req.session.cookie.expires;
-  res.render('private', {maxAge});
+  User.findById(req.session.currentUser._id)
+    .then(userData => {
+      res.render('private', {maxAge: maxAge, profilePictureUrl: userData.pictureUrl});
+    });
+  
 });
+
+
+router.post('/private/upload', parser.single('picture'), (req, res, next) => {
+  User.findByIdAndUpdate(req.session.currentUser._id, {pictureUrl: req.file.url})
+    .then(() => {
+      res.json({
+        success: true,
+        pictureUrl: req.file.url
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
+
+
+// // This route finds the first user, takes the file from the request with the key 'picture' and save the 'pictureUrl'
+// router.post('/private/upload', parser.single('picture'), (req, res, next) => {
+//   User.findOneAndUpdate({}, { pictureUrl: req.file.url })
+//     .then(() => {
+//       res.json({
+//         success: true,
+//         pictureUrl: req.file.url
+//       })
+//     })
+// });
 
 module.exports = router;

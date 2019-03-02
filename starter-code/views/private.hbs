@@ -2,4 +2,15 @@
 <br>
 <p>SESSION WILL REMAIN ACTIVE UNTIL: {{maxAge}}</p>
 <br>
+<p>THIS IS YOUR 100PX BY 100PX PROFILE PICTURE:</p>
+<img src="{{profilePictureUrl}}" style="width: 100px; height: 100px">
+<br>
+<form method="POST" action="/private/upload" enctype="multipart/form-data">
+  <label for="picture">Upload a photo here:</label>
+  <br>
+  <input type="file" name="picture" id="picture">
+  <br>
+  <input type="submit" value="Upload!">
+</form>
+<br>
 <a href="/">Return to the Login page</a>
