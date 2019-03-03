@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const uploadCloud = require('../routes/cloudinary.js');
-
+const Image = require('../models/image')
 // User model
 const User           = require("../models/user");
 
@@ -22,6 +22,10 @@ router.get("/", (req, res, next) => {
 
 router.get("/signup", (req, res, next) => {
   res.render("signup");
+});
+
+router.get("/post", (req, res, next) => {
+  res.render("post");
 });
 
 
@@ -119,6 +123,30 @@ router.use((req, res, next) => {
 router.get("/secret", (req, res, next) => {
   res.render("secret");
 });
+
+/* GET IMAGE PAGE */
+router.get('/post-image', (req, res, next) => {
+  Image.find()
+  .then(imagesFromDB => {
+    res.render('post', {images: imagesFromDB});
+  })
+});
+
+
+router.post('/add', uploadCloud.single('photo'), (req, res, next) => {
+  const { title, description } = req.body;
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
+  const newImage = new Image({title, description, imgPath, imgName})
+  newImage.save()
+  .then(image => {
+    res.redirect('/post-image');
+  })
+  .catch(error => {
+    console.log(error);
+  })
+});
+
 
 module.exports = router;
 

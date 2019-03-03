@@ -1,0 +1,18 @@
+<h2>Post a new Image</h2>
+<form action="/add" method="post" enctype="multipart/form-data">
+  <label>Title</label>
+  <input type="text" name="title">
+  <br>
+  <label>Photo</label>
+  <input type="file" name="photo">
+<br>
+  <input type="submit" value="SAVE">
+</form>
+
+{{#each images}}
+<ul>
+  <li> {{this.title}}
+    <img src="{{this.imgPath}}" height="100px" width="auto">
+  </li>
+</ul>
+{{/each}}
