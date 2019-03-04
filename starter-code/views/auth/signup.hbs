@@ -1,0 +1,11 @@
+<form id="form" action="/signup" method="POST">
+    <h2>New User - Register</h2>
+    <label>Username: <input type="text" name="username" placeholder="Your username"></label><br><br>
+    <label>Password: <input type="password" name="password" placeholder="********" id="password"></label><br><br>
+   
+    {{#if errorMessage}}
+        <div class="error-message">{{errorMessage}}</div>
+    {{/if}}
+
+    <button type="submit">Register new account</button>
+</form>
