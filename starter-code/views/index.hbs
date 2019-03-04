@@ -1,2 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<a href="/main">Funny cat</a>
+<a href="/private">Hello</a>
+<a href="/auth/login">Login</a>
+{{#if currentUser}}     
+  <form action="/auth/logout" method="POST">
+    <button class="orange" type="submit">Logout</button>
+  </form>    
+{{/if}}
+

@@ -1,0 +1,16 @@
+<form action="/auth/login" method="POST" id="form">
+  <h2>Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username">
+
+  <label for="password">Password</label>
+  <input type="password" name="password">
+
+  <button type="submit">Sign in</button>
+ {{> message}}
+
+  <p class="account-message">
+    Don't have an account? <a href="/auth/signup">Sign up</a>
+  </p>
+</form>
