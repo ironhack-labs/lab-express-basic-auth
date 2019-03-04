@@ -1,16 +1,26 @@
-<form action="/auth/login" method="POST" id="form">
-  <h2>Login</h2>
+<div class="form">
+  <h2>Log in</h2>
 
-  <label for="username">Username</label>
-  <input type="text" name="username">
+  <form method="POST" action="/auth/login">
 
-  <label for="password">Password</label>
-  <input type="password" name="password">
+    <div class="field" >
+      <label>Username</label>
+      <input type="text" name="username"/>
+    </div>
 
-  <button type="submit">Sign in</button>
- {{> message}}
+    <div class="field" >
+      <label>Password</label>
+      <input type="password" name="password"/>
+    </div>
 
-  <p class="account-message">
-    Don't have an account? <a href="/auth/signup">Sign up</a>
-  </p>
-</form>
+    <div class="field submit">
+      <button type="submit">Log In</button>
+    </div>
+    <p class="account-message">
+      Don't have an account? <a href="/auth/signup">Sign up</a>
+    </p>
+  </form>
+
+{{> message}}
+
+</div>

@@ -1,11 +1,27 @@
- <form id="form" action="signup" method="POST">
-    <h2>Sign Up</h2>
-    <label for="username">Username</label><br>
-    <input type="text" name="username" placeholder="Username">
-    <label for="password">Password</label><br>
-    <input id="password" type="password" name="password" placeholder="********">
-    <button type="submit">Create account</button>
-    {{> message}}
+
+<div class="form">
+  <h2>Sign Up</h2>
+
+  <form method="POST" action="/auth/signup">
+
+    <div class="field" >
+      <label>Username</label>
+      <input type="text" name="username"/>
+    </div>
+
+    <div class="field" >
+      <label>Password</label>
+      <input type="password" name="password"/>
+    </div>
+
+    <div class="field submit">
+      <button type="submit">Sign Up</button>
+    </div>
+
   </form>
+
+{{> message}}
+
+</div>
 
  

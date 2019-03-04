@@ -1,12 +1,38 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="index">
 
-<a href="/main">Funny cat</a>
-<a href="/private">Hello</a>
-<a href="/auth/login">Login</a>
-{{#if currentUser}}     
-  <form action="/auth/logout" method="POST">
-    <button class="orange" type="submit">Logout</button>
-  </form>    
-{{/if}}
+  <figure class="snip1190">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample64.jpg" alt="sample64"/>
+    <figcaption>
+      <div class="square">
+        <div></div>
+      </div>
+      <h2>Sign<span> Up</span></h2>
+      <p>Be a member of the family</p>
+    </figcaption>
+    <a href="/auth/signup"></a>
+  </figure>
+  <figure class="snip1190 hover">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample75.jpg" alt="sample75"/>
+    <figcaption>
+      <div class="square">
+        <div></div>
+      </div>
+      <h2>private<span> content</span></h2>
+      <p>Login to see the magic</p>
+    </figcaption>
+    <a href="/private"></a>
+  </figure>
+  <figure class="snip1190">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample62.jpg" alt="sample62"/>
+    <figcaption>
+      <div class="square">
+        <div></div>
+      </div>
+      <h2>Public<span> Galery</span></h2>
+      <p>Pictures for all</p>
+    </figcaption>
+    <a href="/main"></a>
+  </figure>
+
+</section>
 

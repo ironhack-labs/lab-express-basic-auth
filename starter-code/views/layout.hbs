@@ -9,9 +9,19 @@
 </head>
 <body>
 
+  <nav>
+    {{#if currentUser}}
+      <div class="nav">
+        <form action="/auth/logout" method="POST">
+          <button class="button" type="submit">Logout</button>
+        </form>
+      </div>    
+    {{/if}}
+    
+  </nav>
+
   {{{body}}}
  
-  <script src="./js/password-strength-meter/password.min.js"></script>
-  <script src="./js/password-strength-meter/password.min.css"></script>
+  
 </body>
 </html>

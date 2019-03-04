@@ -14,7 +14,7 @@ router.get('/main', (req, res, next) => {
 
 router.get('/private', (req, res, next) => {
   if (req.session.currentUser) {
-    res.render('/private');
+    res.render('private');
   } else {
     res.redirect('/auth/login');
   }
