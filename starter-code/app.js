@@ -9,9 +9,12 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session      = require("express-session");
+const MongoStore   = require("connect-mongo")(session);
+
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -36,7 +39,17 @@ app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
-}));
+}))
+
+// Middleware gestión de sesión
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}))
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +64,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+const authroutes = require('./routes/authroutes');
+app.use('/', authroutes);
+
+const siteroutes = require('./routes/siteroutes');
+app.use('/', siteroutes);
 
 
 module.exports = app;
