@@ -107,48 +107,48 @@ form .submit button, .button {
   font-family: 'Raleway', Arial, sans-serif;
 }
   
-  figure.snip1190 {
-    font-family: 'Raleway', Arial, sans-serif;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-    min-width: 220px;
-    max-width: 310px;
-    max-height: 220px;
-    width: 100%;
-    background: #000000;
-    text-align: center;
-  }
-  figure.snip1190 * {
-    -webkit-box-sizing: padding-box;
-    box-sizing: padding-box;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
-  figure.snip1190 img {
-    opacity: 0.8;
-    width: 100%;
-  }
-  figure.snip1190 figcaption {
-    bottom: 0;
-    display: block;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  figure.snip1190 h2 {
-    font-weight: 400;
-    left: 0;
-    right: 0;
-    letter-spacing: -1px;
-    margin: 0 auto;
-    position: absolute;
-    text-transform: uppercase;
-    bottom: 50%;
-    -webkit-transform: translateY(50%);
-    transform: translateY(50%);
+figure.snip1190 {
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 310px;
+  max-height: 220px;
+  width: 100%;
+  background: #000000;
+  text-align: center;
+}
+figure.snip1190 * {
+  -webkit-box-sizing: padding-box;
+  box-sizing: padding-box;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+figure.snip1190 img {
+  opacity: 0.8;
+  width: 100%;
+}
+figure.snip1190 figcaption {
+  bottom: 0;
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+figure.snip1190 h2 {
+  font-weight: 400;
+  left: 0;
+  right: 0;
+  letter-spacing: -1px;
+  margin: 0 auto;
+  position: absolute;
+  text-transform: uppercase;
+  bottom: 50%;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
   }
   figure.snip1190 h2 span {
     font-weight: 800;
