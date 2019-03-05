@@ -8,6 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session')
+const MongoStore   = require('connect-mongo')(session)
+
 
 
 mongoose
@@ -44,6 +47,15 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 6000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24*60*60
+  })
+}))
+
 
 
 // default value for title local
@@ -51,8 +63,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
+const auth = require('./routes/auth')
 const index = require('./routes/index');
-app.use('/', index);
-
+const siteRoutes = require('./routes/site-routes')
+//app.use('/', index);
+app.use('/', auth);
+app.use('/', siteRoutes)
 
 module.exports = app;
