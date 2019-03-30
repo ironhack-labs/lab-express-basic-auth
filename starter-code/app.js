@@ -8,10 +8,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/20190330-basic-auth', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,6 +31,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// session / cookies
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  cookie: {maxAge: 60000*60*24*14}, // 2 weeks
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -47,12 +58,27 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Basic auth';
 
 
-
+// the / route
 const index = require('./routes/index');
 app.use('/', index);
 
+// the /user route
+const user = require('./routes/user.js');
+app.use('/user', user);
+
+// the /member route
+const member = require('./routes/member.js');
+app.use('/member', (req, res, next) => {
+  if(req.session.currentUser) {
+    // next will go to the members route
+    next();
+  } else {
+    // res.send('user not logged in');
+    res.render('./user/login', {errorMsg: 'Login first to access the member area'});
+  }
+}, member);
 
 module.exports = app;

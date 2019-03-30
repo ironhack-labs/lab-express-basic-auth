@@ -1,0 +1,15 @@
+<h3>Create a new account</h3>
+
+<form class="user-form" action="/user/create" method="post">
+
+  <label for="username">Username: </label>
+  <input type="text" name="username" id="username">
+
+  <label for="password">Password: </label>
+  <input type="password" name="password" id="password">
+
+  <div class="errorMsg">{{errorMsg}}</div>
+
+  <button type="submit">Create account</button>
+
+</form>
