@@ -1,14 +1,70 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.center-content { 
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .errorMsg {
   color: red;
   font-style: italic;
   padding: 10px;
+}
+
+// input:invalid {
+//   border: 1px solid red;
+// }
+
+// NAVIGATION BAR
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.menu-button {
+  background-color: goldenrod;
+  padding: 10px 25px;
+  margin-right: 10px;
+}
+
+.menu-button a {
+  color: white;
+  text-decoration: none;
+}
+
+// BUTTONS
+.action-button {
+  display: inline-block;
+  background-color: goldenrod;
+  border-radius: 25px;
+  padding: 10px 25px;
+  color: white;
+  font-weight: bold;
+  border: 0px solid;
+}
+
+.action-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.logout-button {
+  background-color: orangered;
+}
+
+// IMG (members)
+.img-block {
+  display: block;
+  height: 200px;
+  margin: 10px;
+}
+
+// FORM
+form input {
+  display: block;
+  margin-bottom: 20px;
 }

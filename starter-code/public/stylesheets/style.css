@@ -1,13 +1,53 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
+.center-content {
+  max-width: 600px;
+  margin: 0 auto; }
 
 .errorMsg {
   color: red;
   font-style: italic;
   padding: 10px; }
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px; }
+
+.menu-button {
+  background-color: goldenrod;
+  padding: 10px 25px;
+  margin-right: 10px; }
+
+.menu-button a {
+  color: white;
+  text-decoration: none; }
+
+.action-button {
+  display: inline-block;
+  background-color: goldenrod;
+  border-radius: 25px;
+  padding: 10px 25px;
+  color: white;
+  font-weight: bold;
+  border: 0px solid; }
+
+.action-button a {
+  color: white;
+  text-decoration: none; }
+
+.logout-button {
+  background-color: orangered; }
+
+.img-block {
+  display: block;
+  height: 200px;
+  margin: 10px; }
+
+form input {
+  display: block;
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=style.css.map */

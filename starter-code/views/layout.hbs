@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,30 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
 
-  {{{body}}}
+  
+  <div class="center-content">
+    <nav class="navigation">
+      <div class="menu-button">
+        <a href="/">home</a>
+      </div>
+      <div class="menu-button">
+        <a href="/user/create">Register</a>
+      </div>
+      <div class="menu-button">
+        <a href="/member">Member area</a>
+      </div>
+      <div class="menu-button logout-button">
+        <a href="/user/logout">Logout</a>
+      </div>
+    </nav>
+  
+    {{{body}}}
+  </div>
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

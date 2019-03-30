@@ -13,6 +13,10 @@ router.get('/create', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
+  if(req.body.password.length < 1) {
+    res.render('./user/create', { errorMsg: 'Enter a password' })
+    return;
+  } // 'if' is synchronous - the return will end this part.
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       return User.create({
@@ -23,7 +27,7 @@ router.post('/create', (req, res, next) => {
     // user created -> redirect
     .then(user => {
       console.log(`user created: ${user.username}`);
-      res.redirect('/');
+      res.redirect('/user/login');
     })
     // schema validation / errors
     .catch(err => {
@@ -45,7 +49,7 @@ router.post('/create', (req, res, next) => {
 // LOGIN
 router.get('/login', (req, res, next) => {
   res.render('./user/login.hbs');
-});
+}); 
 
 router.post('/login', (req, res, next) => {
   let currentUser = '';
@@ -69,6 +73,13 @@ router.post('/login', (req, res, next) => {
     .catch(err => {
       console.log(err);
     })
-})
+});
+
+// LOGOUT
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => { 
+    res.redirect("/");
+  });
+});
 
 module.exports = router;
