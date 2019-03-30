@@ -2,54 +2,11 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const emptyCredentials = require("../helpers/emptyCredentials");
+const authenticate = require("../helpers/authenticate");
 
-// middleware function to validate credentials
-const emptyCredentials = (req, res, next) => {
-  let { username, password } = req.body;
-  if (!username)
-    res.render("auth/login-signup", {
-      err: "Username is empty!",
-      login: req.url.includes("login")
-    });
-  if (!password)
-    res.render("auth/login-signup", {
-      username,
-      err: "You must provide a password!",
-      login: req.url.includes("login")
-    });
-  next();
-};
-
-const authenticate = (req, res, next) => {
-  let { username, password } = req.body;
-  User.findOne({ username })
-    .then(user => {
-      // user doesn't exists
-      if (!user)
-        res.render("auth/login-signup", {
-          err: "User doesn't exists, check your username",
-          login: req.url.includes("login")
-        });
-      if (bcrypt.compareSync(password, user.password)) {
-        // store cookie
-        req.session.currentUser = user;
-        next();
-      } else {
-        res.render("auth/login-signup", {
-          err: "Incorrect password",
-          login: req.url.includes("login")
-        });
-      }
-    })
-    .catch(err => {
-      console.log(`Error durante login`);
-      console.log(err);
-      res.render("auth/login-signup", {
-        err: `An error has occurred during login, please try later`,
-        login: false
-      });
-    });
-};
+// console.log("function???",emptyCredentials);
+// console.log("function???",authenticate);
 
 router.get("/login", (req, res) => {
   // Aqui no se considera el slash en la ruta
@@ -62,7 +19,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/login", emptyCredentials, authenticate, (req, res, next) => {
-  res.render("private");
+  res.redirect("/main");
 });
 
 router.post("/signup", emptyCredentials, (req, res, next) => {

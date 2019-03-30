@@ -72,4 +72,10 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
+const main = require("./routes/main");
+app.use("/main", main);
+
+const private = require("./routes/private");
+app.use("/private", private);
+
 module.exports = app;
