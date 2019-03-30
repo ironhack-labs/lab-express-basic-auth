@@ -1,0 +1,21 @@
+<form action="/auth/login" method="POST">
+
+  <H2>LOG IN</H2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="username">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="********">
+
+  <button type="submit">Log In!</button>
+
+  {{#if passErr}}
+  <p style="color: red">{{passErr}}</p>
+  {{else if userErr}}
+  <p style="color: red">{{userErr}}</p>
+  {{/if}}
+
+</form>
+<br>
+<a href="/">Home</a>
