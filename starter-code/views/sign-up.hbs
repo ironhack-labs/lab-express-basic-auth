@@ -1,0 +1,22 @@
+<div class="back-img">
+<div id="margen">
+  <div id="square">
+      <form id="form" action="/auth/signup" method="POST">
+      <h2>Sign up</h2>
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Your username">
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" placeholder="********">
+
+    <button class="btn" type="submit">Create account</button><br><br><br>
+      <p class="account-message">
+    You have an account? <a href="/auth/login">Login</a>
+  </p>
+    {{#if err}}
+    <p>{{err}}</p>
+    {{/if}}
+  </form>
+</div>
+</div>
+</div>

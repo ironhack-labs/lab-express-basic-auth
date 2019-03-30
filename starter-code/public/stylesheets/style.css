@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.back-img {
+  background-image: url(https://img.edilportale.com/product-thumbs/b_scribbles-pattern-texturae-292295-rel79197610.jpg);
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+#square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(240, 248, 255, 0.95);
+  width: 45vw;
+  height: 50vh;
+  border-radius: 50px;
+}
+
+#margen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 92vh;
+}
+
+img {
+  border-radius: 50px;
+}
+/*# sourceMappingURL=style.css.map */
