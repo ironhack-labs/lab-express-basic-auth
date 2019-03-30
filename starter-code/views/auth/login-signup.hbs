@@ -1,0 +1,22 @@
+<form id="form" 
+{{#if login}} action="/auth/login" 
+{{else}} action="/auth/signup" 
+{{/if}} method="POST">
+  <label for="username">Username
+    <input type="text" name="username" placeholder="Your username" value="{{username}}">
+  </label><br>
+
+  <label for="password">Password
+    <input type="password" name="password" placeholder="Your password">
+  </label><br>
+  {{#if err}}
+  <div class="error-message">{{ err }}</div>
+  {{/if}}
+  <button type="submit">
+    {{#if login}}
+    Log in
+    {{else}}
+    Sign Me Up!
+    {{/if}}
+  </button>
+</form>
