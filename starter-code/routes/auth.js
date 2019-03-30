@@ -42,6 +42,8 @@ const authenticate = (req, res, next) => {
       }
     })
     .catch(err => {
+      console.log(`Error durante login`);
+      console.log(err);
       res.render("auth/login-signup", {
         err: `An error has occurred during login, please try later`,
         login: false
