@@ -52,7 +52,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 const index = require('./routes/index');
+const authRouter = require('./routes/auth.routes')
 app.use('/', index);
+app.use('/', authRouter)
 
 
 module.exports = app;
