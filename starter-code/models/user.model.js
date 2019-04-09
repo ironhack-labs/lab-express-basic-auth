@@ -18,7 +18,22 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
+userSchema.pre('save', function(next) {
+  const user = this;
 
+  if (user.isModified('password')) {
+    bcrypt.genSalt(SALT_WORK_FACTOR)
+      .then(salt => bcrypt.hash(user.password, salt))
+        .then(hash => {
+          user.password = hash;
+          next();
+        })
+      .catch(next)
+  }
+  else {
+    next();
+  }
+})
 
 
 const User = mongoose.model('User',userSchema)
