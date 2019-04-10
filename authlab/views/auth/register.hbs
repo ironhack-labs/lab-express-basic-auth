@@ -1,8 +1,11 @@
 <h1 class="centered">Register</h1>
 <form action="/register" method="POST">
   <div class="login-form">
-    <div class="login-wrapper">
+    <div class="login-wrapper input-group">
       <input type="text" class="form-control {{#if errors.username}} is-invalid {{/if}}" placeholder="Username" name="username">
+      <div class="invalid-feedback">
+        {{ errors.username }}
+      </div>
     </div>
     <div class="login-wrapper">
       <div class="input-group">
@@ -10,8 +13,11 @@
           <div class="input-group-text"><i class="fas fa-lock"></i></div>
         </div>
         <input type="text" class="form-control {{#if errors.password}} is-invalid {{/if}}" placeholder="Password" name="password">
-      </div>
-    </div>
+        <div class="invalid-feedback">
+          {{ errors.password }}
+        </div>
+      </div>    
+    </div>  
     <div class="login-wrapper">
       <button type="submit" class="btn btn-primary col-12">Submit</button>
     </div>

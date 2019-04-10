@@ -39,5 +39,34 @@ module.exports.login = ((req, res, next) => {
 })
 
 module.exports.doLogin = ((req, res, next) => {
+  function renderWithErrors(errors) {
+    res.render('auth/login', {
+      user: req.body,
+      errors: errors
+    })
+  }
+
+  User.findOne({ username: req.body.username })
+    .then(user => {
+      if (user) {
+        User.findOne({ username: user.username, password: User.methods.checkPassword(user.password)})
+        .then(user =>{ 
+          if (user) {
+            res.redirect('/')}
+          else{
+            renderWithErrors({ username: 'username or password is incorrect'})
+          }
+          })
+      } else {
+        renderWithErrors({ username: 'username or password is incorrect'})
+      }
+    })
+    .catch(error => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        renderWithErrors(error.errors)
+      } else {
+        next(error);
+      }
+    });
   res.render('auth/login.hbs')
 })
