@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.centered {
+  text-align: center; }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 30%; }
+
+.login-wrapper {
+  width: 100%;
+  height: 30px;
+  margin: 20px 0; }
+
+/*# sourceMappingURL=style.css.map */
