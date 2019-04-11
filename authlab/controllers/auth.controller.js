@@ -58,7 +58,8 @@ module.exports.doLogin = ((req, res, next) => {
               renderWithErrors({ username: 'username or password is incorrect'})
             }
             else {
-              res.redirect("/")
+              req.session.user = user;
+              res.redirect("/protected")
             }
       })
     }
@@ -72,4 +73,10 @@ module.exports.doLogin = ((req, res, next) => {
     });
 })
 
+
+module.exports.logout = ((req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/login");
+  });
+});
 
