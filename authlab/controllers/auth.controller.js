@@ -18,7 +18,7 @@ module.exports.doRegister = ((req, res, next) => {
   User.findOne({ username: req.body.username })
     .then(user => {
       if (user) {
-        renderWithErrors({ username: 'username already registered'})
+        renderWithErrors({ username: 'username is not available'})
       } else {
         user = new User(req.body);
         return user.save()
@@ -48,19 +48,21 @@ module.exports.doLogin = ((req, res, next) => {
 
   User.findOne({ username: req.body.username })
     .then(user => {
-      if (user) {
-        User.findOne({ username: user.username, password: User.methods.checkPassword(user.password)})
-        .then(user =>{ 
-          if (user) {
-            res.redirect('/')}
-          else{
-            renderWithErrors({ username: 'username or password is incorrect'})
-          }
-          })
-      } else {
+      if (!user) {
         renderWithErrors({ username: 'username or password is incorrect'})
       }
-    })
+      else {
+        return user.checkPassword(req.body.password)
+          .then(match => {
+            if (!match){
+              renderWithErrors({ username: 'username or password is incorrect'})
+            }
+            else {
+              res.redirect("/")
+            }
+      })
+    }
+  })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
         renderWithErrors(error.errors)
@@ -68,5 +70,6 @@ module.exports.doLogin = ((req, res, next) => {
         next(error);
       }
     });
-  res.render('auth/login.hbs')
 })
+
+
