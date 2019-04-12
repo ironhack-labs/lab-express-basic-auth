@@ -2,10 +2,10 @@
 <form action="/login" method="POST" id="form">
 
   <label for="username">Username</label>
-  <input type="text" name="username" id="username" placeholder="Your username" required pattern="[\w]+">
+  <input type="text" name="username" id="username" placeholder="Your username">
 
   <label for="password">Password</label>
-  <input type="password" name="password" placeholder="Your password" required minlength="8" maxlength="16">
+  <input type="password" name="password" placeholder="Your password">
 
   {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>

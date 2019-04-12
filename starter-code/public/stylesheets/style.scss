@@ -60,7 +60,7 @@ a {
   display: block;
   background-color: hsl(0, 50%, 50%);
   color: white;
-  width: 100%;
+  width: 95%;
   margin: 10px auto;
   margin-bottom: 20px;
   padding: 8px;
@@ -71,4 +71,9 @@ a {
 
 .hidden{
   display: none;
+}
+
+.private-image{
+  width: 300px;
+  display: block;
 }
