@@ -56,6 +56,13 @@ router.get('/signup', (req, res, next) => {
   res.render('index', data);
 });
 
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // can't access session here
+    res.redirect("/");
+  });
+});
+
 router.use((req, res, next) => {
   console.log(req.session)
   if (req.session.currentUser) { 
