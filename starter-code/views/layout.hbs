@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
 
   {{{body}}}
+  <p>go to <a href="/private">/private</a> </p>
+  <p>go to <a href="/main">/main </a></p>
+
+  <a href="/login">login</a>
+  <br>
+  <a href="/signup">signup</a>
+  <br>
+  <a href="/logout">Logout</a>
 
   <script src="/javascripts/script.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="strength.js"></script>
+  <script type="text/javascript" src="js.js">
+    $(document).ready(function ($) {
+
+      $('#password').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show Password',
+        strengthButtonTextToggle: 'Hide Password'
+      });
+
+    });
+  </script>
 </body>
+
 </html>
