@@ -1,2 +1,16 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1> {{action}}</h1>
+ 
+ <form method="POST" action="/{{action}}" id="theForm">
+    <label for="username">
+      Username:
+    </label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">
+      Password:
+    </label>
+    <input type="password" name="password" value="" id="password">
+  
+    <p style="color: red;" id="errorBox"></p>
+  
+    <input type="submit" name="" id="submitButton" value="Submit form">
+  </form>
