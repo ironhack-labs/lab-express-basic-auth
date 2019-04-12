@@ -1,22 +1,37 @@
-<h1>Sign up</h1>
+<h1 class="text-center">Sign up</h1>
 <form action="/signup" method="POST" id="form">
 
   <label for="username">Username</label>
-  <input type="text" name="username" id="username" placeholder="Your username">
+  <input type="text" name="username" id="username" placeholder="Your username" required>
 
   <label for="password">Password</label>
-  <input type="password" name="password" placeholder="Your password">
+  <input id="password" type="password" name="password" placeholder="Your password" required>
 
-  <label for="passConfirm">Confirm your password</label>
-  <input type="passConfirm" name="passConfirm" placeholder="Your password again">
+  <a href="#" id="show-password">Show password</a>
+  <a href="#" id="hide-password" class="hidden">Hide password</a>
+
+  <div class="block-info" id="password-strength">
+    weak
+  </div>
+
+  {{!-- <label for="passConfirm">Confirm your password</label>
+  <input type="passConfirm" name="passConfirm" placeholder="Your password again"> --}}
 
   {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
 
-  <button>Sign up</button>
+  <button>Create account</button>
+
+  {{!-- <ul>
+    <li id="special-char">You must include at least one special character</li>
+    <li id="uppercase-char">You must include at least one uppercase letter</li>
+    <li id="lowercase-char">You must include at least one lowercase letter</li>
+    <li id="digit-char">You must include at least one digit</li>
+  </ul> --}}
 
   <p class="account-message">
-    Already have an account? <a href="/login">Sign in</a>
+    Already have an account? <a href="/login">Login</a>
   </p>
 </form>
+<script src="javascripts/signup.js"></script>
