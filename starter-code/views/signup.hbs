@@ -1,0 +1,22 @@
+<h1>Sign up</h1>
+<form action="/signup" method="POST" id="form">
+
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" placeholder="Your username">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Your password">
+
+  <label for="passConfirm">Confirm your password</label>
+  <input type="passConfirm" name="passConfirm" placeholder="Your password again">
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Sign up</button>
+
+  <p class="account-message">
+    Already have an account? <a href="/login">Sign in</a>
+  </p>
+</form>
