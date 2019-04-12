@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+
+<h1>{{action}} section</h1>
+
+<form method="POST" action="/{{action}}" id="">
+  <input type="text" name="userName" value="" id="userName">
+  <input type="password" name="password" value="" id="password">
+  <input type="submit" name="" id="submitButton" value="Submit form">
+</form>
