@@ -1,2 +1,16 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+  <div id="unlog">
+    <p>Welcome to {{title}}</p>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+  </div>
+
+  {{#if name}}
+  <div id="log">
+    <p>Welcome back {{name}}</p>
+    <a href="/private">Private Area</a>
+    <a href="/logout">Logout</a>
+  </div>
+  <script>document.querySelector("#unlog").style.display = "none"</script>
+  {{/if}}
