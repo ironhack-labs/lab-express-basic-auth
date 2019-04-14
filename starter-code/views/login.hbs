@@ -1,19 +1,21 @@
-<form action="/login" method="POST" id="form">
-  <h2>Login</h2>
+<div class="container">
+  <form action="/login" method="POST" id="form">
+    <h2>Login</h2>
 
-  <label for="username">Username</label>
-  <input type="text" name="username">
+    <label for="username">Username</label>
+    <input type="text" name="username">
 
-  <label for="password">Password</label>
-  <input type="password" name="password">
+    <label for="password">Password</label>
+    <input type="password" name="password">
 
-  {{#if errorMessage }}
-    <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
+    {{#if errorMessage }}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
 
-  <button>Sign in</button>
+    <button>Sign in</button>
 
-  <p class="account-message">
-    Don't have an account? <a href="/signup">Sign up</a>
-  </p>
-</form>
+    <p class="account-message">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+  </form>
+</div>  
