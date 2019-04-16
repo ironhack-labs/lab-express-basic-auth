@@ -1,0 +1,12 @@
+<form class="form-one" action="/login" method="POST" id="form">
+    <h2>Log in if you can!</h2>
+    <label for="username">Username</label>
+    <input required type="text" name="username" placeholder="your nick">
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="******">
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <button type="submit">Sign in</button>
+    <p class="account-message">Are you qualified? <a href="/signup">Join the clan!</a> </p>
+</form>
