@@ -16,6 +16,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const home = require('./routes/home.routes');
 const auth = require('./routes/auth.routes');
+const users = require('./routes/user.routes');
 
 
 const app = express();
@@ -45,6 +46,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use('/', home);
 app.use('/', auth);
+app.use('/',users);
 
 
 

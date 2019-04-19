@@ -38,7 +38,12 @@ module.exports.signupRegister = (req, res, next) => {
 }
 
 module.exports.loginForm = (req, res, next) => {
-  res.render('main/login');
+  if (!req.session.user) {
+    res.render('main/login');
+  } else {
+    res.redirect('/users')
+  }
+  
 }
 
 module.exports.loginAttempt = (req,res,next) => {
@@ -59,9 +64,10 @@ module.exports.loginAttempt = (req,res,next) => {
             if(!match) {
               renderWithErrors({password: 'Invalid pass or username'})
             } else {
-              res.render('main/home',console.log('login OK'))
+              req.session.user = user;
+              res.redirect ('/users')
             }
-          });
+          })
         }
       })
 
