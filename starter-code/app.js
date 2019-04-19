@@ -9,6 +9,7 @@ const path         = require('path');
 
 require('./config/db.config');
 require('./config/hbs.config');
+const session = require('./config/session.config.js');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -29,6 +30,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session);
 
 // Express View engine setup
 
@@ -42,7 +44,8 @@ app.use(require('node-sass-middleware')({
 app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use('/', home);
-app.use('/', auth)
+app.use('/', auth);
+
 
 
 module.exports = app;

@@ -1,12 +1,19 @@
 <h1>Login ;)</h1>
-<form action="/signup" method="POST">
+<form action="/login" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
-    <input name ="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Name">
+    <input name ="name" value="{{user.name}}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Name">
+      <div>
+        {{ errors.userName }} 
+      </div>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input name ="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <div>
+        {{ errors.password}} 
+      </div>
   </div>
   <button type="submit" class="btn btn-primary">Sign Up!</button>
 </form>
+<p>Don't have an account? SignUp <a href="/signup" >here!</a></p>
