@@ -5,12 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-
-  {{{body}}}
-
-  <script src="/javascripts/script.js"></script>
+    <nav>
+    <div class="nav-wrapper black">
+      <a href="/" class="brand-logo center">Home</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row center">
+  {{{ body }}}
+  </div>
+  <script type="text/javascript" src="/javascripts/materialize.min.js"></script>
+  <script type="text/javascript" src="/javascripts/script.js"></script>
 </body>
 </html>
