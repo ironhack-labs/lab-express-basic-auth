@@ -1,0 +1,18 @@
+<div class="container center">
+  <h2>{{ err }}</h2>
+  <form class="col s6 card white offset-s3" action="{{action}}" method="POST">
+    <div class="row">
+      <div class="input-field col s6">
+        <input name="username" required type="text" class="validate">
+        <label for="username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+          <input name="password" type="password" required class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <input class="red waves-effect waves-light btn" type="submit" value="{{button}}"/>
+  </form>
+</div>

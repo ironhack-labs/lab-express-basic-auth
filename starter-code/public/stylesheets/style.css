@@ -4,4 +4,8 @@ body {
 a {
   color: #00B7FF; }
 
+#landing {
+  background: url("/images/landing.jpg") center;
+  height: 100vh; }
+
 /*# sourceMappingURL=style.css.map */
