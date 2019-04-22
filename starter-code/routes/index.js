@@ -28,9 +28,9 @@ router.post('/signup', (req,res, next) => {
     })
     .catch(err => {
       if (String(err.errmsg).includes('E1100 duplicate key')) {
-        res.render('auth/signup', {err: 'User already exists'})
+        res.render('auth/signup', {err: 'User already exists',action:"/login",button:"Login"})
       } else{
-        res.render('auth/signup', err)
+        res.render('auth/signup', {err,action:"/login",button:"Login"})
       }
     })
 })
@@ -48,13 +48,13 @@ router.post('/login', (req, res, next) => {
   User.findOne({ username })
     .then(user => {
       if (!bcrypt.compareSync(password, user.password)) {
-        return res.send('Sorry, your password/user is wrong')
+        return res.render('auth/signup',{err:'Sorry, your password/user is wrong',action:'/login',button:'Login'})
       }
       req.session.currentUser   = user
       req.app.locals.loggedUser = user
-      res.redirect('/private')
+      res.redirect('private')
     })
-    .catch(err => res.send(err))
+    .catch(err => res.render('auth/signup',{err,action:"/login",button:"Login"}),)
 })
 
 router.get('/private', isLogged, (req, res, next) => {
@@ -63,7 +63,7 @@ router.get('/private', isLogged, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy()
-  res.redirect('/private')
+  res.redirect('private')
 })
 
 function isLogged(req, res, next ) {
