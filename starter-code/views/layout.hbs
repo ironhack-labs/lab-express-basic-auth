@@ -7,7 +7,18 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
+<body> 
+  <ul>
+ {{#if user}}
+<li><a href="/">Home</a></li>
+  <li><a href="/private">PRIVATE PAGE</a></li>
+ <li><a href="/auth/logout">Logut</a></li>
+ {{/if}}
+ {{#unless user}}
+   <li><a href="/auth/signup">Registrate (signup)</a></li>
+   <li><a href="/auth/login">Login</a></li>
+{{/unless}}
+    </ul>
 
   {{{body}}}
 
