@@ -1,0 +1,14 @@
+<h2 >{{ err }}</h2>
+  <form action="{{action}}" method="POST">
+    <div>
+        <input name="username" required type="text" class="validate">
+        <label for="username">Username</label>
+    </div>
+    <div>
+          <input name="password" type="password" required class="validate">
+          <label for="password">Password</label>
+    </div>
+    <div>
+      <input type="submit" value="{{button}}"/>
+    </div>
+  </form>
