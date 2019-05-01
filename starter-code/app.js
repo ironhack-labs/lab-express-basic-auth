@@ -9,6 +9,8 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const router = require('./routes/auth');
+//app.use('/', router); 
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -29,7 +31,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use('/', router); 
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -53,6 +55,20 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+
+const bcrypt     = require("bcrypt");
+const saltRounds = 10;
+
+const plainPassword1 = "HelloWorld";
+const plainPassword2 = "helloworld";
+
+const salt  = bcrypt.genSaltSync(saltRounds);
+const hash1 = bcrypt.hashSync(plainPassword1, salt);
+const hash2 = bcrypt.hashSync(plainPassword2, salt);
+
+console.log("Hash 1 -", hash1);
+console.log("Hash 2 -", hash2);
 
 
 module.exports = app;
