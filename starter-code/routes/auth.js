@@ -51,7 +51,7 @@ router.post("/login", (req, res, next) => {
         // Save the login in the session!
         req.session.currentUser = user;
         console.log('session', req.session,)
-        res.redirect("/");
+        res.redirect("/secret");
       } else {
         res.render("auth/login", {
           errorMessage: "Incorrect password"
@@ -102,29 +102,9 @@ router.post("/signup", (req, res, next) => {
 });
 
 
-router.use((req, res, next) => {
-  console.log('in req.session', req.session)
-  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
-    next(); // ==> go to the next route ---
-  } else {                          //    |
-    res.redirect("/login");         //    |
-  }                                 //    |
-}); // ------------------------------------                                
-//     | 
-//     V
 router.get("/secret", (req, res, next) => {
   res.render("secret", {name:req.session.currentUser.username});
 });
-
-router.get("/logout", (req, res, next) => {
-  console.log('logged out')
-  req.session.destroy((err) => {
-    // can't access session here
-    res.redirect("/login");
-  });
-});
-
-
 
 
 module.exports = router;
