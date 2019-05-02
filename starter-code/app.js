@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const router = require('./routes/auth');
+//const router = require('../routes/auth');
 //app.use('/', router); 
 
 mongoose
@@ -32,7 +32,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/', router); 
+//app.use('/', router); 
 app.use(session({
   secret: "basic-auth-secret",
   cookie: { maxAge: 60000 },
@@ -55,8 +55,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-app.use('/', require('./routes/auth-routes'));
-app.use('/', require('./routes/site-routes'));
+
 
 
 // default value for title local
@@ -67,7 +66,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
-
+const router = require('./routes/auth');
 app.use('/', router); 
 
 const bcrypt     = require("bcrypt");
