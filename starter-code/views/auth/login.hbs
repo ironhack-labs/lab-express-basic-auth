@@ -1,0 +1,10 @@
+<h1>Inicio de tu sesión</h1>
+{{#if errmsg}}
+<div>{{errmsg}}</div>
+{{/if}}
+
+<form action="/user/login" method="post">
+  <label for="username">Nombre de usuario:<input type="text" name="username"></label>
+  <label for="password">Contraseña:<input type="password" name="password"></label>
+  <button type="submit">iniciar usuario</button>
+</form>

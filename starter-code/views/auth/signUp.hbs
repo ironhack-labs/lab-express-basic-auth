@@ -1,0 +1,10 @@
+<h1>Registro de usuario</h1>
+{{#if errmsg}}
+<div>{{errmsg}}</div>
+{{/if}}
+
+<form action="/user/signUp" method="post">
+<label for="username">Nombre de usuario:<input type="text" name="username"></label>
+<label for="password">Contraseña:<input type="password" name="password"></label>
+<button type="submit">Registrar usuario</button>
+</form>
