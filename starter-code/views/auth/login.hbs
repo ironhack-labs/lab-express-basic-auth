@@ -1,0 +1,11 @@
+<main class="signup">
+  <h1>Formulario de login</h1>
+  {{#if errMsg}}
+  <div class="error">{{errMsg}}</div>
+  {{/if}}
+  <form class="signup-form" method="POST" action="/user/login">
+    <label>Nombre de usuario:<input type="text" name="username" placeholder="Elige un nombre chuli, porfa"></label>
+    <label>Contraseña:<input type="password" name="password" placeholder="********"></label>
+    <button type="submit">Venga Logeate</button>
+  </form>
+</main>
