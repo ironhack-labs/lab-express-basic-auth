@@ -1,0 +1,11 @@
+<main class="signup">
+  <h1>Formulario de registro</h1>
+  {{#if errMsg}}
+  <div class="error">{{errMsg}}</div>
+  {{/if}}
+  <form class="signup-form" method="POST" action="/user/signup">
+    <label>Nombre de usuario:<input type="text" name="username" placeholder="Elige un nombre cuki, porfa"></label>
+    <label>Contraseña:<input type="password" name="password" placeholder="Password must be cuki"></label>
+    <button type="submit">singup cuki</button>
+  </form>
+</main>
