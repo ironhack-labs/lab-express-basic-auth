@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -30,13 +32,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//sesión
+app.use(session({
+  secret:"Pepe es seguro, Popino tambien",
+  cookie:{maxAge:600000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}))
+
 // Express View engine setup
 
-app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
+// app.use(require('node-sass-middleware')({
+//   src:  path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   sourceMap: true
+// }));
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -47,12 +59,18 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'TITULO';
 
+app.use((req, res, next) => {
+  app.locals.user = req.session.currentUser
+  next();
+})
 
 
 const index = require('./routes/index');
 app.use('/', index);
 
+const authRoutes = require('./routes/auth.routes');
+app.use('/user', authRoutes);
 
 module.exports = app;

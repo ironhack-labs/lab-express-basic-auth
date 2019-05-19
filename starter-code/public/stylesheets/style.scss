@@ -6,3 +6,48 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.signup {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.signup-form{
+  display:flex;
+  flex-direction: column;
+}
+
+.signup-form label, input, button {
+  margin: 5px 0;
+}
+
+.signup-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form input {
+  width: 300px;
+  padding: 5px 5px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.signup-form button {
+  width: 100px;
+  background-color: #00B7FF;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.error {
+  background: tomato;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 15px 15px;
+  width: 310px;
+  margin-bottom: 10px;
+}
