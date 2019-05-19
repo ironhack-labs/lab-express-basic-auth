@@ -1,0 +1,11 @@
+<main class="signup">
+    <h1>Regístrate</h1>
+    {{#if errMsg}}
+    <div class="error">{{errMsg}}</div>
+    {{/if}}
+    <form class="login-form" method="POST" action="/user/signup">
+        <label>Nombre de usuario:<input type="text" name="username" placeholder="Nombre de usuario"></label>
+        <label>Contraseña:<input type="password" name="password" placeholder="****"></label>
+        <button type="submit">Regístrate</button>
+    </form>
+</main>

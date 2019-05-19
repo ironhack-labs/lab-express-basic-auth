@@ -1,0 +1,11 @@
+<main class="signup">
+    <h1>Entra</h1>
+    {{#if errMsg}}
+    <div class="error">{{errMsg}}</div>
+    {{/if}}
+    <form class="login-form" method="POST" action="/user/login">
+        <label>Nombre de usuario:<input type="text" name="username" placeholder="Nombre de usuario"></label>
+        <label>Contraseña:<input type="password" name="password" placeholder="Tu contraseña"></label>
+        <button type="submit">Entrar</button>
+    </form>
+</main>

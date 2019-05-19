@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -8,6 +7,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -44,15 +46,27 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
+app.use(session({
+  secret:"Pepe es seguro, Popino tambien",
+  cookie:{maxAge:600000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}))
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Ben y Cris first app';
+
 
 
 
 const index = require('./routes/index');
 app.use('/', index);
+
+
+const autRoutes = require("./routes/aut")
+app.use("/user", autRoutes)
 
 
 module.exports = app;
