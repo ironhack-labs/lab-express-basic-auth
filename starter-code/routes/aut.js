@@ -15,7 +15,14 @@ router.post('/signup', (req, res)=>{
     res.render('autent/signup', {errMsg: "Rellena los dos campos"})
     return
   }
-  
+  if( (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(username)==false){
+    res.render('autent/signup', {errMsg: "El usuario debe ser un email"})
+    return
+  }
+  if((/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/).test(password)==false){
+    res.render('autent/signup', {errMsg: "La contraseña debe tener al menos una mayus, una minus, un número y entre 8 y 30 caracteres"})
+    return
+  }
 
   User.findOne({username})
     .then(foundUser =>{
