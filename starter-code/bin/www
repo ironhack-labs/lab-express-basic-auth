@@ -10,9 +10,9 @@ app.use((req, res, next) => {
   res.render('not-found');
 });
 
-app.use((err, req, res, next) => {
+app.use((error, req, res, next) => {
   // always log the error
-  console.error('ERROR', req.method, req.path, err);
+  console.error('ERROR', req.method, req.path, error);
 
   // only render if the error ocurred before sending the response
   if (!res.headersSent) {
