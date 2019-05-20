@@ -1,2 +1,18 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Log in please</h1>
+{{#if errMsg}}
+<p>{{errMsg}}</p>
+{{/if}}
+{{#if createdUser}}
+<p>Welcome {{createdUser.username}}</p>
+{{/if}}
+<form action="user/login" method="POST">
+  <label for="username">Usuario: </label>
+  <input type="text" name="username" placeholder="Usuario"><br>
+  <label for="password">Password: </label>
+  <input type="password" name="password" placeholder="Contraseña"><br>
+  <input type="submit" value="Login">
+  
+</form><br>
+<a href="/user/logout">Logout</a>
+<a href="/user/signup">Signup</a>
+<p>It's free!</p>

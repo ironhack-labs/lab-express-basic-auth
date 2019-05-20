@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require("express-session")
+const MongoStore   = require("connect-mongo")(session)
 
 
 mongoose
@@ -30,7 +32,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(session({
+  secret:"Pepote es más seguro",
+  cookie:{maxAge:600000},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+ }))
+
 // Express View engine setup
+
+
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -53,6 +66,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+const auth = require('./routes/auth.routes');
+app.use('/user', auth);
+
+
 
 
 module.exports = app;
