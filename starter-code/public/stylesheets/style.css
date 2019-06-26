@@ -1,21 +1,16 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
-h2, h3{
-  text-align: center; 
-}
-
+h2, h3 {
+  text-align: center; }
 
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
@@ -23,8 +18,7 @@ h2, h3{
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
-  /*margin: 20px auto;*/
-}
+  /*margin: 20px auto;*/ }
 
 #form input,
 #form button {
@@ -33,8 +27,7 @@ h2, h3{
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form button {
   background: #43a3e6;
@@ -50,14 +43,12 @@ h2, h3{
   transition: .3s ease background;
   width: 100%;
   margin: 20px auto;
-  padding: 20px;
-}
+  padding: 20px; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
 
 .error-message {
   background: #F02B63;
@@ -67,5 +58,6 @@ h2, h3{
   padding: 20px;
   width: 63%;
   border-radius: 5px;
-  text-align: center; 
-}
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
