@@ -29,7 +29,7 @@ router.post("/signup", (req, res, next)=>{
             .then(
                 user => {
                     if (user!== null){ 
-                        res.render({errorMessage: "Users already exists !"})
+                        res.render("auth/signup",{errorMessage: "Users already exists !"})
                     }
                     else{
                     userModel.create({username, password : hashPass})

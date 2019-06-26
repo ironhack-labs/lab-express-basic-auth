@@ -10,10 +10,12 @@
 
 
 <label for="password"></label>
-<input type="text" name="password"  placeholder="**********">
+<input type="text" name="password"  placeholder="**********"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$">
+<p>The password must contain between 8 to 15 characters which contain at least 
+  one lowercase letter, one uppercase letter, one numeric digit, and one special character</p>
 
 <button type="submit"> Sign up !</button>
-
+<p>Already have an account ? <a href="/login">Login</a> </p>
 </form>
 
 {{#if errorMessage}}
