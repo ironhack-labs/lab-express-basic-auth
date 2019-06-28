@@ -1,11 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .signupCont {
   display: flex;
@@ -13,9 +11,10 @@ a {
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: rgb(201, 174, 174);
+  background: #c9aeae;
   border: 1px solid gray;
   border-radius: 15px;
   padding: 20px;
-  margin:20px;
-}
+  margin: 20px; }
+
+/*# sourceMappingURL=style.css.map */

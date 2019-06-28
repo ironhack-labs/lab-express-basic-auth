@@ -1,0 +1,16 @@
+<div class="signupCont">
+<form action="/signup-user" method="POST">
+  <div><h3>Username</h3></div>
+  <div><input type="text" placeholder="username" name="username"></div>
+  <div><h3>Password</h3></div>
+  <div><input type="password" placeholder="password" name="password"></div>
+
+  {{#if errorMessage}}
+    <div style="padding:20px; background: red;">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+
+  <div><input type="Submit" value="Sign up to my web app"></div>
+</form>
+</div>
