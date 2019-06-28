@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const User = require("../models/user")
 const bcrypt = require("bcrypt")
 
 /* GET home page */
@@ -33,7 +34,7 @@ router.post("/login-user", (req, res) => {
             if (bcrypt.compareSync(thePassword, user.password)) {
                 // Save the login in the session!
                 req.session.currentUser = user;
-                res.redirect("/profile");
+                res.redirect("/main");
             } else {
                 res.render("login", {
                     errorMessage: "Incorrect password"
@@ -75,5 +76,30 @@ router.post("/signup-user", (req, res) => {
             }
         })
 })
+
+
+router.get("/main", (req, res) => {
+    if (req.session.currentUser) {
+        res.render('main', req.session.currentUser);
+    } else {
+        res.redirect("/login");
+    }
+})
+
+router.get("/private", (req, res) => {
+    if (req.session.currentUser) {
+        res.render('private', req.session.currentUser);
+    } else {
+        res.redirect("/login");
+    }
+})
+
+
+router.get("/logout", (req, res, next) => {
+    console.log(req.route.path)
+    req.session.destroy((err) => {
+        res.redirect("/");
+    });
+});
 
 module.exports = router;
