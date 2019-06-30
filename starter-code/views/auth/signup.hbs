@@ -1,0 +1,15 @@
+<div class="auth-container">
+  <h1>Signup</h1>
+  <form action="/auth/signup" class="signup" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <button type="submit">Create account</button>
+  </form>
+  <small>Already have an account? <a href="/auth/login">Login</a> </small>
+</div>
+
+{{#if err}}
+<p class="error">{{err}}</p>
+{{/if}}

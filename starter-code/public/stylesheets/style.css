@@ -1,0 +1,41 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+width: 100vw;
+height: 100vh;
+}
+
+a {
+  color: #00B7FF; }
+
+/*# sourceMappingURL=style.css.map */
+
+.auth-container{
+
+    width: 30%;
+  height: 500px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.auth-container > form{
+  height: 300px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.container{
+  width: 50%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container img{
+  height: 500px;
+}
