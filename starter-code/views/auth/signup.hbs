@@ -1,0 +1,20 @@
+<form action="/auth/signup" method = "POST" class = "card">
+  <div>
+  <h1>Sign up</h1>
+
+  <label for="username">Username</label><br/>
+  <input type="text" name="username" id="username"><br/><br/>
+
+  <label for="password">Password</label><br/>
+  <input type="password" name="password" id="password"><br/><br/>
+
+  <button type="submit" class = "submit">Create account</button>
+
+  <p class="account-message">
+    Already have an account? <a href="/auth/login">Log in</a>
+  </div>
+</form>
+
+{{#if errorMessage}}
+  <b>{{errorMessage}}</b>
+{{/if}}

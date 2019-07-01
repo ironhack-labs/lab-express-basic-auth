@@ -1,8 +1,43 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #e9e8e8; }
 
 a {
   color: #00B7FF; }
+
+.card {
+  border-radius: 15px;
+  border-color: lightgrey;
+  background-color: #ffff;
+  padding: 1%;
+  width: 30%;
+  text-align: center;
+  margin: 0 auto; }
+
+.card label {
+  font-size: 18px; }
+
+.card input {
+  height: 35px;
+  width: 90%;
+  margin: 1%; }
+
+.card button {
+  height: 40px;
+  border-radius: 10px;
+  border-color: black;
+  border-width: 1px;
+  background: #ffff;
+  padding-top: 10px;
+  padding-bottom: 35px;
+  width: 40%;
+  font-size: 18px; }
+
+.card button:hover {
+  cursor: pointer; }
+
+.card p {
+  font-size: 18px; }
 
 /*# sourceMappingURL=style.css.map */

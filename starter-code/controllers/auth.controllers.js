@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
-//-------------------------------------------------------------------
-//No se necesita el exports.getSignUp porque es el index
+//-------------------------SIGN UP---------------------------//
+exports.getSignUp = (req, res) => {
+  res.render('auth/signup')
+}
 
 exports.postSignUp = async (req, res) => {
   const { username, password } = req.body
@@ -13,19 +15,19 @@ exports.postSignUp = async (req, res) => {
   //Revisar si el usuario ya existe
   const users = await User.find({ username })
   if(users.length !== 0){
-    return res.render('/', {
+    return res.render('auth/signup', {
       errorMessage: 'User already exists'
     })
   }
 
   //Verificar si se recibieron usuario y contraseña
   if(username === ''){
-    return res.render('/', {
+    return res.render('auth/signup', {
       errorMessage: 'Empty username'
     })
   } 
   if(password === ''){
-    return res.render('/', {
+    return res.render('auth/signup', {
       errorMessage: 'Empty password'
     })
   } 
@@ -34,9 +36,9 @@ exports.postSignUp = async (req, res) => {
   await User.create({ username, password: hashPassword})
   res.redirect('/auth/login')
 }
-//-------------------------------------------------------------------
+//----------------------------------------------------------//
 
-//-------------------------------------------------------------------
+//-------------------------LOG IN---------------------------//
 exports.getLogin = (req, res) => {
   res.render('auth/login')
 }
@@ -74,3 +76,4 @@ exports.postLogin = async (req, res) => {
     })
   }
 }
+//----------------------------------------------------------//
