@@ -4,7 +4,7 @@ body {
   background: #e9e8e8; }
 
 a {
-  color: #00B7FF; }
+  color: #02194d; }
 
 .card {
   border-radius: 15px;
@@ -39,5 +39,30 @@ a {
 
 .card p {
   font-size: 18px; }
+
+.main {
+  background: #8eb4fa;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  width: 40%;
+  border-radius: 25px;
+  border-color: black;
+  border-width: 3px; }
+
+.main h1 {
+  font-size: 50px;
+  color: #504f4f; }
+
+.main img {
+  border-radius: 20px;
+  border-color: black;
+  border-width: 2px; }
+
+.home-link {
+  font-size: 30px;
+  text-decoration: none;
+  color: lightgray; }
 
 /*# sourceMappingURL=style.css.map */

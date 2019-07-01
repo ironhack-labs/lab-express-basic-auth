@@ -5,7 +5,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color:rgb(2, 25, 77);
 }
 
 .card {
@@ -48,4 +48,31 @@ a {
   font-size: 18px;
 }
 
+.main {
+  background: rgb(142, 180, 250);
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  width: 40%;
+  border-radius: 25px;
+  border-color: black;
+  border-width: 3px;
+}
 
+.main h1{
+  font-size: 50px;
+  color: rgb(80, 79, 79);
+}
+
+.main img {
+  border-radius: 20px;
+  border-color: black;
+  border-width: 2px;
+}
+
+.home-link {
+  font-size: 30px;
+  text-decoration: none;
+  color: lightgray;
+}
