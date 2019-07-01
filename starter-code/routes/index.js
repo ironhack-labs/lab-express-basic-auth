@@ -15,7 +15,6 @@ function checkSession(req, res, next) {
   }
 }
 
-/* GET home page */
 
 router.get("/", getHome);
 
