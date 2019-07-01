@@ -1,14 +1,18 @@
-<form action="/signup" method="POST">
-  <label for="username">
-    Username
-  </label>
-  <input type="text" name="username" id="username" required>
-  <br />
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password" required>
-  <button type="submit" class="submit">Signup</button>
-</form>
-
+<div class="signup">
+  <form action="/signup" method="POST">
+    <label for="username">
+      Username
+    </label>
+    <input type="text" name="username" id="username" required placeholder="Correo electrónico">
+    <br />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required placeholder="Password">
+    <button type="submit" class="submit">Signup</button>
+    <div class="account-message">
+      Do you have an account? <a href="/login">Login</a>
+    </div>
+  </form>
+</div>
 {{#if errorMessage}}
 <b>{{errorMessage}}</b>
 {{/if}}
