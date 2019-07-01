@@ -1,2 +1,19 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<form action="/" method = "POST">
+  <h2>Sign up</h2>
+
+  <label for="username">Username</label><br/>
+  <input type="text" name="username" id="username"><br/>
+
+  <label for="password">Password</label><br/>
+  <input type="password" name="password" id="password"><br/>
+
+  <button type="submit" class = "submit">Create account</button>
+
+  <p class="account-message">
+    Already have an account? <a href="/auth/login">Log in</a>
+
+</form>
+
+{{#if errorMessage}}
+  <b>{{errorMessage}}</b>
+{{/if}}
