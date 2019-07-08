@@ -1,0 +1,24 @@
+<h2>Sign up:</h2>
+<form action="/signup" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" name="username" required>
+  <div class="pass">
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="*****" required>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+{{#if errorHandler}}
+  <p>{{errorHandler}}</p>
+{{/if}}
+<script>
+$(document).ready(function ($) {
+  $("#password").strength({
+      strengthClass: 'strength',
+      strengthMeterClass: 'strength_meter',
+      strengthButtonClass: 'button_strength',
+      strengthButtonText: 'Show password',
+      strengthButtonTextToggle: 'Hide Password'
+  });     
+});
+</script>
