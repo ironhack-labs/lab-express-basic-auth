@@ -10,4 +10,10 @@ a {
   height: 100vh;
   background-size: cover; }
 
+input:invalid {
+  border: 2px dashed red; }
+
+input:valid {
+  border: 2px solid black; }
+
 /*# sourceMappingURL=style.css.map */

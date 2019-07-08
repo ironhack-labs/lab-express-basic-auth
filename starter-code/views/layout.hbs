@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Basic Auth</title>
+  <link rel="stylesheet" href="/stylesheets/strength.css">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
@@ -12,5 +13,19 @@
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="/javascripts/strength.js"></script>
+  <script>
+    $(document).ready(function($){
+    $('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show password',
+        strengthButtonTextToggle: 'Hide Password'
+    });
+
+});
+  </script>
 </body>
 </html>
