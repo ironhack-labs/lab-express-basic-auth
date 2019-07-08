@@ -2,10 +2,10 @@
   <h2>Login</h2>
 
   <label for="user">User</label>
-  <input type="text" name="user">
+  <input type="text" name="user" required />
 
   <label for="password">Password</label>
-  <input type="password" name="password">
+  <input type="password" name="password" required />
 
   {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
