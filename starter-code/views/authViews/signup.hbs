@@ -1,0 +1,51 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <form action="/signup" class="col s12 l6" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" name="name" class="validate">
+                        <label for="name">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{#ifCond wrongUsername "||" wrongEmailAndUsername}}
+                            <input id="email" type="text" class="validate invalid">
+                            <label for="email">Username</label>
+                            <span class="helper-text" data-error="Username already taken" data-success="right"></span>
+                        {{else}}
+                            <input id="username" type="text" name="username" class="validate">
+                            <label for="username">Username</label>
+                        {{/ifCond}}                            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{#ifCond wrongEmail "||" wrongEmailAndUsername}}
+                            <input id="email" type="email" name="email" class="validate invalid">
+                            <label for="email">Email</label>
+                            <span class="helper-text" data-error="Email already taken" data-success="right"></span>
+                        {{else}}
+                            <input id="email" type="email" name="email" class="validate">
+                            <label for="email">Email</label>                                
+                        {{/ifCond}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" name="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn">Signup</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <p>Already an account? <span><a href="/">Login</a></span></p>
+        </div>
+    </div>
+</section>
