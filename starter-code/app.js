@@ -8,7 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
+const User         = require("./models/User");
+const bcryptjs     = require("bcryptjs")
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -43,16 +46,67 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(session({
+  secret: "Mi mama me mima",
+  cookie: {maxAge: 60000},
+  store :new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
 
+}))
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Aplicacion de YERIM!!';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
+
+const router = require("./routes/auth")
+app.use('/', router)
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+
+  if (theUsername === "" || thePassword === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
+  User.findOne({ username: theUsername })
+    .then(user => {
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist."
+        });
+        return;
+      }
+      if (bcryptjs.compareSync(thePassword, user.password)) {
+        // Save the login in the session!
+        req.session.currentUser = user;
+        res.redirect("/secret");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+app.use("/", require("./routes/auth-routes"));
+app.use("/", require("./routes/site-routes"));
 
 
 module.exports = app;

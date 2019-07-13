@@ -1,8 +1,7 @@
 #form {
   margin: 30px auto;
   width: 380px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
 
 #form label {
   color: #666;
@@ -10,9 +9,7 @@
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
-  border-radius: 10px;
-  
-}
+  border-radius: 10px; }
 
 #form input,
 #form button {
@@ -21,13 +18,12 @@
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form button {
   background: #43a3e6;
   border: 1px solid #43a3e6;
-  border-radius: 5px;;
+  border-radius: 5px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -36,14 +32,12 @@
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 100%;
-}
+  width: 100%; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
 
 .error-message {
   background: #F02B63;
@@ -51,5 +45,6 @@
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-}
+  width: 100%; }
+
+/*# sourceMappingURL=style.css.map */
