@@ -8,8 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
-
+//sesion 
+const session      =require('express-session')
+const mongoStore   =require('connect-mongo')(session)
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
   .then(x => {
@@ -29,6 +30,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//session middleware
+app.use(
+  session({
+    secret:process.env.SECRET||'auth-secret', 
+    cookie: {
+      maxAge: parseInt(process.env.MAXAGE)||60000,
+    },
+    store: new mongoStore({
+      mongooseConnection:mongoose.connection,
+      ttl: 24 * 60 *60
+    })
+  })
+)
 
 // Express View engine setup
 
@@ -50,9 +65,17 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-
+//estas son mis rutas
 const index = require('./routes/index');
-app.use('/', index);
+const auth = require('./routes/auth')
+const main = require('./routes/main')
+const private = require('./routes/private')
 
+
+
+app.use('/', index);
+app.use('/auth', auth)
+app.use('/main', main)
+app.use('/private', private)
 
 module.exports = app;

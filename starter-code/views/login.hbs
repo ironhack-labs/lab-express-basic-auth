@@ -1,0 +1,28 @@
+<div class="forma">
+    <form 
+        action="/auth/login" 
+        method="POST"
+        >
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <p>Ingresa tus datos</p>
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" name="username" type="text">
+                
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" name="password" type="password">
+            </div>
+        </div>
+        {{#if error}}
+            <div>
+                <span>{{error}}</span>
+            </div>
+        {{/if}}
+        <button type="submit" class="uk-button uk-button default">Login</button>
+    </form>
+</div>
