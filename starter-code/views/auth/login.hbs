@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <form action="/auth/login" method="POST" class="form-login">
+              <h1>Login</h1>
+              <input type="text" name="username" id="username" class="form-control input-sm chat-input" placeholder="username" required/>
+              </br>
+              <input type="password"  type="password" name="password" id="password" class="form-control input-sm chat-input" placeholder="password"required />
+              </br>
+              <div class="wrapper">
+ <button type="submit"  class="btn btn-primary btn-md fa fa-sign-in">Login</button>
+              </div>
+            </form>
+        
+  <small>Don't have an account? <a href="/auth/signup">Signup</a> </small>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{{#if err}}
+<p class="error">{{err}}</p>
+{{/if}}
