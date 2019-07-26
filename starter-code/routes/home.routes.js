@@ -13,6 +13,7 @@ router.use((req, res, next) => {
       });
 });
 
-// router.get("/private-area", (req, res, next) => res.render("private"));
+router.get("/private", (req, res, next) => res.render("private"));
+router.get("/main", (req, res, next) => res.render("main"));
 
 module.exports = router;
