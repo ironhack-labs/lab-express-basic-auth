@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h1>Log in</h1>
+      <small>
+        ¿Aún no tienes cuenta? <a href="/signup">Regístrate</a>
+      </small>
+    </div>
+
+    <div class="col-md-6">
+
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="userName-input">Username</label>
+          <input name="userName" type="text" class="form-control" id="userName-input">
+        </div>
+
+        <div class="form-group">
+          <label for="password-input">Contraseña</label>
+          <input name="password" type="password" class="form-control" id="password-input">
+        </div>
+
+        {{#if errorMessage}}
+        <div class="alert alert-danger" role="alert">
+          {{errorMessage}}
+        </div>
+        {{/if}}
+
+        <button type="submit" class="btn btn-dark">Log in</button>
+
+      </form>
+
+
+    </div>
+
+  </div>
+</div>
