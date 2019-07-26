@@ -8,10 +8,14 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const bcrypt       = require('bcrypt')
+const bcryptSalt = 10
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/basic-auth', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -49,10 +53,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+ }));
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const authRoutes = require('./routes/auth.routes')
+app.use('/', authRoutes)
+
+const homeRoutes = require('./routes/home.routes')
+app.use('/', homeRoutes)
 
 
 module.exports = app;
