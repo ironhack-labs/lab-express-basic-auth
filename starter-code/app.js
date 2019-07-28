@@ -9,9 +9,13 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+
+
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/auth-lab', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -24,7 +28,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+// Middleware Setup  ¡¡NO OLVIDAR!!!!!!!!!!!!!!!!!!!  -----------
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,6 +40,16 @@ app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
+}));
+
+// Session  middleware
+app.use(session({
+  secret: "secretitoshhhh",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
 }));
       
 
@@ -53,6 +67,16 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const authRoutes = require('./routes/auth.routes')
+app.use('/', authRoutes)
+
+const menuRoutes = require('./routes/menu.routes')
+app.use('/', menuRoutes)
+
+const gifRoutes = require('./routes/gif.routes')
+app.use('/', gifRoutes)
+
 
 
 module.exports = app;
