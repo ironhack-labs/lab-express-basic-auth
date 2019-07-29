@@ -1,5 +1,3 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -10,15 +8,16 @@
     </div>
 
     <!-- Login Form -->
-    <form method="post" action="/auth"> 
+    <form method="post" action="/auth">
+        <h3>Nuevo resgistro</h3>
       <label class="type_label" for="user-input">Usuario</label>
       <input type="text" id="user-input" class="fadeIn second" name="user" placeholder="">
       <label class="type_label"for="pass-input">Password</label>
       <input type="text" id="pass-input" class="fadeIn third" name="password" placeholder="">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" class="fadeIn fourth" value="Registrar">
     </form>
 
-    <a href="/auth">Nuevo registro</a>
+  
 
   </div>
 </div>
