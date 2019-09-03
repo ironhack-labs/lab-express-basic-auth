@@ -4,7 +4,11 @@ const UserMOdel = require("./../model/user");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  if (req.session.currentUser) {
+    res.render("project_folder/private");
+  } else {
+    res.redirect("project_folder/login");
+  }
 });
 
 module.exports = router;

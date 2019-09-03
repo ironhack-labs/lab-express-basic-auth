@@ -1,0 +1,13 @@
+<form id="form" action="/login" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="Your username">
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="********">
+  <p id="show_psw"><a>Show Password</a></p>
+  <button type="submit">Login</button>
+</form>
+<p id="lnk-text">Need an account? <a href="/signup">Signup</a></p>
+{{#if errorMsg}}
+<div id="errorMsg">error: {{errorMsg}}</div>
+{{/if}}
