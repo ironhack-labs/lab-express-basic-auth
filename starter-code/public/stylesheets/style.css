@@ -1,30 +1,23 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-$ironhack-theme-color: #43a3e6;
-
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 h2 {
-  text-align: center;
-}
+  text-align: center; }
 
 #form {
   margin: 30px auto;
   padding: 30px;
   width: 380px;
-  border: 1px solid black;
-}
+  border: 1px solid black; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input,
 #form button {
@@ -33,16 +26,14 @@ h2 {
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form input {
-  border-radius: 4px;
-}
+  border-radius: 4px; }
 
 #form button {
-  background: $ironhack-theme-color;
-  border: 1px solid $ironhack-theme-color;
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -52,14 +43,12 @@ h2 {
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s ease background;
-  width: 100%;
-}
+  width: 100%; }
 
 #form button:hover {
   background: #fff;
-  color: $ironhack-theme-color;
-  transition: 0.3s ease background;
-}
+  color: #43a3e6;
+  transition: 0.3s ease background; }
 
 .error-message {
   background: #f02b63;
@@ -67,45 +56,37 @@ h2 {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
-}
+  width: 100%; }
 
 .nav.nav-main {
   display: flex;
-  background: $ironhack-theme-color;
+  background: #43a3e6;
   justify-content: space-between;
-  align-items: center;
-}
+  align-items: center; }
 
 .nav.nav-main .logo {
   color: white;
-  font-size: 2rem;
-}
+  font-size: 2rem; }
 
 .nav.main {
   display: flex;
   justify-content: space-between;
-  background: $ironhack-theme-color;
+  background: #43a3e6;
   height: 60px;
-  align-items: center;
-
-  & .list {
+  align-items: center; }
+  .nav.main .list {
     list-style: none;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-  }
-
-  & .link {
+    align-items: center; }
+  .nav.main .link {
     color: white;
     text-decoration: none;
-    margin-right: 5px;
-    &:hover {
-      color: black;
-    }
-  }
-}
+    margin-right: 5px; }
+    .nav.main .link:hover {
+      color: black; }
 
 .nav.right-side > ul.nav-item {
-  margin-right: 2rem;
-}
+  margin-right: 2rem; }
+
+/*# sourceMappingURL=style.css.map */

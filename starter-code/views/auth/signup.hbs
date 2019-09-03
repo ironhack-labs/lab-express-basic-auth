@@ -1,0 +1,15 @@
+<h2>Sign Up</h2>
+{{loggedin}}
+<hr>
+
+<form id="form" method="post" action="/auth/signup">
+  <input type="hidden" value="whatever" name="not-so-secret">
+  <label for="username">Username</label>
+  <input autocomplete="off" type="text" name="username">
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  {{#if errorMsg}}
+  <div class="error-message">{{errorMsg}}</div>
+  {{/if}}
+  <button>Sign In</button>
+</form>

@@ -1,0 +1,14 @@
+<h2>Log In</h2>
+<hr>
+
+<form id="form" method="post" action="/login">
+  <label for="username">Username</label>
+  <input autocomplete="off" type="text" name="username">
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  {{#if errorMsg}}
+  <div class="error-message">{{errorMsg}}</div>
+  {{/if}}
+  <button>Sign In</button>
+  <p>Don't have an account ? <a href="/signup">Sign up</a></p>
+</form>
