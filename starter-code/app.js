@@ -8,10 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/auth', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,6 +31,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+  secret: 'basic-auth-secret',
+  cookie: { maxAge: 60000000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+}));
 
 // Express View engine setup
 
@@ -51,8 +62,24 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/public/index');
 app.use('/', index);
 
+const authRoutes = require('./routes/public/auth-routes');
+app.use('/', authRoutes);
+
+app.use((req, res, next) => {
+  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+    next(); // ==> go to the next route ---
+  } else {                          //    |
+    res.redirect('/login');         //    |
+  }                                 //    |
+});
+
+const main = require('./routes/private/main');
+app.use('/', main);
+
+const private = require('./routes/private/private');
+app.use('/', private);
 
 module.exports = app;
