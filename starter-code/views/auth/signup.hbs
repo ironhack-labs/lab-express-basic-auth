@@ -1,0 +1,42 @@
+<div class="container">
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+  <form class="needs-validation" id="form" action="/signup" method="POST" novalidate>
+    <label for="username">Username</label><br>
+    <input type="text" class="form-control" name="username" placeholder="Your username"
+      aria-describedby="inputGroupPrepend" required>
+    <div class="invalid-feedback">
+      Please choose a username.
+    </div>
+    <label for="password">Password</label><br>
+    <input type="password" class="form-control" name="password" placeholder="********"
+      aria-describedby="inputGroupPrepend" required>
+    <div class="invalid-feedback">
+      Please enter a password.
+    </div>
+    <div class="pwstrength_viewport_progress"></div>
+    <br>
+    <button class="btn btn-primary" type="submit">Create account</button>
+  </form>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+</div>
