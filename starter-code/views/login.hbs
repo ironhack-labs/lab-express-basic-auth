@@ -1,0 +1,44 @@
+<div class="columns is-centered">
+	<div class="column is-6">
+		<h1 class="title is-2 has-text-centered">Log in</h1>
+
+		<div class="box">
+			{{#if err}}
+			<div class="notification is-danger">{{err}}
+				<button class="delete"></button>
+			</div>
+			{{/if}}
+			<form action="/login" method="POST">
+				<div class="field">
+					<label class="label">Email</label>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="email" name="email">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label">Password</label>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="password" name="password">
+						<span class="icon is-small is-left">
+							<i class="fas fa-key"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="buttons is-right">
+					<input class="button is-primary is-fullwidth" type="submit" value="Ingresar">
+					<hr>
+				</div>
+				<div class="columns is-mobile is-centered">
+						<div class="column is-12">
+							<div class="is-text-info">Or maybe you prefer to <a href="/signup" class="has-text-link">Sign up</a></div>
+						</div>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>

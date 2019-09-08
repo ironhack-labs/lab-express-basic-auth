@@ -1,16 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
 
-  {{{body}}}
+<body>
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <strong>My Authentication</strong>
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="burger" class="navbar-menu">
+      <div class="navbar-end">
+        {{#if secret}}
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+        {{else}}
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+        <a href="/signup" class="navbar-item">
+          Sign up
+        </a>
+        
+        <a href="/login" class="navbar-item">
+         Log in
+        </a>
+        {{/if}}
+        
+        
+      </div>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      {{{body}}}
+    </div>
+  </section>
 
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>
