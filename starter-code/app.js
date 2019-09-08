@@ -8,7 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -30,6 +31,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(session({
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 //tiempo de ejecucion de cookie
+    },
+    secret: process.env.SECRET, //agregar SECRET desde .en
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
+  })
+);
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -47,7 +60,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'lab-express-basic-auth';
 
 
 
