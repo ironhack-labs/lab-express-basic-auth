@@ -1,0 +1,12 @@
+$font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$link-color: #00b7ff;
+
+body {
+  margin: 0;
+  padding: 50px;
+  font-family: $font-sans;
+}
+
+a {
+  color: $link-color;
+}

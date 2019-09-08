@@ -32,17 +32,10 @@ In this exercise, we are going to create a project where we will have all the ba
 
 ### Iteration 0 | Initialize the project
 
-After forking and cloning the project, you will have to add a `starter_code/.env` file:
-
-```
-PORT=3000
-```
-
-And you have to install all the dependencies:
+After forking and cloning the project, you have to install all the dependencies:
 
 
 ```sh
-$ cd starter_code
 $ npm install
 ```
 
@@ -91,7 +84,7 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
 
 ## Bonus - Password Strength Measurement
 
-Finally, we will add a jQuery plugin to measure the password strength when we sign up in the application. We recommend you to use the [Strength.js](http://jquerycards.com/forms/inputs/strength-js/) library, but feel free to look for another one.
+Finally, we will add some functionality to measure the password strength when we sign up in the application. We recommend you follow along with this [CSS-Tricks tutorial](https://css-tricks.com/password-strength-meter/), but feel free to come up with different solutions.
 
 Once finished, the result should be something like this:
 
@@ -99,10 +92,8 @@ Once finished, the result should be something like this:
 
 This is a very common and helpful feature for users, as many do not know anything about password strength.
 
-
 ## Extra Resources
 
 - [HTML5 Form Validations](http://www.the-art-of-web.com/html/html5-form-validation/)
-
 
 Happy coding! :heart:
