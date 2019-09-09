@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <div>
+      <form action="/auth/login" method="POST" id="form">
+        <h2>Login</h2>
+
+        <label for="username">Username</label>
+        <input type="text" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+
+        {{#if errorMessage }}
+        <div>{{ errorMessage }}</div>
+        {{/if}}
+
+        <button>Sign in</button><br><br><br>
+
+        <p>
+          No tienes una cuenta? <a href="/auth/signup">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+<div><img src="http://www.pngall.com/wp-content/uploads/2016/05/Iron-Man-Free-Download-PNG.png"> </div>
