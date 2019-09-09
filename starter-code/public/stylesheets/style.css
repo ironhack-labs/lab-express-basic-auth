@@ -1,40 +1,37 @@
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-}
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 .index {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 15%;
-}
+  margin: 15%; }
 
 .main {
   display: flex;
   margin-top: 10%;
   justify-content: center;
-  text-align: center;
-}
+  text-align: center; }
 
 .cont {
   margin: 10% 37% 0 37%;
   justify-content: center;
   border-radius: 18px;
   text-align: center;
-  border: 1px solid rgb(172, 170, 170);
-}
+  border: 1px solid #acaaaa; }
+
 .cont input {
   width: 90%;
-  height: 25px;
-}
+  height: 25px; }
+
 .profile {
-  margin: 5%;
-}
+  margin: 5%; }
+
 .private {
   display: flex;
-  justify-content: center;
-}
+  justify-content: center; }
+
+/*# sourceMappingURL=style.css.map */
