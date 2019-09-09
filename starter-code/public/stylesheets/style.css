@@ -2,19 +2,15 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: black !important;
-  color: white;
-}
+  color: white; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
-*{
-  color:#00B7FF;
-}
+* {
+  color: #00B7FF; }
 
 #sigunp-box {
- 
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -22,30 +18,23 @@ a {
   border: 1px solid white;
   border-radius: 15px;
   margin-right: 30vw;
-  margin-left: 30vw;
+  margin-left: 30vw; }
 
-}
+#sigunp-box h2 {
+  margin-top: 2vh; }
 
-#sigunp-box h2{
-  margin-top: 2vh;
-  
-}
-
-#register{
-  margin-top: 4vh;
-  
-}
+#register {
+  margin-top: 4vh; }
 
 #form-box label {
   margin-top: 3vh;
-  font-size: 18px;
-}
+  font-size: 18px; }
 
 #form-box input {
   margin-top: 3vh;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
 
-#submit-button{
-  margin-bottom: 2vh;
-}
+#submit-button {
+  margin-bottom: 2vh; }
+
+/*# sourceMappingURL=style.css.map */
