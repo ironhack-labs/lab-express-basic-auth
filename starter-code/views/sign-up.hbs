@@ -4,14 +4,14 @@
       <form id="form" action="/auth/signup" method="POST">
         <h2>Sign up</h2>
         <label for="username">Username</label><br>
-        <input type="text" name="username" placeholder="Your username">
+        <input type="text" name="username" placeholder="Tu nombre de usuario">
 
         <label for="password">Password</label><br>
         <input type="password" name="password" placeholder="********">
 
         <button type="submit">Create account</button><br><br><br>
         <p>
-          You have an account? <a href="/auth/login">Login</a>
+          Ya tienes una cuenta? <a href="/auth/login">Login</a>
         </p>
         {{#if err}}
         <p>{{err}}</p>
