@@ -5,4 +5,11 @@ body {
 a {
   color: #00B7FF; }
 
+.form-control {
+  padding: 30px;
+  margin: 30px; }
+
+.already {
+  margin: 30px; }
+
 /*# sourceMappingURL=style.css.map */

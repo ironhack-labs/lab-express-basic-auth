@@ -66,7 +66,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Please log In ';
+app.locals.title = 'The Lion Page ';
 
 
 

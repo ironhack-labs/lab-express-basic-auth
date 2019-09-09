@@ -52,10 +52,18 @@ router.post('/login', async (req, res, next) => {
     res.redirect('/main');
   } else {
     res.render('auth/login', {
-      err: 'ME quieres ver la cara de stupida?'
+      err: 'Wrong password :( '
     });
   }
 });
+
+router.get('/private', isLoggedIn, (req, res, next) => {
+  const {
+    loggedUser
+  } = req.app.locals;
+  res.render('auth/private', loggedUser);
+});
+
 
 
 router.get('/main', isLoggedIn, (req, res, next) => {
