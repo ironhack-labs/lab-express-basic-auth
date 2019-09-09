@@ -1,0 +1,39 @@
+{{!-- Grey Background Color --}}
+<div class="bg-dark">
+  <div class="container">
+    <div class="row fullheight">
+      {{!-- Card --}}
+      <div class="col-12 col-md-5 m-auto">
+        <div class="card p-5">
+          <h1 class="mb-0 h3">Log in to your account</h1>
+          <p class="text-danger mb-0">{{err}}</p>
+          <hr class="my-4 py-2">
+          {{!-- Form --}}
+          <form action="/login" method="POST">
+            {{!-- Username --}}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" placeholder="superman123" class="form-control" id="username"
+                required />
+            </div>
+            {{!-- Password --}}
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" placeholder="*******" class="form-control" id="password"
+                required />
+            </div>
+            {{!-- Buttons --}}
+            <div class="d-flex justify-content-between align-items-center mt-5">
+              <small class="text-muted">Don't have an account? <a href="/signup"
+                  class="text-info text-decoration-none">Sign
+                  up</a></small>
+              <div class="text-right">
+                <button type="submit" class="btn btn-info text-bold">Log in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

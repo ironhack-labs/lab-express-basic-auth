@@ -1,0 +1,16 @@
+.fullheight {
+  min-height: 100vh; }
+
+.drama {
+  animation: grayscale-animation 4s ease-in-out; }
+
+.forever-gray {
+  filter: grayscale(1); }
+
+@keyframes grayscale-animation {
+  from {
+    filter: grayscale(0); }
+  to {
+    filter: grayscale(1); } }
+
+/*# sourceMappingURL=style.css.map */

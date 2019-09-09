@@ -1,8 +1,20 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.fullheight {
+  min-height: 100vh;
 }
 
-a {
-  color: #00B7FF;
+.drama {
+  animation: grayscale-animation 4s ease-in-out;
+}
+
+.forever-gray {
+  filter: grayscale(1);
+}
+
+@keyframes grayscale-animation {
+  from {
+    filter: grayscale(0);
+  }
+  to {
+    filter: grayscale(1);
+  }
 }
