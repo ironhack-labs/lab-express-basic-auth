@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.content-img {
+  width: 30vw; }
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.back-button {
+  margin-top: 20px;
+  border-radius: 20px;
+  background-color: peru;
+  padding: 7px 26px;
+  border: none;
+  color: white; }
+
+/*# sourceMappingURL=style.css.map */
