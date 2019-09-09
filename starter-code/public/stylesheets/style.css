@@ -1,20 +1,16 @@
 html {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 * {
-  box-sizing: inherit;
-}
+  box-sizing: inherit; }
 
 body {
   padding: 0;
   margin: 0;
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .container {
   display: flex;
@@ -22,36 +18,32 @@ a {
   height: 100vh;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 h3 {
-  color: #B80F0A;
-}
+  color: #B80F0A; }
 
 form {
   display: flex;
   flex-direction: column;
   margin: 30px 0;
   width: 25%;
-  text-align: center;
-}
+  text-align: center; }
 
 input {
   padding: 15px 18px;
   border-radius: 2px;
   border: 1px solid #ddd;
-  margin: 10px 0 20px 0;
-}
+  margin: 10px 0 20px 0; }
 
 input[type="submit"] {
   color: #fff;
   background-color: #0E4D92;
   border: none;
-  font-size: 18px;
-}
+  font-size: 18px; }
 
 form {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
+
+/*# sourceMappingURL=style.css.map */
