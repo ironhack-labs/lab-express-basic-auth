@@ -1,0 +1,33 @@
+<h1>Welcome!!!</h1>
+<br>
+{{#if err}}
+<p>{{err}}</p>
+{{/if}}
+
+<div id="register">
+  {{#if registered}}
+  <h3>{{username}} you'd alredy create your account, please <a href="/login">Login</a></h3>
+  {{else}}
+  <div id="form-box">
+    <form action="/signup" method="POST">
+      <div>
+        <div>
+          <h3>Register!</h3>
+          <label for="username">Username</label>
+        </div>
+        <input type="text" name="username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <div>
+          <input type="password" name="password">
+        </div>
+      </div>
+      <a href="/private"><input type="submit" value="Sign up" class="btn btn-primary" id="submit-button"></a>
+    </form>
+  </div>
+  <p>Already have an account? <a href="/login">Login</a></p>
+</div>
+{{/if}}
+
+</div>
