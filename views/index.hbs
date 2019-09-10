@@ -1,2 +1,13 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Sign Up</h1>
+
+<form method="POST" action="/sign-up">
+  <div class="form-group">
+    <label for="sign-up-username">Username</label>
+    <input type="username" name="username" placeholder="Your username">
+  </div>
+  <div class="form-group">
+    <label for="sign-up-password">Password</label>
+    <input type="password" name="password" placeholder="A Safe Password">
+  </div>
+  <button>Create account</button>
+</form>
