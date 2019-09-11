@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require("express-session");
+const MongoStore   = require("connect-mongo")(session);
 
 
 mongoose
@@ -30,6 +32,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Populate session with settings being asked by Middleware express-session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET_KEY,
+    cookie: {
+      maxAge: 24 * 60 * 60
+    },
+    saveUninitialized: false,
+    resave: false,
+    // Store the session into mongoDB
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+);
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -49,11 +67,15 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+// ! This doesn't work! - Import and use all routes
+// const routes = require('./routes');
+// app.use('/', routes);
 
-// Import and use routes
+// Import `index.js` from `/routes` folder
 const index = require('./routes/index');
 app.use('/', index);
 
+// Import `authenticate.js` from routes folder
 const authenticate = require('./routes/authenticate');
 app.use('/', authenticate);
 
