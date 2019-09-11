@@ -1,11 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 input {
   display: block;
@@ -17,66 +15,59 @@ input {
   color: rgba(0, 0, 0, 0.8);
   font-size: 2em;
   line-height: 0;
-  transition: all 0.5s linear;
-}
+  transition: all 0.5s linear; }
 
 input:hover,
 input:focus {
   outline: 0;
   transition: all 0.5s linear;
-  box-shadow: inset 0px 0px 10px #ccc;
-}
+  box-shadow: inset 0px 0px 10px #ccc; }
 
 meter {
   /* Reset the default appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
   margin: 0 auto 1em;
   width: 100%;
   height: 0.5em;
-
   /* Applicable only to Firefox */
   background: none;
-  background-color: rgba(0, 0, 0, 0.1);
-}
+  background-color: rgba(0, 0, 0, 0.1); }
 
 meter::-webkit-meter-bar {
   background: none;
-  background-color: rgba(0, 0, 0, 0.1);
-}
+  background-color: rgba(0, 0, 0, 0.1); }
 
 meter[value="1"]::-webkit-meter-optimum-value {
-  background: red;
-}
+  background: red; }
+
 meter[value="2"]::-webkit-meter-optimum-value {
-  background: yellow;
-}
+  background: yellow; }
+
 meter[value="3"]::-webkit-meter-optimum-value {
-  background: orange;
-}
+  background: orange; }
+
 meter[value="4"]::-webkit-meter-optimum-value {
-  background: green;
-}
+  background: green; }
 
 meter[value="1"]::-moz-meter-bar {
-  background: red;
-}
+  background: red; }
+
 meter[value="2"]::-moz-meter-bar {
-  background: yellow;
-}
+  background: yellow; }
+
 meter[value="3"]::-moz-meter-bar {
-  background: orange;
-}
+  background: orange; }
+
 meter[value="4"]::-moz-meter-bar {
-  background: green;
-}
+  background: green; }
 
 .feedback {
   color: #9ab;
   font-size: 90%;
   padding: 0 0.25em;
   font-family: Courgette, cursive;
-  margin-top: 1em;
-}
+  margin-top: 1em; }
+
+/*# sourceMappingURL=style.css.map */
