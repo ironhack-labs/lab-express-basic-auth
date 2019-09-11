@@ -1,9 +1,9 @@
 <form action="/signup" method="POST">
     <label for="username">Username: </label>
-    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="username" minlength="4" required>
 
     <label for="password">Password: </label>
-    <input type="text" id="password" name="password">
+    <input type="text" id="password" name="password" minlength="9" maxlength="30" required >
 
     <button type="submit">Sign up</button>
 </form>
