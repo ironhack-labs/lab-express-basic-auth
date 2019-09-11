@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-// ! GET PAGES
+// ! GET all pages //
 
 // GET signup page
 router.get("/signup", (req, res, next) => {
@@ -17,14 +17,7 @@ router.get("/login", (req, res, next) => {
     res.render("login");
 });
 
-// GET private page
-router.get("/private", (req, res, next) => {
-    // Render `views/private.hbs`
-    res.render("private");
-});
-
-
-// ! User Signup/Login
+// ! User Signup/Login without sessions //
 
 // User signup
 router.post("/signup", (req, res, next) => {
@@ -107,14 +100,30 @@ router.post("/login", (req, res, next) => {
         .catch(err => next(err));
 });
 
-router.get((req, res, next) => {
-    if(req.session.user) {
-        next();
+// ! User Signup/Login with authentication (PROTECTED with sessions) //
+
+// If user is logged in (valid session)
+router.get("/private", (req, res) => {
+    if (req.session.user) {
+        // render `private.hbs`
+        res.render("private");
     } else {
+        // else render `login.hbs``
         res.redirect("/login");
     }
-})
+});
 
+// If user is logged in (valid session)
+router.get("/main", (req, res) => {
+  if (req.session.user) {
+    // render `main.hbs`
+    res.render("main");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+// Destroy user session and redirect to `index.hbs`
 router.get("/logout", (req, res, next) => {
     req.session.destroy(err => {
         if (err) next(err);

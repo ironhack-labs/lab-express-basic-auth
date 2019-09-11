@@ -10,20 +10,4 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// router.get("/private", (req, res) => {
-//   if (req.session.user) {
-//     res.render("private");
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
-
-// router.get("/main", (req, res) => {
-//   if (req.session.user) {
-//     res.render("main");
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
-
 module.exports = router;
