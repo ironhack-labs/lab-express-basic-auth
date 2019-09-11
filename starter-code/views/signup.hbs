@@ -1,0 +1,18 @@
+<h1>Welcome Please Register!</h1>
+
+
+
+<form action="/signup" method="post">
+    {{#if message}}
+    <p>{{message}}</p>
+    {{/if}}
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+
+    <label for="password">Pasword</label>
+    <input type="password" name="password" id="password">
+
+    <button type="submit">Submit</button>
+
+</form>
