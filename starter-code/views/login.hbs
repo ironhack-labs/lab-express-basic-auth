@@ -1,0 +1,15 @@
+<div class="form-container">
+
+  <form action="/login" method="POST">
+      <input type="text" name="username" placeholder="username" autocomplete="on">
+      <input type="password" name="password" placeholder="password" autocomplete="off">
+      <input type="submit" value="Login">
+
+      {{#if error}}
+          <p style="color:red">{{error}}</p>
+      {{/if}}
+  </form>
+
+  <a href="/signup">Sign up</a>
+
+</div>

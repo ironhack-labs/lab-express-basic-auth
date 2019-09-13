@@ -2,8 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif
-}
+  font-family: Helvetica, Arial, sans-serif; }
 
 body {
   display: flex;
@@ -13,53 +12,45 @@ body {
   align-items: center;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom, red, blue)
-}
+  background-image: linear-gradient(to bottom, red, blue); }
 
 a {
   text-decoration: none;
   color: beige;
-  background-color: rgb(24, 33, 83);
+  background-color: #182153;
   padding: 10px 60px;
   border-radius: 15px;
   margin: 40px;
-  font-size: 16px;
-}
+  font-size: 16px; }
 
 p {
   color: beige;
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 h1 {
   font-size: 46px;
-  color: rgb(24, 33, 83);
-  text-shadow: 5px 5px 10px white;
-}
+  color: #182153;
+  text-shadow: 5px 5px 10px white; }
 
 h3 {
   font-size: 34px;
   color: beige;
-  text-shadow: 5px 5px 10px rgb(24, 33, 83);
-  margin: 20px 0;
-}
+  text-shadow: 5px 5px 10px #182153;
+  margin: 20px 0; }
 
 .welcome-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
 .welcome-title {
-  margin-bottom: 60px;
-}
+  margin-bottom: 60px; }
 
 .buttons {
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 .form-container {
   display: flex;
@@ -69,23 +60,20 @@ h3 {
   height: 50vh;
   background-color: rgba(245, 245, 220, 0.18);
   width: 50vw;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .form-container a {
-  margin: 0;
-}
+  margin: 0; }
 
 form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 30vh;
-}
+  height: 30vh; }
 
 input {
-  background-color: rgb(178, 38, 199);
+  background-color: #b226c7;
   padding: 10px 15px;
   width: 320px;
   border: none;
@@ -93,13 +81,12 @@ input {
   font-size: 18px;
   font-weight: bold;
   color: beige;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.296);
-}
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.296); }
 
 ::placeholder {
   color: rgba(193, 198, 223, 0.659);
-  opacity: 1; /* Firefox */
-}
+  opacity: 1;
+  /* Firefox */ }
 
 .private-container {
   display: flex;
@@ -107,11 +94,10 @@ input {
   justify-content: center;
   align-items: center;
   height: 95vh;
-  width: 80vw;
-}
+  width: 80vw; }
 
 .private-container img {
   width: 400px;
-  height: auto;
-}
+  height: auto; }
 
+/*# sourceMappingURL=style.css.map */
