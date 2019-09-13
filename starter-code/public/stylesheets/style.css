@@ -1,10 +1,8 @@
 * {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 html {
-  font-sizing: 10px;
-}
+  font-sizing: 10px; }
 
 body {
   padding: 50px;
@@ -12,12 +10,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-}
+  align-content: center; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 form {
   height: 50vh;
@@ -25,24 +21,21 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-}
+  align-content: center; }
 
 input {
   font: 1rem "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin: 0.2rem;
-}
+  margin: 0.2rem; }
 
 img {
   width: 420px;
-  height: 236px;
-}
+  height: 236px; }
 
 .strength_meter {
   height: 1.5rem;
   width: 100%;
-  background: silver;
-}
+  background: silver; }
+
 .strength_meter div {
   height: 23px;
   width: 100%;
@@ -50,21 +43,22 @@ img {
   text-align: center;
   color: black;
   font-weight: bold;
-  line-height: 23px;
-}
+  line-height: 23px; }
+
 .veryweak {
   background-color: #ffa0a0;
-  border-color: #f04040 !important;
-}
+  border-color: #f04040 !important; }
+
 .weak {
   background-color: #ffb78c;
-  border-color: #ff853c !important;
-}
+  border-color: #ff853c !important; }
+
 .medium {
   background-color: #ffec8b;
-  border-color: #fc0 !important;
-}
+  border-color: #fc0 !important; }
+
 .strong {
   background-color: #c3ff88;
-  border-color: #8dff1c !important;
-}
+  border-color: #8dff1c !important; }
+
+/*# sourceMappingURL=style.css.map */

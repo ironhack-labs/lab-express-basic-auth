@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,24 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
 
   {{{body}}}
-
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/strength.js"></script>
   <script src="/javascripts/script.js"></script>
+  <script>
+    $(document).ready(function ($) {
+      $('#myPassword').strength({
+        strengthClass: 'strength',
+        strengthMeterClass: 'strength_meter',
+        strengthButtonClass: 'button_strength',
+        strengthButtonText: 'Show Password',
+        strengthButtonTextToggle: 'Hide Password'
+      });
+    });
+  </script>
 </body>
+
 </html>

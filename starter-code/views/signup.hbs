@@ -1,0 +1,13 @@
+<form id="myform" action="/signup" method="POST">
+    <h1>Sign up</h1>
+    <input type="text" name="username" placeholder="username" required>
+    <input type="password" name="password" placeholder="password" id="myPassword" class="strength" data-password="myPassword" required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+    <p>⚠️ Passwords must have at least 8 characters, and at least one uppercase letter, one lowercase letter, one number
+        and one special character.</p>
+    <input type="submit" value="Sign up">
+    {{#if error}}
+    <p>{{error}}</p>
+    {{/if}}
+</form>
+<p><a href="/login">Log in</a></p>

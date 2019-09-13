@@ -1,0 +1,11 @@
+<form action="/login" method="POST">
+    <h1>Log in</h1>
+    <input type="text" name="username" placeholder="username" autocomplete="on" required>
+    <input type="password" name="password" placeholder="password" autocomplete="off" required>
+    <input type="submit" value="Log in">
+
+    {{#if error}}
+        <p>{{error}}</p>
+    {{/if}}
+</form>
+<p><a href="/signup">Sign up</a></p>
