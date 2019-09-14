@@ -1,0 +1,12 @@
+<form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Login">
+
+    {{#if error}}
+        <p style="color:red">{{error}}</p>
+    {{/if}}
+</form>
+
+<a href="/signup">Sign Up</a>
+<a href="/">Index</a>

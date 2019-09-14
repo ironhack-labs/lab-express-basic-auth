@@ -1,0 +1,13 @@
+<form action="/signup" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Sign up">
+
+    {{#if error}}
+        <p style="color:red">{{error}}</p>
+        <iframe src="https://giphy.com/embed/elVEtee8IEgaMbOfV1" width="480" height="400" frameBorder="0" class="giphy-embed"></iframe>
+    {{/if}}
+</form>
+
+<a href="/login">Login</a>
+<a href="/">Index</a>
