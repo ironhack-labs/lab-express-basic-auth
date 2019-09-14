@@ -12,12 +12,12 @@ router.get("/signup", (req, res, next) => {
   if (req.query.error) {
     if (req.query.error === "empty") {
       res.render("signup", {
-        error: "The provided username and/or password were empty"
+        error: "Tienes que proporcionar un nombre de usuario y una contraseña."
       });
     }
 
     if (req.query.error === "user-exists") {
-      res.render("signup", { error: "The provided username already exists" });
+      res.render("signup", { error: "El nombre de usuario ya existe; elige otro." });
     }
   } else {
     res.render("signup");
@@ -54,7 +54,7 @@ router.get("/login", (req, res, next) => {
   if (req.query.error) {
     if (req.query.error === "empty") {
       res.render("login", {
-        error: "The provided username and/or password were empty"
+        error: "¡Los campos no pueden estar vacíos!"
       });
     }
 
