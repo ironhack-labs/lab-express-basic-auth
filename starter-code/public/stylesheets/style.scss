@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+input:invalid {
+  border: 2px solid aquamarine;
+}
+
+input:valid {
+  border: 2px solid grey;
+}
+
+input [type=sudmit]{
+border:none;
+}
+
+

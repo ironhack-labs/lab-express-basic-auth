@@ -80,7 +80,7 @@ router.get("/login", (req, res, next) => {
   }
 })
 
-router.post("/login", (reg, res) => {
+router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -95,7 +95,7 @@ router.post("/login", (reg, res) => {
       res.redirect("/login?error=user-not-exist");
     } else {
       const bcrypt = require("bcrypt");
-      const hashedPassword = foundUserData.password;
+      const hashedPassword = foundUser.password;
       if (bcrypt.compareSync(password, hashedPassword)) {
         req.session.user = foundUser._id;
         res.redirect("/home");
@@ -104,6 +104,37 @@ router.post("/login", (reg, res) => {
       }
     }
   })
+})
+
+router.get("/home", (req, res) => {
+  console.log("you are in the home :)");
+  if(req.session.user){
+    Users.findById(req.session.user).then(yourInfo => {
+      res.render("home", {yourInfo});
+    })
+  }else{
+    res.redirect("/login");
+  } 
+})
+
+router.get("/main", (req, res) => {
+  if(req.session.user){
+    res.render("main");
+  }else{
+    res.redirect("/login");
+  }
+})
+
+router.get("/private", (req, res) => {
+  if(req.session.user){
+    res.render("private")
+  }else{
+    res.redirect("/login");
+  }
+})
+
+router.get("/public", (req, res) => {
+  res.render("public");
 })
 
 module.exports = router;

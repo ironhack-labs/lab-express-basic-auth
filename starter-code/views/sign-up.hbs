@@ -1,6 +1,6 @@
-<form method="POST" action="/sign-up">
-<input type="text" placeholder="username" name="username">
-<input type="text" placeholder="password" name="password">
+<form id="myform" method="POST" action="/sign-up">
+<input type="text" placeholder="username" name="username" required>
+<input id="myPassword" type="password" placeholder="password" name="password" required>
 
 <input type="submit" value="Sign up">
 
@@ -8,3 +8,4 @@
 <p style="color:#ff0000">{{error}}</p>
 {{/if}}
 </form>
+
