@@ -44,17 +44,11 @@ exports.access = (req, res, next) => {
 
 exports.accessMain = (req, res, next) => {
   const { loggedUser } = req.app.locals;
-  if(loggedUser){
-    res.render('auth/profile', loggedUser);
-  }
   res.render('auth/main', { err: 'Ooops' });
 }
 
 exports.accessPrivate = (req, res, next) => {
   const { loggedUser } = req.app.locals;
-  if(loggedUser){
-    res.render('auth/profile', loggedUser);
-  }
   res.render('auth/private', { err: 'No peaking!' });
 }
 
