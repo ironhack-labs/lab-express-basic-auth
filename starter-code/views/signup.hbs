@@ -1,0 +1,12 @@
+<h1>Registrate en Rock's Music Planet!</h1>
+<p>Resgistra tus datos:</p>
+<form action="/signup" method="POST">
+    <input type="text" name="username" placeholder="usuario que deseas">
+    <input type="password" name="password" placeholder="contraseña">
+    <input type="submit" value="Sign up">
+
+    {{#if error}}
+        <p style="color:red">{{error}}</p>
+    {{/if}}
+</form>
+<p>Pagina de inicio de Rock's Music Planet::  <a href="/">Click aqui.</a></p>

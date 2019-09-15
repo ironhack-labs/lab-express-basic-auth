@@ -1,0 +1,13 @@
+<h1>Ingresar a Rock's Music Planet!</h1>
+<p>Ingresa tus datos:</p>
+<form class="form-login" action="/login" method="POST">
+    <input type="text" name="username" placeholder="username" autocomplete="on">
+    <input type="password" name="password" placeholder="password" autocomplete="off">
+    <input type="submit" value="Login">
+    {{#if error}}
+    <p style="color:orange">{{error}}</p>
+    {{/if}}
+</form>
+<p>No tienes usuario y quieres REGISTRATE en Rock's Music Planet: <a href="/signup">Click aqui.</a></p>
+<p>Volver a la pagina de inicio de Rock's Music Planet::  </p>
+<a href="/">Click aqui.</a>
