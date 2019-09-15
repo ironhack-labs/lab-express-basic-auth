@@ -1,0 +1,12 @@
+// Mixin to apply styles from the given size
+// in the parameter
+// @access public
+// @param {String} $breakpoint - Break point
+// @requires $breakpoints
+@mixin styles-from($breakpoint) {
+  $breakpoint: map-get($breakpoints, $breakpoint);
+  
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}

@@ -1,0 +1,18 @@
+// Typography
+$title-font-family: "Bree Serif", serif;
+$text-font-family: "Roboto Slab", serif;
+
+// Typography font size
+$title-h1-font-size: 2rem;
+$title-h2-font-size: 1.75rem;
+$title-h3-font-size: 1.5rem;
+
+$text-font-size: 1rem;
+
+// Breakpoints
+$breakpoints: (
+  "small": 600px,
+  "medium": 900px,
+  "large": 1200px,
+  "huge": 1600px,
+);

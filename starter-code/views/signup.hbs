@@ -1,0 +1,28 @@
+{{> header
+  title="Signup"
+}}
+
+{{> menu}}
+
+<div class="container">
+  {{#if code}}
+  <p class="error">{{code}}</p>
+  {{/if}}
+  <form action="/signup" method="post" class="form form--signup">
+    <div class="form__field">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div class="form__field">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <div class="form__field">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="form__actions">
+      <input type="submit" value="Register" class="button form__submit">
+    </div>
+  </form>
+</div>

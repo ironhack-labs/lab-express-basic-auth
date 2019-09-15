@@ -1,0 +1,21 @@
+{{> header
+  title="Login"
+}}
+
+{{> menu}}
+
+<div class="container">
+  <form action="/login" method="post" class="form form--login">
+    <div class="form__field">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div class="form__field">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <div class="form__actions">
+      <input type="submit" value="Login" class="button form__submit">
+    </div>
+  </form>
+</div>
