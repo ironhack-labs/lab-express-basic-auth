@@ -8,15 +8,13 @@ body {
   width: 100vw;
   background-image: url("/images/fondo.png");
   background-repeat: no-repeat, repeat;
-  background-size: 125%;
-}
+  background-size: 125%; }
 
 a {
-  color:rgb(232, 187, 110);
+  color: #e8bb6e;
   font-size: 17px;
-  border: 1.5px solid rgb(232, 187, 110);
-  padding: 5px;
-}
+  border: 1.5px solid #e8bb6e;
+  padding: 5px; }
 
 #input {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -25,10 +23,9 @@ a {
   height: 30px;
   width: 200px;
   border: none;
-  border-bottom: 2px solid black;
-}
+  border-bottom: 2px solid black; }
 
 input:focus {
-  outline: 0;
-}
+  outline: 0; }
 
+/*# sourceMappingURL=style.css.map */
