@@ -2,21 +2,18 @@
 ::after,
 ::before {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
   -moz-font-feature-settings: "kern";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  direction: ltr;
-}
+  direction: ltr; }
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #444;
-  background-color: #f5f6f7;
-}
+  background-color: #f5f6f7; }
 
 a {
   background: transparent;
@@ -24,8 +21,7 @@ a {
   text-decoration: none;
   margin: 2rem 1rem 2rem 0;
   display: inline-block;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 input {
   padding: 0.5rem;
@@ -34,12 +30,10 @@ input {
   border: 1px solid #ebecec;
   margin: 0.1rem 0;
   margin-top: 0.4rem;
-  width: 100%;;
-}
+  width: 100%; }
 
 input:focus {
-  background: #ebecec;
-}
+  background: #ebecec; }
 
 .btn {
   padding: 0.5rem;
@@ -47,20 +41,18 @@ input:focus {
   display: inline-block;
   width: 100%;
   margin-top: 0.4rem;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .btn:hover {
-  background: darken( #0069ff, 10% )
-}
+  background: #0054cc; }
 
 .btn-primary {
   background: #0069ff;
-  color: white;
-}
+  color: white; }
 
 .container {
   width: 100%;
   max-width: 340px;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
+
+/*# sourceMappingURL=style.css.map */

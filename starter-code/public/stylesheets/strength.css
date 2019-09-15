@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+.strength_meter {
+	width: 154px;
+}
+
+.strength_meter div {
+	width: 100%;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+}
+
+.veryweak {
+	background-color: #FFA0A0;
+	border-color: #F04040 !important
+}
+
+.weak {
+	background-color: #FFB78C;
+	border-color: #FF853C !important;
+}
+
+.medium {
+	background-color: #FFEC8B;
+	border-color: #FC0 !important;
+}
+
+.strong {
+	background-color: #C3FF88;
+	border-color: #8DFF1C !important;
+}
+
+.button_strength {
+	margin: 1rem 0
+}

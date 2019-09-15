@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Log In</h2>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username" required>
+    <input type="password" name="password" placeholder="password" required>
+
+    <button type="submit" class="btn btn-primary">Log In</button>
+
+    {{#if error}}
+    <p style="color:red">{{error}}</p>
+    {{/if}}
+  </form>
+
+  <span>Don't have an account? <a href="/signup">Sign Up</a></span>
+</div>
