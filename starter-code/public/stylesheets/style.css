@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.container-index {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-top: 60px;
+  margin-right: 80px; }
+
+.container-index h1 {
+  margin-left: 20px; }
+
+.index-links a {
+  text-decoration: none;
+  margin: 30px;
+  display: grid;
+  justify-content: space-between; }
+
+.container-home {
+  display: grid;
+  grid-auto-rows: 30px; }
+
+.container-home img {
+  margin: 150px;
+  width: 600px;
+  height: 400px;
+  margin-right: 300px; }
+
+.container-main {
+  display: grid;
+  grid-auto-rows: 30px; }
+
+.container-main img {
+  margin: 110px;
+  width: 600px;
+  height: 400px;
+  margin-right: 300px; }
+
+.container-private {
+  display: grid;
+  grid-auto-rows: 30px; }
+
+.container-private img {
+  margin: 110px;
+  width: 600px;
+  height: 400px;
+  margin-right: 300px; }
