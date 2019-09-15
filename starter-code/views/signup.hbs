@@ -1,0 +1,15 @@
+<div>
+    <div class="flex background">
+        <form action="/signup" method="POST">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="Sign up">
+
+            {{#if error}}
+            <p style="color:red">{{error}}</p>
+            {{/if}}
+        </form>
+        <p>Allready a user?</p>
+        <a href="/login">Login</a>
+    </div>
+</div>
