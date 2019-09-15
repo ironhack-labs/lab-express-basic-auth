@@ -24,7 +24,7 @@ router.post("/signup", (req, res) => {
   const password = req.body.password;
 
   if (username.length === 0 || password.length === 0) {
-    res.redirect("/signup?error=empty");
+    return res.redirect("/signup?error=empty");
   }
 
   Users.findOne({ username: username }).then(foundUserData => {
@@ -70,7 +70,7 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   if (username.length === 0 || password.length === 0) {
-    res.redirect("/login?error=empty");
+    return res.redirect("/login?error=empty");
   }
 
   Users.findOne({ username: username }).then(foundUserData => {
@@ -93,8 +93,8 @@ router.post("/login", (req, res) => {
 router.get("/main", (req, res) => {
   if (req.session.user) {
     Users.findById(req.session.user).then(yourInfo => {
-      res.render("main", {yourInfo: yourInfo});
-    })
+      res.render("main", { yourInfo: yourInfo });
+    });
   } else {
     res.redirect("/login");
   }
@@ -102,8 +102,8 @@ router.get("/main", (req, res) => {
 router.get("/private", (req, res) => {
   if (req.session.user) {
     Users.findById(req.session.user).then(yourInfo => {
-      res.render("private", {yourInfo: yourInfo});
-    })
+      res.render("private", { yourInfo: yourInfo });
+    });
   } else {
     res.redirect("/login");
   }
@@ -115,8 +115,8 @@ router.get("/logout", (req, res) => {
 });
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get("/", (req, res, next) => {
+  res.render("index");
 });
 
 module.exports = router;
