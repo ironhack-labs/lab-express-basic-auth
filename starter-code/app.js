@@ -19,8 +19,6 @@ const salt  = bcrypt.genSaltSync(saltRounds);
 const hash1 = bcrypt.hashSync(plainPassword1, salt);
 const hash2 = bcrypt.hashSync(plainPassword2, salt);
 
-console.log("Hash 1 -", hash1);
-console.log("Hash 2 -", hash2);
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -62,11 +60,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
+
+const router = require('./routes/auth');
+app.use('/', router);
 
 module.exports = app;
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
-});
