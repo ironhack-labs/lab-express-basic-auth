@@ -1,0 +1,31 @@
+.form {
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+
+  &__field {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 1rem;
+
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 0.5rem;
+      background-color: #F8F8F8;
+    }
+  }
+
+  &__actions {
+    text-align: right;
+  }
+
+  &__submit {
+    
+  }
+}

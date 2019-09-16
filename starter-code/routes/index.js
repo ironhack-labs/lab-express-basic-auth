@@ -49,7 +49,6 @@ router.post("/login", (req, res) => {
     if (bcrypt.compareSync(password, hashedPassword)) {
       // Password matches
       req.session.user = userFound._id
-      console.log(userFound._id, "Olé")
       res.redirect("/profile")
       return
     } else {

@@ -1,1 +1,20 @@
+@import "utils/variables";
+@import "utils/mixins";
 
+@import "base/base";
+@import "base/reset";
+@import "base/fonts";
+@import "base/typography";
+
+@import "layout/forms";
+@import "layout/header";
+@import "layout/navigation";
+
+@import "components/buttons";
+
+.nicolas {
+  margin: auto;
+  display: block;
+  max-width: 250px;
+  margin-top: 6rem;
+}

@@ -1,0 +1,16 @@
+.button {
+  padding: .5rem 1rem;
+  display: inline-block;
+  background-color: #EEEEEE;
+  color: #888888;
+  border: 1px solid #CCCCCC;
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  &--submit {
+    background-color: #009999;
+    color: #FFFFFF;
+    border-color: #007777;
+  }
+}

@@ -1,0 +1,19 @@
+.main-nav {
+  background-color: #FFFFFF;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 3rem;
+
+  &__item:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &__link {
+    color: #008888;
+  }
+}

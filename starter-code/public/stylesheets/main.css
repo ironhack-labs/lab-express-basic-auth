@@ -1,2 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Roboto+Slab:400,700&display=swap");
+body {
+  background-color: #F8F8F8; }
+
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+* {
+  font-family: "Roboto Slab", serif; }
+
+h1, h2, h3, h4 {
+  font-family: "Bree Serif", serif; }
+
+.form {
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC; }
+  .form__field {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 1rem; }
+    .form__field label {
+      margin-bottom: 0.5rem;
+      font-weight: 600; }
+    .form__field input {
+      padding: 0.5rem;
+      background-color: #F8F8F8; }
+  .form__actions {
+    text-align: right; }
+
+.header {
+  background-color: #008888;
+  color: #FFFFFF;
+  padding: 4rem; }
+
+.main-nav {
+  background-color: #FFFFFF; }
+
+.main-menu {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 3rem; }
+  .main-menu__item:not(:last-child) {
+    margin-right: 1rem; }
+  .main-menu__link {
+    color: #008888; }
+
+.button {
+  padding: .5rem 1rem;
+  display: inline-block;
+  background-color: #EEEEEE;
+  color: #888888;
+  border: 1px solid #CCCCCC;
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 600; }
+  .button--submit {
+    background-color: #009999;
+    color: #FFFFFF;
+    border-color: #007777; }
+
+.nicolas {
+  margin: auto;
+  display: block;
+  max-width: 250px;
+  margin-top: 6rem; }
 
 /*# sourceMappingURL=main.css.map */
