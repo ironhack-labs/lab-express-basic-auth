@@ -8,7 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -39,20 +40,40 @@ app.use(require('node-sass-middleware')({
 }));
       
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+// LOGIN CONFIG HERE //
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 60000 }, // in millisec
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
+    saveUninitialized: true,
+    resave: true
+  })
+);
 
+// END OF LOGIN CONFIG HERE //
+app.use(
+  require("node-sass-middleware")({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+    sourceMap: true
+  })
+);
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = "Express - Generated with IronGenerator";
 
-
-
-const index = require('./routes/index');
-app.use('/', index);
-
+const index = require("./routes/index");
+const signupRouter = require("./routes/auth");
+app.use("/", index);
+app.use(signupRouter);
 
 module.exports = app;
