@@ -36,6 +36,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 const index = require('./routes/index');
+const postsRoute = require('./routes/posts');
 
 app.use(
   session({
@@ -53,6 +54,7 @@ app.use(
 );
 
 app.use('/', index);
+app.use("/posts", postsRoute);
 
 // Express View engine setup
 

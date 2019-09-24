@@ -106,14 +106,19 @@ const middleWare = require("./auth")
 
 router.get("/dogsPage", middleWare, (req, res) => {
 
-  res.render("dogsPage")
 
+  User.findById(req.session.user._id)
+    .populate("posts") // here mongoose also queries the posts collection
+    .then(user => {
+      res.render("dogsPage", {
+        user: user
+      });
+    });
 
 });
 
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
-
     res.redirect("/login");
   });
 });

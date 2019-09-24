@@ -12,4 +12,18 @@
     </div>
 
   </div>
+
+  <form action="/posts" method="post">
+    <input type="text" placeholder="title" name="title">
+    <input type="text" placeholder="content" name="content">
+    <input type="submit" value="Submit">
+  </form>
+  <h1>MY posts</h1>
+  {{#each user.posts}}
+  <ul>
+    <li>{{this.title}}</li>
+    <li>{{this.content}}</li>
+  </ul>
+  {{/each}}
+
 </body>
