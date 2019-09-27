@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+  .form-container
+    form(action="/main" method="POST")
+      .form-element
+        label(for="username") Username
+        input(type="text" id="username" name="username")
+      .form-element
+        label(for="password") Password
+        input(type="password" id="password" name="password")
+      p #{error}
+      button(type="submit") Login
