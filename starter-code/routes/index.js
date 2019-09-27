@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require(__dirname + "/../models/User.js");
+const Photo = require(__dirname + "/../models/Photo.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const multer = require("multer");
@@ -19,9 +20,27 @@ router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
-router.post("/profileImg", upload.single("avatar"), (req, res, next) => {
+router.post("/profileImg", upload.single("avatar"), async (req, res) => {
   const userId = req.session.user._id;
-  res.send(userId);
+  const srcImg = req.file.filename;
+
+  Photo.create({
+      srcImg: srcImg,
+    }).then(photo => {
+
+      return User.findByIdAndUpdate(
+        userId, {
+          $push: {
+            photos: photo._id
+          }
+        }, {
+          new: true
+        }
+      );
+    })
+    .then(updatedUser => {
+      res.redirect("/dogsPage");
+    });
 
 });
 
@@ -89,13 +108,10 @@ router.post("/login", (req, res, next) => {
 
         // req.session.currentUser = foundUser;
         if (result) {
-          debugger
           const session = req.session;
           session.user = foundUser;
           res.redirect("/dogsPage");
         } else {
-          debugger
-
           res.redirect("/");
         }
       });
@@ -118,7 +134,8 @@ router.get("/dogsPage", middleWare, (req, res) => {
 
 
   User.findById(req.session.user._id)
-    .populate("posts") // here mongoose also queries the posts collection
+    .populate("posts")
+    .populate("photos") // here mongoose also queries the posts collection
     .then(user => {
       res.render("dogsPage", {
         user: user

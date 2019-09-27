@@ -32,16 +32,11 @@
   </form>
 
   <div class="row">
+    {{#each user.photos}}
     {{> itemPhoto this}}
+    {{/each}}
   </div>
 
-  {{!-- 
-    {{#each user.posts}}
-<ul>
-    <li>{{this.title}}</li>
-    <li>{{this.content}}</li>
-</ul>
-{{/each}} --}}
 
 
 </body>
