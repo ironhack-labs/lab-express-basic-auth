@@ -14,7 +14,7 @@ router.post("/", (req, res, next) => {
         title,
         content
     } = req.body;
-    debugger
+
     const author = req.session.user._id;
 
     Post.create({
@@ -22,7 +22,7 @@ router.post("/", (req, res, next) => {
             content,
             author
         }).then(post => {
-            debugger
+
             return User.findByIdAndUpdate(
                 author, {
                     $push: {

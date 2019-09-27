@@ -7,7 +7,12 @@ const userSchema = new mongoose.Schema({
   posts: [{
     type: Schema.Types.ObjectId,
     ref: "Post"
+  }],
+  photos: [{
+    type: Schema.Types.ObjectId,
+    ref: "Photo"
   }]
+
 });
 
 const User = new mongoose.model("User", userSchema);

@@ -5,6 +5,10 @@ const saltRounds = 10;
 const User = require(__dirname + "/../models/User.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const multer = require("multer");
+const upload = multer({
+  dest: __dirname + "/../public/images/files"
+})
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -13,6 +17,12 @@ router.get('/', (req, res, next) => {
 
 router.get("/login", (req, res, next) => {
   res.render("login");
+});
+
+router.post("/profileImg", upload.single("avatar"), (req, res, next) => {
+  const userId = req.session.user._id;
+  res.send(userId);
+
 });
 
 

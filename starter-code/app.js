@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
+const path = require("path");
 const hbs = require('hbs');
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 const mongoose = require('mongoose');
 const logger = require('morgan');
-const path = require('path');
+
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
@@ -23,8 +25,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+
+
+app.set("views", path.join(__dirname, 'views'));
+app.set("view engine", "hbs");
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 

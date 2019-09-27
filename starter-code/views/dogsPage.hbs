@@ -26,4 +26,22 @@
   </ul>
   {{/each}}
 
+  <form action="/profileImg" method="post" enctype="multipart/form-data">
+    <input type="file" name="avatar" />
+    <input type="submit">
+  </form>
+
+  <div class="row">
+    {{> itemPhoto this}}
+  </div>
+
+  {{!-- 
+    {{#each user.posts}}
+<ul>
+    <li>{{this.title}}</li>
+    <li>{{this.content}}</li>
+</ul>
+{{/each}} --}}
+
+
 </body>
