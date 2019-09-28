@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_formSignIn
+
+block content
+  nav
+    a(href="/") Home
+  
+  //- h1=title
+  +formSignIn(error)
+
+

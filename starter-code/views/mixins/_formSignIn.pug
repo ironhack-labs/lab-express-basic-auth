@@ -1,0 +1,19 @@
+mixin formSignIn(error)
+
+    div(class="form-container")
+      h1(class="title") #{title}
+      form(class="form" action="/signin" method="POST")
+        div(class="form-element")
+          label(for="username") Username
+          input(id="username" type="text" name="userName" placeholder="Type an User Name")
+        div(class="form-element")
+          label(for="password") Password
+          input(id="password" type="password" name="password" placeholder="Type a password") 
+        if error
+          div(class="form-element-error")  
+            p(class="error-message") #{error}   
+        div(class="form-element")
+          button(type="submit") Create an Account
+        div(class="form-element")
+          span Already have an account? 
+          a(href="/login") Login

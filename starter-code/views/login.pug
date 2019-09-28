@@ -1,0 +1,8 @@
+extends layout
+
+include mixins/_formLogin
+
+block content
+  nav
+    a(href="/") Home
+  +formLogin(error)

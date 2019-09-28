@@ -1,10 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-
 body {
   font-family: Roboto;
   margin: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 nav {
   background-color: rgba(128, 128, 128, 0.281);
@@ -12,15 +10,12 @@ nav {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 3em;
-  // border: 1px solid blue;
-}
+  height: 3em; }
 
 a {
   color: #469cbe;
   margin: 2%;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .content {
   width: 100%;
@@ -28,9 +23,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(53, 97, 163, 0.055);
-  // border: 1px solid blue;
-}
+  background-color: rgba(53, 97, 163, 0.055); }
 
 .form-container {
   width: 100%;
@@ -38,25 +31,21 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  // border: 1px solid red;
   flex-flow: column;
-  background-color: rgba(53, 97, 163, 0.055);
-}
+  background-color: rgba(53, 97, 163, 0.055); }
 
 form {
   width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column;
-  // border: 1px solid blue;
-}
+  flex-flow: column; }
+
 .title {
   width: 40%;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 .form-element {
   width: 100%;
@@ -64,21 +53,18 @@ form {
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  margin: 2%;
-}
+  margin: 2%; }
 
 .form-element input {
   font-size: 0.9em;
   width: 80%;
-  height: 2.5em;
-}
+  height: 2.5em; }
 
 .form-element button {
   font-size: 0.85em;
   width: 40%;
   height: 3em;
-  border-radius: 40px;
-}
+  border-radius: 40px; }
 
 .form-element-error {
   display: flex;
@@ -87,5 +73,6 @@ form {
   width: 80%;
   padding: 1%;
   background-color: rgba(255, 0, 0, 0.699);
-  border-radius: 10px;
-}
+  border-radius: 10px; }
+
+/*# sourceMappingURL=style.css.map */
