@@ -4,12 +4,19 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require(__dirname + "/../models/User.js");
 const Photo = require(__dirname + "/../models/Photo.js");
+const middleWare = require("./auth")
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const multer = require("multer");
 const upload = multer({
   dest: __dirname + "/../public/images/files"
 })
+const AWS = require("aws-sdk");
+const keys = process.env.KEYID;
+const SECRETKEY = process.env.SECRETKEY;
+const uuid = require("uuid/v1");
+
+
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -128,10 +135,9 @@ router.post("/login", (req, res, next) => {
 
 });
 
-const middleWare = require("./auth")
+
 
 router.get("/dogsPage", middleWare, (req, res) => {
-
 
   User.findById(req.session.user._id)
     .populate("posts")
@@ -141,6 +147,28 @@ router.get("/dogsPage", middleWare, (req, res) => {
         user: user
       });
     });
+
+});
+
+
+const s3 = new AWS.S3({
+  accessKeyId: keys,
+  secretAccessKey: SECRETKEY
+})
+
+router.get("/upload", middleWare, (req, res) => {
+  const userId = req.session.user._id;
+
+  const key = `${userId}/${uuid()}.jpeg`;
+  s3.getSignedUrl("putObject", {
+    Bucket: "my-memories-bucket-123",
+    ContentType: "jpeg",
+    Key: key
+
+  }, (err, url) => res.send({
+    key,
+    url
+  }));
 
 });
 
