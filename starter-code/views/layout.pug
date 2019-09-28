@@ -8,6 +8,12 @@ html(lang="en")
     link(rel="stylesheet", href="/stylesheets/style.css")
   body
 
-    block content
+    nav.navbar
+      a(href="/") Home
+      a(href="/login") Login
+      a(href="/signup") Register
+
+    main
+      block content
 
     script(src="/javascripts/script.js")

@@ -3,7 +3,8 @@ extends layout
 block content
 
   .form-container
-    form(action="/main" method="POST")
+    h2 Log In
+    form(action="/login" method="POST")
       .form-element
         label(for="username") Username
         input(type="text" id="username" name="username")
