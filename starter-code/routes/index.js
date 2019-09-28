@@ -46,7 +46,10 @@ router.post("/profileImg", upload.single("avatar"), async (req, res) => {
       );
     })
     .then(updatedUser => {
-      res.redirect("/dogsPage");
+      res.status(200).json({
+        message: "ok"
+      })
+
     });
 
 });

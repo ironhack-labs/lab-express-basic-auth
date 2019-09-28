@@ -26,17 +26,17 @@
   </ul>
   {{/each}}
 
-  <form action="/profileImg" method="post" enctype="multipart/form-data">
+  <form id="photo-submit" action="/profileImg" method="post" enctype="multipart/form-data">
     <input type="file" name="avatar" accept="image/*" />
     <input type="submit">
   </form>
 
-  <div class="row">
+  <div id="img-row" class="row">
     {{#each user.photos}}
     {{> itemPhoto this}}
     {{/each}}
   </div>
 
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+  <script src="/javascripts/custom.js"></script>
 </body>
