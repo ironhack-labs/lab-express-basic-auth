@@ -15,7 +15,7 @@ const AWS = require("aws-sdk");
 const keys = process.env.KEYID;
 const SECRETKEY = process.env.SECRETKEY;
 const uuid = require("uuid/v1");
-
+const axios = require("axios");
 
 
 /* GET home page */
@@ -139,6 +139,12 @@ router.post("/login", (req, res, next) => {
 });
 
 
+router.post("/dogsPage", middleWare, (req, res) => {
+
+  res.send("shit");
+
+});
+
 
 router.get("/dogsPage", middleWare, (req, res) => {
 
@@ -154,24 +160,60 @@ router.get("/dogsPage", middleWare, (req, res) => {
 });
 
 
-const s3 = new AWS.S3({
+// const s3 = new AWS.S3({
+//   accessKeyId: keys,
+//   secretAccessKey: SECRETKEY
+// })
+// AWS.config.update({
+//   credentials: credentials,
+//   region: 'eu-west-2'
+// });
+
+
+
+var credentials = {
   accessKeyId: keys,
   secretAccessKey: SECRETKEY
-})
+};
+AWS.config.update({
+  credentials: credentials
+});
+
+AWS.config.update({
+  credentials: credentials,
+  region: process.env.S3_REGION
+});
+var s3 = new AWS.S3();
+
+
 
 router.get("/upload", middleWare, (req, res) => {
   const userId = req.session.user._id;
-
   const key = `${userId}/${uuid()}.jpeg`;
   s3.getSignedUrl("putObject", {
-    Bucket: "my-memories-bucket-123",
-    ContentType: "jpeg",
+    Bucket: process.env.S3_BUCKET,
+    ContentType: "image/jpeg",
     Key: key
 
-  }, (err, url) => res.send({
-    key,
-    url
-  }));
+  }, (err, url) => {
+    res.send({
+      key,
+      url
+    })
+
+    // debugger
+
+    // axios.put(url, file, {
+    //   headers: {
+    //     "Content-Type": file.type
+    //   }
+    // }).then(result => {
+    //   debugger
+    // }).catch(err => {
+    //   debugger
+    // })
+
+  });
 
 });
 

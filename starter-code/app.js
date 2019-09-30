@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -15,6 +15,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+app.use(cors());
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());

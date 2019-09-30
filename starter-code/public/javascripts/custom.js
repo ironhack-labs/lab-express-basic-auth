@@ -2,35 +2,57 @@ window.onload = function () {
 
   const form = document.getElementById("photo-submit");
   let formData
-  form.onsubmit = function (e) {
+  form.onsubmit = async function (e) {
     e.preventDefault()
+
     formData = new FormData();
-    formData.append("avatar", form.avatar.files[0]);
-    axios.post('profileImg', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }).then(response => {
-      // add photo of linus to dom
-      const row = document.getElementById("img-row")
-      const reader = new FileReader()
-      const img = document.createElement("img")
-      debugger
-      reader.onload = function (e) {
-        debugger
-        img.src = e.target.result
+    const file = form.avatar.files[0];
+    formData.append("avatar", file);
+    // console.log(file, typeof file);
+    // const fileJson = JSON.stringify(file)
+
+    try {
+      const uploadConfig = await axios.get("/upload");
+      await axios.put(uploadConfig.data.url, file, {
+        headers: {
+          "Content-Type": file.type
+        }
+      });
 
 
-      }
-      row.appendChild(img)
+    } catch (err) {
 
-      reader.readAsDataURL(form.avatar.files[0]);
-      debugger
+      console.error(err); // 30
+    }
 
-      debugger
-    }).catch(err => {
-      debugger
-    })
+
+
+
+    // axios.post('profileImg', formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }
+    // }).then(response => {
+    //   // add photo of linus to dom
+    //   const row = document.getElementById("img-row")
+    //   const reader = new FileReader()
+    //   const img = document.createElement("img")
+    //   debugger
+    //   reader.onload = function (e) {
+    //     debugger
+    //     img.src = e.target.result
+
+
+    //   }
+    //   row.appendChild(img)
+
+    //   reader.readAsDataURL(form.avatar.files[0]);
+    //   debugger
+
+    //   debugger
+    // }).catch(err => {
+    //   debugger
+    // })
   }
 
 }
