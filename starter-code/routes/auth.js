@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 router.get('/signup', (req, res, next) => {
@@ -35,7 +35,7 @@ router.post('/signup', (req, res, next) => {
     .then( user => {
       error = `User created correctly`;
       console.log('User created');
-      res.redirect('/', { error });
+      res.redirect('/login');
     })
     .catch( error => console.log(error));
   });

@@ -10,8 +10,14 @@ html(lang="en")
 
     nav.navbar
       a(href="/") Home
-      a(href="/login") Login
-      a(href="/signup") Register
+
+      if !user
+        a(href="/login") Login
+        a(href="/signup") Register
+      else
+        a(href="/main") Main
+        a(href="/private") Private
+        a(href="/logout") Logout
 
     main
       block content

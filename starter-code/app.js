@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
-  secret: 'Whaterver-My-Man',
+  secret: 'Whatever-My-Man',
   cookie: { maxAge: 3600000 },
   resave: true,
   store: new mongoStore({
