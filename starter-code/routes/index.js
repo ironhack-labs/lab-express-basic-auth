@@ -1,9 +1,33 @@
 const express = require('express');
 const router  = express.Router();
+const auth = require('../routes/auth');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
+});
+
+router.use('/auth', auth);
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+    next(); // ==> go to the next route ---
+  } else {                          //    |
+    res.redirect("/auth/login");         //    |
+  }                                 //    |
+}); // ------------------------------------                                
+//     | 
+//     V
+// router.get("/secret", (req, res, next) => {
+//   res.render("secret");
+// });
+
+router.get('/main', (req, res) => {
+  res.render('main');
+});
+
+router.get('/private', (req, res) => {
+  res.render('private');
 });
 
 module.exports = router;
