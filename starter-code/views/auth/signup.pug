@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  form(action="/signup", method="post")
+    label(for="username") Username
+    input(type="text" name='username' placeholder='Username')
+    label(for="password") Password
+    input(type="password" name='password' placeholder='********')
+
+    if (errorMessage)
+      .error-message #{errorMessage}
+    
+    button(type="submit") Create user
+    
