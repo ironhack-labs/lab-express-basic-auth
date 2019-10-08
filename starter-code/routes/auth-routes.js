@@ -52,4 +52,44 @@ router.post('/signup', (req, res) => {
     .catch(error => { next(error) });
 });
 
+// Login
+router.get('/login', (req, res) => {
+  res.render('auth/login');
+});
+
+// Logout
+router.post('/login', (req, res) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+
+  // The fields can't be empty
+  if (theUsername === '' || thePassword === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, username and password to log in'
+    });
+    return;
+  }
+
+  User.findOne({ 'username': theUsername })
+    .then(user => {
+      // Username must exist in the DB
+      if (!user) {
+        res.render('auth/login', {
+          errorMessage:'The username doesn\'t exists'
+        });
+        return;
+      }
+      if (bcrypt.compareSync(thePassword, user.password)) {
+        // Save the login in the session
+        req.session.currentUser = user;
+        res.redirect('/')
+      } else {
+        res.render('auth/login', {
+          errorMessage: 'Incorrect password'
+        });
+      }
+    })
+    .catch(error => { next(error) });
+});
+
 module.exports = router;

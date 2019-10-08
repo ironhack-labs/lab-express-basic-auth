@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  form(action="/login", method="post")
+    h2 Login
+
+    label(for="username") Username
+    input(type="text" name="username")
+
+    label(for="password") Username
+    input(type="password" name="password")
+
+    if (errorMessage)
+      .error-message #{errorMessage}
+
+    button(type="submit") Sign in
