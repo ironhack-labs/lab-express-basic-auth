@@ -57,7 +57,6 @@ router.get('/login', (req, res) => {
   res.render('auth/login');
 });
 
-// Logout
 router.post('/login', (req, res) => {
   const theUsername = req.body.username;
   const thePassword = req.body.password;
@@ -90,6 +89,13 @@ router.post('/login', (req, res) => {
       }
     })
     .catch(error => { next(error) });
+});
+
+// Logout
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    res.redirect('/login');
+  });
 });
 
 module.exports = router;
