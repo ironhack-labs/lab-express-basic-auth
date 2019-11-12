@@ -1,29 +1,34 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const userModel = require("../Models/User");
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get("/", (req, res, next) => {
+  res.render("index");
 });
 
-router.post('/', (req, res, next) => {
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+/////// SIGN UP
+
+router.post("/", (req, res, next) => {
   const user = req.body; // req.body contains the submited informations (out of post request)
 
   if (!user.username || !user.password) {
     res.redirect("/");
     return;
-
   } else {
-
     userModel
       .findOne({
         username: user.username
       })
       .then(dbRes => {
-        if (dbRes) { // si les usernames et passwords sont déjà dans la db ...
-          res.redirect("/"); // ... alors tu restes sur la home page
+        if (dbRes) {
+          // si les usernames et passwords sont déjà dans la db ...
+          res.redirect("/signin"); // ... alors tu restes sur la home page
           return;
         }
         const salt = bcrypt.genSaltSync(10); // cryptography librairie
@@ -41,6 +46,46 @@ router.post('/', (req, res, next) => {
         console.log("don't find the username/password");
       });
   }
+});
+
+/////// LOGIN (once you have created an account)
+
+router.get("/signin", (req, res, next) => {
+  res.render("signin");
+});
+
+router.post("/signin", (req, res, next) => {
+  const user = req.body;
+
+  if (!user.username || !user.password) {
+    return res.redirect("/signin");
+  }
+
+  userModel
+    .findOne({
+      username: user.username
+    })
+    .then(dbRes => {
+      if (!dbRes) {
+        return res.redirect("/");
+      }
+
+      // user has been found in DB !
+
+      if (bcrypt.compareSync(user.password, dbRes.password)) {
+        // compare les data (ici = les passwords)
+        console.log("good password", dbRes);
+        req.session.currentUser = dbRes; // stocke le result dbRes dans le currentUser de la session
+        return res.redirect("/main");
+      } else {
+        console.log("bad password");
+        res.redirect("/signin");
+        return;
+      }
+    })
+    .catch(dbErr => {
+      next(dbErr);
+    });
 });
 
 module.exports = router;
