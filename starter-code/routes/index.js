@@ -12,13 +12,20 @@ router.get("/main", (req, res, next) => {
   res.render("main");
 });
 
+router.get("/private", (req, res, next) => {
+  res.render("private");
+});
+
 /////// SIGN UP
 
 router.post("/", (req, res, next) => {
   const user = req.body; // req.body contains the submited informations (out of post request)
 
   if (!user.username || !user.password) {
-    res.redirect("/");
+    res.render("index", {
+      errorMessage: "Please enter both, username and password to signup"
+    });
+    console.log("signup: Please enter both, username and password to signup");
     return;
   } else {
     userModel
@@ -28,12 +35,16 @@ router.post("/", (req, res, next) => {
       .then(dbRes => {
         if (dbRes) {
           // si les usernames et passwords sont déjà dans la db ...
-          res.redirect("/signin"); // ... alors tu restes sur la home page
+          res.render("index", {
+            // ... alors tu restes sur la home page
+            errorMessage: "The user already exists, please sign in"
+          });
+          console.log("sign up: username already exists");
           return;
         }
         const salt = bcrypt.genSaltSync(10); // cryptography librairie
         const hashed = bcrypt.hashSync(user.password, salt);
-        console.log("original", user.password);
+        console.log("user created successfully !");
         user.password = hashed;
 
         userModel
@@ -67,7 +78,9 @@ router.post("/signin", (req, res, next) => {
     })
     .then(dbRes => {
       if (!dbRes) {
-        return res.redirect("/");
+        // if user doesn't exist in the db
+        res.render("/", { errorMessage: "The username doesn't exist" });
+        return;
       }
 
       // user has been found in DB !

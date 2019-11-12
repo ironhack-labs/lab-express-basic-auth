@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const session = require("express-session"); // add for it2
+const Mongostore = require("connect-mongo")(session); // add for it2
 
 mongoose
   .connect("mongodb://localhost/starter-code", {
@@ -40,17 +41,25 @@ app.use(
 );
 app.use(cookieParser());
 
-// copy for iteration 2
+// CREATED SESSION
+// 1) declare session
 app.use(
   session({
     // session is our middleware
     secret: "mySecretShOüldb3H4rD2Craaaäk",
-    saveUninitialized: true,
-    resave: true
-    // req.session.cookie.expires = new Date(Date.now() + hour),
-    // req.session.cookie.maxAge = hour
+    store: new Mongostore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // max duration time of a session
+    })
   })
 );
+
+// 2) check loggin
+app.use(function checkLoggedIn(req, res, next) {
+  console.log(">", req.session);
+  res.locals.isLoggedIn = Boolean(req.session && req.session.currentUser);
+  next();
+});
 
 // Express View engine setup
 
@@ -66,13 +75,6 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
-
-// LOGIN iteration 2
-app.use(function checkLoggedIn(req, res, next) {
-  console.log(">", req.session);
-  res.locals.isLoggedIn = Boolean(req.session && req.session.currentUser);
-  next();
-});
 
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
