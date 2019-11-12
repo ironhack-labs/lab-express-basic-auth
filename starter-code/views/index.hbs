@@ -1,2 +1,28 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<h2>sign in </h2>
+<p>{{message}}</p>
+<form method="post" action="/create-user" class="form">
+    <label for="username">Username</label>
+    <input class="input" id="username" name="username" type="text">
+
+    <label for="password">password</label>
+    <input class="input" id="password" name="password" type="text">
+
+    <button class="btn">Go !</button>
+</form>
+
+
+
+<h2>sign up </h2>
+<p>{{message}}</p>
+<form method="post" action="/login" class="form">
+    <label for="username">Username</label>
+    <input class="input" id="username" name="username" type="text">
+
+    <label for="password">password</label>
+    <input class="input" id="password" name="password" type="text">
+
+    <button class="btn">Go !</button>
+</form>
