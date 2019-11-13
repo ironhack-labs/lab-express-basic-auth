@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="justify-content-center mt-5 row">
+    <form action="/auth/signup" method="post" class="text-center mb-4">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="usernme" class="form-control" placeholder="Add your name">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" class="form-control" placeholder="Create your password">
+      </div>
+      <button type="submit" class="btn btn-primary">Singup</button>
+      {{#if message}}
+      <p class="err-message">{{message}}</p>
+      {{/if}}
+    </form>
+    <div class="col-12 text-center">
+      <a href="/">Home</a>
+    </div>
+  </div>
+</div>

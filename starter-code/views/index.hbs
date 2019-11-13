@@ -1,2 +1,40 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav w-100">
+      <li class="nav-item">
+        <a class="nav-link" href="/main">Main</a>
+      </li>
+      {{#if user}}
+      <li class="nav-item ml-md-auto">
+        <a class="nav-link" href="/private">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="auth/logout">Logout</a>
+      </li>
+      {{else}}
+      <li class="nav-item ml-md-auto">
+        <a class="nav-link" href="auth/signup">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="auth/login">Login</a>
+      </li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="mt-5 row">
+    <div class="col-12">
+      <h1>Hello!</h1>
+    </div>
+    <div class="col-12">
+      <p>This is the example of {{title}} page</p>
+      <a href="/main">Go the the main page</a>
+    </div>
+  </div>
+</div>
