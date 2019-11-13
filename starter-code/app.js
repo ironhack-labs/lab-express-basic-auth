@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/authorization-lab', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,6 +29,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+/*--------------- COOKIE ------------------*/
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(session({
+  secret: process.env.SESSION_SECRET, //used to sign the cookie
+  cookie: { maxAgeg: 24 * 60 * 60 },
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
+}));
+/*----------------------------------------*/
 
 // Express View engine setup
 
