@@ -1,0 +1,10 @@
+<h2>Sign up</h2>
+<form action="/auth/signup" method="post">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+  <button type="submit">Create account</button>
+</form>
+
+{{#if message}}
+<p class="error-message">{{message}}</p>
+{{/if}}
