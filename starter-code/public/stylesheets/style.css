@@ -1,0 +1,14 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00b7ff; }
+
+#password:valid {
+  border: 1px solid black; }
+
+#password:invalid {
+  border: 1px solid red; }
+
+/*# sourceMappingURL=style.css.map */

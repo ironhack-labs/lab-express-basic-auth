@@ -4,5 +4,13 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#password:valid {
+  border: 1px solid black;
+}
+
+#password:invalid {
+  border: 1px solid red;
 }

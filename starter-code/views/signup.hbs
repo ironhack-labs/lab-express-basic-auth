@@ -1,0 +1,14 @@
+<form action="/signup" method="POST">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" required pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-8]){8,}">
+    <button type="submit">Sign Up</button>
+    <p>Your password should contain at least one uppercase letter, one downcase letter, one number and be at least 8
+        characters long.</p>
+
+</form>
+
+{{#if message}}
+<p style="color: red;">{{message}}</p>
+{{/if}}
