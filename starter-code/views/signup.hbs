@@ -1,0 +1,10 @@
+<form action="/auth/signup" method="post">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password">
+    <button type="submit">Signup</button>
+    {{#if message}}
+    <p class="error-message">{{message}}</p>
+    {{/if}}
+</form>
