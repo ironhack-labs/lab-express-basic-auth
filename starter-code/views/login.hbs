@@ -1,0 +1,11 @@
+<form action="/auth/login" method="post">
+    <label for="username">Username:<abbr title="This field is required" aria-label="required"></abbr></label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <button type="submit">Log in</button>
+</form>
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
