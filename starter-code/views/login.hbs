@@ -1,0 +1,13 @@
+{{!-- see if action is /login or auth/login --}}
+<form action="/login"
+method="post">
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+<label for="password">Password</label>
+<input type="text" name="password" id="password">
+<button type="submit">Log in</button>
+</form>
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
