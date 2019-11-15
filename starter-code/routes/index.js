@@ -3,6 +3,8 @@ const router = express.Router();
 const Users = require("../Models/Users");
 const bcrypt = require("bcrypt");
 const hbs = require('hbs');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -69,7 +71,7 @@ router.post('/login', (req, res, next) => {
       }
       if (bcrypt.compareSync(thePassword, user.password)) {
         // Save the login in the session!
-        // req.session.currentUser = user;
+        req.session.currentUser = user;
         res.redirect("/");
       } else {
         res.render("login", {
