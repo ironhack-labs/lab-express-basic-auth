@@ -1,0 +1,29 @@
+<div class="container">
+
+  <h1>Iniciar sesión</h1>
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="field1">Usuario</label>
+          <input type="text" class="form-control" id="field1" name="username">
+        </div>
+        <div class="form-group">
+          <label for="field2">Contraseña</label>
+          <input type="password" class="form-control" id="field2" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Iniciar sesion</button>
+
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+
+    </div>
+  </div>
+</div>

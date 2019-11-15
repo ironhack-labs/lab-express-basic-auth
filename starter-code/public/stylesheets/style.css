@@ -1,12 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
-
+  color: #00B7FF; }
 
 #myform input[type="password"],
 #myform input[type="text"] {
@@ -30,20 +27,17 @@ a {
   -o-transition: border .25s linear, color .25s linear;
   transition: border .25s linear, color .25s linear;
   -webkit-backface-visibility: hidden;
-  width: 100%;
-}
+  width: 100%; }
 
 #myform input[type="password"]:focus,
 #myform input[type="text"]:focus {
-  outline: 0;
-}
+  outline: 0; }
 
 #myform {
   width: 500px;
   margin: 0 auto;
   position: relative;
-  margin-bottom: 60px;
-}
+  margin-bottom: 60px; }
 
 .strength_meter {
   position: absolute;
@@ -53,14 +47,12 @@ a {
   height: 43px;
   z-index: -1;
   border-radius: 5px;
-  padding-right: 13px;
-}
+  padding-right: 13px; }
 
 .button_strength {
   text-decoration: none;
   color: #FFF;
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .strength_meter div {
   width: 0%;
@@ -74,47 +66,41 @@ a {
   -ms-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   padding-right: 12px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .strength_meter div p {
   position: absolute;
   top: 22px;
   right: 0px;
   color: #FFF;
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .veryweak {
   background-color: #FFA0A0;
   border-color: #F04040 !important;
-  width: 25% !important;
-}
+  width: 25% !important; }
 
 .weak {
   background-color: #FFB78C;
   border-color: #FF853C !important;
-  width: 50% !important;
-}
+  width: 50% !important; }
 
 .medium {
   background-color: #FFEC8B;
   border-color: #FC0 !important;
-  width: 75% !important;
-}
+  width: 75% !important; }
 
 .strong {
   background-color: #C3FF88;
   border-color: #8DFF1C !important;
-  width: 100% !important;
-}
+  width: 100% !important; }
 
 h1 span {
   font-weight: bold;
   color: white;
-  opacity: .3;
-}
+  opacity: .3; }
 
 p {
-  text-align: center;
-}
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */

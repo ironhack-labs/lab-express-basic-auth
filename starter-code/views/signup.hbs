@@ -1,0 +1,33 @@
+<div class="container">
+
+  <h1>Registro de usuario</h1>
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+      <form action="/signup" method="POST" class="pass">
+        <div class="form-group">
+          <label for="field1">Usuario</label>
+          <input type="text" class="form-control" id="field1" name="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password" name="password" onkeyup="getPassword()">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Create account</button>
+
+        <div class="form-group">
+          <p class="justify-content-center">Already have an account?<a  href="/login">Login</a></p>
+        </div>
+
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+
+    </div>
+  </div>
+</div>
