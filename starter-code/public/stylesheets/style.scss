@@ -1,8 +1,35 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html{
+  margin:0;
+padding: 0;
+box-sizing: border-box;
+font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
-a {
-  color: #00B7FF;
+body {
+  background-color: aliceblue;
+  padding: 5rem;
+  text-align: center;
+
+  h1{
+    font-size: 5rem;
+  }
+
+  p{
+    font-size: 2rem;
+  }
+}
+
+.path-buttons{
+display: flex;
+justify-content: space-evenly;
+padding: 8rem;
+
+input {
+  background-color: indianred;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  padding: 1rem 1.2rem;
+}
 }
