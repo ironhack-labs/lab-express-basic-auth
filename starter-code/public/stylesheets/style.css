@@ -1,12 +1,10 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 .btn-wrapper {
   width: 30%;
-  margin: 50px auto;
-}
+  margin: 50px auto; }
 
 a {
   border-radius: 20px;
@@ -14,5 +12,6 @@ a {
   color: #fff;
   padding: 20px;
   margin: 10px;
-  text-decoration: none;
-}
+  text-decoration: none; }
+
+/*# sourceMappingURL=style.css.map */
