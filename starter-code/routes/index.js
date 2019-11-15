@@ -16,10 +16,18 @@ router.get('/register', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
-  const saltRounds = 2;
+  const theUser = req.body.username;
   const thePassword = req.body.password;
+
+  const saltRounds = 2;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(thePassword, salt);
+  if (theUser === "" || thePassword === "") {
+    res.render("register", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
 
   Users.findOne({
     name: req.body.username
