@@ -1,0 +1,15 @@
+body{
+    background: lightsteelblue;
+}
+h1{
+    margin-top: 40px;
+    font-size: 72px;
+    font-weight: 400;
+}
+.h1-idx{
+    margin-left: 80px;
+}
+
+.cat{
+text-align: center;
+}
