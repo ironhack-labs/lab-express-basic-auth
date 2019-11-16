@@ -77,9 +77,8 @@ router.post('/login', (req, res, next) => {
     })
     .then(userFound => {
       if (bcrypt.compareSync(req.body.password, userFound.password)) {
-        res.json({authorise: true})
-        // req.session.currentUser = userFound._id;
-        // res.redirect("/private");
+        req.session.currentUser = userFound._id;
+        res.redirect("/private");
       } else {
         res.json({
           authorised: false,
@@ -88,11 +87,33 @@ router.post('/login', (req, res, next) => {
       }
     })
     .catch(() => {
-        res.json({
-          authorised: false,
-          reason: 'user do not exist in the database'
-        })
+      res.json({
+        authorised: false,
+        reason: 'user do not exist in the database'
       })
     })
+})
+
+router.get('/private', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render("private");
+  } else {
+    res.redirect("/login");
+  }  
+})
+
+router.get('/main', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render("main");
+  } else {
+    res.redirect("/login");
+  }  
+})
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(() => {
+    res.redirect("/login");
+  });
+});
 
 module.exports = router;
