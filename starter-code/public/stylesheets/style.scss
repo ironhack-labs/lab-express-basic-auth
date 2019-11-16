@@ -1,35 +1,94 @@
-html{
-  margin:0;
-padding: 0;
-box-sizing: border-box;
-font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+$myred : #F02B63;
+$myblue: #628196  ;
+$formgrey: #666;
+
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 
 }
 
 body {
-  background-color: aliceblue;
+  background-color: rgb(245, 245, 245);
   padding: 5rem;
   text-align: center;
 
-  h1{
+  h1 {
     font-size: 5rem;
   }
 
-  p{
+  h2 {
+    font-size: 3rem;
+  }
+
+  p, a{
     font-size: 2rem;
   }
 }
 
-.path-buttons{
-display: flex;
-justify-content: space-evenly;
-padding: 8rem;
-
-input {
-  background-color: indianred;
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  padding: 1.5rem 2rem;
+.path-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 8rem;
 }
+
+.error-message {
+  background: $myred;
+  box-sizing: border-box;
+  color: white;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+form {
+  margin: 3rem auto;
+  width: 38rem;
+
+  label {
+    color: $formgrey;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+  input,
+  button {
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    outline: 0;
+    padding: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    border: none;
+  }
+
+  button {
+    background: $myblue;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .3s ease background;
+    width: 100%;
+
+    button:hover {
+      background: white;
+      color: $myblue;
+      transition: .3s ease background;
+    }
+  }
+
+}
+
+a {
+  text-decoration: none;
+  color: $myblue;
+}
+
+img{
+  margin-bottom: 2rem;
 }

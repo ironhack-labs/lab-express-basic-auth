@@ -5,23 +5,66 @@ html {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 body {
-  background-color: aliceblue;
+  background-color: whitesmoke;
   padding: 5rem;
   text-align: center; }
   body h1 {
     font-size: 5rem; }
-  body p {
+  body h2 {
+    font-size: 3rem; }
+  body p, body a {
     font-size: 2rem; }
 
 .path-buttons {
   display: flex;
   justify-content: space-evenly;
   padding: 8rem; }
-  .path-buttons input {
-    background-color: indianred;
-    border: none;
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: white;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 100%; }
+
+form {
+  margin: 3rem auto;
+  width: 38rem; }
+  form label {
+    color: #666;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%; }
+  form input,
+  form button {
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    outline: 0;
+    padding: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    border: none; }
+  form button {
+    background: #628196;
     color: white;
-    font-size: 1.8rem;
-    padding: 1rem 1.2rem; }
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .3s ease background;
+    width: 100%; }
+    form button button:hover {
+      background: white;
+      color: #628196;
+      transition: .3s ease background; }
+
+a {
+  text-decoration: none;
+  color: #628196; }
+
+img {
+  margin-bottom: 2rem; }
 
 /*# sourceMappingURL=style.css.map */

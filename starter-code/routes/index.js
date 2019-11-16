@@ -40,7 +40,7 @@ router.post('/register', (req, res, next) => {
           password: hash
         })
         .then(() => {
-          res.redirect('/'); //change this
+          res.redirect('/private'); //change this
         })
         .catch(() => {
           res.render('home');
@@ -87,12 +87,32 @@ router.post('/login', (req, res, next) => {
     })
 });
 
+
 router.get("/private", (req, res) => {
   if (req.session.currentUser) {
-    res.render("private");
+    res.render("private", {
+      user: req.session.currentUser
+    });
   } else {
     res.redirect("/login");
   }
+});
+
+router.get("/main", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("main", {
+      user: req.session.currentUser
+    });
+
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
