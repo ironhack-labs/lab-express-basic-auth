@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Users = require("../models/User");
 const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
+
+
 router.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -16,6 +19,10 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+  const saltRounds = 10;
+  const plainPassword1 = req.body.password;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(plainPassword1, salt);
   Users.findOne({
       name: req.body.username
     })
@@ -23,7 +30,7 @@ router.post('/signup', (req, res, next) => {
       if (userFound === null) {
         Users.create({
             name: req.body.username,
-            password: req.body.password
+            password: hash
           })
           .then(createdUser => {
             res.json({
