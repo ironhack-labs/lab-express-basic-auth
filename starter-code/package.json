@@ -20,6 +20,8 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "bulma": "^0.8.0",
+    "node-sass": "^4.13.0",
     "nodemon": "^1.12.1"
   }
 }
