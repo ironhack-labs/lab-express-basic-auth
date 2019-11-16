@@ -3,11 +3,29 @@ const router = express.Router();
 const Users = require("../models/User");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 
 
 router.use(bodyParser.urlencoded({
   extended: true
 }));
+router.use(
+  session({
+    secret: "basic-auth-secret",
+    cookie: {
+      maxAge: 60000
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
+  })
+);
+
+
+
 
 /* GET home page */
 router.get('/signup', (req, res, next) => {
@@ -52,5 +70,29 @@ router.post('/signup', (req, res, next) => {
     })
 });
 
+
+router.post('/login', (req, res, next) => {
+  Users.findOne({
+      name: req.body.username
+    })
+    .then(userFound => {
+      if (bcrypt.compareSync(req.body.password, userFound.password)) {
+        res.json({authorise: true})
+        // req.session.currentUser = userFound._id;
+        // res.redirect("/private");
+      } else {
+        res.json({
+          authorised: false,
+          reason: 'username or password are wrong'
+        })
+      }
+    })
+    .catch(() => {
+        res.json({
+          authorised: false,
+          reason: 'user do not exist in the database'
+        })
+      })
+    })
 
 module.exports = router;
