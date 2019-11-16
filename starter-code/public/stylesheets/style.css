@@ -1,11 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .mainpage {
   width: 40vw;
@@ -14,29 +12,24 @@ a {
   flex-direction: column;
   margin: 150px;
   text-align: center;
-  border: 1px solid black;
-}
+  border: 1px solid black; }
 
 #links {
-
-  margin-left: 300px;
-}
+  margin-left: 300px; }
 
 input {
   width: 300px;
   height: 40px;
   border: solid 1px black;
   border-radius: 8px;
-  text-align: center;
-}
+  text-align: center; }
 
 .click {
   width: 100px;
   height: 20px;
   background-color: blue;
   color: white;
-  text-align: center;
-}
+  text-align: center; }
 
 #links a {
   border: 1px solid black;
@@ -49,27 +42,22 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-}
+  text-align: center; }
 
 .foto {
   width: 20%;
-  height: 20%;
-}
+  height: 20%; }
 
 .pomo {
   max-width: 500px;
-  max-height: 500px;
-}
+  max-height: 500px; }
 
 .gif {
   width: 50vw;
-  height: 50vh;
-}
+  height: 50vh; }
 
 .logins {
-  margin-left: 300px;
-}
+  margin-left: 300px; }
 
 .logins a {
   border: 1px solid black;
@@ -82,5 +70,6 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-}
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */

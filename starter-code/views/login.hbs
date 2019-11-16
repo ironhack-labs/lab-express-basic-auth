@@ -1,0 +1,16 @@
+<div class="formulario">
+    <form class="barras" action="/login" method="POST">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input class="click" type="submit" value="Login">
+
+        {{#if error}}
+        <p style="color:red">{{error}}</p>
+        {{/if}}
+
+</div>
+</form>
+<div class="logins">
+    <a href="/signup">Sign Up</a>
+    <a href="/">Index</a>
+</div>

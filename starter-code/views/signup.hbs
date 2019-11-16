@@ -1,0 +1,13 @@
+<form action="/signup" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input class="click" type="submit" value="Sign up">
+
+    {{#if error}}
+    <p style="color:red">{{error}}</p>
+    {{/if}}
+</form>
+<div class="logins">
+    <a href="/login">Login</a>
+    <a href="/">Index</a>
+</div>
