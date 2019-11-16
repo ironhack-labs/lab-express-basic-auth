@@ -1,0 +1,17 @@
+<h1>Log In</h1>
+<p>Please fill the required fields</p>
+<form action="/login" id="form" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username">
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+  <input type="submit" value="Signup">
+</form>
+
+{{#if errorMessage}}
+<div>{{errorMessage}}</div>
+{{/if}}
+
+{{#if Message}}
+<div>{{Message}}</div>
+{{/if}}
