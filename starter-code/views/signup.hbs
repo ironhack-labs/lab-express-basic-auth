@@ -1,0 +1,24 @@
+<main class="signup">
+  <h1>Sign up</h1>
+  <form action="/signup" id="form" method="POST">
+    <div class="field">
+      <label for="user">User</label>
+      <input type="text" name="user" id="user" required>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <div class="button-container">
+      <button type="submit">Create Account</button>
+    </div>
+  </form>
+
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <p class="account-message">
+    Already have an account? <a href="/login">Login</a>
+  </p>
+</main>

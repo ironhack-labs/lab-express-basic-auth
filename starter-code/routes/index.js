@@ -1,24 +1,23 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 const {
-  signupView,
-  signupProcess,
-  loginProcess, 
-  secretView, 
+  loginProcess,
+  loginView,
   logout,
-  loginView
-} = require('../controllers/index')
+  mainView,
+  privateView,
+  signupProcess,
+  signupView
+} = require("../controllers/index");
 
-const checkSession = require("../middlewares/checkSession")
+const checkSession = require("../middlewares/checkSession");
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get("/", (req, res, next) => {
+  res.render("index");
 });
 
-router.get("/secret", checkSession, secretView)
-
-router.get('/main', checkSession, secretView)
-router.get('/private', checkSession, secretView)
+router.get("/main", checkSession, mainView);
+router.get("/private", checkSession, privateView);
 
 router.get("/signup", signupView);
 router.post("/signup", signupProcess);

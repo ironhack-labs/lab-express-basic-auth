@@ -1,8 +1,41 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: silver; }
 
 a {
-  color: #00B7FF; }
+  color: #00b7ff; }
+
+main.signup {
+  background-color: white;
+  border: 1px solid darkgray;
+  border-radius: 20px;
+  width: 25%;
+  padding: 20px; }
+
+main.signup h1 {
+  margin: 0 0 20px; }
+
+form .field {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 10px 0; }
+
+form .button-container {
+  text-align: center; }
+
+form .button-container button {
+  width: 50%;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 120%; }
 
 /*# sourceMappingURL=style.css.map */
