@@ -7110,9 +7110,11 @@ body {
 section h1 a {
   color: white; }
 
-#signup-form {
+#signup-form,
+#login-form {
   height: 100%; }
-  #signup-form .container {
+  #signup-form .container,
+  #login-form .container {
     display: flex;
     align-items: center;
     justify-content: center; }

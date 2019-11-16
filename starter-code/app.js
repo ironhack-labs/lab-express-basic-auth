@@ -12,6 +12,10 @@ const path         = require('path');
 
 const Users = require("./models/User");
 
+// To be able to create session when the user logs in
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 
 mongoose
   .connect('mongodb://localhost/movies', {useNewUrlParser: true})
@@ -32,9 +36,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+);
+
 
 // Express View engine setup
-
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),

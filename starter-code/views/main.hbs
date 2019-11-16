@@ -1,0 +1,23 @@
+<section id="main-header" class="hero is-danger">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Main private thing or whatever
+            </h1>
+            <h2 class="subtitle">
+                <a>Nice to see you here, {{username}}!</a>
+                <a href="/logout"><strong>Log out</strong></a>
+            </h2>
+        </div>
+    </div>
+</section>
+
+
+<section id="main" class="section columns">
+    <div class="container column is-full">
+
+        {{#each data}}
+            <img src={{this.images.fixed_height_downsampled.url}} alt="">
+        {{/each}}
+    </div>
+</section>
