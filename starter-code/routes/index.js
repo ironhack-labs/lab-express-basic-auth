@@ -3,7 +3,7 @@ const router = express.Router();
 const Users = require("../Models/Users");
 const bcrypt = require("bcrypt");
 const hbs = require('hbs');
-const session    = require("express-session");
+const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 /* GET home page */
@@ -18,7 +18,6 @@ router.get('/register', (req, res, next) => {
 router.post('/register', (req, res, next) => {
   const theUser = req.body.username;
   const thePassword = req.body.password;
-
   const saltRounds = 2;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(thePassword, salt);
@@ -28,7 +27,6 @@ router.post('/register', (req, res, next) => {
     });
     return;
   }
-
   Users.findOne({
     name: req.body.username
   }).then(user => {
@@ -42,14 +40,13 @@ router.post('/register', (req, res, next) => {
           password: hash
         })
         .then(() => {
-          res.redirect('home'); //change this
+          res.redirect('/'); //change this
         })
         .catch(() => {
           res.render('home');
         });
     }
   });
-
 });
 
 router.get('/login', (req, res, next) => {
@@ -59,14 +56,12 @@ router.get('/login', (req, res, next) => {
 router.post('/login', (req, res, next) => {
   const thePassword = req.body.password;
   const theUser = req.body.username
-
   if (theUser === "" || thePassword === "") {
     res.render("login", {
       errorMessage: "Please enter both, username and password to sign up."
     });
     return;
   }
-
   Users.findOne({
       "name": theUser
     })
@@ -80,7 +75,7 @@ router.post('/login', (req, res, next) => {
       if (bcrypt.compareSync(thePassword, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("/private");
       } else {
         res.render("login", {
           errorMessage: "Incorrect password"
@@ -90,9 +85,14 @@ router.post('/login', (req, res, next) => {
     .catch(error => {
       next(error);
     })
+});
 
-
-
+router.get("/private", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("private");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 module.exports = router;
