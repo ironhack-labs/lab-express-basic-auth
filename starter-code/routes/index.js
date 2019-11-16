@@ -25,6 +25,10 @@ router.get("/private", (req, res) => {
   }
 });
 
+router.get('/fail', (req, res, next) => {
+  res.render('fail');
+});
+
 
 router.post('/signup', (req, res, next) => {
 
@@ -66,15 +70,14 @@ router.post('/login', (req, res, next) => {
     User.findOne({ name: user })
       .then(userFound => {
         if (bcrypt.compareSync(plainPassword, userFound.password)) {
-          //continue login
           req.session.currentUser = userFound._id;
           res.redirect("/private");
         } else {
-          notFound("password or user are wrong");
+          res.redirect("/fail");
         }
       })
       .catch(userNotFoundError => {
-        notFound("user not found");
+        res.redirect("/fail");
       });
   }
   

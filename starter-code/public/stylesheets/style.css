@@ -4,6 +4,14 @@ body {
   text-align: center; }
 
 a {
-  color: #00B7FF; }
+  color: #1ba784; }
+
+h1, h2, p {
+  padding: 20px; }
+
+input {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #ffffff; }
 
 /*# sourceMappingURL=style.css.map */
