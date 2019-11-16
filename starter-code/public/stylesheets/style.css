@@ -7101,11 +7101,24 @@ label.panel-block {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+html, body {
+  height: 100%; }
 
-a {
-  color: #00B7FF; }
+body {
+  flex-direction: column; }
+
+section h1 a {
+  color: white; }
+
+#signup-form {
+  height: 100%; }
+  #signup-form .container {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+.footer {
+  padding: 1.5rem 2em;
+  margin-top: auto; }
 
 /*# sourceMappingURL=style.css.map */

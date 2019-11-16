@@ -1,8 +1,45 @@
-<h1>Signup form</h1>
+<section id="signup-header" class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                <a href="/">Signup</a>
+            </h1>
+            <h2 class="subtitle">
+                <a>Are you already register?</a>
+                <a href="/login"><strong>Log in</strong></a>
+            </h2>
+        </div>
+    </div>
+</section>
 
-<form action="/" method="POST">
-    <input class="input" type="text" name="username" value="Manu">
-    <input type="password" name="password" value="666">
 
-    <input type="submit" value="Signup">
-</form>
+<section id="signup-form" class="section columns">
+    <div class="container column is-two-thirds">
+        <form action="/" method="POST">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input is-primary is-large" type="text" placeholder="Username" name="username" value="">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input is-primary is-large" type="password" placeholder="Password" name="password" value="">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-primary is-large">
+                        Login
+                    </button>
+                </p>
+            </div>
+        </form>
+
+    </div>
+</section>

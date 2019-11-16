@@ -18,19 +18,28 @@ router.post("/", (req, res) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(plainPassword1, salt);
 
-  Users.findOne({ name: req.body.username }).then(userFound => {
-    if (userFound !== null) {
-      res.json({ authorised: false, reason: "User exists" });
-    } else {
-      Users.create({ username: req.body.username, password: hash })
-        .then(userCreated => {
-          res.json({ created: true, userCreated });
-        })
-        .catch(() => {
-          res.json({ created: false });
-        });
-    }
-  });
+  console.log(req.body)
+  if (req.body.username.length === 0 || req.body.password.length === 0) {
+    res.render('error',{ message: "Fields are required" });
+  } else{
+    Users.findOne({ username: req.body.username })
+    .then(userFound => {
+      if (userFound !== null) {
+        res.render('error',{ authorised: false, message: "Ooops. Username already exists" });
+      }
+      else {    
+          Users.create({ username: req.body.username, password: hash })
+          .then(userCreated => {
+            res.render('success', { created: true, userCreated, message: "User successfully created!" });
+          })
+          .catch(() => {
+            res.render('error', { created: false, message: "Username or password incorrect" });
+          });
+      }
+    });
+  }
+
+
 });
 
 
