@@ -9,7 +9,7 @@ let giphyAPI = `https://api.giphy.com/v1/gifs/search?api_key=QXNIebQ1x1wdZNejp0r
 
 // Signin route
 router.get('/', (req, res, next) => {
-  res.render('signup',);
+  res.render('signup');
 });
 
 
@@ -24,25 +24,22 @@ router.post("/", (req, res) => {
     res.render('result', { message, alternative, action });
   }
 
-  if (req.body.username.length === 0 || req.body.password.length === 0) {
-    signupResolve("Both fields are required. ", "Try Again?", "/")
-  } else {
-    Users.findOne({ username: req.body.username })
-      .then(userFound => {
-        if (userFound !== null) {
-          signupResolve("Ooops. Username already exists. ", "Try Again?", "/")
-        }
-        else {
-          Users.create({ username: req.body.username, password: hash })
-            .then(userCreated => {
-              signupResolve("User successfully created! ", "Log in", "/login");
-            })
-            .catch(() => {
-              signupResolve("Username or password invalid. ", "Try Again?", "/");
-            });
-        }
-      });
-  }
+  Users.findOne({ username: req.body.username })
+    .then(userFound => {
+      if (userFound !== null) {
+        signupResolve("Ooops. Username already exists. ", "Try Again?", "/")
+      }
+      else {
+        Users.create({ username: req.body.username, password: hash })
+          .then(userCreated => {
+            signupResolve("User successfully created! ", "Log in", "/login");
+          })
+          .catch(() => {
+            signupResolve("Username or password invalid. ", "Try Again?", "/");
+          });
+      }
+    });
+
 });
 
 // Login route
@@ -70,16 +67,16 @@ router.get('/main', (req, res) => {
     let username = req.query.user;
 
     fetch(giphyAPI)
-    .then(response => {
-      return response.json();
-    })
-    .then(json => {
-      let data =  json.data;
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        let data = json.data;
 
-      res.render('main', { username, data });
+        res.render('main', { username, data });
 
-    })
-    .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
 
 
 
