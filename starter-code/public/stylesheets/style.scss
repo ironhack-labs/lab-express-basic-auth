@@ -1,6 +1,12 @@
 body {
+  height: 100vh;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: linear-gradient(rgb(5, 1, 79),rgb(38, 27, 255));
+}
+
+h1 {
+  color: #ddd;
 }
 
 .btn-wrapper {
@@ -8,11 +14,20 @@ body {
   margin: 50px auto;
 }
 
-a {
+.btn {
   border-radius: 20px;
   background-color: tomato;
   color: #fff;
   padding: 20px;
   margin: 10px;
+}
+
+a {
+  
   text-decoration: none;
+}
+
+img {
+  display: block;
+  margin: 50px auto;
 }
