@@ -1,8 +1,127 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
+body {
+
+  font-family: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #cce8e2;
+
+
+
+}
 a {
   color: #00B7FF;
+}
+.menu-custom{
+  background-color: #00B7FF;
+}
+#main-menu {
+  justify-content: flex-start;
+  position: absolute;
+
+  background-color: blue;
+
+}
+li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 30px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+li a{
+  color:white;
+}
+li:hover {
+  cursor: pointer;
+}
+#username{
+ border: 1px solid black;
+ border-radius: 5px;
+}
+#password{
+  border: 1px solid black;
+ border-radius: 5px;
+}
+.login-form{
+  width: 40%;
+}
+.signup-form{
+  width: 40%s;
+}
+.nav{
+  background-color: #00B7FF;
+}
+.signin{
+  margin: 0 0 0 30%;
+}
+.signin form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 5%;
+  font-size: 30px;
+}
+.signin h1{
+  margin: 40px 20% ;
+  color: #00B7FF;
+  font-size: 50px;
+}
+.signin label{
+  margin: 35px 35%;
+}
+#boton{
+  margin-top:8% !important ;
+  color: #00B7FF;
+  border-radius: 15px;
+}
+
+.login{
+  margin: 0 0 0 30%;
+}
+.login form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 5%;
+  font-size: 30px;
+}
+.login h2{
+  margin: 40px 23% ;
+  color: #00B7FF;
+  font-size: 50px;
+}
+.login label{
+  margin: 35px 35%;
+}
+.account-message{
+  margin-top:8% !important ;
+}
+
+.cat{
+  margin-left: 20%;
+}
+
+.cat p{
+
+  color: #00B7FF;
+  font-size: 50px;
+}
+
+.cat img{
+  margin-left: 15%;
+}
+
+
+
+.gift{
+  margin-left: 20%;
+}
+
+.gift h1{
+
+  color: #00B7FF;
+  font-size: 50px;
+}
+
+.gift img{
+  margin-left: 15%;
 }
