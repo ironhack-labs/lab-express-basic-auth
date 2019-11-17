@@ -8,6 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+// importar el paquete de la sesion//
+const session = require("express-session");
+//configurar la conexion de mongo para almacenar la sesion//
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -20,7 +24,8 @@ mongoose
   });
 
 const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const debug = require('debug')(
+  `${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
 
@@ -29,6 +34,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//user session 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+);
 
 // Express View engine setup
 
@@ -47,12 +64,9 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
-
+app.locals.title = 'Pair programing of María Morales e Itza Blanco' ;
 
 const index = require('./routes/index');
 app.use('/', index);
-
 
 module.exports = app;

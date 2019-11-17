@@ -1,0 +1,48 @@
+<form action="/signup" id="form" method="POST">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+{{!-- <link rel="stylesheet" href="passtrength.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="jquery.passtrength.js"></script>
+<script> 
+  $(document).ready(function){
+    $('#password').passtrength({
+    minChars: 6
+});
+
+$('#password').passtrength({
+  passwordToggle: true,
+  eyeImg : "img/eye.svg" // toggle icon
+});
+
+$('#Password').passtrength({
+  tooltip: true,
+  textWeak: "Weak",
+  textMedium: "Medium",
+  textStrong: "Strong",
+  textVeryStrong: "Very Strong",
+});
+
+  }</script> --}}
+
+
+<h2>Sign up</h2>
+
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email" required placeholder="Enter a valid email address" required>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" required>
+  
+
+{{#if errorMessage}}
+<div class="error-message">{{ errorMessage }}</div>
+{{/if}} 
+
+  <button type="submit">Log in</button>
+
+  </form>
+
+
+ 
+
+
+
