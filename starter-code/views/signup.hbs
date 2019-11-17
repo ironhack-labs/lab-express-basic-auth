@@ -1,5 +1,7 @@
 <form id="form" action="/signup" method="POST">
 
+    <h2>SIGN UP</h2>
+
     <label for="username">Username</label><br>
     <input type="text" name="username" placeholder="Your username">
 
@@ -14,4 +16,7 @@
     {{/if}}
 
     <button class ="button" type="submit">Create account</button>
+    <p class="account-message">
+    Have you already an account? <a href="/login">Login</a>
+  </p>
 </form>

@@ -60,3 +60,18 @@
     width: 100%;
     text-align: center;
   }
+  hr{
+      margin-bottom: 20px ;
+  }
+
+  #form img{
+      margin-bottom: 20px;
+      border: black 5px solid;
+
+  }
+  h1,h2{
+      text-align: center;
+  }
+  #form .cl {
+      background: rgb(4, 179, 176);
+  }

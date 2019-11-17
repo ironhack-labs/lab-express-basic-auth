@@ -8,10 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const bcrypt       = require("bcrypt");
-const User         = require("./models/user");
-const bcryptSalt   = 10;
-
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect('mongodb://localhost/LoginDB', {useNewUrlParser: true})
@@ -32,6 +30,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Express View engine setup
 //-------DA ERROR------
