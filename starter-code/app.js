@@ -8,6 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+// importamos el paquete que gestiona la sesión
+const session = require("express-session");
+// configuramos connect mongo quien va a almacenar las sessiones, en función de nuestra config de sesiones.
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -30,6 +34,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+);
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
