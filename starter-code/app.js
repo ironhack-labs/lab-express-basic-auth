@@ -8,7 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session = require ('express-session')
+const MongoStore = require ('connect-mongo')(session)
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -39,6 +40,16 @@ app.use(require('node-sass-middleware')({
 }));
       
 
+
+app.use(session({
+secret: 'web',
+cookie: {maxAge: 5000},
+store: new MongoStore({
+  mongooseConnection: mongoose.connection,
+  ttl: 24 * 60 *60
+})
+}))
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,8 +62,6 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
-
+app.use('/', require('./routes/index.routes'))
 
 module.exports = app;
