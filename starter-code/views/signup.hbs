@@ -1,0 +1,19 @@
+<div class="container"></div>
+<h1>Sign Up</h1>
+<div class="row justify-content-center">
+    <form action="/signup" method="POST">
+        <div class="form-group">
+            <label for="field1">Username</label>
+            <input type="text" class="form-control" id="field1" name="username">
+            <small id="emailHelp" class="form-text text-muted">VETE DE AQUI TEO</small>
+        </div>
+        <div class="form-group">
+            <label for="field2">Password</label>
+            <input type="password" class="form-control" id="field2" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{#if errorMessage }}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+    </form>
+</div>
