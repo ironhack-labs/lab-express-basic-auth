@@ -1,9 +1,21 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
-});
+
+router.get('/', (req, res, next) => res.render('index'));
+
+
+// router.use((req, res, next) => {
+//   console.log(req.session)
+//   req.session.currentUser ? next() : res.redirect("/login")
+// })
+
+
+// router.get('/private', (req, res) => res.render('private-page', { user: req.session.currentUser }));
+
+
+// router.get("/url", (req, res) => res.render("nombreDeLaVista", { objeto que pasamos a la vista }))
 
 module.exports = router;
+
