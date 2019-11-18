@@ -63,10 +63,10 @@ exports.loginProcess = async (req, res) => {
 	}
 };
 
-// exports.main = (req, res) => {
-// 	res.render('main');
-// };
+exports.main = (req, res) => {
+	res.render('main');
+};
 
-// exports.private = (req, res) => {
-// 	res.render('private');
-// };
+exports.private = (req, res) => {
+	res.render('private');
+};

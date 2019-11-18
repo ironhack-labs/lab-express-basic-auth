@@ -17,11 +17,7 @@ router.get('/signup', signUpView);
 router.post('/signup', signUpProcess);
 router.get('/login', loginView);
 router.post('/login', loginProcess);
-router.get('/main', checkSession, (req, res) => {
-	res.render('main');
-});
-router.get('/private', checkSession, (req, res) => {
-	res.render('private');
-});
+router.get('/main', checkSession, main);
+router.get('/private', checkSession, private);
 
 module.exports = router;
