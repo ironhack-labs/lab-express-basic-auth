@@ -24,6 +24,8 @@ a {
   width: 380px;
 }
 
+
+
 #form label {
   color: #666;
   display: inline-block;
@@ -40,6 +42,15 @@ a {
   padding: 4px;
   width: 100%;
   margin-bottom: 20px;
+}
+
+
+.formstyles{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 button {

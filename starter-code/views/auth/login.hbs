@@ -6,7 +6,7 @@
 
     <div class="insidecontainer"></div>
 
-      <form action='/auth/login' method='POST'>
+      <form class="formstyles" action='/auth/login' method='POST'>
 
         <label for=''>Username</label>
         <input type='text' name='username'>
@@ -16,11 +16,6 @@
 
         <button class="buttonstyle" type='submit'>LOGIN</button>
 
-      <p class="account-message">
-      Don't have an account? <a href="/auth/signup">Sign up</a>
-      </p>
-
-</form>
 
 {{!-- error message display --}} 
 
@@ -28,5 +23,15 @@
   <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
 
+ <p class="account-message">
+      Don't have an account? <a href="/auth/signup">Sign up</a>
+      </p>
+
+      <p class="account-message">
+      Return to home<a href="/">Get back</a>
+      </p>
+
+
+</form>
 </div>
 </div>

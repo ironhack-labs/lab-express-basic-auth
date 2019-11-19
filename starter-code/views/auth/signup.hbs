@@ -3,7 +3,7 @@
 
  <div class="insidecontainer">
 
-<form action='/auth/signup' method='POST'>
+<form class="formstyles" action='/auth/signup' method='POST'>
 
   <label for=''>Username</label>
   <input type='text' name='username'>
@@ -12,7 +12,7 @@
   <input type='password' name='password'>
 
   <button class="buttonstyle" type='submit'>Submit</button>
-</form>
+
 
 
 {{!-- error message display --}} 
@@ -25,6 +25,10 @@
 <p class="account-message">
       Do you have an account? <a href="/login">login</a>
 </p>
+<p class="account-message">
+      Return to home<a href="/">Get back</a>
+</p>
+</form>
 
 </div>
 </div>
