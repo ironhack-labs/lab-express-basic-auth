@@ -1,8 +1,54 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+text-align: center;
+}
 
 a {
   color: #00B7FF; }
 
-/*# sourceMappingURL=style.css.map */
+  #form-container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    width: 400px;
+  }
+
+  #container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 25px;
+    margin: 0 auto;
+    padding: 50px;
+    text-align: center;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #container button{
+    background: #00B7FF;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    width: 230px;
+  }
+
+  #form-container button{
+    background: #00B7FF;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    width: 150px;
+  }

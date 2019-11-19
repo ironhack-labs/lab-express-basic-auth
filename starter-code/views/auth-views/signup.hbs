@@ -1,12 +1,19 @@
+<div id="form-container">
+
+  <h1>Signup</h1>
 <form action='/auth/signup' method='POST'>
 
   <label for=''>Username</label>
-  <input type='text' name='username'>
-
+  <input type='text' name='username' required>
+<br>
   <label for=''>Password</label>
-  <input type='password' name='password'>
-
-  <button type='submit'>Submit</button>
+  <input type='password' name='password' required>
+<br>
+  <button type='submit'>Create account</button>
+<br>
+      <p class="account-message">
+      Already have an account? <a href="/login">Login</a>
+    </p>
 </form>
 
 {{!-- error message display --}} 
@@ -14,3 +21,5 @@
 {{#if errorMessage}}
   <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
+
+</div>

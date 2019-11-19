@@ -15,7 +15,7 @@ router.post('/signup', (req, res, next) => {
   // 3 - Check if the username and password are empty strings
   if (username === '' || password === '') {
     res.render('auth-views/signup', {
-      errorMessage: 'Provide username and password.',
+      errorMessage: 'Provide username and password. Password must have at least six characters',
     });
     return;
   }
@@ -64,6 +64,7 @@ router.post('/login', (req, res, next) => {
     });
     return;
   }
+
 
   // Find the user by username
   User.findOne({ username })
