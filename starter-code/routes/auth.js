@@ -45,12 +45,11 @@ router.post('/login', (req,res,next) => {
         }
         //check password
 
-        const passwordCorrect = bcrypt.compareSync(usernameFromDB.password,enteredPassword);
+        const passwordCorrect = bcrypt.compareSync(enteredPassword,usernameFromDB.password);
         
         console.log(passwordCorrect);
         
-        if (passwordCorrect) {
-          console.log('here');  
+        if (passwordCorrect) {  
           req.session.currentUser = usernameFromDB;
           res.redirect('/');
         }else {
