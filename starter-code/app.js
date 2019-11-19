@@ -9,9 +9,18 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+
+var router = require('./routes/index');
+var siteRouter = require('./routes/site-routes');
+
+var app = express();
+
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost:27017/basic-auth', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -22,7 +31,7 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app = express();
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -49,6 +58,31 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
+
+// Before the routes
+// SESSION ( & COOKIES ) MIDDLEWARE   -- req.session.currentUser
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    // cookie: { maxAge: 3600000 } // 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7, // Default - 14 days
+    }),
+  }),
+);
+
+
+
+
+
+
+// Routes
+app.use('/', router);  // '/' , '/login' '/auth' '/signup'
+app.use('/', siteRouter);
 
 
 const index = require('./routes/index');
