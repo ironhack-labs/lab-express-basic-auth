@@ -5,12 +5,15 @@ const router  = express.Router();
 const signupRouter = require('./signup');
 const authRouter = require('./auth');
 const loginRouter = require('./login');
-const privateRouter = require('./private-routes')
+const privateRouter = require('./private-routes');
+const logoutRouter = require('./logout');
 
 //get privates
 router.use('/secret', privateRouter);
 //Get /login
 router.use('/login', loginRouter);
+//Get logout
+router.use('/logout', logoutRouter);
 //Get /auth
 router.use('/auth', authRouter);
 
