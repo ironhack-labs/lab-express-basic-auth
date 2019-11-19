@@ -1,0 +1,21 @@
+<h2>LOGIN PAGE</h2>
+<form action='/auth/login' method='POST'>
+
+  <label for=''>Username: </label>
+  <input type='text' name='username' required>
+
+  <label for=''>Password: </label>
+  <input id="myPassword" type='password' name='password' required>
+
+  <button type='submit'>Login</button>
+</form>
+<div class="form-link">
+  <span>Not a user yet?</span>
+  <a href="/signup">Sign up</a>
+</div> 
+
+{{!-- error message display --}} 
+
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
