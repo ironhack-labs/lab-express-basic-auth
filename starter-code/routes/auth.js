@@ -9,8 +9,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 
-
-
 // POST '/auth/signup'
 router.post('/signup', (req, res, next) => {
   // 2 - Destructure the password and username
@@ -42,7 +40,7 @@ User.findOne({ username })
     // > Create the user in the DB
     User.create({ username, password: hashedPassword })
       .then(newUserObj => {
-        res.redirect('/');
+        res.redirect('/main');
       })
       .catch(err => {
         res.render('auth-views/signup', {
@@ -54,6 +52,8 @@ User.findOne({ username })
   })
   .catch(err => console.log(err));
 });
+
+
 
 
 // POST 'auth/login'
@@ -91,12 +91,14 @@ router.post('/login', (req, res, next) => {
         // Save the login in the session ( and create cookie )
         // And redirect the user
         req.session.currentUser = userData;
-        res.redirect('/');
+        res.redirect('/private');
       }
 
       // Else - if password incorrect - return error
     })
     .catch(err => console.log(err));
 });
+
+
 
 module.exports = router;
