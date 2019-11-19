@@ -1,0 +1,17 @@
+<form action='/auth/signup' method='POST'>
+
+  <label for=''>Username</label>
+  <input type='text' name='username' required>
+
+  <label for=''>Password</label>
+  <input type='password' name='password' required>
+
+  <button type='submit'>Submit</button>
+</form>
+
+{{!-- error message display --}} 
+
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
+
