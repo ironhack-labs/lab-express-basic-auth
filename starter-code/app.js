@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config;
 
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -11,14 +11,14 @@ const path         = require('path');
 //my code
 const dbName       = 'user-password';
 const session = require('express-session');
-const mongoStore = require('express')(session);
+const MongoStore = require('connect-mongo')(session);
 
-require('dotenv').config;
+
 
 
 
 mongoose
-  .connect('mongodb://localhost/' + dbName, {useNewUrlParser: true,useUnifiedTopology: true})
+  .connect('mongodb://localhost:27017/' + dbName, {useNewUrlParser: true,useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -56,7 +56,17 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Lab express basic auth';
 
-
+ app.use(
+   session({
+     secret: process.env.SESSION_SECRET,
+     resave: true,
+     saveUninitialized: false,
+     store: new MongoStore({
+       mongooseConnection: mongoose.connection,
+       ttl: 60 * 60 * 24, // Default - 14 days
+     }),
+   }),
+ );
 
 const index = require('./routes/index');
 app.use('/', index);

@@ -4,11 +4,12 @@ const router  = express.Router();
 //variables for the different routes
 const signupRouter = require('./signup');
 const authRouter = require('./auth');
+const loginRouter = require('./login');
 
 
-
+//Get /login
+router.use('/login', loginRouter);
 //Get /auth
-
 router.use('/auth', authRouter);
 
 //Get /signup
