@@ -10,7 +10,13 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+require('dotenv').config();
+
 var router = require('./routes/index');
+var siteRouter = require('./routes/site-routes.js');
 
 mongoose
   .connect('mongodb://localhost/authDatabaseLAB', {useNewUrlParser: true})
@@ -20,7 +26,6 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
-
 
 
 const app_name = require('./package.json').name;
@@ -49,12 +54,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
+// Before the routes
+// SESSION ( & COOKIES ) MIDDLEWARE   -- req.session.currentUser
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    // cookie: { maxAge: 3600000 } // 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7, // Default - 14 days
+    }),
+  }),
+);
+
 
 // Routes
 app.use('/', router);
+app.use('/', siteRouter);
+
+
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Basic Auth LAB';
 
 
 

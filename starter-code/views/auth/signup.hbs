@@ -1,3 +1,8 @@
+<div class="container">
+<h1>SIGN FORM</h1>
+
+ <div class="insidecontainer">
+
 <form action='/auth/signup' method='POST'>
 
   <label for=''>Username</label>
@@ -6,11 +11,20 @@
   <label for=''>Password</label>
   <input type='password' name='password'>
 
-  <button type='submit'>Submit</button>
+  <button class="buttonstyle" type='submit'>Submit</button>
 </form>
+
 
 {{!-- error message display --}} 
 
 {{#if errorMessage}}
   <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
+
+
+<p class="account-message">
+      Do you have an account? <a href="/login">login</a>
+</p>
+
+</div>
+</div>
