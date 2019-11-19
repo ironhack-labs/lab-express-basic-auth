@@ -8,7 +8,23 @@ a {
 /*# sourceMappingURL=style.css.map */
 
 /* public/stylesheet/style.css */
-#form {
+
+.container {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+form {
   margin: 30px auto;
   width: 380px;
 }
