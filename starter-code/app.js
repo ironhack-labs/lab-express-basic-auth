@@ -11,6 +11,11 @@ const path         = require('path');
 // reference to index
 const router       = require('./routes/index');
 
+// const siteSecret = require('./routes/secret');
+
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
+
 mongoose
   .connect('mongodb://localhost:27017/auth-lab', {useNewUrlParser: true})
   .then(x => {
@@ -51,9 +56,27 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
+// Before the routes
+ // SESSION ( & COOKIES ) MIDDLEWARE   -- req.session.currentUser
+
+//  app.use(
+//    session({
+//      secret: process.env.SESSION_SECRET,
+//      // cookie: { maxAge: 3600000 } // 1 hour
+//      resave: true,
+//      saveUninitialized: false,
+//      store: new MongoStore({
+//        mongooseConnection: mongoose.connection,
+//        ttl: 60 * 60 * 24 * 7, // Default - 14 days
+//      }),
+//    }),
+//  );
+
 
 // use router
 app.use('/', router);
+
+// app.use('/', siteSecret);
 
 
 module.exports = app;
