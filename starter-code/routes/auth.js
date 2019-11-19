@@ -56,5 +56,47 @@ User.findOne({ username })
 });
 
 
+// POST 'auth/login'
+router.post('/login', (req, res, next) => {
+  // Deconstruct the password and the user
+  const { username, password: enteredPassword } = req.body;
+
+  // Check if username or password are empty strings
+  if (username === '' || enteredPassword === '') {
+    res.render('auth-views/login', {
+      errorMessage: 'Provide username and password',
+    });
+    return;
+  }
+
+  // Find the user by username
+  User.findOne({ username })
+    .then(userData => {
+      // If - username doesn't exist - return error
+      if (!userData) {
+        res.render('auth-views/login', { errorMessage: 'Username not found!' });
+        return;
+      }
+
+      // If username exists - check if the password is correct
+      const hashedPasswordFromDB = userData.password; 
+
+      const passwordCorrect = bcrypt.compareSync(
+        enteredPassword,
+        hashedPasswordFromDB,
+      );
+
+      // If password is correct - create session (& cookie) and redirect
+      if (passwordCorrect) {
+        // Save the login in the session ( and create cookie )
+        // And redirect the user
+        req.session.currentUser = userData;
+        res.redirect('/');
+      }
+
+      // Else - if password incorrect - return error
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;
