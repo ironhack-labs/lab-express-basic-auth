@@ -7,10 +7,12 @@ router.use((req,res,next) => {
   }else res.redirect('/login');
 })
 
-router.get('/cat', (req,res,next) => {
-  //res.render('')
-  console.log('gato secreto');
+router.get('/main', (req,res,next) => {
+  res.render('./main');
   
-})
+});
+router.get('/private', (req,res,next) => {
+  res.render('./private');
+});
 
 module.exports = router;

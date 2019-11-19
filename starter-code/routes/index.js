@@ -8,7 +8,7 @@ const loginRouter = require('./login');
 const privateRouter = require('./private-routes')
 
 //get privates
-//router.use('/secret', privateRouter);
+router.use('/secret', privateRouter);
 //Get /login
 router.use('/login', loginRouter);
 //Get /auth
