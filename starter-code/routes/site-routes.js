@@ -18,10 +18,17 @@ router.use((req, res, next) => {
 //     | 
 //     V
 
-router.get("/secret/one", (req, res, next) => {
+router.get("/secret", (req, res, next) => {
   res.render("secret-one");
 });
 
+router.get("/home", (req, res, next) => {
+  res.render("home");
+});
+
+router.get("/private", (req, res, next) => {
+  res.render("private");
+});
 
 
 
