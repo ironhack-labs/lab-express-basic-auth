@@ -10,6 +10,10 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
   .then(x => {
@@ -49,10 +53,33 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    
+    // cookie: { maxAge: 3600000 } // 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7, // Default - 14 days
+    }),
+  }),
+);
 
 
 const index = require('./routes/index');
 app.use('/', index);
+const signup = require("./routes/signup");
+app.use("/signup", signup)
+const login = require("./routes/login");
+app.use("/login", login);
+const logout = require("./routes/logout");
+app.use("/logout", logout);
+const secretRoutes = require("./routes/site-routes")
+app.use('/logged', secretRoutes);
+const auth = require("./routes/auth");
+app.use("/auth", auth)
 
 
 module.exports = app;

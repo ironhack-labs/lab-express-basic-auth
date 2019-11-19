@@ -1,0 +1,25 @@
+<div class="signup">
+  <h1>Log In</h1>
+
+  <form action='/auth/login' method='POST'>
+
+    <label for=''>Username</label>
+    <input type='text' name='username' required>
+
+    <label for=''>Password</label>
+    <input type='password' name='password' required>
+
+    <button type='submit'>LOGIN</button>
+
+      <p class="account-message">
+        Don't have an account? <a href="/signup">Sign up</a>
+      </p>
+
+  </form>
+</div>
+
+{{!-- error message display --}} 
+
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}

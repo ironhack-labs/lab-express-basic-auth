@@ -1,0 +1,12 @@
+<div class="signup">
+    <h1>A fierce random kiten appeared!Beware!!</h1>
+
+    <img id="kitty"src="" alt="">
+    <p></p>
+    <script>
+        var image = document.querySelector("#kitty")
+        var randomHeight = Math.floor(Math.random()*200)+200
+        var randomWidth = Math.floor(Math.random()*200)+200
+        image.setAttribute("src", `http://placekitten.com/${randomHeight}/${randomWidth}`)
+    </script>
+</div>

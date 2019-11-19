@@ -1,0 +1,22 @@
+<a class="back-arrow" href="/">
+  <img class="back-arrow"src="./../../public/images/icons8-back-to-80.png" alt="">
+</a>
+
+<div class="signup">
+  <h1>Signup</h1>
+  <form action='/auth/signup' method='POST'>
+
+    <label for=''>Username</label>
+    <input type='text' name='username' required>
+
+    <label for=''>Password</label>
+    <input id="myPassword" type='password' name='password' required>
+    
+    {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    
+    <button class="create-btn" type='submit'>Create an account</button>
+    <p>Already have an account? <a href="/login">Log In</a></p>
+  </form>
+</div>

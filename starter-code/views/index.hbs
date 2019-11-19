@@ -1,2 +1,28 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="home">
+    <h1>Home</h1>
+    <p>Welcome</p>
+
+    <div id="container">
+        <a href="/signup">
+            <button>Sign up</button>
+        </a>
+
+        <a href="/login">
+            <button>Login</button>
+        </a>
+
+
+        <a href="/logout">
+            <button style="background: red;">Logout</button>
+        </a>
+        
+        
+        <a href="/logged/main">
+            <button>Protected page one (requires authentication!)</button>
+        </a>
+
+        <a href="/logged/private">
+            <button>Protected page two (requires authentication!)</button>
+        </a>
+    </div>
+</div>
