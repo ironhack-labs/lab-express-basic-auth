@@ -2,6 +2,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
 text-align: center;
+background-color: rgb(226, 223, 223);
 }
 
 a {
@@ -33,6 +34,18 @@ a {
     flex-direction: column;
   }
 
+  #page-container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    width: 600px;
+  }
+
   #container button{
     background: #00B7FF;
     border-radius: 6px;
@@ -44,6 +57,16 @@ a {
   }
 
   #form-container button{
+    background: #00B7FF;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    width: 150px;
+  }
+
+  #page-container button{
     background: #00B7FF;
     border-radius: 6px;
     font-size: 15px;
