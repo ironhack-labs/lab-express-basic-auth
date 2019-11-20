@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./../models/user-model');
+const zxcvbn = require('zxcvbn');
 
 //Bcrypt
 const bcrypt = require('bcrypt');
@@ -13,6 +14,10 @@ router.post('/signup', (req,res,next) => {
   if (username === '' || password ==='') {
     res.render('./signup', {errorMessage:"Username or password cannot be empty."});
     return;  
+  }
+  if (zxcvbn(password).score < 3) {
+    res.render('./signup', {errorMessage: 'The Password is too weak, please try again'});
+    return;
   }
   User.findOne({username})
     .then((usernameFromDB) => {
