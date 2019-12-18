@@ -1,0 +1,19 @@
+<!-- after signup is called we'll be receiving the name used in signup as well -->
+<form action='/signup' method='POST'>
+    <input type='text' name='name' placeholder='Your name' value='{{name}}' required>
+    <input type='password' id='signup-password' name='password' placeholder='Your password' minlength='4'>
+    <button type='submit'>Sign up</button>
+</form>
+
+<!-- activate strength plugin?! -->
+<script>
+$(document).ready(function($) {	
+$('#signup-password').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+});
+</script>
