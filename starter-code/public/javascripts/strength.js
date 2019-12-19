@@ -4,7 +4,8 @@
  * Further changes, comments: @aaronlumsden
  * Licensed under the MIT license
  */
-;(function ( $, window, document, undefined ) {
+
+ (function ( $, window, document, undefined ) {
 
     var pluginName = "strength",
         defaults = {

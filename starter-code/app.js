@@ -131,8 +131,8 @@ app.use("/",(err,req,res,next)=>{
   res.render('error',{message:err.message});
 });
 
-app.listen(3001,()=>{
-  console.log("Running the express basic auth app on port 3001.");
+app.listen(3000,()=>{
+  console.log("Running the express basic auth app on port 3000.");
 });
 
 module.exports = app;
