@@ -42,8 +42,7 @@ router.post("/signup", (req, res, next) => {
         password: hashPass
       })
       .then(() => {
-        // aqui quis adicionar uma mensagem. o contra desse método é que a url permanece /signup
-        res.render("index", {message: "Account created!"});
+        res.redirect("/");
       })
       .catch(error => {
         console.log(error);
