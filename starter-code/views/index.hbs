@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if message}}
+<h3>{{message}}</h3>
+<br>
+{{/if}}
+
+<p>Welcome to my {{title}}! Welcome</p>
+
+<ul>
+  <li><a href="/signup">Signup</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/logout">Logout</a></li>
+  <li><a href="/main">Main (restricted)</a></li>
+  <li><a href="/private">Private (restricted)</a></li>
+</ul>
