@@ -92,6 +92,13 @@ router.post("/login", (req, res, next) => {
   })
 });
 
+//logout
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/login");
+  });
+});
+
 // restricted routes
 router.use((req, res, next) => {
   if (req.session.currentUser) {
