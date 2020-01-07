@@ -1,6 +1,7 @@
 {{!--  views/auth/signup.hbs  --}}
 
 <form id="form" action="/signup" method="POST">
+<h2>Sign up</h2>
   <label for="username">Username</label><br>
   <input type="text" name="username" placeholder="Your username">
 
@@ -11,5 +12,5 @@
 </form>
 
 {{#if errorMessage}}
-  <div class="error-message">{{ errorMessage }}</div>
+<div class="error-message">{{ errorMessage }}</div>
 {{/if}}
