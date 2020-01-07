@@ -53,6 +53,12 @@ router.post('/login', (req, res, next) => {
   .catch(err => next(err))
 });
 
+router.get('/logout', (req, res, next) => {
+  req.session.destroy(_ => {
+    res.render('index', { successMessage: 'Successfully logged out' });
+  });
+});
+
 router.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
