@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcrypt');
 
+
 router.get('/', (req, res, next) => {
   res.render('signup');
 });
@@ -29,7 +30,7 @@ router.post('/', (req, res, next) => {
     password: hashPass,
   })
   .then(() => {
-    res.redirect('/signup');
+    res.redirect('/login');
   })
   .catch(error => {
     console.log(error);
