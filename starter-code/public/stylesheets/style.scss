@@ -64,6 +64,15 @@ a {
   width: 100%;
 }
 
+.sucess-message {
+  background: rgba(0, 128, 0, 0.5);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 10px 20px;
+  width: 100%;
+}
+
 .centered-item {
   display: flex;
   justify-content: center;

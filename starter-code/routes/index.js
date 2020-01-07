@@ -24,7 +24,7 @@ router.post('/signup', (req, res, next) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashPassword = bcrypt.hashSync(password, salt);
   User.create({ username, password: hashPassword })
-  .then(_ => res.redirect('/'))
+  .then(_ => res.render('index', { successMessage: 'You\'ve signed up' }))
   .catch(err => {
     res.render('../views/signup.hbs', { errorMessage: 'Error with username or password'});
     console.log(err);
@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
     }
     if(bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('/');
+      res.render('index', { successMessage: 'You\'re logged in' });
     } else {
       res.render('../views/login.hbs', { errorMessage: "Incorrect password"});
     }
@@ -57,7 +57,7 @@ router.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
-    res.redirect('/');
+    res.redirect('/login');
   }
 });
 
