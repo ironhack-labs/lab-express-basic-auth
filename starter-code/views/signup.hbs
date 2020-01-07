@@ -1,0 +1,11 @@
+<h1 class="title">Create your user</h1>
+<form id="signup-form" class="form" action="/signup" method="post">
+  <label for="username">Username: </label><br>
+  <input type="text" name="username" id="username" placeholder="Your username" required><br>
+  <label for="password">Password: </label><br>
+  <input type="password" name="password" id="create-password" placeholder="****" required><br>
+  {{#if errorMessage}}
+  <p class="error-message">{{errorMessage}}</p>
+  {{/if}}
+  <button type="submit">Save User</button>
+</form>

@@ -1,0 +1,14 @@
+<h1 class="title">Login</h1>
+<form class="form" action="/login" method="post">
+  <label for="username">Username:</label><br>
+  <input type="text" name="username" id="username" required><br>
+  <label for="password">Password:</label><br>
+  <input type="password" name="password" id="password" required><br>
+  {{#if errorMessage}}
+  <p class="error-message">{{errorMessage}}</p>
+  {{/if}}
+  <button type="submit">Sign In</button>
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
