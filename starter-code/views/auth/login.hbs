@@ -1,0 +1,19 @@
+<h2>Login User</h2>
+<hr>
+<form id="form" action="/login" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Your username"><br><br>
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password"
+      placeholder="********"><br><br>
+
+    <button type="submit">Login User</button>
+</form>
+<hr>
+{{#if errorMessage}}
+    <div style="background-color: #ff0000; color: #fff; padding: 10px;">
+        {{errorMessage}}
+    </div>
+{{/if}}
