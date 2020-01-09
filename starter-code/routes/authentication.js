@@ -54,7 +54,7 @@ router.post("/login", (req, res, next) => {
             if (bcrypt.compareSync(thePassword, user.password)) {
                 console.log(req.session);
                 req.session.currentUser = user;
-                res.redirect("/");
+                res.redirect("/private");
             } else {
                 res.render("login_err");
             }
@@ -62,6 +62,22 @@ router.post("/login", (req, res, next) => {
         .catch(error => {
             next(error);
         })
+});
+
+
+
+router.use((req, res, next) => {
+    if (req.session.currentUser) {
+        next(); 
+        }else {
+        res.redirect("/login");
+        }
+    });
+router.get("/main", (req, res, next) => {
+    res.render("main");
+});                             
+router.get("/private", (req, res, next) => {
+    res.render("private");
 });
 
 
