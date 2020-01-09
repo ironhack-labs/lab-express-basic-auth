@@ -45,10 +45,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
 
 
 const index = require('./routes/index');

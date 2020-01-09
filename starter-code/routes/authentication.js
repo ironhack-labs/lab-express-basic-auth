@@ -33,6 +33,36 @@ router.post("/signup", (req, res, next) => {
 });
 
 
+router.get("/login", (req, res, next) => {
+    res.render("login");
+});
+
+router.post("/login", (req, res, next) => {
+    const theUsername = req.body.username;
+    const thePassword = req.body.password;
+    if (theUsername === "" || thePassword === "") {
+        res.render("login_err");
+        return;
+    }
+
+    User.findOne({ "username": theUsername })
+        .then(user => {
+            if (!user) {
+                res.render("login_err");
+                return;
+            }
+            if (bcrypt.compareSync(thePassword, user.password)) {
+                console.log(req.session);
+                req.session.currentUser = user;
+                res.redirect("/");
+            } else {
+                res.render("login_err");
+            }
+        })
+        .catch(error => {
+            next(error);
+        })
+});
 
 
 module.exports = router;
