@@ -8,7 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+// test
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
