@@ -1,14 +1,39 @@
 <form id="form" action="/signup" method="POST">
     <label for="username">Username</label><br>
     <input type="text" name="username"
-      placeholder="Your username">
+      placeholder="Your username" required>
 
     <label for="password">Password</label><br>
-    <input type="password" name="password"
-      placeholder="********">
+    <input id=myPassword type="password" name="password"
+      placeholder="********" required>
 
     <button type="submit">Create account</button>
   </form>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="strength.js"></script>
+<script type="text/javascript" src="js.js"></script>
+
+<script>
+
+
+
+
+$(document).ready(function($) {
+	
+$('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
+});
+
+</script>
+
   {{#if errorMessage}}
     <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
+
+  

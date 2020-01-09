@@ -9,8 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const bcrypt = require("bcryptjs");
+const jquery       = require('jquery');
+const strength     = require ('strength');
 //const saltRounds = 15;
 const saltRounds = 10;
+
 
 
 mongoose
