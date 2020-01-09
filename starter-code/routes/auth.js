@@ -67,7 +67,7 @@ router.post("/login", (req, res, next) => {
             }
             if (bcrypt.compareSync(thePassword, user.password)) {
                 // Save the login in the session!
-                console.log (req, req.session);
+                //console.log (req, req.session);
                 req.session.currentUser = user;
                 res.redirect("/");
             } else {
@@ -82,6 +82,25 @@ router.post("/login", (req, res, next) => {
 
 
 });
+
+router.get("/main", (req, res, next) => {
+    res.render("main");
+});
+
+router.use((req, res, next) => {
+    if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+        next(); // ==> go to the next route ---
+    } else {                          //    |
+        res.redirect("/login");         //    |
+    }                                 //    |
+}); // ------------------------------------                                
+//     | 
+//     V
+router.get("/private", (req, res, next) => {
+    res.render("private");
+});
+
+
 
 router.get("/logout", (req, res, next) => {
     req.session.destroy((err) => {
