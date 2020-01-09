@@ -5,9 +5,6 @@ const User = require("../models/user");
 const bcrypt = require('bcryptjs');
 const bcryptSalt = 10;
 
-router.get('/login', (req, res, next) => {
-    res.render('auth/login');
-  });
 
 router.get('/signup', (req, res, next) => {
     res.render('auth/signup');
@@ -44,5 +41,37 @@ router.post('/signup',  (req, res, next) => {
 }) 
 })
 
-  module.exports = router;
+
+router.get('/login', (req, res, next) => {
+    res.render('auth/login');
+});
+
+router.post('/login', (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({"username": username})
+    .then(user => {
+        if(!user) {
+            res.render("auth/login", {
+                errorMessage: "The username doesn't exist. Please check spelling or sign up!"
+            })
+            return;
+        }
+        if (bcrypt.compareSync(password, user.password)){
+            //save the login in the session
+            req.session.currentUser = user;
+            res.redirect("/");
+        }else {
+            res.render("auth/login", {
+                errorMessage: "Incorrect Password"
+            });
+        };
+    })
+    .catch(error => {
+        next(error);
+    })
+});
+
+module.exports = router;
   
