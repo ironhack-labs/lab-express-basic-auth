@@ -1,12 +1,11 @@
 <h1>SignUp - Create Account</h1>
 <form id="form" action="/signup" method="POST">
     <label for="username">Username</label>
-    <input type="text" name="username" 
-      placeholder="Your username">
+    <input type="text" name="username" placeholder="Your username" required>
 <br><br>
     <label for="password">Password</label>
-    <input type="password" name="password"
-      placeholder="********">
+    <input id="myPassword" type="password" name="password" placeholder="********" value="" required>
+    <!--input id="myPassword" type="password" name="" value=""-->
 <br><br>
     <button type="submit">Create account</button>
   </form>

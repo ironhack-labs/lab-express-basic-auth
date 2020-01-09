@@ -6,13 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" type="text/css" href="../node_modules/strength.js/src/strength.css">
 </head>
 <body>
   <a href="/signup">Create Account</a>
   <a href="/signin">Login</a>
   <a href="/protected">Protected page (requires authentication!)</a>
+
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../node_modules/strength.js/src/strength.js"></script>
+  <script type="text/javascript" src="../node_modules/strength.js/src/js.js"></script>
+
+  <script>
+  $(document).ready(function($) {
+    
+  $('#myPassword').strength({
+              strengthClass: 'strength',
+              strengthMeterClass: 'strength_meter',
+              strengthButtonClass: 'button_strength',
+              strengthButtonText: 'Show Password',
+              strengthButtonTextToggle: 'Hide Password'
+          });
+  });
+  </script>
 </body>
 </html>

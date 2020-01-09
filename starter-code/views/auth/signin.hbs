@@ -1,12 +1,10 @@
 <h1>SignIn - Login</h1>
 <form id="form" action="/signin" method="POST">
     <label for="username">Username</label>
-    <input type="text" name="username" 
-      placeholder="Your username">
+    <input type="text" name="username" placeholder="Your username" required>
 <br><br>
     <label for="password">Password</label>
-    <input type="password" name="password"
-      placeholder="********">
+    <input id="myPassword" type="password" name="password" placeholder="********" value="" required>
 <br><br>
     <button type="submit">Login</button>
   </form>
@@ -14,3 +12,4 @@
   {{#if errorMessage}}
     <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
+  
