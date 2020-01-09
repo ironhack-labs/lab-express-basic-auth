@@ -30,6 +30,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//Authentication & Session
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -56,6 +69,7 @@ app.use('/', index);
 
 const router = require('./routes/auth');
 app.use('/', router);
+app.use('/', require('./routes/site-routes'));
 
 
 module.exports = app;
