@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="card" style="width: 18rem; text-align: center;">
+  <div class="card-body">
+      <form action="/login" method="POST">
+          <h2 class="card-title">Login</h2>
+            <input type="text" name="username" placeholder="usuario"><br><br>
+            <input type="password" name="password" placeholder="contraseña">
+            <br><br>
+            <button type="submit">Logear</button>
+      </form>
+      <a href="/signUp">Registrate</a>
+  </div>
+</div>
