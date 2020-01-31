@@ -1,0 +1,16 @@
+<h1>{{action}}</h1>
+<form action='/{{action}}' method="POST">
+  <p>Username</p>
+  <input required type="text" name="username" placeholder="Username">
+  <p>Password</p>
+  <input required type="text" name="password" placeholder="Password"> 
+  <h3>{{err}}</h3>
+  {{#if registering}}
+  <input type="submit" value="Create account">
+  <p>Already have an account? <a href="/login">Login</a></p>
+  {{else}}
+  <input type="submit" value="Login">
+  <p>Want to create an account? <a href="/signup">Login</a></p>
+  {{/if}}
+
+</form>
