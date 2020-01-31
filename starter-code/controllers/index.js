@@ -23,7 +23,9 @@ exports.signupPost=async (req,res)=>{
   }else{
     const salt=await bcrypt.genSalt(Number(process.env.SALT))
     const hashPassword=await bcrypt.hash(password,salt)
-    const user=await User.create({username,hashPassword})
+    console.log(hashPassword)
+    const user=await User.create({username,password:hashPassword})
+
     res.redirect('/login')
   }
 }
@@ -34,7 +36,7 @@ exports.loginGet=(req,res)=>{
   }
   res.render('form',parametros)
 }
-exports.loginPost=(req,res)=>{
+exports.loginPost=async (req,res)=>{
   const {username,password}=req.body
   const parametros={
     action:'login',
@@ -43,7 +45,7 @@ exports.loginPost=(req,res)=>{
   const user=await User.findOne({username})
   if (!user){
     parametros.err="Wrong information"
-    res.render('form'),parametros
+    res.render('form',parametros)
   }else {
     const comparacion= await bcrypt.compare(password,user.password)
     if ( comparacion) {

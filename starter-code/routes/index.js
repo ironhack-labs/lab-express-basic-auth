@@ -11,5 +11,11 @@ router.get('/', (req, res, next) => {
 .post('/signup', signupPost)
 .get('/login', loginGet)
 .post('/login', loginPost)
+.get('/private', (req, res, next) => {
+  res.render('private');
+})
+.get('/main', (req, res, next) => {
+  res.render('main');
+})
 
 module.exports = router;
