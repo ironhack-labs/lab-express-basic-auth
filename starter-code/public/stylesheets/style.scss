@@ -1,8 +1,44 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: gray;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 a {
   color: #00B7FF;
+}
+.caja{
+  display: flex;
+  justify-content:space-around;
+  align-items: center ;
+  flex-direction: column;
+  width: 60%;
+  height: 80vh;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+.caja2{
+  display: flex;
+  justify-content:space-around;
+  align-items: center ;
+  flex-direction: column;
+  width: 60vw;
+  height: 80vh;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+form{
+  text-align: center;
+  display: flex;
+  justify-content:space-around;
+  align-items: center ;
+  flex-direction: column;
+  height: 80%;
+}
+#gif{
+  height: 300px;
 }
