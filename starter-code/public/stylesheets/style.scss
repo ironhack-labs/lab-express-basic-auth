@@ -1,8 +1,92 @@
 body {
-  padding: 50px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #second-container {
+    width: 400px;
+    height: 300px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a {
+    background-color: blueviolet;
+    width: 300px;
+    height: 75px;
+    color: whitesmoke;
+    text-decoration: none;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+  
+  #login {
+    background-color: orangered;
+  }
 }
+
+.form__container {
+    width: 400px;
+    height: 500px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      text-transform: uppercase;
+      font-size: 2rem;
+      color: blueviolet;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: orangered;
+      text-transform: uppercase;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+
+    input {
+      height: 30px;
+    }
+
+    a {
+      background-color: gray;
+      height: 30px;
+     color: black;
+     text-decoration: none;
+     margin-top: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 5px;
+    box-sizing: border-box;
+    }
+
+    #anchor {
+      background-color: whitesmoke;
+    }
+}
+

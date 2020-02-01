@@ -1,0 +1,22 @@
+<div class="main-container">
+
+<section class="form__container">
+  <h1>{{action}}</h1>
+  <h2>{{err}}</h2>
+  <form action="/{{action}}" method="POST">
+    <p>Username</p>
+    <input required type="text" name="username" placeholder="AnakinSkywalker">
+    <p>Password</p>
+    <input required type="password" name="password" placeholder="**********">
+    {{#if register}}
+      <a href="">Show Password</a>
+    {{/if}}
+    <input type="submit" value="{{action}}">
+    {{#if register}}
+      <p>Already have an account?<a id="anchor" href="">Login</a></p>
+    {{/if}}
+    
+  </form>
+</section>
+
+</div>
