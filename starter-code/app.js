@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -54,5 +57,18 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+const auth = require('./routes/authRoutes');
+app.use('/auth', auth)
+
+app.use(
+ session({
+   secret: process.env.SECRET,
+   coockie: {maxAge: 60000, httpOnly: false, secure: false},
+   store: new MongoStore({
+   mongooseConection: mongoose.connection,
+   ttl: 24 * 60 * 60
+   })
+ })
+)
 
 module.exports = app;
