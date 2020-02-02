@@ -12,11 +12,21 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-  <ul>
-    <li>
-      <a href="/auth/signup">login</a>
-    </li>
-  </ul>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {{!-- <span class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></span> --}}
+      <a class="nav-item nav-link" href="/auth/signup">Signup</a>
+      <a class="nav-item nav-link" href="#">Login</a>
+    </div>
+  </div>
+</nav>
+
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
