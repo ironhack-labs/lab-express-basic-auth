@@ -8,16 +8,20 @@ router.get('/signup', (req, res, next)=>{
 })
 
 router.post('/signup', async (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password, firstName, lastName, zipCode } = req.body;
     if(!username || !password) {
         console.log('Empty fields')
         return res.redirect('/auth/signup')
     }
+    
     const existUser = await User.findOne({ username })
     if (!existUser) {
         const newUser = await User.create({
             username,
-            password: hashPassword(password)
+            password: hashPassword(password),
+            firstName,
+            lastName,
+            zipCode
         });
         console.log(`User created: ${newUser}`)
         return res.redirect('/');
@@ -25,7 +29,7 @@ router.post('/signup', async (req, res, next) => {
         console.log('user already exists')
         return res.redirect('/auth/signup')
     }
-   
+
 })
 
 module.exports = router;
