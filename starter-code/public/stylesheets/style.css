@@ -52,4 +52,14 @@ a {
   padding: 20px;
   width: 100%; }
 
+#container {
+  max-width: 400px;
+  margin: auto; }
+  #container a {
+    display: block;
+    margin: 20px auto; }
+  #container img {
+    display: block;
+    margin: auto; }
+
 /*# sourceMappingURL=style.css.map */
