@@ -3,16 +3,14 @@
 <h1>{{action}}</h1>
 <h2>{{error}}</h2>
 <form action="/auth/{{action}}" method="POST">
+{{#if register}}
 <input type="text" name="name" placeholder="Usuario">
+{{/if}}
 <input type="text" name="email" placeholder="mail">
 <input type="password" name="password" placeholder="Password">
-<input type="password" name="passVerif" placeholder="Verify password">
-
+{{#if register}}
+<input type="password" name="passVerif" placeholder="Verify password"/>
+{{/if}}
 <input type="submit"  value="{{action}}">
 </form>
 </section>
-
-
-
-
-
