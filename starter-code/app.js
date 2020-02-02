@@ -14,8 +14,12 @@ const session    = require("express-session")
 const MongoStore = require("connect-mongo")
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true,  useUnifiedTopology: true})
+  .connect('mongodb://localhost/starter-code', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true})
   .then(x => {
+
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
   .catch(err => {
@@ -50,7 +54,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Inicio';
 
 //Rutas para uso de aplicacion
 const auth  = require("./routes/authRoutes")

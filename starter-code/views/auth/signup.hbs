@@ -1,14 +1,14 @@
 
 <section>
-<h1>{{signup}}</h1>
+<h1>{{action}}</h1>
 <h2>{{error}}</h2>
-<form action="/{{signup}}">
+<form action="/auth/{{action}}" method="POST">
 <input type="text" name="name" placeholder="Usuario">
 <input type="text" name="email" placeholder="mail">
 <input type="password" name="password" placeholder="Password">
-<input type="password" name="password" placeholder="Verify password">
+<input type="password" name="passVerif" placeholder="Verify password">
 
-<input type="button"  value="enviar">
+<input type="submit"  value="{{action}}">
 </form>
 </section>
 
