@@ -35,8 +35,7 @@ User.findOne({ "username": username })
       return;
     }
 
-    const salt     = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+    
 
     User.create({
       username,
@@ -53,17 +52,7 @@ User.findOne({ "username": username })
   next(error);
 })
 
-// If everything is allright, creates the user
-  User.create({
-    username,
-    password: hashPass
-  })
-  .then(() => {
-    res.redirect("/");
-  })
-  .catch(error => {
-    console.log(error);
-  })
+
 });
 
 
