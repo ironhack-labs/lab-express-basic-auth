@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 
 
 mongoose
@@ -24,6 +26,19 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    cookie: { maxAge: 60000, httpOnly: false, secure: false },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+)
+
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,7 +52,7 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -47,12 +62,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Auth Test';
 
 
-
-const index = require('./routes/index');
-app.use('/', index);
+app.use("/", require("./routes"))
+app.use("/", require("./routes/authRoutes"))
 
 
 module.exports = app;
