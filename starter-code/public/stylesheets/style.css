@@ -1,0 +1,42 @@
+a {
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+.form,
+.form form {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body,
+.form form {
+  padding: 50px;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form label,
+form input,
+form button {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+input:focus {
+  outline: 0;
+  border-color: #00b7ff;
+}
+form button {
+  font-size: 16px;
+  width: 150px;
+  cursor: pointer;
+  background-color: #00b7ff;
+  color: #fff;
+}
