@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=starter-code:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
-    "seed-db": "nodemon ./bin/www"
+    "seed-db": "node ./seed/seed"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
