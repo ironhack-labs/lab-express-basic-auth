@@ -3,6 +3,8 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
   {
+    firstName: String,
+    lastName: String,
     username: String,
     password: String,
   },
@@ -10,3 +12,5 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+
+module.exports = model('User', userSchema);

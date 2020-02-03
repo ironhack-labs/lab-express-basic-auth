@@ -8,12 +8,14 @@
         <label for="lastName">Last Name</label>
         <input type="text" id="lastName" name="lastName" required placeholder="Last name">
 
-        <label for="username">Username</label>
-        <input type="email" id="username" name="username" required placeholder="username">
+        <label for="username">Email</label>
+        <input type="email" id="username" name="username" required placeholder="email">
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required placeholder="*****">
-
+        {{#if errMsg}}
+        <span style="color: red;">{{errMsg}}</span>
+        {{/if}}
         <button type="submit">Register</button>
         <a href="/login">Login</a>
     </form>
