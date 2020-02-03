@@ -11,6 +11,10 @@ a {
   color: #00b7ff;
   text-decoration: none;
 }
+img {
+  width: 800px;
+  height: 400px;
+}
 .form {
   height: 420px;
   width: 350px;

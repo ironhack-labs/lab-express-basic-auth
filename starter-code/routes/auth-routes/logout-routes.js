@@ -9,8 +9,12 @@ router.use((req, res, next) => {
   req.session.currentUser ? next() : res.redirect('/login');
 });
 
-router.get('/secret', (req, res) => {
-  res.render('auth/secret');
+router.get('/main', (req, res) => {
+  // console.log('Output for: req', req.session.currentUser);
+  res.render('auth/main', { name: req.session.currentUser.firstName });
+});
+router.get('/private', (req, res) => {
+  res.render('auth/private');
 });
 
 router.get('/logout', (req, res) => {
