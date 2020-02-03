@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
         password: String,
         firstName: String,
         lastName: String,
-        zipCode: Number
+        zipCode: String
     },
     {
         timestamps: true
@@ -16,5 +16,6 @@ const schema = new mongoose.Schema(
 const model = mongoose.model("user", schema);
 
 model.collection.createIndexes();
+
 
 module.exports = model;
