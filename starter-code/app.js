@@ -11,7 +11,7 @@ const path         = require('path');
 
 /*------------------------------------------*/
 const session    = require("express-session")
-const MongoStore = require("connect-mongo")
+const MongoStore = require("connect-mongo")(session)
 
 mongoose
   .connect('mongodb://localhost/starter-code', {
@@ -45,8 +45,11 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
-//seteo de views
+//seteo de views en archivos
 app.set('views', path.join(__dirname, 'views'));
+app.set('auth', path.join(__dirname, 'views/auth'));
+app.set('profiles',path.join(__dirname, 'views/profiles'));
+
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
@@ -57,10 +60,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Inicio';
 
 //Rutas para uso de aplicacion
-const auth  = require("./routes/authRoutes")
 const index = require('./routes/index');
+const auth  = require('./routes/authRoutes')
+const profile = require('./routes/profileAuth')
 app.use('/',          index);
-app.use('/auth/',     auth);
-
+app.use('/auth/',      auth)
+app.use('/profiles/',    profile)
 
 module.exports = app;

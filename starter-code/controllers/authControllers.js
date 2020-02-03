@@ -4,7 +4,7 @@ const User      = require('../models/User');
 
 exports.singUpView =  (req,res)=>{
 const config = {
-    action:'Signup',
+    action:'signup',
     register:true
 
     }
@@ -29,14 +29,14 @@ exports.signupPost =async (req,res) =>{
             const salt         = await bcrypt.genSaltSync(Number(process.env.SALT))
             const hashPassword = await bcrypt.hashSync(password, salt)
             const user         = await User.create( {name, email, password: hashPassword} )
-            res.redirect('auth/login')
+            res.redirect('/profiles/profileUser')
         }
         // (password !== passVerif)? res.render('auth/signup',config):createUser(name,email,password)
 }
 
 exports.loginView = (req,res,next)=>{
 const config = {
-    action:"Login",
+    action:"login",
     resgister: false
 }
 res.render("auth/signup", config)
@@ -47,25 +47,29 @@ exports.loginPost =async (req,res,next) =>{
     const {email, password} = req.body
     const config= {
         action:"login",
-        register:false,
-        error: "El usuario o contraseña noes valido"
+        register:true,
+        error: "El usuario o contraseña no es valido",
+        suggest:'Registrate'
     }
 
     const user = await User.findOne({email})
     if(!user){
-        res.render("auth/signup")
+        config.action = 'signup'
+        config.register = true
+         res.render('auth/signup', config)
     }else{
-        const confirmed = await bcrypt.compare(password)
+        const confirmed = await bcrypt.compareSync(password,user.password)
         if (confirmed){
-            req.session.loggedUser = user
-            req.app.locals.loggedUser = user
-            res.redirect("/profile")
+
+            console.log(req);
+            // req.session.loggedUser = user
+            // req.app.locals.loggedUser = user
+            res.redirect("/profiles/profileUser")
         }else{
-            res.render("auth/signup")
+            config.action = 'login'
+            config.register = false
+             res.render('auth/signup', config)
         }
     }
 }
-exports.profile = (req,res)=> res.render("/profile")
-exports.isLogged = (req,res) => {
-    (req.session.loggedUser) ? next() : res.redirect('auth/signup')}
-
+exports.profileView = (req,res)=> res.render("profiles/profileUser")

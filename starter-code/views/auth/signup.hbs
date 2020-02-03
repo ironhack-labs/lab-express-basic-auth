@@ -2,14 +2,17 @@
 <section>
 <h1>{{action}}</h1>
 <h2>{{error}}</h2>
+{{#if register}}
+<h2>{{suggest}}</h2>
+{{/if}}
 <form action="/auth/{{action}}" method="POST">
 {{#if register}}
-<input type="text" name="name" placeholder="Usuario">
+<input type="text" name="name" placeholder="Usuario" required>
 {{/if}}
-<input type="text" name="email" placeholder="mail">
-<input type="password" name="password" placeholder="Password">
+<input type="text" name="email" placeholder="mail" required>
+<input type="password" name="password" placeholder="Password" required>
 {{#if register}}
-<input type="password" name="passVerif" placeholder="Verify password"/>
+<input type="password" name="passVerif" placeholder="Verify password"required>
 {{/if}}
 <input type="submit"  value="{{action}}">
 </form>
