@@ -1,0 +1,39 @@
+.background {
+    background-image: url('../images/cat.jpeg');
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.main{
+    background-image: url('../images/cat1.jpg');
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.private{
+    background-image: url('../images/cat.gif');
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.signup{
+    background-image: url('../images/backgroundCats.jpg');
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
