@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -8,10 +7,14 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 mongoose
   .connect('mongodb://localhost/lab-express-basic-auth', {
+    useCreateIndex: true,
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(x => {
     console.log(
@@ -34,6 +37,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: 'basic-auth-secret',
+    cookie: { maxAge: 60 * 1000 }, // 60 seconds
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      resave: true,
+      saveUninitialized: false,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+  })
+);
 
 // Express View engine setup
 
@@ -48,5 +63,6 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/', require('./routes/auth-routes/login.routes'));
+app.use('/', require('./routes/auth-routes/logout-routes'));
 
 module.exports = app;

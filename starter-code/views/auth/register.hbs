@@ -12,9 +12,9 @@
         <input type="email" id="username" name="username" required placeholder="email">
 
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required placeholder="*****">
-        {{#if errMsg}}
-        <span style="color: red;">{{errMsg}}</span>
+        <input type="password" id="password" name="password" required placeholder="**********">
+        {{#if err}}
+        <span style="color: red;">{{err}}</span>
         {{/if}}
         <button type="submit">Register</button>
         <a href="/login">Login</a>
