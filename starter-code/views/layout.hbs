@@ -20,12 +20,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      {{!-- <span class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></span> --}}
-      <a class="nav-item nav-link" href="/auth/signup">Signup</a>
-      <a class="nav-item nav-link" href="#">Login</a>
+  {{#if user}}
+    <p class="nav-item nav-link">hola {{user.username}}</p>
+    <a  class="nav-item nav-link" href="auth/logout">Logout</a>
+  {{else}}
+    <a class="nav-item nav-link" href="/auth/signup">Sign Up</a>
+    <a class="nav-item nav-link" href="/auth/login">Login</a>
+  {{/if}}
     </div>
   </div>
-</nav>
+  </nav>
 
   {{{body}}}
 

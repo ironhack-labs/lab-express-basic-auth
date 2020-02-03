@@ -29,7 +29,33 @@ router.post('/signup', async (req, res, next) => {
         console.log('user already exists')
         return res.redirect('/auth/signup')
     }
+})
 
+router.get('/login', (req, res, next) => {
+    res.render('auth/login')
+})
+
+router.post('/login', async (req, res, next ) => {
+    const {username, password} = req.body;
+    const existUser = await User.findOne({username});
+    console.log(existUser)
+    if(!existUser){
+        console.log('User not found');
+        return res.render('auth/login')
+    }
+    if(!checkHashed(password, existUser.password)){
+        console.log("pass incorrect")
+        return res.redirect("/auth/login")
+    }
+
+    console.log(`Welcome ${existUser}`);
+    req.session.currentUser = existUser;
+    return res.redirect("/")
+})
+
+router.get('/logout', (req, res, next)=>{
+    req.session.currentUser = null;
+    return res.redirect('/')
 })
 
 module.exports = router;
