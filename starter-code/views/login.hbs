@@ -1,5 +1,10 @@
+<h1>login</h1>
 <form action="/login" method="POST">
   <input type="text" name="userName" placeholder="Username">
   <input type="password" name="password" placeholder="Password">
   <input type="submit">
+  <br><br>
+  {{#if error}}
+    Error, review your credentials
+  {{/if}}
 </form>

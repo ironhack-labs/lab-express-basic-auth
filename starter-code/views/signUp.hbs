@@ -1,5 +1,12 @@
+<h1>signup</h1>
 <form action="/signup" method="POST">
   <input type="text" name="userName" placeholder="Username">
   <input type="password" name="password" placeholder="Password">
   <input type="submit">
+  <br><br>
+  <div>
+    {{#if error}}
+      Usuario ya existe
+    {{/if}}
+  </div>
 </form>
