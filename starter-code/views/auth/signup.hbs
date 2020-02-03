@@ -1,0 +1,19 @@
+<h1>Sign up</h1>
+<form method="POST">
+  {{#if messages}}
+  <div class="alert alert-danger" role="alert">
+    {{#each messages}}
+    {{this}}
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Your username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="********">
+  </div>
+  <button type="submit" class="btn btn-primary">Create account</button>
+</form>
