@@ -1,12 +1,12 @@
 const withDbConnection = require("../withDbConnection");
-const Users = require("../models/Users");
+const Users = require("../models/User");
 
 const dataUsers = [
-  { name: "Adam Samler", occupation: "Actor", catchPhrase: "Mola la leche" },
+  { username: "Ruben Vaquero", password: "1234"},
+  { username: "German Román", password: "1234"}
 ];
 
 withDbConnection(async () => {
-  //await Celebrity.collection.drop();
   await Users.deleteMany();
   await Users.create(dataUsers);
 });
