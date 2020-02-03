@@ -12,7 +12,7 @@ mongoose
   .connect("mongodb://localhost/starter-code", { useNewUrlParser: true })
   .then(x => {
     console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+      `Connected to Mongo successful! Database name: "${x.connections[0].name}"`
     );
   })
   .catch(err => {
@@ -48,7 +48,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index");
+const index = require("./routes/index.route");
+app.use("/", index);
+
+const index = require("./routes/auth");
 app.use("/", index);
 
 module.exports = app;

@@ -1,0 +1,7 @@
+<main>
+    {{#if errorMessage}}
+    <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+    {{/if}}
+    {{> auth-form}}
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</main>
