@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const bcrypct = require("bcrypt")
 const User = require ('../model/User')
 
@@ -23,7 +23,7 @@ exports.loginView = (req, res, next) => {
   res.render('form', config)
 }
 
-exports.signupPost =async (req, res, next) => { 
+exports.signupPost = async (req, res, next) => { 
   const {username, password, password_verify} = req.body
   const config = {
     action: 'signup',
@@ -32,7 +32,7 @@ exports.signupPost =async (req, res, next) => {
   if(password !== password_verify){
   config.err = 'Lo sentimos tu password no es igual, intentalo de nuevo'
   res.render ('form', config)
-}else {
+} else {
 const salt = await bcrypt.genSalt(Number(process.env,SALT))
 const hashPassword = await bcrypt.hash(password, salt)
 const user = await User.create({username, password: hashPassword})
@@ -62,13 +62,16 @@ exports.loginPost =  async (req, res, next) =>{
   }
 } 
 
+exports.mainView = (req, res, next) =>
+  res.render('main')
 
-exports.profileView = (req, res, next) => 
-res.render('private')
+exports.privateView = (req, res, next) => 
+  res.render('private')
 
-exports.logout = (req, res, next) => 
-res.render('main')
-
+exports.logout = async (req, res, next) => {
+  await req.session.destroy()
+  res.redirect('/')
+}
 
 
 
