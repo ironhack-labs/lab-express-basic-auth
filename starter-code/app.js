@@ -89,4 +89,25 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
+router.use((req, res, next) => {
+  //if there's user in the session (user is logged in)
+  if (req.session.currentUser) { 
+    next(); // ==> go to the next route 
+  } else {                          
+    res.redirect("/login");         
+  } 
+});
+
+router.get("/privateLogin", (req, res, next) => {
+  res.render("privateLogin");
+});
+
+router.get("/private", (req, res, next) => {
+  res.render("private");
+});
+
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
 module.exports = app;

@@ -82,7 +82,7 @@ router.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(thePassword, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("/privateLogin");
       } else {
         // Si el password es incorrecto recargamos Login y con un mensaje de error
         res.render("auth/login", {
