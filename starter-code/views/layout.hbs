@@ -26,15 +26,34 @@
 <body>
 
   <ul class="nav">
+    {{#if user}}
     <li class="nav-item">
       <a class="nav-link active" href="/">Home</a>
     </li>
     <li class="nav-item">
+      <p>Hola {{user.username}}</p>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/auth/main">Main</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/auth/private">Private</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/auth/logout">Logout</a>
+    </li>
+
+    {{else}}
+    <li class="nav-item">
       <a class="nav-link" href="/auth/login">Login</a>
     </li>
+
     <li class="nav-item">
       <a class="nav-link" href="/auth/register">Register</a>
     </li>
+    {{/if}}
+
+
   </ul>
 
   {{{body}}}
