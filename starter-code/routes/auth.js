@@ -16,6 +16,13 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // cannot access session here
+    res.redirect("/login");
+  });
+});
+
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
