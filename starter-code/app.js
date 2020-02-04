@@ -53,8 +53,6 @@ app.use(
     secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: true
-    // req.session.cookie.expires = new Date(Date.now() + hour)
-    // req.session.cookie.maxAge = hour
   })
 );
 

@@ -9,6 +9,13 @@
 </head>
 <body>
 
+  {{#if success_msg}}
+  <div class="msg success">{{success_msg}}</div>
+  {{/if}}
+  {{#if error_msg}}
+  <div class="msg error">{{error_msg}}</div>
+  {{/if}}
+
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
