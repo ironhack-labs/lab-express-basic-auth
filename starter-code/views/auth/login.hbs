@@ -1,0 +1,17 @@
+  <form action="/login" method="POST" id="form"></form>
+  <h2>Login</h2>
+  <div class="form-group">
+    <label for="username">User name</label>
+    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+  <button type="submit" class="btn btn-primary">Sign in</button>
+  <p>Don't have an account? <a href="/signup">Sign up</a></p>
+</form>
