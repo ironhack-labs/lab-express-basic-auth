@@ -1,23 +1,26 @@
+@charset "UTF-8";
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+html {
+  background: white; }
+
 a {
   color: #00b7ff; }
 
-#form {
+#myform {
   margin: 30px auto;
   width: 380px; }
 
-#form label {
+#myform label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
-  text-align: center;
   width: 100%; }
 
-#form input,
-#form button {
+#myform input,
+#myform button {
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
@@ -25,7 +28,7 @@ a {
   width: 100%;
   margin-bottom: 20px; }
 
-#form button {
+#myform button {
   background: #43a3e6;
   border: 1px solid #43a3e6;
   border-radius: 4px;
@@ -37,9 +40,11 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s ease background;
-  width: 100%; }
+  width: 100%;
+  height: 45px;
+  margin-top: 20px; }
 
-#form button:hover {
+#myform button:hover {
   background: #fff;
   color: #43a3e6;
   transition: 0.3s ease background; }
@@ -51,5 +56,95 @@ a {
   margin: 20px auto;
   padding: 20px;
   width: 100%; }
+
+#myform input[type="“password”"],
+#myform input[type="“text”"] {
+  -webkit-transition: border 0.25s linear, color 0.25s linear;
+  -moz-transition: border 0.25s linear, color 0.25s linear;
+  -o-transition: border 0.25s linear, color 0.25s linear;
+  transition: border 0.25s linear, color 0.25s linear;
+  -webkit-backface-visibility: hidden;
+  width: 100%; }
+
+#myform input[type="“password”"]:focus,
+#myform input[type="“text”"]:focus {
+  outline: 0; }
+
+#myform {
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 60px; }
+
+.strength_meter {
+  width: 100%;
+  height: 45px;
+  z-index: -1;
+  border-radius: 5px;
+  padding-right: 13px;
+  box-sizing: border-box;
+  padding: 0 10px; }
+
+.button_strength {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px; }
+
+.strength_meter div {
+  width: 0%;
+  height: 43px;
+  text-align: right;
+  color: #000;
+  line-height: 43px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding-right: 12px;
+  border-radius: 5px; }
+
+.strength_meter div p {
+  position: absolute;
+  top: 22px;
+  right: 0px;
+  color: #fff;
+  font-size: 13px; }
+
+.veryweak {
+  background-color: #ffa0a0;
+  border-color: #f04040 !important;
+  width: 25% !important; }
+
+.weak {
+  background-color: #ffb78c;
+  border-color: #ff853c !important;
+  width: 50% !important; }
+
+.medium {
+  background-color: #ffec8b;
+  border-color: #fc0 !important;
+  width: 75% !important; }
+
+.strong {
+  background-color: #c3ff88;
+  border-color: #8dff1c !important;
+  width: 100% !important; }
+
+h1,
+h2 {
+  color: black;
+  text-align: center; }
+
+h1 {
+  text-align: left; }
+
+input,
+label {
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  text-align: left; }
 
 /*# sourceMappingURL=style.css.map */
