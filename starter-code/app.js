@@ -26,7 +26,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // default value for title local
-app.locals.title = 'Express - Basic Authentification';
+app.locals.title = 'The login project';
 
 // Middleware Setup
 app.use(logger('dev'));

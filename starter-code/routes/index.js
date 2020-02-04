@@ -22,6 +22,7 @@ router.post('/register', (req, res, next) => {
   }
 
   if (!newUser.username || !newUser.password) {
+    req.flash("error", "You need to fill a username AND a password");
     res.redirect("/register");
     return;
   }
@@ -41,7 +42,10 @@ router.post('/register', (req, res, next) => {
 
       UserModel
         .create(newUser)
-        .then(() => res.redirect("/"))
+        .then(() => {
+          req.flash("success", "Successfully logged in")
+          res.redirect("/")
+        })
         .catch(next);
     })
     .catch(next);
@@ -62,7 +66,7 @@ router.post('/login', (req, res, next) => {
   }
 
   if (!user.username || !user.password) {
-    req.flash("error", "wrong credentials");
+    req.flash("error", "Wrong credentials");
     return res.redirect("/login");
   }
 
@@ -73,16 +77,16 @@ router.post('/login', (req, res, next) => {
       // No user found with this username
       if (!dbRes) {
         req.flash("error", "Wrong credentials");
-        return res.redirect("/auth/signin");
+        return res.redirect("/login");
       }
 
       // If user password matches the one in DB
       if (bcrypt.compareSync(user.password, dbRes.password)) {
 
-        req.session.currentUser = { ...dbRes };
+        req.session.currentUser = { ...dbRes._doc };
         delete req.session.password;
 
-        req.flash("success", "Logged in");
+        req.flash("success", "Successfully logged in");
         return res.redirect("/");
 
       } else {
@@ -103,6 +107,14 @@ router.get('/main', (req, res, next) => {
 /* GET private page */
 router.get('/private', protectRoute, (req, res, next) => {
   res.render('private');
+});
+
+/* GET logout route */
+router.get('/logout', protectRoute, (req, res, next) => {
+  req.session.destroy(() => {
+    res.locals.isLoggedIn = undefined;
+    res.redirect('/');
+  });
 });
 
 

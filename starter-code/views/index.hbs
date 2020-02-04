@@ -1,9 +1,9 @@
 <div id="index" class="page">
   <h1>{{title}}</h1>
   <p>Welcome to {{title}}</p>
-  <p><a href="/register">Register</a> - <a href="/login">Log in</a></p>
-  <p><a href="/main">Main</a></p>
+  <p><a href="/register">Register</a> - <a href="/login">Log in</a> - <a href="/main">Main</a></p>
   {{#if isLoggedIn}}
-  <p><a href="/private">Private</a></p>
+  <p>Hello Mr {{currentUser.username}} <a href="/logout">Logout</a></p>
+  <p><a id="private-link" href="/private">Private</a></p>
   {{/if}}
 </div>
