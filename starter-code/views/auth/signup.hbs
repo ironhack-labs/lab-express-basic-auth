@@ -1,0 +1,19 @@
+{{!-- <form method="post" action="/auth/signup" class="form" enctype="multipart/form-data"> --}}
+<form method="post" action="/auth/signup" class="form">
+    <h1 class="title">Signup</h1>
+    <label for="email">email</label>
+    <input class="input" name="email" type="text" value="test@yopmail.com">
+    <label for="password">password</label>
+    <input class="input" name="password" type="password" value="12345">
+    {{!-- <div class="row">
+        <label for="avatar">avatar</label>
+        <i id="avatar-icon" class="is-clickable toggle-active fa fa-user fa-lg"></i>
+        <input id="input-file" type="file" class="is-hidden" name="avatar">
+    </div> --}}
+
+    <button class="btn">go !</button>
+    <hr>
+    <p>
+        Already have an account ? <a class="link" href="/auth/signin">please signin !</a>
+    </p>
+</form>
