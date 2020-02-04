@@ -1,5 +1,11 @@
+<div class="login">
 <form method="POST" class="w-75 mx-auto mt-5">
-  <div class="row justify-content-center">
+  {{#if errorMessage}}
+  <div class="text-right">
+    <span class="p-3 border border-danger error-msg">{{errorMessage}}</span>
+  </div>
+  {{/if}}
+  <div class="row justify-content-right">
     <div class="col-md-6 col-12">
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -16,4 +22,7 @@
   <div class="row justify-content-center mt-5">
     <button type="submit" class="btn btn-success btn-lg">Login</button>
   </div>
+    <p class="text-center mt-3">Don't you have an account?</p>
+    <p class="text-center" ><a href="/auth/signup">Sign up!</a></p>
 </form>
+</div>
