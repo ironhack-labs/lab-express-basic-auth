@@ -8,6 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const flash        = require("connect-flash");
+const session      = require("express-session");
 
 
 mongoose
@@ -44,15 +46,26 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+// INITIALIZE SESSION
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true
+    // req.session.cookie.expires = new Date(Date.now() + hour)
+    // req.session.cookie.maxAge = hour
+  })
+);
 
+// FLASH
+app.use(flash());
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Express - Basic Authentication Lab';
 
 
-
-const index = require('./routes/index');
-app.use('/', index);
+app.use('/', require('./routes/index'));
+app.use('/auth', require('./routes/auth'));
 
 
 module.exports = app;

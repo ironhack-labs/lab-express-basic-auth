@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+
+.auth-link {
+  margin: 30px;
+}
+
+.auth-link a {
+  // margin: 10px;
+  padding: 10px;
+  background-color: #00B7FF;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+
+}
+
+.msg-error {
+  color: #802b31;
+  // background: #f8d6da;
+  // box-shadow: -0.3px 0.1px 2.4px 0.1px #802b31;
+}
+
+.msg-success {
+  color: #216136;
+  // background: #d4edda;
+  // box-shadow: -0.3px 0.1px 2.4px 0.1px #216136;
+}

@@ -1,0 +1,15 @@
+<div class="form-container">
+    <form action="/auth/signin" method="post" class="form">
+        <h3 class="title">Signin</h3>
+        <label for="username">Username</label><br>
+        <input class="input" name="username" type="text"><br><br>
+
+        <label for="password">Password</label><br>
+        <input class="input" name="password" type="password"><br><br>
+        <a>Show Password</a><br><br>
+        <button class="btn">Log In</button><br><br>
+    </form>
+    {{#if error}}
+    <p class="msg-error">{{error}}</p>
+    {{/if}}
+</div>
