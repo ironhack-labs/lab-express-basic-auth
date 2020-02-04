@@ -61,12 +61,27 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
 const index = require('./routes/index');
 app.use('/', index);
 
 // Se supone que esta debe estar eliminada, según el learning*/
 const router = require('./routes/auth');
 app.use('/', router);
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+    next(); // ==> go to the next route ---
+  } else {                          //    |
+    res.redirect("/login");         //    |
+  }                                 //    |
+}); // ------------------------------------                                
+//     | 
+//     V
+router.get("/private", (req, res, next) => {
+  res.render("private");
+});
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
 
 module.exports = app;
