@@ -10,19 +10,23 @@ router.get('/register', (req, res, next) => {
 
 router.post('/register', async (req, res, next ) => {
   const {username, password} = req.body;
-  try {
-    const existingUser = await User.findOne({username});
-    if (!existingUser) {
-      const newUser = await User.create({
-        username,
-        password: hashPassword(password)
-      })
-      return res.redirect("/");
-    } else {
-      res.render("auth/register", { errorMessage: "The user already exists"}) 
+  if ( username === "" || password === "" ) {
+    return res.render("auth/register", {errorMessage: "Indicate an username and password to signup"})
+  } else {
+    try {
+      const existingUser = await User.findOne({username});
+      if (!existingUser) {
+        const newUser = await User.create({
+          username,
+          password: hashPassword(password)
+        })
+        return res.redirect("/");
+      } else {
+        return res.render("auth/register", { errorMessage: "The user already exists"}) 
+      }
+    } catch (e) {
+      next(e)
     }
-  } catch (e) {
-    next(e)
   }
 });
 

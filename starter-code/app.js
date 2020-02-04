@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session = require("express-session");
-const MongoStore = require ("connect-mongo")
+const MongoStore = require ("connect-mongo")(session)
 
 
 mongoose
@@ -35,7 +35,13 @@ app.use(
   session({
     secret: "keyboard cat",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      /*resave: true,
+      saveUninitialized: false,
+      ttl: 24 * 60 * 60 // 1 day*/
+    })
   })
 );
 
