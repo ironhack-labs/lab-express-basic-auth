@@ -1,2 +1,9 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#unless isLoggedIn}}
+<a href="/login">please login</a>
+{{/unless}}
+{{#if isLoggedIn}}
+<div><a href="/main">access funny cat image</a></div>
+<div><a href="/private">Best funny cat image</a></div>
+{{/if}}
