@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const bcrypt = require("bcrypt");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 const saltRounds = 10;
@@ -16,7 +18,7 @@ const saltRounds = 10;
 const plainPassword1 = "CambiaEstePassword";
 const plainPassword2 = "CambiaEstePassword2";
 
-const salt  = bcrypt.genSaltSync(saltRounds);
+const salt = bcrypt.genSaltSync(saltRounds);
 const hash1 = bcrypt.hashSync(plainPassword1, salt);
 const hash2 = bcrypt.hashSync(plainPassword2, salt);
 
@@ -37,6 +39,18 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+//Middleware para iniciar sesion en Express
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60 * 1000 }, // 60 seconds
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    resave: true,
+    saveUninitialized: false,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -71,5 +85,8 @@ app.use('/', index);
 const router = require('./routes/auth');
 app.use('/', router);
 
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
 
 module.exports = app;

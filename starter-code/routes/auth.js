@@ -57,6 +57,44 @@ router.post("/signup", (req, res, next) => {
       })
 });
 
+// Loguear usuario
+router.post("/login", (req, res, next) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+  // Chequeamos que no envian el formulario vacío
+  if (theUsername === "" || thePassword === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
+  // Buscamos el usuario en la bbdd
+  User.findOne({ "username": theUsername })
+  .then(user => {
+      // Si el usuario no existe recargamos la pagina de Login con un mensaje de error
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist."
+        });
+        return;
+      }
+      // Si el usuario existe lo enviamos a la Home
+      if (bcrypt.compareSync(thePassword, user.password)) {
+        // Save the login in the session!
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        // Si el password es incorrecto recargamos Login y con un mensaje de error
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+  })
+  .catch(error => {
+    next(error);
+  })
+});
+
 
 
 module.exports = router;
