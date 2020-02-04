@@ -1,0 +1,19 @@
+<form method="POST" id="form">
+  <h2 style="text-align: center;">Login</h2>
+
+  <label for="username">Username</label>
+  <input type="text" name="username" required> <!-- paso 19 required añadido -->
+
+  <label for="password">Password</label>
+  <input type="password" name="password" required> <!-- paso 19 required añadido -->
+
+  {{#if errorMessage}}
+    <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+  <button>Sign in</button>
+
+  <p class="account-message">
+        Don't have an account? <a href="/auth/register">Sign up</a>
+  </p>
+</form>
