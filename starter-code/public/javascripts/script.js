@@ -7,5 +7,5 @@ document.addEventListener(
 );
 
 $(document).ready(function($) {
-  $("#password").strength();
+  $("#passwordLog").strength();
 });
