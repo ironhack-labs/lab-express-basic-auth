@@ -1,0 +1,12 @@
+<h1>Sign up</h1>
+{{#if error_msg}}
+<p class="msg error">{{error_msg}}</p>
+{{/if}}
+{{#if success_msg}}
+<p class="msg success">{{success_msg}}</p>
+{{/if}}
+<form action="/sign-up" method="post">
+    <input type="text" name="username" placeholder="username" required>
+    <input type="password" name="password" placeholder="password" required>
+    <button>sign up</button>
+</form>
