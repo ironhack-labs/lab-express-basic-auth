@@ -4,24 +4,24 @@ const User = require("./../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-router.get("/", (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   return res.render("auth/signup", { messages: req.flash("error") });
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username.length || !password.length) {
     req.flash("error", "Please, fill all the fields");
-    return res.redirect("/auth");
+    return res.redirect("/signup");
   }
 
   try {
     const newUser = await User.findOne({ username });
 
     if (newUser) {
-      console.log("Username already exits");
-      return res.render("auth/signup");
+      req.flash("error", "Username already exits");
+      return res.render("auth/signup", { messages: req.flash("error") });
     }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -46,14 +46,14 @@ router.post("/login", async (req, res, next) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      console.log("User does not exist");
-      return res.render("auth/login");
+      req.flash("error", "User does not exist");
+      return res.render("auth/login", { messages: req.flash("error") });
     } else if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
       return res.redirect("/");
     } else {
-      console.log("Wrong password");
-      return res.render("auth/login");
+      req.flash("error", "Wrong password");
+      return res.render("auth/login", { messages: req.flash("error") });
     }
   } catch (e) {
     console.log(e);

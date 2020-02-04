@@ -1,4 +1,11 @@
 <h1>Log in</h1>
+{{#if messages}}
+<div class="alert alert-danger" role="alert">
+  {{#each messages}}
+  {{this}}
+  {{/each}}
+</div>
+{{/if}}
 <form method="POST">
   <div class="form-group">
     <label for="username">Username</label>

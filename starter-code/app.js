@@ -83,7 +83,7 @@ const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 
 const authRouter = require("./routes/auth");
-app.use("/auth", authRouter);
+app.use("/", authRouter);
 
 const siteRouter = require("./routes/site");
 app.use("/", siteRouter); // manages private routes

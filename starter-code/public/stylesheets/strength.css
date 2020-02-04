@@ -1,34 +1,95 @@
 @charset "utf-8";
-/* CSS Document */
 
-.strength_meter{
-	height:23px;
-width: 154px;
-	background:silver;
-	
+#signup-form input[type="password"] {
+  background: transparent;
+  border: 2px solid #46ac84;
+  color: #777;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  padding: 9px 5px;
+  /*height: 21px;*/
+  text-indent: 6px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border 0.25s linear, color 0.25s linear;
+  -moz-transition: border 0.25s linear, color 0.25s linear;
+  -o-transition: border 0.25s linear, color 0.25s linear;
+  transition: border 0.25s linear, color 0.25s linear;
+  -webkit-backface-visibility: hidden;
+  width: 100%;
 }
-.strength_meter div{
-	height:23px;
-	width:100%;
-	height:23px;
-	text-align:center;
-	color:black;
-	font-weight:bold;
-	line-height:23px;
+#signup-form input[type="password"]:focus {
+  outline: 0;
 }
-.veryweak{
-	background-color: #FFA0A0;
-border-color: #F04040!important
+
+#signup-form {
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 60px;
 }
-.weak{
-background-color: #FFB78C;
-border-color: #FF853C!important;
+
+.strength_meter {
+  position: relative;
+  top: -34px;
+  margin-bottom: -34px;
+  left: 0px;
+  width: 100%;
+  height: 43px;
+  z-index: -1;
+  border-radius: 5px;
+  padding-right: 13px;
 }
-.medium{
-background-color: #FFEC8B;
-border-color: #FC0!important;
+.button_strength {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
 }
-.strong{
-background-color: #C3FF88;
-border-color: #8DFF1C!important;
+.strength_meter div {
+  width: 0%;
+  height: 33px;
+  text-align: center;
+  color: transparent !important;
+  line-height: 33px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding-right: 12px;
+  border-radius: 5px;
+}
+.strength_meter div p {
+  /*position: absolute;
+  top: 22px;
+  right: 0px;
+  color: #fff;
+	font-size: 13px;*/
+  display: none;
+}
+
+.veryweak {
+  background-color: #ffa0a0;
+  border-color: #f04040 !important;
+  width: 25% !important;
+}
+.weak {
+  background-color: #ffb78c;
+  border-color: #ff853c !important;
+  width: 50% !important;
+}
+.medium {
+  background-color: #ffec8b;
+  border-color: #fc0 !important;
+  width: 75% !important;
+}
+.strong {
+  background-color: #c3ff88;
+  border-color: #8dff1c !important;
+  width: 100% !important;
 }
