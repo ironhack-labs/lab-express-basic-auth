@@ -2,12 +2,11 @@
   <h2>Login</h2>
   <div class="form-group">
     <label for="username">User name</label>
-    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password">
+    <input type="password" class="form-control" id="password" name="password" required>
   </div>
   {{#if errorMessage}}
   <div class="error-message">{{ errorMessage }}</div>
