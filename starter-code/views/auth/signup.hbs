@@ -1,7 +1,17 @@
+{{#if errorMessage}}
+<div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+{{/if}}
 <main>
-    {{#if errorMessage}}
-    <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
-    {{/if}}
-    {{> auth-form}}
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <h1>Register in our application!</h1>
+    <form>
+        <div class="form-group">
+            <label for="emailInput">Username</label>
+            <input type="text" class="form-control" id="emailInput" name="email" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
 </main>
