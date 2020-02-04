@@ -4,5 +4,20 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+h1 {
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+.auth-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 60px;
+  background-color: rgba(200, 200, 200, 0.1);
+  box-shadow: 0 0 5px #ccc;
 }

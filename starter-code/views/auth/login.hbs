@@ -1,12 +1,12 @@
 <h1>Log in</h1>
-{{#if messages}}
-<div class="alert alert-danger" role="alert">
-  {{#each messages}}
-  {{this}}
-  {{/each}}
-</div>
-{{/if}}
-<form method="POST">
+<form method="POST" class="auth-form">
+  {{#if messages}}
+  <div class="alert alert-danger" role="alert">
+    {{#each messages}}
+    {{this}}
+    {{/each}}
+  </div>
+  {{/if}}
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" name="username" placeholder="Your username" required>
@@ -15,5 +15,7 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" name="password" placeholder="********" required>
   </div>
-  <button type="submit" class="btn btn-primary">Log in</button>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </div>
 </form>

@@ -2,7 +2,7 @@
 
 #signup-form input[type="password"] {
   background: transparent;
-  border: 2px solid #46ac84;
+  /*border: 2px solid #46ac84;*/
   color: #777;
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -23,15 +23,9 @@
   -webkit-backface-visibility: hidden;
   width: 100%;
 }
+
 #signup-form input[type="password"]:focus {
   outline: 0;
-}
-
-#signup-form {
-  width: 500px;
-  margin: 0 auto;
-  position: relative;
-  margin-bottom: 60px;
 }
 
 .strength_meter {
@@ -45,11 +39,13 @@
   border-radius: 5px;
   padding-right: 13px;
 }
+
 .button_strength {
   text-decoration: none;
   color: #fff;
   font-size: 13px;
 }
+
 .strength_meter div {
   width: 0%;
   height: 33px;
@@ -64,6 +60,7 @@
   padding-right: 12px;
   border-radius: 5px;
 }
+
 .strength_meter div p {
   /*position: absolute;
   top: 22px;
@@ -78,16 +75,19 @@
   border-color: #f04040 !important;
   width: 25% !important;
 }
+
 .weak {
   background-color: #ffb78c;
   border-color: #ff853c !important;
   width: 50% !important;
 }
+
 .medium {
   background-color: #ffec8b;
   border-color: #fc0 !important;
   width: 75% !important;
 }
+
 .strong {
   background-color: #c3ff88;
   border-color: #8dff1c !important;

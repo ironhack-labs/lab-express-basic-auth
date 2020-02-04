@@ -1,5 +1,5 @@
 <h1>Sign up</h1>
-<form id='signup-form' method="POST">
+<form id='signup-form' class="auth-form" method="POST">
   {{#if messages}}
   <div class="alert alert-danger" role="alert">
     {{#each messages}}
@@ -15,5 +15,7 @@
     <label for="password">Password</label>
     <input type="password" id="password" class="form-control" name="password" placeholder="********" required>
   </div>
-  <button type="submit" class="btn btn-primary">Create account</button>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Create account</button>
+  </div>
 </form>
