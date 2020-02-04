@@ -67,7 +67,7 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const signup = require('./routes/auth');
-app.use('/signup', signup);
+app.use('/', signup);
 
 
 module.exports = app;

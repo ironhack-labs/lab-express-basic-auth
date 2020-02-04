@@ -8,8 +8,12 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-router.get("/", (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
 });
 
 router.post("/", (req, res, next) => {
