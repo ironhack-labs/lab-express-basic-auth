@@ -32,13 +32,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60 * 1000 }, 
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 
   })
-);
+}));
 
 app.use((req, res, next) => {
   // console.log(req.session);
@@ -69,5 +72,8 @@ app.use('/', index);
 
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter)
+
+const userRouter = require('./routes/user');
+app.use('/user', userRouter);
 
 module.exports = app;

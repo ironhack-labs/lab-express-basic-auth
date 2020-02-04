@@ -4,7 +4,7 @@ const User = require('../models/User');
 const {hashPassword, checkHashed} = require('../lib/hashing')
 
 router.get('/signup', (req, res, next)=>{
-    res.render('auth/signup');
+    res.render('auth/signup', {title: 'Register'});
 })
 
 router.post('/signup', async (req, res, next) => {
@@ -32,25 +32,21 @@ router.post('/signup', async (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-    res.render('auth/login')
+    res.render('auth/login', {title: 'Login'})
 })
 
 router.post('/login', async (req, res, next ) => {
     const {username, password} = req.body;
     const existUser = await User.findOne({username});
     console.log(existUser)
-    if(!existUser){
-        console.log('User not found');
-        return res.render('auth/login')
-    }
-    if(!checkHashed(password, existUser.password)){
-        console.log("pass incorrect")
-        return res.redirect("/auth/login")
+
+    if(!existUser || !checkHashed(password, existUser.password)){
+        return res.render('auth/login', {errorMessage: "User or Password incorrect"});
     }
 
     console.log(`Welcome ${existUser}`);
     req.session.currentUser = existUser;
-    return res.redirect("/")
+    return res.redirect("/user/main")
 })
 
 router.get('/logout', (req, res, next)=>{

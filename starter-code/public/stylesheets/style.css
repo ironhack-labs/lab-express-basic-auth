@@ -19,6 +19,7 @@
 .private {
   background-image: url("../images/cat.gif");
   background-size: cover;
+  background-position: center;
   height: 100vh;
   color: white;
   display: flex;
@@ -26,12 +27,32 @@
   justify-content: center; }
 
 .signup {
-  background-image: url("../images/backgroundCats.jpg");
+  background-image: url("../images/backgroundCats1.jpg");
   background-size: cover;
   height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center; }
+
+.nav-link {
+  margin-bottom: 0px; }
+
+.login {
+  background-image: url("../images/backgroundlogin.jpg");
+  background-size: cover;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .login .error-msg {
+    border-radius: .3em;
+    background-color: #ff7d7d; }
+  .login a {
+    color: #27e3b3; }
+
+small {
+  color: #27e3b3; }
 
 /*# sourceMappingURL=style.css.map */
