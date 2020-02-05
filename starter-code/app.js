@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const flash        = require("connect-flash");
 
 
 mongoose
@@ -29,6 +30,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(flash());
+// app.use(require("./middlewares/exposeFlashMessage"));
 
 // Express View engine setup
 
@@ -44,7 +47,10 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
+app.use("/", require("./routes"));
+app.use("/auth", require("./routes/auth"));
+// app.use("/signup", require("./routes/signup"));
+// app.use("/signin", require("./routes/signin"));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
