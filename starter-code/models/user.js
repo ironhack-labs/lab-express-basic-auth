@@ -10,6 +10,11 @@ const schema = new mongoose.Schema(
 
 const model = mongoose.model("User", schema);
 
-model.collection.createIndexes();
+model.collection.createIndexes([
+  {
+    key: { username: 1 },
+    name: "username"
+  }
+]);
 
 module.exports = model;

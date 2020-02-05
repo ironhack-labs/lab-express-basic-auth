@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 
 // private pages
 router.get("/main", (req, res, next) => {
-  return res.render("private/main", { user: req.session.currentUser });
+  return res.render("private/main");
 });
 
 router.get("/private", (req, res, next) => {
