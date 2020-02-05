@@ -9,6 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -39,10 +40,10 @@ app.use(express.urlencoded({ extended: true })); // parse posted data
 app.use(express.json()); // ajax ready
 
 // Middleware Setup
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Express View engine setup
 
@@ -67,8 +68,8 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/auth', auth);
 
+const private = require('./routes/private');
+app.use('/private', private);
 
-// const main = require('./routes/main')
-// app.use('/main/', main);
 
 module.exports = app;
