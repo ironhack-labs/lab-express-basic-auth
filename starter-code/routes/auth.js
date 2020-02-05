@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const {hashPassword, checkHashed} = require('../lib/hashing')
+const {hashPassword, checkHashed} = require('../lib/hashing');
 
-router.get('/signup', (req, res, next)=>{
+router.get('/signup', (req, res, next) => {
     res.render('auth/signup', {title: 'Register'});
 })
 
 router.post('/signup', async (req, res, next) => {
     const { username, password, firstName, lastName, zipCode } = req.body;
-    // if(!username || !password) {
-    //     console.log('Empty fields')
-    //     return res.redirect('/auth/signup')
-    // }
     
     const existUser = await User.findOne({ username })
     if (!existUser) {
@@ -27,7 +23,7 @@ router.post('/signup', async (req, res, next) => {
         return res.redirect('/');
     } else {
         console.log('user already exists')
-        return res.render('auth/signup', {errorMessage: "user already exists"})
+        return res.render('auth/signup', {errorMessage: "User already exists"})
     }
 })
 

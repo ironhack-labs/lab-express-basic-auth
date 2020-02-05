@@ -1,17 +1,17 @@
-<div class="signup">
+<label class="signup">
 <form method="POST" class="w-75 mx-auto mt-5">
   {{#if errorMessage}}
     <div class="text-right">
       <span class="p-3 border border-danger error-msg">{{errorMessage}}</span>
     </div>
   {{/if}}
-  <div class="row justify-content-center">
-    <div class="col-md-4 col-12">
-      <div class="form-group mr-2">
+  <label class="row justify-content-center">
+    <label class="col-md-4 col-12">
+      <label class="form-group mr-2">
       <label for="firstName">First Name</label>
       <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Alejandro" required="true" name="firstName">            
-    </div>
-    </div>
+    </label>
+    </label>
     <div class="col-md-4 col-12">
       <div class="form-group mr-2">
         <label for="lastName">Last Name</label>
@@ -24,7 +24,7 @@
         <input type="zipCode" class="form-control" id="zipCode" placeholder="28045" required="true" name="zipCode">
       </div>
     </div>  
-  </div>
+  </label>
   <div class="row justify-content-center">
     <div class="col-md-6 col-12">
       <div class="form-group">
@@ -34,8 +34,8 @@
     </div>
     <div class="col-md-6 col-12">
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder= "1234" required="true" name="password">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder= "1234" required="true" name="password">
       </div>
     </div>  
   </div>
@@ -44,4 +44,4 @@
   </div>
   <small id="emailHelp" class="form-text text-center mt-2">We will never reveal your data!! muahaha 🔥</small>
 </form>
-</div>
+</label>
