@@ -3,12 +3,14 @@
 <form action="/auth/signup" method="post" class="form">
 
     <label for="username">username</label>
-    <input class="input" name="username" type="text" value="Roberta" required>
+    <input class="input" id="username" name="username" type="text" value="Roberta" required>
     <label for="password">password</label>
-    <input class="input" name="password" type="text" value="123456" required>
+    <input class="input" id="password" name="password" type="text" value="123456" required>
     {{!-- <label for="checkpassword">Check password</label>
     <input class="input" name="checkpassword" type="text" value="123456" required> --}}
     <button class="btn">oky doky</button>
     <hr>
     <p>You already have an account? <a href="/auth/signin">do log in</a></p>
 </form>
+
+{{!-- NB : le for du label est lié à l'id de l'input --}}

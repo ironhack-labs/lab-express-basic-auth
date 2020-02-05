@@ -4,11 +4,14 @@ const userModel = require("../Models/User");
 const bcrypt = require("bcryptjs");
 
 
+// !!! bien penser à annoncer les routes dans app.js avec app.use
+// route pour s'enregistrer
 router.get("/signup", (req, res) => {
     res.render("auth/signup", {js : ["signup"]});
 
 });
 
+// route pour login
 router.get("/signin", (req, res) => {
     res.render("auth/signin");
 });
@@ -33,9 +36,9 @@ router.post("/signup", (req,res, next) => {
 
                 userModel
                     .create(user)
-                    .then(() => res.redirect("/auth/signin"));
+                    .then((res) => res.redirect("/auth/signin"));
         })
-        .catch(err => console.error(err)) ;
+        .catch(err => next(err)) ;
     }
 });
 

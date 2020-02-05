@@ -55,7 +55,7 @@ We have to create the signup of the application, that allow our users to registe
 - **Username**: Must be unique in our application, and will identify each user.
 - **Password**: Must be encrypted, using `bcrypt`.
 
-To complete this first iteration, you have to create the database model with mongoose, the routes, and the views.
+To complete this first iteration, you have to create the database model with mongoose (ok), the routes (ok), and the views (ok).
 
 Remember that you have to handle validation errors when a user signs up:
 
@@ -66,7 +66,7 @@ Remember that you have to handle validation errors when a user signs up:
 
 Once the user has signed up, he has to be able to log in the application. You have to create the view and add the correct functionality in the controller to let them log in the application.
 
-Once the user has logged in, you have to create a session with `express-session` and `connect-mongo`.
+Once the user has logged in, you have to create a session with `express-session`[installé] and `connect-mongo`.
 
 Again, we have to check out that the fields are correctly filled before try to authenticate him.
 
