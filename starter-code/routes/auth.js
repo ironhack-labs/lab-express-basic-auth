@@ -31,15 +31,17 @@ router.post("/signup", (req, res, next) => {
         return;
       }
 
-      return bcrypt.hash(password, 10);
-    })
-    .then(hash => {
-      return User.create({ username: username, password: hash });
-    })
-    .then(createdUser => {
-      console.log(createdUser);
-      req.session.user = createdUser;
-      res.redirect("/");
+      bcrypt
+        .hash(password, 10)
+        .then(hash => {
+          return User.create({ username: username, password: hash });
+        })
+        .then(createdUser => {
+          console.log(createdUser);
+
+          req.session.user = createdUser;
+          res.redirect("/");
+        });
     })
     .catch(err => {
       next(err);
