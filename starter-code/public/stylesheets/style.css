@@ -1,0 +1,28 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+#signup, #login {
+  display: flex;
+  flex-direction: column;
+  width: 20%; }
+
+#signup > label, #login > label {
+  text-align: center;
+  margin: 10px 0; }
+
+#signup > input, #login > input {
+  height: 2em;
+  margin-bottom: 10px; }
+
+#signup button, #login > button {
+  margin-top: 10px;
+  width: 40%;
+  padding: 8px;
+  align-self: center;
+  border-radius: 8px; }
+
+/*# sourceMappingURL=style.css.map */

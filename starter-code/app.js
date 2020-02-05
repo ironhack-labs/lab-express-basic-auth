@@ -8,6 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require("express-session");
+
+const flash        = require("connect-flash");
 
 
 mongoose
@@ -44,15 +47,33 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+hbs.registerPartials(path.join(__dirname, "views/partials")); // where are the tiny chunks of views ?
 
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true
+  })
+);
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
+// USE FLASH MESSAGES
+app.use(flash());
+
+app.use(require("./middlewares/exposeFlashMessage"));
+
+
 
 const index = require('./routes/index');
 app.use('/', index);
+
+app.use('/main', require('./routes/main'));
+app.use('/private', require('./routes/private'));
 
 
 module.exports = app;
