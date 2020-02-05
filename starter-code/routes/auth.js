@@ -16,8 +16,8 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
-    const { email, password } = req.body;
-    const existingUser = await User.findOne({ email });
+    const { username, password } = req.body;
+    const existingUser = await User.findOne({ username });
 
     // if user doesn't exist
     if (!existingUser) {
@@ -32,7 +32,7 @@ router.post("/login", async (req, res, next) => {
     }
 
     // Successful login
-    console.log(`User ${existingUser.email}, has logged in succesfully`);
+    console.log(`User ${existingUser.username}, has logged in succesfully`);
     req.session.currentUser = existingUser;
     return res.redirect("/");
 });
