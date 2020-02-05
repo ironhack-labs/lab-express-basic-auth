@@ -1,5 +1,10 @@
 <div class="signup">
 <form method="POST" class="w-75 mx-auto mt-5">
+  {{#if errorMessage}}
+    <div class="text-right">
+      <span class="p-3 border border-danger error-msg">{{errorMessage}}</span>
+    </div>
+  {{/if}}
   <div class="row justify-content-center">
     <div class="col-md-4 col-12">
       <div class="form-group mr-2">
@@ -24,13 +29,13 @@
     <div class="col-md-6 col-12">
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="alejandro@garcia.ironhacker"name="username">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="alejandro@garcia.ironhacker" required="true" name="username">
       </div>
     </div>
     <div class="col-md-6 col-12">
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder= "1234"name="password">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder= "1234" required="true" name="password">
       </div>
     </div>  
   </div>

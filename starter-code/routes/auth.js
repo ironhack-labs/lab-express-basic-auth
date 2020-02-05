@@ -9,10 +9,10 @@ router.get('/signup', (req, res, next)=>{
 
 router.post('/signup', async (req, res, next) => {
     const { username, password, firstName, lastName, zipCode } = req.body;
-    if(!username || !password) {
-        console.log('Empty fields')
-        return res.redirect('/auth/signup')
-    }
+    // if(!username || !password) {
+    //     console.log('Empty fields')
+    //     return res.redirect('/auth/signup')
+    // }
     
     const existUser = await User.findOne({ username })
     if (!existUser) {
@@ -27,7 +27,7 @@ router.post('/signup', async (req, res, next) => {
         return res.redirect('/');
     } else {
         console.log('user already exists')
-        return res.redirect('/auth/signup')
+        return res.render('auth/signup', {errorMessage: "user already exists"})
     }
 })
 
