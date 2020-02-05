@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const { checkHashedPassword } = require("../lib/hashing");
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -25,7 +26,7 @@ router.post("/login", async (req, res, next) => {
     }
 
     // if password missmatch
-    if (!checkHashed(password, existingUser.password)) {
+    if (!checkHashedPassword(password, existingUser.password)) {
         console.log("MESSAGE: Password missmatch");
         return res.redirect("/auth/login");
     }
