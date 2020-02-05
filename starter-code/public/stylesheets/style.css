@@ -1,47 +1,38 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 ul {
-  list-style: none;
-}
+  list-style: none; }
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
 h1,
 h2,
 h3,
 p {
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem; }
 
 header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem; }
 
 .main-nav ul {
   display: flex;
-  justify-content: space-between;
-}
+  justify-content: space-between; }
 
 .main-nav li {
-  padding-right: 1rem;
-}
+  padding-right: 1rem; }
 
 .main-nav li:last-child {
-  padding-right: 0;
-}
+  padding-right: 0; }
 
 input,
 button {
@@ -51,46 +42,39 @@ button {
   font-size: 1rem;
   display: block;
   -webkit-appearance: none;
-  appearance: none;
-}
+  appearance: none; }
 
 .input-hint,
 .input-error {
   display: block;
   font-size: 0.7rem;
-  margin-bottom: 1rem;
-}
+  margin-bottom: 1rem; }
 
 .input-hint {
-  color: grey;
-}
+  color: grey; }
 
 .input-error {
-  color: red;
-}
+  color: red; }
 
 button {
   cursor: pointer;
-  margin-bottom: 1rem;
-}
+  margin-bottom: 1rem; }
 
 input:valid {
-  background-color: rgb(234, 255, 236);
-}
+  background-color: #eaffec; }
 
 .flash-message {
   margin: 1rem 0;
   padding: 1rem;
   border-radius: 4px;
-  font-size: 0.8rem;
-}
+  font-size: 0.8rem; }
 
 .flash-message.success {
-  background-color: rgb(234, 255, 236);
-  border: 1px solid rgb(186, 218, 189);
-}
+  background-color: #eaffec;
+  border: 1px solid #badabd; }
 
 .flash-message.error {
-  background-color: rgb(255, 220, 218);
-  border: 1px solid rgb(202, 157, 155);
-}
+  background-color: #ffdcda;
+  border: 1px solid #ca9d9b; }
+
+/*# sourceMappingURL=style.css.map */

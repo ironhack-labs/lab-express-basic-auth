@@ -1,0 +1,11 @@
+<h1>Sign up</h1>
+<form action="/signup" method="POST" id="signup-form" class="auth-form" novalidate>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" value="anthony" pattern="[A-Za-z0-9]{6,10}" required>
+    <span class="input-hint">Between 6 and 10 characters<br>(lower or upper case or number)</span>
+    <label for=" password">Password</label>
+    <input type="password" name="password" id="password" value="Pass1234" pattern="[A-Za-z0-9]{6,10}" required>
+    <span class="input-error" id="password-error"></span>
+    <button>Register</button>
+    <p>Already register? <a href="/signin">Sign in</a></p>
+</form>

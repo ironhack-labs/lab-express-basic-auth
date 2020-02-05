@@ -1,0 +1,16 @@
+<header>
+    <nav class="main-nav">
+        {{#if isLogged}}
+        {{>navigation_private}}
+        {{else}}
+        {{>navigation_public}}
+        {{/if}}
+    </nav>
+    <div class="login-status">
+        {{#if isLogged}}
+        <p>You are logged in as {{user.username}} <span><a href="/logout">Logout</a></span> </p>
+        {{else}}
+        <p>You are not logged in</p>
+        {{/if}}
+    </div>
+</header>

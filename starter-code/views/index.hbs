@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#if isLogged}}
+<p>As a registered user, you have access to some private content:</p>
+<ul>
+    <li><a href="/private">Some cat picture</a></li>
+    <li><a href="/main">More private content</a></li>
+</ul>
+{{else}}
+<p>To access private content, please <a href="/signin">sign in</a>.</p>
+{{/if}}
