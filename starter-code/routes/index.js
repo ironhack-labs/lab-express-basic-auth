@@ -34,16 +34,16 @@ router.post("/", (req, res, next) => {
     res.render("index.hbs", { errorMessage: "Please fill the password field" });
     return;
   }
-  User.findOne({ username: username })
-    .then(user => {
-      if (user) {
-        res.render("index.hbs", {
-          errorMessage: "This username already exists"
-        });
-        return;
-      }
-      return bcrypt.hash(password, 10);
-    })
+  User.findOne({ username: username }).then(user => {
+    if (user) {
+      res.render("index.hbs", {
+        errorMessage: "This username already exists"
+      });
+      return;
+    }
+  });
+  bcrypt
+    .hash(password, 10)
     .then(hash => {
       return User.create({ username: username, password: hash });
     })
