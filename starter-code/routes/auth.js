@@ -39,7 +39,7 @@ router.post("/login", (req, res, next) => {
   const user = req.body;
 
   if (!user.username || !user.password) {
-    req.flash("error", "wrong credentials");
+    req.flash("Error", "Wrong credentials!");
     return res.redirect("/auth/login");
   }
 
@@ -47,7 +47,7 @@ router.post("/login", (req, res, next) => {
     .findOne({ username: user.username })
     .then(dbRes => {
       if (!dbRes) {
-        req.flash("error", "wrong credentials");
+        req.flash("Error", "Wrong credentials!");
         return res.redirect("/auth/login");
       }
       if (bcrypt.compareSync(user.password, dbRes.password)) {
@@ -64,14 +64,11 @@ router.post("/login", (req, res, next) => {
     .catch(next);
 });
 
-// action::Logout
-
-/* router.get("/signout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.locals.isLoggedIn = undefined;
-    res.locals.isAdmin = undefined;
-    res.redirect("/auth/signin");
+    res.locals.isLoggedIn = false;
+    res.redirect("/auth/login");
   });
-}); */
+});
 
 module.exports = router;

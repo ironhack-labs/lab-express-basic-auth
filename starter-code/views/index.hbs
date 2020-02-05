@@ -1,4 +1,8 @@
-<a href="/auth/login"><button class="btn">LOGIN</button></a>
+{{#if isLoggedIn}}
+<a href="/auth/logout"><button class="btn">LOG OUT</button></a>
+{{else}}
+<a href="/auth/login"><button class="btn">LOG IN</button></a>
+{{/if}}
 
 <a href="/private"> <button class="btn">PRIVATE PAGE</button></a>
 
