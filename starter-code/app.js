@@ -10,6 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
   .then(x => {
@@ -54,5 +55,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
+const auth = require('./routes/auth');
+app.use('/', auth);
+
 
 module.exports = app;
+
