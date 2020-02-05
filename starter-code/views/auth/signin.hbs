@@ -1,0 +1,20 @@
+<form id="form" method="POST" action="/auth/signin" class="form">
+    <h2>Signin</h2>
+
+    <label for="username">Username</label>
+    <input type="text" name="username">
+
+    <label for="password">Password</label>
+    <input type="password" name="password">
+
+    {{#if errorMessage}}
+      <div class="error-message">{{errorMessage}}</div>
+    {{/if}}
+
+    <button>go !</button>
+    <hr>
+    
+    <p>
+        No account yet ? <a href="/auth/signup">please signup !</a>
+    </p>
+</form>

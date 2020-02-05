@@ -43,7 +43,7 @@ router.post("/signup", (req, res, next) => {
       password: hashPass
     })
     .then(() => {
-      res.redirect("/auth/signup");
+      res.redirect("/auth/signin");
     })
     .catch(error => {
       console.log(error);
@@ -60,6 +60,49 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
+});
+
+router.get("/signin", (req, res, next) => {
+  res.render("auth/signin");
+});
+
+router.post("/signin", (req,res, next) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+
+  if (theUsername === "" || thePassword === ""){
+    res.render("auth/signin", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
+
+  User.findOne({"username": theUsername})
+  .then(user => {
+    if(!user) {
+      res.render("auth/signin",{
+        errorMessage: "The username doesn't exist."
+      });
+      return;
+    }
+    if(bcrypt.compareSync(thePassword, user.password)){
+      req.session.currentUser = user;
+      res.redirect("/secret");
+    } else {
+      res.render("/auth/signin",{
+        errorMessage: "Incorrect password"
+      });
+    }
+  })
+  .catch(error => {
+    next(error);
+  })
+});
+
+router.get("/signout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/auth/signin");
+  });
 });
 
 module.exports = router;
