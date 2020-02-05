@@ -8,6 +8,8 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 const dbUrl = process.env.DBURL;
 mongoose
@@ -31,6 +33,21 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "English Class",
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+
+//LLamar como variable users
+app.use((req, res, next) => {
+  console.log(req.session);
+  res.locals.user = req.session.currentUser;
+  next();
+});
 
 // Express View engine setup
 

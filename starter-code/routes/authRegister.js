@@ -11,20 +11,21 @@ router.get("/", async (req, res, next) => {
 // Create: Submit & Process form data
 router.post("/", async (req, res, next) => {
   const { name, lastname, country, username, password, accept } = req.body;
-  console.log(req.body);
-  const addUser = new Users({
-    name,
-    lastname,
-    country,
-    username,
-    password: hashPassword(password),
-    accept: accept ? true : false
-  });
-  try {
+  const existingUser = await Users.findOne({ username });
+  if (!existingUser) {
+    const addUser = new Users({
+      name,
+      lastname,
+      country,
+      username,
+      password: hashPassword(password),
+      accept: accept ? true : false
+    });
+    console.log(`create the ${username}`);
     await addUser.save();
     res.redirect("/");
-  } catch (err) {
-    console.log("este es el error", err);
+  } else {
+    console.log(`exist the ${username}`);
     res.render("auth/register");
   }
 });

@@ -33,7 +33,7 @@
           <a href="/privates/notes" title="Notes">Notes</a>
         </li>
         <li>
-          <a href="/privates/profile" title="Tus datos">Profile {{user.username}}</a>
+          <a href="/privates/profile" title="Tus datos">Profile {{user.name}} {{user.lastname}}</a>
         </li>
         <li>
           <a href="/logout" title="Logout">Logout</a>
@@ -49,7 +49,7 @@
       </ul>
     </nav>
     {{#if user}}
-    <a href="/privates/profile" class="special">{{user.name}} {{user.lastname}}</a>
+    <a href="/privates/profile" class="special">{{user.username}}</a>
     {{/if}}
   </header>
 
