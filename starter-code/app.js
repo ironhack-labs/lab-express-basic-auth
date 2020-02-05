@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session = require("express-session");
 
 
 mongoose
@@ -29,6 +30,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//SESSIONS
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true
+    // req.session.cookie.expires = new Date(Date.now() + hour)
+    // req.session.cookie.maxAge = hour
+  })
+);
 
 // Express View engine setup
 
@@ -53,6 +65,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const admin = require('./routes/auth');
+app.use('/admin', admin);
 
 
 module.exports = app;
