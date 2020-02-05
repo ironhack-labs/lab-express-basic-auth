@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="page">
+  {{#unless isLoggedIn}}
+  <h2>If you're not logged in you're ugly !</h2>
+  {{/unless}}
+  {{#if isLoggedIn}}
+  <h2>Welcome back, {{currentUser.username}} !</h2>
+  {{/if}}
+</section>

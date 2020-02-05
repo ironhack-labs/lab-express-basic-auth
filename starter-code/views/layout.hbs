@@ -8,9 +8,22 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="/">Home /</a>
+      <a href="/main">Cat GIF /</a>
+      <a href="/private">Secret GIF /</a>
+      {{#unless isLoggedIn}}
+      <a href="/auth/signin">Log in /</a>
+      <a href="/auth/signup">Sign up /</a>
+      {{/unless}}
+      {{#if isLoggedIn}}
+      <a href="/auth/signout">Log out /</a>
+      {{/if}}
+    </nav>
+  </header>
 
   {{{body}}}
-
   <script src="/javascripts/script.js"></script>
 </body>
 </html>

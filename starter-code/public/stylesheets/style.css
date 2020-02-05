@@ -1,34 +1,30 @@
-html, body{
+html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1em;
-}
+  font-size: 1em; }
 
-header{
+header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 50px;
-}
+  padding: 20px 50px; }
 
-nav a{
+nav a {
   font-weight: bold;
   text-decoration: none;
-  color: pink;
-}
+  color: pink; }
 
-.page{
+.page {
   padding: 50px 100px;
-  font-size: 1em;
-}
+  font-size: 1em; }
 
-form input{
+form input {
   border: 1px solid lightgray;
   margin: 0 20px;
-  padding: 10px;
-}
+  padding: 10px; }
 
-.page a{
-  color: pink;
-}
+.page a {
+  color: pink; }
+
+/*# sourceMappingURL=style.css.map */
