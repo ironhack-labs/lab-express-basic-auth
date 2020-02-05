@@ -7,6 +7,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const session = require("express-session");
 
 mongoose
   .connect("mongodb://localhost/starter-code", {
@@ -33,6 +34,21 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Express Session setup
+
+app.use(
+    session({
+        secret: "keyboard cat",
+        resave: true,
+        saveUninitialized: true
+    })
+)
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.currentUser;
+    next();
+})
 
 app.use(
   require("node-sass-middleware")({
