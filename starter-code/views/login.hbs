@@ -1,0 +1,23 @@
+<a href="/">Back home!</a>
+<br>
+<br>
+
+
+
+<form id="login-form" action="/login" method="POST">
+
+  <label for="username">Username: </label>
+  <input id="username" name="username" required type="text">
+  <br>
+  <label for="password">Password: </label>
+  <input id="password" name="password" required type="password">
+
+  <button type="submit">Log me in!</button>
+</form>
+
+
+<p>Need an account? Click <a href="signup">here </a>to sign up!</p>
+
+{{#if error}}
+<p class="error-message">{{error}}</p>
+{{/if}}

@@ -1,0 +1,17 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00b7ff; }
+
+form,
+.auth-option {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start; }
+
+.error-message {
+  color: red; }
+
+/*# sourceMappingURL=style.css.map */
