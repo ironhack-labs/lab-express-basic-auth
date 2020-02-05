@@ -20,7 +20,9 @@ mongoose
   });
 
 const app_name = require("./package.json").name;
-const debug = require("debug")(`${app_name}:${path.basename(__filename).split(".")[0]}`);
+const debug = require("debug")(
+  `${app_name}:${path.basename(__filename).split(".")[0]}`
+);
 
 const app = express();
 
@@ -42,6 +44,7 @@ app.use(
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+hbs.registerPartials(__dirname + "/views/partials");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
@@ -53,5 +56,8 @@ app.use("/", index);
 
 const authRouter = require("./routes/authRouter");
 app.use("/login", authRouter);
+
+const authRegister = require("./routes/authRegister");
+app.use("/register", authRegister);
 
 module.exports = app;
