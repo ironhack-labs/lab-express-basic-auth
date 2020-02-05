@@ -23,6 +23,7 @@ router.post("/signup", (req, res, next) => {
     });
     return;
   }
+
   let info = zxcvbn(password);
   if (info.score < 3) {
     res.render("signup", { errorMessage: info.feedback.suggestions[0] });
@@ -38,16 +39,13 @@ router.post("/signup", (req, res, next) => {
         return;
       }
 
-      return bcrypt.hash(password, 10);
-    })
-    .then(hash => {
-      return User.create({ username: username, password: hash });
-    })
-    .then(createdUser => {
-      console.log(createdUser);
-      req.session.user = createdUser;
-      res.redirect("/");
-    })
+      return bcrypt.hash(password, 10).then(hash => {
+        return User.create({ username: username, password: hash});
+      })
+      .then(createdUser => {
+        req.session.user = createdUser;
+        res.rediredct("/");
+      })
     .catch(err => {
       console.log(err);
     });
