@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#if user}}
+<a href="/logout">Logout</a><br>
+{{else}}
+<a href="/signup">Sign up</a><br>
+<a href="/login">Log in</a><br>
+{{/if}}
+<a href="/main">Protected page (requires authentication!)</a><br>
+<a href="/private">Another protected page (requires authentication!)</a><br>
