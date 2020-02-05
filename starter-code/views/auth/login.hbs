@@ -1,0 +1,8 @@
+{{#if errorMessage}}<div class="errorBox">{{errorMessage}}</div> {{/if}}
+<form action="/login" method="POST">
+    <input name="username" type="text" placeholder="Type in your username" required/>
+    <input name="password" type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+</form>
+
+<a href="/signup">Register</a>

@@ -1,0 +1,13 @@
+{{#if errorMessage}}
+    <div class="errorMessage">{{errorMessage}}</div>
+    <a href="/login">login</a>
+
+{{else}}
+    <h2>Private profile of {{username}}</h2>
+    <img src="https://media.giphy.com/media/TL5XQpSpASo4U/giphy.gif">
+    <br>
+    <a href="/main">Go to Main</a>
+    <br>
+    <a href="/logout">Log out</a>
+    
+{{/if}}
