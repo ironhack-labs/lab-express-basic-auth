@@ -47,7 +47,7 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  console.log(req.session);
+  // console.log(req.session);
   res.locals.user = req.session.currentUser;
   next();
 });

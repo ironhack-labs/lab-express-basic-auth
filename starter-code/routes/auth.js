@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { hashPassword, checkHashed } = require("../lib/hashing");
+const { isLoggedIn, isLoggedOut } = require("../lib/itsLogged");
 
-router.get("/register", async (req, res, next) => {
-  res.render("auth/register");
+router.get("/register", isLoggedOut(), async (req, res, next) => {
+  return res.render("auth/register");
 });
 
-router.post("/register", async (req, res, next) => {
+router.post("/register", isLoggedOut(), async (req, res, next) => {
   const { username, password } = req.body;
   const existingUser = await User.findOne({ username });
 
@@ -23,11 +24,11 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.get("/login", async (req, res, next) => {
-  res.render("auth/login");
+router.get("/login", isLoggedOut(), async (req, res, next) => {
+  return res.render("auth/login");
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", isLoggedOut(), async (req, res, next) => {
   const { username, password } = req.body;
   const existingUser = await User.findOne({ username });
 
@@ -44,7 +45,7 @@ router.post("/login", async (req, res, next) => {
   return res.redirect("/");
 });
 
-router.get("/logout", async (req, res, next) => {
+router.get("/logout", (req, res, next) => {
   req.session.currentUser = null;
   return res.redirect("/");
 });
