@@ -1,0 +1,17 @@
+<form method="post" action="/auth/signin" id="form">
+    <h1 class="title">Login Page</h1>
+
+    <label for="username"></label>
+    <input class="input" name="username" type="text" value="ToTo" required>
+    <label for="password"></label>
+    <input class="input" name="password" type="password" value="12345" required>
+
+    <button class="btn">go !</button>
+    <hr>
+    {{#if error}}
+    <h1 id="error">{{error}}</h1>
+    {{/if}}
+    <p>
+        No account yet ? <a class="link" href="/auth/signup">please signup !</a>
+    </p>
+</form>

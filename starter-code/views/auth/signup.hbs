@@ -1,0 +1,19 @@
+{{!-- <form method="post" action="/user/signup" class="form" enctype="multipart/form-data"> --}}
+
+<form method="post" action="/auth/signup" id="form">
+    <h1 class="title">Signup</h1>
+    <label for="username">username</label>
+    <input class="input username" name="username" type="text" value="toto">
+    <label for="password">password</label>
+    <input class="input password" name="password" type="password" value="12345">
+
+    <button class="btn">go !</button>
+    <hr>
+    <p>
+        Already have an account ? <a class="link" href="/auth/signin">please signin !</a>
+    </p>
+
+    {{#if error}}
+<h1 id="error">{{error}}</h1>  
+    {{/if}}
+</form>
