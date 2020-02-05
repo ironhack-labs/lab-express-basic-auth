@@ -2,8 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = new mongoose.Schema(
   {
+    name: String,
+    lastname: String,
+    country: String,
     username: { type: String, unique: true, index: true },
-    password: String
+    password: String,
+    accept: { type: Boolean, default: false }
   },
   {
     timestamps: true
