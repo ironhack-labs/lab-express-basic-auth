@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,80 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
 
-  {{{body}}}
+  <header>
+    <div class="logo">
+      <a href="/" title="Home">
+        <img src="../images/logo.png" alt="English We can" title="English We can">
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/" title="Home">Home</a>
+        </li>
+        <li>
+          <a href="/about" title="About Us">About Us</a>
+        </li>
+        {{#if user}}
+        <li>
+          <a href="/language-test" title="Language Test">Language Test</a>
+        </li>
+        <li>
+          <a href="/notes" title="Notes">Notes</a>
+        </li>
+        <li>
+          <a href="/profile" title="Tus datos">Profile {{user.name}} {{user.lastname}}</a>
+        </li>
+        <li>
+          <a href="/logout" title="Logout">Logout</a>
+        </li>
+        {{else}}
+        <li>
+          <a href="/register" title="Register">Register</a>
+        </li>
+        <li>
+          <a href="/login" title="Login">Login</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+    {{#if user}}
+    <a href="/profile" class="special">{{user.username}}</a>
+    {{/if}}
+  </header>
 
-  <script src="/javascripts/script.js"></script>
+  <div class="container">
+
+    {{{body}}}
+
+  </div>
+
+
+  <footer class="card border-danger text-center">
+    <ul>
+      {{#if user}}
+      <li>
+        <a href="/logout" title="Logout">Logout</a>
+      </li>
+      <li>
+        <a href="/profile" title="Tus datos">Tus datos {{user.username}}</a>
+      </li>
+      {{else}}
+      <li>
+        <a href="/login" title="Login">Login</a>
+      </li>
+      {{/if}}
+    </ul>
+  </footer>
+
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/strength.js"></script>
+  <script type="text/javascript" src="/javascripts/script.js"></script>
+
 </body>
+
 </html>

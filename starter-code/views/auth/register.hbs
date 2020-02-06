@@ -1,0 +1,13 @@
+<h1>Register</h1>
+<div class="box-img">
+  <img src="../images/class.jpg" alt="English">
+</div>
+<form class="formRegister" method="POST" action="/register">
+  {{> input type="text" name="name" label="Name" placeholder="Your Name"}}
+  {{> input type="text" name="lastname" label="LastName" placeholder="Your LastName"}}
+  {{> input type="text" name="country" label="Country" placeholder="Your Country"}}
+  {{> input type="email" name="username" label="Email" placeholder="Your email"}}
+  {{> input id="myPassword" type="password" name="password" label="Password" placeholder="Your password"}}
+  {{> inputcheck label="I accept the use of my data with professional fines." name="accept"}}
+  <button type="submit" class="btn">Register</button>
+</form>
