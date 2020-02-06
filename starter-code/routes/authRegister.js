@@ -23,6 +23,7 @@ router.post("/", async (req, res, next) => {
     });
     console.log(`create the ${username}`);
     await addUser.save();
+    req.session.currentUser = addUser;
     res.redirect("/");
   } else {
     console.log(`exist the ${username}`);

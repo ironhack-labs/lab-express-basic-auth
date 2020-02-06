@@ -27,13 +27,13 @@
         </li>
         {{#if user}}
         <li>
-          <a href="/privates/language-test" title="Language Test">Language Test</a>
+          <a href="/language-test" title="Language Test">Language Test</a>
         </li>
         <li>
-          <a href="/privates/notes" title="Notes">Notes</a>
+          <a href="/notes" title="Notes">Notes</a>
         </li>
         <li>
-          <a href="/privates/profile" title="Tus datos">Profile {{user.name}} {{user.lastname}}</a>
+          <a href="/profile" title="Tus datos">Profile {{user.name}} {{user.lastname}}</a>
         </li>
         <li>
           <a href="/logout" title="Logout">Logout</a>
@@ -49,7 +49,7 @@
       </ul>
     </nav>
     {{#if user}}
-    <a href="/privates/profile" class="special">{{user.username}}</a>
+    <a href="/profile" class="special">{{user.username}}</a>
     {{/if}}
   </header>
 
@@ -67,7 +67,7 @@
         <a href="/logout" title="Logout">Logout</a>
       </li>
       <li>
-        <a href="/privates/profile" title="Tus datos">Tus datos {{user.username}}</a>
+        <a href="/profile" title="Tus datos">Tus datos {{user.username}}</a>
       </li>
       {{else}}
       <li>

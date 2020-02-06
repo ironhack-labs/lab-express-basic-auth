@@ -3,14 +3,6 @@
   <img src="../images/class.jpg" alt="English">
 </div>
 <form method="POST" action="/login">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-  </div>
+  {{> input type="email" name="username" label="Email address" placeholder="example@example.com" small="We'll never share your email with anyone else."}}
+  {{> input type="password" name="password" label="Password" placeholder="Your password"}}
   <button type="submit" class="btn btn-primary">Login</button>
-</form>
