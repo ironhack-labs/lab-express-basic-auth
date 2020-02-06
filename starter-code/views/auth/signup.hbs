@@ -1,7 +1,3 @@
-{{#if errorMessage}}
-<div class="error-message">{{ errorMessage }}</div>
-{{/if}}
-
 <form id="form" action="/signup" method="POST">
   <h2>Sign Up now!</h2>
 
@@ -9,7 +5,9 @@
   <input type="text" name="username" placeholder="Your username" required>
 
   <label for="password">Password</label><br>
-  <input type="password" id="strongPassword" name="password" placeholder="********" required>
-
+  <input type="password" id="myPassword" name="password" placeholder="********" required>
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
   <button type="submit">Create account</button>
 </form>
