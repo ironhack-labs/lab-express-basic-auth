@@ -18,12 +18,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <a class="navbar-brand" href="/">Home</a>
-        <li class="nav-item active">
+        <li>
           <a class="nav-link" href="/auth/login">Log In <span class="sr-only"></span></a>
         </li>
-        <li class="nav-item active">
+        {{#unless user}}
+        <li>
           <a class="nav-link" href="/auth/signup">Sign Up <span class="sr-only"></span></a>
         </li>
+        {{/unless}}
+        <li>
+          <a class="nav-link" href="/main">Main <span class="sr-only"></span></a>
+        </li>
+        <li>
+          <a class="nav-link" href="/private">Private <span class="sr-only"></span></a>
+        </li>
+        {{#if user}}
+        <li>
+            <a class="nav-link" href="auth/logout">Log Out <span class="sr-only"></span></a>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </nav>
