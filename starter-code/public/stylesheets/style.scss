@@ -1,11 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding: 50px;
+  // padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+/* === NAV MAIN === */
+
+#nav-main {
+  padding: 20px;
+  background-color: #2081c3;
+  box-shadow: 20px 0 15px #bfbfbf;
+}
+
+#nav-main a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+/* === INDEX PAGE === */
 
 .auth-link {
   margin: 30px;
@@ -21,14 +43,72 @@ a {
 
 }
 
-.msg-error {
-  color: #802b31;
-  // background: #f8d6da;
-  // box-shadow: -0.3px 0.1px 2.4px 0.1px #802b31;
+/* === FORM === */
+
+#form {
+  margin: 30px auto;
+  width: 380px;
 }
 
-.msg-success {
-  color: #216136;
-  // background: #d4edda;
-  // box-shadow: -0.3px 0.1px 2.4px 0.1px #216136;
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
+}
+
+/* === ERROR MSG === */
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 20%;
+  text-align: center;
+}
+
+/* === PAGES === */
+
+.page {
+  margin: 50px;
 }

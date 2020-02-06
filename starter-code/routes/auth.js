@@ -7,8 +7,8 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup", { js: ["signup"] });
 });
 
-router.get("/signin", (req, res) => {
-  res.render("auth/signin");
+router.get("/login", (req, res) => {
+  res.render("auth/login");
 });
 
 // SIGN UP
@@ -16,13 +16,13 @@ router.get("/signin", (req, res) => {
 router.post("/signup", (req, res, next) => {
   const user = req.body;
   if (!user.username || !user.password) {
-    return res.render("auth/signip", {error : "Enter credentials"})
+    return res.render("auth/signup", {error : "Indicate username and password to sign up"})
   } else {
     User
     .findOne({ username: user.username })
     .then(dbRes => {
       if (dbRes) {
-        return res.render("auth/signup", {error : "User already exists"})
+        return res.render("auth/signup", {error : "The username already exists"});
       };
       const salt = bcrypt.genSaltSync(10);
       const hashed = bcrypt.hashSync(user.password, salt);
@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
 
       User
       .create(user)
-      .then(() => res.redirect("/auth/signin"))
+      .then(() => res.redirect("/auth/login"))
     })
     .catch(next);
   }
@@ -38,30 +38,36 @@ router.post("/signup", (req, res, next) => {
 
 // LOG IN
 
-router.post("/signin", (req,res,next) => {
+router.post("/login", (req,res,next) => {
     const user = req.body;
   
     if (!user.username || !user.password) {
-        return res.render("auth/signin", {error : "Enter credentials"})
+        return res.render("auth/login", {
+          error : "Indicate username and password to sign in"
+        })
     }
 
     User
     .findOne({ username: user.username })
     .then(dbRes => {
         if (!dbRes) {
-            return res.render("auth/signin", {error : "No user found"})
+            return res.render("auth/login", {
+              error : "Incorrect username or password"
+            })
         }
         console.log("here")
         if (bcrypt.compareSync(user.password, dbRes.password)) {
-            const { _doc: clone } = { ...dbRes };
+            // const { _doc: clone } = { ...dbRes };
+            // delete clone.password;
+            // req.session.currentUser = clone;
 
-            delete clone.password;
-
-            req.session.currentUser = clone;
-            return res.redirect("/dashboard");
+            req.session.currentUser = user;
+            return res.redirect("/main");
         }
         else {
-            return res.redirect("/auth/signin");
+            return res.render("/auth/login", {
+              errorMessage: "Incorrect username or password"
+            });
         }
     })
     .catch(next);
@@ -72,8 +78,7 @@ router.post("/signin", (req,res,next) => {
 router.get("/signout", (req,res) => {
     req.session.destroy(() => {
         res.locals.isLoggedIn = undefined;
-        res.locals.isAdmin = undefined;
-        res.redirect("/auth/signin");
+        res.redirect("/auth/login");
     });
 });
 
