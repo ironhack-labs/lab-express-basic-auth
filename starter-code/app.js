@@ -22,6 +22,9 @@ app.use(
   })
 );
 
+// expose login status to the hbs templates
+app.use(require("./middlewares/exposeLoginStatus"));
+
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
