@@ -12,12 +12,17 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
-  const hashPassword = bcrypt.hashSync(password, salt);
-  const hashPassword = "";
-
   try {
-    const user = await User.create({ username, password: hashPassword });
-    res.render("index", { user });
+    const user = await User.findOne({ username });
+    if (user) {
+      res.render("auth/signup", {
+        errorMessage: "User already exists! Please, try again."
+      });
+    } else {
+      const hashPassword = bcrypt.hashSync(password, salt);
+      await User.create({ username, password: hashPassword });
+      res.redirect("/");
+    }
   } catch (e) {
     next(e);
   }
