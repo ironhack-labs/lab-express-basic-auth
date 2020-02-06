@@ -7,6 +7,8 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect("mongodb://localhost/express-auth", {
@@ -45,12 +47,36 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials");
-
 app.use(express.static(path.join(__dirname, "public")));
+
+// Express Session setup
+app.use(
+    session({
+        secret: "lab-express-session",
+        cookie: { maxAge: 60 * 1000 },
+        resave: true,
+        saveUninitialized: true,
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection,
+            resave: true,
+            saveUninitialized: false,
+            ttl: 72 * 60 * 60
+        })
+    })
+)
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.currentUser;
+    next();
+})
 
 app.locals.title = "Express - Authentication App";
 
+
 const index = require("./routes/index");
 app.use("/", index);
+
+const auth = require("./routes/auth");
+app.use("/auth", auth);
 
 module.exports = app;
