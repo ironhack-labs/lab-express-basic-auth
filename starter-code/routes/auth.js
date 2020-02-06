@@ -13,6 +13,7 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
   const hashPassword = bcrypt.hashSync(password, salt);
+  const hashPassword = "";
 
   try {
     const user = await User.create({ username, password: hashPassword });
