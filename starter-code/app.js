@@ -11,7 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 mongoose
-  .connect("mongodb://localhost/starter-code", {
+  .connect("mongodb://localhost/express-auth", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })

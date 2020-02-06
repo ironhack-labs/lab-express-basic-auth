@@ -1,14 +1,33 @@
 const express = require("express");
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 const User = require("../models/User");
 const { hashPassword, checkHashedPassword } = require("../lib/hashing");
+
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
-  console.log(req.body) // debug
+router.post("/signup", async (req, res, next) => {
+  const { username, password } = req.body;
+  try {
+    const user = await User.findOne({ username });
+    if (user) {
+      res.render("auth/signup", {
+        errorMessage: "User already exists! Please, try again."
+      });
+    } else {
+      const hashPassword = bcrypt.hashSync(password, salt);
+      await User.create({ username, password: hashPassword });
+      res.redirect("/");
+    }
+  } catch (e) {
+    next(e);
+  }
 });
 
 router.get("/login", (req, res, next) => {

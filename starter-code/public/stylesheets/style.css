@@ -5,7 +5,8 @@ a {
   text-decoration: none;
   color: #00b7ff; }
 
-main, header {
+main,
+header {
   margin: 2% 10%; }
 
 form {
