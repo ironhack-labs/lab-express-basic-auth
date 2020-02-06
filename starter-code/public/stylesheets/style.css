@@ -156,6 +156,7 @@ form {
   font-size: 0; }
   form .form-group {
     display: inline-block;
+    position: relative;
     font-size: initial;
     line-height: 1;
     margin-right: 10%;
@@ -186,5 +187,48 @@ form {
       padding: 0;
       margin: 0 19px 0 0;
       height: 15px; }
+
+.button_strength {
+  font-size: 12px;
+  position: absolute;
+  right: -17px;
+  top: 35px; }
+
+input:focus {
+  outline: auto 1px #000; }
+
+.strength_meter {
+  position: absolute;
+  width: 105.6%;
+  top: 57px;
+  left: 1px; }
+  .strength_meter div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    line-height: 23px; }
+    .strength_meter div p {
+      display: none; }
+
+.veryweak {
+  background-color: #ffa0a0;
+  border-color: #f04040 !important; }
+
+.weak {
+  background-color: #ffb78c;
+  border-color: #ff853c !important; }
+
+.medium {
+  background-color: #ffec8b;
+  border-color: #fc0 !important; }
+
+.strong {
+  background-color: #76ca24;
+  border-color: #76ca24 !important; }
 
 /*# sourceMappingURL=style.css.map */
