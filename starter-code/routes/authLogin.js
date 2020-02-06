@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Users = require("../models/User");
 const { hashPassword, checkHashed } = require("../lib/hashing");
+const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedIn");
 
 // Show the list celebrity in celebrity/index
 router.get("/", async (req, res, next) => {
@@ -27,11 +28,6 @@ router.post("/", async (req, res, next) => {
   // User login successful
   console.log(`Welcome ${existingUser.username}`);
   req.session.currentUser = existingUser;
-  return res.redirect("/");
-});
-
-router.get("/logout", async (req, res, next) => {
-  req.session.currentUser = null;
   return res.redirect("/");
 });
 

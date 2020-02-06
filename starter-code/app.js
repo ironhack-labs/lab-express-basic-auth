@@ -10,6 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const flash = require("flash");
 
 const dbUrl = process.env.DBURL;
 mongoose
@@ -42,6 +43,8 @@ app.use(
   })
 );
 
+app.use(flash());
+
 //LLamar como variable users
 app.use((req, res, next) => {
   console.log(req.session);
@@ -68,13 +71,16 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index");
-app.use("/", index);
-
-const authRouter = require("./routes/authRouter");
-app.use("/login", authRouter);
+const authLogin = require("./routes/authLogin");
+app.use("/login", authLogin);
 
 const authRegister = require("./routes/authRegister");
 app.use("/register", authRegister);
+
+const authLogout = require("./routes/authLogout");
+app.use("/logout", authLogout);
+
+const index = require("./routes/index");
+app.use("/", index);
 
 module.exports = app;
