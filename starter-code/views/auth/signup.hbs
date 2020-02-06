@@ -1,20 +1,10 @@
-<script>
-  $('strongPassword').strength({
-    strengthClass: 'strength',
-    strengthMeterClass: 'strength_meter',
-    strengthButtonClass: 'button_strength',
-    strengthButtonText: 'Show password',
-    strengthButtonTextToggle: 'Hide Password'
-  });    
-</script>
-
 {{#if errorMessage}}
 <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
 
 <form id="form" action="/signup" method="POST">
   <h2>Sign Up now!</h2>
-  
+
   <label for="username">Username</label><br>
   <input type="text" name="username" placeholder="Your username" required>
 
