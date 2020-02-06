@@ -17,5 +17,4 @@ const model = mongoose.model("user", schema);
 
 model.collection.createIndexes();
 
-
 module.exports = model;
