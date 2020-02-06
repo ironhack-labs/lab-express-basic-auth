@@ -1,14 +1,11 @@
 body {
   margin: 0;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00b7ff; }
 
-// STYLING NAVBAR
 nav {
   border: 1px transparent #43a3e6;
   background-image: linear-gradient(to right, white, #43a3e6);
@@ -16,39 +13,32 @@ nav {
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-}
+  justify-content: flex-end; }
 
 nav ul {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
-  width: 30%;
-}
+  width: 30%; }
 
 nav a {
   color: white;
   font-size: 1rem;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 nav a:hover {
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
-// SIGNIN FORM
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 #form input,
 #form button {
@@ -57,8 +47,7 @@ nav a:hover {
   outline: 0;
   padding: 4px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #form button {
   background: #43a3e6;
@@ -72,14 +61,12 @@ nav a:hover {
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s ease background;
-  width: 100%;
-}
+  width: 100%; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: 0.3s ease background;
-}
+  transition: 0.3s ease background; }
 
 .errorMessage {
   box-sizing: border-box;
@@ -96,5 +83,6 @@ nav a:hover {
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
-  transition: 0.3s ease background;
-}
+  transition: 0.3s ease background; }
+
+/*# sourceMappingURL=style.css.map */

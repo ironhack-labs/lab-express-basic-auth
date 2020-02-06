@@ -1,0 +1,16 @@
+<h2>HELLO! WHO ARE YOU???</h2>
+<hr>
+
+<form id="form" action="/auth/login" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" value="Foo">
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" value="foo">
+
+  <button type="submit">LOG IN</button>
+</form>
+
+{{#if errorMessage }}
+<div class="error-message">{{ errorMessage }}</div>
+{{/if}}
