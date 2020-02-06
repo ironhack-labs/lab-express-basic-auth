@@ -65,8 +65,8 @@ router.post("/login", (req,res,next) => {
             return res.redirect("/main");
         }
         else {
-            return res.render("/auth/login", {
-              errorMessage: "Incorrect username or password"
+            return res.render("auth/login", {
+              error : "Incorrect username or password"
             });
         }
     })
@@ -75,11 +75,11 @@ router.post("/login", (req,res,next) => {
 
 // LOG OUT
 
-router.get("/signout", (req,res) => {
-    req.session.destroy(() => {
-        res.locals.isLoggedIn = undefined;
-        res.redirect("/auth/login");
-    });
+router.get("/signout", (req, res) => {
+  req.session.destroy(() => {
+    res.locals.isLoggedIn = undefined;
+    res.redirect("/");
+  });
 });
 
 module.exports = router;

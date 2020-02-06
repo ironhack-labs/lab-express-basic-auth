@@ -1,4 +1,12 @@
 <nav id="nav-main">
-    <a href="/main">Home</a>
-    <a href="/">Sign Out</a>
+    {{!-- <a href="/main">Home</a> --}}
+    {{#unless isLoggedIn}}
+    <a href="/auth/signup">Sign Up</a>
+    <a href="/auth/login">Log In</a>
+    {{/unless}}
+
+    {{#if isLoggedIn}}
+    <a href="/private">Private</a>
+    <a href="/auth/signout">Sign Out</a>
+    {{/if}}
 </nav>
