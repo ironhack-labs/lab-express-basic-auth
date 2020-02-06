@@ -1,0 +1,92 @@
+#register-form input[type="password"],
+#register-form input[type="text"] {
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border 0.25s linear, color 0.25s linear;
+  -moz-transition: border 0.25s linear, color 0.25s linear;
+  -o-transition: border 0.25s linear, color 0.25s linear;
+  transition: border 0.25s linear, color 0.25s linear;
+  width: 100%;
+}
+#register-form input[type="password"]:focus,
+#register-form input[type="text"]:focus {
+  outline: 0;
+}
+#register-form {
+  width: 60%;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.strength_meter {
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 43px;
+  z-index: -1;
+  border-radius: 5px;
+  padding-right: 13px;
+}
+
+.button_strength {
+  text-decoration: none;
+  color: #888;
+  font-size: 13px;
+}
+
+.button_strength:hover {
+  text-decoration: none;
+  color: #0275D8;
+  font-size: 13px;
+}
+
+.strength_meter div {
+  width: 0%;
+  height: 43px;
+  text-align: right;
+  color: #000;
+  line-height: 43px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding-right: 12px;
+  border-radius: 5px;
+}
+
+.strength_meter div p {
+  top: 22px;
+  right: 0px;
+  color: #000;
+  font-size: 13px;
+}
+
+.veryweak {
+  background-color: #ffa0a0 !important;
+  border-color: #f04040 !important;
+}
+.weak {
+  background-color: #ffb78c !important;
+  border-color: #ff853c !important;
+}
+.medium {
+  background-color: #ffec8b !important;
+  border-color: #fc0 !important;
+}
+.strong {
+  background-color: #c3ff88 !important;
+  border-color: #8dff1c !important;
+}
+
+.info-password {
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+}

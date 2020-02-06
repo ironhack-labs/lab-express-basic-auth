@@ -1,8 +1,17 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: #00b7ff;
+}
+
+main,
+header {
+  margin: 2% 10%;
+}
+
+form {
+  margin: 5% 20%;
 }
