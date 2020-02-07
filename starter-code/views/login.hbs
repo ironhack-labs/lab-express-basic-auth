@@ -1,0 +1,13 @@
+<h1>Second Screen - Login</h1>
+
+
+<form action="/login" method="POST">
+    <input type="text" name="username" id="" value="" required >
+    <input type="password" name="password" id="" value="" required >
+
+    <button>Log In!</button>
+
+    {{#if error}}
+        <p class="error">{{error}}</p>
+    {{/if}}
+</form>
