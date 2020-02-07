@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h1>Sign Up</h1>
+      <form action="/signup" method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input name="email" type="email" class="form-control" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <p id="strength"
+          style="visibility: hidden; background-color: red; padding: 10px 20px; color: white; font-weight: bold"></p>
+        <button type="submit" class="btn btn-primary">SignUp</button>
+      </form>
+      {{#if errorMessage}}
+      {{!-- <script>
+        Swal.fire({
+          title: 'Error!',
+          text: {{ errorMessage }},
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        });
+      </script> --}}
+      <p style="background-color: red; padding: 10px 20px; color: white; font-weight: bold">{{errorMessage}}</p>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<script>
+  document.onkeyup = () => {
+    console.log(password.value)
+    if (password.value.match(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}$/)) {
+      strength.style.visibility = "visible"
+      strength.style.backgroundColor = "green"
+
+      strength.innerHTML = "Strong"
+      console.log('strong')
+    }
+    else if (password.value.match(/^(?=.*?[a-z])(?=.*?[A-Z]).{8,}$/) || password.value.match(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/)) {
+      strength.style.visibility = "visible"
+      strength.style.backgroundColor = "orange"
+
+      strength.innerHTML = "Medium"
+      console.log("medium")
+    }
+    else if (password.value.match(/^(?=.*?[a-z]).{8,}$/)) {
+      strength.style.visibility = "visible"
+      strength.style.backgroundColor = "yellow"
+      strength.style.color = "black"
+
+
+
+      strength.innerHTML = "Weak"
+      console.log('week')
+    }
+    else {
+      strength.style.visibility = "visible"
+      strength.innerHTML = "Very weak"
+      console.log('Very week')
+    }
+  }
+</script>
+
+{{!-- ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$ --}}
