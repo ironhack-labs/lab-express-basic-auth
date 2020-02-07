@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="signup"></section>
+<h1>Signup</h1>
+    <nav>
+        <a href="login">Login</a>
+    </nav>
+    <form action="/signup" method="POST">
+    <label for="username">Username</label>
+        <input type="text" name="username" value="" required placeholder="Enter your nickname">
+    <label for="username">Password</label>
+        <input type="password" name="password" value="" required placeholder="Enter your password">
+        <input type="submit" value="Sign Up">
+    </form>
