@@ -27,10 +27,8 @@ router.post("/create-user", (req, res, next) => {
 
   Users.findOne({ username: req.body.username }).then((foundUser) => {
     if (foundUser) {
-      res.json({
-        error: true,
-        msg: "Username already taken"
-      });
+      let error = "Username already taken"
+      res.render("signup", {error})
 
       return;
     } else {
@@ -49,10 +47,11 @@ router.post("/create-user", (req, res, next) => {
         password: hash,
         role: "admin"
       }).then(() => {
-        res.json({
-          userCreated: true,
-          timestamp: new Date()
-        });
+        // res.json({
+        //   userCreated: true,
+        //   timestamp: new Date()
+        // });
+        res.redirect("/login")
       });
     }
   });
@@ -78,11 +77,13 @@ router.post("/log-user", (req, res, next) => {
     if (foundUser) {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         // user is ok and password is ok
-        res.json({
-          error: false,
-          msg: "Logged in, yay!",
-          when: new Date()
-        });
+        // res.json({
+        //   error: false,
+        //   msg: "Logged in, yay!",
+        //   when: new Date()  
+        // });
+        req.session.currentUser = foundUser._id;
+        res.redirect("/private");
       } else {
         // user is ok but password is not ok
         res.json({
@@ -95,10 +96,32 @@ router.post("/log-user", (req, res, next) => {
         error: true,
         msg: "User not found"
       });
+      
     }
   });
 });
 
+router.get("/private", (req, res) => {
+  if (req.session.currentUser) {
+    Users.findById(req.session.currentUser)
+    .then(() => {
+      res.render("private");
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/main", (req, res) => {
+  if (req.session.currentUser) {
+    Users.findById(req.session.currentUser)
+    .then(() => {
+      res.render("main");
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
 
 
 module.exports = router;
