@@ -11,18 +11,7 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const Users = require("../models/User");
 
-router.use(
-  session({
-    saveUninitialized: true,
-    resave: true,
-    secret: "basic-auth-secret",
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
-    })
-  })
-);
+
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -63,10 +52,21 @@ router.post("/signup", (req, res) => {
 
 router.get("/private", (req, res) => {
   if (req.session.currentUser) {
+    Users.findById(req.session.currentUser)
+    .then(() => {
+      res.render("private");
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/main", (req, res) => {
+  if (req.session.currentUser) {
     Users.findById(req.session.currentUser).then((allUserData) => {
       allUserData.name = `🦄🦄🦄${allUserData.name.toUpperCase()}🦄🦄🦄` 
       allUserData.salary = 100000000
-      res.render("private", {
+      res.render("main", {
         user: allUserData
       });
     });
@@ -74,6 +74,7 @@ router.get("/private", (req, res) => {
     res.redirect("/login");
   }
 });
+
 
 router.post("/login", (req, res) => {
   function notFound(reason) {
