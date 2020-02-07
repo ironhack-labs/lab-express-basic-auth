@@ -2,6 +2,8 @@ const express = require('express');
 const router  = express.Router();
 const bcrypt  = require(`bcrypt`);
 const Users   = require("../models/Users")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session);
 
 
 
@@ -51,12 +53,27 @@ router.post('/login', (req, res, next) => {
   Users.findOne({username:req.body.username}).then((foundUser) => {
     if (foundUser) {
       if(bcrypt.compareSync(req.body.password, foundUser.password)) {
-        res.json({error:false, msg: "Logged in"})
+        req.session.currentUser = foundUser._id;
+        res.redirect('main')
       } else res.json({error:true, msg: "password dont match"})
     } else {res.json({error:true, msg:"user not found"})}
   })
 });
 
+router.get('/main', (req, res, next) => {
+  if (req.session.currentUser) {
+     res.render('main');
+    } else {res.redirect("/")}
+});
+router.get('/private', (req, res, next) => {
+  if (req.session.currentUser) {
+     res.render('private');
+    } else {res.redirect("/")}
+});
 
-
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/login");
+  });
+});
 module.exports = router;
