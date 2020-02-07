@@ -1,8 +1,30 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/background.jpg");
+  color: white;
 }
 
 a {
   color: #00B7FF;
+}
+
+.title {
+  font-size: 5em;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+div {
+
+  text-align: center;
+}
+
+.btn {
+  background-color: rgb(27, 177, 177);
 }
