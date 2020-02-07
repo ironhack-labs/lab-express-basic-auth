@@ -17,12 +17,14 @@
     <li class="nav-item">
       <a class="nav-link active" href="/">Home</a>
     </li>
+    {{#unless user}}
     <li class="nav-item">
       <a class="nav-link" href="/signup">Sign up</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/login">Login</a>
     </li>
+    {{else}}
     <li class="nav-item">
       <a class="nav-link" href="/main">Main</a>
     </li>
@@ -33,7 +35,7 @@
     <li class="nav-item">
       <a class="nav-link" href="/logout">Log out</a>
     </li>
-
+    {{/unless}}
 
   </ul>
 
