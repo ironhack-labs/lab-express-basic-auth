@@ -1,12 +1,14 @@
-<section class="signup"></section>
-<h1>Signup</h1>
-    <nav>
-        <a href="login">Login</a>
-    </nav>
+<a class="formlink" href="/">Go back</a>
+<section class="form">
+    <h1>Sign Up</h1>
     <form action="/signup" method="POST">
-    <label for="username">Username</label>
+        <label for="username">Username</label>
         <input type="text" name="username" value="" required placeholder="Enter your nickname">
-    <label for="username">Password</label>
+        <label for="password">Password</label>
         <input type="password" name="password" value="" required placeholder="Enter your password">
-        <input type="submit" value="Sign Up">
+        <input class="button" type="submit" value="Sign Up">
+        {{#if error}}
+            <p class="error">{{error}}</p>
+        {{/if}}
     </form>
+</section>

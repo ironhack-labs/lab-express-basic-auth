@@ -23,7 +23,7 @@ router.get('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const saltRounds = 10;
   if (req.body.username.trim() === "" || req.body.password.trim() === ""){
-    res.json({error:true, reason: "Username or password name are empties"});
+    res.render("signup", {error: "user or password are empty"})
     return;
   }
   const plainPassword = req.body.password;
@@ -32,14 +32,14 @@ router.post('/signup', (req, res, next) => {
 
   Users.findOne({ name: req.body.username}).then((userFound) => {
     if (userFound !== null) {
-      res.json ({error: true, reason: "User already exist"});
+      res.render("signup", {error: "User already exist"})    
     } else {
       Users.create({username: req.body.username , password: hash})
-      .then((userCreated) => {
+      .then(() => {
         res.redirect("login");
       })
       .catch(() => {
-        res.json ({created:false})
+        res.render("signup", {error: "User already exist"}) 
       })
     }
   })
@@ -47,7 +47,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   if (req.body.username.trim() === "" || req.body.password.trim() === "") {
-    res.json({error:true, reason: "Username or password name are empties"});
+    res.render("login", {error: "user or password are empty"})
     return;
   }
   Users.findOne({username:req.body.username}).then((foundUser) => {
@@ -55,8 +55,8 @@ router.post('/login', (req, res, next) => {
       if(bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser._id;
         res.redirect('main')
-      } else res.json({error:true, msg: "password dont match"})
-    } else {res.json({error:true, msg:"user not found"})}
+      } else res.render("login", {error: "Your password is incorrect"})
+    } else res.render("login", {error: "user not found"})
   })
 });
 
