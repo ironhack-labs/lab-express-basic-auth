@@ -1,0 +1,23 @@
+<script>
+    $(document).ready(function ($) {
+
+      $("#pass").strength();
+        
+    });
+</script>
+
+<h1>Sign Up</h1>
+
+<a href="/login">Login</a>
+
+<form action="/signup" method="POST">
+    <input type="text" name="username">
+    <input type="password" name="password" id="pass" minlength="6">
+    <button>Sign Up</button>
+
+    {{#if error}}
+        {{error}}
+    {{/if}}
+</form>
+
+
