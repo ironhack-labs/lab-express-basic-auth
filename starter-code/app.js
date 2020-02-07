@@ -16,9 +16,7 @@ mongoose
     useUnifiedTopology: true
   })
   .then(db => {
-    console.log(
-      `Connected to Mongo successful! Database name: "${db.connections[0].name}"`
-    );
+    console.log(`Connected to mongo successful!`);
   })
   .catch(err => {
     console.error("Error connecting to mongo", err);
@@ -51,32 +49,28 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Express Session setup
 app.use(
-    session({
-        secret: "lab-express-session",
-        cookie: { maxAge: 60 * 1000 },
-        resave: true,
-        saveUninitialized: true,
-        store: new MongoStore({
-            mongooseConnection: mongoose.connection,
-            resave: true,
-            saveUninitialized: false,
-            ttl: 72 * 60 * 60
-        })
+  session({
+    secret: "lab-express-session",
+    cookie: { maxAge: 60 * 1000 },
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      resave: true,
+      saveUninitialized: false,
+      ttl: 72 * 60 * 60
     })
-)
+  })
+);
 
 app.use((req, res, next) => {
-    res.locals.user = req.session.currentUser;
-    next();
-})
+  res.locals.user = req.session.currentUser;
+  next();
+});
 
 app.locals.title = "Express - Authentication App";
 
-
 const index = require("./routes/index");
 app.use("/", index);
-
-const auth = require("./routes/auth");
-app.use("/auth", auth);
 
 module.exports = app;

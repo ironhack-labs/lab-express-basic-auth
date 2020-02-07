@@ -1,22 +1,16 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const auth = require("./auth");
+const private = require("./private");
 
-router.get('/', (req, res, next) => {
-  res.render('index');
-});
+const router = express.Router();
 
-router.get("/main", (req, res, next) => {
-    if (!req.session.currentUser)
-        return res.redirect("auth/login");
+router.use("/auth", auth);
+router.use("/private", private);
 
-    return res.render("main");
-});
-
-router.get("/private", (req, res, next) => {
-    if (!req.session.currentUser)
-        return res.redirect("auth/login");
-
-    return res.render("private");
+router.get("/", (req, res, next) => {
+  if (req.session.currentUser)
+    return res.redirect("/auth/home", { user: req.session.currentUser });
+  res.render("/auth/login");
 });
 
 module.exports = router;

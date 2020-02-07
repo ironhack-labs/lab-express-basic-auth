@@ -1,10 +1,10 @@
 const express = require("express");
 const User = require("../models/User");
-const bcrypt = require("bcrypt");
 const router = express.Router();
 const { hashPassword, checkHashedPassword } = require("../lib/hashing");
 
 router.get("/signup", (req, res, next) => {
+  if (req.session.currentUser) return res.redirect("/");
   res.render("auth/signup");
 });
 
