@@ -4,6 +4,10 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+router.get("/"), (req, res, next) => {
+  res.render("index")
+}
+
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
@@ -53,12 +57,7 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login", {
    })
 });
-// router.post("/login", (req, res, next) => {
-//   const username = req.body.username;
-//   const password = req.body.password;
-//   const salt = bcrypt.genSaltSync(bcryptSalt);
-//   const hashPass = bcrypt.hashSync(password, salt);
-// });
+
 
 router.post("/login", (req, res, next) => {
   const theUsername = req.body.username;
@@ -80,9 +79,9 @@ router.post("/login", (req, res, next) => {
         return;
       }
       if (bcrypt.compareSync(thePassword, user.password)) {
-        // Save the login in the session!
+      
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("/main");
       } else {
         res.render("auth/login", {
           errorMessage: "Incorrect password"
@@ -92,6 +91,12 @@ router.post("/login", (req, res, next) => {
   .catch(error => {
     next(error);
   })
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;
