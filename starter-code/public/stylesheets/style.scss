@@ -1,17 +1,46 @@
+$back-color: #e2f8f6;
+$back-color-shade: #b9dddb;
+$update-color: #ff9f1c;
+$footer-height: 50px;
+
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: $back-color;
+}
+
+.center-title {
+  text-align: center;
+  margin: 40px 0;
+}
+
+footer {
+  background-color: $back-color-shade;
+  height: $footer-height;
+  display: flex;
+  align-content: center;
+  p {
+    line-height: $footer-height;
+    padding: 0 20px;
+  }
 }
 
 a {
-  color: #00B7FF;
+  color: $update-color;
+  :hover {
+    color: $update-color;
+  }
 }
 
 /* Paso 6 */
 
 #form {
+  background: $back-color;
+  border: 1px solid $back-color-shade;
+  border-radius: 10px;
   margin: 30px auto;
-  width: 380px;
+  width: 500px;
+  padding: 50px;
 }
 
 #form label {
@@ -24,17 +53,20 @@ a {
 
 #form input,
 #form button {
+  background: $back-color;
+  border: 1px solid $back-color-shade;
+  border-radius: 5px;
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
-  padding: 4px;
+  padding: 10px;
   width: 100%;
   margin-bottom: 20px;
 }
 
 #form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
+  background: $update-color;
+  border: 1px solid $update-color;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -43,20 +75,20 @@ a {
   padding: 8px 16px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: .3s ease background;
+  transition: 0.3s ease background;
   width: 100%;
 }
 
 #form button:hover {
-  background: #fff;
-  color: #43a3e6;
-  transition: .3s ease background;
+  background: $back-color;
+  color: $update-color;
+  transition: 0.3s ease background;
 }
 
 /* Paso 9 damos estilo al mensage de error*/
 
 .error-message {
-  background: #F02B63;
+  background: #f02b63;
   box-sizing: border-box;
   color: #fff;
   margin: 20px auto;
@@ -64,22 +96,23 @@ a {
   width: 100%;
 }
 
-.private-main{
+.private-main {
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80vw;
-  height: 75vh;
   justify-content: space-evenly;
 }
 
-.private-main img{
+.private-main img {
   width: 60vw;
 }
 
-.private-main a{
-  background: #43a3e6;
-    border: 1px solid #43a3e6;
+.private-main {
+  a {
+    background: $update-color;
+    border: 1px solid $update-color;
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
@@ -88,40 +121,34 @@ a {
     padding: 8px 16px;
     text-decoration: none;
     text-transform: uppercase;
-    transition: .3s ease background;
+    transition: 0.3s ease background;
     width: 20%;
     text-align: center;
+    margin: 10px;
+    :hover {
+      background: $back-color;
+      color: $update-color;
+      transition: 0.3s ease background;
+    }
+    .links {
+      display: flex;
+    }
+  }
 }
 
-/* Paso 19
-
-Validacion de formulario
-
-input:invalid {
-  border: 2px dashed red;
+.container {
+  margin: 30px auto;
 }
 
-input:invalid:required {
-  background-image: linear-gradient(to right, pink, lightgreen);
+.landing-container {
+  margin: 40px 30px;
+  p {
+    font-size: 18px;
+    margin: 20px 0;
+    max-width: 500px;
+  }
 }
 
-input:valid {
-  border: 2px solid black;
-}
-*/
-form {
-  font: 1em sans-serif;
-  max-width: 320px;
-}
-
-p > label {
-  display: block;
-}
-
-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-input:focus:invalid {
-  box-shadow: none;
+.bg-light {
+  background-color: $back-color-shade !important;
 }
