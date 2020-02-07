@@ -1,0 +1,20 @@
+<h1>Iniciar sesión</h1>
+
+<form action="/login" method="POST">
+
+  <label for="email">Email</label>
+  <input type="text" name="email">
+
+  <label for="password">Password</label>
+  <input id="myPassword" type="password" name="password">
+
+  <button>Login</button>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
+
+{{#if errorMessage}}
+<p style="background-color: red; padding: 10px 20px; color: white; font-weight: bold">{{errorMessage}}</p>
+{{/if}}
