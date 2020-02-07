@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema(
   {
-    username: {type: String, unique:true},
-    password: String,
+    username: { type: String, unique: true },
+    password: String
   },
   {
     timestamps: true
