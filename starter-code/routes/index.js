@@ -11,7 +11,18 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const Users = require("../models/User");
 
-
+router.use(
+  session({
+    saveUninitialized: true,
+    resave: true,
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+);
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -50,5 +61,46 @@ router.post("/signup", (req, res) => {
   });
 });
 
+router.get("/private", (req, res) => {
+  if (req.session.currentUser) {
+    Users.findById(req.session.currentUser).then((allUserData) => {
+      allUserData.name = `🦄🦄🦄${allUserData.name.toUpperCase()}🦄🦄🦄` 
+      allUserData.salary = 100000000
+      res.render("private", {
+        user: allUserData
+      });
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.post("/login", (req, res) => {
+  function notFound(reason) {
+    res.json({ authorised: false, reason });
+  }
+  if (req.body.username === "" || req.body.password === "") {
+    res.render("login", {error: "user or password are empty"})
+    return;
+  }
+
+  Users.findOne({ name: req.body.username })
+    .then((userFound) => {
+     
+      if (bcrypt.compareSync(req.body.password, userFound.password)) {
+        //continue login
+        console.log('user has log')
+        req.session.currentUser = userFound._id;
+        res.redirect("/private");
+        // res.json({ authorised: true });
+      } else {
+        // notFound("password or user are wrong");
+        res.render("login", {error: "password is wrong"})
+      }
+    })
+    .catch((userNotFoundError) => {
+      res.render("login", {error: "user not found"})
+    });
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
  <form action="/login" method="POST">
-        <input type="text" name="username" value="">
-        <input type="password" name="password" value="">
+        <input type="text" name="username" value="" required>
+        <input type="password" name="password" value="" required>
         {{#if error}}
             <p class="error">{{error}}</p>
         {{/if}}
