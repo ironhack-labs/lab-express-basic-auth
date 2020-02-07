@@ -1,14 +1,34 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e2f8f6; }
+
+.center-title {
+  text-align: center;
+  margin: 40px 0; }
+
+footer {
+  background-color: #b9dddb;
+  height: 50px;
+  display: flex;
+  align-content: center; }
+  footer p {
+    line-height: 50px;
+    padding: 0 20px; }
 
 a {
-  color: #00B7FF; }
+  color: #ff9f1c; }
+  a :hover {
+    color: #ff9f1c; }
 
 /* Paso 6 */
 #form {
+  background: #e2f8f6;
+  border: 1px solid #b9dddb;
+  border-radius: 10px;
   margin: 30px auto;
-  width: 380px; }
+  width: 500px;
+  padding: 50px; }
 
 #form label {
   color: #666;
@@ -19,16 +39,19 @@ a {
 
 #form input,
 #form button {
+  background: #e2f8f6;
+  border: 1px solid #b9dddb;
+  border-radius: 5px;
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
-  padding: 4px;
+  padding: 10px;
   width: 100%;
   margin-bottom: 20px; }
 
 #form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
+  background: #ff9f1c;
+  border: 1px solid #ff9f1c;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -37,17 +60,17 @@ a {
   padding: 8px 16px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: .3s ease background;
+  transition: 0.3s ease background;
   width: 100%; }
 
 #form button:hover {
-  background: #fff;
-  color: #43a3e6;
-  transition: .3s ease background; }
+  background: #e2f8f6;
+  color: #ff9f1c;
+  transition: 0.3s ease background; }
 
 /* Paso 9 damos estilo al mensage de error*/
 .error-message {
-  background: #F02B63;
+  background: #f02b63;
   box-sizing: border-box;
   color: #fff;
   margin: 20px auto;
@@ -55,19 +78,19 @@ a {
   width: 100%; }
 
 .private-main {
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80vw;
-  height: 75vh;
   justify-content: space-evenly; }
 
 .private-main img {
   width: 60vw; }
 
 .private-main a {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
+  background: #ff9f1c;
+  border: 1px solid #ff9f1c;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -76,37 +99,28 @@ a {
   padding: 8px 16px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: .3s ease background;
+  transition: 0.3s ease background;
   width: 20%;
-  text-align: center; }
+  text-align: center;
+  margin: 10px; }
+  .private-main a :hover {
+    background: #e2f8f6;
+    color: #ff9f1c;
+    transition: 0.3s ease background; }
+  .private-main a .links {
+    display: flex; }
 
-/* Paso 19
+.container {
+  margin: 30px auto; }
 
-Validacion de formulario
+.landing-container {
+  margin: 40px 30px; }
+  .landing-container p {
+    font-size: 18px;
+    margin: 20px 0;
+    max-width: 500px; }
 
-input:invalid {
-  border: 2px dashed red;
-}
-
-input:invalid:required {
-  background-image: linear-gradient(to right, pink, lightgreen);
-}
-
-input:valid {
-  border: 2px solid black;
-}
-*/
-form {
-  font: 1em sans-serif;
-  max-width: 320px; }
-
-p > label {
-  display: block; }
-
-input:invalid {
-  box-shadow: 0 0 5px 1px red; }
-
-input:focus:invalid {
-  box-shadow: none; }
+.bg-light {
+  background-color: #b9dddb !important; }
 
 /*# sourceMappingURL=style.css.map */
