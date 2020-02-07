@@ -9,8 +9,9 @@ router.use("/private", private);
 
 router.get("/", (req, res, next) => {
   if (req.session.currentUser)
-    return res.redirect("/auth/home", { user: req.session.currentUser });
-  res.render("/auth/login");
+    return res.render("private/home", { user: req.session.currentUser });
+
+  res.redirect("/auth/login");
 });
 
 module.exports = router;

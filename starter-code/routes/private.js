@@ -1,9 +1,9 @@
-router.get("/main", (req, res, next) => {
-  if (!req.session.currentUser) return res.redirect("auth/login");
-  res.render("/private/home");
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res, next) => {
+  if (req.session.currentUser) return res.render("private/private");
+  res.redirect("auth/login");
 });
 
-router.get("/private", (req, res, next) => {
-  if (!req.session.currentUser) return res.redirect("auth/login");
-  res.render("private");
-});
+module.exports = router;

@@ -11,6 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 mongoose
+  .set("useCreateIndex", true)
   .connect("mongodb://localhost/express-auth", {
     useNewUrlParser: true,
     useUnifiedTopology: true

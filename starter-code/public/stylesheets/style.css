@@ -5,11 +5,16 @@ a {
   text-decoration: none;
   color: #00b7ff; }
 
+span {
+  color: #00b7ff; }
+
 main,
 header {
   margin: 2% 10%; }
 
 form {
   margin: 5% 20%; }
+  form p {
+    margin: 20px 0; }
 
 /*# sourceMappingURL=style.css.map */
