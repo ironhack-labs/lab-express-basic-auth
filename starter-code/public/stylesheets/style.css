@@ -1,0 +1,126 @@
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e2f8f6; }
+
+.center-title {
+  text-align: center;
+  margin: 40px 0; }
+
+footer {
+  background-color: #b9dddb;
+  height: 50px;
+  display: flex;
+  align-content: center; }
+  footer p {
+    line-height: 50px;
+    padding: 0 20px; }
+
+a {
+  color: #ff9f1c; }
+  a :hover {
+    color: #ff9f1c; }
+
+/* Paso 6 */
+#form {
+  background: #e2f8f6;
+  border: 1px solid #b9dddb;
+  border-radius: 10px;
+  margin: 30px auto;
+  width: 500px;
+  padding: 50px; }
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%; }
+
+#form input,
+#form button {
+  background: #e2f8f6;
+  border: 1px solid #b9dddb;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px; }
+
+#form button {
+  background: #ff9f1c;
+  border: 1px solid #ff9f1c;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%; }
+
+#form button:hover {
+  background: #e2f8f6;
+  color: #ff9f1c;
+  transition: 0.3s ease background; }
+
+/* Paso 9 damos estilo al mensage de error*/
+.error-message {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%; }
+
+.private-main {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  justify-content: space-evenly; }
+
+.private-main img {
+  width: 60vw; }
+
+.private-main a {
+  background: #ff9f1c;
+  border: 1px solid #ff9f1c;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 20%;
+  text-align: center;
+  margin: 10px; }
+  .private-main a :hover {
+    background: #e2f8f6;
+    color: #ff9f1c;
+    transition: 0.3s ease background; }
+  .private-main a .links {
+    display: flex; }
+
+.container {
+  margin: 30px auto; }
+
+.landing-container {
+  margin: 40px 30px; }
+  .landing-container p {
+    font-size: 18px;
+    margin: 20px 0;
+    max-width: 500px; }
+
+.bg-light {
+  background-color: #b9dddb !important; }
+
+/*# sourceMappingURL=style.css.map */
