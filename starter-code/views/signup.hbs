@@ -1,0 +1,15 @@
+<h1>Registro</h1>
+
+<form action="/signup" method="POST">
+  <label for="email">Email</label><br>
+  <input type="text" name="email" placeholder="Your email">
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="********">
+
+  <button type="submit">Create account</button>
+</form>
+
+{{#if errorMessage}}
+<p style="background-color: red; padding: 10px 20px; color: white; font-weight: bold">{{errorMessage}}</p>
+{{/if}}
