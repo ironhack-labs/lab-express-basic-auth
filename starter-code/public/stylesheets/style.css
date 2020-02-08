@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00b7ff; }
+
+.forms {
+  display: flex;
+  justify-content: center;
+  text-align: center; }
+
+label {
+  margin-top: 1.5em; }
+
+/*# sourceMappingURL=style.css.map */
