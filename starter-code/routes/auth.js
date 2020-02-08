@@ -4,9 +4,10 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-router.get("/"), (req, res, next) => {
-  res.render("index")
-}
+router.get("/"),
+  (req, res, next) => {
+    res.render("index");
+  };
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -54,10 +55,8 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", {
-   })
+  res.render("auth/login", {});
 });
-
 
 router.post("/login", (req, res, next) => {
   const theUsername = req.body.username;
@@ -70,8 +69,8 @@ router.post("/login", (req, res, next) => {
     return;
   }
 
-  User.findOne({ "username": theUsername })
-  .then(user => {
+  User.findOne({ username: theUsername })
+    .then(user => {
       if (!user) {
         res.render("auth/login", {
           errorMessage: "The username doesn't exist."
@@ -79,7 +78,6 @@ router.post("/login", (req, res, next) => {
         return;
       }
       if (bcrypt.compareSync(thePassword, user.password)) {
-      
         req.session.currentUser = user;
         res.redirect("/main");
       } else {
@@ -87,14 +85,14 @@ router.post("/login", (req, res, next) => {
           errorMessage: "Incorrect password"
         });
       }
-  })
-  .catch(error => {
-    next(error);
-  })
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 router.get("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
+  req.session.destroy(err => {
     res.redirect("/login");
   });
 });

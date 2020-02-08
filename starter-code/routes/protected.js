@@ -8,10 +8,10 @@ router.get("/", (req, res, next) => {
 router.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
-  } else {                          
-    res.redirect("/login");         
-  }                                 
-}); 
+  } else {
+    res.redirect("/login");
+  }
+});
 router.get("/private", (req, res, next) => {
   res.render("private");
 });
