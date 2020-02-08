@@ -4,6 +4,11 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+router.get("/"),
+  (req, res, next) => {
+    res.render("index");
+  };
+
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
@@ -38,7 +43,7 @@ router.post("/signup", (req, res, next) => {
         password: hashPass
       })
         .then(() => {
-          res.redirect("/");
+          res.redirect("/login");
         })
         .catch(error => {
           console.log(error);
@@ -47,6 +52,49 @@ router.post("/signup", (req, res, next) => {
     .catch(error => {
       next(error);
     });
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", {});
+});
+
+router.post("/login", (req, res, next) => {
+  const theUsername = req.body.username;
+  const thePassword = req.body.password;
+
+  if (theUsername === "" || thePassword === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, username and password to sign up."
+    });
+    return;
+  }
+
+  User.findOne({ username: theUsername })
+    .then(user => {
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist."
+        });
+        return;
+      }
+      if (bcrypt.compareSync(thePassword, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/main");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;

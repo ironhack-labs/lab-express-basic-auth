@@ -1,13 +1,14 @@
 <form id="form" action="/signup" method="POST">
   <label for="username">Username</label><br>
-  <input type="text" name="username" placeholder="Your username">
+  <input type="text" name="username" placeholder="Your username (4 to 10 characteres)" minlength="4" maxlength="10">
 
   <label for="password">Password</label><br>
-  <input type="password" name="password" placeholder="********" autocomplete="new-password">
+  <input type="password" name="password" placeholder="6 to 15 characters (numbers and letters) min 1 uppercase"
+    autocomplete="new-password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$">
 
   <button type="submit">Create account</button>
 </form>
 
 {{#if errorMessage}}
-  <div class="error-message">{{ errorMessage }}</div>
+<div class="error-message">{{ errorMessage }}</div>
 {{/if}}
