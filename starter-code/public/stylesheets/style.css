@@ -1,8 +1,15 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF; }
+  color: black;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none;
+  background-color: lightseagreen; }
 
 /*# sourceMappingURL=style.css.map */

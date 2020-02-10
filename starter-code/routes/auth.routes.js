@@ -16,7 +16,7 @@ router.post('/signup',(req,res)=>{
   const {username,password} = req.body
 
   if(username.length === 0 || password.length === 0){
-    res.render("auth/signup", { errorMessage: "Rellena los datos"})
+    res.render("auth/signup", { errorMessage: "Fill the empty fields"})
     return
   }
 
@@ -31,7 +31,7 @@ router.post('/signup',(req,res)=>{
           .then(x => res.redirect("/"))
           .catch(err => console.log(err))
       }else{
-        res.render("auth/signup",{ errorMessage: "Username ya registrado"})
+        res.render("auth/signup",{ errorMessage: "Username already registered"})
         return
       }
     })
@@ -47,14 +47,14 @@ router.post('/login',(req,res)=>{
   const { username, password} = req.body
 
   if(username.length === 0 || password.length === 0){
-    res.render("auth/signup", { errorMessage: "Rellena los datos"})
+    res.render("auth/signup", { errorMessage: "Fill the empty fields"})
     return
   }
 
   User.findOne({username:username})
     .then(extUser => {
       if(!extUser){
-         res.render('auth/login',{errorMessage: 'Username no registrado'})
+         res.render('auth/login',{errorMessage: 'Username does\'nt exist'})
          return
       }
 
@@ -62,7 +62,7 @@ router.post('/login',(req,res)=>{
         req.session.currentUser = extUser
         res.redirect("/private")
       } else {
-        res.render('auth/login',{errorMessage: 'Contraseña incorrecta'})
+        res.render('auth/login',{errorMessage: 'Incorrect password'})
       }
 
     })
