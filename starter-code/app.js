@@ -10,8 +10,13 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+// Login setup
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/basicAuthLab', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -46,13 +51,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
+app.use(session({
+  secret: "mongosession",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Auth boiler sessions';
 
 
+app.use('/', require('./routes/auth.routes'));
+app.use('/', require('./routes/index.routes'));
 
-const index = require('./routes/index');
-app.use('/', index);
 
 
 module.exports = app;
