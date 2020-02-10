@@ -1,0 +1,25 @@
+<div class="container-full">
+    <div class="container-index">
+        <div class="container-login">
+            <form action="/create-user" method="POST" id="myform" accept-charset="utf-8" class="form-login">
+                <h2>Sign up</h2>
+
+                <input type="text" name="username" id="" value="" required>
+
+                <input type="password" name="password" id="myPassword" value="" required>
+
+                <button class="btn-login">Sign up!</button>
+                <a href="login">Back to Login</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function ($) {
+
+            $("#myPassword").strength();
+
+        });
+</script>

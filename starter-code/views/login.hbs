@@ -1,0 +1,23 @@
+<div class="container-full">    
+    <div class="container-index">
+        <div class="container-login">
+            <form action="/login" method="POST" class="form-login">
+                <h2>Login</h2>
+
+                <input type="text" name="username" placeholder="Username" required>
+
+                <input type="password" name="password" placeholder="Password" required>
+
+                {{#if errorMessage }}
+                <div class="error-message">{{ errorMessage }}</div>
+                {{/if}}
+
+                <button class="btn-login">Login</button>
+
+                <p class="account-message">
+                    Don't have an account? <a href="/signup">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

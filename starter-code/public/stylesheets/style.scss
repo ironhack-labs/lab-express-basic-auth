@@ -1,8 +1,127 @@
 body {
-  padding: 50px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.strength_meter {
+  height: 23px;
+  width: 154px;
+  background: silver;
+
+}
+
+.strength_meter div {
+  height: 23px;
+  width: 100%;
+  height: 23px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  line-height: 23px;
+}
+
+.veryweak {
+  background-color: #FFA0A0;
+  border-color: #F04040 !important
+}
+
+.weak {
+  background-color: #FFB78C;
+  border-color: #FF853C !important;
+}
+
+.medium {
+  background-color: #FFEC8B;
+  border-color: #FC0 !important;
+}
+
+.strong {
+  background-color: #C3FF88;
+  border-color: #8DFF1C !important;
+}
+
+.container-full {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(247, 247, 249);
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.container-index {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-top: 150px;
+  -webkit-box-shadow: 9px 10px 14px 0px rgba(115, 113, 115, 1);
+  -moz-box-shadow: 9px 10px 14px 0px rgba(115, 113, 115, 1);
+  box-shadow: 9px 10px 14px 0px rgba(115, 113, 115, 1);
+}
+
+.form-login {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.form-login, label, input {
+  width: 95%;
+}
+
+.form-login input {
+  height: 25px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-login .btn-login {
+  width: 95%;
+  height: 35px;
+  margin-bottom: 10px;
+  background-color: rgb(50, 126, 247);
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+}
+
+.strength_meter {
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.navbar {
+  height: 60px;
+  background-color: rgb(247, 247, 249);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.navbar a {
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+  margin-right: 30px;
 }
