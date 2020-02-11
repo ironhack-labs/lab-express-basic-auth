@@ -1,7 +1,12 @@
 const express = require('express');
 const router  = express.Router();
 
-/* GET home page */
+const authRouter = require("./auth");
+const loginRouter = require("./login")
+
+router.use("/signup", authRouter);
+router.use("/login", loginRouter)
+
 router.get('/', (req, res, next) => {
   res.render('index');
 });
