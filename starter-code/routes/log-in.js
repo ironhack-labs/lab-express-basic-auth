@@ -29,7 +29,7 @@ loginRouter.post("/", (req, res) => {
 
       if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user;
-        res.redirect("/");
+        res.redirect("/private");
       } else {
         res.render("../views/log-in.hbs", {
           errorMessage: "Incorrect password!"

@@ -19,7 +19,7 @@ signUpRouter.post("/", (req, res) => {
   const hashedPw = bcrypt.hashSync(password, salt);
   User.create({username, password: hashedPw})
   .then(createdUser => {
-    res.redirect("/")
+    res.redirect("/login")
   })
   .catch(err => {
     console.log(err)
