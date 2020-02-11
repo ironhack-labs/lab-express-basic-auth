@@ -3,23 +3,18 @@ var loginRouter = express.Router();
 const User = require("./../models/User");
 
 
-//GET /login
-
-loginRouter.get("/", (req, res) => {
-  res.render("login");
-});
 
 //POST   /login
 loginRouter.post("/", (req, res) => {
   const { username, password } = req.body;
-
+  
   if(password === "" || username === "") {
     res.render("login", {
       errorMessage: "Username and Password are required"
     });
     return;
   }
-
+  
   User.findOne({username})
   .then( user => {
     if (!user) {
@@ -28,7 +23,7 @@ loginRouter.post("/", (req, res) => {
       });
       return;
     }
-
+    
     if (passwordCorrect) {
       //Saves login session
       req.session.currentUser = user;
@@ -39,8 +34,14 @@ loginRouter.post("/", (req, res) => {
       });
     }
   })
-  .carch(err => console.log(err));
+  .catch(err => console.log(err));
+});
+
+//GET /login
+
+loginRouter.get("/", (req, res) => {
+  res.render("login");
 });
 
 
-module.exports = loginRouter;
+module.exports = loginRouter; 
