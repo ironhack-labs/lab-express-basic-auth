@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+var createError = require("http-errors");
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -9,9 +10,17 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+var router = require('./routes/index');
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+
+const dbName = 'labAuth';
+
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(`mongodb://localhost/${dbName}`, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -49,10 +58,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+// SESSION MIDDLEWARE
+app.use(
+  session({
+    secret: "basic-auth-secret",
+    // cookie: { maxAge: 3600000 * 1 },	// 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7 // Time to live - 7 days (14 days - Default)
+    })
+  })
+);
 
 
-const index = require('./routes/index');
-app.use('/', index);
+
+app.use('/', router);
 
 
 module.exports = app;
