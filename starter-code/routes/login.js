@@ -19,12 +19,28 @@ loginRouter.post("/", (req, res) => {
     });
     return;
   }
+
+  User.findOne({username})
+  .then( user => {
+    if (!user) {
+      res.render("login", {
+        errorMessage: "The username doesn't exist."
+      });
+      return;
+    }
+
+    if (passwordCorrect) {
+      //Saves login session
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else {
+      res.render("login", {
+        errorMessage: "Incorrect password!"
+      });
+    }
+  })
+  .carch(err => console.log(err));
 });
-
-
-
-
-
 
 
 module.exports = loginRouter;
