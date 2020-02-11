@@ -10,7 +10,16 @@ loginRouter.get("/", (req, res) => {
 });
 
 //POST   /login
-loginRouter.post("/", )
+loginRouter.post("/", (req, res) => {
+  const { username, password } = req.body;
+
+  if(password === "" || username === "") {
+    res.render("login", {
+      errorMessage: "Username and Password are required"
+    });
+    return;
+  }
+});
 
 
 
