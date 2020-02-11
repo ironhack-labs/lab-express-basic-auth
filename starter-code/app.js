@@ -8,6 +8,16 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const app = express();
+
+// default value for title local
+app.locals.title = 'Express - Generated with IronGenerator';
+
+const index = require('./routes/index');
+app.use('/', index);
+
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
@@ -22,7 +32,7 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app = express();
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -37,6 +47,20 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+// SESSION MIDDLEWARE
+app.use(
+  session({
+    secret: "basic-auth-secret",
+    // cookie: { maxAge: 3600000 * 1 },	// 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7 // Time to live - 7 days (14 days - Default)
+    })
+  })
+);
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -46,13 +70,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
-const index = require('./routes/index');
-app.use('/', index);
 
 
 module.exports = app;
