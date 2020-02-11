@@ -10,7 +10,6 @@ loginRouter.get("/", (req, res) => {
 
 // POST /login
 loginRouter.post("/", (req, res) => {
-  console.log(req.body)
   const { username, password } = req.body;
   if (password === "" || username === "") {
     res.render("../views/log-in.hbs", {
