@@ -3,11 +3,15 @@ const router  = express.Router();
 const signUpRouter = require('./sign-up');
 const loginRouter = require('./log-in');
 
-
-
 //open routes
 router.use(["/sign-up", "/signup"], signUpRouter);
 router.use(["/log-in", "/login"], loginRouter);
+
+/* GET home page */
+router.get('/', (req, res, next) => {
+  res.render('index');
+});
+
 
 // AUTHENTICATION CHECKER
 router.use((req, res, next) => {
@@ -40,14 +44,5 @@ router.get('/logout', function(req, res, next) {
   }
 });
 
-
-
-
-
-
-/* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
-});
 
 module.exports = router;

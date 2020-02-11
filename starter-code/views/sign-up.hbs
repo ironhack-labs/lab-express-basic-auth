@@ -1,15 +1,35 @@
-<form action="/sign-up" method="post">
+<div class="row">
+  <div class="col-sm-12">
 
-  <label for="">Username</label>
-  <input type="text" name="username">
+    <form action="/sign-up" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required minlength="8" maxlength="20">
+    <small id="passwordHelpBlock" class="form-text text-muted">
+    Your password must be 8-20 characters long.
+</small>
+  </div>
 
-  <label for="">Password</label>
-  <input type="password" name="password">
-
-  <button>Sign Up</button>
-
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+  </div>
+</div>
+
+
 {{#if errorMessage}}
-<p>{{{errorMessage}}}</p>
+<div class="row mt-3">
+  <div class="col-md-3">
+    <div class="alert alert-danger" role="alert">{{{errorMessage}}}</div>
+  </div>
+</div>
 {{/if}}
+
+
+
+
