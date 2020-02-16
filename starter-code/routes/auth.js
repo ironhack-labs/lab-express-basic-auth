@@ -6,8 +6,6 @@ const zxcvbn = require("zxcvbn");
 const saltRounds = 10;
 
 
-
-
 //GET route to get signup
 authRouter.get('/', (req, res, next) => {
     res.render('auth/signup');
@@ -18,9 +16,9 @@ authRouter.post('/', (req, res, next) => {
     const { username, password} = req.body;
     console.log("Print req.body", req.body)
     if(username === "" || password === ""){
-        res.render("auth/signup", {
-            errorMessage: "Please provide the required username and password"
-        });
+        res.render("auth/signup", { 
+            errorMessage: "Please provide the required username and password"})
+            // errorMessage: "Please provide the required username and password"
         return;
     };
 
@@ -29,18 +27,18 @@ authRouter.post('/', (req, res, next) => {
     .then( (user) => {
         if(user!== null) {
             res.render("auth/signup", {
-                errorMessage: "This username is already taken, please choose another username"
-            });
+                errorMessage: "This username is already taken, please choose another username"});
             return;
          };
     
-    // Create user
+    // Create user with encrypted password
         const salt = bcrypt.genSaltSync(saltRounds);  
         const hashedPassword = bcrypt.hashSync(password, salt);
 
         User.create({username, password: hashedPassword})
-        .then( (user) => {
-        res.redirect('/index')
+        .then( (createdUser) => {
+            req.session.currentUser = createdUser;  // this creates a session for user to be logged in right after signup
+            res.redirect('/index')
         })
         .catch(err => console.log(err))
     });

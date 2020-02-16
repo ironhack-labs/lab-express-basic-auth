@@ -14,6 +14,17 @@ router.use("/login", loginRouter);
 // Protected pages
 router.use("/", siteRouter);
 
+// LOGOUT user
+router.get ('/logout', (req, res, next) => {
+  req.session.destroy ( (err) => {
+    if (err) {
+      res.redirect('/');
+    } else {
+      res.redirect('/login')
+    }
+  })
+})
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');

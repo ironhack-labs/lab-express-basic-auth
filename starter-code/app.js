@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const router       = require('site-router')
 
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -65,9 +66,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-
 const index = require('./routes/index');
 app.use('/', index);
 
+app.use('/', router)  //public views
+app.use('/', site-router)  // private: only for logged-in users
 
 module.exports = app;

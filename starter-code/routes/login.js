@@ -26,7 +26,7 @@ loginRouter.post('/', (req, res, next) => {
     .then( (user) => {
         if (!user) {
             res.render("auth/login", {
-                errorMessage: "Incorrect username"
+                errorMessage: "Username does not exist"
         });
         return;
     }
