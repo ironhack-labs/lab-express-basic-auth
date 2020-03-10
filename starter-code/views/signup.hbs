@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="../public/stylesheets/style.css">
+<link rel="text/javascript" href="../public/javascripts/script.js">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="strength.js"></script>
+<script type="text/javascript" src="js.js"></script>
+
+<h2>Register:</h2>
+<form id="myform "action="/signup" method="post">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="Your username" required maxlength="16">
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="********" required maxlength="16">
+  <button type="submit">Create account</button>
+</form>
