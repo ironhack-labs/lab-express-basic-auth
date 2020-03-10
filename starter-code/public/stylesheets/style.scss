@@ -59,3 +59,11 @@ a {
   padding: 20px;
   width: 100%;
 }
+
+.pretty_background {
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+  width:100vw;
+  height:100vh;
+  padding: 0;
+  margin: 0 auto;
+}
