@@ -19,8 +19,7 @@ router.post('/', (req, res, next) => {
   .then((user) => {
     console.log(`Response is `, JSON.stringify(user));
     if (user) {
-      console.log(`Inside if with response ${user}`);
-      res.render('index', { error: `Username ${user} already exist foo` });
+      res.render('index', { error: `Username ${user.username} already exists.` });
     } else {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
