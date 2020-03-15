@@ -1,4 +1,6 @@
 require('dotenv').config();
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -9,6 +11,23 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+// TEST 
+// var Recaptcha = require('express-recaptcha').RecaptchaV3;
+// var recaptcha = new Recaptcha('SITE_KEY', 'SECRET_KEY',{callback:'cb'});
+// END TEST
+
+const bcrypt     = require("bcrypt");
+const saltRounds = 10;
+
+const plainPassword1 = "HelloWorld";
+const plainPassword2 = "helloworld";
+
+const salt  = bcrypt.genSaltSync(saltRounds);
+const hash1 = bcrypt.hashSync(plainPassword1, salt);
+const hash2 = bcrypt.hashSync(plainPassword2, salt);
+
+console.log("Hash 1 -", hash1);
+console.log("Hash 2 -", hash2);
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -22,6 +41,7 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+
 const app = express();
 
 // Middleware Setup
@@ -29,6 +49,28 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60 * 1000 }, // 60 seconds
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    resave: true,
+    saveUninitialized: false,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+//recaptcha TEST
+
+// app.use(express.static(pub));
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'jade');
+ 
+// app.get('/', recaptcha.middleware.render, function(req, res){
+//   res.render('login', { captcha:res.recaptcha });
+// });
+
+// TEST is done: it gives me an error
 
 // Express View engine setup
 
@@ -49,10 +91,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
 const index = require('./routes/index');
 app.use('/', index);
 
+const router = require('./routes/auth');
+app.use('/', router);
 
 module.exports = app;
