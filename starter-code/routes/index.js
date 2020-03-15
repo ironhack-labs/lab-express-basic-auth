@@ -11,15 +11,13 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { username, password } = req.body;
-  console.log(username, password);
 
-  User.findOne({
-    username
-  })
+  User.findOne({ username })
   .then((user) => {
     console.log(`Response is `, JSON.stringify(user));
     if (user) {
       res.render('index', { error: `Username ${user.username} already exists.` });
+      return;
     } else {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
@@ -29,8 +27,7 @@ router.post('/', (req, res, next) => {
         password: hashPass
       })
       .then(() => {
-        error = null;
-        res.redirect("/");
+        res.redirect('login');
       })
       .catch(error => next(error))
     }
@@ -38,6 +35,36 @@ router.post('/', (req, res, next) => {
   .catch(error => {
     next(error);
   })
+});
+
+router.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+
+  User.findOne({ username })
+  .then(user => {
+    if (!user) {
+      res.render('login', { error: `Username ${username} not found.` });
+      return;
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      req.session.currentUser = user;
+      res.redirect('main');
+    } else {
+      res.render('login', { error: 'Incorrect password' });
+    }
+  })
+  .catch(error => {
+    next(error);
+  })
+});
+
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
+
+router.get('/main', (req, res, next) => {
+  res.render('main');
 });
 
 module.exports = router;

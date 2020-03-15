@@ -11,9 +11,10 @@
 
     <button class="button" type="submit">Create account</button>
   </form>
-  <p>
   {{#if error}}
-  <em>{{error}}</em>
+  <div class="error-message">{{error}}</div>
   {{/if}}
+  <p class="account-message">
+    Already have an account? <a href="/login">Sign in</a>
   </p>
 </main>
