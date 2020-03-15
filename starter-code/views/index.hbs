@@ -1,3 +1,11 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/strength.js"></script>
+<script type="text/javascript">
+	$(document).ready(function ($) {
+      $("#password").strength();
+    });
+</script>
+
 <main id="home">
 
   <h1>{{title}}</h1>
@@ -7,7 +15,7 @@
     <input type="text" name="username" placeholder="Your username" required><br>
 
     <label for="password">Password:</label><br>
-    <input type="password" name="password" placeholder="**********" required><br>
+    <input id="password" type="password" name="password" placeholder="**********" required><br>
 
     <button class="button" type="submit">Create account</button>
   </form>
