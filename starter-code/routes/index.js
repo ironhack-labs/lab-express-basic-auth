@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
         password: hashPass
       })
       .then(() => {
-        res.redirect('login');
+        res.redirect('/login');
       })
       .catch(error => next(error))
     }
@@ -49,7 +49,7 @@ router.post('/login', (req, res, next) => {
     }
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('main');
+      res.redirect('/main');
     } else {
       res.render('login', { error: 'Incorrect password' });
     }
@@ -63,8 +63,20 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+});
+
 router.get('/main', (req, res, next) => {
   res.render('main');
+});
+
+router.get('/private', (req, res, next) => {
+  res.render('private');
 });
 
 module.exports = router;
