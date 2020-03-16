@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/basic-auth', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -51,7 +51,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/auth');
 app.use('/', index);
 
 
