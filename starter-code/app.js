@@ -8,10 +8,13 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const MongoStore   = require('connect-mongo')(session);
 
+let dbName = 'basic-auth'
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(`mongodb://localhost/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -19,10 +22,21 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
+  const app = express();
+  
+  //package 'express-session' needed for this:
+  app.use(session({
+    secret: 'basic-auth-secret',
+    cookie: {maxAge: 60000},
+    store : new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000 // 1 day
+    })
+  }))
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app = express();
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -47,12 +61,16 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Boiler Plate Auth';
 
 
 
 const index = require('./routes/index');
+const auth = require('./routes/auth');
+
 app.use('/', index);
+app.use('/', auth);
+
 
 
 module.exports = app;
