@@ -9,7 +9,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   if (username === '' || password === '') {
-    res.render('auth/signup', {
+    res.render('/', {
       errorMessage: 'Please provide a username and password to sign up'
     });
     return;
