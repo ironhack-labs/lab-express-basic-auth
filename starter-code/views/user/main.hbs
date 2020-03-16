@@ -1,0 +1,11 @@
+<div class="bg-dark d-flex flex-column align-content-center align-items-center justify-content-center">
+  <a class="my-4 btn btn-danger btn-lg" href="/user/private">Secret stuff!!!</a>
+  {{#if video}}
+  <video class="m-5" controls autoplay>
+    <source src="{{video}}" type="video/mp4">
+  </video>
+  {{/if}}
+  {{#if foto}}
+  <img class="imagen m-5 p-5" src="{{foto}}">
+  {{/if}}
+</div>

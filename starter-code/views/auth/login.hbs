@@ -1,0 +1,15 @@
+{{#if errorMessage}}
+<div class="h4 pt-5 mt-5 d-flex flex-column justify-content-center align-content-center align-items-center">
+  <div class="text-danger error-message">{{ errorMessage }}</div>
+</div>  
+{{/if}}
+<div class="d-flex flex-column justify-content-center align-content-center align-items-center">
+<form id="myform" class="m-5" action="/login" method="POST" accept-charset="utf-8">
+    <input class="my-5" type="text" name="username" placeholder="Your username">
+    <input class="my-5" id="passwordID" placeholder="Password" type="password" name="password">
+    <p class="account-message float-left">Don't have an account? <a href="/signup">Sign up</a></p>
+    <button class="btn btn-danger float-right" type="submit">Login </button>
+</form>   
+</div>
+
+</form>
