@@ -1,17 +1,30 @@
-<form id="form" action="/signup" method="POST">
-    <label for="username">Usuario</label>
-    <br>
+<div class="container d-flex align-items-center justify-content-around bg-dark text-white"
+  style="border: 1px solid #000; height:300px">
+  <form id="form" action="/signup" method="POST">
+    <div class="col-3 d-inline">
+      <label for="username">Usuario</label>
+      <input type="text" name="username" placeholder="Your username">
+    </div>
+    <div class="col-3 d-inline">
+      <label for="password">Password</label>
 
-    <input type="text" name="username" placeholder="Your username">
 
-    <label for="password">Password</label>
-    <br>
+      <input type="password" name="password" placeholder="********">
+    </div>
+    <div class="col-3 d-inline">
+      <label for="repeatPassword">Repita el Password</label>
+      <input type="password" name="repeatPassword" placeholder="********">
+    </div>
+    <div class="d-inline"><button class="btn btn-danger" type="submit">Crear cuenta </button></div>
 
-    <input type="password" name="password" placeholder="********">
+    <div class="d-inline"><a class="btn btn-success" href="/">Volver</a></div>
+</div>
 
-    <button type="submit">Crear cuenta </button>
+</form>
 </form>
 
+
 {{#if errorMessage}}
-  <div class="error-message">{{ errorMessage }}</div>
+<div class="error-message">{{ errorMessage }}</div>
 {{/if}}
+</div>

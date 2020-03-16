@@ -1,16 +1,20 @@
 <form action="/login" method="POST" id="form">
     <h2>Login</h2>
+    <div class="col-6 d-inline">
+        <label for="username">Usuario</label>
+        <input type="text" name="username">
+    </div>
+    <div class="col-6 d-inline">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+    </div>
+    {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <div class="col-6 d-inline">
+        <button>Log in</button>
+    </div>
 
-    <label for="username">Usuario</label>
-    <input type="text" name="username">
-
-    <label for="password">Password</label>
-    <input type="password" name="password"> {{#if errorMessage }}
-<div class="error-message">{{ errorMessage }}</div>
-{{/if}}
-
-<button>Log in</button>
-
-<p class="account-message">¿No tienes cuenta? <a href="/signup">Sign up</a>
-</p>
+    <p class="account-message">¿No tienes cuenta? <a href="/signup">Sign up</a>
+    </p>
 </form>
