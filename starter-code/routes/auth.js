@@ -49,7 +49,7 @@ router.post('/signup', (req, res, next) => {
                     username,
                     password: hashPass
                 }).then(() => {
-                    res.redirect('/main');
+                    res.redirect('/');
                 })
                 .catch(error => {
                     console.log(error);

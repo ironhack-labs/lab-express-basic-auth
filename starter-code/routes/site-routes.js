@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
 
 //comprobamos login de usuario y si no lo esta lo redirigimos
 router.use((req, res, next) => {
-    console.log('llego al chequeo del usuario');
+    // console.log('llego al chequeo del usuario');
     if (req.session.currentUser) {
         next();
     } else {
