@@ -4,10 +4,16 @@
   <form id="form" action="/login" method="POST">
   <br>
   <label class="mt-3" for="password">Username</label>
-  <input class=" w-100" type="text" name="username" placeholder="Username">
+  <input class=" w-100" type="text" name="username" placeholder="Username" required pattern="\w+"
+      title="Please input a valid username" onchange="
+        this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
   <br>
   <label class="mt-3" for="password">Password</label>
-  <input class=" w-100" type="password" name="password" placeholder="Password">
+  <input class=" w-100" type="password" name="password" placeholder="Password"  required
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+      title="Passwords must be at least six characters long, and include both lower and uppercase letters and at least one number."
+      onchange="
+        this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
   <br>
   <button type="submit" class="btn my-4 btn-primary w-100">Log into your account</button>
   </form>

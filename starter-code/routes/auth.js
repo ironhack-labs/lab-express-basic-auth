@@ -13,14 +13,35 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const {
     username,
-    password
+    password,
+    password2
   } = req.body;
-  if (username === "" || password === "") {
+  if (username === "" || password === "" || password2 === "" ) {
     res.render("auth/signup", {
       errorMessage: "Please include valid credentials"
     });
     return
   }
+  if (password === username) {
+    res.render("auth/signup", {
+      errorMessage: "The password can't match the username."
+    });
+    return
+  }
+  if (password != password2) {
+    res.render("auth/signup", {
+      errorMessage: "Passwords don't match"
+    });
+    return
+  }
+  var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!re.test(password)) {
+    res.render("auth/signup", {
+      errorMessage: "Passwords should contain at least six characters, including upper and lowercase letters and at least one number."
+    });
+    return
+  }
+
   User.findOne({
       username: username
     })
