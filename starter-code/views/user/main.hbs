@@ -1,0 +1,13 @@
+<div class="justify-content-center align-content-center flex-column d-flex bg-dark">
+  {{#if video}}
+    <video class="img-thumbnail" autoplay controls>
+      <source class="fa fa-text-width" aria-hidden="true" src="{{video}}" type="video/mp4">
+    </video>
+  {{/if}}
+  {{#if foto}}
+    <img class="img-thumbnail" src="{{foto}}" alt="dog">
+  {{/if}}
+
+  <a class="btn btn-dark" href="/user/private">Secret Stuff</a>
+  <a class="btn btn-light" href="/logout">Logout</a>
+</div>
