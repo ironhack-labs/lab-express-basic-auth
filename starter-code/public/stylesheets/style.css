@@ -53,3 +53,21 @@ a {
   width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
+
+.container { 
+  background: url(/images/Chile_Paine.jpeg) no-repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 25rem;
+  margin-top: 3rem;
+}
+
+.fox {
+  margin: 5rem 25rem;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
