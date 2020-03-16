@@ -6,4 +6,13 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+
+
+
+/* GET user page */
+
+
+
+
+
 module.exports = router;

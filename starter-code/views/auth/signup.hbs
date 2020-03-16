@@ -1,0 +1,26 @@
+
+<h1>SIGN UP</h1>
+
+<form class="form-group w-25" id="form" action="/signup" method="POST">
+  <div>
+    <label for="username">Username</label>
+    
+
+    <input class="form-control" type="text" name="username" placeholder="Your username">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    
+
+    <input class="form-control" type="password" name="password" placeholder="********">
+  </div>
+
+  <div>
+    <button class="btn btn-primary" type="submit">Create account </button>
+    <a class="btn btn-primary" href="/">Go back</a>
+  </div>
+</form>
+
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}

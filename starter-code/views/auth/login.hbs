@@ -1,0 +1,18 @@
+<h1>LOG IN</h1>
+
+<form class="form-group w-25" action="/login" method="POST" id="form">
+ 
+ <label for="username">Username</label>
+    <input class="form-control" type="text" name="username">
+
+    <label class="mt-1" for="password">Password</label>
+    <input  class="form-control" type="password" name="password"> {{#if errorMessage }}
+<div class="error-message">{{ errorMessage }}</div>
+{{/if}}
+
+<button class="btn btn-success" style="margin-top: 20px;">Log in</button>
+
+<p class="account-message mt-3">Don't have an account?</p>
+<a class="btn btn-primary" href="/signup">Sign up</a>
+<a class="btn btn-primary" href="/">Go back</a>
+</form>
