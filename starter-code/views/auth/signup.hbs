@@ -1,27 +1,35 @@
-<div class="container d-flex align-items-center justify-content-around bg-dark text-white"
-  style="border: 1px solid #000; height:300px">
-  <form id="form" action="/signup" method="POST">
-    <div class="col-3 d-inline">
+<script>
+
+</script>
+<div class="container d-flex align-items-center justify-content-around mt-5 "
+  style="height:300px">
+  <form class="mt-5" id="form" action="/signup" method="POST">
+    <div class="mt-2">
       <label for="username">Usuario</label>
       <input type="text" name="username" placeholder="Your username">
     </div>
-    <div class="col-3 d-inline">
+    <div class="">
       <label for="password">Password</label>
 
 
-      <input type="password" name="password" placeholder="********">
+      <input id="myPassword" type="password" name="password" placeholder="">
     </div>
-    <div class="col-3 d-inline">
+    <div class="">
       <label for="repeatPassword">Repita el Password</label>
-      <input type="password" name="repeatPassword" placeholder="********">
+      <input type="password" name="repeatPassword" placeholder="">
     </div>
-    <div class="d-inline"><button class="btn btn-danger" type="submit">Crear cuenta </button></div>
+    <div class="col-12 mt-3">
+      <button class="btn btn-danger" type="submit">Crear cuenta </button>
 
-    <div class="d-inline"><a class="btn btn-success" href="/">Volver</a></div>
+      <a class="btn btn-success" href="/">Volver</a>
+    </div>
+
+
+  </form>
 </div>
 
-</form>
-</form>
+
+
 
 
 {{#if errorMessage}}
