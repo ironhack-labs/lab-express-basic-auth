@@ -8,10 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session')
+const MongoStore   = require('connect-mongo')(session)
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/Basic-Auth',  { useUnifiedTopology: true, useNewUrlParser: true  } )
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -23,8 +25,23 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+const index = require('./routes/index');
+const usersRouter = require("./routes/private");
+
 
 // Middleware Setup
+app.use(
+  session({
+    secret: 'basic-auth-secret',
+    cookie: { maxAge: 60000},
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
+    resave: true,
+    saveUninitialized: true
+  })
+);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,6 +54,8 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +70,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
 app.use('/', index);
+app.use("/user", usersRouter);
+
+
+
 
 
 module.exports = app;
