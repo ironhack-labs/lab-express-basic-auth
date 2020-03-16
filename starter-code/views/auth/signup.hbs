@@ -1,0 +1,21 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="strength.js"></script>
+<script type="text/javascript" src="js.js"></script>
+<form id="form" action="/signup" method="POST">
+    <label for="username">Username</label>
+    <br>
+
+    <input type="text" name="username" placeholder="Your username" required>
+
+    <label for="password">Password</label>
+    <br>
+
+    <input id="myPassword" type="password" name="password" placeholder="********" required>
+
+    <button type="submit">Create account </button>
+</form>
+
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
+
