@@ -64,12 +64,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Boiler Plate Auth';
 
 
-
+//why tf we need this??????
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const usersrout = require('./routes/site-routes');
 
 app.use('/', index);
 app.use('/', auth);
+app.use('/', usersrout);
 
 
 
