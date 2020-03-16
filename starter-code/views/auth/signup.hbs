@@ -2,12 +2,12 @@
     <label for="username">Username</label>
     <br>
 
-    <input type="text" name="username" placeholder="Your username">
+    <input type="text" name="username" required placeholder="Your username">
 
     <label for="password">Password</label>
     <br>
 
-    <input type="password" name="password" placeholder="********">
+    <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" placeholder="********">
 
     <button type="submit">Create account </button>
 </form>

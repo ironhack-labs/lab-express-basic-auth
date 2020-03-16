@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
 const regexptest = RegExp(
-  "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,10}$"
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$"
 );
 
 router.get("/signup", (req, res, next) => {
