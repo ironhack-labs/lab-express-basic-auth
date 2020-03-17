@@ -1,9 +1,17 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const app = express()
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+app.get('/', (req, res, next) => {
   res.render('index');
 });
 
-module.exports = router;
+app.get("/main", (req, res, next) => {
+  res.render("protected/main.hbs");
+});
+
+app.get("/private", (req, res, next) => {
+  res.render("protected/private.hbs");
+});
+
+module.exports = app;

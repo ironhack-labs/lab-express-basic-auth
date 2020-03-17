@@ -3,9 +3,26 @@ const app = express();
 // const router = express.Router();
 const User = require("../models/User");
 
+////SIGN UP
 
-app.get("/signup", (req, res, next) => {
+app.get("/signup", (req, res) => {
   res.render("users/signup.hbs");
+});
+
+app.post("/signup", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.create({
+    username: username,
+    password: password
+  })
+  .then(user => {
+    res.redirect("/protected/main");
+  })
+  .catch(error => {
+    console.log(error);
+  })
 });
 
 
