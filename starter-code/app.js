@@ -33,8 +33,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use(middleWareExample2);
-// app.use('/books', protect);
+// //Private mode after login
+// app.use('/login', protect);
+
+// function protect(req, res, next) {
+//   if (req.session.newUser) next();
+//   else res.redirect('/user/main');
+// }
 
 // Express View engine setup
 
@@ -53,16 +58,6 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-// function protect(req, res, next) {
-//   if (req.session.currentUser) next();
-//   else res.redirect('/user/login');
-// }
-// // middleware definition
-// function middleWareExample2(req, res, next) {
-//   console.log('middle');
-//   next();
-// }
-
 app.use(
   session({
     secret: 'basic-auth-secret',
@@ -73,7 +68,6 @@ app.use(
     }),
   })
 );
-
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';

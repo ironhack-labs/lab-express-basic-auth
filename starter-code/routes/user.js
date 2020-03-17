@@ -40,7 +40,9 @@ router.post('/login', (req, res) => {
   })
     .then(newUser => {
       if (!newUser) res.send ('Invalid! This user account does not exist.')
-      else if (newUser.password !== password) res.send('Invalid password. Please, try again!');
+    //   res.redirect("/user/main")
+      else if (newUser.password !== password)  res.send('Invalid password. Please, try again!');
+    //   res.redirect('/user/main');
       else {
         req.session.currentUser = newUser;
         res.redirect('/user/private');
@@ -54,6 +56,10 @@ router.post('/login', (req, res) => {
 router.get('/private', (req, res) => {
   res.render('user/private.hbs');
 });
+
+// router.get('/main', (req, res) => {
+//   res.render('user/main.hbs');
+// });
 
 
 module.exports = router;
