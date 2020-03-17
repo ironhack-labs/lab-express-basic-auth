@@ -1,0 +1,12 @@
+<h1>Sign up!</h1>
+
+{{#if error}}
+<p>{{error}}</p>
+{{/if}}
+<form action="/auth/signup" method="post">
+<label for="username">Username: </label>
+<input type="text" name="username" id=""><br />
+<label for="password">Password: </label>
+<input type="password" name="password" id=""><br />
+<button type="submit">Signup</button>
+</form>
