@@ -1,8 +1,19 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="main">
+  <h1>Welcome</h1>
 
-<div id="container">
-  <a href="/users/signup">Sign up</a>
-  <a href="/users/login">Login</a>
-  <a href="/users/login">Protected page (requires authentication!)</a>
+  {{!-- <div id="container"> --}}
+  {{#unless currentUser}}
+  <a href="/users/signup"><button type="button" class="btn btn-info">Sign up</button></a>
+  <a href="/users/login"><button type="button" class="btn btn-info">Log in</button></a>
+  {{/unless}}
+
+  {{#if currentUser}}
+  <a href="/users/logout"><button type="button" class="btn btn-info">Log out</button></a>
+  {{/if}}
+
+  <a href="/protected/main"><button type="button" class="btn btn-info">Protected page (requires
+      authentication!)</button></a>
+  {{!-- </div> --}}
+
 </div>
+

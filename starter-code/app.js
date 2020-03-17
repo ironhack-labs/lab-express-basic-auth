@@ -42,6 +42,18 @@ app.use(session({
   })
 }));
 
+
+function protect(req, res, next){
+  if(req.session.currentUser){
+    next();
+  }
+  else {
+    res.redirect("/users/login")
+  }
+}
+
+app.use("/protected", protect)
+
 // Express View engine setup
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -56,18 +68,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
-
-
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
-
 
 const index = require('./routes/index');
 app.use('/', index);
 
-// app.use('/', require('./routes/protected'));
 app.use("/users", require("./routes/users"));
+app.use("/protected", require("./routes/protected"));
 
 
 module.exports = app;

@@ -1,8 +1,42 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background-color: #cbcccc; */
+  font-family: 'Bellota Text', cursive;
+  background-image: url(../images/octavian-dan-iY6QMkP66mI-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
 }
 
-a {
-  color: #00B7FF;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.main h1 {
+  color: white;
+    font-weight: bold;
+    font-size: 15vh;
+}
+
+.main button {
+  margin: 20px;
+}
+
+#login-form{
+  margin-top: 50px;
+  background-color: aliceblue;
+}
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
 }

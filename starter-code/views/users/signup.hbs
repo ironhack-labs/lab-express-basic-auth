@@ -1,19 +1,30 @@
-<form action="/users/signup" method="POST">
-  <h2>Sign up</h2>
+<div class="container">
+  <div id="login-form" class="row justify-content-center align-items-center">
 
-  <label for="username">Username</label>
-  <input type="text" name="username" placeholder="username" required>
+    <form action="/users/signup" method="POST">
+      <h2>Sign up</h2>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="password" required>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="username" required>
+      </div>
 
-  {{#if errorMessage }}
-    <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="password" required>
+      </div>
 
-  <button>Sign in</button>
+      {{#if errorMessage }}
+      <div class="error-message">{{ errorMessage }}</div>
+      {{/if}}
 
-  <p class="account-message">
-    Already have an account? <a href="/users/login">Log in</a>
-  </p>
-</form>
+      <button class="btn btn-info">Sign up</button>
+
+      <p class="account-message">
+        Already have an account? <a href="/users/login">Log in</a>
+      </p>
+    </form>
+
+  </div>
+
+</div>
