@@ -47,7 +47,7 @@ router.post("/sign-up", async (req, res, next) => {
 
    await userName.save()
 
-   console.log(user)
+   console.log(findUser)
    res.render('sign-up-successfully')
  
   });
@@ -68,7 +68,7 @@ router.post("/login", async (req, res, next) => {
   
   const {name, password} = req.body;
 
-  if(name === '' || password !== {password}) {
+  if(name === '' || password === {password}) {
     res.render('login', { errorMessage :'Do it correctly idiot!'
    });
    return;
@@ -82,8 +82,8 @@ const findUser = await User.findOne({name})
     });
 
   }
-  if(bcrypt.compareSync(password, user.password)){
-    req.session.currentUser = user;
+  if(bcrypt.compareSync(password, findUser.password)){
+    req.session.currentUser = findUser;
     res.redirect('/user');
   } else{
     res.render('login', { 
