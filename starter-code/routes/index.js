@@ -30,13 +30,12 @@ router.post("/sign-up", async (req, res, next) => {
   }
   
   
-  await User.findOne({name})
-      .then(user => {
-        if (user !== null) {
-          res.render("sign-up", {
+  const findUser = await User.findOne({name})
+        if (findUser !== null) {
+          return res.render("sign-up", {
             errorMessage: "The username already exists!"
           });
-          return;
+  
         }
   
     
@@ -46,14 +45,13 @@ router.post("/sign-up", async (req, res, next) => {
   const userName = new User({name, lastName, password:hashPass})
 
 
-   userName.save()
+   await userName.save()
 
    console.log(user)
    res.render('sign-up-successfully')
  
   });
 
-});
 
 ////////////////////////////////////////////////
 
@@ -77,13 +75,12 @@ router.post("/login", async (req, res, next) => {
  }
 
 
-await User.findOne({name})
-.then(user => {
-  if(!user){
-    res.render('login', {
+const findUser = await User.findOne({name})
+  if(!findUser){
+    return res.render('login', {
       errorMessage: 'The username does not exist'
     });
-    return;
+
   }
   if(bcrypt.compareSync(password, user.password)){
     req.session.currentUser = user;
@@ -93,8 +90,6 @@ await User.findOne({name})
       errorMessage : 'Incorrect password'
     })
   }
-});
-
 });
 
 //////////////////////////////////////
