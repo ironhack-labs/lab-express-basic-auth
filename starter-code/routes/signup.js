@@ -7,16 +7,19 @@ router.get('/', (req,res)=>{
 })
 
 router.post('/', (req,res)=>{
-    console.log(req.body)
-    User.create({
-        username:req.body.username,
-        password:req.body.password
-    })
-    .then(()=>{
-        res.redirect('/login')
-
-    })
-    .catch(err=>res.send(err))
+    if (req.body.password.length < 5 || req.body.username.length < 5){
+        res.render('tryagain')
+    } else {
+        User.create({
+            username:req.body.username,
+            password:req.body.password
+        })
+        .then(()=>{
+            res.redirect('/login')
+    
+        })
+        .catch(err=>res.send(err))
+    }
 })
 
 module.exports = router;
