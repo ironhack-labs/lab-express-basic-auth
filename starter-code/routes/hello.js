@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 
 /* GET home page */
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/hello', (req, res) => {
+  res.render('hello');
 });
 
 module.exports = app;
