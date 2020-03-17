@@ -26,7 +26,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 const index = require('./routes/index');
-const usersRouter = require("./routes/private");
+const privateRouter = require("./routes/private");
 
 
 // Middleware Setup
@@ -71,7 +71,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 app.use('/', index);
-app.use("/user", usersRouter);
+app.use("/user", privateRouter);
 
 
 
