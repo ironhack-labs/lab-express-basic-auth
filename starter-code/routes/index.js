@@ -68,7 +68,7 @@ router.post("/login", async (req, res, next) => {
   
   const {name, password} = req.body;
 
-  if(name === '' || password === {password}) {
+  if(name === '' || password === '') {
     res.render('login', { errorMessage :'Do it correctly idiot!'
    });
    return;
