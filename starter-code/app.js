@@ -11,7 +11,10 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/starter-code', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+  })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -30,6 +33,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// app.use(middleWareExample2);
+// app.use('/books', protect);
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -44,6 +50,29 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+// function protect(req, res, next) {
+//   if (req.session.currentUser) next();
+//   else res.redirect('/user/login');
+// }
+// // middleware definition
+// function middleWareExample2(req, res, next) {
+//   console.log('middle');
+//   next();
+// }
+
+app.use(
+  session({
+    secret: 'basic-auth-secret',
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, 
+    }),
+  })
+);
 
 
 // default value for title local
@@ -53,6 +82,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+app.use('/user', require('./routes/user'));
 
 
 module.exports = app;
+
+app.listen(3000, () => {
+  console.log('Express is listening on', 3000);
+});
