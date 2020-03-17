@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router(); // Router is like a lightweight app. You can use it exactly the same way except you can't listen on it. 
 const User = require("../models/User");
 
-router.get("/signup", (req, res) => {
-  res.render("views/signup.hbs");
+router.get("/signup", (req, res) => { //url 
+  res.render("user/signup.hbs"); //filename
 })
 
 router.post("/signup", (req, res) => {
@@ -19,7 +19,7 @@ router.post("/signup", (req, res) => {
       password: password
     })
     .then((user) => {
-      res.redirect("/user/login"); // instruct the browser to make a get request to /user/login (http://localhost:3000 is implicit)
+      res.redirect("/login"); // instruct the browser to make a get request to /user/login (http://localhost:3000 is implicit)
     })
     .catch((err) => {
       res.send("user not created", err);
@@ -28,7 +28,7 @@ router.post("/signup", (req, res) => {
 
 
 router.get("/login", (req, res) => {
-  res.render("user/login");
+  res.render("user/login.hbs");
 })
 
 router.post("/login", (req, res) => {
@@ -48,12 +48,30 @@ router.post("/login", (req, res) => {
         // log the user in by starting a session;
         // redirect the user to a section of the site that is normally protected
         req.session.currentUser = user;
-        res.redirect("/user/profile");
+        res.redirect("/profile");
       }
     })
     .catch((err) => {
       res.send("Error, not logged in.")
     })
 })
+
+router.get("/profile", (req, res) => { //url 
+  res.render("user/profile.hbs"); //filename
+})
+
+router.get("/main", (req, res) => {
+  res.render("main.hbs");
+})
+
+router.get("/private", (req, res) => {
+  res.render("private.hbs");
+})
+
+
+router.get("/index", (req, res) => {
+  res.render("index.hbs");
+})
+
 
 module.exports = router;
