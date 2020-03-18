@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {
+  .connect(process.env.db, {
     useNewUrlParser: true,
     useUnifiedTopology: true 
   })
@@ -72,12 +72,18 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/user', require('./routes/user'));
 
+//Error file
 app.use((err, req, res, next)=>{
   res.render("error.hbs", {message: err});
 })
 
 module.exports = app;
 
-app.listen(3000, () => {
-  console.log('Express is listening on', 3000);
+
+app.listen(process.env.PORT, () => {
+  console.log('Express is listening on', process.env.PORT);
 });
+
+// app.listen(3000, () => {
+//   console.log('Express is listening on', 3000);
+// });
