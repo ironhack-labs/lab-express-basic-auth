@@ -2,11 +2,15 @@ const express = require("express");
 const app = express();
 // const router = express.Router();
 const User = require("../models/User");
+const bcrypt         = require("bcrypt");
+const bcryptSalt     = 10;
 
 ////SIGN UP
 app.get("/signup", (req, res) => {
   res.render("users/signup");
 });
+
+
 
 app.post("/signup", (req, res) => {
   const username = req.body.username;
@@ -32,9 +36,11 @@ app.post("/signup", (req, res) => {
     }
     else {
       console.log("Creating user")
+      const salt     = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
       User.create({
         username: username,
-        password: password
+        password: hashPass
       })
       .then(user => {
         console.log("User created")
@@ -64,25 +70,30 @@ app.post("/login", (req, res, next) => {
     return;
   }
 
-  User.findOne({ username: username })
+  User
+    .findOne({ username: username })
     .then(user => {
       if (!user) {
         res.render("users/login", {
           errorMessage: "Invalid credentials"
         });
-      } else if (user.password !== password) {
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/protected/main");
+      }
+      else {
         res.render("users/login", {
           errorMessage: "Invalid credentials"
         });
-      } else {
-        req.session.currentUser = user;
-        res.redirect("/protected/main");
       }
     })
     .catch(error => {
       next(error);
     });
 });
+
 
 
 ///LOG OUT
