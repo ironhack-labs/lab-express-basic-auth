@@ -11,7 +11,7 @@ const path = require('path');
 
 //DB connection
 mongoose
-  .connect('mongodb://localhost/starter-code', {
+  .connect(process.env.db, {
     useNewUrlParser: true
   })
   .then(x => {
@@ -27,17 +27,19 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 //sessionstuff
-const session    = require("express-session");
+const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 app.use(session({
-    secret: "basic-auth-secret",
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
-    })
-  }));
+  secret: "basic-auth-secret",
+  cookie: {
+    maxAge: 60000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -70,6 +72,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index');
 app.use('/', index);
 
-
+//error handling
+app.use(function (err, req, res, next) {
+  res.render('error.hbs'), {
+    err: message
+  }
+})
 
 module.exports = app;

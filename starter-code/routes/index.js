@@ -1,47 +1,59 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
-
+const bcrypt = require("bcrypt");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 //signup Create
-router.get("/signup", (req, res) => {
+router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
-router.post("/signup", (req, res) => {
-  const {
-    username,
-    password
-  } = req.body;
+router.post("/signup", (req, res, next) => {
+  // const {
+  //   username,
+  //   password
+  // } = req.body;
+  const username = req.body.username;
+  const password = req.body.password;
+
   if (username === "" || password === "") {
     res.render("signup", {
       errorMessage: "Indicate a username and a password to sign up"
     });
     return;
   }
-  User.create({
-      username,
-      password
-    })
-    .then(() => {
-      res.redirect("/login");
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  bcrypt.hash(password, 10, function (err, hash) {
+    console.log(hash)
+    if (err) next('hashing error')
+    else {
+      User.create({
+          username: username,
+          password: hash
+        })
+        .then(() => {
+          res.redirect("/login");
+        })
+        .catch(error => {
+          next(err.message)
+          // console.log(error);
+        })
+    }
+  })
 });
 //login
-router.get("/login", (req, res) => {
+router.get("/login", (req, res, next) => {
   res.render("login");
 });
-router.post("/login", (req, res) => {
-  const {
-    username,
-    password
-  } = req.body;
+router.post("/login", (req, res, next) => {
+  // const {
+  //   username,
+  //   password
+  // } = req.body;
+  const username = req.body.username;
+  const password = req.body.password;
   if (username === "" || password === "") {
     res.render("login", {
       errorMessage: "Please enter both, username and password to sign up."
@@ -52,15 +64,19 @@ router.post("/login", (req, res) => {
       username
     })
     .then((user) => {
-      if (!user) res.send("invalid credentials.")
-      else if (user.password !== password) res.send("invalid credentials.");
-      else {
-        req.session.currentUser = user;
-        res.redirect("/main");
-      }
+      if (!user) res.send("no user.")
+      bcrypt.compare(password, user.password, function (err, correctPassword) {
+        if (err) next('hash compare error');
+        else if (!correctPassword) res.send('wrong pass');
+        else {
+          req.session.currentUser = user;
+          res.redirect('/main');
+        }
+      });
     })
     .catch((err) => {
-      res.send("Error, not logged in.")
+      next(err.message)
+      // res.send("Error, not logged in.")
     })
 })
 
