@@ -13,9 +13,10 @@ const MongoStore = require("connect-mongo")(session);
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 const app = express();
+require('dotenv').config();
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {
+  .connect(process.env.db, {
     useNewUrlParser: true
   })
   .then(x => {
@@ -77,9 +78,15 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/', require('./routes/user.js')) // routes file
 
+app.use((err, req, res, next) => {
+  res.render("error.hbs", {
+    message: err
+  })
+})
 
-app.listen(3010, () => {
-  console.log("Express is listening on", 3010);
+
+app.listen(process.env.PORT, () => {
+  console.log("Express is listening on", process.env.PORT);
 })
 
 

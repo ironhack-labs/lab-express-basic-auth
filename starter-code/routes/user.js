@@ -31,7 +31,7 @@ router.get("/login", (req, res) => {
   res.render("user/login.hbs");
 })
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   const {
     username,
     password
@@ -52,7 +52,7 @@ router.post("/login", (req, res) => {
       }
     })
     .catch((err) => {
-      res.send("Error, not logged in.")
+      next("login is a complete shitshow")
     })
 })
 
