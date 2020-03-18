@@ -16,7 +16,7 @@ const MongoStore = require("connect-mongo")(session);
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect(process.env.db, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -77,9 +77,15 @@ app.use('/', require('./routes/main'))
 
 // app.use('/main', require('./routes/main'))
 
-app.listen(3000, ()=>{
-  console.log('listening')
+app.use((err,req,res,next)=>{
+  res.render('error', {message:err})
 })
+
+app.listen(process.env.PORT, ()=>{
+  console.log('listening', process.env.PORT)
+})
+
+
 
 
 module.exports = app;

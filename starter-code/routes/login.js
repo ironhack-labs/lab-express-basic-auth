@@ -16,9 +16,12 @@ router.post('/', (req,res)=>{
         if (!user) res.render('incorrect')
         else if (user.password !== req.body.password) res.render('incorrect')
         else {
-            req.session.currentUser = user //UnhandledPromiseRejectionWarning: TypeError: Cannot set property 'currentUser' of undefined
+            req.session.currentUser = user
             res.redirect('/main')
         }
+    })
+    .catch(err=>{
+        next('eroor in database')
     })
 })
 
