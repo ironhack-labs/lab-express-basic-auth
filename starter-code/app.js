@@ -17,7 +17,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect(process.env.db, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -43,11 +43,6 @@ app.use('/main',protect);
 app.use('/private',protect);
 
 // Express View engine setup
-app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
       
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -61,8 +56,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 // Routs
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
-app.use('/main', require('./routes/main'));
-app.use('/private', require('./routes/private'));
+
 
 // middleware definition
 function protect (req,res,next){ 
@@ -73,5 +67,10 @@ function protect (req,res,next){
   }
 }
 
+app.use((err, req, res, next)=>{
+  res.render("error.hbs", {errorMessage:err});
+})
+
 module.exports = app;
+
 

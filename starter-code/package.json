@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-nodemon": "nodemon ./bin/www -e 'hbs js css'",
     "dev": "DEBUG=starter-code:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
@@ -15,6 +16,7 @@
     "express": "^4.16.3",
     "express-session": "^1.17.0",
     "hbs": "^4.0.1",
+    "mongo-connect": "0.0.6",
     "mongoose": "^5.2.10",
     "morgan": "^1.9.0",
     "node-sass-middleware": "^0.11.0",

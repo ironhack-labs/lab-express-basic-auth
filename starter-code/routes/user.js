@@ -2,12 +2,23 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
+router.get('/main', (req, res) => {
+  res.render('main');
+});
+
+router.get('/private', (req,res)=>{
+  // console.log(req.session.currentUser.username);
+  let userName = req.session.currentUser.username;
+  res.render('private',{
+    welcomeMessage: `Welcome ${userName}`
+  })
+})
 
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res) => {
+router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   // const {username, password} = req.body;
@@ -40,7 +51,8 @@ router.post("/signup", (req, res) => {
     res.redirect("/user/login");
   })
   .catch((error) => {
-    console.log("user not created",error);
+    console.log("user was not created",error);
+    next("user was not created");
   })
 
 })
@@ -75,7 +87,7 @@ router.post("/login", (req, res) => {
       if (password === user.password) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/private");
+        res.redirect("/user/private");
       } else {
         res.render("auth/login", {
           errorMessage: "Invalid credentials!"
