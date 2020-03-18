@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const bcrypt = require('bcrypt');
 
 router.get('/main', (req, res) => {
   res.render('main');
@@ -38,21 +39,26 @@ router.post("/signup", (req, res, next) => {
         });
         return;
       } else {
-        User.create({
-          username: username, 
-          password: password 
-        })
-        .then((user) => {
-          res.redirect("/user/login");
-        })
-        .catch((error) => {
-          console.log("user was not created",error);
-          next("user was not created");
-        })
+        bcrypt.hash(password, 10, function(err, hash){
+          if (err) next('Problem in creating hashed password!');
+          else {
+            User.create({
+              username: username, 
+              password: hash 
+            })
+            .then((user) => {
+              res.redirect("/user/login");
+            })
+            .catch((error) => {
+              console.log("user was not created",error);
+              next("user was not created");
+            })
+          }
+        }) 
       }
     })
     .catch((error) => {
-      next(error);
+      next('Error occured during signup!');
     }); 
         
   
@@ -65,12 +71,10 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   // const {username, password} = req.body;
-
-
   if (username === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Indicate a username and a password to login"
@@ -79,26 +83,25 @@ router.post("/login", (req, res) => {
   }
 
   User.findOne({ username }) // short hand notation for {username: username}
-  .then(user => {
-      if (!user) {
-        res.render("auth/login", {
-          errorMessage: "Invalid credentials!"
-        });
-        return;
-      }
-      if (password === user.password) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect("/user/private");
-      } else {
-        res.render("auth/login", {
-          errorMessage: "Invalid credentials!"
-        });
-      }
-  })
-  .catch((error) => {
-    next("Error, not logged in.");
-  });
+    .then(user => {
+        if (!user) {
+          res.render("auth/login", {errorMessage: "Invalid credentials!"});
+          return;
+        }
+        bcrypt.compare(password, user.password, function(err, result){
+          if (err) next('Error occured in comparing hashes!')
+          else if (result) {
+            req.session.currentUser = user;
+            res.redirect("/user/private");
+          } else {
+            res.render("auth/login", {errorMessage: "Invalid credentials!"});
+          }    
+        })   
+    })
+    .catch((error) => {
+      console.log(error);
+      next("Error, not logged in.",error);
+    });
 })
 
 

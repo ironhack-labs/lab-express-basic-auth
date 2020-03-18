@@ -9,6 +9,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.18.3",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.3",
