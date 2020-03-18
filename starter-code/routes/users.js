@@ -10,8 +10,6 @@ app.get("/signup", (req, res) => {
   res.render("users/signup");
 });
 
-
-
 app.post("/signup", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -93,8 +91,6 @@ app.post("/login", (req, res, next) => {
       next(error);
     });
 });
-
-
 
 ///LOG OUT
 app.get("/logout", (req, res, next) => {
