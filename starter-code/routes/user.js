@@ -30,30 +30,32 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  User.findOne({ username })
+  User.findOne({ username:username })
     .then(user => {
       if (user !== null) {
         res.render("auth/signup", {
           errorMessage: "The username already exists!"
         });
         return;
+      } else {
+        User.create({
+          username: username, 
+          password: password 
+        })
+        .then((user) => {
+          res.redirect("/user/login");
+        })
+        .catch((error) => {
+          console.log("user was not created",error);
+          next("user was not created");
+        })
       }
     })
     .catch((error) => {
       next(error);
     }); 
         
-  User.create({
-    username: username, 
-    password: password 
-  })
-  .then((user) => {
-    res.redirect("/user/login");
-  })
-  .catch((error) => {
-    console.log("user was not created",error);
-    next("user was not created");
-  })
+  
 
 })
     
