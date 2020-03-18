@@ -7,7 +7,7 @@ router.get("/signup", (req, res) =>{
     res.render("user/signup.hbs");
 })
 
-router.post("/signup", (req, res)=>{
+router.post("/signup", (req, res, next)=>{
     const {username, password} = req.body;
     User
     .create({
