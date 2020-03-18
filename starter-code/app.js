@@ -9,6 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+hbs.registerPartials(__dirname + "/views/partials");
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})

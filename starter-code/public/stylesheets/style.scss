@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* background-color: #cbcccc; */
   font-family: 'Bellota Text', cursive;
@@ -8,6 +7,10 @@ body {
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
+}
+
+h1{
+margin-top: 20px;
 }
 
 .main {
@@ -20,7 +23,8 @@ body {
 .main h1 {
   color: white;
     font-weight: bold;
-    font-size: 15vh;
+    font-size: 10vh;
+    margin-bottom: 20px;
 }
 
 .main button {
@@ -30,6 +34,7 @@ body {
 #login-form{
   margin-top: 50px;
   background-color: aliceblue;
+  padding: 15px;
 }
 
 .error-message {
@@ -39,4 +44,22 @@ body {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+
+.account-message{
+margin-top: 10px;
+}
+
+#protected h1 {
+  color: white;
+    font-weight: bold;
+    font-size: 6vh;
+}
+
+#protected .btn{
+ margin: 0px 10px;
+}
+
+.giphy-embed {
+  margin: 45px;
 }
