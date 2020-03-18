@@ -62,11 +62,25 @@ app.use(session({
     })
   }));
 
+function protect(req,res,next){
+  if(req.session.currentUser) next();
+  else res.redirect("/login");
+}
+
 
 const index = require('./routes/index');
 app.use('/', index);
 app.use("/signup", require("./routes/signup"));
 app.use("/login", require("./routes/login"))
-app.use("/profile", require("./routes/profile"))
+
+app.use("/main", protect); 
+app.use("/main", require("./routes/main"))
+
+app.use("/private", protect); 
+app.use("/private", require("./routes/private"))
+
+app.use((err, req, res, next)=> {
+  res.render("error.hbs", {message: err});
+})
 
 module.exports = app;

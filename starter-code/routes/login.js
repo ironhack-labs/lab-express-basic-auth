@@ -22,7 +22,7 @@ router.post("/", (req,res,next)=> {
                 else if(!correctPassword) res.send("invalid credentials.");
                 else {
                     req.session.currentUser = user;
-                    res.redirect("/profile");
+                    res.redirect("/main");
                 }
             });
         }
