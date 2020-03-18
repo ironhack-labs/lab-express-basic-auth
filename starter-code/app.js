@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/lab-basic-auth', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -23,6 +23,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -49,10 +50,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 
+    })
+  }));
 
 
 const index = require('./routes/index');
 app.use('/', index);
-
+app.use("/signup", require("./routes/signup"));
+app.use("/login", require("./routes/login"))
+app.use("/profile", require("./routes/profile"))
 
 module.exports = app;
