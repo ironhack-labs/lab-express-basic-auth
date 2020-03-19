@@ -1,0 +1,67 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+#container{
+  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  padding: 20px;
+} 
+
+.main{
+  background-image: url(https://previews.123rf.com/images/redcollegiya/redcollegiya1804/redcollegiya180400168/98989023-welcome-lettering-on-blurred-flowers-bouquet-background-colorful-balloons-flowers.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}  
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 7px;
+  background-color: gray;
+  padding: 20px;
+}
+.loginform {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.border-box{
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button{
+  width: 60%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
