@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const multer = require('multer');
 
 mongoose
   .connect(process.env.db, {
@@ -28,6 +29,7 @@ const app = express();
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+app.use(express.static('uploads'));
 
 app.use(session({
     secret: 'basic-auth-secret',
@@ -84,6 +86,8 @@ app.listen(process.env.PORT, () => {
   console.log('Express is listening on', process.env.PORT);
 });
 
+
+//This I do not need, since I do not listen to it directly but I have it directed from the bin and .env
 // app.listen(3000, () => {
 //   console.log('Express is listening on', 3000);
 // });
