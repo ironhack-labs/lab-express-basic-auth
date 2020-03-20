@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
 
+
 router.get('/main', (req, res) => {
   res.render('main');
 });
@@ -103,6 +104,24 @@ router.post("/login", (req, res, next) => {
       next("Error, not logged in.",error);
     });
 })
+
+
+router.get("/username-exists/:username", (req, res) => {
+  User.findOne({username:req.params.username})
+    .then((user) => {
+      if (user) res.json({exists:true})
+      else res.json({exists:false})
+    })
+    .catch((error) => {
+      res.json({error:error.message});
+    })
+});
+
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
 
 
 module.exports = router;

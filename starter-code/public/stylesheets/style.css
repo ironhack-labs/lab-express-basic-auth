@@ -5,4 +5,12 @@ body {
 a {
   color: #00B7FF; }
 
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -2,11 +2,32 @@
   <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
 <form id="form" action="/user/signup" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Your username" required><br>
+    <label for="username">Username: (please only use alphnumeric characters)</label>
+    <input type="text" id="username" pattern="^[A-Za-z0-9]+$" name="username" placeholder="Your username" required><br>
+    <div>
+      <p id="username-validation-message"></p>
+    </div>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="********" required><br>
+    <label for="password">Password: (Make sure it contains at least one letter, one digit, and one special character, and is at least 8 charachters long.)</label>
+    <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$" placeholder="********" required><br>
 
     <button type="submit">Create account</button>
   </form>
+
+  <script>
+    let $userName = document.getElementById("username");
+    let $validationMessage = document.getElementById("username-validation-message")
+    $userName.addEventListener("blur", (event) => {
+      let usernameValue = $userName.value;
+      axios.get(`/user/username-exists/${usernameValue}`)
+        .then((response)=>{
+          if (response.data.exists) {
+            $validationMessage.innerHTML = "This username is taken!";
+            $validationMessage.className = "negative";
+          } else {
+            $validationMessage.innerHTML = "This username is available."
+            $validationMessage.className = "positive";
+          }
+        })
+    })
+  </script>
