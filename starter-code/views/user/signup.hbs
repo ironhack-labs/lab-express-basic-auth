@@ -1,5 +1,17 @@
+<h1>Sign up to create an account</h1>
+
 <form action="/signup" method="POST">
     <input type="text" required name="username" placeholder="username" />
-    <input type="password" required name="password" placeholder="password" />
+    <input id="password "type="password" required name="password" placeholder="password" />
     <button type="submit">Sign up</button>
 </form>
+
+<div id="pswd_info">
+    <h4>Password must meet the following requirements:</h4>
+    <ul>
+        <li id="letter" class="invalid">At least <strong>one letter</strong></li>
+        <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+        <li id="number" class="invalid">At least <strong>one number</strong></li>
+        <li id="length" class="invalid">Be at least <strong>8 characters</strong></li>
+    </ul>
+</div>
