@@ -8,6 +8,22 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+
+const bcrypt     = require("bcrypt");
+const saltRounds = 10;
+
+const plainPassword1 = "HelloWorld";
+const plainPassword2 = "helloworld";
+
+const salt  = bcrypt.genSaltSync(saltRounds);
+const hash1 = bcrypt.hashSync(plainPassword1, salt);
+const hash2 = bcrypt.hashSync(plainPassword2, salt);
+
+console.log("Hash 1 -", hash1);
+console.log("Hash 2 -", hash2);
 
 
 mongoose
@@ -29,6 +45,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60 * 1000 }, // 60 seconds
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    resave: true,
+    saveUninitialized: false,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 // Express View engine setup
 
@@ -53,6 +80,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const router = require('./routes/auth');
+app.use('/', router);
 
 
 module.exports = app;
