@@ -1,8 +1,6 @@
 const express = require("express")
 const router = express.Router();
-
 const User = require("../models/user")
-
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10;
 
@@ -15,6 +13,7 @@ router.get("/signup", (req,res,next)=> {
 router.post("/signup", (req,res,next)=> {
     const username  =   req.body.username
     const password  =   req.body.password
+    const email     =   req.body.email
     const salt      =   bcrypt.genSaltSync(bcryptSalt)
     const hashPass  =   bcrypt.hashSync(password,salt)
     
@@ -35,13 +34,12 @@ router.post("/signup", (req,res,next)=> {
           });
           return;
         }
-    });
 
-    
 // If the username is filled and the username doesnot exists in the database, user is created once the user clicks on the register button. 
     User.create({
         username,
-        password: hashPass
+        password: hashPass,
+        email
     })
     .then(() => {
         res.redirect("/")
@@ -50,8 +48,62 @@ router.post("/signup", (req,res,next)=> {
         console.log(error)
     })
 
+})
+.catch(error => {
+    console.log (error)
+})
+
 });
 
+
+//Login route
+
+router.get ("/login", (req,res,next) => {
+    res.render("auth/login")
+})
+
+router.post("/login", (req,res,next) => {
+
+    const username = req.body.username
+    const password = req.body.password;
+
+    if (username === "" || password === ""){
+        res.render("auth/signup", {
+            errorMessage: "Please provide your username and password"
+        });
+        return;
+    }
+
+    User.findOne({"username": username})
+    .then(user => {
+        if (!user) {
+            res.render("auth/login", {
+                errorMessage: "The Username is invalid"
+            });
+            return
+        }
+
+        if(bcrypt.compareSync(password, user.password)){
+            req.session.currentUser = user; 
+            res.redirect("/member"); 
+        } else {
+
+            res.render("auth/login", {
+                errorMessage: "Incorrect Password"
+            })
+        }
+    })
+    .catch(error => {
+        next(error)
+    })
+})
+
+
+router.get ("/logout", (req, res, next) =>{
+    req.session.destroy((err) => {
+        res.redirect("/login")
+    })
+})
 
 //Export the module. 
 
