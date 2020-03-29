@@ -8,5 +8,5 @@ const loginSchema = new Schema({
   password: String
 });
 
-const Login = mongoose.model('Login', loginSchema);
-module.exports = Login;
+const User = mongoose.model('User', loginSchema);
+module.exports = User;

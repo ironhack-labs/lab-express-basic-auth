@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 
 mongoose
   .connect('mongodb://localhost/authenticationDB', {useNewUrlParser: true})
@@ -37,6 +40,22 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+//Create middleware to enable session
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+//Protect Function
+function protect(req,res,next){
+  if(req.session.currentUser) next();
+  else res.redirect("/");
+}
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -46,10 +65,21 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/signup"));
 app.use("/", require("./routes/hello"));
+app.use("/", require("./routes/login"));
+app.use("/", require("./routes/profile"));
+app.use("/main", protect);
+app.use("/", require("./routes/main"));
+app.use("/private", protect);
+app.use("/", require("./routes/private"));
+
+
+
+
 
 
 //Server
-app.set("PORT", 3002);
+
+app.set("PORT", 3000);
 app.listen(app.get("PORT"), ()=> {
   console.log("app listening on", app.get("PORT"));
 })
