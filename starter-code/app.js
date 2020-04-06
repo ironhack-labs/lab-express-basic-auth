@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+//AUTH CONNECTION
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -37,7 +40,16 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
+//USE AUTH
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 * 30},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -47,12 +59,16 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Sign Up';
 
+//Express - Generated with IronGenerator
 
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/', auth);
 
 
 module.exports = app;

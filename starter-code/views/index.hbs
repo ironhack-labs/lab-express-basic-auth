@@ -1,2 +1,27 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" 
+      placeholder="Your username" required>
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password"
+      placeholder="********" required minlength="6"
+       maxlength="8" pattern="[0-9a-fA-F]{4,8}"> 
+
+    {{!-- {{#if errorMessage}}
+  
+    <div class="error-message">
+    {{errorMessage}}
+    </div>
+    {{/if}} --}}
+
+    <button type="submit">Create account</button>
+
+    <p class="account-message">
+    Already have an account? <a href="/login">Login</a>
+    </p>
+  </form>
