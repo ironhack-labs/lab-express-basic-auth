@@ -1,0 +1,14 @@
+<form action="/signup" method="POST">
+    <h1>Sign Up</h1>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="myPassword" required>
+    <button>Create Account</button>
+    {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+    {{/if}}
+    <p>Already have an account?<a href="/login">Log in</a></p>
+</form>
+
+<script type="text/javascript" src="/javascript/js.js"></script>

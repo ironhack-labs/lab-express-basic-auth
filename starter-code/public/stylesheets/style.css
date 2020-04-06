@@ -1,0 +1,14 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.invalid {
+  border: 2px solid red; }
+
+.gato-img {
+  width: 40vw; }
+
+/*# sourceMappingURL=style.css.map */

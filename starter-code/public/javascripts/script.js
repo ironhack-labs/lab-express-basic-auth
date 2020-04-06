@@ -1,5 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
+const inputs = document.querySelectorAll('input')
+const buttons = document.querySelectorAll('button')
 
-  console.log('IronGenerator JS imported successfully!');
+// buttons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     inputs.forEach(input => {
+//       if(input.innerHTML == ''){
+//         input.classList.add('invalid')
+//       }
+//     })
+//   })
+// })
 
-}, false);
+// inputs.forEach(input => {
+//   input.addEventListener('change', () => {
+//       input.classList.remove('invalid')
+//   })
+// })
