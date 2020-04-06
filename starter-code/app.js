@@ -8,10 +8,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/users-db', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -31,6 +32,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Express View engine setup
+
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 * 30},
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
