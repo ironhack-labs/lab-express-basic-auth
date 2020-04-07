@@ -1,10 +1,17 @@
-<form id="myform" action="/signup" method="POST" >
-    <h2> Sign up</h2>
-    <label for="username">Username</label>
-    <input type="text" name="username" required="required" placeholder="Insert yout username">
-    <br>
-    <label>Password</label>
-    <input type="password" id="myPassword" name="password" required="required" placeholder="*******">
-    <br>
+<div>
+
+<form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" required="required" placeholder="Please create your username">
+
+    <label id="myPassword" for="password">Password</label><br>
+    <input type="password" name="password" required="required" placeholder="********">
+    
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
     <button type="submit">Create account</button>
 </form>
+</div>
+
