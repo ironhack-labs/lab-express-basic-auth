@@ -36,5 +36,10 @@ exports.signupProcess = async (req, res) => {
     password: hashPass,
   });
   // 6. responder al usuario
-  res.redirect(`/${username}`);
+  res.redirect('/login');
+  
+};
+
+exports.loginView = (req, res) => {
+  res.render('auth/login');
 };
