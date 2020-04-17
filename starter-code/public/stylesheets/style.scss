@@ -1,8 +1,17 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#error-message{
+  background-color: pink;
+  margin-top: 20px;
+  border-radius: 4px;
+  vertical-align: auto;
+}p{
+  color: green;
+  padding: 10px;
 }

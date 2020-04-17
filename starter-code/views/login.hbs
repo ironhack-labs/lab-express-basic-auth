@@ -1,0 +1,23 @@
+<div class="row justify-content-center">
+
+  <div class="col-md-6">
+
+
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+      </div>
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" class="form-control strength strength_meter button_strength" id="pass" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Inicio</button>
+
+      <div id="error-message">
+        {{{errorMessage}}}
+      </div>
+
+    </form>
+  </div>
+</div>
