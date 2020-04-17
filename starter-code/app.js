@@ -30,6 +30,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+//
+
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+
+    app.use(session({
+        secret: "webmad0320",
+        cookie: { maxAge: 60000 },
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection,
+            ttl: 24 * 60 * 60 // 1 day
+        })
+    }))
+
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -50,7 +66,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-
+app.use('/', require('./routes/auth.routes'))
 const index = require('./routes/index');
 app.use('/', index);
 

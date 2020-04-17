@@ -1,31 +1,25 @@
-
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: 100;
-  font-family: sans-serif;
-}
+  font-family: sans-serif; }
 
 h1, h2, h3, h4 {
-  font-weight: 100;
-}
+  font-weight: 100; }
 
 nav {
-  margin-bottom: 60px;
-}
+  margin-bottom: 60px; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 #errorMsg {
-  margin-top: 20px;
-}
-
+  margin-top: 20px; }
 
 #errorMsg p {
   background-color: red;
   font-weight: 600;
   padding: 10px;
   text-align: center;
-  color: white;
-}
+  color: white; }
+
+/*# sourceMappingURL=style.css.map */
