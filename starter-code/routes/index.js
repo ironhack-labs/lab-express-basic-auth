@@ -10,7 +10,10 @@ router.get('/', (req, res, next) => {
 });
 
 
-// router.post('/signup',)
+// privada
+
+router.use((req, res, next) => req.session.currentUser ? next() : res.redirect('/auth/login'))
+router.get('/profile', (req, res, next) => res.render('profile', req.session.currentUser))
 
 
 module.exports = router;

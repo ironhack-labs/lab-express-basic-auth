@@ -8,7 +8,8 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-
+const session = require('express-session')
+const mongoStore = require('connect-mongo')(session)
 
 mongoose
   .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
@@ -29,6 +30,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'basic-auth-secret',
+  cookie: { maxAge: 60000 },
+  store: new mongoStore({ mongooseConnection: mongoose.connection, ttl: 24 * 60 * 60 })
+}))
+
+
 
 // Express View engine setup
 
@@ -53,9 +61,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
-app.use('/', require('./routes/user'))
+app.use('/auth', require('./routes/user'))
 
 
 module.exports = app;
 
-app.listen(process.env.PORT, () => console.log('🏃‍ on port', process.env.PORT));
+// app.listen(process.env.PORT, () => console.log('🏃‍ on port', process.env.PORT));
