@@ -1,41 +1,40 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
+
+
+exports.mainView = (req, res) => {
+  res.render("auth/main");
+};
+
 exports.signupView = (req, res) => {
   res.render('auth/signup')
 }
 
 exports.signupProcess = async (req, res) => {
-  // 1. obtener la niformacion del formulario
   const { username, password } = req.body
-  //2. verificar que recibi la informacion correcta (no me mandaron algo vacio kbrones)
   if (username === '' || password === '') {
     return res.render('auth/signup', {
-      error: 'No seas cabron, dame la info que te pedi',
+      error: 'Missin info, try again..',
     })
     
   }
-  //3. Verificar si existe un usuario con ese correo
   const userInDB = await User.findOne({ username })
 
   if (userInDB !== null) {
     return res.render('auth/signup', {
-      error: 'ya te  registrastes wey, no te acuerdas ?... si no fuiste tu ya te jakiaron compa',
+      error: 'Username already taken, would you like to log in instead?',
     })
     
   }
-  //4. Hashear la contrasena
-  //4.1 Generar el salt
+ 
   const salt = bcrypt.genSaltSync(12)
   const hashPass = bcrypt.hashSync(password, salt)
-
-  //5. si existe devolver un error, si no creamos al usuario
 
   await User.create({
     username,
     password: hashPass,
   })
-  // 6. responder al usuario
   res.redirect('/login')
 }
 
@@ -46,23 +45,28 @@ exports.loginView = (req, res) => {
 exports.loginProcess = async (req, res) => {
   const { username, password } = req.body
   if (username === '' || password === '') {
-    return res.render('auth/login', { error: 'Los datos no pueden estar vacíos' })
+    return res.render('auth/login', { error: 'Please provide your log in credentials!' })
   }
 
   const userInDB = await User.findOne({ username })
   if (userInDB === null) {
-    return res.render('auth/login', { error: 'usuario no encontrado' })
+    return res.render('auth/login', { error: 'This user does not exist! </3' })
   }
 
   if (bcrypt.compareSync(password, userInDB.password)) {
     req.session.currentUser = userInDB
-    res.redirect('/main')
+    res.redirect('private')
   } else {
-    res.render('auth/login', { error: 'Intentalo de nuevo' })
+    res.render('auth/login', { error: 'Incorrect password try again' })
   }
 }
 
-exports.logout = async (req, res) => {
+
+exports.logoutProcess = async (req, res) => {
   await req.session.destroy()
   res.redirect('/')
+}
+
+exports.privateView = (req, res) => {
+  res.render('private', req.session.currentUser)
 }

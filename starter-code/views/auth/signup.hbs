@@ -1,3 +1,6 @@
+
+<p>Please Sign up</p>
+
 <form action="/signup" method="post">
   <label for="username">UserName .:</label>
   <input type="text" name="username" id="username">
@@ -11,6 +14,9 @@
   
   </label>
 </form>
+
+<p>Already have and account?: <a href="/login"> log in!</a></p>
+
 
 {{#if error}}
 <p style="color: red;">{{error}}</p>

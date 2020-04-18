@@ -1,20 +1,42 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-// import controller
-const { signupView, signupProcess, loginView, loginProcess } = require('../controllers/auth')
+// import controllers
+const {
+  signupView,
+  signupProcess,
+  logoutProcess,
+  loginView,
+  loginProcess,
+  mainView,
+  privateView,
+} = require('../controllers/auth');
 
-/* GET home page */
+// Middleware session
+function checkSession(req, res, next) {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
+
+// index page
 router.get('/', (req, res, next) => {
-  res.render('index')
-})
+  res.render('index');
+});
 
 // Auth routes
+router.get('/signup', signupView);
+router.post('/signup', signupProcess);
+router.get('/login', loginView);
+router.post('/login', loginProcess);
+router.get('/logout', logoutProcess);
 
-router.get('/signup', signupView)
-router.post('/signup', signupProcess)
+//
+router.get('/main', mainView);
+//router.get('/private ',checkSesion, privateView);
+router.get('/private',checkSession ,privateView );
 
-router.get('/login', loginView)
-router.get('/login', loginProcess)
 
-module.exports = router
+module.exports = router;
