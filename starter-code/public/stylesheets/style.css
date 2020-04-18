@@ -1,0 +1,58 @@
+body {
+  padding: 50px;
+  font-weight: 100;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00b7ff; }
+
+h1, h2, h3, h4 {
+  font-weight: 100; }
+
+nav {
+  margin-bottom: 60px; }
+
+/*--------------- STRENGTH PLUGGIN STYLE ----------------*/
+#errorMsg {
+  margin-top: 20px; }
+
+#errorMsg p {
+  background-color: red;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  color: white; }
+
+/*-----------------------------------------------------------*/
+/*--------------- STRENGTH PLUGGIN STYLE ----------------*/
+.strength_meter {
+  height: 23px;
+  width: 154px;
+  background: silver; }
+
+.strength_meter div {
+  height: 23px;
+  width: 100%;
+  height: 23px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  line-height: 23px; }
+
+.veryweak {
+  background-color: #FFA0A0;
+  border-color: #F04040 !important; }
+
+.weak {
+  background-color: #FFB78C;
+  border-color: #FF853C !important; }
+
+.medium {
+  background-color: #FFEC8B;
+  border-color: #FC0 !important; }
+
+.strong {
+  background-color: #C3FF88;
+  border-color: #8DFF1C !important; }
+
+/*# sourceMappingURL=style.css.map */
