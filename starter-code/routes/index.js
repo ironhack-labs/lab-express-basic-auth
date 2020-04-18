@@ -14,4 +14,6 @@ router.post('/signup', signupProcess)
 router.get('/login', loginView)
 router.post('/login', loginProcess)
 
+router.get('main', mainView)
+
 module.exports = router
