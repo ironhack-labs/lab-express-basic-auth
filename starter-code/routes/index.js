@@ -1,22 +1,20 @@
-const express = require('express');
-const router  = express.Router();
-
+const express = require('express')
+const router = express.Router()
 
 // import controller
-const { signupView, signupProcess, loginView, loginProcess } = require("../controllers/auth");
-
+const { signupView, signupProcess, loginView, loginProcess } = require('../controllers/auth')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
-});
+  res.render('index')
+})
 
 // Auth routes
 
-router.get("/signup", signupView);
-router.post("/signup", signupProcess);
+router.get('/signup', signupView)
+router.post('/signup', signupProcess)
 
-router.get("/login", loginView);
-roueter.get("/login", loginProcess);
+router.get('/login', loginView)
+router.get('/login', loginProcess)
 
-module.exports = router;
+module.exports = router
