@@ -57,8 +57,18 @@ exports.loginProcess = async (req, res) => {
   //4.Si existe verificamos si la contraseña coincide, si es asi, MAGIIAA, si no error
   if (bcrypt.compareSync(password, userInDB.password)) {
     req.session.currentUser = userInDB
+    console.log(req.session)
     res.redirect('/profile')
   } else {
-    res.render('auth/login', { error: 'estas seguro que es tu cuenta bro?' })
+    res.render('auth/login', { error: 'problemas con tu cuenta?' })
   }
 }
+
+
+exports.mainView = async (req, res) => {
+ res.render("main")
+}
+
+exports.profileView = async (req, res) => {
+  res.render("profile",req.session.currentUser )
+ }

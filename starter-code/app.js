@@ -8,7 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session      = require("express-session")
+const MongoStore   = require("connect-mongo")(session)
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -44,6 +45,19 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+// Configuracion de la sesion
+// const secretWord = require()
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60,
+    }),
+  })
+);
 
 
 // default value for title local
