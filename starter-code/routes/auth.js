@@ -22,10 +22,10 @@ router.post("/signin", (req, res)=>{
     }else{
         if(bcrypt.compareSync(password, foundedUser.password)){
           req.session.currentUser = foundedUser;
-          res.redirect("/");
+          res.redirect("/private");
         } else {
           req.flash("error", "Invalid credentials");
-          req.redirect("/auth/signin")
+          res.redirect("/auth/signin")
         }
     }
   })
