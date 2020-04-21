@@ -8,10 +8,15 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const flash = require('connect-flash'); 
+const session = require('express-session');
+
+const MongoStore = require("connect-mongo")(session);
+
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+  .connect('mongodb://localhost/user-example', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,6 +34,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+	session({
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		secret: 'ahard2craaaaackSeCret',
+		cookie: {
+			maxAge: 60000,
+		},
+		saveUninitialized: false,
+		resave: false,
+	})
+);
+
+app.use(flash());
+
 
 // Express View engine setup
 
@@ -53,6 +73,10 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+app.use('/auth', require('./routes/auth'));
+app.use('/main', require("./routes/main"))
+app.use('/private', require("./routes/private"))
 
 
 module.exports = app;

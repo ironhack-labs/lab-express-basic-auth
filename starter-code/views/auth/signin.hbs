@@ -1,0 +1,22 @@
+<form class="form" autocomplete="off" class="form" method="POST" action="/auth/signin">
+  <h2 class="title">Signin</h2>
+
+
+
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Your username">
+
+
+  
+    <label  for="password">Password</label>
+    <input type="password" name="password" placeholder="********">
+
+
+  <p>Don't have an account yet ? <a class="link" href="/auth/signup">Signup</a> !</p>
+
+  {{#if error}}
+  <p>{{error}}</p>
+  {{/if}}
+
+  <button type="submit">Log me In</button>
+</form>
