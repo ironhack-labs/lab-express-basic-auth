@@ -1,5 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    console.log('IronGenerator JS imported successfully!');
+  },
+  false
+);
 
-  console.log('IronGenerator JS imported successfully!');
+// const zxcvbn = require('zxcvbn');
+const password = document.getElementById('password');
+const meter = document.getElementById('password-strength-meter');
 
-}, false);
+password.oninput = function () {
+  const result = zxcvbn(password.value);
+  meter.value = result.score;
+};
