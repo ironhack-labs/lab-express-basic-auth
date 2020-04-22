@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  {{#each css}}
+  <link rel="stylesheet" href="/stylesheets/{{this}}.css">
+  {{/each}}
+  {{#each jsFull}}
+  <script src="{{this}}"></script>
+  {{/each}}
+  {{#each js}}
+  <script src="/javascripts/{{this}}.js"></script>
+  {{/each}}
+
 </head>
+
 <body>
+
+  <nav>
+    <a href="/">Home</a> |
+    {{#if isLogged}}<a href="/main">Main</a> | <a href="/private">Private</a> | <a href="/auth/logout">Logout</a>
+    {{else}}<a href="/auth/signup">SignUp</a> | <a href="/auth/login">Login</a>{{/if}}
+  </nav>
 
   {{{body}}}
 
-  <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

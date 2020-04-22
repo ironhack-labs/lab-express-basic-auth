@@ -1,0 +1,6 @@
+<form action="/auth/login" method="POST">
+  {{#if errorMessage}}<p>{{errorMessage}}</p>{{/if}}
+  <input type="text" id="username" name="username" value="toto" required="required">
+  <input type="password" id="password" name="password" value="zbouic" required="required">
+  <button>LOGIN</button>
+</form>
