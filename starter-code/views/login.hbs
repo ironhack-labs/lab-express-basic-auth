@@ -1,0 +1,13 @@
+<h2>Boom!</h2>
+
+<form action="/login" method="post">
+    <label for="add-username">Username</label>
+    <input type="text" name="username" id="add-username">
+
+    <label for="add-password">Password</label>
+    <input type="password" name="password" id="add-password">
+    <button type="submit">Login</button>
+</form>
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}

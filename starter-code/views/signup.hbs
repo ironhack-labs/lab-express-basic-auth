@@ -1,0 +1,13 @@
+<h1>Here!</h1>
+
+<form action="/signup" method="post">
+    <label for="add-username">Username</label>
+    <input type="text" name="username" id="add-username">
+
+    <label for="add-password">Password</label>
+    <input type="password" name="password" id="add-password">
+    <button type="submit">Signup</button>
+</form>
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
