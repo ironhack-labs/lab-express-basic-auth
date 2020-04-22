@@ -1,8 +1,35 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+input {
+  display: inline-block;
+  height: 25px;
+  margin: 10px;
+}
+
+.rating {
+  font-weight: bold;
+  border-radius: 0.25rem;
+  color: white;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 0.5rem !important;
+}
+
+.weakPassword {
+  background-color: #ef1111;
+}
+
+.moderatePassword {
+  background-color: #ffc700;
+}
+
+.strongPassword {
+  background-color: #22ba3e;
 }
