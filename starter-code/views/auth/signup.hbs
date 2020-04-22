@@ -1,0 +1,28 @@
+<h1 class="page-header">Sign up</h1>
+
+<form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input id="username" type="text" name="username" placeholder="Your username">
+
+    <label for="password">Password</label><br>
+    <input id="password" type="password" name="password" placeholder="********">
+
+    <button type="submit">Create account</button>
+
+    {{#if passwordStrength}}
+    <div id="password-strength">{{passwordStrength}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+    {{#if error}}
+    <div class="error-message">{{ error }}</div>
+    {{/if}}
+
+    <p class="account-message">
+        Already have an account? <a href="/login">Log in</a>
+    </p>
+
+</form>
