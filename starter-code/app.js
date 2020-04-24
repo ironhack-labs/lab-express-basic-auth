@@ -30,6 +30,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    // session is uninitialized when it is new but not modified - default is false
+    saveUninitialized: false,
+    //Forces the session to be saved back to the session store, 
+    // even if the session was never modified during the request.
+    resave: true,
+    store: new MongoStore({
+      //When the session cookie has an expiration date, connect-mongo will use it.
+      // Otherwise, it will create a new one, using ttl option.
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000
+    })
+  })
+);
+// end of session tooling
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -53,6 +75,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const authRoutes = require('./routes/auth');
+app.use('/', authRoutes);
 
 
 module.exports = app;

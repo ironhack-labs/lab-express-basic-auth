@@ -1,0 +1,21 @@
+
+
+
+
+<form id="myform" action="/login" method="post" accept-charset="utf-8"></form>
+<label for="username">Username:</label>
+<input type="text" name="username" id="username">
+
+<label for="password">Password:</label>
+<input id="myPassword" type="password" name="password" value="">
+
+
+<button type="submit">Log in</button>
+</form>
+
+{{#if message}}
+<p style="color: red">{{message}}</p>
+{{/if}}
+
+
+
