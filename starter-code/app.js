@@ -8,7 +8,13 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const session      = require("express-session");
+const MongoStore   = require("connect-mongo")(session);
+const flash        = require("connect-flash"); // Middleware that allows us to persist some data when redirecting.
+// https://www.npmjs.com/package/connect-flash
+// Flash messages are stored in the session. First, setup sessions as usual by enabling cookieParser and session middleware.
+// Then, use flash middleware provided by connect-flash.
+// With the flash middleware in place, all requests will have a req.flash() function that can be used for flash messages.
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
@@ -29,9 +35,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: {
+    maxAge: 600000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+app.use(flash()); // Flash will expose a flash() function on the request object.
+// This function is useful to pass information from one route to another.
+// The data is stored only for the time of the request.
+
 
 // Express View engine setup
-
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -51,8 +70,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
+
+app.use('/', require('./routes/auth-routes'));
+app.use('/', require('./routes/site-routes'));
 
 
 module.exports = app;

@@ -1,0 +1,14 @@
+<form autocomplete="off" id="form" action="/signup" method="POST">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Your username">
+    </div>
+    <div>
+        <label for="password">Password&nbsp;</label>
+        <input type="password" name="password" id="password" placeholder="********">
+    </div>
+        {{#if errorMessage}}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+    <button>Create account (｡◕‿◕｡)</button>
+</form>
