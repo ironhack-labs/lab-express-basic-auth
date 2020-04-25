@@ -33,17 +33,24 @@ const app = express();
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 app.use(cookieParser());
 
 app.use(
 	session({
 		secret: 'basic-auth-secret',
-		cookie: { maxAge: 60000 },
+		cookie: {
+			maxAge: 60000
+		},
 		store: new MongoStore({
 			mongooseConnection: mongoose.connection,
 			ttl: 24 * 60 * 60 // 1 day
-		})
+		}),
+		saveUninitialized: true,
+		resave: true
+
 	})
 );
 
@@ -67,12 +74,36 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
+// CHECK STATUS
+function checkloginStatus(req, res, next) {
+	res.locals.user = req.session.currentUser ? req.session.currentUser : null;
+	res.locals.isLoggedIn = Boolean(req.session.currentUser);
+	next();
+}
+
+function eraseSessionMessage() {
+	var count = 0;
+	return function (req, res, next) {
+		if (req.session.msg) {
+			if (count) {
+				count = 0;
+				req.session.msg = null;
+			}
+			++count;
+		}
+		next();
+	};
+}
+
+app.use(checkloginStatus);
+app.use(eraseSessionMessage());
+
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/', require('./routes/auth'));
-app.use('/', require('./routes/login'));
+// app.use('/', require('./routes/login'));
 // app.use('/', require('./routes/logout'));
 
-// Autorization
 
 module.exports = app;

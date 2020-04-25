@@ -4,7 +4,7 @@
 }
 
 body {
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -86,6 +86,77 @@ a {
 	text-decoration: none;
 }
 
-.nav-list > *:not(:last-child) {
+.nav-list>*:not(:last-child) {
 	margin-right: 10px;
+}
+
+.home-container {
+	height: 95vh;
+	width: 100vw;
+	background-image: url("../images/home.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.home-container2 {
+	height: 95vh;
+	width: 100vw;
+	background-image: url("../images/cat.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.home-container h1 {
+	color: white;
+	text-align: center;
+	line-height: 80vh;
+	font-weight: 500;
+	font-size: 5em;
+}
+
+.home-container2 h1 {
+	color: white;
+	// line-height: 80vh;
+	font-weight: 500;
+	font-size: 5em;
+}
+
+.home-container2 div {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 80vh;
+}
+
+.btn {
+	text-align: center;
+	margin: 0 auto;
+	padding: 15px;
+	background-color: red;
+	border-radius: 6px;
+	text-decoration: none;
+	color: white;
+}
+
+
+.private-container {
+	text-align: center;
+}
+
+.private-container h1 {
+	margin-top: 30px;
+}
+
+.private-container .gif {
+	margin-top: 50px;
+}
+
+.login-container {
+	margin-top: 250px;
+}
+
+.center {
+	text-align: center;
+	margin-bottom: 20px;
 }

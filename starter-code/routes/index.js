@@ -9,8 +9,12 @@ router.get('/', (req, res, next) => {
 	res.render('index');
 });
 
-router.get('/secret', requireAuth, (req, res, next) => {
-	res.render('secret');
+router.get('/private', (req, res, next) => {
+	res.render('private');
+});
+
+router.get('/main', (req, res, next) => {
+	res.render('main');
 });
 
 module.exports = router;

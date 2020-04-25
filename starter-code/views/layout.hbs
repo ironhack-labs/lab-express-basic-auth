@@ -10,11 +10,22 @@
 <body>
 <nav class ="navbar">
   <ul class="nav-list">
+
     <li><a class="nav-link"  href="/">Home</a></li>
+    
+    {{#if isLoggedIn}}
+    <li><a class="nav-link"  href="/main">Main</a></li>
+    <li><a class="nav-link"  href="/private">Private</a></li>
+     {{/if}}
+
+    {{#unless isLoggedIn}}
     <li><a class="nav-link"  href="/auth">Sign up</a></li>
-    <li><a class="nav-link"  href="/login">Login</a></li>
-    <li><a class="nav-link"  href="/secret">Protected page (requires authentication!)</a></li>
-    <li><a href="/auth/logout">Log Out</a></li>
+    <li><a class="nav-link"  href="/login">Sign in</a></li>
+      {{/unless}}
+
+    {{#if isLoggedIn}}
+    <li><a href="/logout">Log Out</a></li>
+     {{/if}}
     </ul>
 </nav>
 
