@@ -1,11 +1,9 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
 .strength_meter {
   left: 0px;
@@ -14,14 +12,12 @@ a {
   height: 43px;
   z-index: -1;
   border-radius: 5px;
-  padding-right: 13px;
-}
+  padding-right: 13px; }
 
 .button_strength {
   text-decoration: none;
   color: #000;
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .strength_meter div {
   width: 0%;
@@ -35,36 +31,32 @@ a {
   -ms-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   padding-right: 12px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .strength_meter div p {
   top: 22px;
   right: 0px;
   color: black;
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .veryweak {
   background-color: #FFA0A0;
   border-color: #F04040 !important;
-  width: 25% !important;
-}
+  width: 25% !important; }
 
 .weak {
   background-color: #FFB78C;
   border-color: #FF853C !important;
-  width: 50% !important;
-}
+  width: 50% !important; }
 
 .medium {
   background-color: #FFEC8B;
   border-color: #FC0 !important;
-  width: 75% !important;
-}
+  width: 75% !important; }
 
 .strong {
   background-color: #C3FF88;
   border-color: #8DFF1C !important;
-  width: 100% !important;
-}
+  width: 100% !important; }
+
+/*# sourceMappingURL=style.css.map */

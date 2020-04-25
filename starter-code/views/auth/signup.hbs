@@ -1,0 +1,33 @@
+{{#if errorMessage}}
+<div>{{errorMessage}}</div>
+{{/if}}
+
+
+
+<h2>Sign up</h2>
+<form action="/signup" method="post" id="myform">
+    <label for="">Username</label>
+    <input type="text" name="username" placeholder="Your username" required>
+    <div>
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="******" id="showMeYourStrength" required>
+    </div>
+
+    <button type="submit">Create Account</button>
+</form>
+
+
+    <script>
+        console.log("Hey I'm here")
+        $(document).ready(function ($) {
+
+            $('#showMeYourStrength').strength({
+                strengthClass: 'strength',
+                strengthMeterClass: 'strength_meter',
+                strengthButtonClass: 'button_strength',
+                strengthButtonText: 'Show Password',
+                strengthButtonTextToggle: 'Hide Password'
+            });
+
+        });
+    </script>
