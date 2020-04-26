@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0; }
+
 body {
   padding: 50px;
   font: 14px "Roboto", Arial, sans-serif; }
@@ -52,5 +56,14 @@ a {
   margin: 20px auto;
   padding: 20px;
   width: 100%; }
+
+.navbar {
+  margin-bottom: 20px;
+  list-style: none; }
+  .navbar li {
+    display: inline-block;
+    margin-right: 10px; }
+    .navbar li:last-child {
+      margin-right: 0; }
 
 /*# sourceMappingURL=style.css.map */
