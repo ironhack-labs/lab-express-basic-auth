@@ -1,0 +1,32 @@
+<div class="container">
+
+  <form action="/login" method="POST" id="form">
+    <h2>LOGIN</h2>
+
+    <div class="form">
+      <label for="username">Username</label>
+      <input type="text" name="username">
+    </div>
+
+    <div class="form">
+      <label for="password"> Password</label>
+      <input type="password" name="password">
+    </div>
+
+    <div class="validate">
+      <button type="submit" id="valid">Sign in</button>
+    </div>
+
+    <p class="account-message">
+      Don't have an account ? <br><a href="/signup">Sign up</a>
+    </p>
+
+  </form>
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+  <div id="link">
+    <a href="/"> index</a>
+  </div>
+</div>

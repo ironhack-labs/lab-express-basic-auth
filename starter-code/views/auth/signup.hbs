@@ -1,0 +1,30 @@
+<div class="container">
+
+<form action="/signup" method="POST" id="form">
+<h1>SIGN UP</h1>
+
+<div class="form">
+<label for="username">Username</label>
+<input type="text" name="username" required>
+</div>
+
+<div class="form">
+<label for="password"> Password</label>
+<input type="password" name="password" required>
+</div>
+
+
+<div class="validate">
+<button type="submit" id="valid">Sign up</button></div>
+
+</form>
+
+{{#if errorMessage}}
+<div class="error-message">{{errorMessage}}</div>
+{{/if}}
+
+<div id="link">
+<a href="/"> index</a>
+</div>
+
+</div>
