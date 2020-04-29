@@ -1,0 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+
+<form id="form" action='/auth/signup' method='POST'>
+
+  <label for=''>Username</label>
+  <input type='text' name='username'>
+
+  
+  <label for="password">Password</label>
+<input type="password" id="password" required>
+<meter max="4" id="password-strength-meter"></meter>
+<p id="password-strength-text"></p>
+
+  <button type='submit'>Submit</button>
+</form>
+
+{{!-- Error message display --}}
+{{#if errorMessage}}
+<div class="error-message"> {{errorMessage}} </div>
+{{/if}}
+
+
+
