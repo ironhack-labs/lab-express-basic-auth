@@ -61,6 +61,15 @@ router.post('/login', (req,res,next) => {
     })
   })
 
+
+
+  // Logout
+  router.get('/logout', (req,res,next) => {
+    req.session.destroy(() => {
+      res.redirect('/login')
+    });
+  });
+
 // Posting the user to mongoose
 router.post("/signup", (req, res, next) => {
     const username = req.body.username;
@@ -96,6 +105,11 @@ router.post("/signup", (req, res, next) => {
                 })
 
         });
+
+
+
+
+
 
 });
 
