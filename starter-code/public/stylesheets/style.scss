@@ -6,3 +6,79 @@ body {
 a {
   color: #00B7FF;
 }
+
+form#form {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: auto;
+}
+
+form > * {
+  margin: 5px 0;
+}
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+
+
+
+
+
+
+  .button_strength {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 13px;
+    padding: 10px;
+  }
+  .strength_meter div{
+      width:0%;
+  height: 43px;
+  text-align: right;
+  color: #000;
+  line-height: 43px;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  padding-right: 12px;
+  border-radius:5px;
+  white-space: nowrap;
+  }
+  .strength_meter div p{
+  position: absolute;
+  top: 22px;
+  right: 0px;
+  color: #FFF;
+  font-size:13px;
+  }
+  
+  .veryweak{
+      background-color: #FFA0A0;
+  border-color: #F04040!important;
+  width:25%!important;
+  }
+  .weak{
+  background-color: #FFB78C;
+  border-color: #FF853C!important;
+  width:50%!important;
+  }
+  .medium{
+  background-color: #FFEC8B;
+  border-color: #FC0!important;
+  width:75%!important;
+  }
+  .strong{
+  background-color: #C3FF88;
+  border-color: #8DFF1C!important;
+  width:100%!important;
+  }
