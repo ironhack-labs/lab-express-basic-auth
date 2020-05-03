@@ -1,2 +1,7 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Welcome to this super secure site 🚓</h1>
+
+{{#if isLoggedIn}}
+<h2>SUCESS! YOU ARE LOGGED IN!</h2>
+{{else}}
+<h2>You have to log in to see the content</h2>
+{{/if}}

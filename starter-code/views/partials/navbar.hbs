@@ -1,0 +1,10 @@
+<nav>
+  {{#if isLoggedIn}}
+  <a href="/logout"><button class="btn">LOG OUT</button></a>
+  {{else}}
+  <a href="/login"><button class="btn">LOG IN</button></a>
+  {{/if}}
+
+  <a href="/private"> <button class="btn">PRIVATE PAGE</button></a>
+
+  <a href="/main"><button class="btn">MAIN PAGE</button></a></nav>
