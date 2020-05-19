@@ -5,4 +5,9 @@ node_modules
 npm-debug.log
 
 # Environment Variables should NEVER be published
-.env
+# We are submitting it for learning purposes 
+# .env
+
+# for maintenance purposes - not best practices
+package-lock.json
+
