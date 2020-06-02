@@ -42,7 +42,7 @@ app.use(session({
     maxAge: 3600000 //(in milliseconds)
   },
   store: new MongoStore({
-      url: 'mongodb://localhost/basicAuth',
+      url: 'mongodb://localhost/labAuth',
       // mongooseConnection: mongoose.connection
       //time to live (in seconds)
       ttl: 3600, //(in seconds)

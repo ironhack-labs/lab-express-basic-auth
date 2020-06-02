@@ -45,6 +45,7 @@ router.post("/signup", (req, res) => {
     bcrypt.hash(password, salt).then((passwordHash) => {
       UserModel.create({ email, passwordHash })
         .then(() => {
+          req.session.loggedInUser = req.body;
           res.redirect("/profile");
         })
         .catch((err) => {
@@ -75,7 +76,7 @@ router.post('/signin', (req, res) => {
   if ( !email || !password) {
     res.status(500)
       .render('auth/signin.hbs', {
-        errorMessage: 'Please enter username, email and password'
+        errorMessage: 'Please enter email and password'
       });
     return;  
   }
