@@ -137,4 +137,12 @@ router.get('/profile', (req, res) => {
   res.render('users/profiles.hbs', {userData: req.session.loggedInUser});
 })
 
+router.get('/main', (req, res) => {
+  res.render('main.hbs');
+})
+
+router.get('/private', (req, res) => {
+  res.render('private.hbs');
+})
+
 module.exports = router;
