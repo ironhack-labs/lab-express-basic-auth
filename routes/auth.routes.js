@@ -64,7 +64,76 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.get("/profile", (req, res) => {
-  res.send("Data Added");
+//********/
+router.get('/signin', (req, res) => {
+  res.render('auth/signin.hbs');
 });
+
+
+router.post('/signin', (req, res) => {
+  const {email, password } = req.body;
+  if ( !email || !password) {
+    res.status(500)
+      .render('auth/signin.hbs', {
+        errorMessage: 'Please enter username, email and password'
+      });
+    return;  
+  }
+  const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
+  if (!myRegex.test(email)) {
+    res.status(500)
+        .render('auth/signup.hbs', {
+          errorMessage: 'Email format not correct'
+        });
+      return;  
+  }
+
+  // Find if the user exists in the database 
+  UserModel.findOne({email})
+    .then((userData) => {
+        // console.log(userData)
+         //check if passwords match
+        bcrypt.compare(password, userData.passwordHash)
+          .then((doesItMatch) => {
+              //if it matches
+              if (doesItMatch) {
+                // req.session is the special object that is available to you
+                
+                req.session.loggedInUser = userData;
+                //req.session.greet = 'Hola';
+                res.redirect('/profile');
+              }
+              //if passwords do not match
+              else {
+                res.status(500)
+                  .render('auth/signin.hbs', {
+                    errorMessage: 'Passwords don\'t match'
+                  });
+                return; 
+              }
+          })
+          .catch(() => {
+            res.status(500)
+            .render('auth/signin.hbs', {
+              errorMessage: 'Something wen\'t wrong!'
+            });
+            return; 
+          });
+    })
+    //throw an error if the user does not exists 
+    .catch(() => {
+      res.status(500)
+        .render('auth/signin.hbs', {
+          errorMessage: 'Email doesn\'t exist'
+        });
+      return;  
+    });
+
+});
+/*******/
+
+router.get('/profile', (req, res) => {
+  res.render('users/profiles.hbs', {userData: req.session.loggedInUser});
+})
+
 module.exports = router;

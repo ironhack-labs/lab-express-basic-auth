@@ -7,7 +7,6 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: [true, "Please enter email"],
-      unique: true
     },
     passwordHash: {
       type: String,
@@ -19,4 +18,9 @@ const userSchema = new Schema(
   }
 );
 
- module.exports = model('User', userSchema);
+const userModel = model('User', userSchema);
+
+userSchema.index({ 'email': 1}, {unique: true});
+// userSchema.index({ 'username': 1}, {unique: true});
+
+module.exports = userModel

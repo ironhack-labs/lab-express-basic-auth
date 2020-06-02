@@ -19,7 +19,9 @@ require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
+//a body parser to allow us to parse form submissions
 app.use(bodyParser.json());
+//ASK why is false?
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -28,6 +30,25 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+  secret: 'my-secret-weapon',
+  saveUninitialized: false,
+  resave: true,
+  cookie: { 
+    maxAge: 3600000 //(in milliseconds)
+  },
+  store: new MongoStore({
+      url: 'mongodb://localhost/basicAuth',
+      // mongooseConnection: mongoose.connection
+      //time to live (in seconds)
+      ttl: 3600, //(in seconds)
+      autoRemove: 'disabled'
+  })
+}));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
