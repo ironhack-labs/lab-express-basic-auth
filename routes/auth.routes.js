@@ -137,12 +137,20 @@ router.get('/profile', (req, res) => {
   res.render('users/profiles.hbs', {userData: req.session.loggedInUser});
 })
 
-router.get('/main', (req, res) => {
-  res.render('main.hbs');
-})
+router.get("/main", (req, res) => {
+  if (req.session.loggedInUser) {
+    res.render("main.hbs");
+  } else {
+    res.send("Access Denied");
+  }
+});
 
-router.get('/private', (req, res) => {
-  res.render('private.hbs');
-})
+router.get("/private", (req, res) => {
+  if (req.session.loggedInUser) {
+    res.render("private.hbs");
+  } else {
+    res.send("Access Denied");
+  }
+});
 
 module.exports = router;
