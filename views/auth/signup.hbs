@@ -1,0 +1,12 @@
+<form method="POST" action="/signup">
+    <label for="username">Enter a new username</label>
+    <input type="text" name="username" id="username" >
+
+    <label for="user-pass">Enter a new password</label>
+    <input type="password" name="password" id="user-pass" >
+    <button type="submit" >Valid this new account</button>
+</form>
+
+{{#if errorMessage}}
+  <div class="error">{{errorMessage}}</div>
+{{/if}}  

@@ -14,6 +14,25 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'my-secret-weapon',
+    saveUninitialized: false,
+    resave: true,
+    cookie: {
+      maxAge: 60*60*24*1000 //60 sec * 60 min * 24hrs = 1 day (in milliseconds)
+    },
+    store: new MongoStore({
+        url: 'mongodb://localhost/basicAuth',
+        //time to live (in seconds)
+        ttl: 60*60*24,
+        autoRemove: 'disabled'
+    })
+}));
+
+
 // require database configuration
 require('./configs/db.config');
 
@@ -22,6 +41,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Routes middleware
+app.use('/', indexRouter);
+app.use('/', authRouter);
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,5 +57,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const indexRouter = require('./routes/index.routes');
+const authRouter = require('./routes/auth.routes');
 
 module.exports = app;
