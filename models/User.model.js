@@ -9,12 +9,13 @@ const userSchema = new Schema(
       unique: true
     },
     email: {
-      type: String,
-      required: [true, 'Email is required.'],
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
+        type: String,
+        required: [true, 'Email is required.'],
+        match: [/^\S+@\S+\.\S+$/, 'Invalid email.'],
+        unique: true,
+        lowercase: true,
+        trim: true
+      },  
     // add password property here
     passwordHash: {
       type: String,

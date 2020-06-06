@@ -13,6 +13,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+require('./configs/session.config')(app);
 
 // require database configuration
 require('./configs/db.config');
@@ -30,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Basic Auth Lab';
 
 const index = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
