@@ -6,7 +6,7 @@ const router = Router();
 
 const saltRounds = 10;
 
-/* GET home page */
+/* Signup Routes */
 router.get('/signup', (req, res, next) => res.render('auth/signup'));
 router.post('/signup', async (req, res, next) => {
 	//console.log(req.body);
@@ -40,6 +40,7 @@ router.post('/signup', async (req, res, next) => {
 	}
 });
 
+/* User Profile Routes */
 router.get('/userProfile/:id', async (req, res, next) => {
 	const user = await User.findById(req.params.id);
 	res.render('users/user-profile', user);
@@ -80,9 +81,10 @@ router.post('/userProfile', async (req, res, next) => {
 	}
 });
 
+/* Login Routes */
 router.get('/login', (req, res, next) => res.render('auth/login'));
 router.post('/login', async (req, res, next) => {
-	const { username, email, password, id } = req.body;
+	const { email, password } = req.body;
 	try {
 		if (!email || email.length === 0 || !password || password.length === 0) {
 			res.render('auth/login', {
@@ -90,7 +92,7 @@ router.post('/login', async (req, res, next) => {
 			});
 			return;
 		}
-		const userLogin = User.findOne({ email });
+		const userLogin = await User.findOne({ email: email });
 		if (!userLogin) {
 			res.render('auth/login', {
 				errorMessage: 'Email is not registered. Try and other email.',
