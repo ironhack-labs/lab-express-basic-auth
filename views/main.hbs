@@ -1,0 +1,22 @@
+
+{{> navbar}}
+{{#if userInSession}}
+<h1>Welcome {{userInSession.username}}!</h1>
+<div class="container">
+    <div>
+        <h3>Here is a doggie</h3>
+    </div>
+    <div>
+        <img src="/images/doggie.jpg" id="doggie">
+    </div>
+</div>
+
+{{else}}
+<div class="container">
+    <div>
+        <img src="/images/stop.png" id="privateGetOut">
+    </div>
+    <p>Please, log in first to access this page</p>
+    <a href="/" class="btn btn-primary">Back Home</a>
+</div>
+{{/if}}

@@ -1,0 +1,16 @@
+<nav class="pr-4 pt-4">
+    <ul class="nav justify-content-end">
+        {{#if userInSession}}
+        <li class="nav-item mr-3">
+            <a class="nav-link btn btn-danger" href="/logout">Logout</a>
+        </li>
+        {{else}}
+        <li class="nav-item mr-3">
+            <a class="nav-link btn btn-primary" href="/signup">Sign Up</a>
+        </li>
+        <li class="nav-item mr-3">
+            <a class="nav-link btn btn-success" href="/login">Login</a>
+        </li>
+        {{/if}}
+    </ul>
+</nav>

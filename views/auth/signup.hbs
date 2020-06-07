@@ -1,0 +1,18 @@
+
+{{> navbar}}
+<div class="container" id="signup">
+    <h2>Signup</h2>
+    <form action="/signup" class="form-group" method="POST">
+        <label for="input-username">Username</label>
+        <input type="text" class="form-control" id="input-username" name="username" placeholder="Your username" required/>
+        <label for="input-email">Email</label>
+        <input type="email" class="form-control" id="input-email" name="email" placeholder="Your email" required/>
+        <label for="input-password">Password</label>
+        <input type="password" class="form-control" name="password" id="input-password" placeholder="********" required/>
+        <button type="submit" class="btn btn-primary mt-4">Create account</button>
+        {{!-- error message will be added here --}}
+    </form>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</div>
