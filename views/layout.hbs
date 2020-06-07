@@ -15,13 +15,16 @@
         <li id="to-left">
           <p><a href="/"> Users - demo </a></p>
         </li>
-        <li id="to-right">
+        <li id="to-right" style="display:{{#if logged}}none{{else}}block{{/if}};">
           <a href="/login">Login</a> <span> | </span>
         </li>
-        <li id="to-right">
-          <a href="/userProfile/5edb7ba06c55712c74b2c31e">User Profile</a> <span> | </span>
+        <li id="to-right" style="display:{{#if logged}}block{{else}}none{{/if}};">
+          <a href="/logout">Logout</a> <span> | </span>
         </li>
-        <li id="to-right">
+        <li id="to-right" style="display:{{#if logged}}block{{else}}none{{/if}};">
+          <a href="/userProfile/{{userId}}">User Profile</a> <span> | </span>
+        </li>
+        <li id="to-right" style="display:{{#if logged}}none{{else}}block{{/if}};">
           <a href="/signup">Signup</a> <span> | </span>
         </li>
       </ul>

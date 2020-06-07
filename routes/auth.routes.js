@@ -43,7 +43,11 @@ router.post('/signup', async (req, res, next) => {
 /* User Profile Routes */
 router.get('/userProfile/:id', async (req, res, next) => {
 	const user = await User.findById(req.params.id);
-	res.render('users/user-profile', user);
+	res.render('users/user-profile', {
+		logged: req.session.logged,
+		userId: req.session.userId,
+		user: user,
+	});
 });
 router.post('/userProfile', async (req, res, next) => {
 	const { username, email, password, id } = req.body;
@@ -99,6 +103,8 @@ router.post('/login', async (req, res, next) => {
 			});
 			return;
 		} else if (bcrypt.compare(password, userLogin.passwordHash)) {
+			req.session.logged = true;
+			req.session.userId = userLogin._id;
 			res.redirect('/userProfile/' + userLogin._id);
 			return;
 		} else {

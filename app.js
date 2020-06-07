@@ -8,6 +8,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('express-session');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(
@@ -30,6 +31,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(
+	session({
+		secret: 'lab-basic-auth',
+		resave: false,
+		saveUninitialized: this.true,
+	})
+);
 
 // default value for title local
 app.locals.title = 'Basic Auth';
