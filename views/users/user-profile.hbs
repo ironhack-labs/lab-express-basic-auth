@@ -1,0 +1,19 @@
+<div id="signup">
+  <h2>User Profile</h2>
+  <form action="/userProfile" method="POST">
+    <label for="input-username">Username</label>
+    <input type="text" id="input-username" name="username" placeholder="Your username" value='{{this.username}}'/>
+
+    <label for="input-email">Email</label>
+    <input type="email" id="input-email" name="email" placeholder="Your email"  value='{{this.email}}'/>
+
+    <label for="input-password">Password</label>
+    <input type="password" name="password" id="input-password" placeholder="********" value='********'/>
+    <input type="hidden" name="id" id="input-id" value='{{this._id}}'/>
+    <button type="submit">Save</button>
+
+    {{#if this.errorMessage}}
+    <p class="error">{{this.errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
