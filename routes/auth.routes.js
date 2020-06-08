@@ -42,46 +42,57 @@ router.post('/signup', async (req, res, next) => {
 
 /* User Profile Routes */
 router.get('/userProfile/:id', async (req, res, next) => {
-	const user = await User.findById(req.params.id);
-	res.render('users/user-profile', {
-		logged: req.session.logged,
-		userId: req.session.userId,
-		user: user,
-	});
+	if (req.session.logged && req.session.userId === req.params.id) {
+		const user = await User.findById(req.params.id);
+		if (user) {
+			req.session.userId = user._id;
+			res.render('users/user-profile', {
+				logged: req.session.logged,
+				userId: req.session.userId,
+				user: user,
+			});
+		}
+	} else {
+		res.redirect('/login');
+	}
 });
 router.post('/userProfile', async (req, res, next) => {
 	const { username, email, password, id } = req.body;
-	try {
-		validateData({ username, email, password, id }, 'users/user-profile');
-		const passwordHash = await bcrypt.hashSync(password, saltRounds);
-		console.log(passwordHash);
-		const editUser = await User.findByIdAndUpdate(id, {
-			username: username,
-			email: email,
-			passwordHash: passwordHash,
-		});
-		console.log('User updated succesfully', editUser);
-		res.redirect('/userProfile/' + id);
-	} catch (error) {
-		if (error instanceof mongoose.Error.ValidationError) {
-			res.status(500).render('user/user-profile', {
+	if (req.session.logged && req.session.userId === id) {
+		try {
+			validateData({ username, email, password, id }, 'users/user-profile');
+			const passwordHash = await bcrypt.hashSync(password, saltRounds);
+			console.log(passwordHash);
+			const editUser = await User.findByIdAndUpdate(id, {
 				username: username,
 				email: email,
-				password: password,
-				id: id,
-				errorMessage: error.message,
+				passwordHash: passwordHash,
 			});
-		} else if (error.code === 11000) {
-			res.status(500).render('user/user-profile', {
-				username: username,
-				email: email,
-				password: password,
-				id: id,
-				errorMessage: 'username or email exist...',
-			});
-		} else {
-			next(error);
+			console.log('User updated succesfully', editUser);
+			res.redirect('/userProfile/' + id);
+		} catch (error) {
+			if (error instanceof mongoose.Error.ValidationError) {
+				res.status(500).render('user/user-profile', {
+					username: username,
+					email: email,
+					password: password,
+					id: id,
+					errorMessage: error.message,
+				});
+			} else if (error.code === 11000) {
+				res.status(500).render('user/user-profile', {
+					username: username,
+					email: email,
+					password: password,
+					id: id,
+					errorMessage: 'username or email exist...',
+				});
+			} else {
+				next(error);
+			}
 		}
+	} else {
+		res.redirect('/login');
 	}
 });
 
@@ -115,6 +126,32 @@ router.post('/login', async (req, res, next) => {
 		}
 	} catch (error) {
 		next(error);
+	}
+});
+router.get('/logout', (req, res, next) => {
+	req.session.logged = false;
+	req.session.userId = null;
+	res.redirect('/login');
+});
+
+router.get('/main', async (req, res, next) => {
+	if (req.session.logged) {
+		res.render('private/main', {
+			logged: req.session.logged,
+			userId: req.session.userId,
+		});
+	} else {
+		res.redirect('/login');
+	}
+});
+router.get('/private', async (req, res, next) => {
+	if (req.session.logged) {
+		res.render('private/index', {
+			logged: req.session.logged,
+			userId: req.session.userId,
+		});
+	} else {
+		res.redirect('/login');
 	}
 });
 
