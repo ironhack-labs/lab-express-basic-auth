@@ -71,3 +71,22 @@ form button:hover {
   padding: 20px;
   width: 380px;
 }
+
+#logout-form {
+  margin: 8px;
+  padding: 0;
+  width: auto;
+}
+
+#logout-form button {
+  width: auto;
+  text-transform: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #00b7ff;
+  font-size: 1em;
+  display: inline-block;
+  margin: 0;
+}

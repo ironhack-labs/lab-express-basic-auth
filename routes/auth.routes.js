@@ -70,16 +70,19 @@ router.post('/signup', (req, res, next) => {
         })
 })
 
-// User profile GET route
-router.get('/userProfile', (req, res, next) => {
-    res.render('users/user-profile')
-})
+// User profile GET route (using session to send information)
+router.get('/userProfile', (req, res) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
 
 // Login GET route
 router.get('/login', (req, res) => res.render('auth/login'));
 
 // Login POST route
 router.post('/login', (req, res, next) => {
+    // Checking the session 
+    console.log('SESSION =====> ', req.session);
+
     // Creating the objects from the req.body to use in the route logic
     const {
         email,
@@ -92,7 +95,7 @@ router.post('/login', (req, res, next) => {
             errorMessage: 'Please enter both, email and password to login.'
         });
         return;
-    }
+    };
 
     // Checking if the user using the email
     User.findOne({
@@ -107,10 +110,9 @@ router.post('/login', (req, res, next) => {
                 return;
                 // Comparing the password introduced by the user with the hashed password in the database
             } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-                // Redirecting the users to their profile if the password is correct
-                res.render('users/user-profile', {
-                    user
-                });
+                // Redirecting the users to their profile if the password is correct using the session
+                req.session.currentUser = user;
+                res.redirect('/userProfile');
             } else {
                 // Handling the error (if the password doesn't match the one in the database)
                 res.render('auth/login', {
@@ -120,5 +122,11 @@ router.post('/login', (req, res, next) => {
         })
         .catch(error => next(error));
 });
+
+// Logout route to destroy the session (desconect the user and redirect it to the home page)
+router.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  });
 
 module.exports = router;
