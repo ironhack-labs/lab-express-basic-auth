@@ -71,12 +71,14 @@ router.post('/signup', (req, res, next) => {
 })
 
 // User profile GET route (using session to send information)
-router.get('/userProfile', (req, res) => {
-    res.render('users/user-profile', { userInSession: req.session.currentUser });
+router.get('/userProfile', (req, res, next) => {
+    res.render('users/user-profile', {
+        userInSession: req.session.currentUser
+    });
 });
 
 // Login GET route
-router.get('/login', (req, res) => res.render('auth/login'));
+router.get('/login', (req, res, next) => res.render('auth/login'));
 
 // Login POST route
 router.post('/login', (req, res, next) => {
@@ -124,9 +126,28 @@ router.post('/login', (req, res, next) => {
 });
 
 // Logout route to destroy the session (desconect the user and redirect it to the home page)
-router.post('/logout', (req, res) => {
+router.post('/logout', (req, res, next) => {
     req.session.destroy();
-    res.redirect('/');
-  });
+    res.render('goodbye');
+});
+
+// Private routes (not accessible without being logged in)
+router.get('/main', (req, res, next) => {
+    if (!req.session.currentUser) {
+        res.redirect('/');
+    };
+    res.render('users/main', {
+        userInSession: req.session.currentUser
+    });
+})
+
+router.get('/private', (req, res, next) => {
+    if (!req.session.currentUser) {
+        res.redirect('/');
+    };
+    res.render('users/private', {
+        userInSession: req.session.currentUser
+    });
+})
 
 module.exports = router;

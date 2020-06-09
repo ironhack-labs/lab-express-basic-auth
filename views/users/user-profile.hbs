@@ -1,6 +1,12 @@
 {{#if userInSession}}
 <h2>Welcome, {{ userInSession.username }}!</h2>
 <p>This is your profile page my friend!</p>
+<br>
+<h4>Here are your credencials!</h4>
+<ul>
+    <li>Username: {{userInSession.username}}</li>
+    <li>Email: {{userInSession.email}}</li>
+</ul>
 <button>
     <a href="/userProfile">Reload the page</a>
 </button>
