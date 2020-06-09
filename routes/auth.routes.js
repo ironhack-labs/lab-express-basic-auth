@@ -26,13 +26,14 @@ router.post('/signUp', async (req, res, next) => {
         const salt = await bcryptjs.genSalt(saltRounds);
         const hashedPassword = await bcryptjs.hash(password, salt);
         //Crear usuario
-        await User.create({
+        const user = await User.create({
             username: username,
             email: email,
             passwordHash: hashedPassword
         })
-        //Redireccionamos a la página principal
-        res.redirect('/');
+        //Creamos la sesión del nuevo usuario y redireccionamos a su perfil
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
     } catch (error) {
         if (error instanceof mongoose.Error.ValidationError) {
             res.status(400).render('auth/signup', {errorMessage: error.message});
@@ -51,30 +52,41 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', async (req, res, next) => {
-    const { email, password } = req.body;
-    //Comprobación de datos vacíos
-    if (email === '' || password === '') {
-      res.render('auth/login', {
-        errorMessage: 'Please enter both, email and password to login.'
-      });
-    }
-    //Buscar usuario, comprobar su existencia y contraseña
-    const user = await User.findOne({email})
-    if (!user) {
-        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
-    } else if (bcryptjs.compareSync(password, user.passwordHash)) {   
-        res.render('users/user-profile', user);
-    } else {
-        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+    try {
+        const { email, password } = req.body;
+        //Comprobación de datos vacíos
+        if (email === '' || password === '') {
+          res.render('auth/login', {
+            errorMessage: 'Please enter both, email and password to login.'
+          });
+        }
+        //Buscar usuario, comprobar su existencia y contraseña
+        const user = await User.findOne({email})
+        if (!user) {
+            res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        } else if (bcryptjs.compareSync(password, user.passwordHash)) {   
+            req.session.currentUser = user;
+            res.redirect('/userProfile');
+        } else {
+            res.render('auth/login', { errorMessage: 'Incorrect password.' });
+        }
+    } catch (error) {
+        console.log(error)
     }
 })
 
 /* RUTAS USERPROFILE */
 
-router.get('/userProfile/:username', async (req, res) => {
-    const {username} = req.params;
-    const [user] = await User.find({username});
-    res.render('users/user-profile', user);
+router.get('/userProfile', async (req, res) => {
+    const user = req.session.currentUser;
+    res.render('users/user-profile', {user});
 });
+
+/* RUTAS LOGOUT */
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
+})
 
 module.exports = router;

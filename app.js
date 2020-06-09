@@ -14,6 +14,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+// Agregar middleware que va a crear o recoger la sesión
+const createSession = require('./configs/session.config');
+createSession(app);
+
 // require database configuration
 require('./configs/db.config');
 
