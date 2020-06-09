@@ -12,6 +12,12 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
     const { username, password } = req.body;
+    if (username === '' || password === '') {
+        res.render('auth/signup', {
+            errorMessage: 'Please enter both, username and password to create an account.'
+        });
+        return;
+      }
     bcrypt.genSalt(saltRounds)
     .then(salt => (bcrypt.hash(password,salt)))
     .then(hashedPassword => {
