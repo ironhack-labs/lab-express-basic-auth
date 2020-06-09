@@ -41,24 +41,19 @@ router.post('/signup', async (req, res, next) => {
 });
 
 /* User Profile Routes */
-router.get('/userProfile/:id', async (req, res, next) => {
-	if (req.session.logged && req.session.userId === req.params.id) {
-		const user = await User.findById(req.params.id);
-		if (user) {
-			req.session.userId = user._id;
-			res.render('users/user-profile', {
-				logged: req.session.logged,
-				userId: req.session.userId,
-				user: user,
-			});
-		}
+router.get('/userProfile/', async (req, res, next) => {
+	if (req.session.logged && req.session.currentUser) {
+		res.render('users/user-profile', {
+			logged: req.session.logged,
+			user: req.session.currentUser,
+		});
 	} else {
 		res.redirect('/login');
 	}
 });
 router.post('/userProfile', async (req, res, next) => {
 	const { username, email, password, id } = req.body;
-	if (req.session.logged && req.session.userId === id) {
+	if (req.session.logged && req.session.currentUser._id === id) {
 		try {
 			validateData({ username, email, password, id }, 'users/user-profile');
 			const passwordHash = await bcrypt.hashSync(password, saltRounds);
@@ -68,6 +63,7 @@ router.post('/userProfile', async (req, res, next) => {
 				email: email,
 				passwordHash: passwordHash,
 			});
+			req.session.currentUser = editUser;
 			console.log('User updated succesfully', editUser);
 			res.redirect('/userProfile/' + id);
 		} catch (error) {
@@ -115,8 +111,8 @@ router.post('/login', async (req, res, next) => {
 			return;
 		} else if (bcrypt.compare(password, userLogin.passwordHash)) {
 			req.session.logged = true;
-			req.session.userId = userLogin._id;
-			res.redirect('/userProfile/' + userLogin._id);
+			req.session.currentUser = userLogin;
+			res.redirect('/userProfile');
 			return;
 		} else {
 			res.render('auth/login', {
@@ -130,7 +126,7 @@ router.post('/login', async (req, res, next) => {
 });
 router.get('/logout', (req, res, next) => {
 	req.session.logged = false;
-	req.session.userId = null;
+	req.session.currentUser = null;
 	res.redirect('/login');
 });
 
@@ -138,7 +134,6 @@ router.get('/main', async (req, res, next) => {
 	if (req.session.logged) {
 		res.render('private/main', {
 			logged: req.session.logged,
-			userId: req.session.userId,
 		});
 	} else {
 		res.redirect('/login');
@@ -148,7 +143,6 @@ router.get('/private', async (req, res, next) => {
 	if (req.session.logged) {
 		res.render('private/index', {
 			logged: req.session.logged,
-			userId: req.session.userId,
 		});
 	} else {
 		res.redirect('/login');
