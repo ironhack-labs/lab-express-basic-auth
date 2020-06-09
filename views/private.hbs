@@ -1,0 +1,9 @@
+<h1>This is a private page</h1>
+
+{{#if userInSession}}
+<div>
+    <img src="/images/cat.gif" alt="Hacker cat">
+</div>
+{{else}}
+  <p>You are not logged in.</p>
+{{/if}}

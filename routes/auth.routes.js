@@ -99,4 +99,10 @@ router.post('/logout', (req, res) => {
     res.redirect('/');
   });  
 
+router.get("/private", (req, res) => {
+  res.render("private", {
+    userInSession: req.session.currentUser,
+  });
+});
+
 module.exports = router;
