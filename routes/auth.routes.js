@@ -77,7 +77,7 @@ router.post('/login', async (req, res, next) => {
 
 /* RUTAS USERPROFILE */
 
-router.get('/userProfile', async (req, res) => {
+router.get('/userProfile', (req, res) => {
     const user = req.session.currentUser;
     res.render('users/user-profile', {user});
 });
@@ -87,6 +87,24 @@ router.get('/userProfile', async (req, res) => {
 router.post('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/');
+})
+
+/* RUTAS ITERATION 3 */
+
+router.get('/main', (req, res) => {
+    if (req.session.currentUser) {
+        res.render('users/main');
+    } else {
+        res.redirect('/');
+    }
+})
+
+router.get('/private', (req, res) => {
+    if (req.session.currentUser) {
+        res.render('users/private');
+    } else {
+        res.redirect('/');
+    }
 })
 
 module.exports = router;
