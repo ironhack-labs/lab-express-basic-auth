@@ -14,6 +14,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+//agregar el mw que va a crear o recoger la sesión del usuario
+const createSession = require('./configs/session.config');
+createSession(app);
+
 // require database configuration
 require('./configs/db.config');
 
@@ -33,6 +37,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
+const authRouter = require('./routes/auth.routes');
 app.use('/', index);
+app.use('/', authRouter);
 
 module.exports = app;
