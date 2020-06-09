@@ -10,8 +10,6 @@ const saltRounds = 10;
 router.get('/signup', (req, res, next) => res.render('auth/signup'));
 router.get('/userProfile', (req, res, next) => res.render('users/profile', { userInSession: req.session.currentUser }));
 
-
-
 router.post('/signup', (req, res, next) => {
     //console.log(req.body);
     const {
@@ -38,8 +36,9 @@ router.post('/signup', (req, res, next) => {
                 email: email,
                 passwordHash: hashedPassword
             })
-            .then(data => {
-                console.log ('user created', data)
+            .then(user => {
+                console.log ('user created', user)
+                req.session.currentUser = user
                 res.redirect('/userProfile')
             })
             .catch(err => {
@@ -58,10 +57,14 @@ router.post('/signup', (req, res, next) => {
         })
 });
 
-router.get('/login', (req, res) => res.render('auth/login'));
+// LOGIN //
+
+router.get('/login', (req, res) => {
+    console.log('SESSION =====> ', req.session);
+    res.render('auth/login');
+})
 
 router.post('/login', (req, res, next) => {
-    console.log('SESSION =====> ', req.session);
 
     const { username, password } = req.body;
 
@@ -79,8 +82,8 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         //res.render('users/profile', { user });
-        req.session.currentUser = user;
-        res.redirect('/userProfile');
+        req.session.currentUser = user; //sessão do usuário que se conectou
+        res.redirect('/userProfile'); //redirecionar o usuário a sua página de perfil
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -88,6 +91,11 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
+//LOGOUT
 
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
+})
 
 module.exports = router;
