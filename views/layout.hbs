@@ -6,12 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
-  <body>
+  <body class="p-0">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary d-flex">
+        <div class="mr-auto p-2">
+          <a class="navbar-brand" href="/">Home</a>
+        </div>
+        <div class="p-2">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                  <a class="nav-link" href="/userProfile">My profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/signup">Signup</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+              </li>
+          </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0 p-2" style="display: inline;" method="POST">
+              <button class="btn btn-outline-warning my-2 my-sm-0 text-white" type="submit">Logout</button>
+          </form>
+    </nav>
+
+    <main class="m-5"></main>
 
     {{{body}}}
+
+    </main>
 
     <script src="/javascripts/script.js"></script>
   </body>

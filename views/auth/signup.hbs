@@ -1,0 +1,15 @@
+<form action="/signup" class="form-group" method="POST">
+    <label for="">Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="Please create a username">
+
+    <label for="">Password:</label>
+    <input class="form-control" type="password" name="password" placeholder="******">
+
+    <button type="submit">Create</button>
+</form>
+
+{{#if errorMessage}}
+    <div class="alert alert-danger" role="alert">
+        <p class="error">{{errorMessage}}</p>
+    </div>
+{{/if}}
