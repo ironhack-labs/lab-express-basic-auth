@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav, 
+.todo {
+  justify-content: space-around;
+  display: flex;
+}
+
+.todo {
+  border: solid 1px grey;
+  height: 50px;
+  align-items: center;
+}
+
+button {
+  color: white;
+  background-color: green;
+
+}
