@@ -1,6 +1,9 @@
 {{#if userSession}}
     <h2>Hi {{userSession.username}}</h2>
 <h2>Welcome to your profile !</h2>
+<a href="/main">Check this main page !</a>
+<a href="/private">Check this awesome private cat page !</a>
+
 {{else}}
     <h2>No one is logged in yet</h2>
 {{/if}}
