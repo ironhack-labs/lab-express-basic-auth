@@ -38,7 +38,7 @@ router.post("/signup", (req, res, next) => {
 
   bcrypt
     .genSalt(saltRounds)
-    .then((salt) => bcrypt.hash(password, salt))
+    .then(salt => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create the user in the db
       return User.create({
@@ -48,8 +48,9 @@ router.post("/signup", (req, res, next) => {
       }); // We can access this outside because we return the promise
     })
     // We catch the promise outside
-    .then((data) => {
-      console.log(`User created: ${data}`);
+    .then(user => {
+      console.log(`User created: ${user}`);
+      req.session.currentUser = user;
       res.redirect("/userProfile");
     })
     .catch((error) => {
@@ -77,7 +78,7 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ email })
-    .then((user) => {
+    .then(user => {
       if (!user) {
         res.render("auth/login", {
           errorMessage: "This email is not registered. Enter another email.",
@@ -90,7 +91,7 @@ router.post("/login", (req, res, next) => {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
     })
-    .catch((error) => next(error));
+    .catch(e => next(e));
 });
 
 router.post('/logout', (req, res) => {

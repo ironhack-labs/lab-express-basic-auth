@@ -2,6 +2,7 @@
 
 {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
+  <h3>This is your email address: {{userInSession.email}}</h3>
   <button>
     <a href="/userProfile">Reload the page</a>
   </button>
