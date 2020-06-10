@@ -40,9 +40,10 @@ router
                 }
             })
     })
-    .get('/user-profile', (req, res) => res.render('users/user-profile'))
+    .get('/user-profile', (req, res) => res.render('users/user-profile', { userInSession: req.session.currentUser }))
     .get('/login', (req, res) => res.render('auth/login'))
     .post('/login', (req, res) => {
+        console.log('SESSION ===>', req.session);
         const {email, password} = req.body;
         if(email === '' || password === ''){
             res.render('auth/login', {errorMessage: 'Please enter both email and password to login'});
@@ -54,12 +55,17 @@ router
                     res.render('auth/login', {errorMessage: 'Email is not registered. Try another email'});
                     return;
                 } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-                    res.render('users/user-profile', {user})
+                    req.session.currentUser = user; // save the user in the session
+                    res.redirect('/user-profile')
                 } else {
                     res.render('auth/login', {errorMessage: 'Incorrect password'});
                 }
             })
             .catch(error => next(error))
+    })
+    .post('/logout', (req, res) => {
+        req.session.destroy()
+        res.redirect('/')
     })
 
 module.exports = router;
