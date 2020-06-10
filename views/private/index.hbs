@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Private page</h1>
+            {{#if userInSession}}
+                <h2>Welcome, {{ userInSession.username }}!</h2>
+                <p>You got access to the private page.</p>
+                <img src="https://media.giphy.com/media/j6ZlX8ghxNFRknObVk/giphy.gif" alt="Yay!">
+            {{else}}
+                <p>Private page. <a href="/login">Log in to get access</a></p>
+            {{/if}}
+        </div>
+    </div>
+</div>

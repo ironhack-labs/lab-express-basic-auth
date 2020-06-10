@@ -45,7 +45,7 @@ router
     .post('/login', (req, res) => {
         console.log('SESSION ===>', req.session);
         const {email, password} = req.body;
-        if(email === '' || password === ''){
+        if(!email || !password){
             res.render('auth/login', {errorMessage: 'Please enter both email and password to login'});
             return;
         }
@@ -67,5 +67,7 @@ router
         req.session.destroy()
         res.redirect('/')
     })
+    .get('/main', (req, res) => res.render('main/index', { userInSession: req.session.currentUser }))
+    .get('/private', (req, res) => res.render('private/index', { userInSession: req.session.currentUser }))
 
 module.exports = router;

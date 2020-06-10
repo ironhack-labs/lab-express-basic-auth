@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            {{#if userInSession}}
+                <img src="https://media.giphy.com/media/WXB88TeARFVvi/giphy.gif" alt="Funny cat">
+                <a href="/" style="display: block;" class="mt-3">Go back to homepage</a>
+            {{else}}
+                <p>Private page. <a href="/login">Log in to get access</a></p>
+            {{/if}}
+        </div>
+    </div>
+</div>
