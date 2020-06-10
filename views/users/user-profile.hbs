@@ -1,7 +1,18 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Profile page</h1>
+            <h1>User profile page</h1>
+            {{#if user}}
+                <h2>Welcome, {{ user.username }}!</h2>
+                <h2>Correo: {{user.email}}</h2>
+                <p>This is your profile page my friend!</p>
+                <button>
+                    <a href="/userProfile">Reload the page</a>
+                </button>
+            {{else}}
+                <p>Still no logged in user, sorry!</p>
+            {{/if}}
+
         </div>
     </div>
 </div>
