@@ -8,14 +8,15 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-const session = require('express-session');
 
 const app_name = require('./package.json').name;
-const debug = require('debug')(
-    `${app_name}:${path.basename(__filename).split('.')[0]}`
-);
+const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+// Agregar middleware que va a crear o recoger la sesión
+const createSession = require('./configs/session.config');
+createSession(app);
 
 // require database configuration
 require('./configs/db.config');
@@ -33,20 +34,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-app.use(
-    session({
-        secret: 'lab-basic-auth',
-        resave: false,
-        saveUninitialized: this.true,
-    })
-);
 
 // default value for title local
-app.locals.title = 'Basic Auth';
+app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
-const authRouter = require('./routes/auth.routes');
 app.use('/', index);
-app.use('/', authRouter);
+
+const auth = require('./routes/auth.routes');
+app.use('/', auth);
 
 module.exports = app;

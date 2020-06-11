@@ -1,0 +1,19 @@
+<h1>User Profile</h1>
+
+{{#if user}}
+<h2>Welcome, {{ user.username }}!</h2>
+<h2>Email: {{user.email}}</h2>
+<p>This is your profile page my friend!</p>
+<button>
+    <a href="/userProfile">Reload the page</a>
+</button>
+<button>
+    <a href="/" style="text-decoration: none; color:black">Home</a>
+</button>
+
+<form action="/logout" method="POST">
+    <button style="color: red;">Logout</button>
+</form>
+{{else}}
+<p>Still no logged in user, sorry!</p>
+{{/if}}

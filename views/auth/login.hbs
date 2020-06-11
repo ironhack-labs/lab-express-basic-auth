@@ -1,16 +1,13 @@
-<div id="form">
+<div id="login">
   <h2>Login</h2>
   <form action="/login" method="POST">
-    <label for="input-email">Email</label>
-    <input type="email" id="input-email" name="email" placeholder="Your email" autocomplete="email" />
-
+    <label for="input-username">Username</label>
+    <input type="text" id="input-username" name="username" placeholder="Your username" required />
     <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" autocomplete="current-password"/>
-
+    <input type="password" name="password" id="input-password" placeholder="********" required />
     <button type="submit">Login</button>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
   </form>
+  {{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+  {{/if}}
 </div>

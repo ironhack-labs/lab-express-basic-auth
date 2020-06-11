@@ -12,24 +12,19 @@
 <body>
   <nav>
     <ul>
-      <li id="to-left">
+      <li id="left">
         <p><a href="/"> Users - demo </a></p>
       </li>
-      <li id="to-right" style="display:{{#if logged}}none{{else}}block{{/if}};">
-        <a href="/login">Login</a> <span> | </span>
-      </li>
-      <li id="to-right" style="display:{{#if logged}}block{{else}}none{{/if}};">
-        <a href="/logout">Logout</a> <span> | </span>
-      </li>
-      <li id="to-right" style="display:{{#if logged}}block{{else}}none{{/if}};">
-        <a href="/userProfile/{{userId}}">User Profile</a> <span> | </span>
-      </li>
-      <li id="to-right" style="display:{{#if logged}}none{{else}}block{{/if}};">
+      <li">
+        {{#if username}}
+        <a href="/logout">Signup</a> <span> | </span>
+        {{else}}
         <a href="/signup">Signup</a> <span> | </span>
+        <a href="/login">Login</a> <span> | </span>
+        {{/if}}
       </li>
     </ul>
   </nav>
-
   {{{body}}}
 
   <script src="/javascripts/script.js"></script>
