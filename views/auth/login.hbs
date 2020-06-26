@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Iniciar sesión</h1>
+
+            <form action="/iniciar-sesion" method="post">
+
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input name="username" type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input name="password" type="password" class="form-control" id="password">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Login</button>
+                <a class="btn btn-primary" href="/">Volver</a>
+                <p class="error">{{errorMsg}}</p>
+            </form>
+        </div>
+    </div>
+
+
+</div>
