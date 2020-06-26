@@ -1,0 +1,15 @@
+<h1> Inicio Sesión</h1>
+<form action="/inicio-sesion" method="post">
+
+    <label for="username">Nombre de usuario</label>
+    <input name="username" type="text" id="username">
+
+
+    <label for="password">Contraseña</label>
+    <input name="password" type="password" id="password">
+
+
+    <button type="submit">Iniciar sesión</button>
+
+    <p class="error">{{errorMsg}}</p>
+</form>
