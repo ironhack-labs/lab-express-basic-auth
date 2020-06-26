@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <h1>Log in</h1>
+
+            <form id=form action="/login" method="post">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input name="username" type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" id="password">
+                    <small class="form-text text-muted"></small>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Log in</button>
+
+                <p class="error">{{errorMsg}}</p>
+            </form>
+        </div>
+    </div>
+</div>
