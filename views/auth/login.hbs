@@ -1,0 +1,16 @@
+<section>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="username">User name</label>
+            <input class="form-control" name="username" type="text" id="username" placeholder="Type your username..."
+                required>
+            <label for="password">Password</label>
+            <input class="form-control" name="password" type="password" id="password"
+                placeholder="Enter your superPasword!" required minlength="2">
+            <p>{{errorMsg}}</p>
+            <button class="btn btn-primary btn-sm" type="submit">Log in!</button>
+        </div>
+    </form>
+    <a href="/" class="btn btn-primary btn-sm">Go back!</a>
+</section>

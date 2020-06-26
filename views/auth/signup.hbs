@@ -1,0 +1,16 @@
+<section>
+    <h1>Register</h1>
+    <form action="/signup" method="post">
+        <div class="form-group">
+            <label for="username">User name</label>
+            <input name="username" class="form-control" type="text" id="username" placeholder="Type a username..." required>
+            <label for="password">Password</label>
+            <input name="password" class="form-control" type="password" id="password"
+                placeholder="Create a password..." required minlength="2">
+            <p>{{errorMsg}}</p>
+            <p>{{confirmMsg}}</p>
+            <button type="submit" class="btn btn-primary btn-sm">Sign up!</button>
+        </div>
+    </form>
+    <a href="/" class="btn btn-primary btn-sm">Go back!</a>
+</section>
