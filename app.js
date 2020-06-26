@@ -15,13 +15,15 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // require database configuration
-require('./configs/db.config');
+require('./configs/db.config')
+require('./configs/session.config')
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +33,12 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
+
+const Auth = require('./routes/auth');
+app.use('/', Auth);
+
+const site = require('./routes/site-routes')
+app.use('/', site)
 
 const index = require('./routes/index.routes');
 app.use('/', index);
