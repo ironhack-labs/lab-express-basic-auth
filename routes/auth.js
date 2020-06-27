@@ -50,15 +50,15 @@ router.post("/signup", (req, res, next) => {
   User.findOne({
     username: theUsername,
   })
-    .then((user) => {
-      if (!user) {
+    .then((theUser) => {
+      if (!theUser) {
         res.render("auth/login", {
           errorMessage: "The username doesn't exist.",
         });
         return;
       }
-      if (bcrypt.compareSync(thePassword, user.password)) {
-        req.session.currentUser = user;
+      if (bcrypt.compareSync(thePassword, theUser.password)) {
+        req.session.currentUser = theUser;
         console.log('El usuario con sesión inciada es:', req.session.currentUser)
         res.redirect("/");
       } else {
@@ -73,7 +73,31 @@ router.post("/signup", (req, res, next) => {
       next(error);
     });
 });
-router.get("/logout", (req, res) => {
-  req.session.destroy(() => res.redirect("/signup"));
-});
+router.post("/login", (req, res, next) => {
+const theUsername=req.body.username 
+const thePassword=req.body.password
+
+if(theUsername ==="" || thePassword ===""){
+res.render('auth/login',{errorMessage:'Fuck'})
+return
+
+}
+User.findOne({'username':theUsername})
+.then(user =>{
+    if(!user){
+        res.render('auth/login',{errorMessage:'El usuario no existe'})
+        return
+    }
+
+if(bcrypt.compareSync(thePassword,user.password)){
+    req.session.currentUser=user
+    res.redirect('/')
+    
+ } else{
+        res.render('auth/login',{errorMessage:'Incorrect Password'})
+    }
+    
+})
+.catch(error=> (next(error)))
+})
 module.exports = router;

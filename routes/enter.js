@@ -21,11 +21,9 @@ router.use((req, res, next) => {
     res.render("protected/private");
   });
 
-  router.get("/logout", (req, res, next) => {
-    req.session.destroy((err) => {
-
-      res.redirect("/signup");
-    });
+  router.get("/logout", (req, res) => {
+    req.session.destroy(() => res.redirect("/login"));
   });
+
 
 module.exports = router; 
