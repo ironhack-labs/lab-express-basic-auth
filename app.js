@@ -63,13 +63,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+app.locals.title = "BASIC AUTHENTIFICATION LAB";
 
-const index = require("./routes/index.routes");
-app.use("/", index);
+
 
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
+
+
+
 
 
 

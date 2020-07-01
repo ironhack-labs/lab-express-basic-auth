@@ -16,10 +16,10 @@ const loginCheck = () => {
     }
   }
 
- router.get('/profile', loginCheck(), (req, res) => {
+ router.get('/private', loginCheck(), (req, res) => {
     console.log('this is the cookie: ', req.cookies);
     console.log('this is the user: ', req.session.user);
-    res.render('profile');
+    res.render('private');
   })
   
 
