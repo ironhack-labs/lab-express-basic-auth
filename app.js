@@ -14,6 +14,22 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+// Mongoose configuration
+mongoose.Promise = Promise;
+mongoose
+  .connect('mongodb://localhost/basic-auth' , { useNewUrlParser: true })
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
+ 
+// ...other code
+ 
+// Routes
+const router = require("./routes/auth-routes");
+app.use('/', router);
+
 // require database configuration
 require('./configs/db.config');
 
