@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcrypt');
+const bcryptSalt = 10;
+
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('auth/signup');
   });
 
   router.get('/login', (req, res) => {
@@ -29,7 +31,7 @@ router.get('/signup', (req, res) => {
         } else {
           // we create the user and add the hashed password
           const salt = bcrypt.genSaltSync();
-          const hash = bcrypt.hashSync(password, salt)
+          const hash = bcrypt.hashSync(password, salt);
           User.create({ username: username, password: hash })
             .then(dbUser => {
               // log the user in by saving it in the session
