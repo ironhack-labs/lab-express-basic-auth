@@ -1,12 +1,14 @@
-<h1>Login</h1>
-<form class="login-form" action="/login" method="post">
-    <label for="username">Username: </label>
-    <input type="text" name="username" id="username" required />
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" required minlength="6" />
+<div class="container">
+    <h1>Login</h1>
+    <form class="login-form" action="/login" method="post">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" required minlength="6" />
 
-    <button class="btn" type="submit">Log in</button>
-</form>
-{{#if message}}
-<p style="color: red">{{message}}</p>
-{{/if}}
+        <button class="btn" type="submit">Log in</button>
+    </form>
+    {{#if message}}
+    <p style="color: red">{{message}}</p>
+    {{/if}}
+</div>

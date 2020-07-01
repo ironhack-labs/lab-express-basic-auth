@@ -32,11 +32,11 @@ router.post('/login', async (req, res, next) => {
 
     const user = await getUser(username)
 
-    if (user === undefined) {
-        res.render('signup', { message: 'Error' })
+    if (bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
+        return res.redirect('/main')
     }
-    req.session.user = user;
-    return res.redirect('/main')
+    return res.render('login', { message: "Credentials wrong" })
 })
 
 

@@ -41,7 +41,9 @@ a{
   margin:10px;
 }
 .btn{
-  background: rgb(0, 0, 0);
+  background: #00B7FF;
   border-radius: 10px;
   padding: 10px 30px;
+  color: #fff;
+  border: none
 }
