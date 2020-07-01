@@ -1,10 +1,10 @@
-<form action="/register" method="POST">
+<form action="/login" method="POST">
     <label for="username">Username: </label>
     <input type="text" name="username" id="username" required>
     <label for="password">Password: </label>
     <input type="password" name="password" id="password" required>
 
-    <button type="submit">Sign up</button>
+    <button type="submit">Login</button>
 </form>
 {{#if message}}
     <p style="color: red">{{message}}</p>

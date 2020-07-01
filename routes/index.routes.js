@@ -1,10 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page */
+// Middleware:
+const checkLogin = () => {
+    return (req, res, next) => {
+        if (req.session.user) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
+    }
+}
+
+
 router.get('/', (req, res, next) => res.render('index'));
 
-router.get('/profile', (req, res, next) => {
+router.get('/profile', checkLogin(), (req, res, next) => {
     res.render('profile')
 })
 
