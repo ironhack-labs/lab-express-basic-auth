@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcrypt');
 
+
 // Function to create a new User
 const handlerCreateUser = async (username, password) => {
     try {

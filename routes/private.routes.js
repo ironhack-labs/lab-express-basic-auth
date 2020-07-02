@@ -4,8 +4,6 @@ const router = express.Router();
 /* GET Private page */
 router.get('/private', (req, res, next) => {
     const user = req.session.user
-    console.log(user)
-    if (!user) return res.redirect('/login')
     return res.render('private', { user })
 });
 
