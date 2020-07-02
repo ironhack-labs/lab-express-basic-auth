@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page */
+/* GET Main page */
 router.get('/main', (req, res, next) => {
     const user = req.session.user
     if (!user) return res.redirect('/login')

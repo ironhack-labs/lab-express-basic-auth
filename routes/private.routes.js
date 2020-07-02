@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page */
+/* GET Private page */
 router.get('/private', (req, res, next) => {
     const user = req.session.user
     console.log(user)

@@ -21,6 +21,7 @@ require('./configs/db.config');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+// Setup Session and MongoStore
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
@@ -59,8 +60,10 @@ app.use('/', index);
 
 const auth = require('./routes/auth.routes');
 app.use('/', auth);
+
 const main = require('./routes/main.routes');
 app.use('/', main);
+
 const private = require('./routes/private.routes');
 app.use('/', private);
 
