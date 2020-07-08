@@ -10,13 +10,12 @@ exports.signup = (req, res) => {
   res.render('users/signup')
 }
 
-exports.createUser = (req, res, next) => {
+exports.createUser = (req, res) => {
   User.create(req.body)
     .then(user => {
       res.render('users/profile', {user})
-      next()
     })
-    .catch(errors => {
-      res.render('users/signup', {errors})
+    .catch((errors) => {
+      res.render('users/signup', {errors, user: req.body})
     }) 
 }

@@ -7,19 +7,19 @@
       <form action="/users/create" method="POST">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" name="username">
+          <input type="text" class="form-control{{#if errors.username}} is-invalid{{/if}}" id="username" name="username" {{#if user.username}}value="{{user.username}}"{{/if}}>
           {{#if errors.username}}
           <div class="invalid-feedback">
-            {{ errors.message}}
+            {{ errors.username.message}}
           </div>
           {{/if}}
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control{{#if errors.password}} is-invalid{{/if}}" id="password" name="password" {{#if user.password}}value="{{user.password}}"{{/if}}>
           {{#if errors.password}}
            <div class="invalid-feedback">
-            {{ errors.message}}
+            {{ errors.password.message}}
           </div>
           {{/if}}
         </div>
