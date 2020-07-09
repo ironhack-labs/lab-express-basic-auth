@@ -1,0 +1,38 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  a {
+    color: #00B7FF;
+  }
+}
+
+form {
+
+  .form-control {
+    border: 2px solid pink;
+  }
+  .btn-secondary {
+    background: green;
+  }
+  .btn-secondary:hover {
+    background-color: rgb(0, 173, 0);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    color: black;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: rgb(0, 183, 255);
+    color: black;
+  }
+}
+
+h3:hover {
+  color: skyblue;
+}
+
+label:hover {
+  color: red;
+}
+
+

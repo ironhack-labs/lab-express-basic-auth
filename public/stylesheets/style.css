@@ -3,6 +3,37 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+body a {
   color: #00B7FF;
 }
+
+form .form-control {
+  border: 2px solid pink;
+}
+
+form .btn-secondary {
+  background: green;
+}
+
+form .btn-secondary:hover {
+  background-color: #00ad00;
+  -webkit-box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+}
+
+form .btn-primary:hover {
+  -webkit-box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  background-color: #00b7ff;
+  color: black;
+}
+
+h3:hover {
+  color: skyblue;
+}
+
+label:hover {
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
