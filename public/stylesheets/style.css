@@ -1,8 +1,49 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+html {
+  font-size: 10px;
 }
 
-a {
-  color: #00B7FF;
+body {
+  margin-top: 6rem;
+  font: 1.6rem 'Noto Sans JP', sans-serif;
+  line-height: 1.5;
 }
+
+form {
+  margin-top: 6rem;
+  border: solid 0.1rem #ddd;
+  padding: 4rem;
+  border-radius: 1rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+
+form h3 {
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+form .input-group-text {
+  width: 4.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form .form-control {
+  padding: 2rem 1rem;
+  font-size: 1.4rem;
+}
+
+form .btn {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  background: #333;
+  border: 0;
+  padding: 1rem 2rem;
+}
+/*# sourceMappingURL=style.css.map */
