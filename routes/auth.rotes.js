@@ -39,7 +39,7 @@ router.post('/signup', (req, res, next) => {
         })
         .then(userFromDB => {
             console.log('Newly created user is: ', userFromDB);
-            res.redirect('/userProfile')
+            res.redirect('/user-profile')
         })
         .catch(error => {
             if(error instanceof mongoose.Error.ValidationError){
@@ -92,6 +92,27 @@ router.post('/login', (req, res, next) => {
         })
     .catch(error => next(error));
 });
+
+
+///////////////////////////////////////////////////
+////////////////////// LOGOUT /////////////////////
+///////////////////////////////////////////////////
+
+router.post('/logout', (req, res)=> {
+    req.session.destroy();
+    req.redirect('/');
+});
+
+// Protegendo rota privada
+router.get('/userProfile', (req, res) => {
+    console.log('your sess exp: ', req.session.cookie.expires);
+    if(req.session.currenUser){
+        return res.render('users/user-profile', { userInSession: req.session.currenUser})
+    }
+
+    res.redirect('/login');
+});
+
 
 
 

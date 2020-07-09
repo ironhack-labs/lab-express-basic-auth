@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,20 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Users - demo </a></p>
+        </li>
+        <li id="to-right">
+          <a href="/signup">Signup</a> <span> | </span>
+          <a href="/login">Login</a> <span> | </span>
+          <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
 
     {{{body}}}
 
