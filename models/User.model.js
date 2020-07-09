@@ -8,6 +8,7 @@ const userSchema = new Schema({
         type: String,
         unique: true,
         required: true,
+        minlength: 4,
     },
     password: {
         type: String,
@@ -17,15 +18,11 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', function(next) {
-    if (this.isModified('password')) {
-        bcrypt.hash(this.password, 10)
-            .then ((hash) => {
-                this.password = hash
-                next()
-            })
-        } else {
+    bcrypt.hash(this.password, 10)
+        .then ((hash) => {
+            this.password = hash
             next()
-        }
+        })
 })
 
 const User = mongoose.model('User', userSchema)

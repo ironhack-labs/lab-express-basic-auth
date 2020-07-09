@@ -1,20 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User.model.js')
+const signup = require('../controllers/signup.controller')
 
 /* GET home page */
-router.get('/', (req, res, next) => res.render('index') )
+router.get('/', signup.drawIndex)
 
-router.get('/signup', (req, res, next) => res.render('signup') )
+router.get('/signup', signup.drawSignup)
 
-router.post('/signup', (req, res, next) => {
-    User.create(req.body)
-      .then(user => {
-        res.render('index', {user})
-      })
-      .catch((e) => {
-          console.log(e)
-      })  
-    })
+router.post('/signup', signup.createUser)
 
 module.exports = router
