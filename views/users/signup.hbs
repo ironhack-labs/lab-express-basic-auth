@@ -20,6 +20,21 @@
                         </div>
                     </div>
                     <div class="form-group col-12">
+                        <label for="email">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                            </div>
+                            <input type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
+                                placeholder="Insert your email" name="email">
+                            {{#if error.email}}
+                            <div class="invalid-feedback">
+                                {{error.email}}
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
                         <label for="password">Password</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -34,8 +49,14 @@
                             {{/if}}
                         </div>
                     </div>
+                    <div class="form-group col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                    <div class="col-12 signup">
+                        <h5>Already a member?</h5>
+                        <a href="/">Log in</a>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign up</button>
             </form>
         </div>
     </div>

@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+$text: #333;
+$black: #000;
+
 html {
   font-size: 10px;
 }
@@ -10,17 +13,26 @@ body {
   line-height: 1.5;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
 form {
   margin-top: 6rem;
   border: solid 0.1rem #ddd;
   padding: 4rem;
   border-radius: 1rem;
   background: #fff;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 1rem rgba($black, 0.3);
 
   h3 {
-    font-weight: 700;
     margin-bottom: 3rem;
+    text-align: center;
   }
 
   .input-group-text {
@@ -37,8 +49,27 @@ form {
   .btn {
     font-size: 1.6rem;
     margin-top: 2rem;
-    background: #333;
+    background: $text;
     border: 0;
     padding: 1rem 2rem;
+  }
+}
+
+.signup {
+  border-top: solid 0.1rem rgba($text, 0.2);
+  margin-top: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    color: $text;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

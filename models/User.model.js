@@ -1,7 +1,9 @@
 // User model here
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const bcryptjs = require('bcryptjs')
 const saltRounds = 10
+
+const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 const userSchema = new mongoose.Schema(
   {
@@ -11,6 +13,14 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
       required: [true, 'Username is required']
+    },
+    email: {
+      type: String,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      required: [true, 'Email is required'],
+      match: [EMAIL_PATTERN, 'Email is invalid']
     },
     password: {
       type: String,
@@ -25,10 +35,10 @@ userSchema.pre('save', function (next) {
   const user = this
 
   if (user.isModified('password')) {
-    bcrypt
+    bcryptjs
       .genSalt(saltRounds)
       .then((salt) => {
-        return bcrypt.hash(user.password, salt).then((hash) => {
+        return bcryptjs.hash(user.password, salt).then((hash) => {
           user.password = hash
           next()
         })

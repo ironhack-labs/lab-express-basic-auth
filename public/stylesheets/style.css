@@ -9,6 +9,15 @@ body {
   line-height: 1.5;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
 form {
   margin-top: 6rem;
   border: solid 0.1rem #ddd;
@@ -20,8 +29,8 @@ form {
 }
 
 form h3 {
-  font-weight: 700;
   margin-bottom: 3rem;
+  text-align: center;
 }
 
 form .input-group-text {
@@ -45,5 +54,33 @@ form .btn {
   background: #333;
   border: 0;
   padding: 1rem 2rem;
+}
+
+.signup {
+  border-top: solid 0.1rem rgba(51, 51, 51, 0.2);
+  margin-top: 2rem;
+  padding-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signup a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.signup a:hover {
+  text-decoration: none;
 }
 /*# sourceMappingURL=style.css.map */
