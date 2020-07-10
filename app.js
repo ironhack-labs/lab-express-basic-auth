@@ -14,13 +14,18 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// require database configuration
-require('./configs/db.config');
+// //Agregar middleware que va a recoger la sesión del usuario
+// require('./configs/session.config')
+
+// // require database configuration
+// require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 
 // Express View engine setup
@@ -34,5 +39,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+//ruta auth
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter);
 
 module.exports = app;
