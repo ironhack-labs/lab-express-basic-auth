@@ -1,7 +1,7 @@
+const bcrypt = require('bcrypt')
 // User model here
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
   username: {
@@ -29,6 +29,10 @@ userSchema.pre('save', function(next) {
     next()
   }
 })
+
+userSchema.methods.checkPassword = function(password) {
+  return bcrypt.compare(password, this.password)
+}
 
 const User = mongoose.model('User', userSchema)
 

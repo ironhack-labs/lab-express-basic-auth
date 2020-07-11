@@ -1,14 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-6 offset-md-3">
+    <div class="col-12 col-md-6">
       <h1>User Auth</h1>
+      <form action="/users/login" method="POST">
+        {{#if errors}}
+          <div class="alert alert-danger">
+            <p>{{ errors}}</p>
+          </div>
+          {{/if}}
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" {{#if user.username}}value="{{user.username}}"{{/if}}>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-    <div class="col-12 col-md-6 offset-md-3">
-      
-      <div class="btn-group mt-3">
-        <a href="/signup" class="btn btn-primary">Register</a>
-        <a href="/login" class="btn btn-primary">login</a>
-      </div>
+    <div class="col-12 col-md-4 offset-md-1">
+      <h4 class="text-center">Are not registred? - User Create</h4>
+      <a href="/users/signup" class="btn btn-danger btn-block">Create user</a>
     </div>
   </div>
 </div>

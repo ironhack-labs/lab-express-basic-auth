@@ -4,12 +4,21 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
       </li>
+      {{#if currentUser }}
+      <li class="nav-item">
+          Hello {{ currentUser.username }} 
+        <form action="/users/logout" method="POST">
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+      </li>
+      {{else}}
       <li class="nav-item">
         <a class="nav-link" href="/users/signup">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/users/login">Login</a>
       </li>
+      {{/if}}
     </ul>
   </nav>
 </header>
