@@ -8,7 +8,7 @@ module.exports.login = (req, res) => {
   res.render('login');
 };
 module.exports.signup = (req, res) => {
-  res.render('signup');
+  res.render('users/signup');
 };
 
 module.exports.createUser = (req, res) => {
