@@ -73,3 +73,21 @@ form {
     }
   }
 }
+
+.welcome {
+  img {
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  form {
+    border: 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    padding: 0;
+  }
+}

@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre('save', function (next) {
   const user = this
-
   if (user.isModified('password')) {
     bcryptjs
       .genSalt(saltRounds)
@@ -48,6 +47,10 @@ userSchema.pre('save', function (next) {
     next()
   }
 })
+
+userSchema.methods.checkPassword = function (password) {
+  return bcryptjs.compare(password, this.password)
+}
 
 const User = mongoose.model('User', userSchema)
 

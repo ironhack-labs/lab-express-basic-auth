@@ -83,4 +83,26 @@ form .btn {
 .signup a:hover {
   text-decoration: none;
 }
+
+.welcome img {
+  width: 100%;
+}
+
+.welcome h1 {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.welcome form {
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 0;
+}
 /*# sourceMappingURL=style.css.map */
