@@ -3,9 +3,7 @@ const User = require('../models/User.model')
 exports.drawIndex = (req, res, next) => { res.render('index') }
 
 exports.drawProfile = (req, res, next) => { 
-  User.findById(req.session.userId)
-    .then (user => res.render('profile', user))
-    .catch (e => res.send(e))
+  res.render('profile', req.currentUser)
 }
 
 exports.drawLogin = (req, res, next) => { res.render('login') }
