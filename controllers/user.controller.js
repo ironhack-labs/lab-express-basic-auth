@@ -11,7 +11,9 @@ exports.signup = (req, res) => {
 }
 
 exports.createUser = (req, res) => {
-  User.create(req.body)
+  const newUser = new User(req.body)
+  
+  newUser.save()
     .then(user => {
       res.render('users/profile', {user})
     })
