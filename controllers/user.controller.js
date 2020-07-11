@@ -18,11 +18,12 @@ module.exports.createUser = (req, res) => {
     .then(user => {
       res.render('users/profile', {
         user
-      });
+      })
     })
-    .catch((errors) => {
-      res.render('users/signup', {
-        errors,
+    .catch((error) => {
+      console.log('error', error);
+      res.render('error', {
+        error,
         user: req.body
       })
     });
