@@ -18,9 +18,23 @@ exports.doLogin = (req, res, next) => {
               req.session.userId = user._id
               res.redirect('/profile')
             } else {
-              res.send('Wrong!!!')
+              res.render('login', {
+                error: {
+                  password: {
+                    message: 'user not found'
+                  }
+                }
+              })
             }
           })
+      } else {
+        res.render('login', {
+          error: {
+            username: {
+              message: 'user not found'
+            }
+          }
+        })
       }
     })
     .catch( e => res.send(e))
