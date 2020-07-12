@@ -7,7 +7,29 @@ const salt = 10
 const userSchema = new Schema({
     username: {
         type: String,
-        required: [true, "User name is required"]
+        required: [true, "User name is required"],
+        validate: {
+            isAsync: true,
+            validator: function(value, isValid) {
+                const self = this;
+                return self.constructor.findOne({username: value})
+                .exec(function(err, user){
+                    if(err) {
+                        throw err;
+                    }
+                    else if(user) {
+                        if(self.id === user.id) {
+                            return isValid(true);
+                        }
+                        return isValid(false)
+                    }
+                    else {
+                        return isValid(true);
+                    }
+                })
+            },
+            message: 'The name exist in database'
+        },
     },
     password :{
         type: String,
