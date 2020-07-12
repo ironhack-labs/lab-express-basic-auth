@@ -1,12 +1,24 @@
+<h2 class="text-center py-5"> Register</h2>
+
 <form action="/signin" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">User Name:</label>
-    <input type="text" class="form-control" name="username">
+    <input type="text" class="form-control {{#if error.username }}is-invalid{{/if}}" name="username" value="{{user.username}}">
     <small id="emailHelp" class="form-text text-muted">Enter your user name</small>
+     {{#if error.username}}
+    <div class="invalid-feedback">
+      {{error.username.message}}
+    </div>
+    {{/if}}
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password">
+    <input type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" name="password" value="{{user.password}}">
+     {{#if error.password}}
+    <div class="invalid-feedback">
+      {{error.password.message}}
+    </div>
+    {{/if}}
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
