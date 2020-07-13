@@ -42,9 +42,12 @@ module.exports.signup = (_, res) => {
 
 module.exports.create = (req, res, next) => {
   const user = new User({
+    name: req.body.name,
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    avatar: req.body.avatar,
+    bio: req.body.bio
   })
 
   user
@@ -57,8 +60,10 @@ module.exports.create = (req, res, next) => {
     })
 }
 
-module.exports.welcome = (_, res) => {
-  res.render('users/welcome', { user: new User() })
+module.exports.welcome = (req, res, next) => {
+  res.render('users/welcome', {
+    user: req.currentUser
+  })
 }
 
 module.exports.logout = (req, res, next) => {

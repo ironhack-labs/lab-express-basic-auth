@@ -1,0 +1,10 @@
+<img class="avatar" src="{{user.avatar}}" alt="{{user.name}} avatar">
+<p class="name">{{user.name}}</p>
+<p>
+    <a href="/{{user.username}}">@{{user.username}}</a>
+</p>
+<h4>bio</h4>
+<p>{{user.bio}}</p>
+<form action="/logout" method="post">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</form>

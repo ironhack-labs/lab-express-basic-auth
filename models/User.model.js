@@ -7,6 +7,12 @@ const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\"
 
 const userSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      required: [true, 'Name is required']
+    },
     username: {
       type: String,
       unique: true,
@@ -26,6 +32,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       minlength: [8, 'Password must be a least 8 chars'],
       required: [true, 'Password is required']
+    },
+    avatar: {
+      type: String,
+      default: 'https://img.icons8.com/cute-clipart/344/user-male.png'
+    },
+    bio: {
+      type: String,
+      maxlength: 100
     }
   },
   { timestamps: true }

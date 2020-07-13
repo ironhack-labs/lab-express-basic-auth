@@ -17,9 +17,16 @@
 </head>
 
 <body>
-
-  {{{body}}}
-
+  <div class="container">
+    <div class="row">
+      {{#if currentUser }}
+      <div class="col-2 aside">
+        {{>menu}}
+      </div>
+      {{/if}}
+      <div class="{{#if currentUser }}col-10 {{else}} col-12 {{/if}}content">{{{body}}}</div>
+    </div>
+  </div>
   <script src="/javascripts/script.js"></script>
 </body>
 

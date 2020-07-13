@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100,400;700&display=swap");
 html {
   font-size: 10px;
 }
@@ -84,16 +84,57 @@ form .btn {
   text-decoration: none;
 }
 
-.welcome img {
-  width: 100%;
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.welcome h1 {
+.content img {
+  width: 30%;
+  border-radius: 10%;
+}
+
+.content h1 {
   text-align: center;
+  margin-bottom: 4rem;
+}
+
+.content h1 .light {
+  font-weight: 100;
+}
+
+.aside {
+  border-right: solid 0.1rem rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+}
+
+.aside h4 {
   margin-top: 3rem;
 }
 
-.welcome form {
+.aside .avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.aside .name {
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.aside form {
   border: 0;
   display: -webkit-box;
   display: -ms-flexbox;

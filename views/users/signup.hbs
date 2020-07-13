@@ -1,63 +1,107 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <form action="/signup" method="POST">
-                <h3>New user</h3>
-                <div class="form-row">
-                    <div class="form-group col-12">
-                        <label for="username">Username</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
-                            </div>
-                            <input type="text" class="form-control {{#if error.username }}is-invalid{{/if}}"
-                                id="username" placeholder="Insert your username" name="username">
-                            {{#if error.username}}
-                            <div class="invalid-feedback">
-                                {{error.username}}
-                            </div>
-                            {{/if}}
+<div class="row justify-content-center">
+    <div class="col-5">
+        <form action="/signup" method="POST">
+            <h3>New user</h3>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="name">Name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                         </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="email">Email</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
-                            </div>
-                            <input type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
-                                placeholder="Insert your email" name="email">
-                            {{#if error.email}}
-                            <div class="invalid-feedback">
-                                {{error.email}}
-                            </div>
-                            {{/if}}
+                        <input type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name"
+                            placeholder="Insert your name" name="name" value="{{user.name}}">
+                        {{#if error.name}}
+                        <div class="invalid-feedback">
+                            {{error.name}}
                         </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="password">Password</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                            </div>
-                            <input type="password" class="form-control {{#if error.password }}is-invalid{{/if}}"
-                                id="password" placeholder="Insert your password" name="password">
-                            {{#if error.password}}
-                            <div class="invalid-feedback">
-                                {{error.password}}
-                            </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    <div class="form-group col-12 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
-                    <div class="col-12 signup">
-                        <h5>Already a member?</h5>
-                        <a href="/">Log in</a>
+                        {{/if}}
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="form-group col-12">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                        </div>
+                        <input type="text" class="form-control {{#if error.username }}is-invalid{{/if}}" id="username"
+                            placeholder="Insert your username" name="username" value="{{user.username}}">
+                        {{#if error.username}}
+                        <div class="invalid-feedback">
+                            {{error.username}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label for="email">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                        </div>
+                        <input type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
+                            placeholder="Insert your email" name="email" value="{{user.email}}">
+                        {{#if error.email}}
+                        <div class="invalid-feedback">
+                            {{error.email}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                        </div>
+                        <input type="password" class="form-control {{#if error.password }}is-invalid{{/if}}"
+                            id="password" placeholder="Insert your password" name="password" value="{{user.password}}">
+                        {{#if error.password}}
+                        <div class="invalid-feedback">
+                            {{error.password}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label for="avatar">Avatar</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-astronaut"></i></div>
+                        </div>
+                        <input type="text" class="form-control {{#if error.avatar }}is-invalid{{/if}}" id="avatar"
+                            placeholder="Insert your avatar" name="avatar" value="{{user.avatar}}">
+                        {{#if error.avatar}}
+                        <div class="invalid-feedback">
+                            {{error.avatar}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label for="bio">Bio</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-comment-alt"></i></div>
+                        </div>
+                        <textarea type="text" class="form-control {{#if error.bio }}is-invalid{{/if}}" id="bio"
+                            placeholder="Insert your bio" name="bio" value="{{user.bio}}"></textarea>
+                        {{#if error.bio}}
+                        <div class="invalid-feedback">
+                            {{error.bio}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="form-group col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+                <div class="col-12 signup">
+                    <h5>Already a member?</h5>
+                    <a href="/">Log in</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

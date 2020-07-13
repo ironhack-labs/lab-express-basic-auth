@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100,400;700&display=swap');
 
 $text: #333;
 $black: #000;
@@ -74,13 +74,43 @@ form {
   }
 }
 
-.welcome {
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
   img {
-    width: 100%;
+    width: 30%;
+    border-radius: 10%;
   }
   h1 {
     text-align: center;
+    margin-bottom: 4rem;
+
+    .light {
+      font-weight: 100;
+    }
+  }
+}
+
+.aside {
+  border-right: solid 0.1rem rgba($black, 0.1s);
+  font-size: 1.2rem;
+
+  h4 {
     margin-top: 3rem;
+  }
+
+  .avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+
+  .name {
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
 
   form {
