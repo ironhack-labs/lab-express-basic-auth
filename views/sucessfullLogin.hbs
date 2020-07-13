@@ -1,5 +1,9 @@
-<h1>Your login sucessfull!!!</h1>
+<h1>Hello {{userusername}}. Your login sucessfull!!!</h1>
 
 <form action="/logout" method="post">
   <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
 </form>
+
+ {{#if currentUser }}
+    <a href="/private" class="btn btn-danger"> view private content</a>
+ {{/if}}

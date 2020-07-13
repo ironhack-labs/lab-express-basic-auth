@@ -1,4 +1,4 @@
-const User = require('../models/user.model')
+const User = require('../models/User.model')
 
 module.exports.isAuthenticated = (req, res, next) => {
   User.findById(req.session.userId)
@@ -6,7 +6,7 @@ module.exports.isAuthenticated = (req, res, next) => {
       if (user) {
         req.currentUser = user
         res.locals.currentUser = user
-
+        
         next()
       } else {
         res.redirect('/login')

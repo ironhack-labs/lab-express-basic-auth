@@ -1,5 +1,4 @@
 const User = require('../models/User.model.js')
-const mongoose = require('mongoose')
 
 exports.indexRender = (req, res, next) => { res.render('index')}
 exports.signinRender = (req, res, next) => { res.render('createUser'), { user: new User()}}
@@ -60,3 +59,7 @@ module.exports.logout = (req, res, next) => {
 
     res.redirect('/login')
 }
+
+module.exports.private = (req, res, next) => {
+    res.render('private')
+  }

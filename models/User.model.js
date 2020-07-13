@@ -28,7 +28,7 @@ const userSchema = new Schema({
                     }
                 })
             },
-            message: 'The name exist in database'
+            message: 'The username exist in database'
         },
     },
     password :{
@@ -58,6 +58,6 @@ userSchema.methods.checkPassword = function(password) {
     return bcrypt.compare(password, this.password);
   }
 
-const User = mongoose.model('user', userSchema)
+const User = mongoose.model('User', userSchema)
 
 module.exports = User
