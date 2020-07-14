@@ -9,7 +9,7 @@ router.get('/signup', sessionMiddleware.isNotAuthenticated, usercontrollers.sign
 router.post('/signup', sessionMiddleware.isNotAuthenticated, usercontrollers.createUser)
 router.get('/login', usercontrollers.login)
 router.post('/login', usercontrollers.doLogin)
-router.post('/logout', sessionMiddleware.isAuthenticated, usercontrollers.logout)
+router.post('/logout', usercontrollers.logout)
 router.get('/main', sessionMiddleware.isAuthenticated, usercontrollers.main)
 router.get('/private', sessionMiddleware.isAuthenticated, usercontrollers.private)
 
