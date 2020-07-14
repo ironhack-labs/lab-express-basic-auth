@@ -66,6 +66,20 @@ module.exports.welcome = (req, res, next) => {
   })
 }
 
+module.exports.edit = (req, res, next) => {
+  res.render('users/edit', {
+    user: req.currentUser
+  })
+}
+
+module.exports.updated = (req, res, next) => {
+  const body = req.body
+  const username = req.params.username
+  User.findOneAndUpdate(username, body)
+    .then(() => res.redirect('/welcome'))
+    .catch((error) => console.log(error))
+}
+
 module.exports.logout = (req, res, next) => {
   req.session.destroy()
   res.redirect('/')

@@ -2,6 +2,7 @@
 
 $text: #333;
 $black: #000;
+$white: #fff;
 
 html {
   font-size: 10px;
@@ -42,7 +43,7 @@ form {
   }
 
   .form-control {
-    padding: 2rem 1rem;
+    padding: 1rem;
     font-size: 1.4rem;
   }
 
@@ -50,8 +51,14 @@ form {
     font-size: 1.6rem;
     margin-top: 2rem;
     background: $text;
-    border: 0;
-    padding: 1rem 2rem;
+    border: solid 0.2rem $text;
+    padding: 1rem 5rem;
+
+    &:hover {
+      background: $white;
+      color: $text;
+      border-color: $text;
+    }
   }
 }
 
@@ -103,8 +110,30 @@ form {
   }
 
   .avatar {
-    width: 40%;
-    border-radius: 50%;
+    position: relative;
+    img {
+      width: 40%;
+      border-radius: 50%;
+      border: 0.2rem solid $text;
+    }
+
+    .edit {
+      font-size: 1.4rem;
+      color: $text;
+      border-radius: 10rem;
+      box-shadow: 0 0 1rem rgba($black, 0.3);
+      border: 0.2rem solid $text;
+      position: absolute;
+      background: $white;
+      bottom: 0;
+      z-index: 1;
+      left: 5.6rem;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .name {
@@ -115,9 +144,66 @@ form {
 
   form {
     border: 0;
-    display: flex;
-    justify-content: center;
     box-shadow: none;
     padding: 0;
+    margin-top: 3rem;
+
+    .logout {
+      background: $white;
+      border: solid 0.2rem $text;
+      color: $text;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 2.5rem;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0;
+      position: relative;
+      transition: all 200ms;
+
+      &:before {
+        content: 'Logout';
+        position: absolute;
+        z-index: 1;
+        left: -6rem;
+        color: $white;
+        transition: all 200ms;
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+    }
+
+    &:hover {
+      .logout {
+        margin-left: 6rem;
+        border-color: $white;
+
+        &:before {
+          color: $text;
+        }
+      }
+    }
+  }
+}
+
+.update {
+  form {
+    box-shadow: none;
+    border: 0;
+
+    h3 {
+      text-align: left;
+    }
+
+    fieldset {
+      width: 100%;
+    }
+
+    .text-muted {
+      font-size: 1.2rem;
+    }
   }
 }

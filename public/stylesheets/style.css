@@ -44,7 +44,7 @@ form .input-group-text {
 }
 
 form .form-control {
-  padding: 2rem 1rem;
+  padding: 1rem;
   font-size: 1.4rem;
 }
 
@@ -52,8 +52,14 @@ form .btn {
   font-size: 1.6rem;
   margin-top: 2rem;
   background: #333;
-  border: 0;
-  padding: 1rem 2rem;
+  border: solid 0.2rem #333;
+  padding: 1rem 5rem;
+}
+
+form .btn:hover {
+  background: #fff;
+  color: #333;
+  border-color: #333;
 }
 
 .signup {
@@ -124,8 +130,38 @@ form .btn {
 }
 
 .aside .avatar {
+  position: relative;
+}
+
+.aside .avatar img {
   width: 40%;
   border-radius: 50%;
+  border: 0.2rem solid #333;
+}
+
+.aside .avatar .edit {
+  font-size: 1.4rem;
+  color: #333;
+  border-radius: 10rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  border: 0.2rem solid #333;
+  position: absolute;
+  background: #fff;
+  bottom: 0;
+  z-index: 1;
+  left: 5.6rem;
+  width: 3rem;
+  height: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .aside .name {
@@ -136,14 +172,72 @@ form .btn {
 
 .aside form {
   border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 0;
+  margin-top: 3rem;
+}
+
+.aside form .logout {
+  background: #fff;
+  border: solid 0.2rem #333;
+  color: #333;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 0;
+  position: relative;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+}
+
+.aside form .logout:before {
+  content: 'Logout';
+  position: absolute;
+  z-index: 1;
+  left: -6rem;
+  color: #fff;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.aside form:hover .logout {
+  margin-left: 6rem;
+  border-color: #fff;
+}
+
+.aside form:hover .logout:before {
+  color: #333;
+}
+
+.update form {
   -webkit-box-shadow: none;
           box-shadow: none;
-  padding: 0;
+  border: 0;
+}
+
+.update form h3 {
+  text-align: left;
+}
+
+.update form fieldset {
+  width: 100%;
+}
+
+.update form .text-muted {
+  font-size: 1.2rem;
 }
 /*# sourceMappingURL=style.css.map */

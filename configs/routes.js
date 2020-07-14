@@ -20,6 +20,16 @@ router.get(
   sessionMiddleware.isAuthenticated,
   usersController.welcome
 )
+router.get(
+  '/:username/edit',
+  sessionMiddleware.isAuthenticated,
+  usersController.edit
+)
+router.post(
+  '/:username/edit',
+  sessionMiddleware.isAuthenticated,
+  usersController.updated
+)
 router.post(
   '/logout',
   sessionMiddleware.isAuthenticated,

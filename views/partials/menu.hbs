@@ -1,4 +1,8 @@
-<img class="avatar" src="{{user.avatar}}" alt="{{user.name}} avatar">
+<div class="avatar">
+    <img src="{{user.avatar}}" alt="{{user.name}} avatar">
+    <a href="/{{user.username}}/edit" class="edit"><i class="fas fa-edit"></i></a>
+</div>
+
 <p class="name">{{user.name}}</p>
 <p>
     <a href="/{{user.username}}">@{{user.username}}</a>
@@ -6,5 +10,5 @@
 <h4>bio</h4>
 <p>{{user.bio}}</p>
 <form action="/logout" method="post">
-    <button type="submit" class="btn btn-primary">Logout</button>
+    <button type="submit" class="logout"><i class="fas fa-sign-out-alt"></i></button>
 </form>
