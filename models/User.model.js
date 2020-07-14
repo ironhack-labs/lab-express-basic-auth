@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema (
         username : {
             type: String,
             trim : true,
-            unique: true,
+            unique: [true, "Username already exists"],
             required: [true, "Username is required"]
         },
         password : {
@@ -30,6 +30,10 @@ userSchema.pre ('save', function (next) {
     })
     .catch (error => next(error))
 })
+
+userSchema.methods.checkPassword = function(password) {
+    return bcrypt.compare(password, this.password);
+  }
 
 const User = mongoose.model ('userSchema', userSchema)
 

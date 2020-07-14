@@ -1,7 +1,6 @@
 <div class="container-fluid" id="signup">
-  <h2>Create account</h2>
   <form action="/signup" method="POST">
-    <div class="col-lg-3">
+    <div class="col-lg-3 mx-auto mt-5">
         <div class="form-group">
             <label for="input-username">Username</label>
             <input class="form-control w-20 {{#if error.username}} is-invalid {{/if}}" type="text" id="input-username" value="{{user.username}}" name="username" placeholder="Your username" />

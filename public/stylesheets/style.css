@@ -1,8 +1,24 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: aquamarine;
+
 }
 
 a {
   color: #00B7FF;
+}
+
+
+.index {
+  background: url('../images/fondo.jpg') no-repeat center center;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.index > a, .index button {
+  margin-top: 10px;
 }

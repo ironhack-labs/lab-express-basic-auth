@@ -1,1 +1,23 @@
-<h1>HELLO</h1>
+<div class="container-fluid form">
+    
+  <form action="/login" method="POST">
+    <div class="col-lg-3 mx-auto mt-5">
+        <div class="form-group">
+            <label for="input-username">Username</label>
+            <input class="form-control w-20 {{#if error.username}} is-invalid {{/if}}" type="text" id="input-username" value="{{user.username}}" name="username" placeholder="Your username" />
+              
+        </div>
+        <div class="form-group">
+            <label for="input-password">Password</label>
+            <input class="form-control w-40 {{#if error.username}} is-invalid {{/if}}" type="password" name="password" id="input-password" placeholder="********" />
+              {{#if error.username}} 
+                <div class="invalid-feedback">
+                   {{error.username.message}}
+                </div>
+            {{/if}}
+        </div>
+        <button class="btn btn-success" type="submit">Login</button>
+    </div>
+
+  </form>
+</div>
