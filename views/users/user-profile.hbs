@@ -1,0 +1,14 @@
+<div id="profile-page">
+  {{#if currentUser}}
+    <a href="/main">Go to Main page</a>
+    <a href="/private">Go to Private page</a>
+    <h2>Welcome, {{ currentUser.username }}!</h2>
+    <p>This is your profile page my friend!</p>
+
+    <form action="/user-profile" method="GET">
+      <button>Reload the page</button>
+    </form>
+  {{else}}
+    <p>Still no logged in user, sorry!</p>
+  {{/if}}
+</div>

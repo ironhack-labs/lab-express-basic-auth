@@ -1,0 +1,97 @@
+$blueish: rgb(56, 133, 206);
+@mixin buttonStyles {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid $blueish;
+    border-radius: 5px;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    background-color: $blueish;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+        padding: 0;
+        list-style: none;
+        
+        li {
+            display: flex;
+            margin: 0 20px;
+            align-items: center;
+
+            a{
+                padding: auto;
+                align-items: center;
+                color: white;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+#main-body {
+    text-align: center;
+}
+
+#sign-up-form {
+    width: 50vw;
+    margin: auto;
+    border: 2px solid $blueish;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#login-form {
+    @extend #sign-up-form;
+    h2 {
+        margin-top: 0;
+    }
+}
+
+#profile-page {
+    a {
+        @include buttonStyles;
+        color: black;
+
+    }
+
+    h2 {
+        margin-top: 2rem;
+    }
+
+    button {
+        @include buttonStyles;
+    }
+}
+
+#main-page {
+    a {
+        display: block;
+        background-color: $blueish;
+        color: white;
+        @include buttonStyles;
+    }
+}
+
+#private-page {
+    @extend #sign-up-form;
+    
+    input {
+        background-color: white;
+        color: $blueish;
+        @include buttonStyles();
+    }
+}

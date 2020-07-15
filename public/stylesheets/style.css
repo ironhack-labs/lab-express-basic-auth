@@ -1,8 +1,100 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
 }
+
+nav {
+  background-color: #3885ce;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100vw;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav ul li a {
+  padding: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+#main-body {
+  text-align: center;
+}
+
+#sign-up-form, #login-form, #private-page {
+  width: 50vw;
+  margin: auto;
+  border: 2px solid #3885ce;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#login-form h2 {
+  margin-top: 0;
+}
+
+#profile-page a {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #3885ce;
+  border-radius: 5px;
+  color: black;
+}
+
+#profile-page h2 {
+  margin-top: 2rem;
+}
+
+#profile-page button {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #3885ce;
+  border-radius: 5px;
+}
+
+#main-page a {
+  display: block;
+  background-color: #3885ce;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #3885ce;
+  border-radius: 5px;
+}
+
+#private-page input {
+  background-color: white;
+  color: #3885ce;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #3885ce;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=style.css.map */
