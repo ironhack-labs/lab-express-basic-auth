@@ -7,6 +7,7 @@ body {
   margin-top: 6rem;
   font: 1.6rem 'Noto Sans JP', sans-serif;
   line-height: 1.5;
+  background: #4864e6;
 }
 
 h1,
@@ -16,6 +17,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
+  color: #fff;
 }
 
 form {
@@ -23,17 +25,46 @@ form {
   border: solid 0.1rem #ddd;
   padding: 4rem;
   border-radius: 1rem;
-  background: #fff;
-  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  background: #4864e6;
 }
 
 form h3 {
   margin-bottom: 3rem;
   text-align: center;
+  color: #fff;
+  font-size: 3rem;
+}
+
+form input {
+  padding: 1rem;
+}
+
+form label {
+  color: #f0f7ff;
+}
+
+form textarea.form-control {
+  padding: 1rem 2rem;
+}
+
+form .bio {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 1.5rem;
+}
+
+form .form-group {
+  margin-bottom: 3rem;
+}
+
+form .form-group:last-child {
+  margin-bottom: 0;
 }
 
 form .input-group-text {
+  background: #f0f7ff;
+  color: #4864e6;
   width: 4.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,29 +72,36 @@ form .input-group-text {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  border: 0;
+  border-radius: 1rem;
 }
 
 form .form-control {
-  padding: 1rem;
+  padding: 2rem;
   font-size: 1.4rem;
+  border: 0;
+  background: #f0f7ff;
+  border-radius: 1rem;
 }
 
 form .btn {
   font-size: 1.6rem;
   margin-top: 2rem;
-  background: #333;
-  border: solid 0.2rem #333;
+  background: #00aacc;
+  border: solid 0.2rem #00aacc;
   padding: 1rem 5rem;
+  border-radius: 1rem;
+  width: 100%;
 }
 
 form .btn:hover {
-  background: #fff;
-  color: #333;
-  border-color: #333;
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
 }
 
 .signup {
-  border-top: solid 0.1rem rgba(51, 51, 51, 0.2);
+  border-top: solid 0.1rem rgba(255, 255, 255, 0.2);
   margin-top: 2rem;
   padding-top: 2rem;
   display: -webkit-box;
@@ -82,7 +120,7 @@ form .btn:hover {
 }
 
 .signup a {
-  color: #333;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -121,12 +159,21 @@ form .btn:hover {
 }
 
 .aside {
-  border-right: solid 0.1rem rgba(0, 0, 0, 0.1);
+  border-right: solid 0.1rem rgba(0, 170, 204, 0.1);
   font-size: 1.2rem;
+  background: #4864e6;
+  border-radius: 1rem;
+  padding: 2rem;
+  color: #fff;
+}
+
+.aside i {
+  color: #4864e6;
 }
 
 .aside h4 {
   margin-top: 3rem;
+  color: #fff;
 }
 
 .aside .avatar {
@@ -136,16 +183,16 @@ form .btn:hover {
 .aside .avatar img {
   width: 40%;
   border-radius: 50%;
-  border: 0.2rem solid #333;
+  border: 0.2rem solid #fff;
 }
 
 .aside .avatar .edit {
   font-size: 1.4rem;
-  color: #333;
+  color: #f0f7ff;
   border-radius: 10rem;
-  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  border: 0.2rem solid #333;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 170, 204, 0.3);
+          box-shadow: 0 0 1rem rgba(0, 170, 204, 0.3);
+  border: 0.2rem solid #fff;
   position: absolute;
   background: #fff;
   bottom: 0;
@@ -164,6 +211,10 @@ form .btn:hover {
           align-items: center;
 }
 
+.aside .username a {
+  color: #f0f7ff;
+}
+
 .aside .name {
   font-weight: 700;
   margin-top: 1rem;
@@ -179,9 +230,9 @@ form .btn:hover {
 }
 
 .aside form .logout {
-  background: #fff;
-  border: solid 0.2rem #333;
-  color: #333;
+  background: transparent;
+  border: solid 0.2rem #fff;
+  color: #fff;
   width: 5rem;
   height: 5rem;
   border-radius: 2.5rem;
@@ -201,12 +252,16 @@ form .btn:hover {
   transition: all 200ms;
 }
 
+.aside form .logout i {
+  color: #fff;
+}
+
 .aside form .logout:before {
   content: 'Logout';
   position: absolute;
   z-index: 1;
   left: -6rem;
-  color: #fff;
+  color: transparent;
   -webkit-transition: all 200ms;
   transition: all 200ms;
   display: block;
@@ -220,7 +275,7 @@ form .btn:hover {
 }
 
 .aside form:hover .logout:before {
-  color: #333;
+  color: #fff;
 }
 
 .update form {
@@ -239,5 +294,6 @@ form .btn:hover {
 
 .update form .text-muted {
   font-size: 1.2rem;
+  color: #fff !important;
 }
 /*# sourceMappingURL=style.css.map */

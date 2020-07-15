@@ -89,7 +89,7 @@
                             <div class="input-group-text"><i class="fas fa-comment-alt"></i></div>
                         </div>
                         <textarea type="text" class="form-control {{#if error.bio }}is-invalid{{/if}}" id="bio"
-                            name="bio">{{user.bio}}</textarea>
+                            name="bio" rows="7">{{user.bio}}</textarea>
                         {{#if error.bio}}
                         <div class="invalid-feedback">
                             {{error.bio}}

@@ -82,10 +82,10 @@
                     <label for="bio">Bio</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-comment-alt"></i></div>
+                            <div class="input-group-text bio"><i class="fas fa-comment-alt"></i></div>
                         </div>
                         <textarea type="text" class="form-control {{#if error.bio }}is-invalid{{/if}}" id="bio"
-                            placeholder="Insert your bio" name="bio" value="{{user.bio}}"></textarea>
+                            placeholder="Insert your bio" name="bio" value="{{user.bio}}" rows="7"></textarea>
                         {{#if error.bio}}
                         <div class="invalid-feedback">
                             {{error.bio}}

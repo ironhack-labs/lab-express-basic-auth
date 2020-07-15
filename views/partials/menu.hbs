@@ -4,9 +4,7 @@
 </div>
 
 <p class="name">{{user.name}}</p>
-<p>
-    <a href="/{{user.username}}">@{{user.username}}</a>
-</p>
+<p class="username"><a href="/{{user.username}}">@{{user.username}}</a></p>
 <h4>bio</h4>
 <p>{{user.bio}}</p>
 <form action="/logout" method="post">
