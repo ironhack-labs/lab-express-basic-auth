@@ -1,0 +1,16 @@
+<form action="/login" method="POST">
+  <div class="form-group">
+    <label for="email">Username</label>
+    <input name="name" type="text" class="form-control" id="name"
+      placeholder="Enter your username" value="{{ user.name }}">
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input name="password" type="password" class="form-control" id="password"
+      placeholder="Enter password" value="{{ user.password }}">
+  
+
+  <button type="submit" class="btn btn-primary mb-3">Login</button>
+
+  <p>Don't have an account? <a href="/signup">register</a></p>
+</form>
