@@ -6,6 +6,7 @@ module.exports.isAuthenticated = (req, res, next) => {
         .then(user => {
             if (user) {
                 req.currentUser = user
+                res.locals.currentUser = user
                 next()
             } else {
                 res.redirect('/users/login')

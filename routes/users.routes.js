@@ -3,6 +3,9 @@ const router = express.Router();
 
 const User = require('../models/User.model');
 
+const sessionMiddleware = require('../middlewarea/session.middleware')
+
+
 /* GET Users */
 router.get('/users', (req, res, next) => {
     res.redirect('users/signup')
@@ -39,7 +42,7 @@ router.post('/users/login', (req, res, next) => {
             if (user) {
                 user.checkPass(body.password)
                     .then(match => {
-                        if (match) { 
+                        if (match) {
                             req.session.userId = user._id
                             res.redirect('/session')
                         } else {
@@ -52,6 +55,13 @@ router.post('/users/login', (req, res, next) => {
         })
         .catch(error => console.error(error))
     // res.json(body)
+})
+
+/* GET Log Out */
+router.post('/users/logout', sessionMiddleware.isAuthenticated, (req, res, next) => {
+    console.log('Log Out')
+    req.session.destroy()
+    res.redirect('login')
 })
 
 module.exports = router;

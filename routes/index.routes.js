@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var bcrypt = require('bcryptjs');
+const sessionMiddleware = require('../middlewarea/session.middleware')
 
 const User = require('../models/User.model');
 const { route } = require('./users.routes');
@@ -9,6 +9,6 @@ const { route } = require('./users.routes');
 router.get('/', (req, res, next) => res.render('index'));
 
 /* GET session */
-router.get('/session', (req, res, next) => res.render('session'))
+router.get('/session', sessionMiddleware.isAuthenticated, (req, res, next) => res.render('session'))
 
 module.exports = router;
