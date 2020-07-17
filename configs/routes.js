@@ -1,11 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller');
-const sessionMiddlewares = require('../middleware/session.middleware')
+const sessionMiddleware = require('../middleware/session.middleware')
 
-router.get('/login', usersController.login);
-router.post('/login', usersController.loginPost);
-router.get('/signup', usersController.signup);
-router.post('/signup', usersController.create)
+router.get('/', sessionMiddleware.isNotAuthenticated, usersController.login)
+router.post('/', sessionMiddleware.isNotAuthenticated, usersController.loginPost)
+
+router.get('/signup', sessionMiddleware.isNotAuthenticated, usersController.signup);
+router.post('/signup', sessionMiddleware.isNotAuthenticated, usersController.create);
+
+// router.post('/logout', sessionMiddleware.isAuthenticated, usersController.logout);
+
+router.get('/user-hello', usersController.userHello)
+
 
 module.exports = router
