@@ -29,13 +29,14 @@ module.exports.doLogin = (req, res) => {
             .then(match => {
                 if(match) {
                     req.session.userId = user._id;
-                    res.send('yay');
+                    res.render('index');
                 }
                 else {
-                    res.render('auth/login', {errorMessage: 'Authentication failed: Wrong credentials'})
+                    res.render('auth/login', {errorMessage: 'Authentication failed: Wrong credentials'});
                 }
             })
             .catch(e => console.error(e));
     })
-    .catch(res.render('auth/login', {errorMessage: 'Authentication failed: Wrong credentials'}));
+    //siempre me va al catch
+    //.catch(res.render('auth/login', {errorMessage: 'Authentication failed: Wrong credentials'}));
 };
