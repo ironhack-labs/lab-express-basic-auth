@@ -1,0 +1,9 @@
+{{#if userInSession}}
+    <h3>Not today, {{ userInSession.username}}, not today!</h3>
+    <img src="https://vignette.wikia.nocookie.net/logosrupaulsdragrace/images/9/90/Bianca_del_rio_vertical.jpg/revision/latest?cb=20190910115345" alt="cat-image">
+    <button>
+        <a href="/userProfile">Back to home</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}

@@ -1,0 +1,9 @@
+{{#if userInSession}}
+    <h1>Thanks for coming {{ userInSession.username}}</h1>
+    <img src="https://media.giphy.com/media/fuHdUls1uGRtS/giphy.gif" alt="suicide gif">
+    <button>
+        <a href="/userProfile">Back to home</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}
