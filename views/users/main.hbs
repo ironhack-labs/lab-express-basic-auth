@@ -1,0 +1,9 @@
+{{#if userInSession}}
+    <h3>Look at this cute kitten {{ userInSession.username}}!</h3>
+    <img src="https://icatcare.org/app/uploads/2018/07/Helping-your-new-cat-or-kitten-settle-in-1.png" alt="cat-image">
+    <button>
+        <a href="/userProfile">Back to home</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}

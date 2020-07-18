@@ -1,0 +1,9 @@
+{{#if userInSession}}
+    <h1>This is the super secret page of {{ userInSession.username}}</h1>
+    <img src="https://media.giphy.com/media/3oKIPzLXQYb2Bn5PLG/giphy.gif" alt="Evil laugh gif">
+    <button>
+        <a href="/userProfile">Back to home</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}
