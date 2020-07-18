@@ -1,13 +1,30 @@
 <h1>Login</h1>
-<form action="/login" method="POST">
+<form action="/" method="POST">
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" id="username">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password">
+    <input name="username" type="text" class="form-control {{#if error.username }}is-invalid{{/if}}" id="username"
+      placeholder="Enter username" value="{{ user.username }}">
+  
+    {{#if error.username}}
+    <div class="invalid-feedback">
+      {{error.username.message}}
+    </div>
+    {{/if}}
   </div>
 
-  <button type="submit" class="btn btn-primary">Login</button>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
+      placeholder="Enter password" value="{{ user.password }}">
+  
+    {{#if error.password}}
+    <div class="invalid-feedback">
+      {{error.password.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <button type="submit" class="btn btn-primary mb-3">Login</button>
+
+  <p>Don't have an account? <a href="/signup">register</a></p>
 </form>

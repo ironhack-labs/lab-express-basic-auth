@@ -6,6 +6,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.loginPost = (req, res, next) => {
+  console.log('estas ejecutando esto GALLA')
   User.findOne({ username: req.body.username })
     .then(user => {
       if (user) {
@@ -38,34 +39,25 @@ module.exports.loginPost = (req, res, next) => {
 }
 
 
-module.exports.signup = (req, res, next) => {
-  res.render("users/signup");
-};
+module.exports.signup = (_, res) => {
+  res.render('users/signup', { user: new User() }) //llamar a la clase new User
+}
 
 
 module.exports.create = (req, res, next) => {
-  const user = new User(req.body);
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
   //guardar el usuario en la base de datos
   user
     .save()
     .then(() => {
-      res.redirect("/login");
+      res.redirect("/");
     })
     .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.render("users/signup", { error: error.errors, user });
-      } else if (error.code === 11000) { // error when duplicated user
-        res.render("users/signup", {
-          user,
-          error: {
-            email: {
-              message: 'user already exists'
-            }
-          }
-        });
-      } else {
-        next(error);
-      }
+      console.log(error)
+      res.render('users/signup', { error: error.errors, user })
     })
     .catch(next)
 }
@@ -75,7 +67,8 @@ module.exports.userHello = (req, res, next) => {
 }
 
 module.exports.logout = (req, res, next) => {
-    req.session.destroy()
-    res.redirect('/login')
-} 
+  req.session.destroy()
+
+  res.redirect('/login')
+}
 

@@ -13,6 +13,9 @@
   <body>
 
     {{{body}}}
+    {{#if currentUser }}
+      {{>user-hello}}
+    {{/if}}
 
     <script src="/javascripts/script.js"></script>
   </body>
