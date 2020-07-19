@@ -7,11 +7,11 @@ const sessionMiddleware = require('../middlewares/session.middleware')
 router.get('/', usersController.login);
 
 
-router.get('/login', usersController.login);
-router.post("/login", usersController.doLogin);
+router.get('/login', sessionMiddleware.isNotAuthenticated, usersController.login);
+router.post('/login', sessionMiddleware.isNotAuthenticated, usersController.doLogin);
 router.get('/signup', usersController.signup);
 
-
+router.get('/main', sessionMiddleware.isAuthenticated, usersController.goToMainWeb);
 router.get('/users/signup', usersController.signup)
 router.post('/users/signup', usersController.doCreateUser)
 
