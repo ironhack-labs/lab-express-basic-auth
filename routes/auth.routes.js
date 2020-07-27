@@ -67,6 +67,7 @@ router.post('/login', (req, res, next) => {
         password
     } = req.body;
 
+    //Bonus
     if (username === "" || password === "") {
         res.render('auth/login.hbs', {
             errorMessage: "Username or password missing, try again"
