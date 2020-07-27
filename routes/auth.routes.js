@@ -7,6 +7,9 @@ const User = require('../models/User.model');
 
 //Bcrypt for encrypting password
 const bcrypt = require('bcryptjs');
+const {
+    route
+} = require('./index.routes');
 const bcryptSalt = 10;
 
 //Si nous visitons /signup, il va aller chercher (get) le fichier auth/signup.hbs et l'afficher à l'écran
@@ -55,7 +58,7 @@ router.post('/signup', (req, res, next) => {
                 })
                 .then(() => {
                     //rediriger le user à la home page
-                    res.redirect('/');
+                    res.redirect('/login');
                 })
                 .catch(error => {
                     console.log(error);
@@ -64,6 +67,56 @@ router.post('/signup', (req, res, next) => {
         .catch((error) => {
             next(error);
         });
+});
+
+
+//Si nous visitons /login, il va aller chercher (get) le fichier auth/login.hbs et l'afficher à l'écran
+router.get('/login', (req, res, next) => {
+    res.render('auth/login.hbs');
+});
+
+//Comme notre form de signup.hbs est en method="POST" et action /signup, on fait un router.post pour récupérer toutes les infos
+router.post('/login', (req, res, next) => {
+    //Récupérer les données du formulaire
+    const {
+        username,
+        password
+    } = req.body; //Body de l'input
+    //Vérifier que les valeurs username et password sont bien renseignées
+    if (username === '' || password === '') {
+        res.render('auth/login', {
+            errorMessage: "Please, enter both username and password to login",
+        });
+        return;
+    }
+
+    //Si aucun des 2 champs n'est vide, on va chercher dans la BD s'il existe un utilisateur avec les données du formulaire
+    User.findOne({
+            username
+        })
+        .then((user) => {
+            //S'il ne rencontre pas tel utilisateur dans la BD, retourne un message d'erreur
+            if (!user) {
+                res.render('auth/login', {
+                    errorMessage: "The username doesn't exist"
+                });
+                return;
+            }
+
+            //Si le username existe, on utilise compareSync pour faire le hash de l'input et comparer le password de la BD avec celui du formulaire login
+            //L'objet "req" a une propriété session où on peut sauvegarder les données qu'on veut (avec les données user)
+            if (bcrypt.compareSync(password, user.password)) {
+                req.session.currentUser = user;
+                res.redirect('/');
+            } else {
+                res.render('auth/login', {
+                    errorMessage: 'Incorrect password'
+                })
+            }
+        })
+        .catch((error) => {
+            next(error);
+        })
 });
 
 //Pour pouvoir accéder aux routes que l'on met ici depuis app.js

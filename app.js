@@ -14,10 +14,27 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+//Session requirement
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 // require database configuration
 require('./configs/db.config');
 
 // Middleware Setup
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: {
+        maxAge: 60000
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 // 1 day
+    }),
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,6 +56,5 @@ const auth = require('./routes/auth.routes');
 app.use('/', auth);
 const index = require('./routes/index.routes');
 app.use('/', index);
-
 
 module.exports = app;

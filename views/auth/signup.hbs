@@ -1,4 +1,6 @@
 <form id="form" action="/signup" method="POST">
+    <h2>Sign up</h2>
+
     <label for="username">Username</label>
     <br />
 
@@ -10,6 +12,9 @@
     <input type="password" name="password" placeholder="********" />
 
     <button type="submit">Create account</button>
+
+    <p class="account-message"> Already have an account? <a href="/login">Login</a>
+    </p>
 </form>
 
 {{#if errorMessage}}
