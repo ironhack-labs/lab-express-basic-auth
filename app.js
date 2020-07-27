@@ -51,9 +51,9 @@ app.use(
   })
 );
 
-const index = require("./routes/index.routes");
-app.use("/", index);
 const authenticate = require("./routes/autenticate");
 app.use("/", authenticate);
+const index = require("./routes/index.routes");
+app.use("/", index);
 
 module.exports = app;
