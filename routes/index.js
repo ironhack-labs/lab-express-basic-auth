@@ -13,18 +13,15 @@ router.use((req, res, next) => {
 });
 
 
-router.get("/main", function (req, res, next) {
-  res.render("main");
-});
+router.get("/main", (req, res, next) => res.render("main"));
 
-router.get("/private", function (req, res, next) {
-  res.render("private");
-});
+router.get("/private", (req, res, next) => res.render("private"));
 
-router.get("/logout", function (req, res, next) {
-  req.session.destroy((err) => {
-    res.redirect("/login");
-  })
-});
+
+// router.get("/logout", function (req, res, next) {
+//   req.session.destroy((err) => {
+//     res.redirect("/login");
+//   })
+// });
 
 module.exports = router;
