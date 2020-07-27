@@ -14,10 +14,28 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+//Session requirements
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 // require database configuration
 require('./configs/db.config');
 
 // Middleware Setup
+//IT-2
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: {
+        maxAge: 60000
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 // 1 day
+    }),
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

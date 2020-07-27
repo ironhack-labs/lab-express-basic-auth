@@ -57,4 +57,51 @@ router.post('/signup', (req, res, next) => {
         });
 })
 
+//IT-2 Renderiza el hbs cuando se visita /login
+router.get('/login', (req, res, next) => res.render('auth/login.hbs'));
+
+router.post('/login', (req, res, next) => {
+    //Guardo la info del form login en estas variables
+    const {
+        username,
+        password
+    } = req.body;
+
+    if (username === "" || password === "") {
+        res.render('auth/login.hbs', {
+            errorMessage: "Username or password missing, try again"
+        });
+        return;
+    }
+
+    //Busco al usuario en la DB
+    User.findOne({
+            username
+        })
+        .then((user) => {
+            //Si no hay user, render login y enseño error de que no existe
+            if (!user) {
+                res.render('auth/login', {
+                    errorMessage: "This user doesn't exist, feel free to register with it"
+                });
+                return;
+            }
+            //Si hay usuario, debe comparar la contraseña del form (passowrd, texto plano),
+            //con la contraseña de la DB (user.password, encriptada)
+            //Para comparar las dos passwords, se usa compareSync, que acepta como primer
+            //argumento la password del form y como segundo la password encriptada de la DB
+            if (bcrypt.compareSync(password, user.password)) {
+                //Esta función también guarda el login en la session
+                req.session.currentUser = user;
+                res.redirect('/');
+            } else {
+                res.render('auth/login', {
+                    errorMessage: 'Incorrect password'
+                })
+            }
+        })
+        .catch(error => {
+            next(error)
+        })
+})
 module.exports = router;
