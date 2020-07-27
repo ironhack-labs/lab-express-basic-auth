@@ -1,3 +1,7 @@
+html {
+  background-color: rgb(165, 103, 216);
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
