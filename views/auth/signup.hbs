@@ -1,0 +1,18 @@
+<form action="/signup" method="POST">
+<label for="usernme">Username</label>
+<br />
+<input type="text" name="username" placeholder="Your username "required>
+
+
+<label for="password">Password</label>
+<br />
+<input type="password" name="password" placeholder="********" required>
+
+<button type="submit">Crete account</button>
+
+</form>
+
+
+{{#if errorMessage}}
+<div class="error-message">{{errorMessage}}</div>
+{{/if}}
