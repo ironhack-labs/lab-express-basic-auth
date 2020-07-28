@@ -93,5 +93,28 @@ router.post("/login", (req, res, next) => {
       next(error);
     });
 });
+router.use((req, res, next) => {
+  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+    next(); // ==> go to the next route 
+  } else {
+    res.redirect("/login");
+  }
+});
+router.get("/main", function (req, res, next) {
+  res.render("main");
+});
+router.get("/private", function (req, res, next) {
+  res.render("private");
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // si no puede acceder a los datos de sesión, redirige a /login
+    res.redirect("/login");
+  });
+});
+
+
+
 
 module.exports = router;

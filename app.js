@@ -8,7 +8,9 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-
+//añadimos las variables de session y mongoose connection(hay que instalar en la terminal npm install express-session  mongoose-connection)
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
@@ -20,6 +22,18 @@ const app = express();
 require("./configs/db.config");
 
 // Middleware Setup
+app.use(
+  session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,21 +55,10 @@ var authRouter = require("./routes/auth.routes.js");
 app.use("/", index);
 //aquí indicamos la ruta de auth)
 app.use("/auth", authRouter);
-//añadimos las variables de session y mongoose connection(hay que instalar en la terminal npm install express-session  mongoose-connection)
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-//configuración Middleware
-app.use(
-  session({
-    secret: "basic-auth-secret",
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60, // 1 day
-    }),
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+
+
+
+
+
 
 module.exports = app;
