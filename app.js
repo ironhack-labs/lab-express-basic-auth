@@ -1,5 +1,9 @@
 require('dotenv').config();
 
+//live advise dfrom ARIADNA CLaudia: 
+//CHEEEEECK UN PACKAGE.JSON IF YOU HAVE ALL THIS FIRST
+
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -14,10 +18,32 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
+// session requirements
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 // require database configuration
 require('./configs/db.config');
 
+
 // Middleware Setup
+// I-2
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: {
+        maxAge: 60000 //1seg
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 //1day
+    }),
+    resave: true,
+    saveUninitialized: true
+}))
+
+
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,7 +58,15 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
+// Routes.  Dear CL You need to pay attention to this
+var auth = require("./routes/auth.routes")
+//must be different than index
+// app.use("/auth", auth);
+app.use("/", auth);
+
 const index = require('./routes/index.routes');
 app.use('/', index);
+
 
 module.exports = app;

@@ -1,0 +1,22 @@
+<!--  POST POST POST, Claudia: POST POST POST POST MEEEEEETHOD
+and remember action= IS AN ADDRESS route PLACE and #NOT a direction to a folder -->
+<form action="/login" method="POST" id="form">
+    <h2>Login</h2>
+
+    <label for="username">Username</label>
+    <input type="text" name="username"><br>
+
+    <label for="password">Password</label>
+    <input type="password" name="password"> <br>
+
+    <button>Sign in</button>
+  
+</form>
+
+    {{#if errorMessage }}
+         <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+    
+    <p class="account-message"> Don't have an account? <a href="/signup">Sign up</a></p>
+    <p><a href="/">Back</a></p>
