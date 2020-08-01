@@ -1,29 +1,34 @@
 // User model here
-const bycrypt = require('bcrypt-nodejs')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bycrypt = require('bcrypt')
 
-const userSchema = new Schema({
-  username:{type: String, required: true, unique: true },
-  password: {type: String, required: true}
-})
-
+ 
+const userSchema = new Schema(
+  {
+    name: { type: String, unique: true },
+    password: { type: String, minlength: 5 }
+  },
+  { timestamps: true }
+);
+ 
 userSchema.pre('save', function(next) {
   const user = this;
-  bycrypt.genSalt(10, (err, salt) => {
-    if (err) {
-      next(err);
-    }
-    bycrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) {
-        next(err);
-      }
+  if (user.isModified('password')) {
+    bycrypt.hash(user.password, 10).then((hash)=> {
       user.password = hash;
       next();
-    })
-  })
+    });
+  } else {
+    next();
+  }
 })
 
-const User = mongoose.model('User', userSchema)
 
+userSchema.methods.checkPassword = function(password) {
+  return bycrypt.compare(password, this.password)
+}
+
+const User = mongoose.model('User', userSchema);
+ 
 module.exports = User;
