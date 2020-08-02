@@ -1,5 +1,5 @@
+const mongoose = require('mongoose')
 const User = require('../models/User.model')
-const bycrypt = require('bcrypt')
 
 module.exports.login = (req, res, next) => {
   res.render('users/login');
@@ -12,15 +12,19 @@ module.exports.doLogin = (req, res, next) => {
         user.checkPassword(req.body.password)
           .then(match => {
             if(match) {
-              res.render('/user: _id')
+              req.session.userId = user_id
+              console.log("He entrado!");
+              res.redirect('/main')
             } else {
               res.render('/users/login')
             }
           })
+          .catch(next)
       } else {
         res.render('users/signup')
       }
     })
+    .catch(next)
 }
 
 module.exports.signup = (req, res, next) => {
@@ -39,4 +43,8 @@ module.exports.createUser = (req, res, next) => {
     //res.render('users/signup', {error: err.errors, user})
     console.log(err);
   })
+}
+
+module.exports.logged = (req, res, next) => {
+  res.render('/main');
 }
