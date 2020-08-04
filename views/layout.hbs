@@ -8,8 +8,29 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
   <body>
+    <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Home </a></p>
+        </li>
+        <li id="to-left">
+          <p><a href="/main"> Main </a></p>
+        </li>
+        <li id="to-left">
+          <p><a href="/private"> Private </a></p>
+        </li>
+        <li id="to-right">
+          <a href="/signin">Signin</a>
+        </li>
+        <li id="to-right">
+          <a href="/signup">Signup</a> <span> | </span>
+        </li>
+        <li id="to-right">
+          <a href="/logout">LogOut</a> <span> | </span>
+        </li>
+      </ul>
+    </nav>
 
     {{{body}}}
 
