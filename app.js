@@ -29,10 +29,28 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//COKKIES AND SESSIONS
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'my-pet-cat',
+    cookie: {
+        maxAge: 60*60*24*1000 //1 day in miliseconds
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60*60*24 //time to live 1 day value in seconds
+    })
+}));
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter);
 
 module.exports = app;
