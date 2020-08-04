@@ -23,12 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-function isAuthenticated (req, res, next){
-  if (req.session.loggedInUser){
-    return next();
-  }
-  res.redirect('/');
-}
+
 
 
 //Setting up the session
@@ -62,7 +57,6 @@ app.use('/', index);
 app.use('/', auth);
 app.use('/', users);
 
-app.get('/profile', isAuthenticated, (req, res) =>{res.render('users/profile.hbs', {user: req.session.loggedInUser})});
-app.get('/private', isAuthenticated, (req, res) =>{res.render('users/private.hbs')});
+
 
 module.exports = app;
