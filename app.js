@@ -32,7 +32,38 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+  secret: 'my-pet-cat',
+  cookie: {
+    maxAge: 60*60*24*1000 // 1day // in milliseconds 
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 60*60*24 // 1 day // value in seconds
+  })
+})); 
+
+//Routes middleware
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter);
+
+
+app.get('/', (req, res, next)=>{
+    if(req.session.loggedInUser === true){
+      next()
+    }
+    else{
+      res.render('index.hbs')
+    }
+  })
+
+const private = require('./routes/private.routes');
+app.use('/', private );
 
 module.exports = app;
