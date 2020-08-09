@@ -1,0 +1,14 @@
+<br>
+<h3>Signup form</h3>
+{{!-- <br> --}}
+<form action="/signup" method="POST">
+    <label>username: <input type="text" name="username"></label>
+    <br><br>
+    <label>password: <input type="text" name="password"></label>
+    <br><br>
+    <button>create account</button>
+</form>
+
+{{#if errorMessage}}
+    <p>{{ errorMessage }}</p>
+{{/if}}
