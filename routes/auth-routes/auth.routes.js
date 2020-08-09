@@ -3,6 +3,7 @@ const router = express.Router();
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 const User = require("../../models/User.model");
+const mongoose = require('mongoose');
 
 router.get("/signup", (req, res, next) => {
 	res.render("auth-views/signup");
@@ -17,20 +18,41 @@ router.post("/signup", (req, res, next) => {
 		});
 	}
 
+	 // make sure passwords are strong:
+	 const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+	 if (!regex.test(password)) {
+	   res
+		 .status(500)
+		 .render('auth-views/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+	   return;
+	 }
+
 	bcryptjs
 		.genSalt(saltRounds)
 		.then((salt) => bcryptjs.hash(password, salt))
 		.then((hashedPassword) => {
 			console.log(hashedPassword);
 
-			User.create({
+			return User.create({
 				username,
 				passwordHash: hashedPassword,
 			});
-			res.redirect("/auth/signup");
 		})
-		.then((userDoc) => console.log(userDoc))
-		.catch((err) => console.log(err));
+		.then(user => {
+			console.log('Newly created user is: ', user);
+			res.redirect('/auth/signup');
+		  })
+		.catch(error => {
+			if (error instanceof mongoose.Error.ValidationError) {
+			  res.status(500).render('auth-views/signup', { errorMessage: error.message });
+			} else if (error.code === 11000) {
+			  res.status(500).render('auth-views/signup', {
+				errorMessage: 'Username needs to be unique. Username is already in use.'
+			  });
+			} else {
+			  next(error);
+			}
+		  });
 });
 
 router.get("/login", (req, res, next) => {
@@ -52,11 +74,10 @@ router.post("/login", (req, res, next) => {
 		.then((user) => {
 			if (!user) {
 				res.render("auth-views/login", {
-					errorMessage: "E-mail is not registered. Try again.",
+					errorMessage: "Username is not registered. Try again.",
 				});
 				return;
 			} else if (bcryptjs.compareSync(password, user.passwordHash)) {
-				// res.render("user-views/userProfile", { user });
 				req.session.currentUser = user;
 				res.redirect("/auth/userProfile");
 			} else {
