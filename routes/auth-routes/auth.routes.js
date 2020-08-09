@@ -13,7 +13,7 @@ router.post("/signup", (req, res, next) => {
 
 	if (!username || !password) {
 		res.render("auth-views/signup", {
-			errorMessage: "All fields are mandatory.",
+			errorMessage: "All fields are mandatory. Please provide a username and password.",
 		});
 	}
 
