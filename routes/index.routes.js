@@ -10,7 +10,7 @@ const User = require('../models/User.model');
 
 /* GET home route */
 router.get('/', (req, res, next) => {
-    res.render('index');
+    res.render('index', {userInSession: req.session.currentUser});
 });
 
 /* GET signup route */
@@ -110,5 +110,21 @@ router.post('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
+
+router.get('/main', (req, res) => {
+    if (req.session.currentUser) {
+        res.render('users/user-main', {userInSession: req.session.currentUser})
+    } else {
+        res.redirect('/');
+    }
+})
+
+router.get('/private', (req, res) => {
+    if (req.session.currentUser) {
+        res.render('users/user-private', {userInSession: req.session.currentUser})
+    } else {
+        res.redirect('/');
+    }
+})
 
 module.exports = router;

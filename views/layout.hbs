@@ -11,12 +11,18 @@
 
   <body>
     <nav>
-      <a href="/">Home</a>
-      <a href="/signup">Sign up</a>
-      <a href="/login">Login</a>
-      <form id="logout-form" action="/logout" method="POST">
-        <button>Logout</button>
-      </form>
+      {{#if userInSession}}
+        <a href="/">Home</a>
+        <a href="/main">User main page</a>
+        <a href="/private">User private page</a>
+        <form id="logout-form" action="/logout" method="POST">
+          <button>Logout</button>
+        </form>
+      {{else}}
+        <a href="/">Home</a>
+        <a href="/signup">Sign up</a>
+        <a href="/login">Login</a>        
+      {{/if}}
     </nav>
 
     {{{body}}}
