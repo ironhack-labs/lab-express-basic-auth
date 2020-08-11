@@ -17,6 +17,9 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+// use session here:
+require('./configs/session.config')(app);
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -34,5 +37,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+const auth = require('./routes/auth.routes');
+app.use('/', auth);
+
 
 module.exports = app;
