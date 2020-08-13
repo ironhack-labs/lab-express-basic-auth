@@ -30,9 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Lab Express Basic Auth';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+const indexRouter = require('./routes/index.routes');
+app.use('/', indexRouter);
+
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter);
+
+
 
 module.exports = app;
