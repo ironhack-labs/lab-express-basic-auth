@@ -6,6 +6,8 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+
+//SIGNUP
 router.get('/signup', (req,res) => {
     res.render('auth/sign-up')
 })
@@ -51,5 +53,59 @@ router.post('/signup', (req,res,next) => {
           }
         }); 
 })
+
+//LOGIN
+router.get('/login', (req, res) => res.render('auth/login'));
+
+router.post('/login', (req,res,next) => {
+  const {email, password} = req.body;
+
+  if(email === '' || password === '') {
+    res.render('auth/login', {errorMessage:'Please enter both fields'})
+    return
+  }
+
+  User.findOne({email})
+  .then(user => {
+    if (!user) {
+      res.render('auth/login', {errorMessage: 'This email is not registered yet'});
+      return
+    } else if(bcryptjs.compareSync(password, user.passwordHash)) {
+      req.session.currentUser = user
+      res.redirect('/user-profile')
+    } else {
+      res.render('auth/login', {err: 'Password is incorrect, try again'})
+    }
+  })
+
+  .catch(err => next(err))
+
+})
+
+router.get('/user-profile', (req,res,next) =>{
+  if (req.session.currentUser) {
+    res.render('user/user-profile', { user: req.session.currentUser });
+  } else {
+    res.redirect("/login");
+  }
+})
+
+router.get('/main', (req,res,next) =>{
+  if (req.session.currentUser) {
+    res.render('user/main', { user: req.session.currentUser });
+  } else {
+    res.redirect("/login");
+  }
+})
+
+router.get('/private', (req,res,next) =>{
+  if (req.session.currentUser) {
+    res.render('user/private', { user: req.session.currentUser });
+  } else {
+    res.redirect("/login");
+  }
+})
+
+
 
 module.exports = router;
