@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+form {
+  height: 400px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.error {
+  color: white;
+  background-color: brown;
+}
