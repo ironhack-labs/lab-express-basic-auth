@@ -6,8 +6,55 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User.model')
 
+
+//MAIN & PRIVATE
+router.get('/main', (req, res, next) => {
+    if(!req.session.currentUser){
+        res.render('auth/main', {errorMessage: 'You are not logged in!'})
+    } else {
+        res.render('auth/main', {success: 'Welcome!'})
+    }
+})
+
+router.get('/private', (req, res, next) => {
+    if(!req.session.currentUser){
+        res.render('auth/private', {errorMessage: 'You are not logged in!'})
+    } else {
+        res.render('auth/private', {success: 'Private'})
+    }
+})
+
+
+//LOGIN
+router.get('/login', (req, res, next) => {
+    res.render('auth/login');
+})
+
+router.post('/login', (req, res, next) => {
+    const { email, password } = req.body;
+
+    if(!email || !password) {
+        res.render('auth/login', {errorMessage: 'All fields are required.'});
+        return;
+    }
+
+    User.findOne({email})
+        .then(userFromDB =>{
+            if (!userFromDB) {
+                res.render('auth/login', {errorMessage: 'Incorrect email entered.'});
+                return;
+            } else if (bcrypt.compareSync(password, userFromDB.passwordHash)) {
+                req.session.currentUser = userFromDB;
+                res.redirect('/main');
+            } else {
+                res.render('auth/login', {errorMessage: 'Incorrect password entered.'})
+            }
+        })
+})
+
+// SIGNUP
 router.get('/signup', (req, res, next) => {
-    res.render('auth/signup')
+    res.render('auth/signup');
 });
 
 router.post('/signup', (req, res, next) => {
@@ -35,7 +82,7 @@ router.post('/signup', (req, res, next) => {
         })
         .then(userFromDB => {
             console.log('New user: ', userFromDB)
-            res.redirect('/userProfile')
+            res.redirect('/login')
         })
         .catch(err => console.log('Error while signing up: ', err))
 })

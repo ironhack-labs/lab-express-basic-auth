@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  text-align: center;
 }
 
 a {
@@ -10,9 +12,11 @@ a {
 form {
   height: 400px;
   width: 200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   text-align: center;
 }
 
