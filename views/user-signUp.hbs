@@ -1,0 +1,14 @@
+<form method="post" action="./sign-in">
+
+    <label for="usrName"> User Name:</label>
+    <input id="usrName" type="text" name="usrName">
+
+    <label for="usrPassword"> User Password:</label>
+    <input id="usrPassword" type="password" name="usrPassword">
+
+    <button type="submit"> Sign In</button>
+
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</form>
