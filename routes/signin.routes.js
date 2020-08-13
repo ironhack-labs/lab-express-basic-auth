@@ -24,17 +24,20 @@ router.post("/", (req, res, next) => {
     .genSalt(saltRounds)
     .then((salt) => bycrypt.hash(usrPassword, salt))
     .then((hashedPassword) => {
-      console.log(" Password hashed:", hashedPassword);
+      // console.log(" Password hashed:", hashedPassword);
       return User.create({
         username: usrName,
         password: hashedPassword,
       });
     })
     .then((userFromDB) => {
-      console.log("Newly created user is: ", userFromDB);
-      res.render("userProfile");
+      // console.log("Newly created user is: ", userFromDB);
+      req.session.userInformation = userFromDB;
+      res.redirect("userProfile");
     })
     .catch((error) => {
+      console.log(error);
+
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("user-signUp", { errorMessage: error.message });
       } else if (error.code === 11000) {

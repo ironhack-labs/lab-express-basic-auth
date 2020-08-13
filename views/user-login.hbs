@@ -1,0 +1,16 @@
+<h2> Login Screen </h2>
+
+<form method="post" action="./log-in">
+
+    <label for="usrName"> User Name:</label>
+    <input id="usrName" type="text" name="usrName">
+
+    <label for="usrPassword"> User Password:</label>
+    <input id="usrPassword" type="password" name="usrPassword">
+
+    <button type="submit"> Log In</button>
+
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</form>

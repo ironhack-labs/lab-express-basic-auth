@@ -39,8 +39,12 @@ app.locals.title =
 
 const indexroute = require("./routes/index.routes");
 app.use("/", indexroute);
+
 const signinroute = require("./routes/signin.routes.js");
 app.use("/sign-in", signinroute);
+
+const loginRoute = require("./routes/login.routes.js");
+app.use("/log-in", loginRoute);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
