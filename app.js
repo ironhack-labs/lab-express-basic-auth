@@ -38,6 +38,6 @@ const index = require("./routes/index.routes");
 const authRouter = require("./routes/auth.routes");
 
 app.use("/", index);
-app.use("/auth", authRouter);
+app.use("/", authRouter);
 
 module.exports = app;

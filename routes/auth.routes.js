@@ -12,11 +12,10 @@ router.post("/signup", (req, res, next) => {
 
   //password and username required
   if (!username || !password) {
-    res.render("auth/signup", {
+    return res.render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username and password.",
     });
-    return;
   }
 
   // make sure password is strong:
@@ -56,6 +55,8 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/userProfile", (req, res) => res.render("/"));
+router.get("/userProfile", (req, res) => {
+  res.render("users/userProfile");
+});
 
 module.exports = router;
