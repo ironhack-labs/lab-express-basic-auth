@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -8,10 +14,17 @@ a {
 
 .navbar {
   margin-bottom: 40px;
-  padding-left: 40px;
+  padding: 20px 40px;
+}
+
+.btn-login {
+  margin-right: 20px;
+}
+
+button.close {
+  padding: 8px 12px !important;
 }
 
 .error {
   margin-top: 20px;
-  color: red;
 }

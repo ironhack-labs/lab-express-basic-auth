@@ -1,6 +1,6 @@
-<h2>Signup</h2>
+<h2>Log In</h2>
 
-<form action="/signup" method="POST">
+<form action="/login" method="POST">
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
@@ -9,10 +9,8 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
   </div>
-  <button type="submit" class="btn btn-primary">Create account</button>
+  <button type="submit" class="btn btn-primary">Login to account</button>
   {{#if errorMessage}}
-  <div class="alert alert-danger error" role="alert">
-    {{errorMessage}}
-  </div>
+    <p class="error">{{errorMessage}}</p>
   {{/if}}
 </form>

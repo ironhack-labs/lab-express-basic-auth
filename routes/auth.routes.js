@@ -36,6 +36,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
+      req.session.isSignup = true;
       res.redirect('/');
     })
     .catch(error => {
@@ -49,6 +50,44 @@ router.post('/signup', (req, res, next) => {
         next(error);
       }
     });
+});
+
+
+// LOGIN
+router.get('/login', (req, res) => res.render('auth/login'));
+
+// .post() login route ==> to process form data
+router.post('/login', (req, res, next) => {
+  // console.log('SESSION =====> ', req.session);
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both username and password to login.'
+    });
+    return;
+  }
+
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'User is not registered. Try agin.' });
+        return;
+      } else if (bcryptjs.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect('/');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+
+
+// LOGOUT
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;
