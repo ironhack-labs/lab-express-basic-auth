@@ -43,7 +43,8 @@ router.post("/", (req, res, next) => {
         // the following line gets replaced with what follows:
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = userFromDB;
-        res.redirect("/userProfile");
+        res.redirect("/");
+        // res.redirect("/userProfile");
       }
     })
     .catch((error) => {

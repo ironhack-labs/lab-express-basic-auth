@@ -1,0 +1,14 @@
+<h1> This page is private for me </h1>
+
+
+{{#if userLoggedIn}}
+<h1>Hi {{userLoggedIn.username}}! This page is private</h1>
+
+<img src="../images/private_img.jpg">
+
+{{else}}
+<div class="alert alert-danger error" role="alert">
+    Access denied! Go back to the homepage.
+</div>
+
+{{/if}}

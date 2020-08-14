@@ -34,8 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
-app.locals.title =
-  "Express basic user authuentiction - Generated with IronGenerator";
+app.locals.title = "Express basic user authuentiction ";
 
 const indexroute = require("./routes/index.routes");
 app.use("/", indexroute);
@@ -45,6 +44,12 @@ app.use("/sign-in", signinroute);
 
 const loginRoute = require("./routes/login.routes.js");
 app.use("/log-in", loginRoute);
+
+const mainRoute = require("./routes/main.routes.js");
+app.use("/main", mainRoute);
+
+const privateRoute = require("./routes/private.route.js");
+app.use("/private", privateRoute);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));

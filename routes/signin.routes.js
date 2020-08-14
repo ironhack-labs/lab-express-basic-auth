@@ -32,8 +32,10 @@ router.post("/", (req, res, next) => {
     })
     .then((userFromDB) => {
       // console.log("Newly created user is: ", userFromDB);
-      req.session.userInformation = userFromDB;
-      res.redirect("userProfile");
+      // req.session.userInformation = userFromDB;
+      // res.redirect("userProfile");
+      req.session.isSignup = true;
+      res.redirect("/");
     })
     .catch((error) => {
       console.log(error);
