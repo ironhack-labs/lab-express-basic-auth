@@ -53,11 +53,11 @@ To complete this first iteration, you have to create the model as well as corres
 
 Once the user has signed up, he/she should be able to authenticate themselves. This means the user should be able to login to the application. Your assignment in this iteration is to create corresponding routes as well as the views to let them log in to the application.
 
-As you know, it is not enough just to allow users to login. Users should be able to maintain their "presence" in the application (stay logged in when going from a page to a page, after the refresh), and for that, there should be the user(s) in the session. You have learned that you can use the `express-session` and `connect-mongo` npm packages to create a session.
+As you know, it is not enough just to allow users to login. Users should be able to maintain their "presence" in the application (stay logged in when going from a page to a page, after the refresh), and for that, there should be the user(s) in the users. You have learned that you can use the `express-users` and `connect-mongo` npm packages to create a users.
 
 ## Iteration 3 | Protected Routes
 
-At this point, you have implemented the basic authentication in this application. Your next assignment is to create some protected routes. Refresher: users can't visit these routes unless they are authenticated (logged in and exist in the session).
+At this point, you have implemented the basic authentication in this application. Your next assignment is to create some protected routes. Refresher: users can't visit these routes unless they are authenticated (logged in and exist in the users).
 
 Let's create two different routes protected by authentication:
 

@@ -14,8 +14,9 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// require database configuration
 require('./configs/db.config');
+require('./configs/session.config')(app)
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -38,6 +39,6 @@ app.use('/', indexRouter);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
 
-
+// require database configuration
 
 module.exports = app;

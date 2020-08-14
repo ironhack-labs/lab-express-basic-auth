@@ -5,6 +5,7 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+//signup
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 router.post('/signup', (req, res, next) => {
@@ -15,8 +16,6 @@ router.post('/signup', (req, res, next) => {
     return
   }
 
-  // make sure passwords are strong:
-  
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res
@@ -51,5 +50,60 @@ router.post('/signup', (req, res, next) => {
       }
     });
 });
+
+router.get('/userProfile', (req, res) => {
+  console.log(req.session)
+  res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
+
+//login
+router.get('/login', (req, res) => res.render('auth/login'));
+
+
+router.post('/login', (req, res, next) => {
+
+  const { email, password } = req.body;
+
+  if (email === '' || password === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, email and password to login.'
+    });
+    return;
+  }
+
+  User.findOne({ email })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+
+//main
+
+router.get('/main', (req, res) => {
+  if (req.session.currentUser) {
+    res.render('users/main')
+  } else {
+    res.render('auth/login', { errorMessage: 'Log in.' });
+  }
+})
+
+
+router.get('/private', (req, res) => {
+  if (req.session.currentUser) {
+    res.render('users/private')
+  } else {
+    res.render('auth/login', { errorMessage: 'Log in.' });
+  }
+})
 
 module.exports = router;
