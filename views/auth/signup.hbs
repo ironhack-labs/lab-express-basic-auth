@@ -1,19 +1,18 @@
-{{!--views/auth/signup.hbs --}}
+<h2>Signup</h2>
 
-<div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username">Username</label>
-    <input type="text" id="input-username" name="username" placeholder="Your username" />
-
-    <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" />
-
-    <button type="submit">Create account</button>
-
-    {{!-- error message will be added here --}}
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+<form action="/signup" method="POST">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Create account</button>
+  {{#if errorMessage}}
+  <div class="alert alert-danger error" role="alert">
+    {{errorMessage}}
+  </div>
+  {{/if}}
+</form> 
