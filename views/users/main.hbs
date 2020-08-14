@@ -1,0 +1,10 @@
+{{#if userLoggedIn}}
+<h1>Hi {{userLoggedIn.username}}! This page is private</h1>
+<img src="public/images/FunnyCat.jpeg" alt="">
+
+{{else}}
+<div class="alert alert-danger error" role="alert">
+  Access denied! Go back to the homepage.
+</div>
+
+{{/if}} 

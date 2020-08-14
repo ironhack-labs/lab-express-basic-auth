@@ -8,3 +8,19 @@ a {
 }
 
 
+.navbar {
+  margin-bottom: 40px;
+  padding: 20px 40px;
+}
+
+.btn-login {
+  margin-right: 20px;
+}
+
+button.close {
+  padding: 8px 12px !important;
+}
+
+.error {
+  margin-top: 20px;
+}
