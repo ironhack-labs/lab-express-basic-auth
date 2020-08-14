@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
+    <title>NoDa 101 - Charlottes Number 1 rated karaoke bar!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
@@ -19,10 +19,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/main">Main<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="/features">Features</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/song-list">Song List</a>
@@ -33,11 +33,19 @@
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/userProfile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/private">Private</a>
+      </li>
     </ul>
   </div>
+      <form id="logout-form" action="/logout" method="POST">
+        <button class="btn btn-danger">Logout</button>
+      </form>
     </nav>
     <br>
-    
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>

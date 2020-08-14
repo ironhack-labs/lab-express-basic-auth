@@ -1,2 +1,24 @@
-<h2>Welcome</h2>
-<h3>This is your personal Noda 101 profile.</h3>
+
+{{#if userInSession}}
+  <section id="userContent">
+    <h2>Welcome, {{ userInSession.username }}!</h2>
+    <p>This is your profile page my friend!</p>
+
+    <h5>Details</h5>
+      <ul>
+        <li>Favorite Songs</li>
+        <li>Membership Info</li>
+        <li>Want to Sing</li>
+      </ul>
+  </section>
+{{else}}
+  <div id="pleaseLogin">
+    <p>
+      Please Login. 
+    </p>  
+    
+    <button class="btn btn-primary">
+        <a href="/login">Login</a>
+    </button>
+    </div>
+{{/if}}

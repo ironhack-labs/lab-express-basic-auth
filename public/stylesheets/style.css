@@ -8,7 +8,11 @@ body {
 
 
 a {
-  color: #00B7FF;
+  color: white;
+}
+
+p a{
+  color: black;
 }
 
 #form{
@@ -20,7 +24,7 @@ a {
   height: auto;
 }
 
-#form-inputs{
+#form-inputs, #login-inputs{
   /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
@@ -31,7 +35,27 @@ a {
 
 }
 
-#form-inputs label,  #form-inputs button{
+#form-inputs label,  #form-inputs button, #login-inputs label, #login-inputs button{
   margin: 10px;
 }
 
+
+#logo{
+  height:300px;
+  width: auto;
+  margin: 0 auto;
+}
+
+#logoContainer{
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#karaoke{
+  width: 100%;
+  height: auto;
+}

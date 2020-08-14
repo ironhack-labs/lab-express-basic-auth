@@ -7,10 +7,11 @@
     <input type="text" id="input-username" name="username" placeholder="username" />
 
     <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="" />
+    <input type="password" name="password" id="input-password" placeholder="******" />
 
-    <button type="submit">Create account</button>
+    <button class = 'btn btn-primary' type="submit">Create account</button>
 
+    <p>Already have account? <a href="/login">Login</a></p>
     {{!-- error message will be added here --}}
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

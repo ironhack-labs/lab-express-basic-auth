@@ -1,0 +1,14 @@
+{{#if userInSession}}
+    <div id="logoContainer">
+        <h2>This is a private user page</h2>
+        <img id="logo" src="../images/Noda_101_Logo.png" alt="NoDa 101 Logo">
+    </div>
+      {{else}}
+    <p>
+      Please Login. 
+    </p>  
+    
+    <button class="btn btn-primary">
+        <a href="/login">Login</a>
+    </button>
+{{/if}}

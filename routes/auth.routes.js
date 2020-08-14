@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
 
     //check if both fields are completed
     if (!username || !password) {
-        res.render('auth/signup', { errorMessage: 'Both field are mandatory'})
+        res.render('auth/signup', { errorMessage: 'Both fields are mandatory'})
     
     //else => stop code with empty return
     return;
@@ -52,14 +52,14 @@ router.post('/signup', (req, res, next) => {
         })
         .then(userFromDb => {
             console.log('Newly created user is: ',userFromDb);
-            res.redirect('/userProfile');
+            res.redirect('/login');
         })
         .catch(error => {
             if (error instanceof mongoose.Error.ValidationError) {
               res.status(500).render('auth/signup', { errorMessage: error.message });
             } else if (error.code === 11000) {
               res.status(500).render('auth/signup', {
-                errorMessage: 'Username and email need to be unique. Either username or email is already used.'
+                errorMessage: 'Username is already taken!  Please try a different username'
               });
             } else {
               next(error);
@@ -67,9 +67,54 @@ router.post('/signup', (req, res, next) => {
           });
 });
 
+
+//LOGIN
+
+router.get('/login', (req, res) => res.render('auth/login'));
+
+router.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === '' || password === ''){
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, username and password to login.'
+    });
+    return;
+  }
+
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: "Username is not registered.  Please retype your username or signup."})
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
+      } else {
+        res.render('auth/login', { errorMessage: "Incorrect password." });
+      }
+    })
+    .catch(error => next(error));
+})
+
+
+//LOGOUT
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
+//Private userProfile
 router.get('/userProfile', (req, res) => {
-    res.render('users/user-profile');
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
+
+
+//Private page
+router.get('/private', (req, res) => {
+  res.render('private/private-page', { userInSession: req.session.currentUser });
+});
 
 
 
