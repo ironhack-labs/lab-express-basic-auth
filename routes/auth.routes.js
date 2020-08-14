@@ -5,6 +5,24 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+// Main and Private
+const express = require('express');
+const router = express.Router();
+
+const loggedIn = (req,res,next) => {
+    console.log(req.session)
+    if(!req.session.currentUser){
+        return res.send('Restricted')
+    }
+    next()
+  }
+
+router.get('/main', loggedIn, (req, res) => res.render('protected/main'));
+router.get('/private', loggedIn, (req, res) => res.render('protected/private'));
+router.get('/userProfile', loggedIn, (req, res) => res.render('user/userProfile', req.session.currentUser));
+
+
+
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 router.post('/signup', (req, res, next) => {

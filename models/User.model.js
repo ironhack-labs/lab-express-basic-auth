@@ -10,7 +10,8 @@ const userSchema = new Schema(
     },
     passwordHash: {
       type: String,
-      required: [true, 'Insert Password']
+      required: [true, 'Insert Password'],
+      unique: true
     }
 },
   {
