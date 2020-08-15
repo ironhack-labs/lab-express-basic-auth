@@ -1,0 +1,18 @@
+{{!-- views/auth/login.hbs --}}
+
+<div id="form">
+    <h2>Login</h2><br><br>
+    <form action="/login" method="POST">
+        <label for="input-username">Username</label>
+        <input type="text" id="input-text" name="username" placeholder="Your Username" />
+
+        <label for="input-password">Password</label>
+        <input type="password" name="password" id="input-password" placeholder="********" />
+
+        <button type="submit">Login</button>
+
+        {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+        {{/if}}
+    </form>
+</div>

@@ -5,6 +5,24 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+//MAIN & PRIVATE
+router.get('/main', (req, res, next) => {
+  if(!req.session.currentUser){
+      res.render('auth/main', {errorMessage: 'You are not logged in!'})
+  } else {
+      res.render('auth/main', {success: 'Welcome!'})
+  }
+})
+
+router.get('/private', (req, res, next) => {
+  if(!req.session.currentUser){
+      res.render('auth/private', {errorMessage: 'You are not logged in!'})
+  } else {
+      res.render('auth/private', {success: 'Private'})
+  }
+})
+
+
 //SIGNUP
 
 //get route and display signup form.
@@ -65,11 +83,57 @@ router.post('/signup', (req, res, next) => {
             }
           });
 });
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// LOGIN ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+// .get() route ==> to display the login form to users
+router.get('/login', (req, res) => res.render('auth/login'));
+
+// .post() login route ==> to process form data
+router.post('/login', (req, res, next) => {
+  // console.log('SESSION =====> ', req.session);
+  const { username, password } = req.body;
+
+  if (username === '' || password === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, Email/Username and password to login.'
+    });
+    return;
+  }
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        // the following line gets replaced with what follows:
+        // res.render('users/user-profile', { user });
+
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// LOGOUT ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+// router.get('/userProfile', (req, res) => res.render('users/user-profile'));
 
 router.get('/userProfile', (req, res) => {
-    res.render('users/user-profile');
-  });
-
+  // console.log('your sess exp: ', req.session.cookie.expires);
+  res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
 
 
 module.exports = router;
