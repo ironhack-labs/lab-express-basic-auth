@@ -16,10 +16,7 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
-// Iteration 1_Sing up.1.3 Routes.Requiring app file to go to the below routes files
-const indexRouter = require('./routes/index.routes');
-const authRouter = require('./routes/auth.routes');
-
+//use of sessions
 require('./configs/session.config')(app);
 
 // Middleware Setup
@@ -34,12 +31,20 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// Iteration 1_Sing up.1.3 Routes middleware.
+// Iteration 1_Sing up and Iteration 3_ Protected Routes//Setting up Routes
+const indexRouter = require('./routes/index.routes');
+const authRouter = require('./routes/auth.routes');
+const main = require('./routes/main.routes');
+const private = require('./routes/private.routes');
+
+// Iteration 1_Sing up and Iteration 3_Protected routes.Middleware.
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', main);
+app.use('/', private);
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Home';
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
