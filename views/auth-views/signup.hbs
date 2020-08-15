@@ -1,20 +1,15 @@
-<h2>Sign up</h2>
- <form action="/auth/signup" method="POST">
+<div id="form">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+    <label for="input-username">Username</label>
+    <input type="text" id="input-username" name="username" placeholder="Your username" />
+    <label for="input-password">Password</label>
+    <input type="password" name="password" id="input-password" placeholder="********" />
 
-      <label>
-         Username
-         <input type="text" name="username"/>
-     </label><br>
+    <button type="submit">Create account</button>
 
-      <label>
-         Password
-         <input type="password" name="password"/>
-     </label><br>
-
-      <button type="submit">Create account</button>
-
-      {{!-- error message will be added here --}}
-     {{#if errorMessage}}
-         <p> {{errorMessage}}</p>
-     {{/if}}
- </form> 
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

@@ -10,11 +10,15 @@
   </head>
 
   <body>
-
     <a href="/">Home</a>
-    <a href="/auth/signup">Sign up</a>
+    <a href="/auth/signup">Signup</a>
     <a href="/auth/login">Login</a>
-
+    <a href="/main">Main</a>
+    <a href="/private">Private</a>
+    <form id="logout-form" action="/auth/logout" method="POST">
+      <button>Logout</button>
+    </form>
+      
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>

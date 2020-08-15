@@ -3,6 +3,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
+const createError = require('http-errors');
 const favicon = require('serve-favicon');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
@@ -16,6 +17,11 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+require('./configs/session.config')(app);
+
+// Routers
+//const indexRouter = require('./routes/index.routes');
+//const authRouter = require('./routes/auth.routes');
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -33,6 +39,6 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use('/', require('./routes/index.routes'));
-app.use('/auth', require('./routes/auth-routes/auth.routes'));
+app.use('/auth', nrequire('./routes/auth-routes/auth.routes'));
 
 module.exports = app;
