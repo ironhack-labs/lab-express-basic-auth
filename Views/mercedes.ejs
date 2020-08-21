@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+
+  <title> GHOST </title>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+  <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+
+</head>
+
+<body>
+  
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">GHOST – feel it. is a Berlin based startup that aims to enable companies and individual product developers, to integrate a new channel of machine human interaction into their products.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white"> Current Projects </a></li></br>
+            <form action="/logout?_method=DELETE" method="POST" class="text-white">
+                <button type="submit" > Log Out </button>
+            </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+        <strong> GHOST </strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background: url('../images/homewine.jpg') center; background-size: 100%" >
+      <div class="container">
+        <h1 class="display-3" style="color rgb(52, 53, 57); font-family: sans-serif; font-weight: 700;" >Haptic Navigation </br> Mercedes-Benz AG </h1>
+        <p style="color:rgb(53, 58, 63); font-size:larger"> Making drivers feel navigation </p>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div>
+        <div>
+            <img src="/Style/porsche.jpeg" alt="porsche project" width="1100" height="600">
+        </div>
+      </div>
+      <hr>
+    </div> <!-- /container -->
+  </main>
+
+<footer class="container">
+  <br> <br> <br>
+  <p style="text-align: center" >&copy; GHOST feel it.   Berlin 2020</p>
+</footer>        
+
+
+ 
+  <script src="/javascripts/script.js"></script>
+  <script src="/javascripts/map.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html> 
