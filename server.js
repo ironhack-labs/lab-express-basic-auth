@@ -76,50 +76,18 @@ app.post('/register', async (req, res) => {
         res.redirect('/login')
     })
 
-    app.get('/porsche', (req, res) => {
+    app.get('/porsche', checkAuthenticated, (req, res) => {
         res.render('porscheProject.ejs') 
      })
 
-     app.get('/mercedes', (req, res) => {
+     app.get('/mercedes', checkAuthenticated, (req, res) => {
         res.render('mercedes.ejs') 
      })
 
-     app.get('/berlinTu', (req, res) => {
+     app.get('/berlinTu', checkAuthenticated, (req, res) => {
         res.render('berlinTu.ejs') 
      })
 
-
-
-     app.get('/projects', (req, res) => {
-        res.send([1, 2, 3]);  
-     })
-
-     app.get('/projects/:id', (req, res) => {
-        const project = projects.find(c => c.id === parseInt(req.params.id)); 
-        if(!project) res.status(404).send('The project with the given was not found');
-        res.send(project);
-     })
-
-     app.get('/new-project-form', checkAuthenticated, (req, res) => {
-        res.render('newProjectForm.ejs') 
-     })
-
-     app.get('/new-project-form', checkAuthenticated, (req, res) => {
-        res.render('newProjectForm.ejs') 
-     })
-
-     app.post('/projects', (req, res) => {
-        if (!req.body.name || req.body.name.length < 3) {
-            res.status(400).send('Name is required and should have a least 3 characters');
-            return
-        } 
-        const project = {
-             id: courses.length + 1,
-             name: req.body.name
-         };
-         projects.push(project);
-         res.send(project);
-     })
 
 function checkAuthenticated(req, res, next) {
     if(req.isAuthenticated()) {
