@@ -7,4 +7,7 @@
     <input type="password" id="password-input" name="password" placeholder="Your Password">
     <button type="submit">Create account</button>
   </form>
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
 </div>
