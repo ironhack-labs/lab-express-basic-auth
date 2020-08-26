@@ -1,0 +1,9 @@
+<h2>Private page</h2>
+
+{{#if userInSession}}
+<img src="https://media.giphy.com/media/hTUMLWLPWKDl3E2ttG/giphy.gif" alt="gif">
+     {{!-- <a href="/">Private</a> --}}
+ {{else}}
+     You don't have access!
+     <a href="/login">Login</a>
+ {{/if}}

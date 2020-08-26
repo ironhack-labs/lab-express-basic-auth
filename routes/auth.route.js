@@ -1,4 +1,4 @@
-// const mongoose = require('mongoose');
+
 
 const { Router } = require('express');
 const router = new Router();
@@ -6,6 +6,34 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
+
+// router.get('/main', (req, res) => {
+
+//     if(!req.session.currentUser){
+//         res.redirect('auth/main', {errorMessage: `You're not logged in.` })
+//     }else {
+//         res.redirect('auth/main', { success: `Welcome!`})
+//     }
+// })
+
+
+// router.get('/private', (req, res, next) => {
+//     if(!req.session.currentUser){
+//         res.render('auth/private', {errorMessage: 'You are not logged in!'})
+//     } else {
+//         res.render('auth/private', {success: 'Private'})
+//     }
+// })
+
+router.get("/main", (req, res, next) => {
+    res.render("auth/main", { userInSession: req.session.currentUser });
+    res
+});
+
+router.get("/private", (req, res, next) => {
+    res.render("auth/private", { userInSession: req.session.currentUser })
+});
+
 
 router.get('/signup', (req, res) => {
     res.render('auth/signup')
@@ -53,7 +81,7 @@ router.post('/signup', (req, res, next) => {
          }
          else if (error.code === 11000) {
              res.status(500).render('auth/signup', {
-               errorMessage: 'Username and email need to be unique. Either username or email is already used.'
+             errorMessage: 'Username and email need to be unique. Either username or email is already used.'
             });
           }
           else {
@@ -89,7 +117,7 @@ router.post('/login', (req, res, next) => {
                 return;
             } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
                 req.session.currentUser = userFromDB;
-                res.redirect('/user-profile');
+                res.redirect('/main');
             } else {
                 res.render('auth/login', {errorMessage: 'Incorrect password entered.'})
             }
