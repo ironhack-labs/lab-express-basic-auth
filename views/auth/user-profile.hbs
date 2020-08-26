@@ -1,6 +1,6 @@
 
-{{#if user}}
-  <h2>Welcome, {{ user.username }}!</h2>
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
   <p>This is your profile page my friend!</p>
   <button>
     <a href="/user-profile">Reload the page</a>

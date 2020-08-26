@@ -15,7 +15,13 @@ router.post('/signup', (req, res, next) => {
     // console.log('The form data: ', req.body);
      const { username, email, password } = req.body;
 
-   
+      //Check if all fields are filled when create a account
+      if (!username || !email || !password){
+        res.render('auth/signup' , { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+        return;
+    }
+
+
      const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
      if (!regex.test(password)) {
        res
@@ -24,13 +30,6 @@ router.post('/signup', (req, res, next) => {
        return;
      }
      
-
-     //Check if all fields are filled when create a account
-     if (!username || !email || !password){
-         res.render('auth/signup' , { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
-         return;
-     }
-
     
      bcryptjs
      .genSalt(saltRounds)
@@ -64,13 +63,37 @@ router.post('/signup', (req, res, next) => {
   });
    
 
-router.get('/user-profile', (_, res) => {
-    res.render('auth/user-profile');
+router.get('/user-profile', (req, res) => {
+    res.render('auth/user-profile' , { userInSession: req.session.currentUser });
 })
 
 
-router.get('/login', (_, res ) => {
+router.get('/login', (req, res ) => {
+    console.log('SESSION =====> ', req.session);
     res.render('auth/login');
+})
+
+
+router.post('/login', (req, res, next) => {
+    const { email, password } = req.body;
+
+    if(!email || !password) {
+        res.render('auth/login', {errorMessage: 'All fields are required.'});
+        return;
+    }
+
+    User.findOne({email})
+        .then(userFromDB =>{
+            if (!userFromDB) {
+                res.render('auth/login', {errorMessage: 'Incorrect email entered.'});
+                return;
+            } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
+                req.session.currentUser = userFromDB;
+                res.redirect('/user-profile');
+            } else {
+                res.render('auth/login', {errorMessage: 'Incorrect password entered.'})
+            }
+        })
 })
 
 
