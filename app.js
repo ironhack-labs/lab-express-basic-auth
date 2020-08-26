@@ -36,6 +36,6 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 
 const authRouter = require('./routes/auth.routes');
-app,use('/', authRouter);
+app.use('/', authRouter);
 
 module.exports = app;
