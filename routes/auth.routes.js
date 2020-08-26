@@ -47,11 +47,14 @@ const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
         }
     })
   });
-  router.get('/userProfile', (req, res) => res.render('users/user-profile')); 
+  router.get('/userProfile', (req, res) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
+  });
   // .get() route ==> to display the login form to users
 router.get('/login', (req, res) => res.render('auth/login'));
 // .post() login route ==> to process form data
 router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session)
     const { email, password } = req.body;
    
     if (email === '' || password === '') {
@@ -67,7 +70,9 @@ router.post('/login', (req, res, next) => {
           res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
           return;
         } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-          res.render('users/user-profile', { user });
+          //res.render('users/user-profile', { user });
+          req.session.currentUser = user;
+        res.redirect('/userProfile');
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }

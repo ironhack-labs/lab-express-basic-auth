@@ -1,9 +1,9 @@
-{{#if user}}
-  <h2>Welcome, {{ user.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/userProfile">Reload the page</a>
-  </button>
+{{#if userInSession}}
+    <h2>Welcome, {{ userInSession.username }}!</h2>
+    <p>This is your profile page my friend!</p>
+    <button>
+        <a href="/userProfile">Reload the page</a>
+    </button>
 {{else}}
-  <p>Still no logged in user, sorry!</p>
+    <p>Still no logged in user, sorry!</p>
 {{/if}}
