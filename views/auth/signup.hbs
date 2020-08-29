@@ -1,0 +1,26 @@
+<div class="forms">
+    <h2>Aplicación super increíble con nombre mega original</h2>
+    <br>
+    <h3>Regístrate para ver cosas increíbles</h3>
+<br>
+</div>
+{{#if error}}
+  <p style="color: red">{{error}}</p>
+  {{/if}}
+<br>
+
+<div class="formulario">
+    <form action="/auth/signup" method="POST">
+        <div class="form-group">
+            <label for="input-username">Nombre de usuario</label>
+            <input required type="text" class="form-control" id="input-username" name="username" placeholder="Your username">
+            <small id="emailHelp" class="form-text text-muted">Por favor provee un nombre de usuario original.</small>
+        </div>
+        <div class="form-group">
+            <label for="input-pswd">Contraseña</label>
+            <input required type="password" class="form-control" id="input-pswd" name="password" placeholder="******">
+            <small id="emailHelp" class="form-text text-muted">Tu contraseña debe contener una letra minúsucula, una mayúscula, un número, un símbolo y un chiste que me haga reír.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Regístrate!</button>
+    </form>
+</div>

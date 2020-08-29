@@ -1,8 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Crushed&family=Poppins:wght@400;700&display=swap');
+/*font-family: 'Crushed', cursive;
+  font-family: 'Poppins', sans-serif;*/
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 16px 'Poppins', sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+header h1{
+  font-family: 'Crushed', cursive;
+  font-size: 15vw;
+}
+
+header img {
+  width: 10vw;
+  height: 25vw;
+}
+
+.profile>h2{
+  font-family: 'Crushed', cursive;
+  font-size: 8vw;
+}
+.profile>p, 
+.forms p{
+  font-size: 2vw;
+}
+
+.profile img{
+  width: 30vw;
+}
+
+.formulario{
+  width: 40%;
+  margin: 0 auto;
+}
+
+.forms h2{
+  font-family: 'Crushed', cursive;
+  font-size: 5vw;
 }

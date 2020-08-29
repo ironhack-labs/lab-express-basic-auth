@@ -1,0 +1,25 @@
+<div class="forms">
+<h2>Bienvenido de nuevo a tu aplicación favorita</h2>
+<br>
+<p>Por favor inicia sesión para acceder a tu contenido favorito</p>
+</div>
+
+{{#if error}}
+  <p style="color: red">{{error}}</p>
+{{/if}}
+
+<div class="formulario">
+<form action="/auth/login" method="POST">
+    <div class="form-group">
+        <label for="input-username">Nombre de usuario</label>
+        <input required type="text" class="form-control" id="input-username" name="username" placeholder="Your username">
+        <small id="emailHelp" class="form-text text-muted">Por favor provee un nombre de usuario original.</small>
+    </div>
+    <div class="form-group">
+        <label for="input-pswd">Contraseña</label>
+        <input required type="password" class="form-control" id="input-pswd" name="password" placeholder="******">
+        <small id="emailHelp" class="form-text text-muted">Tu contraseña debe contener una letra minúsucula, una mayúscula, un número, un símbolo y un chiste que me haga reír.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Accede a contenido super especial!</button>
+</form>
+</div>
