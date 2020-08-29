@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
+html,body {
+  margin: 0;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.flex
+{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+.catgif
+{
+  width: 480px;
+  align-self: center;
+  text-align: center;
 }

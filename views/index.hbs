@@ -1,2 +1,17 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#if isLogged}}
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="/main" role="button">Una Pagina Para Ti</a>
+            </div>
+            <div class="col-md-auto">
+                Hola <strong>{{name}}</strong>
+            </div>
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="/private" role="button">For Your Eyes Only</a>
+            </div>
+        </div>
+{{/if}}
+
