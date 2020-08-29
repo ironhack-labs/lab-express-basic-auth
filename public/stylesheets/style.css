@@ -1,8 +1,89 @@
+html,
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-align: center;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.error {
+    color: red;
+}
+
+nav {
+    background-color: red;
+    margin-bottom: 40px;
+}
+
+nav>ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+}
+
+nav>ul>li>a,
+nav>ul>li>a:hover {
+    text-decoration: none;
+    color: black;
+    font-size: 1.6rem;
+    color: white;
+    cursor: pointer;
+}
+
+.authentication {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 240px;
+    height: 200px;
+}
+
+form>label {
+    text-align: left;
+}
+
+form>input {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+button[type="submit"] {
+    height: 30px;
+    margin: 0 40px;
+    background: grey;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#cute-cat {
+    height: 400px;
+}
+
+#disconnect {
+    width: fit-content;
+    height: fit-content;
+}
+
+#disconnect>button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    width: fit-content;
+    margin: 0;
 }

@@ -1,0 +1,13 @@
+<div class="authentication signup">
+    <h2>Create new user account:</h2>
+    <form action="/signup" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required id="name" placeholder="Type your username here...">
+        <label for="pwd">Password:</label>
+        <input type="password" name="pwd" required id="pwd" placeholder="Type your password here...">
+        <button type="submit">Create new account</button>
+    </form>
+    {{#if error}}
+    <p class="error">{{error}}</p>
+    {{/if}}
+</div>

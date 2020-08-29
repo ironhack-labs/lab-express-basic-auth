@@ -1,0 +1,14 @@
+<div class="authentication login">
+    <h2>Connect to your account</h2>
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required id="name" placeholder="Type your username here...">
+        <label for="pwd">Password:</label>
+        <input type="password" name="pwd" required id="pwd" placeholder="Type your password here...">
+        <button type="submit">Login</button>
+    </form>
+    <p>You don't have an account yet?<br><a href="/signup">Click here to create a new one!</a></p>
+    {{#if error}}
+    <p class="error">{{error}}</p>
+    {{/if}}
+</div>
