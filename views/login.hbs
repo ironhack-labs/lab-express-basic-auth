@@ -1,0 +1,20 @@
+
+<div class="container">
+  <h1>Login</h1>
+  {{counter}}
+  {{#if error}}
+  <p style="color:red">{{error}}</p>
+  {{/if}}
+
+  <form action="/login" method="POST">
+
+  <label for="email">Email</label>
+  <input required type="email" name="email" placeholder="Your email">
+
+  <label for="password">Password</label>
+  <input required type="password" name="password" placeholder="*******">
+
+  <button type="submit">Login</button>
+  </form>
+
+</div>

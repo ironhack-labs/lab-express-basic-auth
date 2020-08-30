@@ -1,0 +1,19 @@
+
+<div class="container">
+  <h3>Signup</h3>
+  {{#if error}}
+  <p style="color:red">{{error}}</p>
+  {{/if}}
+  <form action="/registrar" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="username">
+
+    <label for="email">Email</label>
+    <input type="email" name="email" placeholder="your email">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="your password">
+
+    <button type="submit">Create Acount</button>
+  </form>
+</div>
