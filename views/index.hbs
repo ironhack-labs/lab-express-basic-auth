@@ -1,2 +1,55 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+
+		<form action="/auth/signup" method="POST">
+			<h1>Create Account</h1>
+            {{#if error}}
+            <p style="color: red">{{error}}</p>
+            {{/if}}
+			
+			<span>or use your email for registration</span>
+			<input required type="text" id="input-username" name="username"  placeholder="Name" />
+			<input required type="email" id="input-email" name="email" placeholder="Email" />
+			<input required type="password" name="password" id="input-password"  placeholder="Password" />
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+        {{#if error}}
+        <p style="color: red">{{error}}</p>
+        {{/if}}
+		<form action="/auth/login" method="POST">
+			<h1>Sign in</h1>
+			<span>or use your account</span>
+			<input required type="email" id="input-email" name="email" placeholder="Email" />
+			<input required type="password" name="password" id="input-password" placeholder="Password" />
+			<button  type="submit">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../js/script.js"></script>
+</body>
+</html>
