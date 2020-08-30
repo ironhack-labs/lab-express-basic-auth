@@ -1,2 +1,24 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h3>index page</h3>
+<h1>Sign up!</h1>
+
+<a href="/login">
+    <h3>Already have an account? log in here!</h3>
+</a>
+{{#if error}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+{{#if confirmation}}
+<p style="color: rgb(0, 122, 20);">{{confirmation}}</p>
+<a href="/login">
+    <h3>LOG IN here!</h3>
+</a>
+
+{{/if}}
+
+<form action="/" method="post">
+    <label for="email">e-mail</label>
+    <input required type="email" name="email" id="email">
+    <label for="password">Password</label>
+    <input required type="password" name="password" id="password">
+    <button type="submit">Sign up!</button>
+</form>

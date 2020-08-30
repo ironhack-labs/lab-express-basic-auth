@@ -1,0 +1,18 @@
+<h3>login page!</h3>
+
+
+<a href="/">
+    <h3>Return to sign up</h3>
+</a>
+{{#if error}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+
+
+<form action="/login" method="post">
+    <label for="email">e-mail</label>
+    <input required type="email" name="email" id="email">
+    <label for="password">Password</label>
+    <input required type="password" name="password" id="password">
+    <button type="submit">Log in!</button>
+</form>
