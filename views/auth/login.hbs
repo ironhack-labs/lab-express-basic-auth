@@ -1,0 +1,17 @@
+<h2>Login</h2>
+<div id="login">
+  {{#if error}}
+  <p style="color: red">{{error}}</p>
+  {{/if}}
+  <form action="/auth/login" method="POST">
+    <label for="input-email">Username</label>
+    <input required type="text" id="input-username" name="username" placeholder="Your username" />
+
+    <label for="input-password">Password</label>
+    <input required type="password" name="password" id="input-password" placeholder="********" />
+
+    <button type="submit">Login</button>
+
+    {{!-- error message will be added here --}}
+  </form>
+</div>
