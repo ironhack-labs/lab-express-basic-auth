@@ -1,2 +1,18 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Welcome</h1>
+<p>Please sign in</p>
+<hr>
+{{#if error}}
+<p>Error: {{error}}</p>
+{{/if}}
+<form action="/", method="POST">
+    <label for="username">Username</label>
+    <input required type="text" name="username" id="">
+    <br>
+    <label for="Password">Password</label>
+    <input required type="password" name="password" id="">
+    <br>
+    <label for="Password">Repeat password</label>
+    <input required type="password" name="repeatedPassword" id="">
+    <br>
+    <button type="submit">Create account</button>
+</form>
