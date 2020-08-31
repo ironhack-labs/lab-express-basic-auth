@@ -14,6 +14,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+require('./configs/session.config')(app)
+
 // require database configuration
 require('./configs/db.config');
 
@@ -33,6 +35,21 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
+const login = require('./routes/index.routes');
+const usuriocreado = require('./routes/index.routes');
+require('./routes/index.routes');
+
+const entrar = require('./routes/index.routes')
+const main = require('./routes/index.routes')
+const private = require('./routes/index.routes')
+
 app.use('/', index);
+app.use('/', login);
+app.use('/', usuriocreado);
+app.use('/', entrar)
+app.use('/', main)
+app.use('/', private)
+
+
 
 module.exports = app;
