@@ -1,17 +1,17 @@
-<h2>Signup</h2>
-<div id="signup">
+  
+<h2>Login</h2>
+counter: {{counter}}
+<div id="login">
   {{#if error}}
   <p style="color: red">{{error}}</p>
   {{/if}}
-  <form action="/auth/signup" method="POST">
-    <label for="input-username">Username</label>
+  <form action="/auth/login" method="POST">
+    <label for="input-email">Username</label>
     <input required type="text" id="input-username" name="username" placeholder="Your username" />
 
     <label for="input-password">Password</label>
     <input required type="password" name="password" id="input-password" placeholder="********" />
 
-    <button type="submit">Create account</button>
-
-    {{!-- error message will be added here --}}
+    <button type="submit">Login</button>
   </form>
 </div>
