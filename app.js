@@ -16,6 +16,7 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -33,6 +34,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
+const auth = require('./routes/auth.routes');
+
 app.use('/', index);
+app.use('/auth', auth);
+
 
 module.exports = app;
