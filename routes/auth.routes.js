@@ -6,11 +6,11 @@ const bcrypt = require("bcrypt");
 // VIEWS RENDERING
 
 router.get("/signup", (req, res, next) => {
-  res.render("signup");
+  res.render("auth/signup");
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  res.render("auth/login");
 });
 
 // USER SIGNUP
