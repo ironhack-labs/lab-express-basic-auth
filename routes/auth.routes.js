@@ -6,11 +6,11 @@ const bcrypt = require("bcrypt");
 // VIEWS RENDERING
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+  res.render("signup");
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login");
+  res.render("login");
 });
 
 // USER SIGNUP
@@ -35,11 +35,13 @@ router.post("/signup", (req, res, next) => {
         username: username,
         password: hash,
       }).then((dbUser) => {
-        res.redirect("/login");
+        res.redirect("login");
       });
     }
   });
 });
+
+// USER LOG IN
 
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
