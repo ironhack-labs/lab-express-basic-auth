@@ -8,10 +8,7 @@ router.get('/signup', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-    const {
-        username,
-        password
-    } = req.body
+    const {username,password} = req.body
 
     bcrypt.hash(password, 10)
         .then(hashedPassword => {
@@ -33,10 +30,7 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-    const {
-        username,
-        password
-    } = req.body
+    const {username,password} = req.body
 
     User.findOne({
             username
