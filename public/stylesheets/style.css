@@ -1,8 +1,13 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+nav {
+  float: right; }
+
+nav li {
+  display: inline-block;
+  list-style: none;
+  margin: 0 10px; }
+
+/*# sourceMappingURL=style.css.map */

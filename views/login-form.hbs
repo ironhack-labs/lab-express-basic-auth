@@ -1,0 +1,15 @@
+<h1>Inicio de sesión</h1>
+
+<form action="/iniciar-sesion" method="post">
+    <label for="username">UserName:</label><br>
+    <input type="text" name="username" placeholder="Tu nombre aqui merluzo"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" placeholder="***********"><br><br>
+
+    {{#if errorMessage}}
+    <p style="color: red; font-weight:bold">{{errorMessage}}</p>
+
+    {{/if}}
+    <button type="submit">Iniciar Sesión</button>
+</form>
