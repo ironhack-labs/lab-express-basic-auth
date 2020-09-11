@@ -1,8 +1,11 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+main {
+  padding: 50px; }
+
+.error-message {
+  color: red;
+  font-weight: bold; }
+
+/*# sourceMappingURL=style.css.map */

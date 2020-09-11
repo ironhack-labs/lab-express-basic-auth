@@ -1,0 +1,31 @@
+<main>
+    <h1>{{title}}</h1>
+    <p>Welcome to {{title}}</p>
+
+    <h2>Registro de usuario</h2>
+
+    <form action="/register" method="POST">
+
+        <div class="form-group">
+            <label for="username">Nombre de usuario</label><br>
+            <input type="text" class="form-control-lg" name="username" placeholder="Nombre de usuario"><br><br>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Constraseña</label><br>
+            <input type="password" class="form-control-lg" name="password" placeholder="*****"><br>
+        </div>
+
+        {{#if errorMessage}}
+        <p class="error-message">{{errorMessage}}</p>
+        {{/if}}
+
+        <button class="btn btn-dark" type="submit">Registrar</button><br><br>
+
+        <div>
+            <p>¿Ya tienes cuenta?</p>
+            <a class="btn btn-dark" href="/login">Inicia sesión</a>
+        </div>
+    </form>
+
+</main>
