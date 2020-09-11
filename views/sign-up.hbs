@@ -1,0 +1,20 @@
+<h1>formulario de sesion</h1>
+
+
+<form action="/registro" method="POST">
+
+<label for="username">Username</label> <br>
+<input type="text" name="username" id="" placeholder="usuario"> <br>
+
+<label for="password">Password</label> <br>
+
+<input type="password" name="password" placeholder="*****">
+
+{{#if errorMessage}}
+    <p style="color: red; font-weight: bold; "> {{errorMessage}} </p>
+    {{/if}}
+<button type="submit"> Registro</button>
+
+
+</form>
+<a href="/"> vuelve</a>
