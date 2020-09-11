@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    crossorigin="anonymous"> --}}
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <body>
+<body>
 
-    {{{body}}}
+  <nav>
+    <ul>
+      <li>
+        <a href="/register">Register</a>
+      </li>
+      <li>
+        <a href="/log-in">Log In</a>
+      </li>
+      <li>
+        <a href="/sign-out">Sign Out</a>
+      </li>
+      <li>
+        <a href="/profile">Profile</a>
+      </li>
+    </ul>
+  </nav>
 
-    <script src="/javascripts/script.js"></script>
-  </body>
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
 
 </html>
