@@ -1,0 +1,17 @@
+<h1>Registro de usuario</h1>
+
+<form action="/registro" method="POST">
+
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Your username"><br><br>
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" placeholder="********"><br><br>
+
+    {{#if errorMessage}}
+    <p style="color: red; font-weight: bold; "> {{errorMessage}} </p>
+    {{/if}}
+
+    <button type="submit">Registro</button>
+
+</form>
