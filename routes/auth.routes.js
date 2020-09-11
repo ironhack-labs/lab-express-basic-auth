@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
+const mongoose = require('mongoose')
 
 router.get('/signup', (req, res, next) => {
     res.render('auth/signup')
@@ -16,6 +17,15 @@ router.post('/signup', (req, res, next) => {
         return;
       }
 
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+        res
+        .status(500)
+        .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+        return;
+    }
+ 
+
     bcrypt.hash(password, 10)
         .then(hashedPassword => {
             return User.create({ 
@@ -27,15 +37,20 @@ router.post('/signup', (req, res, next) => {
             console.log('Newly created user is: ', newUserInDB)
             res.redirect('/auth/user-profile')
         })
-        .catch (err => {
-            next(err)
+        .catch(err => {
+            if (err.code === 11000) {
+                res.status(500).render('auth/signup', {
+                    errorMessage: 'Username needs to be unique, this username is already used.'
+                })
+            } else {
+                next (err)
+            }
         })
+
 })
 
 
-router.get('/user-profile', (req, res, next)=> {
-    res.render('auth/user-profile')
-})
+
 
 
 router.get('/login', (req, res, next) => {
@@ -43,6 +58,7 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
     const { username, password} = req.body
 
     if (username === '' || password === '') {
@@ -55,15 +71,21 @@ router.post('/login', (req, res, next) => {
     User.findOne( {username})
         .then(user => {
             if(!user) {
-                res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.'})
+                res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.'})
                 return
             } else if (bcrypt.compareSync(password, user.password)) {
-                res.render('auth/user-profile',  {user} )
+                // res.render('auth/user-profile',  {user} )
+                req.session.currentUser = user
+                res.redirect('/auth/user-profile')
             } else {
                 res.render('auth/login', { errorMessage: 'Incorrect password'})
             }
         })
         .catch(err => next(err))
 })
+
+router.get('/user-profile', (req, res) => {
+    res.render('auth/user-profile', { userInSession: req.session.currentUser });
+  });
 
 module.exports = router

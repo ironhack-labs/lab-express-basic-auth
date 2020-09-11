@@ -3,12 +3,13 @@
 <div id="signup">
 
   <h2>Signup</h2>
+  <p><i>Create your account</i> </p> 
   <form action="/auth/signup" method="POST">
     <label for="input-username">Username</label>
-    <input type="text" id="input-username" name="username" placeholder="Your username" />
+    <input type="text" required='required' id="input-username" name="username" placeholder="Your username" />
 
     <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" />
+    <input type="password" required='required' name="password" id="input-password" placeholder="********" />
 
     <button type="submit">Create account</button>
 
@@ -19,3 +20,7 @@
 
 
 </div>
+
+<br>
+<br>
+<a href="/">Back to home</a>
