@@ -1,0 +1,16 @@
+<h1>INICIO DE SESION</h1>
+<form action="/login" method="POST">
+    <label for="username">Usuario</label><br>
+       <input type="text" name = 'username' placeholder="User Name" > <br><br>
+    
+    <label for="password">Contraseña</label><br>
+       <input type="password" name = 'password' placeholder="Contraseña" > 
+
+       <button type="submit">inicia sesión</button>
+
+       {{#if errorMessage}}
+         <p style="color: red; font-weight: bold; "> {{errorMessage}} </p>
+      {{/if}}
+
+
+</form>
