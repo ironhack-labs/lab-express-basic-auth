@@ -1,8 +1,21 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+.container {
+  padding: 50px 0; }
 
-a {
-  color: #00B7FF;
-}
+.alert {
+  margin-top: 20px; }
+
+.cat {
+  margin: 20px auto;
+  border-radius: 20px;
+  max-height: 500px;
+  display: block; }
+
+.cat-btn {
+  display: block;
+  margin: 0 auto;
+  width: 100px; }
+
+.private {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
