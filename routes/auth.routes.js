@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
+const checkLogin = require('../middleware/checkLogin')
 
 router.get('/signup', (req, res, next) => {
     res.render('auth/signup')
@@ -55,6 +56,8 @@ router.post('/login', (req, res, next) => {
     console.log('SESSION =====> ', req.session);
     const { username, password} = req.body
 
+    let currentUser
+
     if (username === '' || password === '') {
         res.render('auth/login', {
             errorMessage: 'Please enter both, username and password to login. '
@@ -82,13 +85,21 @@ router.get('/user-profile', (req, res, next) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
 
-router.get('/main', (req, res, next ) => {
+router.get('/main', 
+checkLogin,
+(req, res, next ) => {
     res.render('auth/main')
 })
 
-router.get('/private', (req, res, next) => {
+router.get('/private', 
+checkLogin,
+(req, res, next) => {
     res.render('auth/private')
 })
 
+router.post('/logout', (req, res, next)=> {
+    req.session.destroy();
+    res.render('auth/logout')
+})
 
 module.exports = router
