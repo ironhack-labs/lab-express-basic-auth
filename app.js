@@ -47,4 +47,7 @@ const auth = require('./routes/auth.routes');
 const { POINT_CONVERSION_COMPRESSED } = require('constants');
 app.use('/auth', auth)
 
+const private = require('./routes/private.routes')
+app.use('/private', private)
+
 module.exports = app;

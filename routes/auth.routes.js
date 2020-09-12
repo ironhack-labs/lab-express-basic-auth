@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
     User.findOne({username})
         .then(data => {
             if (data) {
-                currentUSer = data
+                currentUser = data
                 return bcrypt.compare(password, data.password)
             }
         })
@@ -53,7 +53,8 @@ router.post('/login', (req, res, next) => {
             if (!hashCompare) {
                 return res.send('password is incorrect')
             }
-            res.send('password correct')
+            req.session.user = currentUser
+            res.render('loggedin-user')
         })
         .catch(err => [
             next(err)
