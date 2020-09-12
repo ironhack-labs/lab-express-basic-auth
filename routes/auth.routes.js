@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose')
 
 //add salt
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
-const User = require('../models/User.model')
+const User = require('../models/User.model');
+const { Mongoose } = require('mongoose');
 
 router.get('/signup', (req, res, next) => {
     res.render('signup')
@@ -13,6 +15,16 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
     const {username, password} = req.body;
+
+    if (!username || !password) {
+        res.render('signup', { errorMessage: "Pls, put your name and password"})
+    }
+
+    if (username != req.body.username) {
+        res.render('signup', { errorMessage: "pls use another name"})
+    }
+   
+
     console.log(req.body)
     bcrypt.hash(password, saltRounds)
         .then(hashedPassword => {
@@ -26,7 +38,13 @@ router.post('/signup', (req, res, next) => {
             res.redirect('/auth/user')
         })
         .catch(err => {
-            next(err)
+            if (err instanceof mongoose.Error.ValidationError) {
+                res.status(500).render('signup', {errorMessage: err.message})
+            } else if (err.code === 11000) {
+                res.render('signup', {errorMessage: "This user already registered"})
+            } else {
+                next (err)
+            }
         })
 })
 router.get('/user', (req, res, next) => {
@@ -39,6 +57,13 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     const {username, password} = req.body
+
+    console.log(req.body)
+
+
+    if (!username || !password) {
+        res.render('signup', { errorMessage: "Pls, put your name and password"})
+    }
 
     let currentUser
 
