@@ -1,5 +1,9 @@
 <form action='/auth' method='post'>
-    <input type='text' name='username' value='username'>
-    <input type='password' name='password' value='password'> 
+    <input type='text' name='username' placeholder='username'>
+    <input type='password' name='password' placeholder='password'> 
     <button type='submit'>Sign up!</button>
 </form>
+
+{{#if errorMessage}}
+<p>{{errorMessage}}</p>
+{{/if}}

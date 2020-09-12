@@ -14,14 +14,25 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+const session      = require('express-session')
+const Mongostore   = require('connect-mongo')(session)
+
+
 // require database configuration
 require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
+app.use(session({
+    secret: process.env.SESS_SECRET,
+    store: new Mongostore({
+    mongooseConnection: mongoose.connection
+    })
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
