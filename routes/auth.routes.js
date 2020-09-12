@@ -60,14 +60,11 @@ router.post('/login', (req, res, next) => {
 
     console.log(req.body)
 
-
-    if (!username || !password) {
-        res.render('signup', { errorMessage: "Pls, put your name and password"})
-    }
-
     let currentUser
-
-    User.findOne({username})
+    if (!username || !password) {
+        res.render('login', { errorMessage: "Pls, put your name and password"})
+    } else {
+        User.findOne({username})
         .then(data => {
             if (data) {
                 currentUser = data
@@ -76,14 +73,25 @@ router.post('/login', (req, res, next) => {
         })
         .then(hashCompare => {
             if (!hashCompare) {
-                return res.send('password is incorrect')
+                res.render('login', { errorMessage: "The password is incorrect"})
+            } else {
+                req.session.user = currentUser
+                res.render('loggedin-user')
             }
-            req.session.user = currentUser
-            res.render('loggedin-user')
+
         })
         .catch(err => [
             next(err)
         ])
+    }
+
+    
+
+
 })
 
 module.exports = router;
+
+/* else if (username === req.body.username && !bcrypt.compare(password, req.body.password)) {
+    res.render('login',  { errorMessage: "Password is incorrect"})
+} */

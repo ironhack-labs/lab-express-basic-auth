@@ -1,8 +1,8 @@
 <form action="/auth/signup" method='post'>
  
-    <input type="text" name='username' placeholder='Name'>
+    <input type="text" name='username' placeholder='Name' required>
 
-    <input type="password" name='password' placeholder='password'>
+    <input type="password" name='password' placeholder='password' minlength="8" required>
     <button type='submit'>Sign in</button>
 </form>
 
