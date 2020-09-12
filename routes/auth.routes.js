@@ -25,7 +25,6 @@ router.post('/signup', (req, res, next) => {
         return;
     }
  
-
     bcrypt.hash(password, 10)
         .then(hashedPassword => {
             return User.create({ 
@@ -46,12 +45,7 @@ router.post('/signup', (req, res, next) => {
                 next (err)
             }
         })
-
 })
-
-
-
-
 
 router.get('/login', (req, res, next) => {
     res.render('auth/login')
@@ -84,8 +78,17 @@ router.post('/login', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/user-profile', (req, res) => {
-    res.render('auth/user-profile', { userInSession: req.session.currentUser });
+router.get('/user-profile', (req, res, next) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
+
+router.get('/main', (req, res, next ) => {
+    res.render('auth/main')
+})
+
+router.get('/private', (req, res, next) => {
+    res.render('auth/private')
+})
+
 
 module.exports = router
