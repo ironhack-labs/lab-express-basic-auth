@@ -33,4 +33,31 @@ router.get('/user', (req, res, next) => {
     res.render('user')
 })
 
+router.get('/login', (req, res, next) => {
+    res.render('login')
+})
+
+router.post('/login', (req, res, next) => {
+    const {username, password} = req.body
+
+    let currentUser
+
+    User.findOne({username})
+        .then(data => {
+            if (data) {
+                currentUSer = data
+                return bcrypt.compare(password, data.password)
+            }
+        })
+        .then(hashCompare => {
+            if (!hashCompare) {
+                return res.send('password is incorrect')
+            }
+            res.send('password correct')
+        })
+        .catch(err => [
+            next(err)
+        ])
+})
+
 module.exports = router;

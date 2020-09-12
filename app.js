@@ -8,6 +8,8 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('express-session')
+const Mongostore = require('connect-mongo')(session)
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -19,6 +21,12 @@ require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    store: new Mongostore({
+        mongooseConnection: mongoose.connection
+    })
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -36,6 +44,7 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 
 const auth = require('./routes/auth.routes');
+const { POINT_CONVERSION_COMPRESSED } = require('constants');
 app.use('/auth', auth)
 
 module.exports = app;
