@@ -1,0 +1,17 @@
+<form action="/signup" method="POST">
+  <div class="form-group">
+    <label for="username">User name</label>
+    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp">
+    {{#if usernameError}}
+        <small>{{usernameError}}</small>
+    {{/if}}
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control"  name="password" id="password">
+    {{#if passwordError}}
+        <small>{{passwordError}}</small>
+    {{/if}}
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
