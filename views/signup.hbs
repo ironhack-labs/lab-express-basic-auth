@@ -1,0 +1,40 @@
+<form action="/signup" method="post">
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="Input your username">
+    {{#if usernameError}}
+    <div>
+      <span>{{usernameError}}</span>
+    </div>
+    {{/if}}
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" placeholder="Input your password">
+    <span>(minimum 6 characters)</span>
+    {{#if passwordError}}
+    <div>
+      <span>{{passwordError}}</span>
+    </div>
+    {{/if}}
+  </div>
+
+  <div>
+    <label for="confirmationPassword">Password confirmation:</label>
+    <input type="password" name="confirmationPassword" id="confirmationPassword"
+      placeholder="Input your password again">
+    {{#if confirmationPasswordError}}
+    <div>
+      <span>{{confirmationPasswordError}}</span>
+    </div>
+    {{/if}}
+  </div>
+
+  <button type="submit">Sign Up</button>
+  <br>
+  <a href="/login">
+    <button type="button">Go to Sign-in page if you already have an account</button>
+  </a>
+</form>
