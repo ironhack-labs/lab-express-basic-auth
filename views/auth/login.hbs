@@ -1,17 +1,11 @@
 <div>
-<h2>Sign Up</h2>
-<form method="POST" action="/signup">
+<h2>Login</h2>
+<form method="POST" action="/login">
 <label>Username</label>
 <input type="text" name="username">
-{{#if username}}
-{{> errorPartial username}}
-{{/if}}
 <label>Password</label>
 <input type="password" name="password">
-{{#if password}}
-{{> errorPartial password}}
-{{/if}}
-<button type="submit">Save</button>
+<button type="submit">Login</button>
 {{#if errorMessage}}
 {{> errorPartial errorMessage}}
 {{/if}}
