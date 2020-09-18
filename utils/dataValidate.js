@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/User.model');
+const { pwdEncrypt, pwdCompare } = require('./passwdManager');
 
-const validate = async (req, res) => {
+const validateSignup = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -22,4 +23,30 @@ const validate = async (req, res) => {
     return true;
 };
 
-module.exports = validate;
+const validateLogin = async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        const errors = {
+            usernameError: !username ? 'Please fill your user name' : undefined,
+            passwordError: !password ? 'Please fill your password' : undefined,
+        };
+        res.render('login', errors);
+        return false;
+    }
+
+    const userExists = await User.findOne({ username });
+    if (!userExists) {
+        res.render('login', { errorMessage: 'Incorrect username or password. Please try again.' });
+        return false;
+    }
+
+    const verifiedPwd = await pwdCompare(password, userExists.password);
+    if (!verifiedPwd) {
+        res.render('login', { errorMessage: 'Incorrect username or password. Please try again.' });
+        return false;
+    }
+
+    return userExists;
+};
+
+module.exports = { validateSignup, validateLogin };

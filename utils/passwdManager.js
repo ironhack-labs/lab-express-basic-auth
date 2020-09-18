@@ -2,12 +2,14 @@ const bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
 
-const generateEncryptedPassword = async (password) => {
+const pwdEncrypt = async (password) => {
     const salt = await bcrypt.genSalt(saltRounds);
 
-    const encryptedPassword = bcrypt.hashSync(password, salt);
+    const encrypted = bcrypt.hashSync(password, salt);
 
-    return encryptedPassword;
+    return encrypted;
 };
 
-module.exports = generateEncryptedPassword;
+const pwdCompare = async (pwd, hash) => bcrypt.compareSync(pwd, hash);
+
+module.exports = { pwdEncrypt, pwdCompare };
