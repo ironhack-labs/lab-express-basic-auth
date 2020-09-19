@@ -1,0 +1,23 @@
+<main class="form-auth-container">
+  <h1>Log into account to start using this platform</h1>
+
+  <form class="form-auth" action="/login" method="post">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Enter your username">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Enter your password">
+  </div>
+
+  {{#if errorMessage}}
+    <div>
+      <span>{{errorMessage}}</span>
+    </div>
+  {{/if}}
+
+  <button type="submit">Register</button>
+  </form>
+</main>

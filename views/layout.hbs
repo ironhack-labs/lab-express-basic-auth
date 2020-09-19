@@ -10,7 +10,15 @@
   </head>
 
   <body>
-
+    <nav>
+      {{#if loggedUser}}
+        <span>Hello, {{loggedUser.username}}</span>
+        <a href="/logout">Logout</a>
+      {{else}}
+        <a href="/signup">Cadastrar</a>
+        <a href="/login">Logar</a>
+      {{/if}}
+    </nav>
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>
