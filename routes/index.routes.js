@@ -13,8 +13,8 @@ router.use((req, res, nxt) => {
     nxt();
 });
 
-router.get('/main', (req, res) => res.render('main', { logout: true }));
+router.get('/main', (req, res) => res.render('main', { logout: true, pages: true }));
 
-router.get('/private', (req, res) => res.render('private', { logout: true }));
+router.get('/private', (req, res) => res.render('private', { logout: true, pages: true }));
 
 module.exports = router;

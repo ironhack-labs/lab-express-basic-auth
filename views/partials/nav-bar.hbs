@@ -6,5 +6,17 @@
     <a href="/" class="navbar-brand">Home</a>
     {{#if logout}}
         <a href="/logout" class="navbar-brand">Logout</a>
+        {{#if pages}}
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle custom-style" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Areas
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/main">Main Area</a>
+                <a class="dropdown-item" href="/private">Private Area</a>
+            </div>
+        </div>
+        {{/if}}
     {{/if}}
 </nav>
