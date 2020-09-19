@@ -67,3 +67,22 @@ main img {
   margin-top: 50px;
   width: 800px;
 }
+
+.form-control:invalid {
+  color: red;
+}
+
+.form-control:valid {
+  color: green;
+}
+
+.custom-style {
+  background-color: #f8f9fa !important;
+  border: none !important;
+  font-size: 30px !important;
+  color: black !important;
+}
+
+.dropdown-item {
+  font-size: 25px !important;
+}
