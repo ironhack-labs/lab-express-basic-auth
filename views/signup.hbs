@@ -5,14 +5,14 @@
 <form action="/signup" method="POST">
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp">
+    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" required>
     {{#if usernameError}}
         <small>{{usernameError}}</small>
     {{/if}}
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control"  name="password" id="password">
+    <input type="password" class="form-control"  name="password" id="password" minlength="6" required>
     {{#if passwordError}}
         <small>{{passwordError}}</small>
     {{/if}}
