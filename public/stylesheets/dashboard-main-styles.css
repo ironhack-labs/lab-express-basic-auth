@@ -1,0 +1,30 @@
+.info-dash-container {
+    height: calc(100vh - 62px);
+    padding: 0 60px !important;
+  }
+  
+  .info-dash-container > h2 {
+    margin: 56px 0 46px 0 !important;
+    font-weight: 900;
+    font-size: 20px;
+  }
+  
+  .info-dash-container th {
+    border: none !important;
+  }
+  
+  .info-dash-container td {
+    padding: 30px 0 !important;
+    border: none !important;
+    border-bottom: 0.5px solid #B9B9B9 !important;
+  }
+  
+  .copy-icon-container {
+    position: relative;
+    display: inline;
+  }
+  
+  .copy-icon {
+    margin-right: 10px !important;
+    cursor: pointer;
+  }

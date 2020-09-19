@@ -1,21 +1,12 @@
-{{!-- <form action='/signup' method="post">
+{{!-- <form action='/login' method="post">
     <div>
-        <label for="username">Nome de Usuário</label>
-        <input type="text" name="username" id="username" placeholder="Digite o nome de usuário">
-
-        {{#if fullNameError}}
+        <label for="username">Usuário</label>
+        <input type="text" name="username" id="username" placeholder="Nome de usuário">
+        {{#if usernameError}}
             <div>
-                <span>{{fullNameError}}</span>
+                <span>{{usernameError}}</span>
             </div>
-        {{/if}}
-    </div>
-    <div>
-        <label for="email">E-mail</label>
-        <input type="text" name="email" id="email" placeholder="Digite o email">
-    </div>
-    <div>
-        <label for="cpf">CPF</label>
-        <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF">
+        {{/if}}              
     </div>
     <div>
         <label for="password">Senha</label>
@@ -25,30 +16,39 @@
                 <span>{{passwordError}}</span>
             </div>
         {{/if}}        
-    </div>
-  
+    </div> 
     {{#if errorMessage}}
         <div>
             <span>{{errorMessage}}</span>
         </div>
     {{/if}}
 
+    {{#if sessionExpired}}
+        <div>
+            <span>Sua sessão expirou log novamente</span>
+        </div>
+    {{/if}}
 
-    <button type="submit">Cadastrar</button>
-    <a href="/login">
-        <button type="button">Entrar com minha conta</button>
+
+    <button type="submit">Entrar</button>
+
+    <a href="/signup">
+        <button type="button">Criar uma conta</button>
     </a>
 </form> --}}
+
+<!--
+you can substitue the span of reauth email for a input with the email and
+include the remember me checkbox
+-->
 <div class="container">
     <div class="card card-container">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-        {{!-- <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-        <p id="profile-name" class="profile-name-card"></p> --}}
-        <form action='/signup' method="post" class="form-signin">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form action='/login' method="post" class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" name="username" id="username" class="form-control" placeholder="Nome" required autofocus>
-            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" required>
-            <input type="text" name="cpf" id="cpf" class="form-control" placeholder="CPF" required>
             <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
             {{!-- <div id="remember" class="checkbox">
                 <label>
@@ -60,8 +60,8 @@
                     <span>{{errorMessage}}</span>
                 </div>
             {{/if}}            
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar</button>
         </form><!-- /form -->
-        <a href="/login" class="forgot-password">Entrar com minha conta</a>
+        <a href="/signup" class="forgot-password">Cadastrar Novo Usuário</a>
     </div><!-- /card-container -->
 </div><!-- /container -->

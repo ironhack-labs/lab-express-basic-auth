@@ -34,9 +34,26 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/authRoutes');
+const session = require('express-session');
+const connectMongo = require('connect-mongo');
 
-app.use('/', index);
+const MongoStore = connectMongo(session);
+
+app.use(session({
+    secret: 'fsdfsdsfsf33242344242dfsdfsfsdfssdfs',
+    saveUnintialized: false,
+    resave: true,
+    rolling: true,
+    cookie: { maxAge: 120000},
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 60*60*24,
+    }),
+}));
+
+
 app.use('/', authRoutes);
+app.use('/', index);
 
 
 module.exports = app;
