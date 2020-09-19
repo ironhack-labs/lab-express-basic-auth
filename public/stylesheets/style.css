@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 form {
@@ -15,7 +15,7 @@ form {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px;
   margin: 8px 0;
@@ -26,7 +26,7 @@ button {
 }
 
 button:hover {
-  opacity:1;
+  opacity: 1;
 }
 
 a > button {
@@ -45,4 +45,20 @@ div {
 label {
   display: inline-block;
   width: 150px;
+}
+
+input:invalid {
+  box-shadow: 0 0 3px 1px yellow;
+}
+
+input:invalid:required {
+  background-color: lightcyan;
+}
+
+input:valid {
+  border: 1px solid black;
+}
+
+input:focus:invalid {
+  box-shadow: none;
 }

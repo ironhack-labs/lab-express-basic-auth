@@ -1,8 +1,9 @@
+<h1>Sign up page</h1>
 <form action="/signup" method="post">
 
   <div>
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" placeholder="Input your username">
+    <input type="text" name="username" id="username" placeholder="Input your username" required>
     {{#if usernameError}}
     <div>
       <span>{{usernameError}}</span>
@@ -12,7 +13,7 @@
 
   <div>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" placeholder="Input your password">
+    <input type="password" name="password" id="password" placeholder="Input your password" required minlength="6">
     <span>(minimum 6 characters)</span>
     {{#if passwordError}}
     <div>
@@ -24,7 +25,7 @@
   <div>
     <label for="confirmationPassword">Password confirmation:</label>
     <input type="password" name="confirmationPassword" id="confirmationPassword"
-      placeholder="Input your password again">
+      placeholder="Input your password again" required minlength="6">
     {{#if confirmationPasswordError}}
     <div>
       <span>{{confirmationPasswordError}}</span>

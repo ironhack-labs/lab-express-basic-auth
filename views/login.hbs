@@ -1,0 +1,41 @@
+<h1>Login page</h1>
+<form action="/login" method="post">
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="Input your username" required>
+    {{#if usernameError}}
+    <div>
+      <span>{{usernameError}}</span>
+    </div>
+    {{/if}}
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" placeholder="Input your password" required minlength="6">
+    {{#if passwordError}}
+    <div>
+      <span>{{passwordError}}</span>
+    </div>
+    {{/if}}
+  </div>
+
+  {{#if errorMessage}}
+  <div>
+    <span>{{errorMessage}}</span>
+  </div>
+  {{/if}}
+
+  {{#if sessionExpired}}
+  <div>
+    <span>Expired session, please sign-in again</span>
+  </div>
+  {{/if}}
+
+  <button type="submit">Login</button>
+  <br>
+  <a href="/signup">
+    <button type="button">Go to the sign up page if you do not have an account</button>
+  </a>
+</form>

@@ -10,4 +10,11 @@ const generateEncryptedPassword = async password => {
   return encryptedPassword;
 };
 
-module.exports = generateEncryptedPassword;
+const verifyPassword = (passwordFromForm, passwordFromDb) => {
+  return bcrypt.compareSync(passwordFromForm, passwordFromDb);
+};
+
+module.exports = {
+  generateEncryptedPassword,
+  verifyPassword,
+};

@@ -1,6 +1,6 @@
 const User = require('../models/User.model');
 
-const verifyData = async (req, res) => {
+const verifyData = async (req, res, next) => {
   const { username, password, confirmationPassword } = req.body;
   if (!username || !password || !confirmationPassword) {
     const errors = {
@@ -11,7 +11,7 @@ const verifyData = async (req, res) => {
 
     res.render('signup.hbs', errors);
 
-    return false;
+    return;
   }
 
   if (password.length < 6) {
@@ -21,7 +21,7 @@ const verifyData = async (req, res) => {
 
     res.render('signup.hbs', errors);
 
-    return false;
+    return;
   }
 
   if (!(password === confirmationPassword)) {
@@ -32,7 +32,7 @@ const verifyData = async (req, res) => {
 
     res.render('signup.hbs', errors);
 
-    return false;
+    return;
   }
 
   const usernameExists = await User.find({ username });
@@ -44,10 +44,10 @@ const verifyData = async (req, res) => {
 
     res.render('signup', errors);
 
-    return false;
+    return;
   }
 
-  return true;
+  next();
 };
 
 module.exports = verifyData;
