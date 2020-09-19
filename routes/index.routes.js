@@ -4,8 +4,8 @@ const router = express.Router();
 
 /* GET home page */
 router.get('/', async (req, res, next) => {
-    if (!req.session.currentUser) { res.render('index', { view: true }); }
-    res.render('index', { logout: true });
+    if (!req.session.currentUser) { res.render('index', { view: true, home: true }); }
+    res.render('index', { logout: true, home: true });
 });
 
 router.use((req, res, nxt) => {

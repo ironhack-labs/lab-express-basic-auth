@@ -3,7 +3,10 @@
         <a class="navbar-brand" href="/signup">Signup</a>
         <a class="navbar-brand" href="/login">Login</a>
     {{/if}}
-    <a href="/" class="navbar-brand">Home</a>
+    {{#if home}}
+    {{else}}
+        <a href="/" class="navbar-brand">Home</a>
+    {{/if}}
     {{#if logout}}
         <a href="/logout" class="navbar-brand">Logout</a>
         {{#if pages}}
