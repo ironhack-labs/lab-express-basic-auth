@@ -5,7 +5,7 @@ const router = express.Router();
 /* GET home page */
 router.get('/', async (req, res, next) => {
     if (!req.session.currentUser) { res.render('index', { view: true }); }
-    res.render('index');
+    res.render('index', { logout: true });
 });
 
 router.use((req, res, nxt) => {
@@ -13,8 +13,8 @@ router.use((req, res, nxt) => {
     nxt();
 });
 
-router.get('/main', (req, res) => res.render('main'));
+router.get('/main', (req, res) => res.render('main', { logout: true }));
 
-router.get('/private', (req, res) => res.render('private'));
+router.get('/private', (req, res) => res.render('private', { logout: true }));
 
 module.exports = router;
