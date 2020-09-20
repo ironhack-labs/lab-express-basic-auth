@@ -15,6 +15,7 @@ const debug = require("debug")(
 );
 
 const app = express();
+require("./configs/session.config")(app);
 
 // require database configuration
 require("./configs/db.config");
@@ -30,6 +31,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
