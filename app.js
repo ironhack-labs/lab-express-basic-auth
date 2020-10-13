@@ -14,6 +14,21 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+app.use(session({
+    secret: 'NotMyAge',
+    saveUninitialized: false, 
+    resave: false,
+    cookie : {
+        maxAge: 24*60*60*1000 //in milliseconds
+    }, 
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24*60*60 //in seconds = 1day 
+    })
+}));
+
 // require database configuration
 require('./configs/db.config');
 
@@ -34,5 +49,12 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRoutes = require('./routes/auth.routes')
+app.use('/', authRoutes )
+
+
+const protectedRoutes = require('./routes/protected.routes')
+app.use('/', protectedRoutes )
 
 module.exports = app;
