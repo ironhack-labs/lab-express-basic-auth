@@ -1,0 +1,20 @@
+{{!-- //Signup for - always method=POST - action=/signup - name attribute for the DB - Submit button --}}
+<h2>Sign Up</h2>
+<br>
+<form method="POST" action="/signup">
+  <label>Username</label>
+  <input required="required" minlength="4" type="text" name="username" placeholder="Enter your name"  >
+  <br>
+  <br>
+  <label>Password</label>
+  <input required="required" type="password" name="password" placeholder="Enter your Password"  >
+  <br>
+  <br>
+  <button type="submit" >Sign Up</button>
+</form>
+ <br>
+<br>
+{{#if message}}
+      <div>{{message}}</div>
+{{/if}}
+{{!-- //after the form is created we need to create the post route--}}
