@@ -16,12 +16,28 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'topSecret',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        domain: '',
+        maxAge: 24*60*60*1000
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24*60*60
+    })
+}));
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +48,12 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
+//routes
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes)
 
 module.exports = app;
