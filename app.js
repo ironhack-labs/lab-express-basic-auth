@@ -14,6 +14,22 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session)
+
+
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
+    resave: true,
+    saveUninitialized: false
+  }));
+
 // require database configuration
 require('./configs/db.config');
 
@@ -30,9 +46,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'My first authentification App';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const auth = require('./routes/auth')
+app.use("/", auth);
+
+
+
+
+
 
 module.exports = app;
