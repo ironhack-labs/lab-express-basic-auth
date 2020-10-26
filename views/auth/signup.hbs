@@ -1,0 +1,18 @@
+<!-- auth/signup.hbs -->
+<h1>Hello Im the signup page</h1>
+<h2>Please, fill in the information below to sign up.</h2>
+<form action="/signup" method="POST">
+    <input type="text" name="mail" placeholder="mail" required minlength="4">
+    <input type="text" name="password" placeholder="password" required minlength="4">
+    <button type="submit">Signup</button>
+</form>
+
+{{#if errorMessage}}
+<div>{{errorMessage}}</div>
+{{/if}}
+
+{{#if successMessage}}
+<div>
+    {{successMessage}} <a href="/login">Go to Login.</a>
+</div>
+{{/if}}
