@@ -40,6 +40,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false
   }));
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
