@@ -10,7 +10,19 @@
   </head>
 
   <body>
-
+      <nav>
+        <div class="wrapper">
+          <a href="/">Home</a>
+          {{#if currentUserInfo}}
+          <a href="/main">Protected page</a>
+          <a href="/logout">Logout</a>
+          {{else}}
+          <a href="/signup">Sign up</a>
+          <a href="/login">Login</a>
+          {{/if}}
+        </div>
+      </nav> 
+      
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>
