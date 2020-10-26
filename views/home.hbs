@@ -1,0 +1,13 @@
+<h2>Home page</h2>
+
+{{#if currentUserInfo }}
+<div class="welcome-message">Welcome {{currentUserInfo.email}}! You're logged in! </div>
+{{/if}}
+
+{{#if message }}
+<div class="welcome-message">Thanks for Signing Up {{message}}! You can log in! </div>
+{{/if}}
+
+{{#if errorMessage }}
+<div class="error-message">{{ errorMessage }}</div>
+{{/if}}

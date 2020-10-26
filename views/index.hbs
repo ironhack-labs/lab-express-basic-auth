@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<a href="/login"> Login page</a>
+<a href="/signup">Don't hace account? Sign up!!</a>
+
+{{#if user }}
+<div class="welcome-message">Welcome! {{currentUserInfo.email}}! You're logged in! </div>
+<a href="/main"></a>
+{{/if}}
+
+
