@@ -18,6 +18,10 @@ router.get("/main", function (req, res, next) {
     res.render("main");
   });
 
+  router.get("/private", function (req, res, next) {
+    res.render("private");
+  });
+
 
 
 module.exports = router;

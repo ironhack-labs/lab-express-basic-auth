@@ -46,11 +46,12 @@ app.use(session({
     resave: true,
     saveUninitialized: false
   }));
-
-const index = require('./routes/index.routes');
-app.use('/', index);
+  
 const auth = require('./routes/auth');
 app.use('/', auth);
+const index = require('./routes/index.routes');
+app.use('/', index);
+
 
 module.exports = app;
 
