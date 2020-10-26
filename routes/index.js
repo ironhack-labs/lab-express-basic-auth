@@ -15,8 +15,8 @@ router.use((req, res, next) => {
   }
 });
 
-router.get("/secret", function (req, res, next) {
-  res.render("secret");
+router.get("/private", function (req, res, next) {
+  res.render("private");
 });
 
 module.exports = router;
