@@ -1,11 +1,9 @@
-const express = require('express');
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
+
 const User = require("../models/User.model");
 
 const bcrypt = require("bcryptjs");
-
-/* GET home page */
-router.get('/', (req, res, next) => res.render('index'));
 
 
 
@@ -31,7 +29,7 @@ router.post("/signup", async (req, res, next) => {
     try {
         const user = await User.findOne({ email: email});
         if (user !== null) {
-            res.render("auth/signup", {
+            res.render("signup", {
                 errorMessage: "This e-mail is already registered, please enter a valid email.",
             });
             return;
@@ -40,7 +38,7 @@ router.post("/signup", async (req, res, next) => {
             email,
             password: hashPass,
         });
-        res.redirect("/signup");
+        res.redirect("/");
     } catch (error) {
         next(error);        
     }
@@ -79,20 +77,23 @@ router.get("/login", (req, res, next) => {
                 errorMessage: "Incorrect password",
             });
         }
-    } catch (error) {}
+    } catch (error) {
+        next(error);
+      }
 });
 
-//ITERATION 3 PROTECTED ROUTES
-router.use((req, res, next) => {
-    if (req.session.currentUser) { 
-      next();  
-    } else {                          
-      res.redirect("auth/login");        
-    }                                
-  });                       
+// //ITERATION 3 PROTECTED ROUTES
+// router.use((req, res, next) => {
+//     if (req.session.currentUser) { 
+//       next();  
+//     } else {                          
+//       res.redirect("/login");        
+//     }                                
+//   });                       
      
-  router.get("/secret", (req, res, next) => {
-    res.render("secret");
-  });
+//   router.get("/secret", (req, res, next) => {
+//     res.render("secret");
+//   });
+
 
 module.exports = router;
