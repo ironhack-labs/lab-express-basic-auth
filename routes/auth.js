@@ -56,15 +56,17 @@ router.post("/signup", async (req, res) => {
 
     // console.log("NAME",name);
     // console.log("USER",user);
-    let newUser = User.create({
+    User.create({
       "name": name,
       "email": email,
       "password": hashpwd
 
-    }).then(ele => {
-      console.log(name);
+    }).then(newUser => {
+      //user is the output of the .findOne, its put in the session as currentUser
+      req.session.currentUser = newUser
+      console.log(req.session.currentUser);
       res.render("auth/profile", {
-        name
+        newUser
       });
     });
   }
