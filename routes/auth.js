@@ -62,6 +62,48 @@ router.get("/login", (req, res) => {
   res.render("auth/login")
 })
 
+
+
+
+// routes/auth.routes.js
+// ... nothing gets changed except addition of the following line
+// to the .post('/login') route
+
+// routes/auth.routes.js
+// ... imports and both signup routes stay untouched
+
+//////////// L O G I N ///////////
+
+// .get() login route stays unchanged
+
+// .post() login route ==> to process form data
+router.post('/login', (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email === '' || password === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, email and password to login.'
+    });
+    return;
+  }
+
+  User.findOne({ email })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        return;
+      } else if (bcrypt.compareSync(password,  user.password)) {
+        res.render('auth/profile', { user });
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+
+// userProfile route and the module export stay unchanged
+
+
 // router.post("/login", async (req, res) => {
 //   // res.send(req.body)
 //   // 1. tomamos la informacion del formulario
