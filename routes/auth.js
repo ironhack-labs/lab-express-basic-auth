@@ -9,10 +9,13 @@ router.get("/signup", (req, res) => {
 })
 
 router.post("/signup", async (req, res) => {
+  console.log(req);
   // 1. Tomar la informacion del form
-  const { username, email, password } = req.body
+  const { name, email, password } = req.body
   // 2. evaluar si nos enviaron campos vacios
-  if (username === "" || email === "" || password === "") {
+    console.log(name);
+
+  if (name === "" || email === "" || password === "") {
     // 2.1 si es asi, enviar un mensaje de error
     return res.render("auth/signup", { error: "Missing fields" })
   } else {
@@ -28,7 +31,7 @@ router.post("/signup", async (req, res) => {
     const hashpwd = bcrypt.hashSync(password, salt)
     // 3.1 Si nos dieron  la informacion correcta, podemos guardar al usuario en la db
     await User.create({
-      username,
+      name,
       email,
       password: hashpwd
     })
