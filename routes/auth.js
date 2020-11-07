@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-const {  genSaltSync } = require("bcrypt")
+const {
+  genSaltSync
+} = require("bcrypt")
 const express = require('express'),
   cookieParser = require('cookie-parser'),
   router = express.Router(),
@@ -11,7 +13,13 @@ const express = require('express'),
 
 router.use(cookieParser());
 
-
+//esto no va aqui, pero por alguna "·$%& " razón no lo extraé de /configs/session
+router.use(session({
+  secret: process.env.SESS_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+//RUTESS
 router.get("/signup", (req, res) => {
   res.render("auth/signup")
 })
@@ -102,6 +110,8 @@ router.post('/login', (req, res, next) => {
       email
     })
     .then(user => {
+      //user is the output of the .findOne, its put in the session as currentUser
+      req.session.currentUser = user
       if (!user) {
         res.render('auth/login', {
           errorMessage: 'Email is not registered. Try with other email.'
@@ -127,16 +137,29 @@ router.get("/profile", (req, res) => {
   })
 })
 
-//esto no va aqui, pero por alguna "·$%& " razón no lo extraé de /configs/session
-router.use(session({
-    secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: true
-}))
+
 
 router.get("/private", (req, res, next) => {
-  res.render("private");
+  console.log(req.session);
+  if (req.session.currentUser) {
+    res.render("private");
+  } else {
+    req.session.destroy()
+    res.redirect("/")
+  }
+
 });
+
+router.get("/logout", (req, res) => {
+  req.session.destroy()
+  res.redirect("/")
+})
+
+
+
+
+
+
 
 router.get("/main", (req, res, next) => {
   res.render("main");

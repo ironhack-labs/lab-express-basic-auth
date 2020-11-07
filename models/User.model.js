@@ -16,10 +16,9 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    avatar: {
-      type: String,
-      default:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png"
+    status: {
+      type: Boolean,
+      default: false        
     }
   },
   {
