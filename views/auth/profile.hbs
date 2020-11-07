@@ -1,0 +1,12 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        {{!-- <h1 class="display-4">Welcome to your profile {{user.email}}</h1> --}}
+        <h1 class="display-4">Welcome to your profile {{splitEmail user.email}}</h1>
+        <p class="lead">Hello {{splitEmail user.email}}, this is your profile!</p>
+        <p class="lead">Registered email: {{user.email}}</p>
+        {{!-- <a class="btn btn-primary btn-sm" href="/"></a> --}}
+        <a href="/" class="btn btn-primary btn-lg" href="#" role="button">Home</a>
+        <a href="/logout" class="btn btn-primary btn-lg" href="#" role="button">Logout</a>
+    </div>
+</div>
+
