@@ -39,14 +39,6 @@ const index = require('./routes/index.routes');
 const auth = require("./routes/auth")
 app.use('/', index);
 app.use("/", auth)
-// app.use(
-//   session({
-//     secret: "weyuglqwe",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { maxAge: 60000 }
-//   })
-// )
 
 
 

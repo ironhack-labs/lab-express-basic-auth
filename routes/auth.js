@@ -1,10 +1,16 @@
 const {
   genSaltSync
 } = require("bcrypt")
-const express = require("express")
-const router = express.Router()
-const bcrypt = require("bcrypt")
-const User = require("../models/User.model")
+const express = require('express'),
+  cookieParser = require('cookie-parser'),
+  router = express.Router(),
+  bcrypt = require("bcrypt"),
+  User = require("../models/User.model"),
+  session = require('express-session');
+
+
+router.use(cookieParser());
+
 
 router.get("/signup", (req, res) => {
   res.render("auth/signup")
@@ -43,14 +49,16 @@ router.post("/signup", async (req, res) => {
     // console.log("NAME",name);
     // console.log("USER",user);
     let newUser = User.create({
-          "name": name,
-          "email": email,
-          "password": hashpwd
+      "name": name,
+      "email": email,
+      "password": hashpwd
 
-        }).then(ele=>{
-          console.log(name);
-          res.render("auth/profile",{name});
-        });
+    }).then(ele => {
+      console.log(name);
+      res.render("auth/profile", {
+        name
+      });
+    });
   }
 })
 
@@ -78,7 +86,10 @@ router.get("/login", (req, res) => {
 
 // .post() login route ==> to process form data
 router.post('/login', (req, res, next) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   if (email === '' || password === '') {
     res.render('auth/login', {
@@ -87,15 +98,23 @@ router.post('/login', (req, res, next) => {
     return;
   }
 
-  User.findOne({ email })
+  User.findOne({
+      email
+    })
     .then(user => {
       if (!user) {
-        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        res.render('auth/login', {
+          errorMessage: 'Email is not registered. Try with other email.'
+        });
         return;
-      } else if (bcrypt.compareSync(password,  user.password)) {
-        res.render('auth/profile', { user });
+      } else if (bcrypt.compareSync(password, user.password)) {
+        res.render('auth/profile', {
+          user
+        });
       } else {
-        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+        res.render('auth/login', {
+          errorMessage: 'Incorrect password.'
+        });
       }
     })
     .catch(error => next(error));
@@ -108,24 +127,23 @@ router.get("/profile", (req, res) => {
   })
 })
 
-// router.use((req, res, next) => {
-//    if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
-//      next(); // ==> go to the next route ---
-//    } else {                          //    |
-//      res.redirect("/login");         //    |
-//    }                                 //    |
-//  }); // ------------------------------------
- //     |
- //     V
- router.get("/private", (req, res, next) => {
-   res.render("private");
- });
+//esto no va aqui, pero por alguna "·$%& " razón no lo extraé de /configs/session
+router.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}))
 
- router.get("/main", (req, res, next) => {
-   res.render("main");
- });
+router.get("/private", (req, res, next) => {
+  console.log(req.session);
+  res.render("private");
+});
+
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
 
 
- module.exports = router;
+module.exports = router;
 
 module.exports = router
