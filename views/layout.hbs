@@ -20,12 +20,18 @@
 
   </div>
 
+  {{#if error}}
+    <p style="color: crimson;">{{error}}</p>
+  {{/if}}
+
+
   <br>
-  <button type="button" class="btn btn-warning"><a href="/main" >Main</a></button>
+  <button type="button" class="btn btn-warning"><a href="/main">Main</a></button>
   <button type="button" class="btn btn-success"><a href="/private">Private</a></button>
 
   <br>
   <h5><a href="/logout">Logout</a></h5>
+
 
 
   <script src="/javascripts/script.js"></script>

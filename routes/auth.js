@@ -25,44 +25,34 @@ router.get("/signup", (req, res) => {
 })
 
 router.post("/signup", async (req, res) => {
-  // 1. Tomar la informacion del form
   const {
     name,
     email,
     password
   } = req.body
-  // 2. evaluar si nos enviaron campos vacios
   if (name === "" || email === "" || password === "") {
-    // 2.1 si es asi, enviar un mensaje de error
     return res.render("auth/signup", {
       error: "Missing fields"
     })
   } else {
-    // Buscamos un user cuyo correo sea el que nos proveen desde el form
     const user = await User.findOne({
       email
     })
-    // console.log("USER",user);
-    // si la busqueda tiene resultado, mostramos el mensaje de error
+
     if (user) {
       return res.render("auth/signup", {
         error: "ya hay un usuario con esos datos"
       })
     }
-    // 3. hashear la contrase~a
     const salt = bcrypt.genSaltSync(12)
     const hashpwd = bcrypt.hashSync(password, salt)
-    // 3.1 Si nos dieron  la informacion correcta, podemos guardar al usuario en la db
 
-    // console.log("NAME",name);
-    // console.log("USER",user);
     User.create({
       "name": name,
       "email": email,
       "password": hashpwd
 
     }).then(newUser => {
-      //user is the output of the .findOne, its put in the session as currentUser
       req.session.currentUser = newUser
       console.log(req.session.currentUser);
       res.render("auth/profile", {
@@ -80,21 +70,6 @@ router.get("/login", (req, res) => {
   res.render("auth/login")
 })
 
-
-
-
-// routes/auth.routes.js
-// ... nothing gets changed except addition of the following line
-// to the .post('/login') route
-
-// routes/auth.routes.js
-// ... imports and both signup routes stay untouched
-
-//////////// L O G I N ///////////
-
-// .get() login route stays unchanged
-
-// .post() login route ==> to process form data
 router.post('/login', (req, res, next) => {
   const {
     email,
@@ -146,7 +121,8 @@ router.get("/private", (req, res) => {
     res.render("private");
   } else {
     req.session.destroy()
-    res.redirect("/")
+    res.render("index", { error: "No logged " })
+    // res.redirect("/")
   }
 });
 
@@ -160,7 +136,8 @@ router.get("/main", (req, res) => {
     res.render("main");
   } else {
     req.session.destroy()
-    res.redirect("/")
+    res.render("index", { error: "No logged " })
+    // res.redirect("/")
   }
 });
 
