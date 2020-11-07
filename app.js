@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+const session = require("express-session")
+
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -36,6 +39,14 @@ const index = require('./routes/index.routes');
 // console.log(index);
 app.use('/', index);
 
+app.use(
+  session({
+    secret: "weyuglqwe",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+  })
+)
 
 module.exports = app;
 // console.log(process.env.PORT);
