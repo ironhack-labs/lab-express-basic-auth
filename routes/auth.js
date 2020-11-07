@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
     const user = await User.findOne({
       email
     })
-    console.log("user",user);
+    // console.log("USER",user);
     // si la busqueda tiene resultado, mostramos el mensaje de error
     if (user) {
       return res.render("auth/signup", {
@@ -40,14 +40,16 @@ router.post("/signup", async (req, res) => {
     const hashpwd = bcrypt.hashSync(password, salt)
     // 3.1 Si nos dieron  la informacion correcta, podemos guardar al usuario en la db
 
-    // console.log("NAME",name);
-    await User.create({
-      name,
-      email,
-      password: hashpwd
-    })
-    // 5. responder al usuario de alguna forma (redirect('/profile'))
-    res.render("/auth/profile")
+    console.log("NAME",name);
+    console.log("USER",user);
+    User.create({
+          "name": name,
+          "email": email,
+          "password": hashpwd
+
+        }).then(ele=>{
+          res.render("auth/profile");
+        });
   }
 })
 
