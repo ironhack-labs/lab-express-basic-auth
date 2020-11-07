@@ -36,9 +36,9 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Lab-express-basic-auth';
 
 const index = require('./routes/index.routes');
-// console.log(index);
+const auth = require("./routes/auth")
 app.use('/', index);
-
+app.use("/", auth)
 app.use(
   session({
     secret: "weyuglqwe",
@@ -47,6 +47,9 @@ app.use(
     cookie: { maxAge: 60000 }
   })
 )
+
+
+
 
 module.exports = app;
 // console.log(process.env.PORT);
