@@ -1,6 +1,6 @@
-const {
-  genSaltSync
-} = require("bcrypt")
+require('dotenv').config();
+
+const {  genSaltSync } = require("bcrypt")
 const express = require('express'),
   cookieParser = require('cookie-parser'),
   router = express.Router(),
@@ -129,21 +129,17 @@ router.get("/profile", (req, res) => {
 
 //esto no va aqui, pero por alguna "·$%& " razón no lo extraé de /configs/session
 router.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true
 }))
 
 router.get("/private", (req, res, next) => {
-  console.log(req.session);
   res.render("private");
 });
 
 router.get("/main", (req, res, next) => {
   res.render("main");
 });
-
-
-module.exports = router;
 
 module.exports = router
