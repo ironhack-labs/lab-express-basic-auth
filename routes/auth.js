@@ -101,47 +101,6 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-// userProfile route and the module export stay unchanged
-
-
-// router.post("/login", async (req, res) => {
-//   // res.send(req.body)
-//   // 1. tomamos la informacion del formulario
-//   const {
-//     email,
-//     password
-//   } = req.body
-//   // 2. evaluar si la informacion esta completa
-//   if (email === "" || password === "") {
-//     res.render("auth/login", {
-//       error: "Missing fields"
-//     })
-//   }
-//   // 3. buscamos si hay un usuario con el correo que nos enviaron
-//   const user = await User.findOne({
-//     email
-//   })
-//   // 3.1 si no hay usuario notificar el error
-//   if (!user) {
-//     res.render("auth/login", {
-//       error: "something went wrong"
-//     })
-//   }
-//
-//   // 4. si existe el usuario en la base de datos, comparamos la contrase~a de ese usuario, con la que llego del form
-//   if (bcrypt.compareSync(password, user.password)) {
-//     // 4.1 si coinciden renderizamos profile con el usuario
-//     // res.render("auth/profile", user)
-//     delete user.password
-//     req.session.currentUser = user
-//     res.redirect("/profile")
-//   } else {
-//     // 4.2 si no coinciden, hacemos render del form con el error
-//     res.render("auth/login", {
-//       error: "something went wrong"
-//     })
-//   }
-// })
 
 router.get("/profile", (req, res) => {
   res.render("auth/profile", {
