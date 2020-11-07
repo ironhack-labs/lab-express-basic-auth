@@ -4,5 +4,14 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+input {
+  margin-bottom: 0.5rem;
+  border: 2px solid black;
+}
+
+input:invalid:required {
+  border: 1px solid red;
+  border-radius: 2px;
 }

@@ -1,0 +1,11 @@
+<h1>Sign In</h1>
+<p>Por favor, llene los siguientes campos:</p>
+<form action="/signin" method="post">
+    <p style="color: crimson">{{error}}</p>
+    <p style="color: LightSkyBlue font-weight: bold;">{{message}}</p>
+    <label for="username">Username:</label> <br>
+    <input name="username" id="username" type="text" required> <br>
+    <label for="password">Password:</label> <br>
+    <input name="password" id="password" type="password" required> <br>
+    <button type="submit">Registrarse</button> <br>
+</form>
