@@ -1,0 +1,16 @@
+<form action="/login" method="post">
+
+  {{#if error}}
+  <p style="color: crimson;">{{error}}</p>
+  {{/if}}
+
+  <label for="email">Email
+    <input type="email" name="email" id="email">
+  </label>
+  <br>
+  <label for="password">Password
+    <input type="password" name="password" id="password">
+  </label>
+  <br>
+  <button type="submit">Login</button>
+</form>
