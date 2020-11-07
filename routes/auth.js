@@ -139,15 +139,13 @@ router.get("/profile", (req, res) => {
 
 
 
-router.get("/private", (req, res, next) => {
-  console.log(req.session);
+router.get("/private", (req, res) => {
   if (req.session.currentUser) {
     res.render("private");
   } else {
     req.session.destroy()
     res.redirect("/")
   }
-
 });
 
 router.get("/logout", (req, res) => {
@@ -155,14 +153,19 @@ router.get("/logout", (req, res) => {
   res.redirect("/")
 })
 
-
-
-
-
-
-
-router.get("/main", (req, res, next) => {
-  res.render("main");
+router.get("/main", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("main");
+  } else {
+    req.session.destroy()
+    res.redirect("/")
+  }
 });
+
+
+
+
+
+
 
 module.exports = router
