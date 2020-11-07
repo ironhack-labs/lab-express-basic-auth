@@ -40,8 +40,8 @@ router.post("/signup", async (req, res) => {
     const hashpwd = bcrypt.hashSync(password, salt)
     // 3.1 Si nos dieron  la informacion correcta, podemos guardar al usuario en la db
 
-    console.log("NAME",name);
-    console.log("USER",user);
+    // console.log("NAME",name);
+    // console.log("USER",user);
     User.create({
           "name": name,
           "email": email,
