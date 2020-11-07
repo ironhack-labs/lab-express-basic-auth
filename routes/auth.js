@@ -42,13 +42,14 @@ router.post("/signup", async (req, res) => {
 
     // console.log("NAME",name);
     // console.log("USER",user);
-    User.create({
+    let newUser = User.create({
           "name": name,
           "email": email,
           "password": hashpwd
 
         }).then(ele=>{
-          res.render("auth/profile");
+          console.log(name);
+          res.render("auth/profile",{name});
         });
   }
 })
