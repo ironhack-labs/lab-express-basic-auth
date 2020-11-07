@@ -22,6 +22,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+//Session Setup
+const session = require('./configs/session.config')
+session(app)
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +36,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
+const auth = require('./routes/auth.routes')
 app.use('/', index);
+app.use('/', auth);
 
 module.exports = app;
