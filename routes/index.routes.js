@@ -40,7 +40,7 @@ router.post("/signup", async (req,res) => {
             username,
             password: hashpwd
         })
-        res.redirect("/home")
+        res.redirect("/login")
     }
 
 })
