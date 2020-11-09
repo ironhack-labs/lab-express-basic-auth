@@ -40,13 +40,21 @@ router.post("/signup", async (req,res) => {
             username,
             password: hashpwd
         })
-        res.redirect("/private")
+        res.redirect("/home")
     }
 
 })
 
-router.get("/private", async (req, res) => {
-    res.render("private")
+router.get("/home", async (req, res) => {
+    res.render("home", {userInSession: req.session.currentUser})
+})
+
+router.get("/home/private", async (req, res) => {
+    res.render("private", {userInSession: req.session.currentUser})
+})
+
+router.get('/home/main', async (req,res) => {
+    res.render("main", {userInSession: req.session.currentUser})
 })
 
 //ITERACION 2: Login
@@ -72,7 +80,7 @@ router.post("/login", async (req, res) => {
         delete user.password
         //PARA QUE ES ESTO??
         req.session.currentUser = user
-        res.redirect("/private")
+        res.redirect("/home")
     } else {
         req.render("login", {error: "Something went wrong"})
     }

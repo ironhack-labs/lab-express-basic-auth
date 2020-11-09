@@ -1,2 +1,8 @@
-<h1 class='private' style="font-family: monospace; color:chartreuse">Welcome to the secret internet</h1>
+{{#if userInSession}}
+<h1 class='private' style="font-family: monospace; color:chartreuse">Welcome to the secret internet, {{userInSession.username}}</h1>
 <img class='private' src="../images/gif.gif" alt="Cool guy">
+<br>
+<a href="/home"><button>Back</button></a>
+{{else}}
+<h1>Please log in to access page</h1>
+{{/if}}
