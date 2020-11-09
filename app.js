@@ -16,12 +16,28 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+// mongoose
+// .connect ("mongodb://localhost/demo", {useNewUrlParser: true})
+// .then(x => {
+//     console.log(`Connected to Mongo!`)
+// })
+// .catch(err =>{
+//     console.log(`Error connecting to Mongo`, err)
+// })
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(
+//     session({
+//         secret:"mopqrs",
+//         resave: false,
+//         saveUninitialized: truncateSync,
+//         cookie: {maxAge: 60000}
+//     })
+// )
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +49,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
+const { truncateSync } = require('fs');
 app.use('/', index);
+// app.use("/", auth)
 
 module.exports = app;
