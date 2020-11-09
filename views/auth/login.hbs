@@ -1,0 +1,16 @@
+{{!-- 8-11-20 start --}}
+<h2>signup</h2>
+{{#if error}}
+<p>{{error}}</p>
+{{/if}}
+
+<form action="/login" method="post">
+
+<label for="username"></label>Username
+<input type="text" name="username" id="username">
+{{!-- <label for="username"></label>Username
+<input type="text" name="username" id="username"> --}}
+<label for="password"></label>Password
+<input type="password" name="password" id="password">
+<button type="submit">Login</button>
+</form>
