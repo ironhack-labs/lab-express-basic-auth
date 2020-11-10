@@ -22,6 +22,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+const session=require('./config/session')
+session(app)
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -48,3 +48,11 @@ a {
 
 
 }
+
+#indexListT{
+  list-style: none;
+  border: .5vh solid black;
+  padding: 1vh;
+  margin-right: 19%;
+  width: 5vh;
+}
