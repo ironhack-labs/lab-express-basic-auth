@@ -26,8 +26,9 @@ router.post('/signup', (req, res, next) => {
         passwordHash: hashedPassword
       });
     })
-    .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
+    .then(user => {
+      console.log('Newly created user is: ', user)
+      res.render("users/profile", { user });
     })
     .catch(error => next(error));
 });
