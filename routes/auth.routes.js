@@ -27,13 +27,9 @@ router.post('/signup', (req, res, next) => {
       .catch(error => next(error));
   });
   
-  router.get('/userProfile', (req, res) => res.render('users/user-profile'));
-
-  router.get("/login", (req, res) => 
-  res.render("login")//, { userInSession: req.session.currentUser}
-  )
-
+ 
   router.post("/login", (req, res, next) => {
+    console.log('SESSION:', req.session);
     const { username, password } = req.body;
 
     if (username === ""|| password === ""){
@@ -51,14 +47,30 @@ router.post('/signup', (req, res, next) => {
         return;
       } 
       else if(bcryptjs.compareSync(password, user.passwordHash)){
-        // req.session.currentUser = user;
-        res.render("profile", {user});
+        req.session.currentUser = user;
+        res.redirect("/profile");
         }
         else{
-          res.render("/login", {
+          res.render("login", {
             errorMessage: "Provided Password Is Incorrect"})}
           })
         .catch(error => next(error));
     });
  
+    router.get("/login", (req, res) => {
+      res.render("login", { userInSession: req.session.currentUser});})
+    
+      router.get('/profile', (req, res) => {
+        res.render('profile', { userInSession: req.session.currentUser });
+      });
+
+      router.get('/main', (req, res) => {
+        res.render('main', { userInSession: req.session.currentUser });
+      });
+
+      router.get('/private', (req, res) => {
+        res.render('private', { userInSession: req.session.currentUser });
+      });
+
+
   module.exports = router;
