@@ -88,9 +88,7 @@ router.post('/login', (req, res, next) => {
                 return;
             } else if (bcrypt.compareSync(password, user.passwordHash)) {
                 req.session.currentUser = user;
-                res.render('users/profile', {
-                    user
-                });
+                res.redirect('profile');
             } else {
                 res.render('auth/login', {
                     errorMessage: 'Incorrect password. Try again!'
@@ -113,10 +111,14 @@ router.post('/logout', (req, res) => {
 
 
 router.get('/main', (req, res) => {
-    res.render('users/main')
+    res.render('users/main', {
+        userInSession: req.session.currentUser
+    })
 })
 
 router.get('/private', (req, res) => {
-    res.render('users/private')
+    res.render('users/private', {
+        userInSession: req.session.currentUser
+    })
 })
 module.exports = router;
