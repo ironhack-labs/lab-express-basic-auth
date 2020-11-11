@@ -4,5 +4,34 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.error-message {
+  background-color: lightcoral;
+  padding: 1rem 0rem;
+  width: 500px;
+}
+.signup-container {
+  width: 500px;
+}
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+}
+.signup-container input {
+  margin-bottom: 1rem;
+}
+.signup-container button {
+  padding: 0.5rem;
+  background-color: lightcoral;
+  border-style: none;
+  border-radius: 25px;
+}
+h2 {
+  width: 500px;
+  background-color: lightcoral;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
