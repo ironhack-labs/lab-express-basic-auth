@@ -35,3 +35,25 @@ h2 {
   font-weight: bold;
   font-size: 1.5rem;
 }
+.linksholder {
+  display: flex;
+  flex-direction: column;
+}
+.linksholder a {
+  font-weight: bold;
+}
+nav {
+  display: flex;
+  background-color: lightgray;
+}
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+nav li {
+  list-style: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0rem 1rem;
+}

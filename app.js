@@ -18,6 +18,7 @@ const app = express();
 
 // require database configuration
 require("./configs/db.config");
+require("./configs/sessions.config");
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -34,8 +35,8 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index.routes");
-app.use("/", index);
+app.use("/", require("./routes/index.routes"));
+app.use("/", require("./routes/auth.routes"));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
