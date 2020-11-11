@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Sign-up and Login';
+app.locals.title = 'Basic Auth';
 
 const index = require('./routes/index.routes');
 app.use('/', index);

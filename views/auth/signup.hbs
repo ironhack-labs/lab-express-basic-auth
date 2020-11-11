@@ -1,5 +1,5 @@
 <h2>Sign Up</h2>
-<form action="/sign-up" method="post">
+<form action="/sign-up" method="post" class="big-form">
 <label for="username-input">Username:</label>
 <input type="text" id="username-input" name='username' value="{{username}}" required>
 
@@ -7,8 +7,10 @@
 <input type="password" id="password-input" name='password' required>
 
 <button type="submit">Sign Up</button>
-</form>
 
 {{#if errorMessage}}
-<p>{{errorMessage}} </p>
+<p class="error">{{errorMessage}} </p>
 {{/if}}
+
+</form>
+

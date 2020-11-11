@@ -1,8 +1,61 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: cadetblue;
 }
 
-a {
-  color: #00B7FF;
+.welcome {
+  font-size: 20px;
+  text-align: center;
+}
+
+a,
+button {
+  color: black;
+  padding: 5px;
+  margin: 5px;
+  background-color: azure;
+  border: 2px solid black;
+  text-decoration: none;
+  font: 14px "Lucida Grande",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.big-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(224, 233, 215);
+  margin: 20px;
+  padding: 20px;
+  width: 200px;
+  min-height: 150px;
+}
+
+.error {
+  color: red;
+  width: 200px;
+}
+
+.fat-cat,
+.lil-drake {
+  border: 3px solid black;
+  margin: 3%;
+  height: 300px;
 }

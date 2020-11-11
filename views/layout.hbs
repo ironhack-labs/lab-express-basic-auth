@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
-  <body>
-    <span><a href="/sign-up">Sign-up</a>  |  <a href="/login">Login</a> </span> |  <a href="/profile">Profile</a> | <form id="logout-form" action="/logout" method="POST">
-    <button>Logout</button>
-  </form>
-
-
+<nav><ul>
+  <li><a href="/sign-up">Sign-up</a></li>
+  <li><a href="/login">Login</a> </li>
+  <li><a href="/profile">See profile</a></li>
+</ul></nav>
     {{{body}}}
+    <form id="logout-form" action="/logout" method="POST">
+  <button type="submit">Logout</button>
+  </form>
 
     <script src="/javascripts/script.js"></script>
   </body>
