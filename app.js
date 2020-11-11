@@ -30,9 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Basic Password App';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+// Routes middleware
+app.use("/", require("./routes/index.routes"));
+app.use("/", require("./routes/auth.routes"));
 
 module.exports = app;
