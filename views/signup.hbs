@@ -5,7 +5,7 @@
             <label for="username">Username: </label>
             <input type="text" id="username" name="username" required>
             <label for="email">Email address: </label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
             <label for="password">Password: </label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Submit</button>
