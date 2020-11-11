@@ -1,0 +1,22 @@
+<div class='loginPage'>
+
+ <h1>Welcome to the login page</h1>
+ <hr>
+ <form class="loginForm" action='/login' method='post'>
+   <label for='email'>Email</label>
+   <input class='input' type='email' id='email' name='email' placeholder='Your email address' value='{{email}}'>
+
+   <label for='password'>Password</label>
+   <input class='input' type='password' id='password' name='password' placeholder='********'>
+
+   <button type='submit'>Log In</button> 
+ </form>
+
+ <a href='/signup'>You don't have an account yet? Sign up</a>
+ <hr>
+
+ {{#if errorMessage}}
+    <p class="message">{{errorMessage}}</p>
+  {{/if}}
+
+</div>

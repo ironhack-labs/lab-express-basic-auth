@@ -1,8 +1,52 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 1000px;
+  margin: 0 auto;
+
 }
 
 a {
   color: #00B7FF;
+}
+
+h1{
+  text-align: center;
+}
+
+.loginForm, .signupForm {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 0 auto;
+  height: 300px;;
+}
+
+.input {
+  margin-bottom: 20px;
+  padding: 5px;
+  
+}
+
+.message {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.644);
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.userText {
+  width: 450px;
+  margin: 0 auto;
+  padding: 50px 0px;
+  font-size: 1.2rem;
+}
+
+.logoutButton {
+  background-color: rgb(35, 156, 236);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
 }
