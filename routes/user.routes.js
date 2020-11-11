@@ -16,6 +16,23 @@ router.post('/sign-up', (req, res, next) => {
         password
     } = req.body;
 
+    if (!username || !password) {
+        res.render('auth/signup', {
+            errorMessage: 'All fields are mandatory. Please provide your username and password.'
+        });
+        return;
+    }
+
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+        res
+            .status(500)
+            .render('auth/signup', {
+                errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.'
+            });
+        return;
+    }
+
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
@@ -25,10 +42,17 @@ router.post('/sign-up', (req, res, next) => {
                     passwordHash: hashedPassword
                 })
                 .then(newUserDB => {
-                    console.log(`Newly created user: ${newUserDB}`);
                     res.redirect('/profile');
                 })
-                .catch(error => next(error));
+                .catch(error => {
+                    if (error.code === 11000) {
+                        res.status(500).render('auth/signup', {
+                            errorMessage: 'Username needs to be unique. Username is already used.'
+                        });
+                    } else {
+                        next(error);
+                    }
+                });
         })
         .catch(error => next(error));
 });

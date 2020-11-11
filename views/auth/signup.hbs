@@ -8,3 +8,10 @@
 
 <button type="submit">Sign Up</button>
 </form>
+
+
+    {{#if errorMessage}}
+    <p>
+    {{errorMessage}}
+    </p>
+    {{/if}}
