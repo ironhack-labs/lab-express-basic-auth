@@ -18,6 +18,8 @@ router.post('/sign-up', (req, res, next) => {
 
     if (!username || !password) {
         res.render('auth/signup', {
+            username,
+            password,
             errorMessage: 'All fields are mandatory. Please provide your username and password.'
         });
         return;
@@ -28,6 +30,7 @@ router.post('/sign-up', (req, res, next) => {
         res
             .status(500)
             .render('auth/signup', {
+                username,
                 errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.'
             });
         return;
@@ -56,6 +59,43 @@ router.post('/sign-up', (req, res, next) => {
         })
         .catch(error => next(error));
 });
+
+router.get('/login', (req, res) => res.render('auth/login'));
+
+router.post('/login', (req, res, next) => {
+    const {
+        username,
+        password
+    } = req.body;
+
+    if (username === '' || password === '') {
+        res.render('auth/login', {
+            errorMessage: 'Please enter both, username and password to login.'
+        });
+        return;
+    }
+
+    User.findOne({
+            username
+        })
+        .then(user => {
+            if (!user) {
+                res.render('auth/login', {
+                    errorMessage: 'Username is not registered. Try with other username or signup first.'
+                });
+                return;
+            } else if (bcrypt.compareSync(password, user.passwordHash)) {
+                res.render('users/profile', {
+                    user
+                });
+            } else {
+                res.render('auth/login', {
+                    errorMessage: 'Incorrect password.'
+                });
+            }
+        })
+        .catch(error => next(error))
+})
 
 router.get('/profile', (req, res, next) => {
     res.render('users/profile')
