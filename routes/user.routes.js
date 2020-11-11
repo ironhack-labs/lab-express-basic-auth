@@ -106,4 +106,17 @@ router.get('/profile', (req, res, next) => {
     })
 });
 
+router.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
+
+router.get('/main', (req, res) => {
+    res.render('users/main')
+})
+
+router.get('/private', (req, res) => {
+    res.render('users/private')
+})
 module.exports = router;
