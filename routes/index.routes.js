@@ -5,7 +5,7 @@ const bcryptjs = require("bcryptjs");
 
 router.get("/", (req, res, next) => res.render("index"));
 
-router.get("/signup", (req, res) => res.render("signup"));
+router.get("/signup", (req, res) => res.render("auth/signup"));
 
 const saltRounds = 10;
 
