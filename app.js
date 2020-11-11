@@ -23,6 +23,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Session for app
+require('./configs/session.config')(app);
+
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -35,5 +38,7 @@ app.locals.title = 'Basic Password App';
 // Routes middleware
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
+
+
 
 module.exports = app;

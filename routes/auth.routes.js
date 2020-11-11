@@ -33,4 +33,44 @@ router.post('/signup', (req, res, next) => {
     .catch(error => next(error));
 });
 
+
+// ITERATION 2 - Login
+// Router GET
+router.get('/login', (req, res) => res.render('auth/log-in'));
+
+// Router POST - Verify that input is in DB and guarantee acess
+router.post('/login', (req, res, next) => {
+    const { username, password } = req.body;
+   
+    if (username === '' || password === '') {
+      res.render('auth/login', {
+        errorMessage: 'Please enter both, username and password to login.'
+      });
+      return;
+    }
+
+    User.findOne({ username })
+      .then(user => {
+        if (!user) {
+          res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' });
+          return;
+        } else if (bcryptjs.compareSync(password, user.passwordHash)) {  
+          req.session.currentUser = user;
+          res.redirect('/profile');
+        } else {
+          res.render('auth/log-in', { errorMessage: 'Incorrect password.' });
+        }
+      })
+      .catch(error => next(error));
+  });
+ 
+router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
+});
+
+// Route to user profile
+router.get('/profile', (req, res) => {
+    res.render('users/profile', { user: req.session.currentUser });
+  });
+
 module.exports = router;
