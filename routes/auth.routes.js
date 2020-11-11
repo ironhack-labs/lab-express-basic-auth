@@ -34,9 +34,22 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
-
-  res.redirect("users/user-profile");
+  User.findOne({ username })
+    .then((user) => {
+      if (!user) {
+        res.render("auth/login", {
+          errorMessage: `Username not found. Please try again.`,
+        });
+        return;
+      } else if (bcrypt.compareSync(password, user.passwordHash)) {
+        res.render("users/user-profile", { user });
+      } else {
+        res.render("auth/login", { errorMessage: "Incorrect password." });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 router.get("/users/user-profile", (req, res) => {
