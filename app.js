@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -34,5 +37,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+//app.js know auth.routes
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter); 
 
 module.exports = app;
