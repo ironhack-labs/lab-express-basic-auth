@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <form action="/login" method="POST">
+          <div class="login-div">
+            <label for="username">Username:</label>
+            <input type="text" name="username">
+          </div>
+
+          <div class="login-div">
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+          </div>
+
+          {{#if errorMessage}}
+          <div class="error-message">{{errorMessage}}</div>
+          {{/if}}
+
+          <div class="login-div">
+            <a id="btn-a" href="/user-profile">Login</a>
+          </div>
+        </form>
+    </div>
+</div>

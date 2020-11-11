@@ -1,9 +1,15 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
+  color: #00B7FF;
+}
+.big-title{
+  margin: 30px;
+  padding: 20px;
+}
+.titles{
   color: #00B7FF;
 }
 .error-message{
@@ -11,4 +17,31 @@ a {
   padding: 5px;
   background-color: red;
   color: white;
+}
+.layout-nav{
+  margin-bottom: 10px;
+  padding: 30px;
+}
+.nav-a{
+  padding: 30px;
+}
+.login-div{
+  padding: 10px;
+  color: #00B7FF;
+}
+.signup-div{
+  padding: 20px;
+  color: #00B7FF;
+}
+#btn-a{
+  margin: 10px;
+  padding: 10px;
+  background-color: #00B7FF;
+  color: white;
+  border-radius: 20px;
+}
+#btn-a:hover{
+  background-color: white;
+  color: #00B7FF;
+  border: 1px solid #00B7FF;
 }

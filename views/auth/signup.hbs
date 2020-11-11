@@ -1,26 +1,30 @@
-<h1>Create a New Account !</h1>
-<form action="/signup" method="POST">
+<div class="row">
+    <div class="col-12">
+        <h1 class="titles">Create a New Account !</h1>
+        <form action="/signup" method="POST">
 
-<div>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
+        <div class="signup-div">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Your username" >
+        </div>
+        <div class="signup-div">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="********">
+        </div>
+
+        {{#if errorMessage}}
+        <div class="error-message">{{errorMessage}}</div>
+        {{/if}}
+
+        <div class="signup-div">
+            <button id="btn-a">Create account</button>
+        </div>
+
+        <p class="account-message signup-div">
+            Do you already have an account ?
+            <a id="btn-a" href="/login">Login</a>
+        </p>
+
+        </form>
+    </div>
 </div>
-<div>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-</div>
-
-{{#if errorMessage}}
-<div class="error-message">{{errorMessage}}</div>
-{{/if}}
-
-<div>
-    <button>Create account</button>
-</div>
-
-<p class="account-message">
-    Do you already have an account ?
-    <a href="/login">Login</a>
-</p>
-
-</form>
