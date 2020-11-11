@@ -28,5 +28,37 @@ router.post('/signup', (req, res, next) => {
   });
   
   router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+
+  router.get("/login", (req, res) => 
+  res.render("login")//, { userInSession: req.session.currentUser}
+  )
+
+  router.post("/login", (req, res, next) => {
+    const { username, password } = req.body;
+
+    if (username === ""|| password === ""){
+      res.render("/login", {
+        errorMessage: "Please provide your username and password" });
+      return;
+    }
+
+    User.findOne( {username} )
+    .then(user => {
+      if(!user){
+        res.render("login", {
+          errorMessage: "Username not found. Please sign up first"
+        } );
+        return;
+      } 
+      else if(bcryptjs.compareSync(password, user.passwordHash)){
+        // req.session.currentUser = user;
+        res.render("profile", {user});
+        }
+        else{
+          res.render("/login", {
+            errorMessage: "Provided Password Is Incorrect"})}
+          })
+        .catch(error => next(error));
+    });
  
   module.exports = router;
