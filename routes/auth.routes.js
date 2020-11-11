@@ -73,4 +73,13 @@ router.get('/profile', (req, res) => {
     res.render('users/profile', { user: req.session.currentUser });
   });
 
+//HIDDEN ROUTES
+router.get('/main', (req, res) => {
+    res.render('users/main', { user: req.session.currentUser });
+  });
+
+  router.get('/private', (req, res) => {
+    res.render('users/private', { user: req.session.currentUser });
+  });
+
 module.exports = router;

@@ -6,3 +6,105 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nav-bar ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  margin-bottom: 50px;
+}
+
+.btn1 {
+  background-color: #8E44AD;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 35px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.btn2 {
+  background-color: #F39C12;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 35px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  margin: 55px;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+input {
+  border-style: solid 1px;
+  width: 400px;
+  height: 30px;
+  margin: 15px;
+}
+
+label {
+  margin: 15px;
+  font-size: 1.5em;
+}
+
+.btn3 {
+  background-color: #45B39D;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 35px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+  width: 150px;
+  border-style: none;
+}
+
+.btn4 {
+  background-color: #5DADE2;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 35px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+  width: 150px;
+  border-style: none;
+}
+
+.user {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #8E44AD;
+}
+
+.btn5 {
+  background-color: #E74C3C;
+  padding: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 35px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+}

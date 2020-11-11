@@ -1,6 +1,7 @@
+<div class="container">
 <h1>Log-in</h1>
 
-<form action="/login" method="POST">
+<form action="/login" method="POST" class="form-container">
 
 <label for="input-username">Username</label>
 <input type="text" id="input-username" name="username" placeholder="Enter username" />
@@ -8,8 +9,9 @@
 <label for="input-password">Password</label>
 <input type="password" name="password" id="input-password" placeholder="Your password" />
 
-<button type="submit">Log in!</button>
+<button type="submit" class="btn4">Log in!</button>
 </form>
+</div>
 
 {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
