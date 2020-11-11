@@ -63,6 +63,8 @@ router.post('/sign-up', (req, res, next) => {
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
+
     const {
         username,
         password
@@ -85,20 +87,23 @@ router.post('/login', (req, res, next) => {
                 });
                 return;
             } else if (bcrypt.compareSync(password, user.passwordHash)) {
+                req.session.currentUser = user;
                 res.render('users/profile', {
                     user
                 });
             } else {
                 res.render('auth/login', {
-                    errorMessage: 'Incorrect password.'
+                    errorMessage: 'Incorrect password. Try again!'
                 });
             }
         })
-        .catch(error => next(error))
+        .catch(error => next(error));
 })
 
 router.get('/profile', (req, res, next) => {
-    res.render('users/profile')
+    res.render('users/profile', {
+        userInSession: req.session.currentUser
+    })
 });
 
 module.exports = router;
