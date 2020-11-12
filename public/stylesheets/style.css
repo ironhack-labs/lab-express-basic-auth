@@ -11,3 +11,41 @@ a {
   max-width: 50%;
   max-height: 50%;
 }
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.signup h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.signup form {
+margin-left: 390px;
+padding-top: 10px;
+}
+
+.login h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.login form {
+  margin-left: 390px;
+  padding-top: 10px;
+  }
