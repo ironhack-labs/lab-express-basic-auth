@@ -15,6 +15,14 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
   bcryptjs
     .genSalt(saltRounds)
     .then((salt) => bcryptjs.hash(password, salt))
@@ -28,8 +36,17 @@ router.post("/signup", (req, res, next) => {
       console.log("Newly created user is: ", userFromDB);
       res.redirect("/userProfile");
     })
-    .catch((error) => next(error));
-});
+    .catch(error => {
+      if (error.code === 11000) {
+          res.status(500).render('auth/signup', {
+              errorMessage: 'Username needs to be unique. Username is already used.'
+          });
+      } else {
+          next(error);
+      }
+  });
+})
+
 
 router.get("/userProfile", (req, res) => res.render("users/user-profile"));
 
