@@ -34,6 +34,7 @@ router.post("/signup", (req, res, next) => {
     })
     .then((userFromDB) => {
       console.log("Newly created user is: ", userFromDB);
+      req.session.currentUser = userFromDB;
       res.redirect("/userProfile");
     })
     .catch(error => {
@@ -50,6 +51,7 @@ router.post("/signup", (req, res, next) => {
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.post('/login', (req, res, next) => {
+  console.log('SESSION =====> ', req.session);
   const { username, password } = req.body;
  
   if (username === '' || password === '') {
@@ -65,7 +67,8 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        res.render('users/user-profile', { user });
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -73,6 +76,15 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get("/userProfile", (req, res) => res.render("users/user-profile"));
+
+router.get('/userProfile', (req, res) => {
+  res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
+
+ 
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 module.exports = router;
