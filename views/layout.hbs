@@ -11,15 +11,11 @@
 
 <body>
   <nav>
-    <ul>
+    <ul class="nav-ul">
       {{#if userInSession}}
-      <a href="/logout">
-        <li>Log out</li>
-      </a>
+      <form action="/logout" method="POST"><button>Log Out</button></form>
       {{else}}
-      <a href="/login">
-        <li>Log in</li>
-      </a>
+      <form action="/login" method="GET"><button>Log In</button></form>
       {{/if}}
     </ul>
   </nav>

@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../models/User.model");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
+const saltRounds = 12;
 const mongoose = require("mongoose");
 
 router.get("/signup", (req, res) => {
@@ -15,8 +15,9 @@ router.post("/signup", (req, res) => {
     .hash(password, saltRounds)
     .then((hashedPassword) => {
       User.create({ username, email, passwordHash: hashedPassword })
-        .then((newUser) => {
-          res.redirect("/login");
+        .then((user) => {
+          req.session.currentUser = user;
+          res.redirect("/user-profile");
         })
         .catch((err) =>
           res.render("signup", {
@@ -75,7 +76,7 @@ router.get("/private", (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });

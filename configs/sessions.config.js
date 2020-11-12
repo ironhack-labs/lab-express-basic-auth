@@ -3,7 +3,6 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 
 module.exports = (app) => {
-  console.log(`This is being run`);
   app.use(
     session({
       secret: process.env.SESS_SECRET,
