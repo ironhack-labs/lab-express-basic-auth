@@ -13,14 +13,14 @@ a {
 .cat img {
   max-width: 50%;
   max-height: 50%;
- padding-left: 350px;
- padding-top: 30px;
+  padding-left: 350px;
+  padding-top: 30px;
 }
 
 .cat a {
- display: flex;
- justify-content: center;
- align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
@@ -80,7 +80,6 @@ a {
   justify-content: space-evenly;
 }
 
-
 .error {
   color: red;
   padding-left: 90px;
@@ -89,7 +88,6 @@ a {
 .secret {
   padding-left: 400px;
   padding-top: 30px;
-
 }
 
 .secret a {
