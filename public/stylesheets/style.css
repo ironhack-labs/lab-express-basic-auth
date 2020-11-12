@@ -4,5 +4,10 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.cat img {
+  max-width: 50%;
+  max-height: 50%;
 }
