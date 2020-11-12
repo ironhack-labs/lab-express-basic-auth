@@ -6,10 +6,8 @@ const User = require("../models/User.model");
 const router = new Router();
 const saltRounds = 10;
 
-// 2. GET route ==> to display the signup form to users.
 router.get("/signup", (req, res) => res.render("auth/signup"));
 
-// 3. POST route ==> to process form data (don't forget to hash the password with bcrypt ;{ )
 router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
   console.log(username, password);
@@ -36,19 +34,14 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  // First use bcrypt to hash incoming password
   bcrypt
     .hash(password, saltRounds)
     // Create new user with the hashed password
     .then((hashedPassword) => {
-      console.log("USER CREATING: ", username, hashedPassword);
       User.create({ username, password: hashedPassword })
 
         .then((newUser) => {
-          // add user to session.
           req.session.user = newUser;
-
-          // redirect to user profile.
           res.redirect("/user-profile");
         })
         .catch((error) => {
@@ -58,7 +51,6 @@ router.post("/signup", (req, res, next) => {
               validationError: error.message,
             });
           } else if (error.code === 11000) {
-            console.log(error);
             res.status(500).render("auth/signup", {
               username,
               errorMessage: "Username needs to be unique. Already in use.",
@@ -76,16 +68,12 @@ router.get("/user-profile", (req, res) => {
   res.render("users/user-profile", { user: req.session.user });
 });
 
-// 5. GET route ==> to render the login form to user
 router.get("/login", (req, res) => res.render("auth/login"));
 
-// 6. POST route ==> to process form data (don't forget to compare with bcrypt ;{ )
 router.post("/login", (req, res, next) => {
   console.log("SESSION =====> ", req.session);
-  // get the data from login form
   const { username, password } = req.body;
 
-  // Validate that incoming data is not empty.
   if (!username || !password) {
     res.render("auth/login", {
       username,
@@ -98,7 +86,6 @@ router.post("/login", (req, res, next) => {
   // find user and send correct response
   User.findOne({ username })
     .then((user) => {
-      console.log(user);
       // check if found user was an object or null
       if (!user) {
         res.render("auth/login", {
@@ -107,10 +94,6 @@ router.post("/login", (req, res, next) => {
         });
         return;
       } else if (bcrypt.compareSync(password, user.password)) {
-        //res.render("users/user-profile", { user });
-
-        // Adding user to session so we can have an eye.
-        // redirect to the route for the profile
         req.session.user = user;
         res.redirect("/user-profile");
       } else {
@@ -123,9 +106,7 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-// 7. POST
 router.post("/logout", (req, res) => {
-  // Alternative 1 for logging out
   req.session.destroy();
   res.redirect("/");
 });
