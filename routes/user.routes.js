@@ -45,6 +45,7 @@ router.post('/sign-up', (req, res, next) => {
                     passwordHash: hashedPassword
                 })
                 .then(newUserDB => {
+                    req.session.currentUser = newUserDB;
                     res.redirect('/profile');
                 })
                 .catch(error => {
