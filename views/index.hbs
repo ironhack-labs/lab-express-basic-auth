@@ -1,3 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if username}}
+
+<h1>Hi, {{username}}</h1>
+
+{{/if}}
+
+<p>Welcome Ironhacker!</p>
+
+<form action="/logout" method="post">
+    <button type="submit">LOGOUT</button>
+</form>
+
 <p><b><a href="/signUp">( Create a new user )</a></b></p>
+<p><b><a href="/login">( Login )</a></b></p>
