@@ -17,7 +17,6 @@ router.post("/signup", (req, res) => {
       User.create({ username, email, passwordHash: hashedPassword })
         .then((newUser) => {
           res.redirect("/login");
-          console.log(newUser);
         })
         .catch((err) =>
           res.render("signup", {
@@ -42,7 +41,8 @@ router.post("/login", (req, res) => {
         });
         return;
       } else if (bcrypt.compareSync(password, user.passwordHash)) {
-        res.render("users/user-profile", { user });
+        req.session.currentUser = user;
+        res.redirect("/user-profile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -51,9 +51,8 @@ router.post("/login", (req, res) => {
       console.error(err);
     });
 });
-
-router.get("/users/user-profile", (req, res) => {
-  res.render("users/user-profile");
+router.get("/user-profile", (req, res) => {
+  res.render("users/user-profile", { userInSession: req.session.currentUser });
 });
 
 module.exports = router;

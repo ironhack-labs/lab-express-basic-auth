@@ -18,7 +18,7 @@ const app = express();
 
 // require database configuration
 require("./configs/db.config");
-require("./configs/sessions.config");
+require("./configs/sessions.config")(app);
 
 // Middleware Setup
 app.use(logger("dev"));

@@ -1,1 +1,5 @@
-<h1>You've reached the profile page - currently STATIC</h1>
+{{#if userInSession}}
+<h1>Welcome to your profile page, {{userInSession.username}}!</h1>
+{{else}}
+<p>Still not logged in, sorry!</p>
+{{/if}}
