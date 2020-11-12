@@ -92,8 +92,26 @@ router.get('/userProfile', (req, res) => {
   res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
-router.get('/main', (req, res) => {
-  res.render('main');
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
+
+router.get('/main', checkUserStatus, (req, res) => {
+  res.render("auth/main", {userInSession: req.session.currentUser});
+  // res.render('auth/main.');
+});
+
+router.get('/private', checkUserStatus, (req, res) => {
+  res.render('auth/private',{userInSession: req.session.currentUser});
+});
+
+function checkUserStatus(req,res,next){
+  if(req.session.currentUser){
+    next();
+  }else{
+    res.redirect('/login');
+  }
+}
 
 module.exports = router;

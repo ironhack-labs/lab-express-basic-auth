@@ -7,6 +7,12 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -20,7 +26,7 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
- require('./configs/session.config')(app); 
+require('./configs/session.config')(app);
 
 
 // Middleware Setup
@@ -43,6 +49,25 @@ app.use('/', index);
 
 //app.js know auth.routes
 const authRouter = require('./routes/auth.routes');
-app.use('/', authRouter); 
+app.use('/', authRouter);
+
+// Routes
+const router = require('./routes/auth.routes');
+app.use('/', router);
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection
+        }),
+        resave: true,
+        saveUninitialized: false
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 module.exports = app;
