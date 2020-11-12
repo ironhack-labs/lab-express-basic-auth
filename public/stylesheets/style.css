@@ -20,7 +20,7 @@ h1{
   justify-content: center;
   width: 400px;
   margin: 0 auto;
-  height: 300px;;
+  height: 300px;
 }
 
 .input {
@@ -45,8 +45,54 @@ h1{
 }
 
 .logoutButton {
-  background-color: rgb(35, 156, 236);
+  background-color:#00B7FF;
   color: white;
-  padding: 5px 10px;
+  padding: 5px 30px;
   border-radius: 3px;
+  border-color: #00B7FF;
+}
+
+.logoutButton:hover {
+  background-color: white;
+  color: #00B7FF;
+  border-color: #00B7FF;
+}
+
+.linkDiv {
+  display: flex;
+  justify-content: space-around;
+	align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.linkButton {
+  background-color: #00B7FF;
+  padding: 7px 12px;
+  color: white;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.linkButton:hover {
+  background-color: white;
+  color: #00B7FF;
+  border: 1px solid #00B7FF;
+}
+
+.gif {
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+}
+
+.gifDiv {
+  display: flex;
+  flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.userButton {
+  padding: 5px 0px;
 }

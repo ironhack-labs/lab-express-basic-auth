@@ -4,19 +4,19 @@
   <hr>
 
   <form class="signupForm" action='/signup' method='post'>
-    <label for='username'>Username</label>
+    <label for='username'>Username:</label>
     <input class='input' type='text' id='username' name='username' placeholder='Your username' value='{{username}}'>
 
-    <label for='email'>Email</label>
+    <label for='email'>Email:</label>
     <input class='input' type='email' id='email' name='email' placeholder='Your email address' value='{{email}}'>
 
-    <label for='password'>Password</label>
+    <label for='password'>Password:</label>
     <input class='input' type='password' id='password' name='password' placeholder='********'>
 
-    <button type='submit'>Create account</button> 
+    <button class="userButton" type='submit'>Create account</button> 
   </form>
 
-  <a href='/login'>You already have an account? Log In</a>
+  <a href='/login'>You already have an account? <b>Log In</b></a>
   <hr>
 
   {{#if errorMessage}}
