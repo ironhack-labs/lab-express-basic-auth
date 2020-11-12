@@ -15,54 +15,61 @@ router.post('/signup', (req, res, next) => {
   console.log('The form data: ', req.body);
 
   bcryptjs
-  .genSalt(saltRounds)
-  .then(salt => bcryptjs.hash(password, salt))
-  .then(hashedPassword => {
-    return User.create({
+    .genSalt(saltRounds)
+    .then(salt => bcryptjs.hash(password, salt))
+    .then(hashedPassword => {
+      return User.create({
         username,
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
       });
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
-  })
-  .catch(error => next(error));
+    })
+    .catch(error => next(error));
 });
 
 router.get('/userProfile', (req, res) => res.render('users/user-profile'));
 
-// router.post('/userProfile', (req, res, next) => {
-//   bcryptjs
-// .then(userFromDB => {
-//   console.log('Newly created user is: ', userFromDB);
-//   res.redirect('/userProfile');
-// })
-// })
+router.post('/userProfile', (req, res, next) => {
+  bcryptjs
+    .then(userFromDB => {
+      console.log('Newly created user is: ', userFromDB);
+      res.redirect('/userProfile');
+    })
+})
 
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.post('/login', (req, res, next) => {
   const { username, password } = req.body;
- 
+  console.log('SESSION =====> ', req.session);
+
   if (username === '' || password === '') {
     res.render('auth/login', {
       errorMessage: 'Please enter both, username and password to login.'
     });
     return;
   }
- 
+
   User.findOne({ username })
     .then(user => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        res.render('users/user-profile', { user });
+        // SAVE THE USER IN THE SESSION
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
     })
     .catch(error => next(error));
+});
+
+router.get('/userProfile', (req, res) => {
+  res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
