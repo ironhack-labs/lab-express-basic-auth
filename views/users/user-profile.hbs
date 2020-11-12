@@ -1,9 +1,10 @@
-
+<div class ="profile">
 {{#if userInSession}}
 <h2>Welcome, {{ userInSession.username }}!</h2>
-<p>This is your profile page. Please click on the below links, which only you can see!</p>
+<p>This is your profile page. Check out the below links, which only you can see!</p>
 <a href="/main">Main Page</a><br>
 <a href="/private">Private Page</a>
 {{else}}
 <p>You're still not logged in, sorry!</p>
 {{/if}}
+</div>
