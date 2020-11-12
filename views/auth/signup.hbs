@@ -3,10 +3,10 @@
 {{!-- action attribute defines where to send the form data when a form is submitted. --}}
   <form action="/signup" method="POST">
     <label for="input-username">Username</label>
-    <input type="text" id="input-username" name="username" placeholder="Your username" />
+    <input type="text" id="input-username" name="username" placeholder="Your username" required />
  
     <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="******" />
+    <input type="password" name="password" id="input-password" placeholder="******" required/>
  
     <button type="submit">Create account</button>
  

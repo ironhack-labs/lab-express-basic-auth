@@ -12,32 +12,45 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 
 //defines where to send the form data when a form is submitted.
 router.post('/signup', (req, res, next) => {
+  const { username, password } = req.body;
   console.log('The form data: ', req.body);
 
-  bcryptjs
-    .genSalt(saltRounds)
-    .then(salt => bcryptjs.hash(password, salt))
-    .then(hashedPassword => {
-      return User.create({
-        username,
-        passwordHash: hashedPassword,
-      });
+  if (!username || !password) {
+    res.render("auth/signup", { errorMessage: "Fields cannot be empty!" });
+    return;
+  }
+
+  User.findOne({ username })
+    .then((results) => {
+      //Check if user exists
+      if (results !== null) {
+        res.render("auth/signup", {
+          errorMessage: "This username already exists!",
+        });
+        return;
+      }
+
+      // If its a new user we need to:
+      // Step 1: Hash the incoming password
+      // Step 2: Create the new user
+
+      bcrypt
+        .hash(password, 10)
+        .then((hashedPassword) => {
+          const newUser = new User({
+            username,
+            password: hashedPassword,
+          });
+
+          newUser
+            .save()
+            .then(() => res.redirect("/"))
+            .catch((err) => next(err));
+        })
+        .catch((err) => next(err));
     })
-    .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
-    })
-    .catch(error => next(error));
+    .catch((err) => next(err));
 });
-
-router.get('/userProfile', (req, res) => res.render('users/user-profile'));
-
-router.post('/userProfile', (req, res, next) => {
-  bcryptjs
-    .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
-      res.redirect('/userProfile');
-    })
-})
 
 router.get('/login', (req, res) => res.render('auth/login'));
 
@@ -70,6 +83,18 @@ router.post('/login', (req, res, next) => {
 
 router.get('/userProfile', (req, res) => {
   res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
+
+router.post('/userProfile', (req, res, next) => {
+  bcryptjs
+    .then(userFromDB => {
+      console.log('Newly created user is: ', userFromDB);
+      res.redirect('/userProfile');
+    })
+})
+
+router.get('/main', (req, res) => {
+  res.render('main');
 });
 
 module.exports = router;
