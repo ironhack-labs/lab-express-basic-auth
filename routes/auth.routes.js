@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = new Router();
+const mongoose = require("mongoose");
 
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
@@ -13,43 +14,49 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 //defines where to send the form data when a form is submitted.
 router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
-  console.log('The form data: ', req.body);
 
+  // 1. Check username and password are not empty
   if (!username || !password) {
-    res.render("auth/signup", { errorMessage: "Fields cannot be empty!" });
+    res.render('auth/signup', { errorMessage: 'Indicate username and password' });
     return;
   }
 
   User.findOne({ username })
-    .then((results) => {
-      //Check if user exists
-      if (results !== null) {
-        res.render("auth/signup", {
-          errorMessage: "This username already exists!",
-        });
+    .then(user => {
+      // 2. Check user does not already exist
+      if (user !== null) {
+        res.render('auth/signup', { message: 'The username already exists' });
         return;
       }
 
-      // If its a new user we need to:
-      // Step 1: Hash the incoming password
-      // Step 2: Create the new user
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-      bcrypt
-        .hash(password, 10)
-        .then((hashedPassword) => {
-          const newUser = new User({
-            username,
-            password: hashedPassword,
-          });
+      const newUser = new User({
+        username,
+        passwordHash: hashPass
+      });
 
-          newUser
-            .save()
-            .then(() => res.redirect("/"))
-            .catch((err) => next(err));
-        })
-        .catch((err) => next(err));
+      newUser
+        .save()
+        .then(() => res.redirect('/'))
+        .catch(err => next(err));
     })
-    .catch((err) => next(err));
+    .catch(err => next(err));
+
+  bcryptjs
+    .genSalt(saltRounds)
+    .then(salt => bcryptjs.hash(password, salt))
+    .then(hashedPassword => {
+      return User.create({
+        username,
+        passwordHash: hashedPassword
+      });
+    })
+    .then(userFromDB => {
+      console.log('Newly created user is: ', userFromDB);
+    })
+    .catch(error => next(error));
 });
 
 router.get('/login', (req, res) => res.render('auth/login'));
@@ -84,14 +91,6 @@ router.post('/login', (req, res, next) => {
 router.get('/userProfile', (req, res) => {
   res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
-
-router.post('/userProfile', (req, res, next) => {
-  bcryptjs
-    .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
-      res.redirect('/userProfile');
-    })
-})
 
 router.get('/main', (req, res) => {
   res.render('main');
