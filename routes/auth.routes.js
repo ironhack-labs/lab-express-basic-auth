@@ -38,8 +38,8 @@ router.post("/signup", (req, res) => {
         .then((hashedPassword) => 
             User.create({ username, passwordHash: hashedPassword })
                 .then((newUser) => {
-                    res.redirect("/user-profile")
-                    console.log(newUser)
+                  req.session.user = newUser;
+                  res.redirect("/user-profile");
                 })
                 .catch((error) => {
                     if (error instanceof mongoose.Error.ValidationError){
@@ -59,7 +59,7 @@ router.post("/signup", (req, res) => {
         
 });
 
-router.get('/user-profile', (req, res) => res.render('users/user-profile'));
+router.get('/user-profile', (req, res) => res.render('users/user-profile', {user: req.session.user}));
 
 router.get("/login", (req, res) => res.render("auth/login"));
 
@@ -74,18 +74,27 @@ router.post('/login', (req, res, next) => {
     }
    
     User.findOne({ username })
-      .then((user) => {
-        if (!user) {
-          res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
-          return;
-        } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-          res.render('users/user-profile', { user });
-        } else {
-          res.render('auth/login', { errorMessage: 'Incorrect password.' });
-        }
-      })
-      .catch(error => next(error));
+        .then((user) => {
+          if (!user) {
+            res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
+            return;
+          } else if (bcrypt.compareSync(password, user.passwordHash)) {
+            req.session.user = user;
+            res.redirect('/user-profile', { user });
+          } else {
+            res.render('auth/login', { 
+              username, 
+              errorMessage: 'Incorrect password.' 
+            });
+          }
+        })
+        .catch(error => next(error));
   });
 
+
+  router.post("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+  });
 
 module.exports = router;

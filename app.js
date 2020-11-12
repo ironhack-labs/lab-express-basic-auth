@@ -15,10 +15,12 @@ const passport = require("passport");
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app = express();
+
 
 // require database configuration
 require('./configs/db.config');
+
+const app = express();
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -29,6 +31,9 @@ app.use(cookieParser());
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+require("./configs/sessions.config")(app);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
