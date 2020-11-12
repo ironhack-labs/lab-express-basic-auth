@@ -65,8 +65,33 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
 router.get("/userProfile", (req, res) => {
   res.render("users/user-profile", { userInSession: req.session.currentUser });
+});
+
+router.get("/main", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("main", { userInSession: req.session.currentUser });
+  } else {
+    res.render("auth/login", {
+      errorMessage: `Please log in first.`,
+    });
+  }
+});
+
+router.get("/private", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("private", { userInSession: req.session.currentUser });
+  } else {
+    res.render("auth/login", {
+      errorMessage: `Please log in first.`,
+    });
+  }
 });
 
 module.exports = router;
