@@ -19,11 +19,11 @@ router.post("/signup", (req, res) => {
           req.session.currentUser = user;
           res.redirect("/user-profile");
         })
-        .catch((err) =>
-          res.render("signup", {
+        .catch((err) => {
+          res.render("auth/signup", {
             errorMessage: "The username or email address is already in use.",
-          })
-        );
+          });
+        });
     })
     .catch((err) => console.error(err));
 });
@@ -34,6 +34,7 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
   User.findOne({ username })
     .then((user) => {
       if (!user) {

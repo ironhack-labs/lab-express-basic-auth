@@ -15,7 +15,7 @@
       {{#if userInSession}}
       <form action="/logout" method="POST"><button>Log Out</button></form>
       {{else}}
-      <form action="/login" method="GET"><button>Log In</button></form>
+      <a href="/login"><button>Log In</button></a>
       {{/if}}
     </ul>
   </nav>
