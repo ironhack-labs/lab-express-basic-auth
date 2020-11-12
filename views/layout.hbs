@@ -12,9 +12,15 @@
 <body>
   <nav>
     <ul>
+      {{#if userInSession}}
+      <a href="/logout">
+        <li>Log out</li>
+      </a>
+      {{else}}
       <a href="/login">
         <li>Log in</li>
       </a>
+      {{/if}}
     </ul>
   </nav>
   {{{body}}}
