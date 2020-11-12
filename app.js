@@ -13,6 +13,9 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+//Session configuration export
+require('./configs/session.config')(app);
+
 
 // require database configuration
 require('./configs/db.config');
@@ -32,7 +35,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+
+// Routes middleware
+app.use("/", require("./routes/index.routes"));
+app.use("/", require("./routes/auth.routes"));
+
 
 module.exports = app;
