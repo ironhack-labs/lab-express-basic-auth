@@ -47,6 +47,7 @@ router.post("/signup", (req, res, next) => {
   });
 })
 
+router.get('/login', (req, res) => res.render('auth/login'));
 
 router.get("/userProfile", (req, res) => res.render("users/user-profile"));
 
