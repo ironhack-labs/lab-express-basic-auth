@@ -15,6 +15,7 @@ const debug = require("debug")(
 );
 
 const app = express();
+require("./configs/session.config")(app);
 
 // require database configuration
 require("./configs/db.config");
