@@ -1,0 +1,35 @@
+<div class="allPagesDiv">
+  <div class="allTextDiv">
+    <h1>{{title}}</h1>
+
+    <div>
+      <form action="/login" method="GET">
+        <p>Already have an account: <button>Login!</button>
+      </form>
+      </p>
+    </div>
+    </form>
+
+    <h2>Sign-up here:</h2>
+
+    <form action="/sign-up" method="POST" id="form-container">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+      </div>
+
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+      </div>
+
+      {{#if errorMessage}}
+      <div class="error-message">{{errorMessage}}</div>
+      {{/if}}
+
+      <div>
+        <button>Sign up!</button>
+      </div>
+  </div>
+
+</div>

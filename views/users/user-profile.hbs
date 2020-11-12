@@ -1,0 +1,24 @@
+<div class="allPagesDiv">
+    <div class="allTextDiv">
+        <h1>{{title}}</h1>
+        {{#if userInSession}}
+        <h2>Welcome, {{ userInSession.username }}!</h2>
+        <p>This is your profile page my friend!</p>
+        <button>
+            <a href="/user-profile">Reload the page</a>
+        </button>
+        <button>
+            <a href="/main">Main Page</a>
+        </button>
+        <button>
+            <a href="/private">Private Page</a>
+        </button>
+        {{else}}
+        <p>Still no logged in user, sorry!</p>
+        {{/if}}
+
+        <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button>
+        </form>
+    </div>
+</div>
