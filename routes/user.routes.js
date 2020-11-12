@@ -2,6 +2,13 @@ const { Router } = require('express');
 const router = new Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
+const mongoose = require("mongoose");
+let session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+
+
+const saltRounds = 10;
+
 
 
 
@@ -11,26 +18,109 @@ router.get("/signup", (req, res, next) => {
 })
 
 // get the information user inputted in the form and properly store them in the database.
+
 router.post("/signup", (req, res, next) => {
-    console.log('The form data: ', req.body);
+    const { username, email, password } = req.body;
 
-
+    // Validate that incoming data is not empty.
     if (!username || !email || !password) {
-        res.render('signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+        res.render("/signup", {
+            email,
+            username,
+            errorMessage: "All fields are mandatory. Please provide your username, email and password.",
+        });
         return;
     }
 
-    //apply the hashing algorithm inside the post route in order to encrypt the password
+    const emailFormatRegex = /^\S+@\S+\.\S+$/;
+
+    if (!emailFormatRegex.test(email)) {
+        res.status(500).render("signup", {
+            email,
+            username,
+            validationError: "Please use a valid email address.",
+        });
+        return;
+    }
+
+    // Strong password pattern.
+    const strongPasswordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
+    // Validate that incoming password matches regex pattern.
+    if (!strongPasswordRegex.test(password)) {
+        res.status(500).render("signup", {
+            email,
+            username,
+            errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+        });
+        return;
+    }
+
+
+    //-----------> sollution 1 <----------
     const salt = bcrypt.genSaltSync(10); //<--10 is the saltrounds for the bcrypt
     const pwHash = bcrypt.hashSync(req.body.password, salt);
 
+
+
     User.create({ username: req.body.username, password: pwHash })
-        .then((newuser) => {
+
+
+    .then((newUser) => {
             console.log(`Password hash: ${pwHash}`);
+            req.session.currentUser = newUser;
             res.redirect("user-profile")
         })
-        .catch(error => next(error));
-})
+        //----------> end sollution 1<-----------------
+
+
+
+    // //    -------------> sollution 2 <--------
+    // // First use bcrypt to hash incoming password
+    // bcrypt.hash(password, saltRounds)
+    //     // Create new user with the hashed password
+    //     .then((hashedPassword) =>
+    //         User.create({ username, email, pwHash: hashedPassword })
+    //         .then((newUser) => {
+    //             // add user to session.
+    //             req.session.user = newUser;
+
+    //             // redirect to user profile.
+    //             res.redirect("user-profile");
+    //         })
+    // //-------------> end sollution 2<----------
+
+
+
+    .catch((error) => {
+        if (error instanceof mongoose.Error.ValidationError) {
+            res.status(500).render("signup", {
+                email,
+                username,
+                validationError: error.message,
+            });
+        } else if (error.code === 11000) {
+            res.status(500).render("signup", {
+                email,
+                username,
+                errorMessage: "Username and email need to be unique. Either username or email is already used.",
+            });
+        } else {
+            next(error);
+        }
+    })
+
+    //     //    -------------> sollution 2 <--------
+    // )
+
+
+
+    .catch((err) => next(err));
+});
+
+
+
+//Login section-->
 
 
 //to display the login form to users
@@ -38,9 +128,45 @@ router.get('/login', (req, res) =>
     res.render('login'));
 
 
+router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
+
+    const { username, password } = req.body;
+
+    if (username === '' || password === '') {
+        res.render('login', {
+            errorMessage: 'Please enter both, username and password to login.'
+        });
+        return;
+    }
+
+    User.findOne({ username })
+        .then(user => {
+            if (!user) {
+                res.render('login', {
+                    errorMessage: 'username is not registered. Try with other username.'
+                });
+                return;
+            } else if (
+                bcrypt.compareSync(password, user.pwHash)) {
+                res.render('user-profile', { user });
+            } else {
+                res.render('login', { errorMessage: 'Incorrect password.' });
+            }
+        })
+        .catch(error => next(error));
+});
+
+
+
 //render the page of the user after the login.
 router.get('/user-profile', (req, res) =>
     res.render('user-profile'));
+
+
+
+
+
 
 
 
