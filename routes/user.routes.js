@@ -92,8 +92,8 @@ router.post("/signup", (req, res, next) => {
 
 
 //to display the login form to users
-router.get('/login', (request, response) => {
-    response.render('login')
+router.get('/login', (req, res) => {
+    res.render('login')
 });
 
 
@@ -138,22 +138,22 @@ router.post('/login', (req, res, next) => {
 
 //--------------------------------------->Main section<-----------------------------
 
-router.get('/main', (request, response) => {
-    if (request.session.user) {
-        response.render('main');
+router.get('/main', (req, res, next) => {
+    if (req.session.user) {
+        res.render('main');
     } else {
-        response.redirect('/login')
+        res.redirect('/login')
     }
 });
 
 
 //--------------------------------------->Private section<-----------------------------
 
-router.get('/private', (request, response) => {
-    if (request.session.user) {
-        response.render('private');
+router.get('/private', (req, res) => {
+    if (req.session.user) {
+        res.render('private');
     } else {
-        response.redirect('/login')
+        res.redirect('/login')
     }
 });
 
