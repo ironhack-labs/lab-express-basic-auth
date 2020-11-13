@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = new Router();
-const bcrypt = require("bcryptjs");
+const bcryptjs = require('bcryptjs');
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 let session = require('express-session')
@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')(session);
 const saltRounds = 10;
 
 
+//--------------------------------------->signup section<-----------------------------
 
 
 //sending a file that will render and display the form to users.
@@ -56,85 +57,56 @@ router.post("/signup", (req, res, next) => {
         return;
     }
 
+    bcryptjs.hash(password, saltRounds)
+        .then((pwHash) => {
+            User.create({ username, email, passwordHash: pwHash })
+                // add user to session.
+                .then((user) => {
+                    req.session.user = user;
+                    res.redirect("user-profile")
+                })
 
-    //-----------> sollution 1 <----------
-    const salt = bcrypt.genSaltSync(10); //<--10 is the saltrounds for the bcrypt
-    const pwHash = bcrypt.hashSync(req.body.password, salt);
-
-
-
-    User.create({ username: req.body.username, password: pwHash })
-
-
-    .then((newUser) => {
-            console.log(`Password hash: ${pwHash}`);
-            req.session.currentUser = newUser;
-            res.redirect("user-profile")
+            .catch((error) => {
+                if (error instanceof mongoose.Error.ValidationError) {
+                    res.status(500).render("signup", {
+                        username,
+                        validationError: error.message,
+                    });
+                } else if (error.code === 11000) {
+                    res.status(500).render("signup", {
+                        username,
+                        errorMessage: "Username and email need to be unique. Either username or email is already used.",
+                    });
+                } else {
+                    next(error);
+                }
+            })
         })
-        //----------> end sollution 1<-----------------
-
-
-
-    // //    -------------> sollution 2 <--------
-    // // First use bcrypt to hash incoming password
-    // bcrypt.hash(password, saltRounds)
-    //     // Create new user with the hashed password
-    //     .then((hashedPassword) =>
-    //         User.create({ username, email, pwHash: hashedPassword })
-    //         .then((newUser) => {
-    //             // add user to session.
-    //             req.session.user = newUser;
-
-    //             // redirect to user profile.
-    //             res.redirect("user-profile");
-    //         })
-    // //-------------> end sollution 2<----------
-
-
-
-    .catch((error) => {
-        if (error instanceof mongoose.Error.ValidationError) {
-            res.status(500).render("signup", {
-                email,
-                username,
-                validationError: error.message,
-            });
-        } else if (error.code === 11000) {
-            res.status(500).render("signup", {
-                email,
-                username,
-                errorMessage: "Username and email need to be unique. Either username or email is already used.",
-            });
-        } else {
-            next(error);
-        }
-    })
-
-    //     //    -------------> sollution 2 <--------
-    // )
-
-
-
-    .catch((err) => next(err));
+        .catch((err) => next(err));
 });
 
 
 
-//Login section-->
+
+//--------------------------------------->Login section<-----------------------------
 
 
 //to display the login form to users
-router.get('/login', (req, res) =>
-    res.render('login'));
+router.get('/login', (request, response) => {
+    response.render('login')
+});
+
 
 
 router.post('/login', (req, res, next) => {
     console.log('SESSION =====> ', req.session);
 
+    // get the data from login form
     const { username, password } = req.body;
 
     if (username === '' || password === '') {
         res.render('login', {
+            username,
             errorMessage: 'Please enter both, username and password to login.'
         });
         return;
@@ -144,14 +116,17 @@ router.post('/login', (req, res, next) => {
         .then(user => {
             if (!user) {
                 res.render('login', {
+                    username,
                     errorMessage: 'username is not registered. Try with other username.'
                 });
                 return;
             } else if (
-                bcrypt.compareSync(password, user.pwHash)) {
+                bcrypt.compareSync(password, user.passwordHash)) {
                 res.render('user-profile', { user });
             } else {
-                res.render('login', { errorMessage: 'Incorrect password.' });
+                res.render('login', {
+                    errorMessage: 'Incorrect password.'
+                });
             }
         })
         .catch(error => next(error));
@@ -159,12 +134,23 @@ router.post('/login', (req, res, next) => {
 
 
 
+//--------------------------------------->User Profile section<-----------------------------
+
+
 //render the page of the user after the login.
-router.get('/user-profile', (req, res) =>
-    res.render('user-profile'));
+router.get("/user-profile", (req, res) => {
+    res.render("user-profile", { user: req.session.user });
+});
 
 
 
+//--------------------------------------->Logout section<-----------------------------
+
+router.post("/logout", (req, res) => {
+    // Alternative 1 for logging out
+    req.session.destroy();
+    res.redirect("/");
+});
 
 
 
