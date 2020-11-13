@@ -1,0 +1,23 @@
+<a href="/">Home</a>
+
+<h2 class="has-text-weight-bold">LOGIN</h2>
+<h2>
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
+</h2>
+
+<form ction="/log-in" method="POST">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username">
+
+    <br>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="pssword">
+
+    <br>
+
+    <button class="button is-primary" style="margin: 10px;">Log in</button>
+    
+</form>
