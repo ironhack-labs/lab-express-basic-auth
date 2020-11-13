@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+input:invalid {
+  border-color: red; }
+
+input:valid {
+  border-color: green; }
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px; }
+
+.navbar a {
+  color: white; }
+
+.container {
+  margin-top: 20px; }
+
+.visuals {
+  margin: 10px; }
+
+/*# sourceMappingURL=style.css.map */

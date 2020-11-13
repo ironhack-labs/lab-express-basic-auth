@@ -1,2 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="main-content">
+<h1 class="display-1">{{title}}</h1>
+    <p>Welcome to {{title}}</p>
+    <div>
+        <a class="btn btn-info" href="/registro">Regístrate aquí</a>
+        <a class="btn btn-outline-info" href="/iniciar-sesion">Conéctate aquí</a>
+    </div>
+</div>
+
+
+
+{{#if successMsg}}
+<div style="background: rgb(27, 168, 81); color: white; text-align: center; padding: 10px; margin-top:10px">
+    {{successMsg}}</div>
+{{/if}}
