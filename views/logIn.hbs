@@ -1,0 +1,12 @@
+<form action="/log-in" method="POST" class="mt-3">
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email">
+    <br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password">
+    <br>
+    <button type="submit" class="btn btn-dark">Log in</button>
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
+</form>
