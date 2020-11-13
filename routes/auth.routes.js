@@ -11,7 +11,10 @@ router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username and password.' });
+    res.render("auth/signup", {
+      errorMessage:
+        "All fields are mandatory. Please provide your username and password.",
+    });
     return;
   }
 
@@ -19,7 +22,10 @@ router.post("/signup", (req, res, next) => {
   if (!regex.test(password)) {
     res
       .status(500)
-      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+      .render("auth/signup", {
+        errorMessage:
+          "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      });
     return;
   }
 
@@ -37,48 +43,50 @@ router.post("/signup", (req, res, next) => {
       req.session.currentUser = userFromDB;
       res.redirect("/userProfile");
     })
-    .catch(error => {
+    .catch((error) => {
       if (error.code === 11000) {
-          res.status(500).render('auth/signup', {
-              errorMessage: 'Username needs to be unique. Username is already used.'
-          });
+        res.status(500).render("auth/signup", {
+          errorMessage:
+            "Username needs to be unique. Username is already used.",
+        });
       } else {
-          next(error);
+        next(error);
       }
-  });
-})
+    });
+});
 
-router.get('/login', (req, res) => res.render('auth/login'));
+router.get("/login", (req, res) => res.render("auth/login"));
 
-router.post('/login', (req, res, next) => {
-  console.log('SESSION =====> ', req.session);
+router.post("/login", (req, res, next) => {
+  console.log("SESSION =====> ", req.session);
   const { username, password } = req.body;
- 
-  if (username === '' || password === '') {
-    res.render('auth/login', {
-      errorMessage: 'Please enter both, username and password to login.'
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, username and password to login.",
     });
     return;
   }
- 
-  User.findOne({username })
-    .then(user => {
+
+  User.findOne({ username })
+    .then((user) => {
       if (!user) {
-        res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' });
+        res.render("auth/login", {
+          errorMessage: "Username is not registered. Try with other username.",
+        });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect('/userProfile');
+        res.redirect("/userProfile");
       } else {
-        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+        res.render("auth/login", { errorMessage: "Incorrect password." });
       }
     })
-    .catch(error => next(error));
+    .catch((error) => next(error));
 });
 
-
-router.get('/userProfile', (req, res) => {
-  res.render('users/user-profile', { userInSession: req.session.currentUser });
+router.get("/userProfile", (req, res) => {
+  res.render("users/user-profile", { userInSession: req.session.currentUser });
 });
 
 router.get("/main", (req, res) => {
@@ -101,9 +109,9 @@ router.get("/private", (req, res) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 
