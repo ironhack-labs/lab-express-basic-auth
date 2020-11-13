@@ -121,8 +121,10 @@ router.post('/login', (req, res, next) => {
                 });
                 return;
             } else if (
-                bcrypt.compareSync(password, user.passwordHash)) {
-                res.render('user-profile', { user });
+                bcryptjs.compareSync(password, user.passwordHash)) {
+                req.session.user = user;
+                res.redirect("/user-profile");
+                // res.render('user-profile', { user });
             } else {
                 res.render('login', {
                     errorMessage: 'Incorrect password.'
@@ -130,6 +132,29 @@ router.post('/login', (req, res, next) => {
             }
         })
         .catch(error => next(error));
+});
+
+
+
+//--------------------------------------->Main section<-----------------------------
+
+router.get('/main', (request, response) => {
+    if (request.session.user) {
+        response.render('main');
+    } else {
+        response.redirect('/login')
+    }
+});
+
+
+//--------------------------------------->Private section<-----------------------------
+
+router.get('/private', (request, response) => {
+    if (request.session.user) {
+        response.render('private');
+    } else {
+        response.redirect('/login')
+    }
 });
 
 

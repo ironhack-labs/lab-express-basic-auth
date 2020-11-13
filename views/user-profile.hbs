@@ -1,12 +1,27 @@
-<p>This is your profile page my friend!</p>
-
 
 {{#if user}}
 <h2>Welcome, {{ user.username }}!</h2>
 <p>This is your profile page {{ user.username }}!</p>
+
+  <div class="linkDiv">
+    <a class="link" href='/main'>Cat</a>
+    <a class="link" href='/private'>Private</a>
+  </div>
+
+
+<div>
+ <form action='/logout' method="post">
+    <button class='logout'type="submit">Logout</button>
+  </form>
+</div>
+
+<div>
+
 <button>
     <a href="/user-profile">Reload the page</a>
 </button>
+</div>
+
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
