@@ -1,8 +1,11 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-weight: 100;
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+.navbar {
+  margin-bottom: 40px; }
+
+h1, h2, h3 {
+  font-weight: 100; }
+
+/*# sourceMappingURL=style.css.map */
