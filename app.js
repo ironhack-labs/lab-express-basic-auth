@@ -23,6 +23,19 @@ const session = require('express-session');
 // require mongostore – we added
 const MongoStore = require('connect-mongo')(session);
 
+app.use(
+    session({
+      secret: 'doesnt-matter',
+      resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 60000 * 60 }, // 1 hour
+      store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
+      })
+    })
+  );
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -43,18 +56,5 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index.routes');
 app.use('/', index);
 
-// we added
-app.use(
-    session({
-      secret: 'doesnt-matter',
-      resave: false,
-      saveUninitialized: true,
-      cookie: { maxAge: 60000 * 60 }, // 1 hour
-      store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
-      })
-    })
-  );
 
 module.exports = app;

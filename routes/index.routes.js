@@ -63,40 +63,49 @@ router.post('/signup', (req, res, next) => {
 
 router.get('/login', (req, res) => {
     res.render('login')
-})
+});
 
 router.post('/login', (req, res) => {
-    console.log('SESSION =====> ', req.session); // req.session === {}
+    // console.log('SESSION =====> ', req.session); // req.session === {}
 
     // find the user by their username
     User.findOne({ username: req.body.username }).then((user) => {
 
         if (!user) {
-            // this user does not exist
-            res.render('login', { errorMessage: 'username does not exist' })
+            // if user does not exist
+            res.render('login', { errorMessage: 'Username is not registered. Try with other username.' })
         } else {
 
             // check if the password is correct
             if (bcrypt.compareSync(req.body.password, user.passwordHash)) {
-                req.session.user = user
-                res.send('password correct - logged in')
+                req.session.user = user;
+                res.send('Password correct - logged in.')
             } else {
-                res.render('login', { errorMessage: 'password wrong' })
+                res.render('login', { errorMessage: 'Incorrect password.' })
             }
-
         }
-
-    })
-
-})
+    });
+});
 
 
 
 // Iteration 3
 
 
+router.get('/protected', (req, res) => {
 
+    if (!req.session.user) {
+        res.render('main')
+    } else {
+        res.render('private')
+    }
 
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+  });
 
 
 module.exports = router;
