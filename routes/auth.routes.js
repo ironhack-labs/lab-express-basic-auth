@@ -71,16 +71,15 @@ router.post("/login", (req, res, next) => {
       return;
     }
   
-    // find user and send correct response
+    // 1. find if user doesn't exist, and redirect to login page
+    // 2. find existing user, check password / hashed password
+    // 3. patching session to the user
     User.findOne({ email })
     .then(user => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        // when we introduce session, the following line gets replaced with what follows:
-        // res.render('users/user-profile', { user });
- 
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) { 
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = user;
         res.redirect('/userProfile');
@@ -91,16 +90,38 @@ router.post("/login", (req, res, next) => {
       .catch((error) => next(error));
   });
 
+
   // 2. POST logout route ==> to log out user AND destroy session.
   router.post('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
   });
 
-// 3. GET Private / Public routes ==> to render part of our app only accessible behind authentication
-router.get('/main', (req, res) => res.render('views/main'));
+// 3. GET route for userProfile
+router.get("/userProfile", (req, res) => {
+  res.render("user-profile", {userInSession: req.session.currentUser});
+});
 
-router.get('/private', (req, res) => res.render('views/private'));
+// 3. GET  Main-Public / Private routes ==> to render part of our app only accessible behind authentication
+router.get('/main', (req, res) => {
+  if (req.session.currentUser) {
+    res.render("main", {userInSession: req.session.currentUser});
+  } else {
+    res.render("auth/login", {
+      errorMessage: `Please log in`,
+    });
+  }
+});
+
+router.get('/private', (req, res) => {
+  if (req.session.currentUser) {
+    res.render('private', {userInSession: req.session.currentUser});
+  } else {
+    res.render("auth/login", {
+      erroMessage: `Please log in.`,
+    });
+  }
+});
 
 
 module.exports = router;
