@@ -1,0 +1,31 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-5">
+
+            <h1>Iniciar Sesión</h1>
+
+            <form method="POST" action="/login">
+
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-dark btn-block">Iniciar Sesión</button>
+
+                {{#if errorMsg}}
+                <div style="background: red; color: white; text-align: center; padding: 10px; margin-top:10px">
+                    {{errorMsg}}</div>
+                {{/if}} 
+
+            </form>
+        </div>
+    </div>
+</div>
