@@ -1,2 +1,36 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="style-titles">{{title}}</h1>
+<p>Lab {{title}}</p>
+
+{{#if successMsg}}
+<div style="background: rgb(0, 69, 0); color: white; text-align: center; padding: 10px; margin-top:10px">
+    {{successMsg}}</div>
+{{/if}}
+
+
+
+<div class="container">
+    
+    <div class="row">
+
+        <div class="btn btn-dark">
+            <a href="/register">Ir a registro</a>
+        </div>
+
+        <div class="btn btn-dark">
+            <a href="/login">Ir a login</a>
+        </div>
+
+        <div class="btn btn-dark">
+            <a href="/log-out">Cerrar sesión</a>
+        </div>
+
+        <div class="btn btn-dark">
+            <a href="/main">Ir a Main</a>
+        </div>
+
+        <div class="btn btn-dark">
+            <a href="/private">Sesión Privada</a>
+        </div>
+
+    </div>
+</div>
