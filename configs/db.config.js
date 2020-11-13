@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/express-basic-auth-dev', {
+  .connect(`mongodb://localhost/${process.env.DATABASE}`, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

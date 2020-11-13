@@ -1,0 +1,22 @@
+<h2>LOGIN TO MY ACOUNT:</h2>
+
+<form action="/log-in" method="POST">
+
+ <label for="email">Email: </label>
+  <input type="email" name="email" id="email">
+
+  <br >
+
+  <label for="password">Password: </label>
+  <input type="password" name="password" id="password">
+
+  <br >
+
+  
+  <button class="button is-warning" style="margin: 10px;">LOG IN</button>
+
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
+
+</form>
