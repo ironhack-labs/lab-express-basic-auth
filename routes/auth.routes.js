@@ -7,14 +7,10 @@ const User = require('../models/user.model')
 const app = require('../app')
 
 
-// Endpoints
 
-// Formulario signup (renderizar - GET)
 router.get('/registro', (req, res) => res.render('auth/signup-form'))
 
 
-
-// Formulario signup (gestionar - POST)
 router.post('/registro', (req, res) => {
 
     const { username, password } = req.body
@@ -49,15 +45,10 @@ router.post('/registro', (req, res) => {
 
 
 
-
-
-
-
-// Formulario login (renderizar - GET)
 router.get('/iniciar-sesion', (req, res) => res.render('auth/login-form'))
 
 
-// Formulario login (gestionar - POST)
+
 router.post('/iniciar-sesion', (req, res, next) => {
 
     const { username, password } = req.body
@@ -81,7 +72,7 @@ router.post('/iniciar-sesion', (req, res, next) => {
                 return
             }
 
-            req.session.currentUser = theUser               // inicio de sesión
+            req.session.currentUser = theUser               
             res.render('index', { successMsg: '¡Bienvenid@,' + theUser.username + '!' })
         })
         .catch(err => console.log(err))
@@ -90,9 +81,6 @@ router.post('/iniciar-sesion', (req, res, next) => {
 
 
 
-
-
-// CIerre sesión
 router.get('/cerrar-sesion', (req, res) => req.session.destroy((err) => res.redirect("/")))
 
 
