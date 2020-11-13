@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const chalk = require('chalk');
+const session           = require('express-session');
+const MongoStore        = require('connect-mongo')(session)
 
 
 const app_name = require('./package.json').name;
@@ -38,6 +40,18 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 app.use('/sign-up', index);
 app.use('/log-in', index);
+
+//CONFIGURACIÓN DE LAS COOKIES
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 },
+    saveUninitialized: true,
+    resave: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  }));
 
 module.exports = app;
 
