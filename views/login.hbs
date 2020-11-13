@@ -1,0 +1,21 @@
+<h2>LOG IN:</h2>
+
+<form action="/log-in" method="POST">
+
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username">
+
+    <br >
+
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password">
+
+    <br >
+
+    <button type="submit" class="button is-warning">LOG IN</button>
+
+    {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+    {{/if}}
+
+</form>
