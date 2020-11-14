@@ -1,0 +1,24 @@
+<div class="center ">
+    <h1>Inicia sesión</h1>
+    <form action="/private" method="POST">
+        <label class="singuplabel">Usuario</label>
+        <br>
+
+        <input type="text" name="username" class="singupinput"> <br>
+        <label class="singuplabel">Contraseña</label>
+        <br>
+
+        <input type="password" name="password" class="singupinput">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-dark">Inicia Sesión!</button>
+        <br>
+        <br>
+
+    </form>
+    {{#if errorMsg}}
+    <div style="background: red; color: white; text-align: center; padding: 10px; margin-top:10px">
+        {{errorMsg}}</div>
+    {{/if}}
+    <a href="/" class="btn btn-dark">Vuelve a inicio</a>
+</div>

@@ -1,8 +1,16 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+.center {
+  text-align: center;
+  padding-top: 30px; }
+
+.singupinput {
+  width: 70%; }
+
+.singuplabel {
+  padding-top: 30px;
+  padding-bottom: 15px;
+  font-weight: bolder; }
+
+/*# sourceMappingURL=style.css.map */

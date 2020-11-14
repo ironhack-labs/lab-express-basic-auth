@@ -1,0 +1,22 @@
+<div class="center ">
+<h1>Regístrate</h1>
+<form action="/main" method="POST">
+<label class="singuplabel" >Usuario</label>
+<br>
+
+<input type="text" name="username" class="singupinput"> <br>
+ <label class="singuplabel" >Contraseña</label>
+<br>
+
+<input type="password" name= "password" class="singupinput">
+<br>
+<br>
+<button type="submit" class="btn btn-dark">Regístrate!</button>
+<br>
+<br>
+{{#if errMsg}}
+<div style="background: red; color: white; text-align: center; padding: 10px; margin-top:10px"></div>
+{{/if}}
+
+</form><a href="/" class="btn btn-dark">Vuelve a inicio</a>
+</div>
