@@ -49,7 +49,7 @@ router.post('/private', (req, res,next)=>{
             return
          }
             req.session.currentUser = user1        // inicio de sesión
-   res.redirect("/");        })
+   res.render("auth/private",user1);        })
         .catch(err => console.log(err))
         })
 router.get('/cerrar-sesion', (req, res) => req.session.destroy((err) => res.redirect("/")))
