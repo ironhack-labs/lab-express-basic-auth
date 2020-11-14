@@ -1,13 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User.model');
+const express   = require('express');
+const router    = express.Router();
+const bcrypt    = require('bcrypt');
+const User      = require('../models/User.model');
 
 
 //GET HOME PAGE
 router.get('/', (req, res, next) => res.render('index'));
 
 //GET SIGN UP PAGE
-
 router.get('/sign-up', (req, res, next) => {
     res.render('signUp')
 })
@@ -41,7 +41,6 @@ router.post('/sign-up', (req, res, next) => {
 })
 
 //GET LOG IN PAGE
-
 router.get('/log-in', (req, res, next) => {
     res.render('login')
 })
@@ -57,10 +56,11 @@ router.post('/log-in', (req, res, next) => {
             .then((resultFromBcrypt) => {
                 console.log(resultFromBcrypt)
                 if(resultFromBcrypt) {
+                    res.render('welcome')
                     req.session.currentUser = email
                     console.log(req.session)
-                    res.redirect('/')
-                    //req.session.destroy
+                    
+                   
                 } else {
                     res.render('login', {errorMessage: 'Contraseña incorrecta. Por favor, vuelva a intentarlo'})
                 }
