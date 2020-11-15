@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+
+    <h1>{{webTitle}}</h1>
+    <p>Welcome to {{webTitle}}</p>
+    <hr>
+    {{#if successMsg}}
+    <div style="background: blue; color: white; text-align: center; padding: 10px; margin-top:10px">
+        {{successMsg}}
+    </div>
+    {{/if}}
+</div>

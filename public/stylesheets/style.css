@@ -1,8 +1,7 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: sans-serif; }
 
-a {
-  color: #00B7FF;
-}
+.navbar {
+  margin-bottom: 40px; }
+
+/*# sourceMappingURL=style.css.map */
