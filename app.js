@@ -88,7 +88,7 @@ app.post('/log-in', (req, res, next)=>{
             bcrypt.compare(password, result.password)
             .then((resultFromBcrypt)=>{
                 if(resultFromBcrypt){
-                    req.session.currentUser = email
+                    req.session.currentUser = username
                     res.redirect('/')
                     // req.session.destroy
                 } else {
