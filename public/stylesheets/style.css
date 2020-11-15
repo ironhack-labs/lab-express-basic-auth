@@ -1,8 +1,22 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 a {
-  color: #00B7FF;
+  color: white;
+}
+
+button a {
+  color: black;
+}
+
+img{
+  width: 100px;
 }
