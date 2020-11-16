@@ -1,0 +1,18 @@
+<form action="/login" method="POST" id="form">
+  <h2>Log in</h2>
+  <label for="username">Username</label>
+  <input type="text" name="username" required="true">
+  <label for="password">Password</label>
+  {{!-- Nota**: No es suficiente con bloquearlo desde el Front --}}
+  <input type="password" name="password" required="true">
+
+  {{#if errorMessage }}
+    <div>{{errorMessage}}</div>
+  {{/if}}
+
+  <button><a href="/">Sign in</a></button>
+
+  <pclass>
+    Don't have an account? <a href="/sign-up">Sign up</a>
+  </p>
+</form> 
