@@ -1,15 +1,15 @@
 <form id="form" action="/sign-up" method="POST">
-    <h2>Sing up</h2>
+    <h2>Sing Up</h2>
     <label for="username">Username</label><br>
     <input type="text" name="username" id="username"
-      placeholder="Your username" required="true">
+      placeholder="Username" required="true">
 
     <label for="password">Password</label><br>
     <input type="password" name="password" id="password"
-      placeholder="********" required="true">
+      placeholder="Password" required="true">
 
-    <button type="submit">Create account</button>
+    <button type="submit">Sign Up</button>
     {{#if errorMessage}}
-    <div class="error-message">{{ errorMessage }}</div>
+    <div>{{errorMessage}}</div>
     {{/if}}
   </form>
