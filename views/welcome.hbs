@@ -1,5 +1,14 @@
 <h1>{{title}}</h1>
 
 <p>Congrats!! You are correctly log in !!!!</p>
+Please go <a href="/">Home</a> to see new and exclusive content.
+
+
+
+{{#if session}}
+    {{>main}} 
+    {{>private}}
+{{/if}}
+
 
 <img src="https://i.pinimg.com/originals/66/a8/f8/66a8f8ddd65bf99464990f3d7ffe779e.jpg" alt="welcome-meme">

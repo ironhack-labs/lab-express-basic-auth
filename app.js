@@ -18,6 +18,17 @@ const debug                 = require('debug')(`${app_name}:${path.basename(__fi
 
 const app                   = express();
 
+
+//CONFIGURACIÓN DE LAS COOKIES
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 
+  })
+}));
+
 // require database configuration
 require('./configs/db.config');
 
@@ -32,6 +43,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+hbs.registerPartials(__dirname + "/views/partials")
+
 
 // default value for title local
 app.locals.title = 'Basic Auth Lab';
@@ -40,19 +53,9 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 app.use('/sign-up', index);
 app.use('/log-in', index);
+app.use('/main', index);
+app.use('/private', index);
 
-
-//CONFIGURACIÓN DE LAS COOKIES
-app.use(session({
-    secret: "basic-auth-secret",
-    cookie: { maxAge: 60000 },
-    saveUninitialized: true,
-    resave: true,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
-    })
-  }));
 
 module.exports = app;
 

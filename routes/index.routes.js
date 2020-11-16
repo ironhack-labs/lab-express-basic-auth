@@ -60,6 +60,7 @@ router.post('/log-in', (req, res, next) => {
                     req.session.currentUser = email
                     console.log(req.session)
                     
+                    
                    
                 } else {
                     res.render('login', {errorMessage: 'Contraseña incorrecta. Por favor, vuelva a intentarlo'})
@@ -68,5 +69,29 @@ router.post('/log-in', (req, res, next) => {
         }
     })
 })
+
+
+router.use((req, res, next) => {
+    if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+      next(); // ==> go to the next route ---
+    } else {                          //    |
+      res.redirect("/log-in");         //    |
+    }                                 //    |
+  });
+
+//GET MAIN
+
+router.get('/main', (req, resp, next)=>{
+    resp.render('main');
+});
+
+router.get('/private', (req, resp, next)=>{
+    resp.render('private');
+});
+
+
+
+
+
 
 module.exports = router;
