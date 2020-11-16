@@ -81,4 +81,39 @@ router.post('/log-in', (req,res,send)=>{
   })
 })
 
+router.get('/log-out', (req, res, next)=>{
+  req.session.destroy((err)=>{
+    res.redirect('/logIn')
+  })
+})
+
+router.use((req, res, next) => {
+  if (req.session.currentUser) { // <== if there's user in the session (user is logged in)
+    next(); // ==> go to the next route ---
+  } else {
+    res.redirect("/log-in");
+  }
+});
+
+
+router.get('/main', (req,res,next)=>{
+  res.render('main')
+})
+
+router.get('/private', (req,res,next)=>{
+  res.render('private')
+})
+
+router.get('/log-out', (req,res,next)=>{
+  req.session.destroy()
+  res.redirect('/')
+})
+
+
+
+
+
+
+
+
 module.exports = router;
