@@ -46,7 +46,7 @@ router.post('/sign-up', (req, res, next) => {
                         res.send(err)
                     })
             } else {
-                res.render('login', { errorMessage: 'Este usuario ya existe. ¿Intentabas hacer un Log In?' })
+                res.render('logIn', { errorMessage: 'Este usuario ya existe. ¿Intentabas hacer un Log In?' })
             }
         })
 })
@@ -72,12 +72,32 @@ router.post('/log-in', (req, res, next)=>{
                 res.redirect('/')
                 //req.session.destroy
             } else {
-                res.render('logIn', {errorMessage: 'Contraseña incporrecta. Por favor vuelva a intentarlo.'})
+                res.render('logIn', {errorMessage: 'Contraseña incorrecta. Por favor vuelva a intentarlo.'})
             }
           })  
         }
     })
 })
+
+router.get('/log-out', (req, res, next)=>{
+    req.session.destroy()
+    res.redirect('/')
+})
+
+router.use((req, res, next)=>{
+    if(req.session.currentUser){
+        next();
+    } else{
+        res.redirect('/log-in')
+    }
+})
+
+router.get('/main', (req, res, next)=>{
+    res.render('main')
+})
+
+router.get('/private', (req, res, next)=>{
+    res.render('private')
+})
+
 module.exports = router;
-
-
