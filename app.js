@@ -50,8 +50,6 @@ app.locals.title = 'LAB | Basic Auth';
 const index = require('./routes/index.routes');
 app.use('/', index);
 
-// const auth = require('./routes/auth');
-// app.use('/auth', auth);
 
 const router = require('./routes/auth');
 app.use('/', router);
