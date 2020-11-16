@@ -26,29 +26,33 @@ router.get('/sign-up', (req, res, next)=>{
 });
 
 router.post('/sign-up', (req, res, next)=>{
-    const {email, password} = req.body;
-    User.findOne({email: email})
-        .then((result)=>{
-            if(!result){
-                bcrypt.genSalt(10)
-                    .then((salt)=>{
-                        bcrypt.hash(password, salt)
-                            .then((hashedPass)=>{
-                                const hashedUser = {email: email, password: hashedPass};
-                                User.create(hashedUser)
-                                    .then((result)=>{
-                                        res.render('index', {successMessage: 'The user has been succesfully created! May the force be with you.'});
+    if(email.length<=0 || password.length<=0){
+        res.render('error');
+    } else {
+        const {email, password} = req.body;
+            User.findOne({email: email})
+                .then((result)=>{
+                    if(!result){
+                        bcrypt.genSalt(10)
+                            .then((salt)=>{
+                                bcrypt.hash(password, salt)
+                                    .then((hashedPass)=>{
+                                        const hashedUser = {email: email, password: hashedPass};
+                                        User.create(hashedUser)
+                                            .then((result)=>{
+                                                res.render('index', {successMessage: 'The user has been succesfully created! May the force be with you.'});
+                                            });
                                     });
                             });
-                    });
-            } else {
-                res.render('logIn', {errorMessage: 'El usuario ya existe. Quieres hacer log in?'});
-            }
-        })
-        .catch((err)=>{
-            res.send(err);
-            console.log(err);
-        });
+                    } else {
+                        res.render('logIn', {errorMessage: 'El usuario ya existe. Quieres hacer log in?'});
+                    }
+                })
+                .catch((err)=>{
+                    res.send(err);
+                    console.log(err);
+                });
+    }
 });
 
 router.get('/log-in', (req, res, next)=>{
@@ -56,6 +60,9 @@ router.get('/log-in', (req, res, next)=>{
 });
 
 router.post('/log-in', (req, res, next)=>{
+    if(email.length<=0 || password.length<=0){
+        res.render('error');
+    } else {
     const {email, password} = req.body;
     User.findOne({email: email})
         .then((result)=>{
@@ -76,7 +83,8 @@ router.post('/log-in', (req, res, next)=>{
         .catch((err)=>{
             res.send(err);
             console.log(err);
-        })
+        });
+    }
 });
 
 router.get('/log-out', (req, res, next)=>{
