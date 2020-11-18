@@ -2,10 +2,35 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require("../models/User.model");
+const passport = require('passport');
 
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
+
+router.get('/login', (req, res) => {
+    res.render('login')
+});
+
+router.get('/github', passport.authenticate('github'));
+
+router.get('/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+router.get(
+    '/github/callback',
+    passport.authenticate('github', {
+        successRedirect: '/private',
+        failureRedirect: '/'
+    })
+)
+
+router.get('/google/callback', 
+  passport.authenticate('google', { 
+        successRedirect: '/private',
+        failureRedirect: '/'
+    })
+);
+
 
 router.post('/signup', (req, res) => {
     //console.log('POST works')
@@ -42,9 +67,7 @@ router.post('/signup', (req, res) => {
     } 
 });
 
-router.get('/login', (req, res) => {
-    res.render('login')
-});
+
 
 router.post('/login', (req, res) => {
     console.log(req.body)
@@ -64,6 +87,8 @@ router.post('/login', (req, res) => {
         }
     })  
 });
+
+
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy(err => {

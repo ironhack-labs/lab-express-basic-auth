@@ -1,12 +1,35 @@
 <h1>This is the SIGNUP page</h1>
 
 <form action="/signup" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username">
-  <label for="password">Password</label>
-  <input type="password" name="password">
-  <button type="submit">Sign up</button>
+  <p>
+    <label for="username">Username</label>
+    <input type="text" name="username">
+  </p>
+  
+  <p>
+    <label for="password">Password</label>
+    <input type="password" name="password">
+  </p>
+
+  <p>
+    <button type="submit" style="width: 200px; margin-bottom: 25px">Sign up</button>
+  </p>
+
+  
 </form>
+
+<p>
+    <form action="/github" method="GET">
+        <button style="background-color: pink; width:200px">Signup with Github 🐱🐙</button>
+    </form>
+</p>
+
+<p>
+    <form action="/google" method="GET">
+        <button style="background-color: rgb(255, 255, 144); width:200px">Signup with Google 🌈</button>
+    </form>
+</p>
+
 {{#if message}}
   <p style="color: red;">{{message}}</p>
 {{/if}}
