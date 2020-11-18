@@ -24,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Express View engine setup
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,7 +34,30 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+
+// express-session configuration
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    saveUninititalized: false,
+    resave: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000
+    })
+  })
+)
+
+//  routes
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/', auth);
+
 
 module.exports = app;
