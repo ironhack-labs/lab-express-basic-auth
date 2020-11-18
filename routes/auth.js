@@ -7,6 +7,30 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+
+  //check if username exists in db, and if not re-render login
+  User.findOne({ username: username }).then((usernameFromDB) => {
+    if (usernameFromDB === null) {
+      console.log("username from db", usernameFromDB);
+      res.render("auth/login", { message: "Invalid credentials" });
+    }
+    if (bcrypt.compareSync(password, usernameFromDB.password)) {
+      //if password and hash match, login the user
+      req.session.user = usernameFromDB;
+      res.redirect("/");
+    } else {
+      res.render("auth/login", { message: "Invalid credentials" });
+    }
+  });
+});
+
+//signup
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
   if (password.length < 8) {
@@ -25,6 +49,7 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync();
       console.log(salt);
       const hash = bcrypt.hashSync(password, salt);
+
       User.create({ username: username, password: hash })
         .then((userFromDB) => {
           req.session.user = userFromDB;
