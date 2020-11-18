@@ -8,8 +8,8 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-// const session = require("express-session");
-// const MongoStore = require("connect-mongo")(session);
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 const app_name = require("./package.json").name;
 const debug = require("debug")(
@@ -27,6 +27,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
 // Express View engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -40,7 +48,11 @@ const index = require("./routes/index.routes");
 app.use("/", index);
 //signup route
 
-const signupRouter = require("./routes/auth");
-app.use("/auth", signupRouter);
+const authRouter = require("./routes/auth");
+app.use("/", authRouter);
+
+const otherRoutes = require("./routes/otherRoutes");
+app.use("/", otherRoutes);
+
 //end
 module.exports = app;
