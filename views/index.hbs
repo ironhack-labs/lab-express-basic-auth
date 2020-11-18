@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="topLinks">
+    <a id="red" href="/authenticate/signup">Please signup</a>
+    <a id="blue" href="/authenticate/login">Please Login</a>
+</div>
+<p id="choose">Choose the red pill or the blue pill?</p>
+
+{{#if user}}
+<h1 id="yourNameHere">{{user.username}}</h1>
+<h1 id="welcomeMessage"> Welcome to your Homepage I Know its not much but its home</h1>
+<div id="topLinks">
+    <a href="/main"> Main Page</a>
+    <a href="/private"> Private page</a>
+</div>
+{{/if}}

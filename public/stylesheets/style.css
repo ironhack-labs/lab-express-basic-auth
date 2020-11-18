@@ -2,7 +2,45 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+#choose {
+  text-align: center;
+}
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 50%;
+  padding-top: 20px;
+}
+#topLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#yourNameHere {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 50px;
+}
+#welcomeMessage {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#red {
+  background-color: red;
+}
+#blue {
+  background-color: blue;
+}
+#forms {
+  display: flex;
+  flex-direction: column;
+}
+#formLine {
+  height: 30px;
+  font-size: 16px;
 }
