@@ -1,0 +1,13 @@
+<form action="/login" method="post">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Your username" id="username">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Your password">
+
+    <button type="submit">Login</button>
+
+    <h3 style='color: red'>{{errorMessage}}</h3>
+
+</form>
