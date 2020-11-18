@@ -47,7 +47,7 @@ router.post("/signup", (req, res) => {
   //checking if username already exists:
   User.findOne({ username: username }).then((usernameFound) => {
     if (usernameFound !== null) {
-      res.render("auth/signup", { message: "Wrong credentials" });
+      res.render("auth/signup", { message: "Username already exists" });
     } else {
       //create user and hash the password:
       const salt = bcrypt.genSaltSync();
