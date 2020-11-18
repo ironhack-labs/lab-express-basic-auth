@@ -13,21 +13,25 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    console.log("You need to provide both; your email and your password");
+    res.render("auth/login", { errorMessage: "Please fill all fields" });
+    return;
   }
 
   User.findOne({ username }).then((userFromDB) => {
     if (!userFromDB) {
-      console.log("please provide a correct username");
+      res.render("auth/login", {
+        errorMessage: "Please provide correct username",
+      });
       return; //   error handle and say wrong username
     }
     bcrypt.compare(password, userFromDB.password).then((isSamePassword) => {
       if (!isSamePassword) {
-        console.log("Wrong password");
+        res.render("auth/login", {
+          errorMessage: "Password incorrect. Try again!",
+        });
         return;
       }
-      // req.session.user || in this case, everytime we assign something to req.session we are storing it in the memory
-      // DOWN is how we LOG IN
+
       req.session.user = userFromDB;
       console.log("This user is logged in", userFromDB);
       res.render("auth/profile", { userFromDB });
@@ -54,7 +58,9 @@ router.post("/signup", (req, res) => {
   // checking if the user already exists by using findOne in database //
   User.findOne({ username }).then((userBack) => {
     if (userBack) {
-      res.render("auth/signup", { errorMessage: "Username already taken" });
+      res.render("auth/signup", {
+        errorMessage: "Username already taken. Come up with something new",
+      });
       return;
     }
 
