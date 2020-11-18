@@ -1,0 +1,10 @@
+<form action="/login" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username">
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  <button type="submit">Log in</button>
+</form>
+{{#if message}}
+  <p style="color: red;">{{message}}</p>
+{{/if}}

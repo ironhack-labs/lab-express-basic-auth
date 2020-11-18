@@ -7,31 +7,31 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-// router.get('/login', (req, res) => {
-//   res.render('login');
-// });
+router.get('/login', (req, res) => {
+  res.render('login');
+});
 
-// router.post('/login', (req, res, next) => {
-//   // get username and password
-//   const { username, password } = req.body;
-//   // check if username is correct -> exists in our database if not render login again
-//   User.findOne({ username: username })
-//     .then(found => {
-//       if (found === null) {
-//         res.render('login', { message: 'Invalid credentials' })
-//       }
-//       // username exists in our database
-//       // check if the password matches the password for that user in the database
-//       if (bcrypt.compareSync(password, found.password)) {
-//         // password and hash match
-//         // login the user
-//         req.session.user = found;
-//         res.redirect('/');
-//       } else {
-//         res.render('login', { message: 'Invalid credentials' })
-//       }
-//     })
-// });
+router.post('/login', (req, res, next) => {
+  // get username and password
+  const { username, password } = req.body;
+  // check if username is correct -> exists in our database if not render login again
+  User.findOne({ username: username })
+    .then(found => {
+      if (found === null) {
+        res.render('login', { message: 'Invalid credentials' })
+      }
+      // username exists in our database
+      // check if the password matches the password for that user in the database
+      if (bcrypt.compareSync(password, found.password)) {
+        // password and hash match
+        // login the user
+        req.session.user = found;
+        res.redirect('/');
+      } else {
+        res.render('login', { message: 'Invalid credentials' })
+      }
+    })
+});
 
 
 router.post('/signup', (req, res, next) => {
