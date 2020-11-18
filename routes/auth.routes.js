@@ -24,7 +24,7 @@ router.post('/login', (req, res, next) => {
         req.session.user = found;
         res.redirect('/');
       } else {
-          res.render('login', { message: 'Invalid credentials' })
+        res.render('login', { message: 'Invalid credentials' });
       }
     })
     .catch((err) => {
@@ -36,38 +36,38 @@ router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   if (password.length < 8) {
     res.render('signup', { message: 'Your password must be 8 chars min' });
-  }
-  if (username === '') {
+  } else if (username === '') {
     res.render('signup', { message: 'You username cannot be empty' });
+  } else {
+    User.findOne({ username: username }).then((found) => {
+      if (found !== null) {
+        res.render('signup', { message: 'This username is already taken' });
+      } else {
+        const salt = bcrypt.genSaltSync();
+        console.log(salt);
+        const hash = bcrypt.hashSync(password, salt);
+        User.create({ username: username, password: hash })
+          .then((dbUser) => {
+            req.session.user = dbUser;
+            res.redirect('/');
+          })
+          .catch((err) => {
+            console.log(err);
+            next(err);
+          });
+      }
+    });
   }
-  User.findOne({ username: username }).then((found) => {
-    if (found !== null) {
-      res.render('signup', { message: 'This username is already taken' });
+});
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      next(err);
     } else {
-      const salt = bcrypt.genSaltSync();
-      console.log(salt);
-      const hash = bcrypt.hashSync(password, salt);
-      User.create({ username: username, password: hash })
-        .then((dbUser) => {
-          req.session.user = dbUser;
-          res.redirect('/');
-        })
-        .catch((err) => {
-          console.log(err);
-          next(err);
-        });
+      res.redirect('/');
     }
   });
 });
-
-router.get('/logout', (req, res, next) =>{
-    req.session.destroy((err) => {
-        if(err){
-            next(err)
-        } else {
-            res.redirect('/')
-        }
-    })
-})
 
 module.exports = router;
