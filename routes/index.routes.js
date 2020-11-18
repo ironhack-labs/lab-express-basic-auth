@@ -28,5 +28,11 @@ router.get('/private', loginCheck(), (req, res, next) => {
   res.render('private');
 });
 
+router.get('/main', loginCheck(), (req, res, next) => {
+    console.log('what is going on here')
+    res.render('main');
+  });
+  
+
 
 module.exports = router;

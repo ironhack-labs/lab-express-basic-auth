@@ -67,15 +67,15 @@ router.post('/signup', (req, res, next) => {
     })
 });
 
-// router.get('/logout', (req, res, next) => {
-//   req.session.destroy(err => {
-//     if (err) {
-//       next(err);
-//     } else {
-//       res.redirect('/')
-//     }
-//   })
-// });
+router.get('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) {
+      next(err);
+    } else {
+      res.redirect('/')
+    }
+  })
+});
 
 
 module.exports = router;
