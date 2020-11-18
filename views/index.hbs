@@ -2,8 +2,15 @@
 <p>Welcome to {{title}}</p>
 
 {{#if user}}
+
 <h1>Welcome {{user.username}}</h1>
+<a href="/main">Main</a> |
+<a href="/private">Private</a> |
 <a href="/auth/logout">Logout</a>
+
 {{else}}
-<a href="/auth/signup">Signup</a>
+
+<a href="/auth/signup">Sign up</a> |
+<a href="/auth/login">Login</a>
+
 {{/if}}

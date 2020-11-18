@@ -11,6 +11,46 @@ const userShouldNotBeAuth = (req, res, next) => {
   next(); 
 }
 
+router.get('/login', userShouldNotBeAuth, (req, res, next) => {
+  res.render('auth/login');
+})
+
+router.post('/login', userShouldNotBeAuth, (req, res, next) => {
+  const { username, password } = req.body; 
+
+  if (username.length < 5) {
+    return res.render('auth/login', {
+      errorMessage: 'Your username should be at least 5 characters long.'
+    })
+  }
+
+  if (password.length < 8) {
+    return res.render('auth/login', {
+      errorMessage: 'Your password should be at least 8 characters long.'
+    })
+  }
+
+  User.findOne({ username }).then(user => {
+    if (!user) {
+      return res.render('auth/login', {
+        errorMessage: 'The username you entered does not exist.'
+      })
+    }
+
+    bcrypt.compare(password, user.password).then(isSamePassword => {
+      if (!isSamePassword) {
+        return res.render('auth/login', {
+          errorMessage: 'Wrong password!'
+        })
+      }
+
+      req.session.user = user;
+      res.redirect('/'); 
+    })
+  })
+
+})
+
 router.get('/signup', userShouldNotBeAuth, (req, res, next) => {
   res.render('auth/signup');
 });
@@ -52,8 +92,7 @@ router.post('/signup', userShouldNotBeAuth, (req, res) => {
       })
       .then(createdUser => {
         console.log('a user was created:', createdUser);
-        req.session.user = createdUser; 
-        res.redirect('/'); 
+        res.redirect('login'); 
       })
 
   })
