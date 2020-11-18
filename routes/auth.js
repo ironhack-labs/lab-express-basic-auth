@@ -8,16 +8,10 @@ const salt = 10;
 //middleware
 const shouldNotBeLogged = (req, resp, next) => {
   if (req.session.user) {
-    return redirect("/");
+    return resp.render("index", { errMessage: "Already logged in" });
     console.log("already logged in", req.session.user);
   }
   next();
-};
-
-const mustFillAllFields = (req, resp, next) => {
-  if (!req.body.username || !req.body.password) {
-    return resp.render("/");
-  }
 };
 
 router.get("/login", shouldNotBeLogged, (req, resp, next) => {
