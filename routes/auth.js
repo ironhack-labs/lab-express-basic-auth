@@ -15,15 +15,15 @@ router.get('/login', (req, res) => {
 router.post('/signup', (req, res, next) => {
     const { username, password } = req.body;
     if (password.length < 8) {
-        res.render('signup', { message: 'Password has to be longer than 8 characters' });
+        return res.render('signup', { message: 'Password has to be longer than 8 characters' });
     }
     if (username === '') {
-        res.render('signup', { message: 'Username has to be provided' });
+        return res.render('signup', { message: 'Username has to be provided' });
     }
     User.findOne({ username })
     .then((dbUser) => {
         if (dbUser !== null) {
-            res.render('signup', { message: 'This username has already been taken. Try a different one.' });
+            return res.render('signup', { message: 'This username has already been taken. Try a different one.' });
         } else {
             const salt = bcrypt.genSaltSync();
             const hash = bcrypt.hashSync(password, salt);
