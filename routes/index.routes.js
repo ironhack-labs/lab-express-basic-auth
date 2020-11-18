@@ -7,12 +7,13 @@ router.get('/', (req, res, next) => {
     res.render('index', { user: loggedUser });
 });
 
-const loginCheck = (req, res, next) => {
-    console.log(req.session)
-    if (req.session.user){
-        next()
-    } else {
-        res.redirect('/login')
+const loginCheck = () => {
+    return (req, res, next) => {
+        if (req.session.user) {
+        next();
+        } else {
+        res.redirect('/login');
+        }
     }
 }
 
