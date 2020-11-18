@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<button type="submit"><a href="/login">Log In</a></button>
+<button type="submit"><a href="/signup">Sign Up</a></button>
+<button type="submit"><a href="/main">Main</a></button>
+<button type="submit"><a href="/private">Private</a></button>
+
+{{#if errMessage}}
+{{errMessage}}
+{{/if}}
