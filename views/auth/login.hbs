@@ -1,0 +1,16 @@
+<h1>LOGIN PAGE</h1>
+
+<form action="/auth/login" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name='username' placeholder="Your username">
+    <label for="password">🔑</label>
+    <input type="password" name ="password" placeholder='Your password'>
+    <button type="submit"> Login🧚🏼‍♀️ </button>
+</form>
+<br>
+<br>
+<a href="/"> Go back to homepage</a>
+
+{{#if errorMessage}}    
+    <h3 style="color: red;">{{errorMessage}}</h3>   
+{{/if}}

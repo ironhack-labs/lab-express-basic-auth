@@ -1,0 +1,13 @@
+<h2> SIGN UP PAGE </h2>
+
+<form action="/auth/signup" method='post'>
+    <input type="text" name='username' placeholder="Your username">
+    <input type="password" name ="password" placeholder='Your password'>
+    <button type="submit"> Create </button>
+</form>
+<br>
+<a href="/"> Go back</a>
+
+{{#if errorMessage}}    
+    <h3 style="color: red;">{{errorMessage}}</h3>   
+{{/if}}
