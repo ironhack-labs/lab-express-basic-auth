@@ -5,15 +5,24 @@ const bcrypt = require("bcryptjs");
 const salt = 10;
 const app = require("../app");
 
-// const shouldNotBeAuthenticated = (req, res, next) => {
-//   if (req.session.user) {
-//     return res.redirect("/");
-//   }
-//   next();
-// };
+const shouldBeAuthenticated = (req, res, next) => {
+  if (!req.session.user) {
+    return res.render("index", {
+      errorMessage: "You are not authorized",
+    });
+  }
+  next();
+};
 
 /* GET home page */
 router.get("/", (req, res, next) => res.render("index"));
+
+router.get("/main", shouldBeAuthenticated, (req, res) => {
+  res.render("main");
+});
+router.get("/private", shouldBeAuthenticated, (req, res) => {
+  res.render("private");
+});
 
 router.get("/signup", (req, res) => {
   res.render("signup");
@@ -45,8 +54,11 @@ router.post("/signup", (req, res) => {
         })
         .then((userCreated) => {
           console.log("userCreated:", userCreated);
-          // req.session.user = userCreated;
-          res.redirect("/");
+          req.session.user = userCreated;
+
+          res.render("index", {
+            generalMessage: "You just signed up and logged in",
+          });
         });
     })
     .catch((err) => {
@@ -56,50 +68,55 @@ router.post("/signup", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  // if (req.session.user) {
-  //   return res.redirect("/");
-  // }
-  // next();
+  if (req.session.user) {
+    return res.render("index", {
+      errorMessage: "You are already logged in, so log out to log in again",
+    });
+  }
   res.render("login");
 });
 
-router.post(
-  "/login",
-  /*shouldNotBeAuthenticated,*/ (req, res) => {
-    const { username, password } = req.body;
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
 
-    // if (username.length < 4 || password.length < 8) {
-    //   //   error handling
-    // }
+  User.findOne({ username }).then((user) => {
+    if (!user) {
+      res.render("login", {
+        errorMessage: "User does not exist",
+      });
 
-    User.findOne({ username }).then((user) => {
-      if (!user) {
-        // please provide a correct username
-
+      return; //   error handle and say wrong username
+    }
+    console.log(user);
+    bcrypt.compare(password, user.password).then((isSamePassword) => {
+      if (!isSamePassword) {
         res.render("login", {
-          errorMessage: "User does not exist",
+          errorMessage: "Password doesn't match",
         });
 
-        return; //   error handle and say wrong username
+        return;
       }
-      console.log(user);
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
-        if (!isSamePassword) {
-          // wrong password. try again
-          //  error handle and say wrong password
-          res.render("login", {
-            errorMessage: "Password doesn't match",
-          });
 
-          return;
-        }
-        console.log(user);
-        req.session.user = user;
-        console.log("You are now logged in");
-        res.redirect("/");
+      req.session.user = user;
+      res.render("index", {
+        generalMessage: "You are now logged in",
       });
     });
-  }
-);
+  });
+});
+
+// {{!-- added this to check if private and main worked  --}}
+router.get("/logout", shouldBeAuthenticated, function (req, res) {
+  req.session.destroy((err) => {
+    if (err) {
+      res.render("index", {
+        errorMessage: err,
+      });
+    }
+    res.render("index", {
+      generalMessage: "Succesfully logged out",
+    });
+  });
+});
 
 module.exports = router;
