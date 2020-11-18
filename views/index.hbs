@@ -1,2 +1,14 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<a href="/auth/signup"> Sing up</a>
+<a href="/auth/login">Log in</a>
+<br>
+<a href="/priv/main">Private 1</a>
+<a href="/priv/private">Private 2</a>
+
+{{#if errorMessage}}
+
+<h3 style='color: red'>{{errorMessage}}</h3>
+
+{{/if}}
