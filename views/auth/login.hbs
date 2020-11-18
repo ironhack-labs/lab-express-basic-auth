@@ -1,0 +1,11 @@
+
+{{#if err}}
+<h1>An error occured!. Try again</h1>
+{{/if}}
+<form action="/login" method="POST">
+    <label for="username">username</label>
+    <input type="text" name="username">
+    <label for="password">password</label>
+    <input type="password" name = "password">
+    <button type="submit">Login</button>
+</form>
