@@ -1,8 +1,12 @@
 {{#if userInSession}}
 <h2>Welcome, to your profile !{{ userInSession.username }}!</h2>
-<button>
-    <a href="/userProfile">Reload the page</a>
-</button>
+
+<h3><a href="/main">Go and see a cat</a></h3>
+<br>
+<h4><a href="/private">Shhhh!! this is a private image</a></h4>
+<form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+</form>
 {{else}}
 <p>Log in first !</p>
 <a href="/">Home</a>
