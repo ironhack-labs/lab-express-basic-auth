@@ -20,7 +20,7 @@ require('./configs/db.config');
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Express View engine setup
@@ -32,7 +32,26 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+const session = require('express-session');
+const MongoStore = require('connect-Mongo')(session); //return a function. You have to call it with a session object
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {maxAge: 1000 * 60 * 60 * 24},
+    saveUninitialized: false,
+    resave: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 1000 * 60 * 60 * 24,
+    }),
+  })
+)
+
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/', auth);
 
 module.exports = app;
