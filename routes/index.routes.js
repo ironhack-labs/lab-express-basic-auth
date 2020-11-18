@@ -24,9 +24,9 @@ const loginCheck = () => {
   }
 }
 
-// router.get('/private', loginCheck(), (req, res, next) => {
-//   res.render('private');
-// });
+router.get('/private', loginCheck(), (req, res, next) => {
+  res.render('private');
+});
 
 
 module.exports = router;

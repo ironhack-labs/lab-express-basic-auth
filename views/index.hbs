@@ -2,10 +2,11 @@
 <p>Welcome to {{title}}</p>
 
 
-{{!-- {{#unless user}} --}}
+{{#unless user}}
 <a href="/signup">Signup</a>
 <a href="/login">Login</a>
-{{!-- {{else}} --}}
-{{!-- <a href="/private">Private Page</a> --}}
+{{else}}
+<a href="/private">Private Page</a>
+<a href="/main">Main Page</a>
 {{!-- <a href="/logout">Logout</a> --}}
-{{!-- {{/unless}} --}}
+{{/unless}}
