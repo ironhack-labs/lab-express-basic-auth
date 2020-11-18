@@ -1,0 +1,13 @@
+<form action="/login" method="POST">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" minlength="4" pattern="\w+" required>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" min="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+
+    <button type="submit">Log in</button>
+</form>
+
+{{#if message}}
+<p style="color: brown;">{{message}}</p>
+{{/if}}
