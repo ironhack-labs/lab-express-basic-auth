@@ -11,23 +11,27 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
+//login
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
-
   //check if username exists in db, and if not re-render login
-  User.findOne({ username: username }).then((usernameFromDB) => {
-    if (usernameFromDB === null) {
-      console.log("username from db", usernameFromDB);
-      res.render("auth/login", { message: "Invalid credentials" });
-    }
-    if (bcrypt.compareSync(password, usernameFromDB.password)) {
-      //if password and hash match, login the user
-      req.session.user = usernameFromDB;
-      res.redirect("/");
-    } else {
-      res.render("auth/login", { message: "Invalid credentials" });
-    }
-  });
+  User.findOne({ username: username })
+    .then((usernameFromDB) => {
+      if (usernameFromDB === null) {
+        console.log("username from db", usernameFromDB);
+        res.render("auth/login", { message: "Invalid credentials" });
+      }
+      if (bcrypt.compareSync(password, usernameFromDB.password)) {
+        //if password and hash match, login the user
+        req.session.user = usernameFromDB;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", { message: "Invalid credentials" });
+      }
+    })
+    .catch((err) => {
+      console.log("error in login", err);
+    });
 });
 
 //signup
@@ -60,6 +64,26 @@ router.post("/signup", (req, res) => {
         });
     }
   });
+});
+
+const checkIfLoggedin = () => {
+  return (req, res, next) => {
+    //check if user is logged in:
+    if (req.session.user) {
+      next();
+    } else {
+      //otherwise back to login
+      res.redirect("/auth/login");
+    }
+  };
+};
+
+router.get("/main", checkIfLoggedin(), (req, res, next) => {
+  res.render("auth/main");
+});
+
+router.get("/secret", checkIfLoggedin(), (req, res, next) => {
+  res.render("auth/secret");
 });
 
 module.exports = router;
