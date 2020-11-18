@@ -4,11 +4,18 @@ const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 const salt = 10;
 
-router.get('/signup', (req, res, next) => {
+const userShouldNotBeAuth = (req, res, next) => {
+  if (req.session.user) {
+    return res.redirect('/'); 
+  }
+  next(); 
+}
+
+router.get('/signup', userShouldNotBeAuth, (req, res, next) => {
   res.render('auth/signup');
 });
 
-router.post('/signup', (req, res) => {
+router.post('/signup', userShouldNotBeAuth, (req, res) => {
   const { username, password } = req.body; 
 
   if (username.length < 5) {
@@ -57,6 +64,22 @@ router.post('/signup', (req, res) => {
     });
   })
 
+})
+
+const userShouldBeAuth = (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect('/auth/signup'); 
+  }
+  next(); 
+}
+
+router.get('/logout', userShouldBeAuth, (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.log('err destroying the session:', err); 
+    }
+    res.redirect('/');
+  })
 })
 
 module.exports = router;
