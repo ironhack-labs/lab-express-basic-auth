@@ -8,9 +8,8 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-// const session = require("express-session");
-// const MongoStore = require("connect-mongo")(session);
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
@@ -38,9 +37,26 @@ app.locals.title = "Express - Generated with IronGenerator";
 //main website
 const index = require("./routes/index.routes");
 app.use("/", index);
-//signup route
 
-const signupRouter = require("./routes/auth");
+//signup route
+const signupRouter = require("./routes/auth.routes");
 app.use("/auth", signupRouter);
+//session
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
+app.use(
+  require("node-sass-middleware")({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+    sourceMap: true,
+  })
+);
+
 //end
 module.exports = app;
