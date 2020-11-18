@@ -1,2 +1,18 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h2>Welcome {{#if user}} {{user.username}} {{/if}}</h2>
+
+{{#unless user}}
+<a href='/signup'>Sign up</a>
+<br>
+<a href='/login'>Login</a>
+<br>
+{{else}}
+<a href='/main'>Main</a>
+<br>
+<a href='/private'>Private</a>
+<br>
+<form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+</form>
+{{/unless}}
+
