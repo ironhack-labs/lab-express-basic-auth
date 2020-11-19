@@ -70,12 +70,12 @@ router.post("/auth/signup/", (req, resp, next) => {
           return bcrypt.hash(password, generatedSalt);
         })
         .then((hashedPassword) => {
-          User.create({ username, password: hashedPassword });
+          return User.create({ username, password: hashedPassword });
         })
         .then((userCreated) => {
           req.session.user = userCreated;
           resp.redirect("/");
-          console.log("user created");
+          console.log("user created", userCreated);
         });
     }
 

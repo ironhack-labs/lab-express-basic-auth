@@ -18,15 +18,6 @@ const debug = require("debug")(
 
 const app = express();
 
-app.use(
-  session({
-    secret: "my precious secret",
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
-);
-
 // require database configuration
 require("./configs/db.config");
 
@@ -35,6 +26,14 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "my precious secret",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
 
 // Express View engine setup
 app.set("views", path.join(__dirname, "views"));
