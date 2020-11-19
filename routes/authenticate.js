@@ -12,6 +12,7 @@ const ifAlreadySignedIn = (req, res, next) => {
   }
   next();
 };
+//this is going to make sure those that just try to access the private pages in the url with a /main wont be able too! You can only get to those pages if your logged in!
 const ifNotSignedIn = (req, res, next) => {
   if (!req.session.user) {
     return res.redirect("/");
@@ -71,10 +72,10 @@ router.post("/signup", ifAlreadySignedIn, (req, res) => {
       res.render("authenticate/signup", { errorMessage: err.message });
     });
 });
-
+// the login method follows the same logic as above, though here we check to make sure the passwords match using the compare method.
 router.get("/login", ifAlreadySignedIn, (req, res) => {
   res.render("authenticate/login");
-});
+}); //again same as above but with login
 router.post("/login", ifAlreadySignedIn, (req, res) => {
   const { username, password } = req.body;
   if (!username || password.length < 8) {
@@ -82,8 +83,9 @@ router.post("/login", ifAlreadySignedIn, (req, res) => {
       errorMessage: "Forgotten you're details? or have you not signed up yet?",
     });
     return;
-  }
+  } //checking the database, the findOne is a mongoose method that we can use
   User.findOne({ username }).then((user) => {
+    //checking if the name entered is not a username we recognise in the datebase then display the error below, this is linked to the login hbs in the same manner as the signup.
     if (!user) {
       res.render("authenticate/login", {
         errorMessage: "Sorry it doesnt look like you have an account!",
@@ -91,6 +93,9 @@ router.post("/login", ifAlreadySignedIn, (req, res) => {
 
       return;
     }
+    /*time for the magic again, this bcrypt has a method called compare, thank fuck for that, which is going to help us check
+    if the password the user enters on the form is the same as that cryptic string we have stroed in our database and somehow 
+    it can read that cryptic string with its magic and know if they are the same*/
     bcrypt.compare(password, user.password).then((isSamePassword) => {
       if (!isSamePassword) {
         res.render("authenticate/login", {
@@ -100,12 +105,18 @@ router.post("/login", ifAlreadySignedIn, (req, res) => {
 
         return;
       }
+      /* however if it is all good and they manage to remeber their password we 
+      get that good old req session on for the user, redirect them to the home page 
+      but this time itll be their home page thanks to those handlebars which render a 
+      different index page for logged in users*/
+
       req.session.user = user;
       res.redirect("/");
     });
   });
 });
 
+//because we have the function redirecting those that arent signed in and the links to these pages only appear when your signed in, they are nice and private to our users.
 router.get("/main", ifNotSignedIn, (req, res) => {
   res.render("main");
 });
