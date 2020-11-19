@@ -8,8 +8,15 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+
+
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const User = require('./models/User.model');
+const GithubStrategy = require('passport-github').Strategy
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(
@@ -24,6 +31,7 @@ require('./configs/db.config');
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
+// maybe an issue here and change to false if so?
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -48,6 +56,69 @@ app.use(
     }),
   })
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then(dbUser => {
+      done(null, dbUser);
+    })
+    .catch(err => {
+      done(err);
+    });
+});
+
+// if you want to do the regular user/login with password
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username })
+      .then(found => {
+        if (found === null) {
+          done(null, false, { message: 'Wrong credentials' });
+        } else if (!bcrypt.compareSync(password, found.password)) {
+          done(null, false, { message: 'Wrong credentials' });
+        } else {
+          done(null, found);
+        }
+      })
+      .catch(err => {
+        done(err, false);
+      });
+  })
+);
+
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+      callbackURL: 'http://127.0.0.1:3000/github/callback'
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // find a user with profile.id as githubId or create one
+      console.log(profile);
+      User.findOne({ githubId: profile.id })
+        .then(found => {
+          if (found !== null) {
+            done(null, found);
+          } else {
+            return User.create({ username: profile.username , githubId: profile.id}).then(dbUser => {
+              done(null, dbUser);
+            })
+          }
+        })
+        .catch(error => {
+          done(error);
+        })
+    }
+  )
+)
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const index = require('./routes/index.routes');
 app.use('/', index);
