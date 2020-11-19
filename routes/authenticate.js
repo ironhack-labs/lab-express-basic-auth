@@ -5,14 +5,14 @@ const bcrypt = require("bcryptjs");
 const app = require("../app");
 const salt = 10; // this is the number of times we are hashing the password
 
-//this is to stop someone who is already signed in from going to either the login or signup page, they are instantly redirected to the current page.
+//this is the middelware, after we send the request but before we get the response this is checking to see if the user exists, they are then redirected to the index page
 const ifAlreadySignedIn = (req, res, next) => {
   if (req.session.user) {
     return res.redirect("/");
   }
   next();
 };
-//this is going to make sure those that just try to access the private pages in the url with a /main wont be able too! You can only get to those pages if your logged in!
+//this is the middelware, after we send the request but before we get the response this is checking to see if they are user,if not they are then redirected to the index page
 const ifNotSignedIn = (req, res, next) => {
   if (!req.session.user) {
     return res.redirect("/");
@@ -20,9 +20,9 @@ const ifNotSignedIn = (req, res, next) => {
   next();
 };
 
-//here were getting the signup page
+//here were getting the end point, in this case the end point is the signup page, but this could be any end point, we can then use any information from the end point
 router.get("/signup", ifAlreadySignedIn, (req, res) => {
-  res.render("authenticate/signup");
+  res.render("authenticate/signup"); //from the end point we can then render anything, it doesnt have to be a page we could render and object from the end point.
 });
 /*here we are posting the signup, which gives us the req body, which allows us to "play with the data as Dimitri said"*/
 router.post("/signup", ifAlreadySignedIn, (req, res) => {
