@@ -20,6 +20,16 @@ router.get(
   })
 );
 
+router.get('/google', passport.authenticate('google'));
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
+
 router.get('/login', (req, res) => {
   res.render('login');
 });

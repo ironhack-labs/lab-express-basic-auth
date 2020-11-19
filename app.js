@@ -17,6 +17,8 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const User = require('./models/User.model');
 const GithubStrategy = require('passport-github').Strategy
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(
@@ -116,6 +118,30 @@ passport.use(
     }
   )
 )
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://127.0.0.1:3000/google/callback",
+  scope: "https://www.googleapis.com/auth/userinfo.profile"
+},
+function(accessToken, refreshToken, profile, done) {
+  console.log(profile);
+  User.findOne({ googleId: profile.id })
+  .then(found => {
+    if (found !== null) {
+      done(null, found);
+    } else {
+      return User.create({ username: profile.displayName , githubId: profile.id}).then(dbUser => {
+        done(null, dbUser);
+      })
+    }
+  })
+  .catch(error => {
+    done(error);
+  })
+}
+));
 
 app.use(passport.initialize());
 app.use(passport.session());
