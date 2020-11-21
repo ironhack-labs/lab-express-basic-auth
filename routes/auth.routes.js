@@ -1,6 +1,5 @@
 const express  = require('express');
 const router   = express.Router();
-const mongoose = require('mongoose')
 const User     = require('../models/User.model')
 const bcrypt   = require('bcryptjs')
 const bcryptsalt = 10
@@ -14,12 +13,14 @@ router.post('/signup', (req, res, next) => {
     const pwd = req.body.password
     if(username === '' || pwd === '') {
         res.render('signup', {errorMessage: 'Need username & password'})
-    } else{
+        return
+    }
         User.findOne({username: username})
         .then(user =>{
             if(user){
                 res.render('signup', {errorMessage: 'This username already exists'})
-            }else {
+                return
+            }
                 bcrypt.genSalt(bcryptsalt)
                 .then(salt => {
                     bcrypt.hash(req.body.password, salt)
@@ -32,13 +33,11 @@ router.post('/signup', (req, res, next) => {
                         })
                     })
                 })
-            }
         })
         .catch(err => {
             res.redirect('/auth/signup')
             console.error(err)
         })
-    }
 })
 
 router.get('/login', (req, res, next) => {
