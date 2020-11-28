@@ -5,9 +5,18 @@
     </label>
 
     <label>
+        Email
+        <input type="email" name="email">
+    </label>
+
+    <label>
         Password
         <input type="text" name="password">
     </label>
 
     <button type="submit">Signup</button>
+
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
 </form>

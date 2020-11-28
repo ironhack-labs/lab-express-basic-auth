@@ -5,4 +5,21 @@ body {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+#to-right {
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 30px;
+}
+
+#to-right button {
+  font-size: 14px;
+  color: #00B7FF;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
