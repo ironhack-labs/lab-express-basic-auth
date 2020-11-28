@@ -1,0 +1,7 @@
+{{#if userInSession}}
+    <h1>hello {{userInSession.username}}</h1>
+    <img src="https://media.istockphoto.com/photos/portrait-of-funny-cat-with-a-fly-on-his-nose-picture-id1098182022">
+    <a href='/'>Home</a>
+{{else}}
+    <p>You are not logged in, Please <a href="/login">login</a> to view this page :)</p>
+{{/if}}

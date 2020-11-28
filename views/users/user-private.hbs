@@ -1,0 +1,7 @@
+{{#if userInSession}}
+    <h1>hello {{userInSession.username}}</h1>
+    <h1>Welcome to the Private Page</h1>
+    <div class="tenor-gif-embed" data-postid="19314204" data-share-method="host" data-width="50%" data-aspect-ratio="1.3423180592991915"><a href="https://tenor.com/view/yes-%e0%bb%81%e0%ba%a1%e0%bb%88%e0%ba%99%e0%bb%81%e0%ba%a5%e0%bb%89%e0%ba%a7-gif-19314204">Yes ແມ່ນແລ້ວ GIF</a> from <a href="https://tenor.com/search/yes-gifs">Yes GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+{{else}}
+    <p>You are not logged in, Please <a href="/login">login</a> to view this page :)</p>
+{{/if}}
