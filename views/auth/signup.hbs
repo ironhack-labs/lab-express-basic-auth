@@ -3,7 +3,7 @@
 <div id="signup">
   <h2>Signup</h2>
   <form action="/signup" method="POST">
-  
+
     <label for="input-username">Username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" />
 
@@ -13,5 +13,8 @@
     <button type="submit">Create account</button>
 
     {{!-- error message will be added here --}}
+     {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+     {{/if}}
   </form>
 </div>
