@@ -93,7 +93,15 @@ router.post('/logout', (req, res) => {
     res.redirect('/');
   });
   
+// Route to private page
+router.get('/private', (req, res) => {
+    res.render('auth/private', { userInSession: req.session.currentUser });
+});
 
+// Route to main page
+router.get('/main', (req, res) => {
+    res.render('auth/main', { userInSession: req.session.currentUser });
+});
  
 module.exports = router;
 
