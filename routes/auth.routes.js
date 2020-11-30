@@ -83,6 +83,14 @@ router.post('/logout', (req, res, next) => {
     res.redirect('/');
 });
 
+router.get('/main', (req, res, next) => {
+    res.render('users/main', { userInSession: req.session.currentUser });
+});
+
+router.get('/private', (req, res, next) => {
+    res.render('users/private', { userInSession: req.session.currentUser });
+});
+
 router.get('/userProfile', (req, res, next) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
 });

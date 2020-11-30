@@ -1,0 +1,11 @@
+{{#if userInSession}}
+<div>
+    <h1>This is a private page of {{ userInSession.username }}!</h1>
+    <img src="/images/thisisfine.gif">
+    <a href="/">Go back home</a>
+</div>
+{{else}}
+<div>
+  <p>No one's logged in!</p>
+</div>
+{{/if}}
