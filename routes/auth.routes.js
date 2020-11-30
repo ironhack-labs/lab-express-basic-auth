@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.model');
+const mongoose  = require('mongoose');
 
 const router = express.Router();
 const saltRounds = 10;
@@ -19,6 +20,23 @@ router.post('/signup', (req, res, next) => {
     
     const {username, email, password} = req.body;
 
+    // if (!username || !email || !password) {
+    //     res.render("auth/signup", {errorMessage: "Username, Email and Password are mandatory. Please check all the fields"});
+    //     return;
+    // }
+
+    let emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+    if (!emailRegex.test(email)) {
+        res.status(500).render("auth/signup", {errorMessage: "Please, enter a valid email"});
+        return;
+    }
+
+    let passwordRegex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/);
+    if (!passwordRegex.test(password)) {
+      res.status(500).render('auth/signup', {errorMessage: 'Password must have one lowercase, one uppercase, a number, a special character and must be at least 8 digits long'})
+      return;
+    }
+
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
@@ -33,7 +51,17 @@ router.post('/signup', (req, res, next) => {
             console.log("new user: ", userFromDB);
             res.redirect("/userProfile")
         })
-        .catch( err => next(err))
+        .catch( err => {
+            if (err instanceof mongoose.Error.ValidationError ) {
+                res.status(500).render("auth/signup", { errorMessage: err.message });
+            } else if (err.code === 11000) {
+                res.status(500).render("auth/signup", {
+                    errorMessage: "Username and email need to be unique. Please, check it again."
+                });
+            } else {
+                next(err);
+            }
+        })
 
 });
 
