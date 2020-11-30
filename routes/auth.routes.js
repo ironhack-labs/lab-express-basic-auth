@@ -11,9 +11,9 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
  
 // Route for posting singup
 router.post('/signup', (req, res, next) => {
-    const {username, password} = req.body;
+    const {firstname, lastname, email, password} = req.body;
 
-    if (!username || !password) {
+    if (!firstname || !lastname || !email || !password) {
         res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
         return;
       }
@@ -30,7 +30,9 @@ router.post('/signup', (req, res, next) => {
     .then(salt => bcrypt.hash(password, salt))
     .then(hashedPassword => {
         return User.create({
-            username,
+            firstname,
+            lastname,
+            email,
             passwordHash: hashedPassword
         });
     })
@@ -63,16 +65,16 @@ router.get('/login', (req, res) => res.render('auth/login'));
 router.post('/login', (req, res, next) => {
     console.log('SESSION =====> ', req.session);
 
-    const { username, password } = req.body;
+    const { email, password } = req.body;
    
-    if (username === '' || password === '') {
+    if (email === '' || password === '') {
       res.render('auth/login', {
         errorMessage: 'Please enter both, username and password to login.'
       });
       return;
     }
    
-    User.findOne({ username })
+    User.findOne({ email })
       .then(user => {
         if (!user) {
           res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' });
@@ -81,7 +83,7 @@ router.post('/login', (req, res, next) => {
             req.session.currentUser = user;
             res.redirect('/userProfile');
         } else {
-          res.render('auth/login', { userDetails: {username, password}, errorMessage: 'Incorrect password.' });
+          res.render('auth/login', { userDetails: {email, password}, errorMessage: 'Incorrect password.' });
         }
       })
       .catch(error => next(error));

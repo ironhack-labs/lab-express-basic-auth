@@ -1,4 +1,14 @@
-body {
+.error {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+
+/* body {
   padding: 50px;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
@@ -53,14 +63,6 @@ form button:hover {
   transition: 0.3s ease background;
 }
 
-.error {
-  background: #f02b63;
-  box-sizing: border-box;
-  color: #fff;
-  margin: 20px auto;
-  padding: 20px;
-  width: 100%;
-}
 
 ul {
   border-bottom: 2px solid #43a3e6;
@@ -96,4 +98,4 @@ ul li {
   color: #000;
   font-weight: bold;
   font-size: 2em;
-}
+} */

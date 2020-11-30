@@ -1,6 +1,6 @@
 <div id="form">
-  <h2>Login</h2>
-  <form action="/login" method="POST">
+  <h2 class="text-center">Login</h2>
+  {{!-- <form action="/login" method="POST">
     <label for="input-username">Username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" value="{{userDetails.username}}"/>
  
@@ -12,5 +12,44 @@
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-  </form>
+  </form> --}}
 </div>
+
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">Log in</h4>
+
+	<form action="/login" method="POST">
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input name="email" class="form-control" placeholder="E-mail" type="email">
+        </div>
+                <!-- form-group// -->
+
+         <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input name="password" class="form-control" placeholder="********" type="password">
+        </div>  
+        <!-- form-group// -->
+                                 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Log in </button>
+    </div> 
+    <!-- form-group// -->   
+    <p class="text-center">Don't have an account? <a href="/signup">Sign Up</a> </p>  
+
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+     {{/if}}
+                                                                    
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 

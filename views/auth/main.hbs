@@ -1,8 +1,10 @@
-{{#if userInSession}}
-<h1>Main</h1>
-<img src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&rect=37%2C29%2C4955%2C3293&q=45&auto=format&w=926&fit=clip" alt="cat image">
+<div class="d-flex flex-column justify-content-between">
+        {{#if userInSession}}
+        <h1>Main</h1>
+        <img src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&rect=37%2C29%2C4955%2C3293&q=45&auto=format&w=926&fit=clip" alt="cat image">
 
-{{else}}
-    <p>You're not authorized to see this page, please signup or login.</p>
-    <a href="/">Home</a>
-{{/if}}
+        {{else}}
+        <p>You're not authorized to see this page, please signup or login.</p>
+        <a href="/">Home</a>
+        {{/if}}
+</div>

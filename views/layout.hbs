@@ -7,12 +7,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   </head>
 
   <body>
 
-    <nav>
-      <ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {{!-- <a class="navbar-brand" href="#">Navbar</a> --}}
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              {{!-- <a class="navbar-brand" href="#">Express Basic Auth</a> --}}
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                {{#if userInSession}}
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="/main">Main</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="/private">Private</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="/userProfile">Profile</a>
+                  </li>
+                  {{/if}}
+                </ul>
+                
+                <a href="/signup" class="btn btn-primary mr-1">Signup</a>
+
+                {{#if userInSession}}
+                    <form id="logout-form" action="/logout" method="POST" class="form-inline my-2 my-lg-0">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+                    </form>
+                {{else}}
+                    <a href="/login" class="btn btn-secondary">Login</a>
+                {{/if}}
+                
+                
+                
+        </div>
+      </nav>
+  
+      {{!-- <nav>
+        <ul>
         <li id="to-left">
           <p><a href="/"> Users - demo </a></p>
         </li>
@@ -24,7 +75,7 @@
           </form>
         </li>
       </ul>
-    </nav>
+    </nav> --}}
 
     {{{body}}}
 
