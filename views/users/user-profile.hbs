@@ -1,11 +1,16 @@
-
-
 {{#if userInSession}}
     <h2>Welcome, {{ userInSession.username }}!</h2>
     <img src="http://www.themeraider.com/wp-content/uploads/2016/07/mr-robot-background-9.jpg" alt="">
     <button>
         <a href="/userProfile">Reload the page</a>
     </button>
+    <button>
+        <a href="/">Home</a>
+    </button>
+
+    <form action="/logout" method="POST">
+        <button>Logout</button>
+    </form>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}

@@ -1,0 +1,22 @@
+{{#if activeUser}}
+    <h2>Welcome!</h2>
+    <img src="https://media3.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif?cid=ecf05e47xibzjtqh0ejv3ylqvj247z067dx5lgopw9zrdyn5&rid=giphy.gif" alt="">
+    <br><br>
+    <button>
+        <a href="/private">Reload the page</a>
+    </button> <span> | </span>
+    <button>
+        <a href="/">Home</a>
+    </button>
+{{else}}
+    <p><b>YOU... SHALL... NOT... PASS!!!!!!!!!!!!!!</b></p>
+    <img src="https://media0.giphy.com/media/xyalr6LBFVobe/giphy.gif" alt="">
+    
+    <button>
+        <a href="/">Back</a>
+    </button> <span> | </span>
+    <button>
+        <a href="/login">Log in</a>
+    </button>
+
+{{/if}}
