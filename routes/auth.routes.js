@@ -5,6 +5,7 @@ const User = require('../models/User.model');
 
 // bcrypt
 const bcryptjs = require('bcryptjs');
+const session = require('express-session');
 const saltRounds = 10;
 
 router.get('/signup', (req, res, next) => {
@@ -14,8 +15,6 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
     const { username, password } = req.body;
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-
-    console.log(username, password);
 
     if (!(username || password)) {
         res.render('auth/signup', {
@@ -65,7 +64,6 @@ router.get('/login', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const { username, password } = req.body;
 
-
     if ((username || password) == '') {
         res.render('auth/login', {
             errorMessage: 'Please enter username and password to login.'
@@ -74,13 +72,13 @@ router.post('/login', (req, res, next) => {
     }
     User.findOne({ username })
         .then(user => {
-            console.log(user);
             if (!user) {
                 res.render('auth/login', {
                     errorMessage: 'The username doesn\'t exist, please create an account'
                 });
             } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-                res.render('users/user-profile');
+                req.session.currentUser = user;
+                res.redirect('/main');
             } else {
                 res.render('auth/login', {
                     errorMessage: 'The password isn\'t correct, please try again.'
@@ -90,6 +88,27 @@ router.post('/login', (req, res, next) => {
         .catch(error => {
             next(error);
         });
+});
+
+router.get('/main', (req, res, next) => {
+    if (req.session.currentUser) {
+        res.render('login/main', { userInSession: req.session.currentUser });
+    } else {
+        res.render('not-logged-in');
+    }
+});
+
+router.get('/private', (req, res, next) => {
+    if (req.session.currentUser) {
+        res.render('login/private', { userInSession: req.session.currentUser });
+    } else {
+        res.render('not-logged-in');
+    }
+});
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 
