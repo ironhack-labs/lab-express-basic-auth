@@ -85,11 +85,16 @@ router.post('/signin', (req, res) => {
 
 })
 
-router.get('/dashboard', (req, res) => {
-      
-      res.render('dashboard.hbs', {name: req.session.loggedInUser.name})
+
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
+router.get("/dashboard", (req,res,next) => {
+    console.log(req.session.loggedInUser)
+    res.render('users/dashboard', {userInSession: req.session.loggedInUser});
 })
-
-
 
 module.exports = router;

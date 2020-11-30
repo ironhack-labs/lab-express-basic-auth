@@ -1,0 +1,21 @@
+ {{#if activeUser}}
+
+    <img src="/images/cat.jpg" width="500px">
+
+    <br>
+    <button><a href="/private">See Your Private Gif</a></button>
+    <br>
+    <br>
+    <button><a href="/dashboard">Go Back To Your Dashboard</a></button>
+    <br>
+    <button><a href="/">Go Back To The Main Page</a></button>
+    <br>
+
+{{else}}
+
+    <p>Sorry, in order to see the content of this page you have to be logged in!</p>
+    <button><a href="/">Go Back To The Home Page</a></button>
+    <button><a href="/signin">Sign In</a></button>
+    <button><a href="/signup">Sign Up</a></button>
+
+{{/if}}

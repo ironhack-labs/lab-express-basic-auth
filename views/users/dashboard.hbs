@@ -1,16 +1,25 @@
- {{#if activeUser}}
-
-<img src="/images/giphy.gif" width="500px">
+ {{#if userInSession}}
+<div>
+  Hello {{userInSession.name}}, you are in your dashboard page
+</div>
 
 
 <br>
-<button><a href="/dashboard">Go Back To The Dashboard</a></button>
+<button><a href="/private">See your private gif</a></button>
+<br>
+<button><a href="/main">See your private image</a></button>
 <br>
 <button><a href="/">Go Back To The Main Page</a></button>
+<br>
+ <form action="/logout" method="POST">
+    <button>Logout</button>
+</form>
 
 {{else}}
+
     <p>Sorry, in order to see the content of this page you have to be logged in!</p>
     <button><a href="/">Go Back To The Home Page</a></button>
     <button><a href="/signin">Sign In</a></button>
     <button><a href="/signup">Sign Up</a></button>
+
 {{/if}}
