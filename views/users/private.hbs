@@ -1,8 +1,10 @@
 {{#if userInSession}}
+<h1>This is a private page</h1>
     <h2>Welcome, {{ userInSession.username }}!</h2>
-    <p>This is your profile page my friend!</p>
+    <img src="/images/funny.gif"/>
+    <br>
     <button>
-        <a href="/userProfile">Reload the page</a>
+        <a href="/">back to Home</a>
     </button>
 {{else}}
     <p>Still no logged in user, sorry!</p>
