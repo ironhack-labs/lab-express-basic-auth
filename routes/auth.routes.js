@@ -5,6 +5,11 @@ const User = require('../models/User.model');
 const router = express.Router();
 const saltRounds = 10;
 
+//###############################################################
+
+//                        SIGNUP
+
+//##############################################################
 
 router.get('/signup', (req, res) => {
     res.render('auth/signup');
@@ -32,8 +37,65 @@ router.post('/signup', (req, res, next) => {
 
 });
 
+//###############################################################
+
+//                        LOGIN
+
+//##############################################################
+
+router.get("/login", (req, res, next) => {
+    res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+    console.log('session:', req.session);
+    const {email, password} = req.body
+
+    if (email === '' || password === '') {
+        res.render('auth/login', 
+        {
+            errorMessage: 'Dude, you need to enter BOTH, email AND password'
+        });
+        return;
+    }
+
+    User.findOne({email})
+    .then(
+        userFromDB => {
+            if(!userFromDB) {
+                res.render('auth/login', {
+                    errorMessage: "This email is not registered. Please double(triple) check =)"
+                });
+            } else if (bcrypt.compareSync(password, userFromDB.password)) {
+                req.session.currentUser = userFromDB;
+                res.redirect('/userProfile');
+            } else {
+                res.render("auth/login", {errorMessage: "Wrong password!"});
+            }
+        }
+    )
+    .catch(err => next(err));
+});
+
+
+
+//###############################################################
+
+//                        LOGOUT
+
+//##############################################################
+
+
+
+//###############################################################
+
+//                        USER PROFILE
+
+//##############################################################
+
 router.get("/userProfile", (req,res,next) => {
-    res.render("./auth/user-profile");
+    console.log(req.session.currentUser)
+    res.render('users/user-profile', {userInSession: req.session.currentUser});
 })
 
 module.exports = router;
