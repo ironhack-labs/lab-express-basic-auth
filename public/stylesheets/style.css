@@ -4,5 +4,73 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #7E957D;
+  text-decoration: none;
 }
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+nav li {
+  list-style: none;
+}
+
+#signup-login h2 {
+  color: #7E957D;
+  text-align: center;
+}
+
+#signup-login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup-login form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+#signup-login form button {
+  color: white;
+  background-color: #7E957D;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 32px;
+}
+
+#protected img {
+  width: 300px;
+  padding-bottom: 10px;
+}
+
+#protected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #7E957D;
+}
+
+.userProfile {
+  color: white;
+  background-color: #7E957D;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 32px;
+}
+
