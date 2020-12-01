@@ -1,10 +1,10 @@
-<h3>Sign up</h3>
+<h3>Log in</h3>
 
 {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
 
-<form action="/signup" method="POST">
+<form action="/login" method="POST">
 <label>
     Username:
     <input type="text" name="username" placeholder="Your username">
@@ -14,5 +14,5 @@
     Password:
     <input type="password" name="password" placeholder="********">
 </label>
-<button type="submit">Create account</button>
+<button type="submit">Log in</button>
 </form>

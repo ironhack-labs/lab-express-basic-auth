@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <body>
+<body>
+  <a href="/signup">Register</a> <span> | </span>
+  <a href="/login">Log in</a> <span> | </span>
 
-    {{{body}}}
+  {{#if userInSession}}
+  <form action="/logout" method="POST">
+    <button>Logout</button>
+  </form>
+  {{/if}}
 
-    <script src="/javascripts/script.js"></script>
-  </body>
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
 
 </html>
