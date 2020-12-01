@@ -6,7 +6,9 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const e = require('express');
-const { Mongoose } = require('mongoose');
+const {
+    Mongoose
+} = require('mongoose');
 
 
 //////////// S I G N U P ///////////
@@ -19,6 +21,22 @@ router.post('/signup', (req, res, next) => {
         username,
         password
     } = req.body;
+    if (username === '' | password === '') {
+        res.render('auth/signup', {
+            errorMessage: 'Oops! You forgot to enter a username and password.'
+        });
+        return;
+    }
+
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+        res
+            .status(500)
+            .render('auth/signup', {
+                errorMessage: `Password needs at least 6 characters and must consist of at least one number, one lowercase and one uppercase letter`
+            });
+        return
+    }
 
     bcryptjs
         .genSalt(saltRounds)
@@ -32,7 +50,15 @@ router.post('/signup', (req, res, next) => {
         .then((userFromDB) => {
             res.redirect('/userProfile');
         })
-        .catch((error) => next(error));
+        .catch((error) => {
+            if (error instanceof mongoose.Error.ValidationError) {
+                res.status(500).render('auth/signup', {
+                    errorMessage: `This username already exists`
+                });
+            } else {
+                next(error);
+            }
+        });
 });
 
 
@@ -42,7 +68,10 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    const { username, password } = req.body;
+    const {
+        username,
+        password
+    } = req.body;
 
     if (username === '' || password === '') {
         res.render('auth/login', {
@@ -76,9 +105,13 @@ router.post('/login', (req, res, next) => {
 //////////// U S E R  P R O F I L E ///////////
 router.get('/userProfile', (req, res, next) => {
     if (req.session.currentUser) {
-        res.render('users/user-profile', { userInSession: req.session.currentUser });
+        res.render('users/user-profile', {
+            userInSession: req.session.currentUser
+        });
     } else {
-        res.render('users/user-profile', { errorMessage: `You're not logged in` });
+        res.render('users/user-profile', {
+            errorMessage: `You're not logged in`
+        });
     }
 });
 
@@ -92,7 +125,9 @@ router.post('/logout', (req, res, next) => {
 //////////// P R O T E C T E D ///////////
 router.get('/main', (req, res, next) => {
     if (req.session.currentUser) {
-        res.render('users/main', { userInSession: req.session.currentUser });
+        res.render('users/main', {
+            userInSession: req.session.currentUser
+        });
     } else {
         res.render('users/main', {
             errorMessage: `You're not logged in`
@@ -102,7 +137,9 @@ router.get('/main', (req, res, next) => {
 
 router.get('/private', (req, res, next) => {
     if (req.session.currentUser) {
-        res.render('users/private', { userInSession: req.session.currentUser });
+        res.render('users/private', {
+            userInSession: req.session.currentUser
+        });
     } else {
         res.render('users/private', {
             errorMessage: `You're not logged in`
