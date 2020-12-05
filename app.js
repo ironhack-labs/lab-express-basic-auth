@@ -17,11 +17,16 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Seesion in app
+
+require('./configs/session.config')(app);
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,10 +37,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Lab-express-basic-auth';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
-
-const authRouter = require('./routes/users');
-app.use('/', authRouter);
+app.use('/', require('./routes/index.routes'));
+app.use('/', require('./routes/auth.routes'));
 
 module.exports = app;
