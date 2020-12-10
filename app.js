@@ -15,7 +15,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // require database configuration
-require('./configs/db.config');
+const connectDb = require('./configs/db.config');
+connectDb();
 
 // Middleware Setup
 app.use(logger('dev'));
