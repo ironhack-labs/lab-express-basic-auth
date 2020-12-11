@@ -14,6 +14,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
+const userRoute = require("./routes/user.routes")
+
+
 // require database configuration
 require('./configs/db.config');
 
@@ -34,5 +38,6 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+app.use('/', userRoute);
 
 module.exports = app;
