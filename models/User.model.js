@@ -10,14 +10,15 @@ const userSchema = new Schema(
       trim: true,
       required: [true, 'Username is required.'],
       unique: true,
-      match: [emailRegex, "Please use a valid email address"],
+      
     },
     email: {
       type: String,
       required: [true, 'Email is required.'],
       unique: true,
       lowercase: true,
-      trim: true
+      trim: true,
+      match: [emailRegex, "Please use a valid email address"],
     },
     passwordHash: {
       type: String,
