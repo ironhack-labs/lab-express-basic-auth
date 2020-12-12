@@ -1,26 +1,21 @@
 const { Router } = require('express');
 const router = new Router();
-const bcrypt = require('bcryptjs');
 const baseModule = require('hbs');
 const { request } = require('../app');
-const saltRounds = 10;
 const User = require('../models/User.model.js')
+const {newUser, checkCredentials, login, logout}= require('../controllers/auth.controllers')
 
 router
     .get('/signup', (req, res) => {
-        res.render('auth/signup') //../views/auth/signupView'
+        res.render('auth/signup') 
     })
-    .post('/signup', async (req, res) => {
-        try {
-            const { username, email, password } = req.body;
-            const randomString = await bcrypt.genSalt(saltRounds)
-            const hashedPassword = await bcrypt.hash(password, randomString)
-            const newUser = await User.create({ username, email, password: hashedPassword })
-            res.redirect('/')
-            console.log('NEW USER:', newUser)
-        } catch (err) {
-            console.log('There is an error:', err)
-        }
+    .get('/login', (req, res) => {
+        res.render('auth/login')
     })
+    .get('/main', (req, res) => {
+        res.render('main')
+    })
+    .post('/signup', checkCredentials, newUser)
+    .post('/login', checkCredentials, login)
 
 module.exports = router;

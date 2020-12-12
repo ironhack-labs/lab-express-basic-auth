@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const emailRegex = /^\S+@\S+\.\S+$/;
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -12,16 +13,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Email is required.'],
       unique: true,
-      trim: true
+      trim: true,
+      match: [emailRegex, 'Please use a valid email address']
     },
     password: {
       type: String,
-      required: [true, 'Password is required.']
+      required: [true, 'Password is required.'],
+      trim: true,
     }
   },
-  {
-    timestamps: true
-  }
 );
 
 module.exports = mongoose.model('User', userSchema);
