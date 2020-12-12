@@ -8,6 +8,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const connectSession = require("./configs/session.config.js")
 
 
 
@@ -18,6 +19,8 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+
+connectSession(app)
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -32,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Express - Generated with TomasAldea';
 
 
 const authRoutes = require("./routes/index.routes"); 

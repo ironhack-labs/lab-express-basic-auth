@@ -1,9 +1,6 @@
-
 <div id="signup">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username">Username</label>
-    <input type="text" id="user" name="user" placeholder="Your username" />
+  <h2>LogIn</h2>
+  <form action="/login" method="POST">
  
     <label for="email">Email</label>
     <input type="email" id="email" name="email" placeholder="Your email" />
@@ -11,7 +8,7 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="input-password" placeholder="********" />
  
-    <button type="submit">Create account</button>
+    <button type="submit">Log in</button>
  
     {{!-- error message will be added here --}}
   </form>
