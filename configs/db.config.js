@@ -1,10 +1,24 @@
+require("dotenv").config();
 const mongoose = require('mongoose');
 
-mongoose
-  .connect('mongodb://localhost/express-basic-auth-dev', {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
-  .catch(err => console.error('Error connecting to mongo', err));
+const dbOptions = {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
+const connectDb = async () =>{
+  try{
+  const self = await mongoose.connect(process.env.MONGO_URL, dbOptions);
+  await self.connection.dropDatabase();
+  console.log("connected to DB and eliminated previous data in DB");
+  
+  
+  }catch(err){
+    console.error(err);
+  }
+
+
+}
+
+module.exports = connectDb;

@@ -1,7 +1,6 @@
-const express = require('express');
-const router = express.Router();
+// const {Router} = require("express");
+// const router = Router();
 
-/* GET home page */
-router.get('/', (req, res, next) => res.render('index'));
+// router.get("/",(req,res)=> {res.render("index")})
 
-module.exports = router;
+// module.exports = router;
