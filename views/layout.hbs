@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <a href="/signup">Register</a><span> | </span>
+    <a href="/login">Log in</a><span> | </span>
+    {{#if userInSession}}
+    <a href='/main'>See the main page</a><span> | </span>
+    <a href='/private'>See your private page</a><span> | </span>
+    {{/if}}
 
     {{{body}}}
 

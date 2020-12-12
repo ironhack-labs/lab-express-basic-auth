@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require('../models/User.model');
-const {Error} = require('mongoose');
+const { Error } = require('mongoose');
 
 const hasCorrectPasswordFormat = (password) => {
     const passwordRegex = new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/);
@@ -10,9 +10,33 @@ const hasCorrectPasswordFormat = (password) => {
 const isMongooseValidationError = (error) =>
  error instanceof Error.ValidationError;
 
-const isMongoError = ({code: errorCode}) => errorCode === 11000;
+const isMongoError = ({ code: errorCode }) => errorCode === 11000;
 
-const signup = async (req, res) => {
+const showFormSignUp = async (req,res,next)=>{
+    res.render("signup");
+};
+
+const showFormLogin = async (req,res,next)=>{
+    res.render("login");
+};
+
+const userLogin = async(req,res,next) => {
+    if(req.session.currentUser){
+      return next();
+    }
+    res.redirect("/login");
+};
+
+const main = async(req,res,next) =>{
+    res.render("main");
+};
+
+const private = async(req,res,next) =>{
+    res.render("private");
+};
+
+
+const signUp = async (req, res) => {
     try {
         const {password, email, username} = req.body;
         const hasMissingCredential = !password || !email || !username;
@@ -30,11 +54,11 @@ const signup = async (req, res) => {
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const {passwordHash, ...user} = await User.create({
+        const user = await User.create({
             email,
             passwordHash: hashedPassword,
             username,
-        }).lean();
+        });
         console.log("user", user);
         req.session.currentUser = user;
         return res.send('Successful signup');
@@ -57,15 +81,16 @@ const login = async (req, res) => {
             return res.send('Missing credentials');
         }
 
-        const {passwordHash, ...user} = await User.findOne({email}).lean();
+        const user = await User.findOne({email});
         if(!user) {
-            return res.send("User does not exist");
+            return res.send("User does not exist. Please sign up.");
         }
         const verifiedPassword = await bcrypt.compare(password, passwordHash);
         if(!verifiedPassword) {
             return res.send("Invalid credentials");
         }
-        req.session.currentUser = user;
+        req.session.currentUser = user._id;
+        console.log(req.session);
         return res.send("Successful login");
     } catch(err) {
         console.error(err);
@@ -77,4 +102,4 @@ const logout = (req, res) => {
     res.send('Successful logout');
 };
 
-module.exports = {signup, login, logout};
+module.exports = {signUp, showFormSignUp, showFormLogin, login, main, userLogin, private, logout};

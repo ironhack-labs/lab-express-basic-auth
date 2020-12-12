@@ -1,10 +1,6 @@
 <h2>Log in</h2>
 
-{{#if errorMessage}}
-<p>{{errorMessage}}</p>
-{{/if}}
-
-<form action="/auth/login" method="POST">
+<form action="/login" method="POST">
 <label>
     Username:
     <input type="text" name="username" placeholder="Your username" required>

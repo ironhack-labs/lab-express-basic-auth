@@ -1,8 +1,6 @@
 <h2>Sign Up</h2>
-{{#if errorMessage}}
- <p>{{errorMessage}}</p>
- {{/if}}
-<form action="/auth/signup" method="POST">
+
+<form action="/signUp" method="POST">
    <label for="input-username">Username</label>
    <input type="text" id="input-username" name="username" placeholder="Your username" />
 
@@ -14,3 +12,6 @@
 
    <button type="submit">Create Account</button>
 </form>
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
