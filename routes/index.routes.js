@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {signUp, addUser, logIn, logUserIn, checkUserCredentials} = require("../controllers/auth.controller")
+const {signUp, addUser, logIn, logUserIn, checkUserCredentials, logOut, getTheCat, getTheGif } = require("../controllers/auth.controller")
 
 /* GET home page */
 router.get('/', (req, res, next) => res.render('index'))
@@ -8,5 +8,8 @@ router.get('/', (req, res, next) => res.render('index'))
     .post("/signup", checkUserCredentials, addUser)
     .get("/login", logIn)
     .post("/login", logUserIn)
+    .get("/logout", logOut)
+    .get("/main", getTheCat)
+    .get("/private", getTheGif )
 
 module.exports = router;

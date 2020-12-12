@@ -1,17 +1,29 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const emailRegex = /^\S+@\S+\.\S+$/;
+
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+      match: [emailRegex, "Please use a valid email address"],
+    },
     username: {
-        type: String,
-        required: [true, 'Username is required.'],
-        unique: true,
-        trim: true,
-        lowercase: true,
+      type: String,
+      unique: true,
+      lowercase: true,
+      required: true,
     },
     passwordHash: {
-        type: String,
-        required: [true, 'Password is required.']
-    }
-})
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("User", userSchema)

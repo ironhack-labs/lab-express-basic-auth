@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        {{#if req.session.currentUser}}
+        <li><a href="/logout">Log Out</a></li>
+        <li><a href="/main">See the cat</a></li>
+        <li><a href="/private">See the Gif</a></li>
+        {{else}}
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        {{/if}}
+    </ul>
+</nav>
