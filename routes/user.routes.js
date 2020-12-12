@@ -31,7 +31,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(userFromDB => {
         console.log('New user is: ', userFromDB);
-        res.redirect('/userProfile');
+        res.redirect('/main');
     })
     .catch(error => next(error));
 });
@@ -58,7 +58,7 @@ router.post('/login', (req, res, next) => {
           return;
         } else if (bcryptjs.compareSync(password, user.passwordHash)) {
           req.session.currentUser = user;
-            res.redirect ('/userProfile');
+            res.redirect ('/main');
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }
@@ -71,7 +71,27 @@ router.post('/login', (req, res, next) => {
       console.log(req.session.currentUser)
     res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
-
+//logout
+router.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  });
+  
+  const privatePages = (req,res,next) => {
+    const verifySesion = req.session.currentUser
+    if(!verifySesion){
+      res.redirect('/login');
+    }
+    else{
+      next()
+    }
+  }
+  router.get('/main', privatePages, (req,res) =>{
+    res.render('users/main', { userInSession: req.session.currentUser})
+  })
+  router.get('/private', privatePages, (req,res) =>{
+    res.render('users/private')
+  })
 
 module.exports = router;
 

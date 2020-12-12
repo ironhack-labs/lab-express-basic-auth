@@ -1,10 +1,11 @@
+<a href="/">Home</a>
 {{#if userInSession}}
     <h2>Welcome, {{ userInSession.username }}!</h2>
+    <img alt="" src="https://i.pinimg.com/originals/03/85/3f/03853f0bbf9ab3811391a467114fa73f.jpg">
     <p>This is your profile page my friend!</p>
     <button>
-        <a href="/userProfile">Reload the page</a>
+        <a href="/main">Reload the page</a>
     </button>
-    <a href="./main">main</a>
     <a href="./private">Private</a>
 {{else}}
     <p>Still no logged in user, sorry!</p>
