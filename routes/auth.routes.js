@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
       })
       .then(userFromDB => {
         console.log('Newly created user is: ', userFromDB);
-        res.redirect('/userProfile');
+        res.redirect('/main');
     })
       .catch(error => next(error));
   });
@@ -47,9 +47,8 @@ router.post('/login', (req, res, next) => {
           res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
           return;
         } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-          //res.render('users/user-profile', { user });
           req.session.currentUser = user;
-          res.redirect('/userProfile');
+          res.redirect('/main');
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }
@@ -68,6 +67,24 @@ router.post('/login', (req, res, next) => {
   res.redirect('/');
 });
 
+// main y private
+const privatePages = (req,res,next) => {
+  const verifySesion = req.session.currentUser
+  if(!verifySesion){
+    res.redirect('/login');
+  }
+  else{
+    next()
+  }
+}
+router.get('/main', privatePages, (req,res) =>{
+  res.render('users/main', { userInSession: req.session.currentUser})
+})
+router.get('/private', privatePages, (req,res) =>{
+  res.render('users/private')
+})
+// crear un router donde estarán main/create
+// funcion que verifica la sesion, hay algo en sesion? redirect
 
 
   module.exports = router;

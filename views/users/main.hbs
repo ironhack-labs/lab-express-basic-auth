@@ -1,2 +1,12 @@
-<img alt="" src="https://i.pinimg.com/originals/75/1e/6d/751e6d6a890c6ff97326849bd0c2f604.jpg">
-<a href="../index.hbs">Home</a>
+<a href="/">Home</a>
+{{#if userInSession}}
+    <h2>Welcome, {{ userInSession.username }}!</h2>
+    <img alt="" src="https://i.pinimg.com/originals/75/1e/6d/751e6d6a890c6ff97326849bd0c2f604.jpg">
+    <p>This is your profile page my friend!</p>
+    <button>
+        <a href="/main">Reload the page</a>
+    </button>
+    <a href="./private">Private</a>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}
