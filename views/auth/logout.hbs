@@ -1,0 +1,7 @@
+<h2>Log out</h2>
+{{#if errorMessage}}
+ <p>{{errorMessage}}</p>
+ {{/if}}
+<form action="/auth/logout" method="POST">
+    <button>Logout</button>
+</form>
