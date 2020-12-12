@@ -1,19 +1,17 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<h3>Sign Up</h3>
-<form action="/signup" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Signup</button>
-</form>
+<h1>Welcome to myAPP</h1>
 
-<h3>Login</h3>
-<form action="/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Login</button>
-</form>
+
+<div class="form-container">
+    <div class="form">
+        <h2>Login</h2>
+        <form class ="form" action="/login" method="POST">
+            <label class="label" for="username">Username</label>
+            <input class="input" type="text" name="username" id="username" placeholder="Enter your username"> 
+            <label class="label" for="password">Password</label>
+            <input class="input" type="password" name="password" id="password" placeholder="Enter your password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<h4>Not a member yet? <a href="/register">Sign up for free</a></h4>
