@@ -57,19 +57,47 @@ const signIn = async (req, res, next) => {
 const logIn = async (req, res, next) => {
   try {
     const { user, password } = req.body;
+    const missingCredentials = !password || !user;
+    if (missingCredentials) {
+      return res.send("missing credentials");
+    }
+    const { passwordHash, ...usuario } = await User.findOne({ username:user }).lean();
+    if (!usuario) {
+      return res.send("user does not exist");
+    }
+
+    const verifiedPassword = await bcrypt.compare(password,passwordHash);
+    if (!verifiedPassword) {
+        return res.send("invalid credentials");
+      }
+      console.log(usuario);
+      console.log(req.session);
+      req.session.currentUser = usuario;
+      res.redirect("/homepage");
+
 
     
-    console.log(user, password);
   } catch (err) {
     console.error(err);
   }
 };
 
-const logOut = async (req, res, next) => {
-  try {
-  } catch (err) {
-    console.error(err);
-  }
+const logOut = (req, res) => {
+  req.session.destroy();
+  res.send("logout successful");
 };
 
-module.exports = { logIn, signIn, logOut };
+const homepage = (req, res)=>{
+  if(req.session.currentUser){
+    res.render("homepage");
+  }else res.send("Página disponible para usuarios registrados");
+}
+
+const private = async(req, res)=>{
+  if(req.session.currentUser){
+    const user = req.session.currentUser;
+    res.render("private", user);
+  }else res.send("Página disponible para usuarios registrados");
+}
+
+module.exports = { logIn, signIn, logOut, homepage, private };

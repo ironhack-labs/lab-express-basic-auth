@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const {signIn, logIn} = require("../controllers/auth.controller")
+const { signIn, logIn, homepage, private, logOut } = require("../controllers/auth.controller");
 
 router
   .get("/", (req, res) => {
@@ -14,9 +14,8 @@ router
   })
   .post("/newUser", signIn)
   .post("/loginData", logIn)
-  
-  
-  
-  
-  
-  module.exports = router;
+  .get("/homepage", homepage)
+  .get("/private", private)
+  .get("/logOut", logOut);
+
+module.exports = router;
