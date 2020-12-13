@@ -14,8 +14,12 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
 // require database configuration
 require('./configs/db.config');
+
+// require Sessions
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -29,13 +33,28 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
-const controllers = require("./routes/sign.routes");
+const controllers = require("./routes/auth.routes");
 
 app.use('/', index);
 app.use("/",controllers)
+
+app.use((req, res, next) => next(createError(404)));
+
+
+app.use((error, req, res) => {
+
+  res.locals.message = error.message;
+  res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+  
+  res.status(error.status || 500);
+  res.render('error');
+});
 
 module.exports = app;

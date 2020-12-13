@@ -15,7 +15,9 @@ const SingSchema = new mongoose.Schema({
         type:String,
         unique:true,
         required:[true, "Email is required"],
-        trim:true
+        match:[/^\S+@\S+\.\S+$/, "Por favor utilice un correo electronico valido"],
+        trim:true,
+        lowercase: true,
 
     },
     password : {
