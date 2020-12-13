@@ -2,7 +2,20 @@
     <form action="/signup" method="post">
         <input type="text" name="email" id="email" placeholder="Email" required>
         <input type="text" name="username" id="mail" placeholder="Username" required>
-        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="password" name="password" id="password" placeholder="Password" required minlength="6">
+        <ul class="rules">
+            <li id="longitud">Debe tener al menos 6 caracteres</li>
+            <li id="mayus">Debe de incluir una mayúscula</li>
+            <li id="minus">Debe incluir una minúscula</li>
+            <li id="num">Debe incluir un número</li>
+        </ul>
         <button type="submit">Registrarse</button>
     </form>
 </section>
+{{#if alert}}
+<section id="alert">
+    <article>
+        <h3>{{alert}}</h3>
+    </article>
+</section>
+{{/if}}

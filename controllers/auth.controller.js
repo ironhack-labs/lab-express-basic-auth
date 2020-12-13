@@ -21,16 +21,20 @@ const isMongooseValidationError = (error) => error instanceof Error.ValidationEr
 
 const isMongoError = ({ code: errorCode }) => errorCode === 11000;
 
+const renderMessage = (res, page, alert) => {
+    return res.render(page , {alert})
+}
+
 const checkUserCredentials = (req, res, next) => {
     const { email, username, password } = req.body;
-    const missCredentials = (!email || !username || !password) ? res.send("Some credentials are missing") : next(); 
+    const missCredentials = (!email || !username || !password) ?  renderMessage(res, "signup", "Some credentials are missing") : next(); 
 }
 
 const addUser = async (req, res) => {
     try {
         const { email, username, password } = req.body;
         if (!correctPasswordFormat(password)) {
-            return res.send("incorrect password format");
+            return renderMessage(res, "signup", "Incorrect password format")
         }
         const salt = await bcryptjs.genSalt(saltRounds);
         const hashPassword = await bcryptjs.hash(password, salt)
@@ -38,13 +42,14 @@ const addUser = async (req, res) => {
         console.log("newUser", newUser)
         newUser.passwordHash = undefined;
         req.session.currentUser = newUser;
-        res.send("User created")
+        return renderMessage(res, "index", "User created")
     } catch (err) {
         if (isMongooseValidationError(err)) {
-            return res.send("validation error: " + err.message);
+            return renderMessage(res, "index", "validation error: " + err.message)
+            //return res.send("validation error: " + err.message);
         }
         if (isMongoError(err)) {
-            return res.send("mongo error: " + err.message);
+            return renderMessage(res, "index", "mongo error: " + err.message)
         }
         console.log(err)
     }
@@ -55,13 +60,15 @@ const logUserIn = async (req, res) => {
         const { email, password } = req.body;
         const user= await User.findOne({ email });
         if (!user) {
-            res.send("username doesn't exists");
+            res.send();
+            return renderMessage(res, "login", "username doesn't exists")
         }
         const checkPass = await bcryptjs.compare(password, user.passwordHash)
-        if (!checkPass) return res.send("Incorrect Password")
+        if (!checkPass) return renderMessage(res, "login", "Wrong password")
         user.passwordHash = undefined;
         req.session.currentUser = user;
-        return res.send("login successful");
+        return renderMessage(res, "index", "login successfully")
+        
   } catch (err) {
     console.error(err);
   }
@@ -69,20 +76,20 @@ const logUserIn = async (req, res) => {
 
 const logOut = (req, res) => {
   req.session.destroy();
-  res.send("logout successful");
+  return renderMessage(res, "index", "Logout successfully")
 };
 
 
 const getTheCat = (req, res) => {
     const userInSession = req.session.currentUser;
     if (userInSession) return res.render("cat")
-    res.send("please login to see the cat")
+    return renderMessage(res, "index", "Please login to see the cat")
 }
 
 const getTheGif = (req, res) => {
     const userInSession = req.session.currentUser;
     if (userInSession) return res.render("gif")
-    res.send("please login to see the gif")
+    return renderMessage(res, "index", "Please login to see the GIF")
 }
 
 module.exports = {signUp, addUser, logIn, logUserIn, checkUserCredentials,logOut, getTheCat, getTheGif }

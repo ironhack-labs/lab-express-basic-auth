@@ -25,3 +25,36 @@ nav ul li:last-child {
   border: none;
   padding-right: 0;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 4em auto;
+}
+
+form input {
+  margin: 10px 0;
+  height: 2em;
+}
+
+button {
+  width: fit-content;
+  margin-top: 20px;
+  padding: 1.25em 1.5em;
+  align-self: center;
+}
+
+.ok {
+  color: green;
+}
+
+.false {
+  color: red;
+}
+
+section#alert {
+  text-align: center;
+  padding: 1em;
+  background-color: #00b7ff;
+}
