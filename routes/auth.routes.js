@@ -42,6 +42,7 @@ router.post("/signup", (req, res, next) => {
       })
         .then((data) => {
           console.log("Usuario Creado, Info:", data);
+          req.session.currentUser = data
           res.redirect("/userProfile");
         })
         .catch((error) => {
