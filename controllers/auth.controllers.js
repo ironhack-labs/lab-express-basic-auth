@@ -53,9 +53,17 @@ const logout = (req,res)=> {
     res.redirect('/')
 }
 
+const logInCheck = (req, res, next) => {
+    if (!req.session.currentUser) {
+        res.send('You are not logged in!')
+    }
+    next()
+}
+
 module.exports = {
     newUser,
     checkCredentials,
     login,
-    logout
+    logout,
+    logInCheck
 }
