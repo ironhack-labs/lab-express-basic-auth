@@ -7,6 +7,8 @@ const commonController = require('../controllers/common.controller');
 router.get('/', commonController.home);
 router.get('/register', userController.register); 
 router.post('/register', userController.doRegister);
+router.get('/login', userController.login);
+router.post('/login', userController.doLogin);
 
 
 module.exports = router;
