@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -8,7 +8,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-
+const MongoStore = require('connect-mongo')(session);
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -32,7 +32,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+const router = require('./routes/index.routes');
+
+app.use(
+    session({
+        secret: 'secret',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 600000 },
+        store: new MongoStore({
+            // <== ADDED !!!
+            mongooseConnection: mongoose.connection,
+            // ttl => time to live
+            ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
+        })
+    })
+);
+
+app.use('/', router);
 
 module.exports = app;
