@@ -10,5 +10,8 @@ router.post('/register', userController.doRegister);
 router.get('/login', userController.login);
 router.post('/login', userController.doLogin);
 
+router.get('/main', commonController.main);
+router.get('/private', commonController.private);
+
 
 module.exports = router;

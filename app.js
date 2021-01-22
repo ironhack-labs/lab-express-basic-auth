@@ -15,7 +15,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Session config:
-require('./configs/session.config')(app);
+const session = require('./configs/session.config');
 
 // require database configuration
 require('./configs/db.config');
@@ -25,6 +25,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session);
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));

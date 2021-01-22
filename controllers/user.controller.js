@@ -7,18 +7,28 @@ module.exports.register = (req, res, next) => {
 }
 
 module.exports.doRegister = (req, res, next) => {
-    User.create(req.body)
+
+    function renderWithErrors(errors) {
+        res.status(400).render('user/register', {
+            errors: errors,
+            user: req.body,
+        });
+    };
+
+    User.findOne({ username: req.body.username })
         .then(user => {
             if (user) {
-                res.redirect('/')
+                renderWithErrors({ username: 'Username is already registered' });
             } else {
-                res.render('/register', {
-                    ...req.body,
-                    error: 'Something went wrong.'
-                })
+                return User.create(req.body).then(() => res.redirect('/'))}
+        })
+        .catch((error) => {
+            if (error instanceof mongoose.Error.ValidationError) {
+                renderWithErrors(error.errors);
+            } else {
+                next(error);
             }
         })
-        .catch(next);
 }
 
 module.exports.login = (req, res, next) => {
@@ -28,20 +38,45 @@ module.exports.login = (req, res, next) => {
 module.exports.doLogin = (req, res, next) => {
     const { username, password } = req.body;
     if (username === '' || password === '') {
-        res.render('user/login');
+        if (username === '' && password === '') {
+            res.render('user/login', {
+                user: req.body,
+                errors: {
+                    username: 'Username is required.',
+                    password: 'Password is required.'
+                }
+            });
+        } else if (password === '') {
+            res.render('user/login', {
+                user: req.body,
+                errors: {
+                    password: 'Password is required.',
+                }
+            });
+        } else {
+            res.render('user/login', {
+                errors: {
+                    username: 'Username is required.'
+                }
+            });
+        };
     };
 
     User.findOne({username})
         .then(user => {
-            console.log(user.password);
-            console.log(user);
-            if (!user) {
-                res.render('user/login');
-            } else if (bcryptjs.compareSync(password, user.password)) {
-                res.redirect('/');
+            if (user) {
+                user.checkPassword(req.body.password)
+                    .then((match) => {
+                        if (match) {
+                            req.session.userId = user.id;
+                            res.redirect('/');
+                        } else {
+                            res.render('user/login', { user: req.body, errors: { password: 'Invalid password '}});
+                        }
+                    })
             } else {
-                res.render('user/login');
-            }
+                res.render('user/login', { user: req.body, errors: { username: 'User not found' }})
+            } 
         })
         .catch(next)
 }

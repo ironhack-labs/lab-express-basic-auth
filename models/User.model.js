@@ -29,6 +29,10 @@ bcryptjs.hash(this.password, 10)
     .catch(next);
 });
 
+userSchema.methods.checkPassword = function(passwordToCheck) {
+    return bcryptjs.compare(passwordToCheck, this.password);
+}
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

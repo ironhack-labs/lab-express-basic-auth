@@ -1,11 +1,17 @@
 <form method="POST" action="/register">
-  <div class="mb-3">
+  <div class="mb-3 has-validation">
     <label for="usernameInput" class="form-label">Username</label>
-    <input name="username" type="text" class="form-control" id="usernameInput">
+    <input name="username" value="{{user.username}}" type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" id="usernameInput">
+    {{#if errors.username}}
+    <div class="invalid-feedback">{{errors.username}}</div>
+    {{/if}}
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+  <div class="mb-3 has-validation">
+    <label for="inputPassword1" class="form-label">Password</label>
+    <input name="password" type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="inputPassword1">
+    {{#if errors.password}}
+    <div class="invalid-feedback">{{errors.password}}</div>
+    {{/if}}
   </div>
   <button type="submit" class="btn btn-primary">Register</button>
 </form>

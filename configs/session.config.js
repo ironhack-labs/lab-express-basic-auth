@@ -1,13 +1,22 @@
-const session = require('express-session');
+const expressSession = require('express-session');
+const connectMongo = require('connect-mongo');
+const mongoose = require('mongoose');
 
-module.exports = app => {
+const MongoStore = connectMongo(expressSession);
 
-    app.use(
-        session({
-          secret: process.env.SESS_SECRET,
-          resave: false,
-          saveUninitialized: true,
-          cookie: { maxAge: 600000 } // 60 * 1000 ms === 1 min
-        })
-    );
-};
+const session = expressSession({
+  secret: process.env.SESS_SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    secure: process.env.SESS_SECURE || false,
+    httpOnly: true,
+    maxAge: process.env.SESS_MAX_AGE || 600000,
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: process.env.SESS_MAX_AGE || 6000,
+  })
+})
+
+module.exports = session;
