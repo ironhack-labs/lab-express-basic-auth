@@ -13,7 +13,7 @@ const session = expressSession({
     httpOnly: true,
     maxAge: process.env.SESS_MAX_AGE || 600000,
   },
-  store: new MongoStore({
+  store: new MongoStore({ // BUG: sessions db empty after login
     mongooseConnection: mongoose.connection,
     ttl: process.env.SESS_MAX_AGE || 6000,
   })

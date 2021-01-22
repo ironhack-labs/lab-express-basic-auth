@@ -26,6 +26,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session);
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+});
+app.use((req, res, next) => {
+    if (req.session.userId || req.path === '/login' || req.path === '/' || req.path === '/register') {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+})
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
