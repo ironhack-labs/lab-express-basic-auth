@@ -25,7 +25,8 @@ router.post(`/entered`, (req,res,next) => {
         return User.create({username, password: hashedPassword })
     })
     .then((usersDB) => {
-        console.log(usersDB);
+        // console.log(usersDB);
+        res.redirect(`/userProfile`);
     })
     .catch(err => {
         console.log(`error due to ${err}`);
@@ -72,6 +73,11 @@ router.get(`/userProfile`, (req,res,next) => {
     res.render(`users/user-profile`, { userInSession: req.session.currentUser });
 });
 
+
+router.post(`/logout`, (req, res, next) => {
+    req.session.destroy();
+    res.redirect(`/login`);
+});
 
 
 
