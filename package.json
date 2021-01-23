@@ -8,9 +8,12 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
@@ -18,5 +21,18 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "description": "![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idakroniczaja/lab-express-basic-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idakroniczaja/lab-express-basic-auth/issues"
+  },
+  "homepage": "https://github.com/idakroniczaja/lab-express-basic-auth#readme"
 }

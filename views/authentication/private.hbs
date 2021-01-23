@@ -1,0 +1,9 @@
+
+{{#if userInSession}}
+<h1>Welcome, {{userInSession.username}}, this page is PRIVATE.</h1>
+<img src="https://media.giphy.com/media/iFylbW2bOTXWyHslKN/giphy.gif" alt="owl">
+{{else}}
+<p>Sorry, no user in session.</p>
+{{/if}}
+
+<a href="/private">Refresh</a>

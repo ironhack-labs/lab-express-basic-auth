@@ -1,0 +1,9 @@
+
+{{#if userInSession}}
+<h3>Welcome, {{userInSession.username}}</h3>
+<img src="https://static8.depositphotos.com/1010305/1014/i/600/depositphotos_10148457-stock-photo-british-shorthair-cat-on-a.jpg" width="500" height="600">
+{{else}}
+<p>Sorry, no user in session.</p>
+{{/if}}
+
+<a href="/main">Refresh</a>
