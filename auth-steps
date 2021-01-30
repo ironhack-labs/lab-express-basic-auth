@@ -1,0 +1,26 @@
+x1. user schema User.model.js
+
+x2. update name data base name?? 
+
+x3. auth folder views 
+
+x4. view - sign-up.hbs form
+
+x5. make route - auth.routes.js
+
+x6. GET route  path & render
+
+x7. import set up route on app.js
+
+8. POST ROUTE
+ xPOST route 
+9.bcryptjs stuff
+ x npm i bcryptjs for POST password
+ xrequire bcryptjs on auth.route.js
+
+BCRYPTJS set up in POST 
+x11.  saltRounds 
+x12. bcryptjs.genSalt
+x13.then hash
+x14.then create user 
+x15. return User.create ---sends user with hased pw to database
