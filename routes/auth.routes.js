@@ -40,7 +40,7 @@ router.post('/signup', (req, res, next)=> {
     }).then(newUserDb => {
       console.log(newUserDb)
       
-      res.render("users/profile")
+      res.redirect("/login")
     })
     .catch(err => {
       if(err.code === 11000){
@@ -49,6 +49,7 @@ router.post('/signup', (req, res, next)=> {
       } else {console.log("error creating user for db: ", err)}
   })
 });
+
 
 
         ///// LOGIN //////
@@ -70,13 +71,16 @@ router.post('/login', (req, res, next)=> {
 
 
   User.findOne({username})
-    .then(userInDb => {
-      if(!userInDb){
+    .then(userInfoDb => {
+      if(!userInfoDb){
         res.render("auth/login", { errorMessage: "User not found. Please try again or register with signup"
         });
         return;
-      } else if (bcryptjs.compareSync(inputPassword, userInDb.password )) {
-        res.render("users/profile", {userInDb})
+      } else if (bcryptjs.compareSync(inputPassword, userInfoDb.password )) {
+        //console.log(req.session)
+        req.session.currentUser = userInfoDb
+        
+        res.redirect("/profile")
       } else {
         res.render("auth/login", { errorMessage: "Incorrect Password"});
       }
@@ -86,7 +90,9 @@ router.post('/login', (req, res, next)=> {
 
 
 
-
+router.get("/profile", (req,res,next) => {
+  res.render('users/profile', {userInSession: req.session.currentUser})
+})
 
 
 
