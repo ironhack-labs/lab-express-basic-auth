@@ -1,1 +1,9 @@
-<h2>WELCOME {{userInDb.username}}</h2>
+
+
+{{#if userInSession}}
+  <h3>Welcome, {{userInSession.username}}!</h3>
+{{else}}
+  <b>No logged in user, sorry!</b>
+{{/if}}
+ 
+ <a href="/profile">Refresh</a>
