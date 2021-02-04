@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const createError = require('http-errors')
+const routes = require('./configs/routes');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -27,11 +29,25 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+hbs.registerPartials(__dirname + "/views/partials");
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+app.use("/", routes);
+
+// Error handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  if (!error.status) {
+    error = createError(500);
+  }
+  res.status(error.status);
+  res.render("error", error);
+});
 
 module.exports = app;
