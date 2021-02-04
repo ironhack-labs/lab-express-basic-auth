@@ -6,6 +6,10 @@ module.exports.registerView = (req, res, next) => {
     res.render('user/register')
 }
 
+module.exports.registerThanks = (req, res, next) => {
+    res.render('user/thanks')
+}
+
 module.exports.register = (req, res, next) => {
     function renderErrors(errors) {
         res.status(400).render('user/register', { 
@@ -23,7 +27,7 @@ module.exports.register = (req, res, next) => {
                     .create(req.body)
                     .then((u) => {
                         console.log(u)
-                        res.redirect('/register')
+                        res.redirect('/thanks')
                     })
                     .catch((e) => {
                                                                                 // levaría al middelware de errores de www. No hacerlo:

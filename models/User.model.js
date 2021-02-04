@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt') // se hashea antes de que se guarde en la bd, por eso se hace en el modelo
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
-
+const SALT_FACTOR = 10
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
-        // unique: true, -> not work
+        // unique: true, -> not work, validator on controller
         trim: true,
         lowercase: true,
         match: [EMAIL_PATTERN, 'Provide a valid email']
@@ -18,6 +19,18 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+userSchema.pre('save', function(next) {
+    
+    if(this.isModified('password')) {
+        bcrypt.hash(this.password, SALT_FACTOR)
+        .then(hashedPass => {
+            this.password = hashedPass
+            next()
+        })
+    } else {
+        next()
+    }
+})
 
 
 const User = mongoose.model('User', userSchema)
