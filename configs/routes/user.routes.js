@@ -5,4 +5,4 @@ const userController = require('../../controllers/user.controller')
 router.get('/register', userController.registerView)
 router.post('/register', userController.register)
 
-module.exports = router
+module.exports = router;

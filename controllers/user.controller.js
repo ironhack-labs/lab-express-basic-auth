@@ -10,7 +10,7 @@ module.exports.register = (req, res, next) => {
     function renderErrors(errors) {
         res.status(400).render('user/register', { 
             errors: errors,
-            user: req.body                                                     // Para que no se borre el contenido ya escrito si hay error -> en la vista en value user:email
+            user: req.body                                                     // Para que no se borre el contenido ya escrito si hay error => en la vista en value user:email
         })
     }
 
