@@ -1,0 +1,14 @@
+<h1>This is a PRIVATE page</h1>
+
+{{#if userInSession}}
+  <img src="https://i.pinimg.com/originals/59/ce/66/59ce667c5cb01232122c426168265bf2.gif" alt="dog gif" >
+   <br>
+  <a href="/profile">Profile Page</a>
+{{else}}
+<br>
+  <b>Must be logged in, sorry!</b>
+  <br>
+  <a href="/login">Login</a>
+  <br>
+  <a href="auth/signup">Signup</a>
+{{/if}}

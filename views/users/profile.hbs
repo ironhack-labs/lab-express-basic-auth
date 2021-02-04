@@ -7,3 +7,24 @@
 {{/if}}
  
  <a href="/profile">Refresh</a>
+
+
+{{#if userInSession}}
+  <h3>Welcome, {{userInSession.username}}!</h3>
+  <br>
+  <a href="/main">Main Page</a>
+  <br>
+  <a href="/private">Private</a>
+{{else}}
+  <b>No logged in user, sorry!</b>
+{{/if}}
+ 
+
+<br>
+<br> 
+<a href="/profile">Refresh</a>
+<br>
+<br>
+ <form action="/logout" method="get">
+   <button type="submit">LOGOUT</button>
+ </form>

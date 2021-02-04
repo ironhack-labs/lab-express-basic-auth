@@ -36,5 +36,6 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 
 app.use('/', require('./routes/auth.routes'))
+app.use("/", require("./routes/profile.routes"));
 
 module.exports = app;

@@ -1,0 +1,12 @@
+{{#if userInSession}}
+  <img src="https://images-na.ssl-images-amazon.com/images/I/71WTxLxlO6L._AC_SX450_.jpg" alt="cat" >
+   <br>
+  <a href="/profile">Profile Page</a>
+{{else}}
+<br>
+  <b>Must be logged in, sorry!</b>
+  <br>
+  <a href="/login">Login</a>
+  <br>
+  <a href="auth/signup">Signup</a>
+{{/if}}
