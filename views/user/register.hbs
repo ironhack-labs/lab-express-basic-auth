@@ -2,12 +2,17 @@
     <form action="/register" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <input name="email" value="{{user.email}}" class="form-control {{#if errors.email}} is-invalid {{/if}}" id="email" aria-describedby="emailHelp">
+            {{#if errors.email}} 
+            <div id="emailHelp" class="form-text invalid-feedback">{{errors.email}}</div>
+            {{/if}}
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="password">
+            <input name="password" type="password" class="form-control {{#if errors.password}} is-invalid {{/if}}" id="password">
+            {{#if errors.password}} 
+            <div id="emailHelp" class="form-text invalid-feedback">{{errors.password}}</div>
+            {{/if}}
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
