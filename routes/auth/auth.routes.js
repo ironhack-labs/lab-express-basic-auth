@@ -69,7 +69,7 @@ router.post("/login", (req, res) => {
         res.render("auth/login-form", { errorMsg: "Contraseña errónea" });
       }
       req.session.currentUser = user;
-
+      console.log(req.session);
       res.redirect("/");
     })
     .catch((err) => console.log(err));

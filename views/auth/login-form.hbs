@@ -1,23 +1,30 @@
-<h1>Inicio de sesión</h1>
-<hr>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1>Inicio de sesión</h1>
+            <hr>
 
-<form method="POST" action="/auth/login">
+            <form method="POST" action="/auth/login">
 
-    <div class="form-group">
-        <label for="username">Usuario</label>
-        <input name="username" type="text" class="form-control" id="username">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input name="username" type="text" class="form-control" id="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input name="password" type="password" class="form-control" id="password">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Iniciar sesión</button>
+
+
+            </form>
+
+            {{#if errorMsg}}
+            <div class="error-message">{{errorMsg}}</div>
+            {{/if}}
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input name="password" type="password" class="form-control" id="password">
-    </div>
-
-    <button type="submit" class="btn btn-dark">Iniciar sesión</button>
-
-
-</form>
-
-{{#if errorMsg}}
-<div class="error-message">{{errorMsg}}</div>
-{{/if}}
+</div>

@@ -4,5 +4,23 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-text h1,
+h2 {
+  margin-bottom: 30px;
+}
+
+.cat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-container img {
+  margin-bottom: 20px;
 }
