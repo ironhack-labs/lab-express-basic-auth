@@ -1,6 +1,7 @@
-// const e = require('express');
 const mongoose = require('mongoose');
-const User = require('../models/User.model');
+const User = require('../models/user.model');
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
 
 module.exports.profile = (req, res, next) => {
     User.findById(req.params.id)
@@ -8,30 +9,39 @@ module.exports.profile = (req, res, next) => {
         .catch(err => next(err))
 };
 
-module.exports.signup = (req, res, next) => res.render('auth/signup');
+module.exports.register = (req, res, next) => res.render('auth/signup');
 
-module.exports.doSignup = (req, res, next) => {
-    // function renderWithErrors(errors) {
-    //     res.status(400).render('auth/signup', {
-    //       errors: errors,
-    //       user: req.body
-    //     })
-    //   }
-
-    User.find({email: req.body.email})
-        .then(user => {
-            if (user) {
-                renderWithErros({
-                    email: 'This email is already registered.'
-                });
-            } else {
-                User.create(req.body)
-                    .then(() => res.redirect('/'))
-                    .catch(err => {
-                        err instanceof mongoose.Error.ValidationError ? renderWithErrors(err.error) : next(err);
-                    })
-            }
+module.exports.doRegister = (req, res, next) => {
+    console.log(req.body)
+    function renderWithErrors(errors) {
+        
+        res.status(400).render('auth/signup', {
+          errors: errors,
+          user: req.body
         })
-        .catch(err => next(err));
-
+      }
+    
+      User.find({ email: req.body.email })
+        .then((user) => {
+          if (user) {
+            renderWithErrors({
+              email: 'Ya existe un usuario con este email'
+            })
+          } else {
+            User.create(req.body)
+              .then(() => {
+                res.redirect('/')
+              })
+              .catch(e => {
+                if (e instanceof mongoose.Error.ValidationError) {
+                    console.log(req.body)
+                    console.log('soy el catch')
+                  renderWithErrors(e.errors)
+                } else {
+                  next(e)
+                }
+              })
+          }
+        })
+        .catch(e => next(e))
 };

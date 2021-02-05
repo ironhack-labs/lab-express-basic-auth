@@ -5,10 +5,11 @@ const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
 const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema({
-    userName: {
+    username: {
         type: String,
         required: [true, 'Username is required'],
         unique: true,
+        lowercase: true,
         trim: true
     },
     email: {

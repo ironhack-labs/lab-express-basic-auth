@@ -14,10 +14,10 @@ router.get('/terms-and-conditions', miscController.termsAndConditions);
 
 // SIGNUP
 /* GET signup form */
-router.get('/auth/signup', userController.signup);
+router.get('/register', userController.register);
 
 /* POST signup form */
-router.post('/auth/signup', userController.doSignup);
+router.post('/register', userController.doRegister);
 
 // LOGIN
 /* GET login form */

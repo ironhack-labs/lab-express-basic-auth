@@ -1,20 +1,31 @@
-<form class="my-3" action="/auth/signup" method="POST">
+<form class="my-3" action="/register" method="POST">
   <div class="mb-3">
-    <label for="userName" class="form-label">Username</label>
-    <input type="text" name="userName "class="form-control" id="userName" required>
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" id="username" required>
   </div>
   <div class="mb-3">
     <label for="email-input" class="form-label">Email address</label>
     <input type="email" class="form-control" name="email" id="email-input" aria-describedby="emailHelp" required>
     <div id="email-input" class="form-text">We'll never share your email with anyone else.</div>
+    {{#if errors.email}}
+    <div class="invalid-feedback">
+      {{errors.email}}
+    </div>
+    {{/if}}
   </div>
   <div class="mb-3">
     <label for="password-input" class="form-label">Password</label>
-    <input type="password" name="password" class="form-control" id="password-input" required>
+    <input type="password" name="hashPassword" class="form-control" id="password-input" required>
   </div>
+  {{#if errors.password}}
+  <div class="invalid-feedback">
+    {{errors.password}}
+  </div>
+  {{/if}}
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="accept-terms" required>
-    <label class="form-check-label" for="accept-terms">I accept the <a href="/terms-and-conditions" target="_blank">terms and conditions</a></label>
+    <label class="form-check-label" for="accept-terms">I accept the <a href="/terms-and-conditions"
+        target="_blank">terms and conditions</a></label>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
