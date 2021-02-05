@@ -9,3 +9,39 @@ a {
 nav {
   margin-bottom: 50px;
 }
+
+.error-message , .success-message {
+  background: red;
+  color: white;
+  text-align: center;
+  padding: 0 5px;
+  width: 300px;
+  position: fixed;
+  bottom: -40px;
+  left: 10px;
+  height: 40px;
+  line-height: 40px;
+  animation: fadeInOut 5s ease-in forwards;
+}
+
+.success-message {
+  background: rgb(2, 133, 0);
+}
+
+@keyframes fadeInOut {
+  0% {
+    bottom: -40px;
+  }
+
+  10% {
+    bottom: 0px;
+  }
+
+  90% {
+    bottom: 0px;
+  }
+
+  100%{
+    bottom: -40px;
+  }
+}

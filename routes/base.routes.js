@@ -5,17 +5,20 @@ const router = express.Router()
 router.get('/', (req, res) => res.render('index'))
 
 
-// // Custom middleware
-// router.use((req, res, next) => {
-//     if (req.session.currentUser) {
-//         next()
-//     }
-//     else {
-//         res.render('auth/login-form', { errorMsg: 'Desautorizado, iniciar sesión antes' })
-//     }
-// })
+// Custom middleware
+router.use((req, res, next) => {
+    if (req.session.currentUser) {
+        next()
+    }
+    else {
+        res.render('login', { errorMsg: 'Desautorizado, iniciar sesión antes' })
+    }
+})
 
-// router.get('/perfil', (req, res) => res.render('profile'))
+router.get('/profile', (req, res) => {
+    const userName = req.session.currentUser
+    res.render('profile', userName)
+})
 
 
 module.exports = router
