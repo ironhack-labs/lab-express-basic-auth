@@ -6,3 +6,54 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+form{
+  padding: 20px;
+  border: #263238 solid 1px;
+  border-radius: 20px;
+}
+
+
+/*footer*/
+footer { 
+  width:100%; 
+  background-color:#263238; 
+  min-height:100px; 
+  padding:10px 0px 0px 0px ;
+  margin-top: 20px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+
+  position: relative;
+  height: 2.5rem;            
+}
+
+footer p { 
+  font-size:13px; 
+  color:#CCC; 
+}
+.social_footer_ul { 
+  display:flex; 
+  justify-content: center;
+  margin:15px auto 0 auto; 
+  list-style-type:none;  
+}
+.social_footer_ul li { 
+  padding-left:20px; 
+  padding-top:10px; 
+  float:left; 
+}
+.social_footer_ul li a { 
+  color:#CCC; 
+  border:1px solid #CCC; 
+  padding:8px;
+  border-radius:50%;
+}
+.social_footer_ul li i {  
+  width:20px; 
+  height:20px; 
+}
