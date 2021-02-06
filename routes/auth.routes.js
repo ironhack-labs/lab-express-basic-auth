@@ -53,7 +53,7 @@ router.post('/iniciar-sesion', (req, res) => {
     // console.log(req.body)
 
     if (username.length === 0 || password.length === 0) {
-        // console.log('yihaa') Teo, por que no vemos el yihaa??
+
         res.render('login-form', {errorMsg: 'Por favor introduce tus datos'})
         return
     }
@@ -73,15 +73,14 @@ router.post('/iniciar-sesion', (req, res) => {
                 res.render('login-form', {errorMsg: 'Contraseña no coincide'})
                 return
             }
-            
+            // console.log('Esto es el objeto de sesion antes de la asignacion del usuario del formulario', req.session)
             req.session.currentUser = user
-            console.log(user)
-            console.log('Esto es popino', req.session)
-            res.redirect('/')
+            // console.log(user)
+            // console.log('Esto es el objeto de sesion', req.session)
+            res.redirect('/perfil')
         })
         .catch(err => console.log(err))
 })
-
 
 
 
@@ -89,6 +88,18 @@ router.get("/cerrar-sesion", (req, res) => {
     req.session.destroy((err) => res.redirect("/"))
 })
 
+// Custom middleware
+router.use((req, res, next) => {
+    if (req.session.currentUser) {
+        next()
+    }
+    else {
+        res.render('login-form', { errorMsg: 'Desautorizado, iniciar sesión antes' })
+    }
+})
 
+router.get('/general', (req, res) => res.render('main'))
+
+router.get('/privado', (req, res) => res.render('private'))
 
 module.exports = router;
