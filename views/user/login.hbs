@@ -1,0 +1,19 @@
+<div style="max-width: 450px;" class="mx-auto card p-4">
+    <h3><b>Inicio de sesión</b></h3>
+    <form action="/login" method="POST" class="my-3">
+        <div class="form-group mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" id="username" value="{{user.username}}" placeholder="Username" required>
+        </div>
+        <div class="form-group mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="*********" id="password" required>
+        </div>
+        {{#if errors}}
+            <div class="alert alert-danger">{{errors}}</div>
+        {{/if}}
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-dark btn-lg">Login</button>
+        </div>
+    </form>
+</div>

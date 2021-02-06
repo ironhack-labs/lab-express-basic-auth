@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const http = require('http');
-
 let app = require('../app');
 
 // catch 404 and render a not-found.hbs template
