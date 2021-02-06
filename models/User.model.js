@@ -1,10 +1,10 @@
 // User model here
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const USERNAME_PATTERN = /^.{4,}$/
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-const SALT_ROUNDS = 10
+const USERNAME_PATTERN = /^.{4,}$/;
+const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -18,10 +18,14 @@ const userSchema = new mongoose.Schema({
     password: {
 		type: String,
 		required: 'Password required',
-        match: [PASSWORD_PATTERN, 'Password must have at least 8 characters (1 uppercase, 1 lowercase, 1 letter and 1 number)']
+        match: [PASSWORD_PATTERN, `Invalid Password. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character`]
 
 	},
 })
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password);
+};
 
 userSchema.pre('save', function(next) {
   const user = this

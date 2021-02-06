@@ -3,20 +3,13 @@
 <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" id="username" name="username" value="{{user.username}}" required>
-    {{#if errors.username}}
-        <div class="invalid-feedback">
-          {{errors.username}}
-        </div>
-      {{/if}}
 </div>
 <div class="mb-3">
     <label for="password" class="form-label">Password</label>
     <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" name="password" required>
-    {{#if errors.password}}
-        <div class="invalid-feedback">
-          {{errors.password}}
-        </div>
-      {{/if}}
+     {{#if error}}
+      <p class="alert alert-danger mt-3">{{error}}</p>
+    {{/if}}
 </div>
 <button type="submit" class="btn btn-dark">Log-in</button>
 </form>

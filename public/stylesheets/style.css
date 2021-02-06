@@ -5,3 +5,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+.btn-logout {
+  border: 0px;
+  background-color: none;
+  text-decoration: none !important;
+  color: rgb(160, 45, 45) !important;
+}
