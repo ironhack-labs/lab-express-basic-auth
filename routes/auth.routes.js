@@ -1,25 +1,33 @@
-const express = require ("express");
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcrypt');
-
+//const bcrypt = require('bcrypt');
+const bcryptjs = require(`bcryptjs`);
 const User = require("../models/User.model.js")
 
-router.get('/signup', (req, res, next)=> 
-res.render('login/signup'));
+router.get('/signup', (req, res, next) =>
+    res.render('login/signup'));
 
 const saltRounds = 10
 
 
-router.post('/signup', (req, res, next)=>{
-    const { username, inputPassword} = req.body
-    bcrypt.genSalt(saltRounds)
-    .then(salt=> bcrypt.hash(inputPassword, salt))
-    .then(hashedPassword => {
-        return User.create({username, password: hashedPassword})
-    })
-    .then(newUserDbs => console.log(newUserDbs))
-    .catch(err=> console.log("Error, a new user has not been added to the database",err))
-
-})
+router.post(`/signup`, (req, res, next) => {
+    const { username, Userpassword } = req.body;
+    console.log(username)
+    bcryptjs
+        .genSalt(saltRounds)
+        .then((salt) => bcryptjs.hash(Userpassword, salt))
+        .then((hashedPassword) => {
+            console.log("hola", hashedPassword)
+            return User.create({ username, password: hashedPassword })
+        })
+        .then((usersDB) => {
+            console.log(usersDB);
+        })
+        .catch(err => {
+            console.log(`error due to ${err}`);
+        });
+});
 
 module.exports = router
+
+
