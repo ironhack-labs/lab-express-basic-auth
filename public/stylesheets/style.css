@@ -1,8 +1,12 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+    body {
+        font-family: sans-serif;
+    }
+    
+    h1 {
+        margin: 40px 0;
+        font-size: 80px;
+    }
+    
+    .navbar {
+        padding: 20px;
+    }
