@@ -18,8 +18,8 @@ require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // Usar esto o body parser, que ya esta incluido en express.
+app.use(express.urlencoded({ extended: false })); // en peticiones post nos da la info como rl req.body
 app.use(cookieParser());
 
 // Express View engine setup

@@ -26,9 +26,9 @@ module.exports.doRegister = (req, res, next) => {
                         //console.log(user)
                         res.redirect("/")
                     })
-                    .catch((e) => {
-                        if (e instanceof mongoose.Error.ValidationError) {
-                            renderWithErrors(e.errors)
+                    .catch(e => {
+                        if (e instanceof mongoose.Error.ValidationError) {  //Errores de validación del modelo
+                            renderWithErrors(e.errors) // errors => objeto de los errores que se han dado
                         } else {
                             next(e)
                         }

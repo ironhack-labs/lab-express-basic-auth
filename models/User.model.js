@@ -12,12 +12,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
-        match: [EMAIL_PATTERN, "Email invalid"]
+        match: [EMAIL_PATTERN, "Email invalid"],
     },
     password: {
         type: String,
         required: "Password is mandatory",
-        match: [PASSWORD_PATTERN, "Your password must contain at least: 1 uppercase, 1 lowercase, 1 number and 8 characters"]
+        match: [PASSWORD_PATTERN, "Your password must contain at least: 1 uppercase, 1 lowercase, 1 number and 8 characters"],
     }
 })
 
