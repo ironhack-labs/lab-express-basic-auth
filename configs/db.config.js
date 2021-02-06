@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/express-basic-auth-dev', {
+  .connect('mongodb+srv://alison-paulino:Campinas03@cluster0.rvgoa.mongodb.net/AuthDB?retryWrites=true&w=majority', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
