@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const session = require("./configs/session.config")
 const createError = require('http-errors')
 const routes = require('./configs/routes');
 const cookieParser = require('cookie-parser');
@@ -21,6 +22,7 @@ require('./configs/db.config');
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
+app.use(session)
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
