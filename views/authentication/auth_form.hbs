@@ -3,10 +3,11 @@
         <div class="col">
             <h2 class="mb-3 p-2">Registro</h2>
             <form action="/register" method="POST">
+                <div class="form-text mb-3">No compartiremos tus datos con terceros</div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" name="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" required>
-                    {{#if errors.username}}
+                    <input type="email" name="email" value="{{user.email}}" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" required>
+                    {{#if errors.email}}
                         <div class="invalid-feedback">
                             {{errors.email}}
                         </div>
@@ -26,7 +27,7 @@
                 <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" required>
                 {{#if errors.password}}
                     <div class="invalid-feedback">
-                    {{errors.password}}
+                        {{errors.password}}
                     </div>
                 {{/if}}
                 </div>
