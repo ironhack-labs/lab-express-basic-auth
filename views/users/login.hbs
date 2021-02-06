@@ -1,0 +1,23 @@
+
+    <div class="container">
+        <h1>LOGIN</h1>
+        <form action="/login" method="POST">
+        <div class="mb-3">
+            <label for="userName" class="form-label">Email address</label>
+            <input type="email" value="{{user.userName}}" class="form-control " id="userName" name="userName">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        
+        {{#if errors.errorMessage}}
+        <p>{{errors.errorMessage}}</p>
+        {{/if}}
+
+    </div>
