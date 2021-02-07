@@ -1,21 +1,24 @@
-<form action="/register" method="POST">
+<div class="container">
+  <form action="/register" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label">Correo electrónico</label>
-      <input type="email" name="email" value={{user.email}} class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" required>
+      <input type="email" name="email" value="{{user.email}}" class="form-control {{#if errors.email}}is-invalid{{/if}}"
+        id="email" required>
       <div class="form-text">No compartiremos tu email con terceros</div>
       {{#if errors.email}}
-        <div class="invalid-feedback">
-          {{errors.email}}
-        </div>
+      <div class="invalid-feedback">
+        {{errors.email}}
+      </div>
       {{/if}}
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" required>
+      <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password"
+        required>
       {{#if errors.password}}
-        <div class="invalid-feedback">
-          {{errors.password}}
-        </div>
+      <div class="invalid-feedback">
+        {{errors.password}}
+      </div>
       {{/if}}
     </div>
     <div class="mb-3">
@@ -24,3 +27,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
+</div>
