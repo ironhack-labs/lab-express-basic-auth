@@ -17,13 +17,14 @@ const app = express();
 require('./configs/db.config');
 //require session configuration
 
-require('./configs/session.config') ;
+const session = require('./configs/session.config');
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session);
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));

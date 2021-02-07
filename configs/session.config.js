@@ -13,12 +13,8 @@ const session = expressSession ({
   cookie: {
     secure: process.env.SESS_SECRET || false,
     httpOnly: true,
-    maxAge: process.env.SESSION_MAX_AGE || 3600000 // 360 * 1000 ms === 1 hora Tiempo de duración de la cookie. Despues se borra
-  },
-  store: new MongoStore({                // conexión de express-session a connect-mongo
-    mongooseConnection: mongoose.connection,
-    ttl: process.env.SESSION_MAX_AGE || 3600000,
-  })
+    maxAge:  3600000 // 360 * 1000 ms === 1 hora Tiempo de duración de la cookie. Despues se borra
+  }
 });
 
 

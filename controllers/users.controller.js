@@ -70,11 +70,11 @@ module.exports.doLogin = (req, res, next) => {
             } else {
                 console.log('SESSION =====> ', req.session);
 
-              //  req.session.currentUser = user
-              //  if (bcrypt.compareSync(req.body.password, user.password)) {
-              //      console.log(`User ${user.userName} ${req.session.currentUser}}logon`)
-              //      res.render('users/logon',user);
-              //  }
+                req.session.currentUser = user
+                if (bcrypt.compareSync(req.body.password, user.password)) {
+                    console.log(`User ${user.userName} ${req.session.currentUser}}logon`)
+                    res.render('users/logon',user);
+                }
             }
 
         })
