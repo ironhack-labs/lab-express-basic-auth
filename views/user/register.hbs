@@ -14,6 +14,10 @@
             <div id="emailHelp" class="form-text invalid-feedback">{{errors.password}}</div>
             {{/if}}
         </div>
+        <div class="mb-3">
+            <label for="passwordRepeat" class="form-label">Repeat the password</label>
+            <input name="passwordRepeat" type="password" id="passwordRepeat" class="form-control{{#if errors.password}} is-invalid {{/if}}" id="password">
+        </div>
         <button type="submit" class="btn btn-dark">Submit</button>
     </form>
 </div>

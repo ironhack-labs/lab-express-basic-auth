@@ -22,6 +22,8 @@ module.exports.register = (req, res, next) => {
         .then((u) => {                                                         // podría tener mi usuario si ya existe o devolver undefined
             if (u) {                                                           // si existe, no podemos dejar que se crea
                 renderErrors({ email: 'This email is already signed in' })
+            } else if (req.body.password !== req.body.passwordRepeat) {
+                renderErrors({ password: 'Please insert the same password'})
             } else {                                                           // no lo encuentra, procedemos
                 User
                     .create(req.body)
