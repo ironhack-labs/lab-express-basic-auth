@@ -45,3 +45,8 @@ a {
   background-color: rgba(81, 216, 187, 0.5);
 
 }
+
+.error__message{
+  color:purple;
+  font-weight: bold;
+}

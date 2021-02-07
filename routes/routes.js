@@ -11,4 +11,16 @@ router.get('/', miscController.index);
 router.get('/register', usersController.register)
 router.post('/register', usersController.doRegister)
 
+
+//Login
+
+router.get('/login', usersController.login)
+router.post('/login', usersController.doLogin)
+
+//Logout
+
+
+//Profile
+router.get('/profile', usersController.profile)
+
 module.exports = router;
