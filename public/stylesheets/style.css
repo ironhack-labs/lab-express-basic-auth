@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nav__elements{
+  display: flex;
+  justify-content: flex-end;
+}
