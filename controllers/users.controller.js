@@ -28,7 +28,7 @@ module.exports.doEdit = (req, res, next) => {
                 //console.log (`${user} already exits`)
 
             } else {
-                req.session
+                req.session.currentUserId = user.id;
                 User.create(req.body)
                     .then(() => res.redirect('/'))
                     .catch((e) => {
@@ -79,4 +79,9 @@ module.exports.doLogin = (req, res, next) => {
 
         })
 };
+// logout de la sesión
+module.exports.logout = (req,res,next) => {
+     req.session.destroy();
+     res.render('/');
+}
 

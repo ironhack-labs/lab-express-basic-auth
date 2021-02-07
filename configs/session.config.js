@@ -3,19 +3,23 @@
 // require session
 const expressSession = require('express-session');
 const mongoose = require ('mongoose');
-const connectMongoose = require('connect-mongo');
-const MongoStore = connectMongoose(expressSession);
+const connectMongo = require('connect-mongo');
+const MongoStore = connectMongo(expressSession);
 
 const session = expressSession ({
-  secret: process.env.SESS_SECRET,
+  secret: process.env.SESS_SECRET || 'super secret (change it)',
   resave: false,
-  saveUninitialized:false, // true la cookie se almacena aunque no se haya confirmado el inicio de sesión. false no se almacena hasta que se confirma el inicio de sesión
+  saveUninitialized: false, 
   cookie: {
-    secure: process.env.SESS_SECRET || false,
+    secure: process.env.SESS_SECURE|| false,
     httpOnly: true,
     maxAge: 3600000 
-    }
-});
+    },
+    store: new MongoStore ({
+      mongooseConnection: mongoose.connection,
+      ttl: 3600000 
+    })
+})
 
 
 
