@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const index = require('./routes/index.routes');
+const User = require("./models/user.model")
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -15,6 +17,8 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+const session = require('./configs/session.config');
+app.use(session);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -26,12 +30,30 @@ app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(path.join(__dirname + '/views/partials'));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const index = require('./routes/index.routes');
+
+
+app.use((req, res, next) => {
+    if (req.session.currentUserId) {
+      User.findById(req.session.currentUserId)
+        .then(user => {
+          if (user) {
+            req.currentUser = user
+            res.locals.currentUser = user
+  
+            next()
+          }
+        })
+    } else {
+      next()
+    }
+  })
+
 app.use('/', index);
 
 module.exports = app;

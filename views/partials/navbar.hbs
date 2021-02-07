@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between">
+
+  <a class="navbar-brand text-warning" href="/">Basic Auth</a>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mt-2">
+        {{#if currentUser}}
+        <li><a class="dropdown-item" href="/profile">View profile</a></li>
+        <form action="/logout" method="POST">
+          <li><button class="dropdown-item">Log out</button></li>
+        </form>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+</div>

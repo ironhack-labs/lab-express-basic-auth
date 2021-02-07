@@ -1,0 +1,31 @@
+<div class="container">
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" value='{{user.email}}' class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            {{#if errors.email}}
+            <div class="text-danger pt-2">
+                {{errors.email}}
+            </div>
+            {{/if}}
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password"
+                placeholder="Password">
+            {{#if errors.password}}
+            <div class="text-danger pt-2">
+                {{errors.password}}
+            </div>
+            {{/if}}
+        </div>
+        <div class="form-group">
+            <label for="repeatPassword">Repeat password</label>
+            <input type="password" name="repeatPassword" class="form-control" id="repeatPassword"
+                placeholder="Repeat password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
