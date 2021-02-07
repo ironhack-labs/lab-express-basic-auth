@@ -28,7 +28,7 @@ module.exports.doEdit = (req, res, next) => {
                 //console.log (`${user} already exits`)
 
             } else {
-
+                req.session
                 User.create(req.body)
                     .then(() => res.redirect('/'))
                     .catch((e) => {
@@ -70,7 +70,7 @@ module.exports.doLogin = (req, res, next) => {
             } else {
                 console.log('SESSION =====> ', req.session);
 
-                req.session.currentUser = user
+                req.session.currentUser = user.id
                 if (bcrypt.compareSync(req.body.password, user.password)) {
                     console.log(`User ${user.userName} ${req.session.currentUser}}logon`)
                     res.render('users/logon',user);

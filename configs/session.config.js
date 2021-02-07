@@ -9,12 +9,12 @@ const MongoStore = connectMongoose(expressSession);
 const session = expressSession ({
   secret: process.env.SESS_SECRET,
   resave: false,
-  saveUninitialized: false, // true la cookie se almacena aunque no se haya confirmado el inicio de sesión. false no se almacena hasta que se confirma el inicio de sesión
+  saveUninitialized:false, // true la cookie se almacena aunque no se haya confirmado el inicio de sesión. false no se almacena hasta que se confirma el inicio de sesión
   cookie: {
     secure: process.env.SESS_SECRET || false,
     httpOnly: true,
-    maxAge:  3600000 // 360 * 1000 ms === 1 hora Tiempo de duración de la cookie. Despues se borra
-  }
+    maxAge: 3600000 
+    }
 });
 
 
