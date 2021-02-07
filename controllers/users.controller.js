@@ -80,7 +80,7 @@ module.exports.doLogin = (req, res, next) => {
               renderWithErrors()
             }else{
               req.session.currentUserId = user.id
-              res.redirect('/profile') //Redirijo a mi página de sesión
+              res.redirect('/') //Redirijo a mi página de sesión
             }
           })
           .catch((e) => next(e))
