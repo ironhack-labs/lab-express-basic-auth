@@ -14,27 +14,37 @@ module.exports.doRegister = (req, res, next) => {
   }
 
   //Para comprobar que no existe un email así ya en la base de datos (Mejor q el unique)
-  User.find({$or:[{email: req.body.email},{username:req.body.username}]})
+  User.find({username:req.body.username})
     .then((user) => {
-      if (user.length > 0) {
+      if (user.length >0) {
         console.log(user)
         renderWithErrors({
-          username: 'Ya existe un usuario o email con este nombre'
+          username: 'Ya existe un usuario con este nombre'
         })
       }
       else { //Creamos el usuario
-        User.create(req.body)
-          .then(() => {
-            console.log('The form data: ', req.body.username);
-            res.redirect('/')
-          })
-          .catch(e => { //Incluye los errores de validación de mongoose
-            if (e instanceof mongoose.Error.ValidationError) {
-              renderWithErrors(e.errors)
-            } else {
-              next(e)
-            }
-          })
+        User.find({email:req.body.email})
+        .then((email) => {
+          if (email.length > 0) {
+            renderWithErrors({
+              email: 'Ya existe un email con este nombre'
+            })
+          }
+          else{
+            User.create(req.body)
+            .then(() => {
+              console.log('The form data: ', req.body);
+              res.redirect('/')
+            })
+            .catch(e => { 
+              if (e instanceof mongoose.Error.ValidationError) {
+                renderWithErrors(e.errors)
+              } else {
+                next(e)
+              }
+            })
+          }
+        })
       }
     })
     .catch(e => next(e))
