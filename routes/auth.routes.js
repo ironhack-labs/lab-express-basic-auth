@@ -6,19 +6,21 @@ const mongoose = require('mongoose')
 //Modelo:
  const User = require('../models/User.model')
 
- router.get('/auth/signup', (req, res,) => res.render('auth/signup'));
+ router.get('/signup', (req, res,) => res.render('auth/signup'));
 
  const saltRounds =  10
 
  router.post('/signup', (req, res, next) => {
-    const { username, inputPassword } = req.body;
+    const { inputMail, inputPassword } = req.body;
    
     bcryptjs
       .genSalt(saltRounds)
       .then((salt) => bcryptjs.hash(inputPassword, salt))
       .then((hashedPassword) => {
-        return User.create({username,password:hashedPassword})
+        return User.create({inputMail,password:hashedPassword})
       }).then((newUserDb) => console.log(newUserDb))
+      .then(() => {res.redirect("/")
+    })
       .catch(err=> console.log('error creating use',err))
   });
 
