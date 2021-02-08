@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+const routes = require("./routes/index.routes"); //para llamar a las rutas
+const User = require("./models/User.model")
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -34,6 +37,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index.routes');
 app.use('/', index);
 
-app.use('/',require('./routes/auth.routes'))
+//app.use('/',require('./routes/auth.routes'))
 
 module.exports = app;
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () =>
+    console.log(`Listening on port ${PORT}`)
+);
