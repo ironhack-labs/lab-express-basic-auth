@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col">
+            <h2 class="mb-3 p-2">Log in</h2>
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" name="email" value="{{user.email}}" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+                {{#if error}}
+                <p class="error-message">{{error}}</p>
+                {{/if}}
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-secondary">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
