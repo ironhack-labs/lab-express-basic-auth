@@ -1,3 +1,4 @@
+<h4 class="display-5">Registration</h4>
 <div class="container">
     <form action="/register" method="POST">
         <div class="mb-3">
@@ -7,6 +8,13 @@
             <div id="emailHelp" class="form-text invalid-feedback">{{errors.email}}</div>
             {{/if}}
         </div>
+      {{!--   <div class="mb-3">
+            <label for="username" class="form-label">Username - Will be kept forever</label>
+            <input name="username" value="{{user.username}}" class="form-control {{#if errors.username}} is-invalid {{/if}}" id="username" aria-describedby="usernameHelp">
+            {{#if errors.username}} 
+            <div id="usernameHelp" class="form-text invalid-feedback">{{errors.username}}</div>
+            {{/if}}
+        </div> --}}
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input name="password" type="password" class="form-control {{#if errors.password}} is-invalid {{/if}}" id="password">

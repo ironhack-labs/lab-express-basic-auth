@@ -1,3 +1,15 @@
+/* 
+Declarar
+:root{
+  --c-basic: rgb(163, 95, 95);
+  --navbar-width: 20px;
+}
+
+Usar
+.class {
+  color: var(--c-basic);
+} */
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
