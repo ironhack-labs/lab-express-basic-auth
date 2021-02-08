@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const User = require("../models/user.model")
+const User = require("../models/User.model")
 
 module.exports.register = (req, res, next) => {
   res.render('users/register')
@@ -80,7 +80,7 @@ module.exports.doLogin = (req, res, next) => {
               renderWithErrors()
             }else{
               req.session.currentUserId = user.id
-              res.redirect('/') //Redirijo a mi página de sesión
+              res.redirect('/profile') //Redirijo a mi página de sesión
             }
           })
           .catch((e) => next(e))

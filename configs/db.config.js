@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 mongoose
-  .connect(process.env.MONGO_DB_URI, {
+  .connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
+  .then(x =>
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  )
   .catch(err => console.error('Error connecting to mongo', err));
 
-
   process.on('SIGINT', () => {
-    mongoose.connection
-      .close()
-      .then(() => console.log('Succesfully disconnected from the DB'))
-      .catch((e) => console.error('Error disconnecting from the DB', e))
-      .finally(() => process.exit())
-  })
+    mongoose.connection.close()
+      .then(() => console.log('Mongoose default connection disconnected through app termination'))
+      .catch(error => console.log('Error disconnecting from the database', error))
+      .finally(() => process.exit());
+}) 
