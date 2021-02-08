@@ -1,9 +1,12 @@
-{{#if user}}
-  <h2>Welcome, {{user.userName}}!</h2>
+{{#if currentUser}}
+  <h2>Welcome, {{currentUser.userName}}!</h2>
   <p>This is your profile page my friend!</p>
-  <button>
-    <a href="user/:id">Reload the page</a>
+  <button class="btn btn-warning">
+    <a href="/users/userProfile">Reload the page</a>
   </button>
+		<form class="delete-form pt-2" action="/users/{{currentUser._id}}/delete" method="post">
+			<button type="submit" class="btn btn-danger" onclick="return clicked()">Remove Account</button>
+		</form>
 {{else}}
-  <p>Still no logged in user, sorry!</p>
+  <p>Still not logged in user, sorry!</p>
 {{/if}}

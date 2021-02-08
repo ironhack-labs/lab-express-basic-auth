@@ -1,11 +1,17 @@
-<form class="my-3" action="/register" method="POST">
+<form class="my-3" action="/signup" method="POST">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input type="text" name="username" class="form-control" id="username" required>
+    <input type="text" name="userName" class="form-control {{#if erros.userName}}is-invalid{{/if}}" id="username">
+    {{#if errors.userName}}
+    <div class="invalid-feedback">
+      {{errors.userName}}
+    </div>
+    {{/if}}
   </div>
   <div class="mb-3">
     <label for="email-input" class="form-label">Email address</label>
-    <input type="email" class="form-control" name="email" id="email-input" aria-describedby="emailHelp" required>
+    <input type="email" class="form-control {{#if erros.email}}is-invalid{{/if}}" name="email" id="email-input"
+      aria-describedby="emailHelp">
     <div id="email-input" class="form-text">We'll never share your email with anyone else.</div>
     {{#if errors.email}}
     <div class="invalid-feedback">
@@ -15,7 +21,8 @@
   </div>
   <div class="mb-3">
     <label for="password-input" class="form-label">Password</label>
-    <input type="password" name="hashPassword" class="form-control" id="password-input" required>
+    <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}"
+      id="password-input">
   </div>
   {{#if errors.password}}
   <div class="invalid-feedback">
@@ -27,5 +34,5 @@
     <label class="form-check-label" for="accept-terms">I accept the <a href="/terms-and-conditions"
         target="_blank">terms and conditions</a></label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>

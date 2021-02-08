@@ -9,8 +9,9 @@ const logger = require('morgan');
 const path = require('path');
 const process = require('process');
 const routes = require('./configs/routes');
-const bodyParser = require('body-parser');
 const createError = require("http-errors");
+const session = require('./configs/session.config');
+const User = require('./models/user.model')
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -24,9 +25,8 @@ require('./configs/db.config');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(session);
 
 // app.use((req, res, next) => {
 //     next(createError(404));
@@ -39,11 +39,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 hbs.registerPartials(__dirname + "/views/partials");
 
+// Session
+app.use((req, res, next) => {
+    if (req.session.currentUserId) {
+      User.findById(req.session.currentUserId)
+        .then(user => {
+          if (user) {
+            req.currentUser = user
+            res.locals.currentUser = user
+  
+            next()
+          }
+        })
+    } else {
+      next()
+    }
+  })
+
 //Routes
 app.use('/', routes);
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
 
 module.exports = app;

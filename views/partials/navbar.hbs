@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: #00B7FF; "href="/">Lab | Basic Auth</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" style="color: #00B7FF; " href="/">Lab | Basic Auth</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -9,12 +10,26 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
+        {{#if currentUser}}
         <li class="nav-item">
-          <a class="nav-link" href="/register">Signup</a>
+          <a class="nav-link" href="/signup">Signup</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/protected/main">Main</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/protected/private">Private</a>
+        </li>
+        <li class="nav-item">
+          <form action="/logout" method="POST">
+            <button class="nav-link">Logout</button>
+          </form>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </div>

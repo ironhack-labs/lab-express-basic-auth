@@ -1,0 +1,32 @@
+<form class="my-3" action="/login" method="POST">
+  {{!-- <div class="mb-3">
+    <label for="email-input" class="form-label">Email address</label>
+    <input type="email" class="form-control" value="{{user.email}}" name="email" id="email-input"
+      aria-describedby="emailHelp" required>
+    {{#if errors.email}}
+    <div class="invalid-feedback">
+      {{errors.email}}
+    </div>
+    {{/if}}
+  </div> --}}
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="userName" class="form-control {{#if erros.userName}}is-invalid{{/if}}" id="username">
+    {{#if errors.userName}}
+    <div class="invalid-feedback">
+      {{errors.userName}}
+    </div>
+    {{/if}}
+  </div>
+  <div class="mb-3">
+    <label for="password-input" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}"
+      id="password-input" required>
+  </div>
+  {{#if errors.password}}
+  <div class="invalid-feedback">
+    {{errors.password}}
+  </div>
+  {{/if}}
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>

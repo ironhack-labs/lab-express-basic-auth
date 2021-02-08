@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema({
-    username: {
+    userName: {
         type: String,
         required: [true, 'Username is required'],
         unique: true,
@@ -20,12 +20,16 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
-    hashPassword: {
+    password: {
         type: String,
         required: [true, 'Password is required'],
-        match: [PASSWORD_PATTERN, 'Your password must contain at least 1 number, 1 upper case letter, 1 lower case letter and be at least 8 characters long.']
+        //match: [PASSWORD_PATTERN, 'Your password must contain at least 1 number, 1 upper case letter, 1 lower case letter and be at least 8 characters long.']
     }
 })
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+    return bcrypt.compare(passwordToCheck, this.password)
+}
 
 userSchema.pre('save', function(next) {
     const user = this;
