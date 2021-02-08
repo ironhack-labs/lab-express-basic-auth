@@ -1,4 +1,13 @@
 <div class="container text-center justify-content-center">
+    {{#if currentUser}}
+    <h1>✷ <h1 class="display-1 mb-4">Hello {{currentUser.email}}</h1></h1>
+    <form action="/logout" method="POST">
+        <Button class="btn btn-sm btn-dark mt-3" type="submit">Logout ></Button> 
+    </form>
+    {{else}}
     <h1>✷ <h1 class="display-1 mb-4">Welcome</h1></h1>
-    <h5>To access this page please <a class="btn btn-sm btn-dark mt-3" href="/login">Login > </a> or <a class="btn btn-sm btn-dark mt-3" href="/register">Register > </a></h5>
+    <h5>To access this page please enter with your account or register </h5>
+    <a class="btn btn-sm btn-dark mt-3" href="/login">Login > </a> <br>
+    <a class="btn btn-sm btn-dark mt-3" href="/register">Register > </a>
+    {{/if}}
 </div>
