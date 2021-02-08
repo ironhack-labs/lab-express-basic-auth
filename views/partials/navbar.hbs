@@ -13,15 +13,15 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             My account
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul class="dropdown-menu drop__box" aria-labelledby="navbarDropdownMenuLink">
             {{#if currentUser}}
-            <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+            <li><a class="dropdown-item li__font" href="/profile">My Profile</a></li>
             <form action="/logout" method="POST">
-              <button class="dropdown-item" type="submit">Logout</button>
+              <button class="dropdown-item li__font" type="submit">Logout</button>
             </form>
             {{else}}
-            <li><a class="dropdown-item" href="/register">Register</a></li>
-            <li><a class="dropdown-item" href="/login">Login</a></li>
+            <li><a class="dropdown-item li__font" href="/register">Register</a></li>
+            <li><a class="dropdown-item li__font" href="/login">Login</a></li>
             {{/if}}
           </ul>
         </li>
