@@ -1,0 +1,27 @@
+<div class="container">
+  <form action="/register" method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="username" name="username" value="{{user.username}}" class="form-control {{#if errors.username}}is-invalid{{/if}}" id="username" required>
+      {{#if errors.username}}
+        <div class="invalid-feedback">
+          {{errors.username}}
+        </div>
+      {{/if}}
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" required>
+      {{#if errors.password}}
+        <div class="invalid-feedback">
+          {{errors.password}}
+        </div>
+      {{/if}}
+    </div>
+    {{!-- <div class="mb-3">
+      <label for="repeatPassword" class="form-label">Repite tu contraseña</label>
+      <input type="password" name="repeatPassword" class="form-control" id="repeatPassword" required>
+    </div> --}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
