@@ -9,14 +9,22 @@ const userSchema = new mongoose.Schema({
         required: 'Es necesario que introduzcas un correo electrónico',
         unique: true,
         lowercase: true,
+        match: [EMAIL_PATTERN,'email no valido'],
+        // trim borrra los espacios vacios
         trim: true
     },
     password: {
         type: String,
         required: 'La contraseña es requerida',
         unique: true,
+        match: [PASSWORD_PATTERN,'Tu contraseña debe conteneral menos 1 número, 1 mayúscula, 1 minúscula y 8 caracteres']
     }
 })
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+    return bcrypt.compare(passwordToCheck, this.password);
+  };
+  
 userSchema.pre('save', function(next) {
     //user es igual a this
     if (this.isModified('password')) {

@@ -8,5 +8,10 @@ router.get('/', (req, res, next) => res.render('index'));
 router.get('/register', userController.register)
 router.post('/register', userController.doRegister)
 router.get('/', miscController.home)
-// Users
+
+router.get('/login',userController.login)
+router.post('/login',userController.doLogin)
+
+
+
 module.exports = router;

@@ -21,6 +21,7 @@ module.exports.doRegister = (req, res, next) => {
                     .then(() => {
                         res.redirect('/')
                     })
+                    //Errores de validación del modelo en el catch
                     .catch(e => {
                         if (e instanceof mongoose.Error.ValidationError) {
                             renderWithError(e.errors)
@@ -32,3 +33,41 @@ module.exports.doRegister = (req, res, next) => {
         })
         .catch(e => next(e))
 }
+
+module.exports.login = (req, res, next) => {
+    res.render('users/login')
+  }
+  
+  module.exports.doLogin = (req, res, next) => {
+    function renderWithErrors() {
+      res.render('users/login', {
+        user: req.body,
+        error: 'El correo electrónico o la contraseña no son correctos'
+      })
+    }
+  
+    User.findOne({ email: req.body.email })
+      .then((user) => {
+        if (!user) {
+          renderWithErrors()
+        } else {
+          user.checkPassword(req.body.password)
+            .then(match => {
+              if (!match) {
+                renderWithErrors()
+               // req.session.currentUserId = user.id
+  
+                
+              } else {
+                res.redirect('/')
+              }
+            })
+        }
+      })
+      .catch(e => next(e))
+  }
+
+
+  module.exports.profile = (req, res, next) => {
+    res.render('users/profile')
+  }
