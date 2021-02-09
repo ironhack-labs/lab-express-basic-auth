@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  margin-bottom: 20px;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #00B7FF;
+  margin: 1px solid #00b7ff;
+  color: #fff;
+  font-size: 1.5em;
+  margin: 10px
+}

@@ -2,12 +2,12 @@ const mongoose = require("mongoose")
 const User = require("../models/User.model")
 
 module.exports.register = (req, res, next) => {
-    res.render('register')
+    res.render('user/register')
 }
 
 module.exports.doRegister = (req, res, next) => {
     function renderWithErrors(errors) {
-    res.status(400).render('register', {
+    res.status(400).render('user/register', {
       errors: errors,
       user: req.body
     })
@@ -39,12 +39,12 @@ module.exports.doRegister = (req, res, next) => {
 }
 
 module.exports.login = (req, res, next) => {
-    res.render ('login')
+    res.render ('user/login')
 }
 
 module.exports.doLogin = (req, res, next) => {
     function renderWithErrors() {
-        res.status(400).render('login', {
+        res.status(400).render('user/login', {
             error: "Email or password invalid",
             user: req.body
         })
@@ -75,5 +75,13 @@ module.exports.logout = (req, res, next) => {
 }
 
 module.exports.profile = (req, res, next) => {
-    res.render('profile')
+    res.render('user/profile')
+}
+
+module.exports.main = (req, res, next) => {
+    res.render('protectedRoutes/main')
+}
+
+module.exports.private = (req, res, next) => {
+    res.render('protectedRoutes/private')
 }

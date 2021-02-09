@@ -1,0 +1,23 @@
+<div class="container">
+    <div class= "row justify-content-between">
+        <nav class="navbar navbar-expand-lg">
+            <div class ="col-8">
+                <a class="titleNav navbar-brand" href="#">{{title}}</a>
+            </div class="col-4">
+            <div class="items collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="dropdown-item" href="/">Inicio</a>
+                    {{#if currentUser}}
+                    <a class="dropdown-item" href="/profile">Profile</a>
+                    <form action="/logout" method="POST">
+                        <button class="dropdown-item">Sign off</button>
+                    </form>
+                    {{else}}
+                    <a class="dropdown-item" href="/register">Register</a>
+                    <a class="dropdown-item" href="/login">Sign in</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
