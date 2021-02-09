@@ -1,0 +1,17 @@
+<div class="container">
+  <form action="/login" method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input name="username" value="{{user.username}}" class="form-control" id="username" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" id="password" required>
+    </div>
+
+    {{#if error}}
+      <p class="error-message">{{error}}</p>
+    {{/if}}
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

@@ -7,6 +7,9 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const session = require('./configs/session.config');
+const User = require("./models/user.model");
+
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -18,9 +21,26 @@ require('./configs/db.config');
 
 // Middleware Setup
 app.use(logger('dev'));
+app.use(session);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+    if (req.session.currentUserId) {
+      User.findById(req.session.currentUserId)
+        .then(user => {
+          if (user) {
+            req.currentUser = user
+            res.locals.currentUser = user
+  
+            next()
+          }
+        })
+    } else {
+      next()
+    }
+  })
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,4 +1,14 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<a href="/register" class="text-info btn btn-outline-secondary">Register</a>
+
+{{#if currentUser}}
+    <a href="/profile" class="text-info btn btn-outline-secondary">Profile</a>
+    <form action="/logout" method="POST">
+        <button class="text-info btn btn-outline-secondary">Log out</button>
+    </form>
+{{else}}
+    <a href="/register" class="text-info btn btn-outline-secondary">Register</a>
+    <a href="/login" class="text-info btn btn-outline-secondary">Login</a>
+{{/if}}
+
