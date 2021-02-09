@@ -1,0 +1,18 @@
+{{!--
+Seteamos el name email y name password para que matchee
+Configuramos action y method en el form
+Y congfiguramos los endpoints en las rutas --}}
+<div class = "container">
+<form action="/register" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Correo Electrónico</label>
+    <input type="email" name="email"class="form-control" id="email" placeholder="Enter email"autocomplete="off">
+    <small id="emailHelp" class="form-text text-muted">No compartiremos tus datos con terceros.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contraseña</label>
+    <input type="password" name="password"class="form-control" id="password" placeholder="Password">
+  </div>
+    <button type="/userProfile" class="btn btn-primary">Submit</button>
+</form>
+</div>

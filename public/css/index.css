@@ -1,0 +1,43 @@
+:root {
+  --c-primary: #173336;
+  --c-secondary: #6e8a72;
+}
+
+body {
+  background-color: #f5f7f4;
+}
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-brand {
+  font-weight: 800;
+}
+
+h1 {
+  color: var(--c-primary);
+  font-weight: 800;
+}
+
+.btn-primary {
+  background-color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--c-secondary);
+  border-color: var(--c-secondary);
+}
+
+/* home */
+
+.home {
+  background-color: #fff;
+  padding: 16px 0;
+}
+
+.home-img {
+  width: 100%;
+}
