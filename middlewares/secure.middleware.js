@@ -2,14 +2,14 @@ module.exports.isAuthenticated = (req, res, next) => {
   if (req.session.currentUserId) {
     next()
   } else {
-    res.redirect('/login')
+    res.render('errors/forbiddenCat')
   }
 }
 
-module.exports.isNotAuthenticated = (req, res, next) => {
+module.exports.isAdmin = (req, res, next) => {
   if (req.session.currentUserId) {
-    res.redirect('/profile')
-  } else {
     next()
+  } else {
+    res.render('errors/forbiddenAdmin')
   }
 }
