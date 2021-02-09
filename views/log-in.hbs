@@ -1,0 +1,22 @@
+<div class="  ">
+    <div class="  ">
+
+
+        <form action="/login" method="POST" id=" ">
+        
+        <div class="  ">
+            <label for=" "> Username </label>
+            <input type="text" class=" " aria-describedby="emailHelp" name="username" required>
+            <small > Create an account <a href="/singup"> Sing Up! </a> </small>
+        
+        </div>
+        <button type="submit" > Log In! </button>
+        </form>
+    </div>
+</div>
+
+{{#if errorMessage}}
+<div>
+    <div> {{{errorMessage}}} </div>
+</div>
+{{/if}}
