@@ -1,0 +1,27 @@
+<h2>Sign Up Page</h2>
+
+<form action='/signup' method='POST'>
+
+  <label for=''>Username</label>
+  <input type='text' name='username' minlength="8" required>
+
+  <label for=''>Password</label>
+  <input type='password' name='password' minlength="8" required>
+
+  <button type='submit'>Submit</button>
+</form>
+
+{{#if suggestions}}
+  Suggestions:
+  {{#each suggestions}}
+    <p>{{this}}</p>
+  {{/each}}
+{{/if}}
+
+{{!-- error message display: --}}
+
+{{#if errorMessage}}
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+{{/if}}
