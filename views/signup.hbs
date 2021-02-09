@@ -1,0 +1,17 @@
+<div>
+    <h2>sign-up</h2>
+    <form action='/auth/signup' method='POST'>
+    
+      <label for=''>Username</label>
+      <input type='text' name='username' minlength='1' required='true'>
+    
+      <label for=''>Password</label>
+      <input type='password' name='password' minlength="5" required='true'>
+    
+      <button type='submit'>Submit</button>
+    </form>
+</div>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}
