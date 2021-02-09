@@ -14,4 +14,10 @@ router.get('/register', userControllers.register)
 
 router.post('/register', userControllers.doRegister)
 
+router.get('/login', userControllers.login)
+
+router.post('/login', userControllers.doLogin)
+
+router.get('/profile', userControllers.profile)
+
 module.exports = router;

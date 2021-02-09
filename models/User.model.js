@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+userSchema.methods.checkPassword = function (password) {
+    return bcrypt.compare(password, this.password)
+}
+
 userSchema.pre('save', function (next) {
     const user = this
     if (user.isModified('password')) {

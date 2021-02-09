@@ -37,3 +37,43 @@ module.exports.doRegister = (req, res, next) => {
         })
         .catch((e)=> next(e))
 }
+
+module.exports.login = (req, res, next) => {
+    res.render ('login')
+}
+
+module.exports.doLogin = (req, res, next) => {
+    function renderWithErrors() {
+        res.status(400).render('login', {
+            error: "Email or password invalid",
+            user: req.body
+        })
+    }
+
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            if (!user) {
+                renderWithErrors()
+            } else {
+                user.checkPassword(req.body.password)
+                    .then(match => {
+                        if (match) {
+                            req.session.currentUserId = user.id
+                            res.redirect ('/profile')
+                        } else {
+                            renderWithErrors()
+                        }
+                })
+            }
+        })
+        .catch(e=> next(e))
+}
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/')
+}
+
+module.exports.profile = (req, res, next) => {
+    res.render('profile')
+}
