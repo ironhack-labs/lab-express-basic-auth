@@ -12,6 +12,8 @@ router.get('/', miscController.home)
 router.get('/login',userController.login)
 router.post('/login',userController.doLogin)
 
+router.get('/profile', userController.profile)
+
 
 
 module.exports = router;

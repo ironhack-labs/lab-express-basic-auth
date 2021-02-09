@@ -10,7 +10,7 @@ module.exports.doRegister = (req, res, next) => {
             user: req.body
         })
     }
-    User.findOne({ email: req.body.mail })
+    User.findOne({ email: req.body.email })
         .then((user) => {
             if (user) {
                 renderWithErrors({
@@ -59,12 +59,19 @@ module.exports.login = (req, res, next) => {
   
                 
               } else {
+              req.session.currentUserId = user.id
+
                 res.redirect('/')
               }
             })
         }
       })
       .catch(e => next(e))
+  }
+
+  module.exports.logout = (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/profile')
   }
 
 
