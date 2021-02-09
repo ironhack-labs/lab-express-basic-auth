@@ -1,0 +1,19 @@
+
+<form action='/auth/login' method='POST'>
+  <h2>Log in</h2>
+
+  <label for=''>Username</label>
+  <input type='text' name='username' minlength="6">
+
+  <label for=''>Choose a password</label>
+  <input type='password' name='password' minlength="6">
+
+  <button type='submit'>Access your account</button>
+</form>
+
+
+{{#if errorMessage}}
+  <div>
+    {{ errorMessage }}
+  </div>
+{{/if}}
