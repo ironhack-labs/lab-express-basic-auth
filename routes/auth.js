@@ -1,12 +1,34 @@
 const router = require("express").Router();
-const bcrypt = require('bcryptjs');
-const User = require ('../models/User.model');
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
 
 
 //sigup 
 router.get("/signup", (req, res, next) => {
     res.render("signup");
 });
+
+//login 
+router.get("/login", (req, res, next) => {
+    res.render("login");
+});
+
+router.post("/login", (req, res) => {
+    const {username, password} = req.body; 
+    User.findOne({username: username})
+    .then(userFromDB => {
+        if (userFromDB === null){
+        res.render('login', {message: 'Invalid username'}); 
+        return; 
+    }
+    if (bcrypt.compare(password, userFromDB.password)){
+        req.session.user = userFromDB;
+        res.redirect('/');
+    } else {
+        res.render('login', {message: 'Invalid password'});
+    }
+    })
+})
 
 // the signup form post to this route
 router.post("/signup", (req, res) => {
@@ -22,7 +44,7 @@ router.post("/signup", (req, res) => {
     }
     //check if the username already exists 
     User.findOne({username: username})
-    .the(userFromDB =>{
+    .then(userFromDB =>{
         if (userFromDB !== null) {
             res.render(signup, {message: 'Username already taken'});
         } else {
