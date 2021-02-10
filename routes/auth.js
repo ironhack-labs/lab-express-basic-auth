@@ -1,6 +1,7 @@
 const router = require("express").Router();
+const bcrypt = require('bcryptjs');
 const User = require ('../models/User.model');
-const bcrypt = require('bcrypt');
+
 
 //sigup 
 router.get("/signup", (req, res, next) => {
