@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
-const sessionMiddleware = require('./middlewares/session.middleware')
+const sessionMiddleware = require('./middlewares/session.middleware') //requiero el middleware de la sessión
 
 const User = require('./models/User.model')
 
@@ -61,7 +61,7 @@ app.use(sessionMiddleware.findUser)
     } else {
         next()
     }
-})*/
+}) esto lo pase a ssesion.middleware.js*/
 
 
 app.use('/', routes);

@@ -1,5 +1,16 @@
+<div class="registro">
 <div class="container">
-  <form action="/register" method="POST">
+  <form action="/register" method="POST" class="login">
+    <div class="mb-3">
+      <label for="text" class="form-label">Username</label>
+      <input type="text" name="username" value="{{user.username}}"
+        class="form-control {{#if errors.username}}is-invalid{{/if}}" id="username" required>
+      {{#if errors.username}}
+      <div class="invalid-feedback">
+        {{errors.username}}
+      </div>
+      {{/if}}
+    </div>
     <div class="mb-3">
       <label for="email" class="form-label">Correo electrónico</label>
       <input type="email" name="email" value="{{user.email}}" class="form-control {{#if errors.email}}is-invalid{{/if}}"
@@ -15,6 +26,7 @@
       <label for="password" class="form-label">Contraseña</label>
       <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password"
         required>
+      <div class="form-text">Tu contraseña debe incluir una mayúscula, una minúscula y tener al menos 8 caracteres</div>
       {{#if errors.password}}
       <div class="invalid-feedback">
         {{errors.password}}
@@ -27,4 +39,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
+</div>
 </div>

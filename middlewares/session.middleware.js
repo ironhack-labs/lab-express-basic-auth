@@ -1,4 +1,4 @@
-//const User = require('../models/User.model')
+const User = require('../models/User.model')
 
 module.exports.findUser = (req, res, next) => {
     if (req.session.currentUserId) {
@@ -15,19 +15,3 @@ module.exports.findUser = (req, res, next) => {
         next()
     }
 }
-
-/*module.exports.isAuthenticated = (req, res, next) => {
-    if (req.session.currentUserId) {
-        next()
-    } else {
-        res.redirect('/login')
-    }
-}
-
-module.exports.isNotAuthenticated = (req, res, next) => {
-    if (req.session.currentUserId) {
-        res.redirect('/profile')
-    } else {
-        next()
-    }
-}*/

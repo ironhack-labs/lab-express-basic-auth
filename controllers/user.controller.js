@@ -1,8 +1,12 @@
 const mongoose = require("mongoose")
 const User = require("../models/User.model")
+
 module.exports.register = (req, res, next) => {
     res.render('users/register')
 }
+
+
+
 module.exports.doRegister = (req, res, next) => {
     function renderWithErrors(errors) {
         res.status(400).render('users/register', {
@@ -10,30 +14,49 @@ module.exports.doRegister = (req, res, next) => {
             user: req.body
         })
     }
+
+    //que no se repitan los usuarios y mail
     User.findOne({
-            email: req.body.email
+            //email: req.body.email
+            username: req.body.username
         })
         .then((user) => {
             if (user) {
                 renderWithErrors({
-                    email: 'Este mail ya ha sido registrado'
+                    username: 'Este usuario ya ha sido registrado'
                 })
             } else {
-                User.create(req.body)
-                    .then(() => {
-                        res.redirect('/')
+                User.findOne({
+                        email: req.body.email
+                            // username: req.body.username
                     })
-                    .catch(e => {
-                        if (e instanceof mongoose.Error.ValidationError) {
-                            renderWithError(e.errors)
+                    .then((user) => {
+                        if (user) {
+                            renderWithErrors({
+                                email: 'Este email ya ha sido registrado'
+                            })
+
                         } else {
-                            next(e)
+                            User.create(req.body)
+                                .then(() => {
+                                    res.redirect('/')
+                                })
+                                .catch(e => {
+                                    if (e instanceof mongoose.Error.ValidationError) {
+                                        console.log(e.errors)
+                                        renderWithErrors(e.errors)
+                                    } else {
+                                        next(e)
+                                    }
+                                })
                         }
                     })
             }
         })
         .catch(e => next(e))
 }
+
+
 
 module.exports.login = (req, res, next) => {
     res.render('users/login')
@@ -43,7 +66,7 @@ module.exports.doLogin = (req, res, next) => {
     function renderWithErrors() {
         res.status(400).render('users/login', {
             user: req.body,
-            errors: 'El ususario o contraseña no es correcto',
+            errors: 'El email o la contraseña son incorrectos',
 
         })
     }
@@ -61,7 +84,7 @@ module.exports.doLogin = (req, res, next) => {
                             renderWithErrors()
                         } else {
                             // creare la sesión
-                            req.session.currentUsersId = user.id //este user es el user que tengo arriba
+                            req.session.currentUserId = user.id //este user es el user que tengo arriba
                             res.redirect('/profile')
                         }
                     })
@@ -80,4 +103,12 @@ module.exports.logout = (req, res, next) => {
 module.exports.profile = (req, res, next) => {
 
     res.render('users/profile')
+}
+
+module.exports.main = (req, res, next) => {
+    res.render('users/main')
+}
+
+module.exports.private = (req, res, next) => {
+    res.render('users/private')
 }

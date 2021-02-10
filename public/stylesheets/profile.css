@@ -1,0 +1,26 @@
+                                    * {
+                                        font: "Lucida Grande", Helvetica, Arial, sans-serif;
+                                    }
+                                    
+                                    p,
+                                    .data {
+                                        font-size: 26px;
+                                        color: burlywood;
+                                        font-weight: bold;
+                                        text-align: center;
+                                    }
+                                    
+                                    .perfil {
+                                        padding-top: 25px
+                                    }
+                                    
+                                    #info {
+                                        padding-left: 350px;
+                                        padding-top: 25px;
+                                        font-size: 20px;
+                                    }
+                                    
+                                    .btn-profile {
+                                        background-color: yellowgreen;
+                                        border: yellowgreen;
+                                    }

@@ -1,4 +1,18 @@
-<div class="container">
-  <h1>¡Hola!</h1>
-  <p>Estas conectado como {{currentUser.email}}</p>
+<div class="perfil">
+  <div class='container'>
+    <h1>We are glad to see you again!</h1>
+    <h2>{{currentUser.username}}</h2>
+    <p class="data">Your data session: </p>
+    <div id="info">
+      <ul>
+        <li>Tu usuario es: {{currentUser.username}}</li>
+        <li>Tu email es: {{currentUser.email}}</li>
+      </ul>
+      <div>
+        <a class="btn btn-profile btn-primary sm-col my-3" href="/main" role="button">Main Page</a>
+        <a class="btn btn-profile btn-primary sm-col my-3" href="/private" role="button">Private page</a>
+
+      </div>
+    </div>
+  </div>
 </div>

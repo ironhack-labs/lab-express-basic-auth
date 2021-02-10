@@ -1,0 +1,15 @@
+* {
+    font: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.log {
+    position: absolute;
+    padding-top: 50px;
+    margin-left: 350px;
+}
+
+.iniciar {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
