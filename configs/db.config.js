@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 mongoose
     .connect('mongodb://localhost:27017/express-basic-auth-dev', {
@@ -10,7 +11,7 @@ mongoose
     .catch(err => console.error('Error connecting to mongo', err));
 
 process.on('SIGINT', () => {
-    mongoose.connections
+    mongoose.connection
         .close()
         .then(() => console.log('Succesfully disconnected from the DB'))
         .catch((e) => console.error('Error disconnecting from the DB', e))

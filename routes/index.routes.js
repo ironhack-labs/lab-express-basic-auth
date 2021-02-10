@@ -2,17 +2,18 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller')
 const miscController = require('../controllers/misc.controller')
-
-/* GET home page */
+    /* GET home page */
 router.get('/', (req, res, next) => res.render('index'));
 router.get('/register', userController.register)
 router.post('/register', userController.doRegister)
-
 router.get('/', miscController.home)
 
-// Users
 
-router.get('/register', userController.register)
-router.post('/register', userController.doRegister)
+router.get('/login', userController.login)
+router.post('/login', userController.doLogin)
 
+router.post('/logout', userController.logout)
+
+router.get('/profile', userController.profile)
+    // Users
 module.exports = router;
