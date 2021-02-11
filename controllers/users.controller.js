@@ -28,9 +28,12 @@ module.exports.doEdit = (req, res, next) => {
                 //console.log (`${user} already exits`)
 
             } else {
-                req.session.currentUserId = user.id;
+        
                 User.create(req.body)
-                    .then(() => res.redirect('/'))
+                    .then((user) => {
+                        req.session.currentUserId = user.id
+                        res.redirect('/')}
+                    )
                     .catch((e) => {
                         if (e instanceof mongoose.Error.ValidationError) {
 
@@ -51,37 +54,63 @@ module.exports.doEdit = (req, res, next) => {
 module.exports.login = (req, res, next) => res.render('users/login');
 
 module.exports.doLogin = (req, res, next) => {
-
-    function renderWithErrors(errors) {
-        console.log(errors)
-        res.status(400).render('users/login', {
-            errors: errors,
-            user: req.body
+    function renderWithErrors() {
+        console.log("error login")
+        res.render('users/login', {
+          user: req.body,
+          errorMessage: 'Email or password is not correct'
         })
-    }
+      }
+   
 
     User.findOne({ userName: req.body.userName })
         .then((user) => {
             if (!user) {
-                renderWithErrors({
-                    errorMessage: "User doesn't exit"
-                })
+                renderWithErrors();
 
             } else {
                 console.log('SESSION =====> ', req.session);
 
-                req.session.currentUser = user.id
-                if (bcrypt.compareSync(req.body.password, user.password)) {
-                    console.log(`User ${user.userName} ${req.session.currentUser}}logon`)
-                    res.render('users/logon',user);
-                }
+                user.checkPassword(req.body.password)
+                .then(match => {
+                    console.log("req.session : ", req.session)
+                  if (match) {
+                    req.session.currentUserId = user.id
+                         res.redirect('/profile')
+                  } else {
+                  
+
+                        renderWithErrors()
+                
+                    
+              }
+               })
+           //     if (bcrypt.compareSync(req.body.password, user.password)) {
+           //         console.log("req.session : ", req.session)
+           //
+           //         req.session.currentUserId = user.id
+           //         res.redirect('/profile');
+           //     }
             }
 
         })
+        .catch((e)=> next(e))   
 };
+
+module.exports.profile = (req,res,next) => {
+    console.log(" res:locals: ", res.locals)
+    res.render('users/logon');
+}
+
 // logout de la sesión
 module.exports.logout = (req,res,next) => {
      req.session.destroy();
-     res.render('/');
+     res.redirect('/');
 }
 
+module.exports.private= (req,res,next) => {
+    res.render('users/private')
+}
+module.exports.main= (req,res,next) => {
+    res.render('users/main')
+}

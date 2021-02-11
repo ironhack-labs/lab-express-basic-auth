@@ -13,7 +13,7 @@ const session = expressSession ({
   cookie: {
     secure: process.env.SESS_SECURE|| false,
     httpOnly: true,
-    maxAge: 3600000 
+    maxAge: process.env.MAX  || 3600000 
     },
     store: new MongoStore ({
       mongooseConnection: mongoose.connection,

@@ -2,4 +2,9 @@
 <p>Welcome to {{title}}</p>
  <a class="btn btn-primary" href="/register" role="button">Add New user</a>
  <a class="btn btn-primary" href="/login" role="button">Login</a>
+ {{#if currentUser.userName}}
+
+ <a class="btn btn-primary" href="/main" role ="button">Main page</a>
+ {{/if}}
+ <p>Hola {{currentUser.userName}}</p>
 
