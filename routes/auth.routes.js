@@ -12,19 +12,20 @@ const saltRounds = 10
 
 router.post('/signup', (req, res, next) => {
     const { username, Userpassword } = req.body;
-    console.log(username)
+    //console.log(username)
     bcryptjs
         .genSalt(saltRounds)
         .then((salt) => bcryptjs.hash(Userpassword, salt))
         .then((hashedPassword) => {
-            console.log('hola', hashedPassword)
+            //console.log('hola', hashedPassword)
             return User.create({ username, password: hashedPassword })
         })
         .then((usersDB) => {
-            console.log(usersDB);
+            //console.log(usersDB);
+            res.redirect('/');
         })
         .catch(err => {
-            res.redirect(`/userProfile`);
+            res.redirect('/');
         });
 });
 
@@ -38,7 +39,7 @@ router.post('/login', (req, res, next) => {
 
     if (username === '' || password === '') {
         res.render('login/auth/login', {
-            errorMessage: 'Please  username and password to login.'
+            errorMessage: 'Please write username and password to login.'
         });
         return;
     }
@@ -46,7 +47,7 @@ router.post('/login', (req, res, next) => {
     User.findOne({ username })
         .then(foundUser => {
             if (!foundUser) {
-                res.render('auth/login', {
+                res.render('/auth/login', {
                     errorMessage: 'No user has been found. Try again'
                 });
                 return;
@@ -55,7 +56,7 @@ router.post('/login', (req, res, next) => {
                 req.session.currentUser = foundUser;
                 res.redirect('/userProfile');
             } else {
-                res.render('auth/login', { errorMessage: 'Password is incorrect!' });
+                res.render('/login', { errorMessage: 'Password is incorrect!' });
             }
         })
         .catch(error => {
@@ -65,8 +66,13 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/userProfile', (req, res, next) => {
-    res.render('users/user.profile', { userInSession: req.session.currentUser });
+    res.render('users/userProfile', { userInSession: req.session.currentUser });
 });
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/login');
+})
 
 module.exports = router
 
