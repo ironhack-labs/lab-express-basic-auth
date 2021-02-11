@@ -56,7 +56,6 @@ app.use(sessionMiddleware.findUser)
                     res.locals.currentUser = user
                     next()
                 }
-
             })
     } else {
         next()
