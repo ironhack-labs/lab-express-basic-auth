@@ -23,7 +23,7 @@ router.post("/login", (req, res) => {
     }
     if (bcrypt.compare(password, userFromDB.password)){
         req.session.user = userFromDB;
-        res.redirect('/');
+        res.redirect('/main'); //create a hbs file and then put the new name here
     } else {
         res.render('login', {message: 'Invalid password'});
     }
@@ -64,6 +64,41 @@ router.post("/signup", (req, res) => {
         console.log(err);
     })
 })
+
+
+// middleware to check if the user is logged in
+const loginCheck = () => {
+    return (req, res, next) => {
+      // if user is logged in proceed to the next step
+      if (req.session.user) {
+        next();
+      } else {
+        // otherwise redirect to /login
+        res.redirect('/login');
+      }
+    }
+  }
+
+router.get('/main', loginCheck(), (req, res) => {
+    res.render('main');
+})
+
+router.get('/private', loginCheck(), (req, res) => {
+    res.render('private');
+})
+
+
+
+//logout 
+router.get('/logout', (req, res) => {
+    req.session.destroy(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+    })
+  })
 
 
 module.exports = router; 
