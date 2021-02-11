@@ -3,6 +3,7 @@ const router = express.Router();
 //const bcrypt = require('bcrypt');
 const bcryptjs = require(`bcryptjs`);
 const User = require("../models/User.model.js")
+const routesProtected = require ("../middleware/protected.routes")
 
 router.get('/signup', (req, res, next) =>
     res.render('login/signup'));
@@ -73,6 +74,15 @@ router.post('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/login');
 })
+
+router.get('/private', routesProtected.isAuthenticated, (req, res, next) => 
+res.render('login/auth/private')
+)
+
+
+router.get('/main',routesProtected.isAuthenticated, (req, res, next) => 
+res.render('login/auth/main')
+)
 
 module.exports = router
 
