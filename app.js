@@ -11,6 +11,8 @@ const path = require('path');
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+const authentication = require('./routes/auth.routes')
+
 const app = express();
 
 // require database configuration
@@ -21,6 +23,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/', authentication)
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
