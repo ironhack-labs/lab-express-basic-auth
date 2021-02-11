@@ -3,17 +3,17 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller')
 const miscController = require('../controllers/misc.controller')
+const secure = require('../middlewares/secure.middleware')
 /* GET home page */
 router.get('/', (req, res, next) => res.render('index'));
-router.get('/register', userController.register)
-router.post('/register', userController.doRegister)
+router.get('/register', secure.isNotAuthenticated, userController.register)
+router.post('/register', secure.isNotAuthenticated, userController.doRegister)
 router.get('/', miscController.home)
-
-router.get('/login',userController.login)
-router.post('/login',userController.doLogin)
-
-router.get('/profile', userController.profile)
-
-
-
+router.get('/login', secure.isNotAuthenticated, userController.login)
+router.post('/login', secure.isNotAuthenticated, userController.doLogin)
+router.post('/logout', secure.isAuthenticated, userController.logout)
+router.get('/profile', secure.isAuthenticated, userController.profile)
+router.get('/main', secure.isAuthenticated, userController.main)
+router.get('/private', secure.isAuthenticated, userController.private)
+    // Users
 module.exports = router;

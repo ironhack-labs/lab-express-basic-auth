@@ -55,13 +55,12 @@ module.exports.login = (req, res, next) => {
             .then(match => {
               if (!match) {
                 renderWithErrors()
-               // req.session.currentUserId = user.id
-  
+              
                 
               } else {
               req.session.currentUserId = user.id
 
-                res.redirect('/')
+                res.redirect('/profile')
               }
             })
         }
@@ -78,3 +77,10 @@ module.exports.login = (req, res, next) => {
   module.exports.profile = (req, res, next) => {
     res.render('users/profile')
   }
+
+  module.exports.main = (req, res, next) => {
+    res.render('users/main')
+}
+module.exports.private = (req, res, next) => {
+    res.render('users/private')
+}

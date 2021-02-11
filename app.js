@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+const sessionMiddleware = require('./middlewares/session.middleware')
+
 const routes = require("./routes/index.routes"); //para llamar a las rutas
 const session = require('./configs/session.config')
 const User = require("./models/User.model")
@@ -36,7 +38,9 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Mi aplicación';
 
-app.use((req, res, next) => {
+app.use(sessionMiddleware.findUser)
+
+/*app.use((req, res, next) => {
     if (req.session.currentUserId) {
       User.findById(req.session.currentUserId)
         .then(user => {
@@ -50,7 +54,7 @@ app.use((req, res, next) => {
     } else {
       next()
     }
-  })
+  })*/
 
 const index = require('./routes/index.routes');
 app.use('/', index);
@@ -59,7 +63,8 @@ app.use('/', index);
 
 module.exports = app;
 
-const PORT = process.env.PORT || 3000
+/*const PORT = process.env.PORT || 3000
 app.listen(PORT, () =>
     console.log(`Listening on port ${PORT}`)
 );
+*/
