@@ -41,34 +41,24 @@ router.post('/login', (req, res,next)=>{
   const {username , password} = req.body
   if(!username || !password){
     res.render('auth/login', {username,
-      errorMessage: 'Please enter both, username and password to login.',
-    });
-    return;
+      error: 'Enter username and password to login.',
+    })
+    return
   }
 
   User.findOne({ username })
   .then((user) => {
     if (!user) {
-      res.render('auth/login', { errorMessage: 'username does not exist.' });
+      res.render('auth/login', { error: 'username do not exist.' })
       return;
     } else if (bcrypt.compareSync(password, user.password)) {
-      req.session.currentUser = user;
+      req.session.currentUser = user
       res.redirect('main')
     } else {
-      res.render('auth/login', {username, errorMessage: 'Incorrect password.' });
+      res.render('auth/login', {username, error: 'Incorrect password.' })
     }
   })
-  .catch((error) => next(error));
-});
-
-router.get('/main', (req,res)=>{
-  console.log(req.session)
-  res.render('users/user-main', { userInSession: req.session.currentUser })
-})
-
-router.get('/private', (req,res)=>{
-  console.log(req.session)
-  res.render('users/user-private', { userInSession: req.session.currentUser })
+  .catch((error) => next(error))
 })
 
 router.post('/logout',(req,res,next)=>{
