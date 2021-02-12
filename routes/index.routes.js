@@ -4,6 +4,7 @@ const userController = require('../controllers/user.controller')
 const miscController = require('../controllers/misc.controller')
 const secure = require('../middlewares/secure.middleware')
 
+
 /* GET home page */
 router.get('/', (req, res, next) => res.render('index'));
 router.get('/register', secure.isNotAuthenticated, userController.register)
@@ -27,4 +28,10 @@ router.get('/main', secure.isAuthenticated, userController.main)
 
 router.get('/private', secure.isAuthenticated, userController.private)
 
+
+//RUTAS DE NODEMAIL
+
+
+router.get('/activate/:token', secure.isNotAuthenticated, userController.activate); // esto es la ruta para que me devuelva a mi servidor lo del mail de activación
+//el token es para que sepa qué usuario es
 module.exports = router;

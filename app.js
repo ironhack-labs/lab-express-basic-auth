@@ -5,7 +5,7 @@ const session = require('./configs/session.config')
 
 //rutas
 const routes = require('./routes/index.routes')
-
+const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const express = require('express');
 
@@ -31,6 +31,7 @@ const app = express();
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -60,7 +61,18 @@ app.use(sessionMiddleware.findUser)
     } else {
         next()
     }
-}) esto lo pase a ssesion.middleware.js*/
+}) esto lo pase a session.middleware.js*/
+
+/*app.post('/contact', (req, res, next) => {
+
+    // ennviar validación del mail
+    //TODO
+
+    //RENDER SCREEN: USUARIO SEPA QUE TIENE UN MAIL
+
+
+    res.render('/contact');
+});*/
 
 
 app.use('/', routes);

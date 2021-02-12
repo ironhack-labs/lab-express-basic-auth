@@ -1,5 +1,8 @@
 const mongoose = require("mongoose")
 const User = require("../models/User.model")
+const {
+    sendActivationEmail
+} = require("../configs/mailer.config")
 
 module.exports.register = (req, res, next) => {
     res.render('users/register')
@@ -38,7 +41,12 @@ module.exports.doRegister = (req, res, next) => {
 
                         } else {
                             User.create(req.body)
-                                .then(() => {
+                                .then((u) => { //la u es de user
+
+                                    //AQUI SE PONE LA LOGICA PARA ENVIAR EL MAIL DE ACTIVACION
+
+                                    sendActivationEmail(u.email, u.activationToken) //el mail y token salen del modelo
+
                                     res.redirect('/profile')
                                 })
                                 .catch(e => {
@@ -92,23 +100,46 @@ module.exports.doLogin = (req, res, next) => {
         })
         .catch(e => next(e))
 
-}
+};
 
 module.exports.logout = (req, res, next) => {
     req.session.destroy()
 
     res.redirect('/')
-}
+};
 
 module.exports.profile = (req, res, next) => {
 
     res.render('users/profile')
-}
+};
 
 module.exports.main = (req, res, next) => {
     res.render('users/main')
-}
+};
 
 module.exports.private = (req, res, next) => {
     res.render('users/private')
-}
+};
+
+module.exports.activate = (req, res, next) => {
+    User.findOneAndUpdate({
+            activationToken: req.params.token,
+            active: false
+        }, {
+            active: true,
+            activationToken: "active"
+        })
+        .then((u) => {
+            //si encuentras el usuario
+            if (u) {
+                res.render('users/login', {
+                    user: req.body,
+                    message: "Congratulations, your account is active!",
+                });
+            } else {
+                res.redirect('/')
+            }
+
+        })
+        .catch((e) => next(e))
+};
