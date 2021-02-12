@@ -51,7 +51,7 @@ router.post('/sign-up', async(req, res, next) => {
 
 router.get('/user-profile', (req, res) => {
     console.log(req.session.currentUser)
-    res.render('user-profile', { userInSession: {...req.session.currentUser } });
+    res.render('user-profile', { userInSession: req.session.currentUser });
 });
 
 
@@ -59,7 +59,7 @@ router.get('/user-profile', (req, res) => {
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.post('/login', (req, res, next) => {
-    console.log('SESSION =====> ', req.session);
+    console.log('SESSION =====> ', req.session); //AUN VIENE VACIO
     const { email, password } = req.body;
 
     if (email === '' || password === '') {
