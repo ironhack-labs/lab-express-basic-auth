@@ -1,43 +1,23 @@
-const express = require("express");
+  
 const router = require("express").Router();
-const miscController = require('../controllers/misc.controller')
-const usersController = require('../controllers/users.controller')
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const User = require('../models/User.model');
-router.get('/', miscController.home)
+const miscController = require("../controllers/misc.controller");
+const usersController = require("../controllers/users.controller");
+const secure = require("../middlewares/secure.middleware");
 
-//==========================USERS==================================
-//get muestra la pagina y post trae el usuario se sumaaaan 
+// Misc
 
-router.get('/register', (req, res) => res.render('users/register'));
+router.get("/", miscController.home);
 
-router.post('/register', (req, res, next) => {
-    const { email, password } = req.body;
-    
- 
-    bcrypt
-      .genSalt(saltRounds)
-      .then((salt) => bcrypt.hash(password, salt))
-      .then((hashedPassword) => {
-        return User.create({
-            email,
-            // passwordHash => this is the key from the User model
-            //     ^
-            //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-            passwordHash: hashedPassword,
-        })
-        .then((userFromDB) => {
-            console.log('Newly created user is: ', userFromDB);
-    })
-      .catch((error) => next(error));
-    })
-})
+// Users
 
-router.get('/summit', (req, res) => res.render('users/userProfile'));
+router.get("/register",secure.isNotAuthenticated, usersController.register);
+router.post("/register",secure.isNotAuthenticated, usersController.doRegister);
 
+router.get("/login",secure.isNotAuthenticated, usersController.login);
+router.post("/login",secure.isNotAuthenticated, usersController.doLogin);
 
+router.post('/logout',secure.isAuthenticated, usersController.logout)
 
-
+router.get('/profile', secure.isAuthenticated,usersController.profile)
 
 module.exports = router;

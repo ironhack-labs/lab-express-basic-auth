@@ -1,4 +1,4 @@
-//Nos conectamos a la DB y cerramos la conecxion cuando se cierre el proceso en consola
+//Nos conectamos a la DB y cerramos la conexion cuando se cierre el proceso en consola
 
 //Requerimos mogoose y su proceso
 const mongoose = require('mongoose');
@@ -8,7 +8,7 @@ const process = require('process');
 
 //MONGO_URI inyectamos variable de entorno y el te devuele una URL
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/3000')
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/Emosi2Enseña2')
   .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
   .catch(err => console.error('Error connecting to mongo', err));
 

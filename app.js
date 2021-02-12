@@ -16,6 +16,11 @@ const hbs = require('hbs');
 //Requerimos routes para configurar todas nuestras rutas en un archivo
 const routes = require("./config/routes");
 
+//Requerimos el session config para determinar la duración de la sesión
+const session = require("./config/session.config") 
+
+//Requerimos modelo de usuario
+const sessionMiddleware = require('./middlewares/session.middleware')
 //requirimos la configuracion de conexion en el archivo de a continuacion
 require('./config/db.config')
 
@@ -25,7 +30,8 @@ require('./config/db.config')
 const app = express();
 
 //Middleware para solicitudes POST que envía datos al servidor y le pide que acepte o almacene esos datos (objeto),
-//que están incluidos en el cuerpo (es decir, req.body) de esa solicitud (POST)
+//que están incluidos en el cuerpo (es decir, req.body) de esa solicitud (POST) 
+// ¡¡¡CONFLICTO SI USAMOS BODY PARSER PORQUE YA VIENE IMPLICITO!!!
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
@@ -34,6 +40,9 @@ app.use(express.static("public"));
 
 //Middleware para poder meter logs en consola
 app.use(logger("dev"));
+
+//Configuración de la duración de la sesión
+app.use(session);
 
 //Configuramos la ruta que contiene la vistas
 app.set("views",__dirname +"/views");
@@ -44,8 +53,18 @@ app.set("view engine", "hbs");
 //Registramos los partials
 hbs.registerPartials(__dirname+"/views/partials");
 
+//======================================================================
+//============Middleware que configura la sesion del user================
+
+app.use(sessionMiddleware.findUser)
+//=======================================================================
+
+
+
+
 //Seteamos el / para poder utilizar las rutas
 app.use("/", routes);
+
 
 //Establecemos un Middleware de errores genérico para errores que no podamos manejar
 app.use((req,res,next) => {
