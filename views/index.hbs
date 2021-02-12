@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Welcome {{#if user}} {{user.username}} {{/if}} 👋</h1>
+
+<a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
+                    font-medium text-white uppercase
+                    focus:outline-none hover:bg-gray-700 hover:shadow-none"  href="/signup">Sign Up</a>
+<a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
+                    font-medium text-white uppercase
+                    focus:outline-none hover:bg-gray-700 hover:shadow-none" href="/login">Log In</a>
+<a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
+                    font-medium text-white uppercase
+                    focus:outline-none hover:bg-gray-700 hover:shadow-none" href="/main">Main</a>
+<a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
+                    font-medium text-white uppercase
+                    focus:outline-none hover:bg-gray-700 hover:shadow-none" href="/private">Private</a>
