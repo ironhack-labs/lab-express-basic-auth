@@ -30,27 +30,38 @@ router.get("/login", (req,res,next)=>{
 })
 
 router.post("/login", async (req,res,next)=>{
-    const { username, passwordHash } = req.body
-    if(username === "" || passwordHash === ""){res.render('auth/login', {errorMessage: "Por favor, ingresa ambos campos. No dejes vacío ninguno."})}
-    const userDB = await User.findOne({username})
-    if(!userDB){
-        res.render("auth/login",{errorMessage: "Este usuario no existe"})
-    }
-    const match = await bcrypt.compareSync(passwordHash , userDB.passwordHash)
-    if(match){
-        req.session.currentUser = userDB 
-        console.log("ESTO ME IMPRIME LA COOKIE ====>", req.session.currentUser , req.session.sessioncookie)
-        res.render("user/userProfile" , {userDB})
-    }else{
-        res.render("auth/login",{ errorMessage : "Contrasña incorrecta"})
+    const { username, password } = req.body
+
+    if(username === "" || password === ""){
+        res.render('auth/login', {errorMessage: "Por favor, ingresa ambos campos. No dejes vacío ninguno."})
     }
 
+    try{
+        const userDB = await User.findOne({username})
+        console.log(userDB)
+        if(!userDB){
+            res.render("auth/login",{errorMessage: "Este usuario no existe"})
+        }
+        const match = await bcrypt.compareSync(password , userDB.passwordHash)
+        console.log(match)
+        if(match){
+            req.session.currentUser = userDB 
+            console.log("ESTO ME IMPRIME LA COOKIE ====>", req.session.currentUser)
+            res.redirect("/user-profile")
+        }else{
+            res.render("auth/login",{ errorMessage : "Contraseña incorrecta"})
+        }
+    }catch(error){
+        console.log("eso error",error)
+    }
+        
 })
 
 router.get("/user-profile" ,(req,res,next)=>{
-    const sesion = req.session
-    console.log(sesion)
-    res.render("user/user-profile" , {userInSession : req.session} )
+    console.log("la req session" ,req.session)
+    const userCookie = req.session.currentUser
+    console.log("cookie vacia",userCookie)
+    res.render("user/user-profile" , {userCookie} )
 })
 
 router.get("/userProfile" , (req,res)=>{
