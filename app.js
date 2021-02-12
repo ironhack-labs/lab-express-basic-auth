@@ -19,6 +19,9 @@ require('./configs/session.config')(app);
 // require database configuration
 require('./configs/db.config');
 
+const index = require('./routes/index.routes');
+const auth = require('./routes/auth.routes')
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,13 +34,11 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+app.use('/', index);
+app.use('/', auth);
+
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
-const index = require('./routes/index.routes');
-app.use('/', index);
-
-const auth = require('./routes/auth.routes')
-app.use('/', auth);
 
 module.exports = app;
