@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+const index = require('./routes/index.routes');
+const authRouter = require('./routes/auth.routes')
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -15,6 +18,10 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+
+// require session 
+
+require('./configs/session.config')(app)
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -33,10 +40,9 @@ app.locals.title = ' - Generated with IronGenerator';
 
 
 // Routes
-const index = require('./routes/index.routes');
-app.use('/', index);
 
-const authRouter = require('./routes/auth.routes')
+//UTILIZA index y authRouter
+app.use('/', index);
 app.use("/", authRouter)
 
 

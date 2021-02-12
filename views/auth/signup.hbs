@@ -6,13 +6,18 @@
         <label for="input-username">Username</label>
         <input type="text" name="username" placeholder="Your username"/>
 
+        <label for="input-email">Email</label>
+        <input type="email" name="email" placeholder="Your email"/>
+
         <label for="input-password">Password</label>
         <input type="password" name="password" id="input-password" placeholder="********"/>
 
         <button type="submit">Create account</button>
-    
-    
+
     </form>
+     {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 
 
 </div>

@@ -1,0 +1,14 @@
+{{!--views/users/user-profile.hbs --}}
+
+{{!-- the new version, with the session: --}}
+HOLA AMIGUIN
+
+{{#if galleta}}
+    <h2>Welcome, {{ galleta }}!</h2>
+    <p>This is your profile page my friend!</p>
+    <button>
+        <a href="/userProfile">Reload the page</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}
