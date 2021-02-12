@@ -77,11 +77,11 @@ router.post('/login', async(req, res,next)=>{
         res.render('auth/login',{errorMessage: "The user was not found, please check your information"})
         return;
     } else if (bcrypt.compareSync(password,newLoginUser.passwordHash)) {
-        req.session.username= newLoginUser
-        //req.session.currentUser = newLoginUser;
+        //req.session.username= newLoginUser
+        req.session.currentUser = newLoginUser;
         //res.redirect('/user-profile',)
-        console.log(req.session.username = newLoginUser)
-        res.redirect('/userprofile', {val: req.session.username})
+        //console.log(req.session.username = newLoginUser)
+        res.redirect('/user-profile')
     } else {
         res.render('auth/login', {errorMessage:'Password incorrecto'})
     }
@@ -101,13 +101,13 @@ router.post('/logout', (req,res,next)=>{
 
 //USER PROFILE4S
 router.get('/user-profile', (req, res) => {
-    const loginuser = req.session.username
-    const user = req.session
+    const loginuser = req.session.currentUser
+    //const user = req.session
     console.log(loginuser)
-    console.log(user)
+    //console.log(user)
     res.render('user/userprofile', {
         valueCookie:loginuser, 
-        userCookie:user
+       
     })
     
 });
