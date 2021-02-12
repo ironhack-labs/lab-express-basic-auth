@@ -1,0 +1,13 @@
+<form method="POST" action="/signin">
+<h1>Si se ve?</h1>
+  <label>Email</label>
+  <input type="email" name="email" placeholder="Enter email"  >
+
+  <label>Password</label>
+  <input type="password" name="password" placeholder="Enter Password"  >
+  <button type="submit" >Sign In</button>
+</form>
+
+ {{#if message}}
+    <div class="error" >{{message}}</div>
+ {{/if }}
