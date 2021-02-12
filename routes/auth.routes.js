@@ -76,12 +76,12 @@ router.post('/logout', (req, res, next) => {
 })
 
 router.get('/private', routesProtected.isAuthenticated, (req, res, next) => 
-res.render('login/auth/private')
+res.render('/auth/private')
 )
 
 
 router.get('/main',routesProtected.isAuthenticated, (req, res, next) => 
-res.render('login/auth/main')
+res.render('/auth/main')
 )
 
 module.exports = router

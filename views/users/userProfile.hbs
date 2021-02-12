@@ -1,11 +1,11 @@
 {{#if userInSession }}
 <h2>Welcome, {{ userInSession.username }}!</h2>
 <p>Profile page</p>
-
-<a class="action-button shadow animate yellow" href="/">Home</a>
-<a class="action-button shadow animate yellow" href="../login/auth/private.hbs">Private Page</a>
-<a class="action-button shadow animate yellow" href="../login/auth/main.hbs">Surprise</a>
-
+<div class="btn-group-vertical">
+<a class="btn btn-outline-danger" href="/">Log out</a>
+<a class="btn btn-outline-info" href="/private">Private Page</a>
+<a class="btn btn-outline-dark" href="/main">Surprise</a>
+</div>
 
 <!--<a href="/user.profile">Reload the page</a>
     <form action="/logout" method="post"></form> -->
