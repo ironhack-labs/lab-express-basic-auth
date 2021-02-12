@@ -12,7 +12,7 @@ module.exports.register = (req, res, next) => {
 
 module.exports.doRegister = (req, res, next) => {
     function renderWithErrors(errors) {
-        res.status(400).render('users/error', {
+        res.status(400).render('users/register', {
             errors: errors,
             user: req.body
         })
@@ -41,13 +41,13 @@ module.exports.doRegister = (req, res, next) => {
 
                         } else {
                             User.create(req.body)
-                                .then((u) => { //la u es de user
+                                .then((user) => { //la u es de user
 
                                     //AQUI SE PONE LA LOGICA PARA ENVIAR EL MAIL DE ACTIVACION
 
-                                    sendActivationEmail(u.email, u.activationToken) //el mail y token salen del modelo
+                                    sendActivationEmail(user.email, user.activationToken) //el mail y token salen del modelo
 
-                                    res.redirect('/profile')
+                                    res.render('users/mails')
                                 })
                                 .catch(e => {
                                     if (e instanceof mongoose.Error.ValidationError) {
@@ -96,6 +96,7 @@ module.exports.doLogin = (req, res, next) => {
                             res.redirect('/profile')
                         }
                     })
+                    .catch(e => next(e))
             }
         })
         .catch(e => next(e))

@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const { generateTemplate } = require("./mailtemplate"); //despues para llamar al template
 
 const transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -13,8 +14,7 @@ module.exports.sendActivationEmail = (email, token) => {
         from: `"WireIn Test" <${process.env.NM_USER}>`,
         to: email,
         subject: "Thanks for be part of the WireWorld!",
-        html: `<h1>AQUI VA EL CODIGO HTML DE NUESTRO MAIL</h1>
-        <p>Click here to activate your account </p>`,
+        html: generateTemplate(token),
 
     })
 };

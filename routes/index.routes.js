@@ -6,10 +6,13 @@ const secure = require('../middlewares/secure.middleware')
 
 
 /* GET home page */
+
+
 router.get('/', (req, res, next) => res.render('index'));
 router.get('/register', secure.isNotAuthenticated, userController.register)
 router.post('/register', secure.isNotAuthenticated, userController.doRegister)
 router.get('/', miscController.home)
+
 
 
 router.get('/login', secure.isNotAuthenticated, userController.login)

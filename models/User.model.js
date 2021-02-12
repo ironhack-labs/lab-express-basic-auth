@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+/*const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;*/
 const SALT_ROUNDS = 11
-const { v4: uuidv4 } = require('uuid'); //es el paquete de npm para generar token
+const {
+    v4: uuidv4
+} = require('uuid'); //es el paquete de npm para generar token
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -24,22 +26,21 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: 'La contraseña es requerida',
-        unique: true,
-        match: [PASSWORD_PATTERN, "El mail no cumple con los requisitos"]
+        //unique: true,
+        /*match: [PASSWORD_PATTERN, "El mail no cumple con los requisitos"]*/
 
     },
     active: {
         type: Boolean,
-        default: false
+        default: false,
     },
     activationToken: {
         type: String,
-        unique: true,
         default: () => {
             return (
-                uuidv4()
+                uuidv4() // asi se llama al token
             );
-        }
+        },
     },
 })
 
