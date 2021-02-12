@@ -8,7 +8,15 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
+  <nav>
+    <a class="btn" href="/">Home</a>
+    <a class="btn" href="/privada">privada</a>
+    <a class="btn" href="/signup">signup</a>
+    <a class="btn" href="/login">Log-in</a>
+    <form action="/logout" method="POST">
+     <button class="btn" type="submit">LOGOUT</button>
+    </form>
+  </nav>
   <body>
 
     {{{body}}}

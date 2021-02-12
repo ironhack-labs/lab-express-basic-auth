@@ -1,13 +1,10 @@
 # Dependency directory
 node_modules
-
 # Debug log from npm
 npm-debug.log
-
-# Environment Variables should NEVER be published
-# We are submitting it for learning purposes 
+# we are publishing .env file for learning purposes
+# but keep in mind - Environment Variables should NEVER be published ☝🏻
 # .env
-
-# for maintenance purposes - not best practices
-package-lock.json
+.package-lock.json
+.env
 

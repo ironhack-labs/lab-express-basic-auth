@@ -12,12 +12,8 @@ const UserSchema = new Schema (
         },
         passwordHash: {
             type: String,
-            unique : true,
-            trim : true,
             required : [true , "password is required"],
-            lowercase: true
         },
-        
     },
     {
         timestamps:true

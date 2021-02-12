@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const hbs = require('hbs');
@@ -14,14 +14,14 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // require database configuration
-require('./configs/db.config');
-
+require('./configs/db.config.js');
+require("./configs/session.config.js")(app)
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));

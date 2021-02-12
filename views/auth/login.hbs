@@ -1,15 +1,14 @@
-
-<img src="https://media.giphy.com/media/26tk0KtTzHzHEuc5G/giphy.gif" alt="">
+<img src="https://media.giphy.com/media/L1QTSCW1S7qutb2XCD/giphy.gif" alt="">
 <div id="signup">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <h2>Login</h2>
+  <form action="/login" method="POST">
     <label for="input-username"> Username </label>
     <input type="text" name="username"  placeholder="Your username" />
   
     <label for="input-password"> Password </label>
     <input type="password"  name="passwordHash" id="input-password" />
  
-    <button type="submit">Create account</button>    
+    <button type="submit">Iniciar Sesión</button>    
   </form>
     {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>

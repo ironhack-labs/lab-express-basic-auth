@@ -12,3 +12,13 @@ a {
   padding: 50px;
   color: white;
 }
+
+.btn{
+  background-color: aquamarine;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+}
