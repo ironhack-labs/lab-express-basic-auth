@@ -1,0 +1,9 @@
+{{#if userInSession}}
+    <h1>This is a private page</h1>
+    <img href="https://media0.giphy.com/media/10t57cXgo7x5kI/giphy.gif"/>
+    <button>
+        <a href="/private">Reload the page</a>
+    </button>
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}
