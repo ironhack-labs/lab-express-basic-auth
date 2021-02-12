@@ -50,7 +50,7 @@ app.use(
 // end of session configuration
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'basic auth - express';
 
 const index = require('./routes/index.routes');
 app.use('/', index);

@@ -1,4 +1,7 @@
-<h1>Welcome {{#if user}} {{user.username}} {{/if}} 👋</h1>
+<div class="w-full pb-5 pl-3">
+<a class="w-full mr-3 py-3 mt-10 px-4 bg-yellow-600 rounded-sm
+                    font-medium text-white uppercase
+                    focus:outline-none hover:bg-gray-700 hover:shadow-none"  href="/signup">Welcome {{#if user}} {{user.username}} {{/if}} 👋</a>
 
 <a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
                     font-medium text-white uppercase
@@ -12,3 +15,5 @@
 <a class="w-full mr-3 py-3 mt-10 px-4 bg-gray-800 rounded-sm
                     font-medium text-white uppercase
                     focus:outline-none hover:bg-gray-700 hover:shadow-none" href="/private">Private</a>
+
+</div>
