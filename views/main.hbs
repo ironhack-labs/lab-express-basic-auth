@@ -1,0 +1,11 @@
+{{#if userInSessionCookie}}
+    <h2>Welcome, {{ userInSessionCookie.username }}!</h2>
+    <p>You are allowed to visit this page!</p>
+    <button>
+        <a href="/">Home</a>
+    </button>
+{{else}}
+    <p>You cannot access this content, please log-in or sign-up</p>
+    <img src="../public/images/funny-cat.jpeg" alt="cool gif"
+
+{{/if}}

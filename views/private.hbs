@@ -1,0 +1,9 @@
+{{#if userInSessionCookie}}
+    <h2>Welcome, {{ userInSessionCookie.username }}!</h2>
+    <p>You are allowed to visit this page!</p>
+   
+{{else}}
+    <p>You cannot access this content, please log-in or sign-up</p>
+    <img src="../public/images/gandalf.gif" alt="cool gif"/>
+
+{{/if}}

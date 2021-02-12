@@ -1,5 +1,6 @@
 <div id=signup>
 <h2>Signup></h2>
+
 <form action='/signup' method="POST">
 
 <label for="input-username"> Username</label>
@@ -11,4 +12,9 @@
 <button type="submit">Register</button>
 
 </form>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+
 </div>
