@@ -81,3 +81,11 @@ module.exports.logout = (req, res, next) => {
 module.exports.profile = (req, res, next) => {
   res.render('users/profile')
 }
+
+module.exports.main = (req,res,next) => {
+  res.render('users/main')
+}
+
+module.exports.private = (req,res,next) => {
+  res.render('users/private')
+}

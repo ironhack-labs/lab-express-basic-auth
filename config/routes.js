@@ -20,4 +20,11 @@ router.post('/logout',secure.isAuthenticated, usersController.logout)
 
 router.get('/profile', secure.isAuthenticated,usersController.profile)
 
+router.get('/main', secure.isAuthenticated,usersController.main)
+
+
+router.get('/private', secure.isAuthenticated,usersController.private)
+
+
+
 module.exports = router;
