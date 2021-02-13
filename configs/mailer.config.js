@@ -4,8 +4,8 @@ const { generateTemplate } = require("./mailtemplate"); //despues para llamar al
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "process.env.NM_USER",
-        pass: "process.env.NM_PWD"
+        user: process.env.NM_USER,
+        pass: process.env.NM_PWD
     }
 });
 
