@@ -10,17 +10,29 @@
   </head>
 
   <body>
+
+
+
     <nav>
       <ul>
         <li id="to-left">
           <a href="/">Home</a>
         </li>
+    {{#if currentUser}}
         <li id="to-right">
-          <a href="/signup">Login</a> 
+          <a href="/profile">Profile</a>
+        </li>  
+        <form action="/logout" method="POST"> 
+            <button href="/profile" class="btn__logout">Logout</button>
+        </form>
+    {{else}}
+        <li id="to-right">
+          <a href="/login">Login</a> 
         </li>
         <li id="to-right">
           <a href="/signup">Signup</a> <span> | </span>
         </li>
+    {{/if}}
       </ul>
     </nav>
     {{{body}}}

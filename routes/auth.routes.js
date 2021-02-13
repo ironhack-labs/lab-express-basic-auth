@@ -4,12 +4,13 @@ const bcryptjs = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const secure = require('../middlewares/secure.middleware')
 
-router.get('/signup', (req, res, next) => {
+router.get('/signup', secure.isNotAuthenticated, (req, res, next) => {
     res.render('auth/signup')
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', secure.isNotAuthenticated, (req, res, next) => {
 
     const {username, email, password} = req.body   
 
@@ -52,6 +53,47 @@ router.post('/signup', (req, res, next) => {
                 next(error);
             }
         });
+})
+
+router.get('/login', secure.isNotAuthenticated, (req, res, next) => {
+    res.render('auth/login')
+})
+
+// .post() login route ==> to process form data
+router.post('/login', secure.isNotAuthenticated, (req, res, next) => {
+    const { email, password } = req.body
+    
+    if (email === '' || password === '') {
+        res.render('auth/login', {
+            errorMessage: 'Please enter both, email and password to login.',
+        });
+        return;
+    }
+    
+    User.findOne({ email })
+    .then((user) => {
+        if (!user) {
+            res.render('auth/login', { errorMessage: 'Email or Password incorrect.' });
+            return;
+        } else if (bcryptjs.compareSync(password, user.password)) {
+            // res.render('users/user-profile', { user });
+            req.session.currentUserId = user.id
+            res.redirect('/profile')
+            
+        } else {
+            res.render('auth/login', { errorMessage: 'Email or Password incorrect.' });
+        }
+    })
+    .catch((error) => next(error));
+});
+
+router.get('/profile', secure.isAuthenticated, (req, res, next) => {
+    res.render('users/user-profile')
+})
+
+router.post('/logout', secure.isAuthenticated, (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/')
 })
 
 module.exports = router
