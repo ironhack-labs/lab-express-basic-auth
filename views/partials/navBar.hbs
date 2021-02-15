@@ -14,8 +14,19 @@
             Account
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {{#if currentUser}}
+
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <form action="logout" method="POST">
+              <li><button class="dropdown-item" href="/register">Logout</button></li>
+            </form>
+
+            {{else}}
+
             <li><a class="dropdown-item" href="/register">Register</a></li>
             <li><a class="dropdown-item" href="/login">Login</a></li>
+
+            {{/if}}
           </ul>
         </li>
       </ul>

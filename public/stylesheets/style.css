@@ -10,3 +10,7 @@ a {
 nav {
   margin: -50px -50px 50px;
 }
+
+.navbar-brand {
+  font-weight: 800;
+}

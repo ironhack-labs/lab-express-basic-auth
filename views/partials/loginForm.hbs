@@ -1,24 +1,22 @@
 <div class="container">
-<form  method="POST" action="/register">
+<form  method="POST" action="/login">
   <div class="mb-3">
     <label for="inputEmail" class="form-label">Email address</label>
-    <input type="text" name="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="inputEmail" value={{user.email}}>
-    <div id="emailHelp"   class="form-text">We'll never share your email with anyone else.</div>
-    {{#if errors.email}}
-      <div class="invalid-feedback">
-        {{errors.email}}
-      </div>
-    {{/if}}
+    <input type="text" name="email" class="form-control" id="inputEmail" value={{user.email}}>
+    <div id="emailHelp"   class="form-text">We'll never share your email with anyone else.</div>    
   </div>
   <div class="mb-3">
     <label for="passwordInput" class="form-label">Password</label>
-    <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="passwordInput">
-     {{#if errors.password}}
-      <div class="invalid-feedback">
-        {{errors.password}}
-      </div>
+    <input type="password" name="password" class="form-control" id="passwordInput">
+     {{#if error}}     
+      <p class="text-danger">
+          {{error}}
+      </p>
     {{/if}}
+    
+      
+    
   </div>
-  <button type="submit" class="btn btn-primary">Sign up</button>
+  <button type="submit" class="btn btn-primary">Log in</button>
 </form>
 </div>
