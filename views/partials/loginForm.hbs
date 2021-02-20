@@ -1,5 +1,5 @@
-<div class="container">
-<form  method="POST" action="/login">
+<div class="container d-flex justify-content-center">
+<form  method="POST" action="/login" class="col-md-6">
   <div class="mb-3">
     <label for="inputEmail" class="form-label">Email address</label>
     <input type="text" name="email" class="form-control" id="inputEmail" value={{user.email}}>
@@ -8,13 +8,12 @@
   <div class="mb-3">
     <label for="passwordInput" class="form-label">Password</label>
     <input type="password" name="password" class="form-control" id="passwordInput">
+
      {{#if error}}     
       <p class="text-danger">
           {{error}}
       </p>
-    {{/if}}
-    
-      
+    {{/if}}        
     
   </div>
   <button type="submit" class="btn btn-primary">Log in</button>

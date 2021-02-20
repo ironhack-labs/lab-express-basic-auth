@@ -1,5 +1,6 @@
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
+const { sendActivationEmail } = require("../configs/mailer.config");
 
 //register
 module.exports.register = (req, res, next) => {
@@ -26,7 +27,11 @@ module.exports.doRegister = (req, res, next) => {
         });
       } else {
         User.create(userProposal)
-          .then(() => res.redirect("/"))
+          .then((user) => {
+            /* console.log(user) */
+            sendActivationEmail(user.email, user.activationToken);
+            res.redirect("/");
+          })
           .catch((e) => {
             if (e instanceof mongoose.Error.ValidationError) {
               renderWithError(e.errors);
@@ -44,10 +49,10 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.doLogin = (req, res, next) => {
-  function renderWithErrors() {
+  function renderWithErrors(e) {
     res.render("users/login", {
       user: req.body,
-      error: "The e-mail address or password is not correct.",
+      error: e || "The e-mail address or password is not correct.",
     });
   }
 
@@ -60,10 +65,14 @@ module.exports.doLogin = (req, res, next) => {
     } else {
       user.checkPassword(req.body.password).then((match) => {
         if (match) {
-          req.session.currentUserId = user.id  
-          res.render("users/profile", user);
+          if (user.active) {
+            req.session.currentUserId = user.id;
+            res.redirect("/profile");
+          } else {
+            renderWithErrors("Your account is not activated");
+          }
         } else {
-            renderWithErrors();
+          renderWithErrors();
         }
       });
     }
@@ -71,6 +80,43 @@ module.exports.doLogin = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
-    req.session.destroy()
-    res.redirect("/")
+  req.session.destroy();
+  res.redirect("/");
+};
+
+module.exports.getProfile = (req, res, next) => {
+  res.render("users/profile", { user: req.currentUser });
+};
+
+module.exports.getMain = (req, res, next) => {
+  res.render("users/media")
 }
+
+module.exports.getPrivate = (req, res, next) => {
+  res.render("users/private");
+};
+
+module.exports.activate = (req, res, next) => {
+  User.findOneAndUpdate(
+    {
+      activationToken: req.params.token,
+      active: false,
+    },
+    {
+      activationToken: "active",
+      active: true,
+    }
+  )
+    .then((user) => {
+      if (user) {
+        res.render("users/login", {
+          user: req.body,
+          message:
+            "Congratulations, you have activated your account. You can now log in.",
+        });
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch(next);
+};

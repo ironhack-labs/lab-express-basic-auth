@@ -1,1 +1,19 @@
-<h1>Hello {{email}}</h1>
+<h1>Hello {{user.email}}</h1>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/main">Pictures</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/private" tabindex="-1">Private</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5>Your account is {{#if user.active}} <span class="text-success">Activated</span>{{/if}}</h3>  
+  </div>
+</div>

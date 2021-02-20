@@ -23,6 +23,23 @@ const userSchema = new mongoose.Schema({
       "Your password must contain at least 1 number, 1 uppercase, 1 lowercase and 8 characters.",
     ],
   },
+
+  active: {
+    type: Boolean,
+    default: false,
+  },
+
+  activationToken: {
+    type: String,
+    default: () => {
+      return (
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15)
+      );
+    },
+  },
 });
 
 userSchema.methods.checkPassword = function (passwordToCheck) {

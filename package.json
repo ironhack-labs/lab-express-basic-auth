@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=starter-code:* nodemon -e hbs,js,css ./bin/www",
+    "dev": "nodemon -e hbs,css,js ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
@@ -18,6 +18,7 @@
     "http-errors": "^1.8.0",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.4.18",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
