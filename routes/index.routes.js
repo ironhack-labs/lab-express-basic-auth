@@ -9,11 +9,11 @@ router.get('/', (req, res, next) => res.render('index'));
 
 /*AUTH*/
 router.get('/main', (req, res, next) => {
-    res.render('main')
+    res.render('main');
 })
 
 router.get('/private', protectRoute, (req, res, next) => {
-    res.render('private')
+    res.render('private');
 })
 
 

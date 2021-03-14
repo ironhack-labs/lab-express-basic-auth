@@ -7,7 +7,9 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const session = require("express-session");
+// const MongoStore = require("connect-mongo")(session);
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -40,5 +42,22 @@ app.use('/', signup);
 
 const login = require('./routes/login');
 app.use('/', login);
+
+//Session
+
+// app.use(
+//     session({
+//       secret: process.env.SESSION_SECRET,
+//       cookie: {
+//         maxAge: 50000
+//       }, // in millisec
+//       store: new MongoStore({
+//         mongooseConnection: mongoose.connection,
+//         ttl: 24 * 60 * 60 // 1 day
+//       }),
+//       saveUninitialized: true,
+//       resave: true
+//     })
+//   );
 
 module.exports = app;

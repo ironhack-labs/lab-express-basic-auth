@@ -29,10 +29,6 @@ router.post("/login", async (req, res, next) => {
     } else {
       const userObject = foundUser.toObject();
       delete userObject.password;
-
-      req.session.currentUser = userObject;
-
-      req.flash("success", "Welcome to your account");
       res.redirect("/");
     }
   } catch (err) {
