@@ -12,18 +12,19 @@ router.get("/login", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
+  let matchingPassword 
   try {
-    const {username, password} = req.body;
+    const { username, password } = req.body;
     const foundUser = await UserModel.findOne({ username: username });
     if (!foundUser) {
-        console.log("Not found")
+      console.log("Not found");
       res.redirect("/sigin");
     } else {
-      const isSamePassword = bcrypt.compareSync(password, foundUser.password);
+      matchingPassword = bcrypt.compareSync(password, foundUser.password);
     }
 
-    if (!isSamePassword) {
-        console.log("Password wrong")
+    if (!matchingPassword) {
+      console.log("Password wrong");
       res.redirect("/signin");
     } else {
       const userObject = foundUser.toObject();
