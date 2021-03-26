@@ -1,0 +1,22 @@
+<h1>Faça seu cadastro!</h1>
+<form action="/signup" method="post">
+    <div>
+    <input type="text" name="userName" placeholder="Digite seu nome de usuário">
+    {{#if userNameError}}
+    <span>{{userNameError}}</span>
+    {{/if}}
+    </div>
+    <div>
+    <input type="password" name="userPassword" placeholder="Crie sua senha de acesso">
+    {{#if userPasswordError}}
+    <span>{{userPasswordError}}</span>
+    {{/if}}
+    </div>
+        <div>
+    <input type="email" name="userEmail" placeholder="Crie sua senha de acesso">
+    {{#if userEmailError}}
+    <span>{{userEmailError}}</span>
+    {{/if}}
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
