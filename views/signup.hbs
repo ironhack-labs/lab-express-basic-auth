@@ -1,0 +1,29 @@
+<h1>Welcome to our website! Please insert your information to create your account</h1>
+
+<form action="/signup" method="post">
+<div>
+    <input type="text" name="userFirstName" placeholder="First Name">
+    <span>{{userFirstNameError}}</span>
+</div>
+<div>
+    <input type="text" name="userLastName" placeholder="Last Name">
+</div>
+<div>
+    <input type="email" name="userEmail" placholder="Email">
+    <span>{{userEmailError}}</span>
+</div>
+<div>
+    <input type="password" name="userPassword" placeholder="Choose a password">
+    <span>{{userPasswordError}}</span>
+</div>
+<div>
+    <input type="date" name="userBirthDate" placeholder="Birth Date">
+</div>
+<div>
+    <select name="userGender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="non-binary">Non-binary</option>
+    </select>
+</div>
+</form>
