@@ -1,0 +1,28 @@
+<h1>Create an account</h1>
+
+<form action="/sing-up" method="POST">
+    <div>
+        <label for="username">Choose an username</label>
+        <input id="username" type="text" name="username">
+        {{#if usernameError}}
+            <span>{{usernameError}}</span>
+        {{/if}}
+    </div>
+    <div>
+        <label for="email">Type your email</label>
+        <input id="email" type="email" name="email">
+        {{#if emailError}}
+            <span>{{emailError}}</span>
+        {{/if}}
+
+    </div>
+    <div>
+        <label for="password">Create a password</label>
+        <input id="password" type="password" name="password" placeholder="At least 6 characters long">
+        {{#if passwordError}}
+            <span>{{passwordError}}</span>
+        {{/if}}
+    </div>
+    <br>
+    <button type="submit">Submit</button>
+</form>
