@@ -10,8 +10,12 @@ const path = require('path');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const sessionConfig = require('./configs/session.config')
 
 const app = express();
+
+sessionConfig(app)
+
 
 // require database configuration
 require('./configs/db.config');
@@ -33,5 +37,22 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRoute = require('./routes/auth.routes');
+app.use('/', authRoute);
+
+const main = require('./routes/main.routes')
+const private = require('./routes/private.routes')
+
+app.use((req, res, next) =>{
+    if(req.session.currentUser){
+        return next()
+    }
+
+    res.redirect('/main')
+})
+
+app.use('/', main)
+app.use('/', private)
 
 module.exports = app;
