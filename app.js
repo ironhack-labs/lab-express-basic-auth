@@ -18,6 +18,9 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+// require session/cookies configuration
+require('./configs/sessions.config')(app);
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,12 +34,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'IronAuthenticator';
 
+// Public Routes
 const index = require('./routes/index.routes');
 app.use('/', index);
+const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes);
 
-const signup = require('./routes/signup.routes');
-app.use('/', signup);
+app.use('/', (req, res, next) => {
+  if (req.session.currentUser) {
+    return next();
+  }
+  res.redirect('/login');
+});
+
+const privateRoutes = require('./routes/private.routes');
+app.use('/', privateRoutes);
 
 module.exports = app;

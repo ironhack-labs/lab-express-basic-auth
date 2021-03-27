@@ -3,18 +3,24 @@
 <form action="/signup" method="post">
 <div>
     <input type="text" name="userFirstName" placeholder="First Name">
-    <span>{{userFirstNameError}}</span>
+    {{#if validationErrors.userFirstNameError}}
+        <span>{{validationErrors.userFirstNameError}}</span>
+    {{/if}}
 </div>
 <div>
     <input type="text" name="userLastName" placeholder="Last Name">
 </div>
 <div>
-    <input type="email" name="userEmail" placholder="Email">
-    <span>{{userEmailError}}</span>
+    <input type="email" name="userEmail" placeholder="Email">
+    {{#if validationErrors.userEmailError}}
+        <span>{{validationErrors.userEmailError}}</span>
+    {{/if}}
 </div>
 <div>
     <input type="password" name="userPassword" placeholder="Choose a password">
-    <span>{{userPasswordError}}</span>
+    {{#if validationErrors.userPasswordError}}
+        <span>{{validationErrors.userPasswordError}}</span>
+    {{/if}}
 </div>
 <div>
     <input type="date" name="userBirthDate" placeholder="Birth Date">
@@ -26,4 +32,5 @@
         <option value="non-binary">Non-binary</option>
     </select>
 </div>
+<button type="submit">Create account</button>
 </form>

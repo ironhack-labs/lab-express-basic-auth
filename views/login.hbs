@@ -1,0 +1,16 @@
+<h1>Welcome to our website! Please log in</h1>
+
+<form action="/login" method="post">
+<div>
+    <input type="email" name="userEmail" placeholder="Email" required>
+</div>
+<div>
+    <input type="password" name="userPassword" placeholder="Password" required>
+</div>
+<div>
+    {{#if validationError}}
+        <span>{{validationError}}</span>
+    {{/if}}
+</div>
+<button type="submit">Log in</button>
+</form>
