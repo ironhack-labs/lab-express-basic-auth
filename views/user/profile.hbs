@@ -1,3 +1,10 @@
 <a href="/">Back</a>
 
-<h1>Profile for: {{userName}}</h1>
+{{#if userInSession}}
+<h1>Hello, {{userInSession.userName}}!</h1>
+{{else}}
+<h1>You must be logged in to see your profile</h1>
+<a href="/login">
+    <h3>Go Back to Login</h3>
+</a>
+{{/if}}

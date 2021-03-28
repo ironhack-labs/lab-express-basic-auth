@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 
-router.get("/:userName/profile", (request, response, next) => {
-  User.findOne({ userName: request.params.userName })
-    .then((user) => {
-      response.render("user/profile", user);
-    })
-    .catch((error) => {});
+router.get("/profile", (request, response, next) => {
+  console.log("Profile access session: ", request.session);
+  console.log("Current user: ", request.session.currentUser);
+  response.render("user/profile", {
+    userInSession: request.session.currentUser,
+  });
 });
 
 module.exports = router;

@@ -37,6 +37,7 @@ router.get("/login", (request, response, next) => {
 });
 
 router.post("/login", (request, response, next) => {
+  console.log("SESSION ========> ", request.session);
   const { userName, password } = request.body;
   if (userName === "" || password === "")
     response.render("auth/login", {
@@ -47,8 +48,11 @@ router.post("/login", (request, response, next) => {
       .then((user) => {
         if (user) {
           const passwordMatches = bcrypt.compareSync(password, user.passHash);
-          if (passwordMatches) response.redirect(`/${user.userName}/profile`);
-          else
+          if (passwordMatches) {
+            request.session.currentUser = user;
+            console.log("new user session: ", request.session);
+            response.redirect(`/profile`);
+          } else
             response.render("auth/login", {
               errorMessage: "Incorrect Password",
             });
