@@ -11,9 +11,16 @@
 
   <body>
     <nav>
-      <a href="/sign-up">Sign up</a>
-      <a href="/login">Log in</a>
+      {{#unless currentUser}}
+        <a href="/sign-up">Sign up</a>
+        <a href="/login">Log in</a>
+      {{/unless}}
+      {{#if currentUser}}
+        <a href="/main">Main</a>
+        <a href="/private">Private</a>
+      {{/if}}
     </nav>
+
 
     {{{body}}}
 

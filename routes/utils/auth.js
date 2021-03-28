@@ -1,9 +1,8 @@
-const User = require('../models/User.model');
+const User = require('../../models/User.model');
 const bcrypt = require('bcryptjs');
 
-class Authenticator {
-    
-    async validateInfo (user) {
+class Authenticator {    
+    async validateInfo (user, next) {
         const validationErrors = {};
 
         try {
@@ -23,8 +22,8 @@ class Authenticator {
         } 
         
         catch (error) {
-            return error;
-        }       
+            next(error);
+        }
     }
 
     async encrypt (password) {
@@ -32,6 +31,10 @@ class Authenticator {
         const salt = bcrypt.genSaltSync(saltRounds);
 
         return bcrypt.hashSync(password, salt);
+    }
+
+    async checkPassword(password, hash) {
+        return bcrypt.compareSync(password, hash);
     }
 }
 

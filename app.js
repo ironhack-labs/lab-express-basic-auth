@@ -16,6 +16,11 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+//require session configuration
+const session = require('./configs/session.configs')
+
+session(app)
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,5 +41,15 @@ app.use('/', index);
 
 const auth = require('./routes/auth.routes')
 app.use('/', auth)
+
+//filter
+app.use((req, res, next) => {
+    if (req.session.currentUser) return next();
+
+    res.render('login', { warning: 'Your session has expired. Please log in again.'});
+})
+
+const privateArea = require('./routes/private.routes');
+app.use('/', privateArea);
 
 module.exports = app;
