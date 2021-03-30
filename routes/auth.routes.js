@@ -51,7 +51,7 @@ router.post("/login", (request, response, next) => {
           if (passwordMatches) {
             request.session.currentUser = user;
             console.log("new user session: ", request.session);
-            response.redirect(`/profile`);
+            response.render("user/profile", { userInSession: user });
           } else
             response.render("auth/login", {
               errorMessage: "Incorrect Password",
@@ -66,6 +66,11 @@ router.post("/login", (request, response, next) => {
         next(error);
       });
   }
+});
+
+router.get("/logout", (request, response, next) => {
+  request.session.destroy();
+  response.redirect("/");
 });
 
 module.exports = router;
