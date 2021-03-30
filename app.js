@@ -7,11 +7,15 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
+const sessionConfig = require('./configs/session.config')
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+
 const app = express();
+
+sessionConfig(app);
 
 // require database configuration
 require('./configs/db.config');
@@ -33,5 +37,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const auth = require('./routes/auth.routes')
+app.use('/', auth)
+
 
 module.exports = app;

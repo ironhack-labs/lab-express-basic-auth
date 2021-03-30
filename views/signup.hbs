@@ -1,0 +1,19 @@
+<h2>New User</h2>
+
+<form action="/signup" method="post">
+    <div>
+        <input type="text" name="userName" placeholder="Name">
+        {{#if userNameError}}
+            <span>{{userNameError}}</span>
+        {{/if}}
+    </div>
+
+    <div>
+        <input type="password" name="userPassword" placeholder="Password">
+        {{#if userPasswordError}}
+        <span>{{userPasswordError}}</span>
+        {{/if}}
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
