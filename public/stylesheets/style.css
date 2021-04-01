@@ -1,8 +1,87 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+nav {
+  height: 120px;
+  width: 100%;
+  background-color: #000;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+nav > span {
+  color: #fff;
+  font-size: 18px;
+  margin-right: 50px;
+}
+
+nav > a {
+  text-decoration: none;
+  color: red;
+  font-size: 18px;
+}
+
+nav > a:hover {
+  color: darkred;
+  transition: color 0.5s;
+}
+
+nav > a + a {
+  padding-left: 50px;
+}
+
+.form-auth-container {
+  width: 100%;
+  height: cal(100vh-120px);
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-auth {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-auth > div + div {
+  margin-top: 20px;
+}
+
+.form-auth label {
+  display: block;
+}
+
+.form-auth input {
+  width: 350px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.form-auth button {
+  width: 350px;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  background-color: #000;
+  color: red;
+  margin-top: 20px;
+}
+
+.form-auth button:hover {
+  background-color: darkred;
+  color: #fff;
+  transition: background-color 0.5s, color 0.5s;
 }

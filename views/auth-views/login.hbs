@@ -1,0 +1,22 @@
+<main class="form-auth-container">
+    <h1>Faça o Login</h1>
+    <form class="form-auth" action="/login" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Digite o seu nome de usuário">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Digite a sua senha">
+        </div>
+
+        {{#if errorMessage}}
+        <div>
+            <span>{{errorMessage}}</span>
+        </div>
+        {{/if}}
+
+        <button type="submit">Logar</button>
+    </form>
+</main>

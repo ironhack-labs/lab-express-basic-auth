@@ -7,8 +7,6 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-const authRoutes = require("./routes/auth.routes");
-const index = require("./routes/index.routes");
 
 const app_name = require("./package.json").name;
 const debug = require("debug")(
@@ -16,6 +14,11 @@ const debug = require("debug")(
 );
 
 const app = express();
+
+const sessionConfig = require("./configs/session.config");
+sessionConfig(app);
+
+/* configurar o express-session (cookie & session)*/
 
 // require database configuration
 require("./configs/db.config");
@@ -31,11 +34,17 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
-app.use("/", authRoutes);
 
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
+const index = require("./routes/index.routes");
 app.use("/", index);
+
+const authRoutes = require("./routes/authRoutes.routes");
+app.use("/", authRoutes);
+
+const protectedRoutes = require("./routes/protectedRoutes.routes");
+app.use("/", protectedRoutes);
 
 module.exports = app;

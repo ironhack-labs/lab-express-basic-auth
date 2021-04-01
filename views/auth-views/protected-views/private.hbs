@@ -1,0 +1,1 @@
+<h1>Protected Route</h1>
