@@ -1,0 +1,23 @@
+<main class="form-auth-container">
+  <h1>Faça o login para começar a usar esta incrível plataforma!</h1>
+
+  <form class="form-auth" action="/login" method="post">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" placeholder="Digite o seu nome de usuário" required minlength="5" maxlength="50">
+    </div>
+
+    <div>
+      <label for="password">Senha</label>
+      <input type="password" name="password" id="password" placeholder="Digite a sua senha" required minlength="6" maxlength="50">
+    </div>
+
+    {{#if errorMessage}}
+      <div>
+        <span>{{errorMessage}}</span>
+      </div>
+    {{/if}}
+
+    <button type="submit">Logar</button>
+  </form>
+</main>

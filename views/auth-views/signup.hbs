@@ -1,0 +1,33 @@
+<main class="form-auth-container">
+  <h1>Crie uma conta para começar a usar esta incrível plataforma!</h1>
+
+  <form class="form-auth" action="/signup" method="post">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" placeholder="Digite o seu nome de usuário" required minlength="5" maxlength="50">
+      {{#if usernameError}}
+        <div>
+          <span>{{usernameError}}</span>
+        </div>
+      {{/if}}
+    </div>
+
+    <div>
+      <label for="password">Senha</label>
+      <input type="password" name="password" id="password" placeholder="Digite a sua senha" required minlength="6" maxlength="50">
+      {{#if passwordError}}
+        <div>
+          <span>{{passwordError}}</span>
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if errorMessage}}
+      <div>
+        <span>{{errorMessage}}</span>
+      </div>
+    {{/if}}
+
+    <button type="submit">Cadastrar</button>
+  </form>
+</main>
