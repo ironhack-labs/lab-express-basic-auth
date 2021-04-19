@@ -59,4 +59,11 @@ router.get('/profile', (req, res) => {
     res.render('profile', { user: req.session.currentUser});
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if(err) res.redirect('/');
+        else res.redirect('/auth/login');
+    })
+})
+
 module.exports = router;
