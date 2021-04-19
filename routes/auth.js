@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const saltRound = 10;
 
 router.get('/signup', (req, res) => {
-    console.log("Is in get")
     res.render('signup');
 })
 
@@ -53,7 +52,6 @@ router.post('/login', (req, res, next) => {
         if(passwordCorrect){
             req.session.currentUser = user;
             res.redirect('/private/main')
-            console.log("yuhu")
         } else {
             res.render('login', { errorMessage: 'Incorrect email or password'});
         }
