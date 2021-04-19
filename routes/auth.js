@@ -34,5 +34,32 @@ User.findOne({username})
 })
 
 
+router.get('/login', (req, res) =>{
+  res.render('login');
+})
 
+router.post('/login', (req,res) =>{
+  const {username, password} =  req.body;
+
+  if(!username || !password){
+    res.render('login', { errorMessage: 'Username and password are required'});
+}
+  User.findOne({username})
+  .then(user =>{
+    if(!user){
+      res.render('login', {errorMessage: 'User does not exists'});
+    }
+
+    const passwordCorrect = bcrypt.compareSync(password, user.password);
+    if(passwordCorrect){
+      req.session.currentUser =user;
+      res.redirect('/private/profile')
+
+    }else {
+      res.render('login', {errorMessage:'Incorrect username or password'})
+    }
+  })
+})
+
+module.exports = router;
 
