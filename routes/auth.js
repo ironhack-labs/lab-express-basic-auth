@@ -35,30 +35,45 @@ router.post("/signup", (req, res, next) => {
 		.catch((error) => next(error));
 });
 
-router.get("/login", (req, res)=> {
-	res.render("login");
-})
+router.get("/login", (req, res) => {
+	//Back to private page if user is logged in
+	if (req.session.currentUser) {
+		res.redirect("/private/main");
+	}
 
-router.post("/login",(req, res) =>{
-	const {username, password} = req.body;
+	res.render("login");
+});
+
+router.post("/login", (req, res) => {
+	const { username, password } = req.body;
 	if (!username || !password) {
 		res.render("login", { errorMessage: "Username & password is mandatory" });
 	}
-	User.findOne({username})
-	.then((user) => {
-		if (!user){
-			res.render("login",{ errorMessage: "Incorrect Username or Password"});
+	User.findOne({ username }).then((user) => {
+		if (!user) {
+			res.render("login", { errorMessage: "Incorrect Username or Password" });
 		}
 
 		const passwordCorrect = bcrypt.compareSync(password, user.password);
-		if(passwordCorrect){
-		  // Save the user in the property currentUser of session object
-		  req.session.currentUser = user;
-		  res.redirect('/private/main')
+		if (passwordCorrect) {
+			// Save the user in the property currentUser of session object
+			req.session.currentUser = user;
+			res.redirect("/private/main");
 		} else {
-		  res.render('login', { errorMessage: "Incorrect Username or Password"});
+			res.render("login", { errorMessage: "Incorrect Username or Password" });
 		}
-	})
-})
+	});
+});
+
+router.get("/logout", (req, res) => {
+	req.session.destroy((err) => {
+		if (err) {
+			// If unable to logout the user
+			res.redirect("/");
+		} else {
+			res.redirect("/auth/login");
+		}
+	});
+});
 
 module.exports = router;
