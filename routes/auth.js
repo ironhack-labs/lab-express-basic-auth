@@ -54,7 +54,7 @@ router.post("/login",(req, res) =>{
 		if(passwordCorrect){
 		  // Save the user in the property currentUser of session object
 		  req.session.currentUser = user;
-		  res.redirect('/private/profile')
+		  res.redirect('/private/main')
 		} else {
 		  res.render('login', { errorMessage: "Incorrect Username or Password"});
 		}
