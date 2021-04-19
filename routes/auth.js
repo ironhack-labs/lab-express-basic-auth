@@ -35,7 +35,12 @@ User.findOne({username})
 
 
 router.get('/login', (req, res) =>{
-  res.render('login');
+
+  if(req.session.currentUser){
+    res.redirect('/')
+  }else {
+    res.render('login');
+  }
 })
 
 router.post('/login', (req,res) =>{
