@@ -29,14 +29,13 @@ app.use(
     secret: "basic-auth-secret",
     resave: true,
     saveUninitialized: false,
-    cookie:{maxAge: 3600000},
+    cookie: { maxAge: 3600000 },
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 60 * 60* 24*7
+      ttl: 60 * 60 * 24 * 7
     })
   })
 )
-
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
