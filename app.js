@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
+const DB_URL = 'mongodb://localhost/basic-auth'
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -35,9 +36,8 @@ app.use(
       resave: true, // Vuelva a guardar,
       saveUninitialized: false, 
       cookie: { maxAge: 3600000 },
-      store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: 60 * 60 * 24 * 7 // Time to live - 7 days (14 days by)
+      store: MongoStore.create({
+        mongoUrl: DB_URL
       })
     })
   )
@@ -50,6 +50,6 @@ const authRouter = require('./routes/auth');
 const privateRouter = require('./routes/private.routes');
 app.use('/', index);
 app.use('/auth', authRouter);
-app.use('/private.routes', privateRouter);
+app.use('/private', privateRouter);
 
 module.exports = app;

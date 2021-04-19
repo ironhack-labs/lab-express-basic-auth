@@ -10,6 +10,8 @@ router.get('/main', isLoggedIn, (req, res) => {
     res.render('main', {user:req.session.currentUser})
 }) 
 
-
+router.get('/private', isLoggedIn, (req, res) => {
+    res.render('private')
+})
 
 module.exports = router;

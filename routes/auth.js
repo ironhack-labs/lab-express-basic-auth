@@ -46,13 +46,14 @@ router.post('/login', (req, res, next) => {
     User.findOne({username})
     .then((user) => {
         if(user){
-            res.render('signup', {errorMessage: "User already exists"})
+            res.render('login', {errorMessage: "User already exists"})
         }
 
         const passwordCorrect = bcrypt.compareSync(password, user.password);
         if(passwordCorrect){
             req.session.currentUser = user;
             res.redirect('/private/main')
+            console.log("yuhu")
         } else {
             res.render('login', { errorMessage: 'Incorrect email or password'});
         }
