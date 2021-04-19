@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const saltRound = 10;
 
+
+
 router.get('/signup', (req, res) => {
+
     res.render('signup');
 })
 
@@ -32,7 +35,13 @@ router.post('/signup', (req, res, next) => {
         })
 })
 
+
+
 router.get('/login', (req, res) => {
+    console.log(req.session.currentUser)
+    if (req.session.currentUser) {
+        res.redirect('/private/profile');
+    }
     res.render('login');
 })
 
