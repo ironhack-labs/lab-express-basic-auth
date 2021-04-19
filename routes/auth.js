@@ -35,4 +35,30 @@ router.post("/signup", (req, res, next) => {
 		.catch((error) => next(error));
 });
 
+router.get("/login", (req, res)=> {
+	res.render("login");
+})
+
+router.post("/login",(req, res) =>{
+	const {username, password} = req.body;
+	if (!username || !password) {
+		res.render("login", { errorMessage: "Username & password is mandatory" });
+	}
+	User.findOne({username})
+	.then((user) => {
+		if (!user){
+			res.render("login",{ errorMessage: "Incorrect Username or Password"});
+		}
+
+		const passwordCorrect = bcrypt.compareSync(password, user.password);
+		if(passwordCorrect){
+		  // Save the user in the property currentUser of session object
+		  req.session.currentUser = user;
+		  res.redirect('/private/profile')
+		} else {
+		  res.render('login', { errorMessage: "Incorrect Username or Password"});
+		}
+	})
+})
+
 module.exports = router;
