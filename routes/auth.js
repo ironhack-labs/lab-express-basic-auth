@@ -32,4 +32,31 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
+router.get('/login', (req, res) => {
+    res.render('login')
+})
+
+router.post('/login', (req, res, next) => {
+    const {username, password} = req.body;
+    if(!username || !password){
+        console.log("required");
+        res.render('signup', {errorMessage: "Username and password are required"})
+    }
+
+    User.findOne({username})
+    .then((user) => {
+        if(user){
+            res.render('signup', {errorMessage: "User already exists"})
+        }
+
+        const passwordCorrect = bcrypt.compareSync(password, user.password);
+        if(passwordCorrect){
+            req.session.currentUser = user;
+            res.redirect('/private/main')
+        } else {
+            res.render('login', { errorMessage: 'Incorrect email or password'});
+        }
+    })
+})
+
 module.exports = router;
