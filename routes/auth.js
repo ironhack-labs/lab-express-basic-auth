@@ -52,11 +52,21 @@ router.post('/login', (req,res) =>{
 
     const passwordCorrect = bcrypt.compareSync(password, user.password);
     if(passwordCorrect){
-      req.session.currentUser =user;
+      req.session.currentUser = user;
       res.redirect('/private/profile')
 
     }else {
       res.render('login', {errorMessage:'Incorrect username or password'})
+    }
+  })
+})
+
+router.get('/logout',(req, res)=>{
+  req.session.destroy(err=>{
+    if(err){
+      res.redicrect('/');
+    } else{
+      res.redirect('/auth/login');
     }
   })
 })
