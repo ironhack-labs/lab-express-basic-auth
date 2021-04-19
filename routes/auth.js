@@ -13,11 +13,13 @@ router.post("/signup", (req, res, next) => {
 	//const username = req.body.username;
 	const { username, password } = req.body;
 
+	//Server validation for empty fields
 	if (!username || !password) {
 		res.render("signup", { errorMessage: "Username & password is mandatory" });
 	}
 
 	User.findOne({ username })
+		//username duplicated validation
 		.then((user) => {
 			if (user) {
 				res.render("signup", { errorMessage: "User already exists in DB" });
@@ -25,6 +27,7 @@ router.post("/signup", (req, res, next) => {
 		})
 		.catch((error) => next(error));
 
+	//Encrypting password
 	const salt = bcrypt.genSaltSync(saltRound);
 	const hashPassword = bcrypt.hashSync(password, salt);
 
@@ -38,7 +41,7 @@ router.post("/signup", (req, res, next) => {
 router.get("/login", (req, res) => {
 	//Back to private page if user is logged in
 	if (req.session.currentUser) {
-		res.redirect("/private/main");
+		res.redirect("/profile/main");
 	}
 
 	res.render("login");
@@ -46,6 +49,7 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
 	const { username, password } = req.body;
+	//Server validation for empty fields
 	if (!username || !password) {
 		res.render("login", { errorMessage: "Username & password is mandatory" });
 	}
@@ -53,12 +57,12 @@ router.post("/login", (req, res) => {
 		if (!user) {
 			res.render("login", { errorMessage: "Incorrect Username or Password" });
 		}
-
+		//Desencrypting password and comparing it with stored in dB
 		const passwordCorrect = bcrypt.compareSync(password, user.password);
 		if (passwordCorrect) {
 			// Save the user in the property currentUser of session object
 			req.session.currentUser = user;
-			res.redirect("/private/main");
+			res.redirect("/profile/main");
 		} else {
 			res.render("login", { errorMessage: "Incorrect Username or Password" });
 		}
@@ -66,6 +70,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+	//Destroy the user session if logout
 	req.session.destroy((err) => {
 		if (err) {
 			// If unable to logout the user
