@@ -19,7 +19,9 @@ require('./configs/db.config');
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 // Express View engine setup
@@ -33,5 +35,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+const signup = require('./routes/signup');
+app.use('/', signup);
 
 module.exports = app;
