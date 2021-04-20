@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -31,7 +32,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+// 👇 Start handling routes here
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+const auth = require("./routes/auth");
+app.use("/", auth);
 
 module.exports = app;
