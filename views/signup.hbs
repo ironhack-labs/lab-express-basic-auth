@@ -1,12 +1,15 @@
 <h2>Sign Up page</h2>
-<form action="">
+<form method="POST">
 
     <label for="username">Username:</label>
     <input type="text" name="username" id="username" required>
 
     <label for="password">Password:</label>
-    <input type="password" required>
+    <input type="password" name="password" required>
 
-    {{message}}
+
+    <button type="submit">Submit</button>
+
+    <p style="color:red">{{message}}</p>
 
 </form>
