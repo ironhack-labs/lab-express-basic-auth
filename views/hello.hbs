@@ -5,15 +5,17 @@
 
 {{#if username}}
 
-<p>This only show because we do not know you!</p>
-<a href="/signup">Sign UP</a>
-<a href="/login">Log in</a>
-
-{{else}}
-
 <p>this shows because we know who you are</p>
 <a href="/private">GOTO your private page</a>
 <a href="/logout"><a href="/logout">Click to log out</a></a>
+
+
+
+{{else}}
+
+<p>This only show because we do not know you!</p>
+<a href="/signup">Sign UP</a>
+<a href="/login">Log in</a>
 
 {{/if}}
 
