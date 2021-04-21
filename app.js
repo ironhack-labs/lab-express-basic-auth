@@ -7,7 +7,8 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-const encrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -17,6 +18,22 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+//session config
+// const session = require('session');
+// const MongoStore = require('connect-mongo')(session);
+// const mongoose = require('./db/index')
+// app.use(
+//     session({
+//         secret: process.env.SESSION_SECRET,
+//         cookie: {maxAge: 1000 * 60 * 60 * 24},
+//         saveUnitialized: false,
+//         resave: true, 
+//         store: new MongoStore({
+//             mongooseConnection: mongoose.connection 
+//         })
+//     })
+// );
+//end of session config 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,6 +52,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index.routes');
 app.use('/', index);
 const auth = require('./routes/auth');
+const MongoStore = require('connect-mongo');
 app.use('/', auth);
 
 
