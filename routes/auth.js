@@ -6,6 +6,27 @@ const bcrypt = require('bcrypt');
 
 router.get('/signup', (req, res, next) => res.render('signup'));
 
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.post('/login', (req, res, next) => {
+    const { username, password } = req.body;
+
+    User.findOne({ username })
+        .then(userFromDB => {
+            if (userFromDB === null) {
+                res.render('login', { message: 'Invalid Credentials' });
+                return;
+            }
+
+            if (bcrypt.compareSync(password, userFromDB.password)) {
+                req.session.user = userFromDB;
+                res.redirect('/profile');
+            }
+        });
+});
+
 router.post('/signup', (req, res, next) => {
     const { username, password } = req.body;
 
@@ -40,6 +61,13 @@ router.post('/signup', (req, res, next) => {
         .catch(err => {
             next(err);
         });
+});
+
+router.get('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) next(err);
+        else res.redirect('/');
+    });
 });
 
 module.exports = router;
