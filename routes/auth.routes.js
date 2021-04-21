@@ -39,22 +39,18 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login', async (req, res, next) => {
-    const { username, password } = req.body;
-
+    const { username, password, email } = req.body;
     const user = await User.findOne({ username: username }) || await User.findOne({ email: username });
-    const hash = user.password;
 
-    const salt = hash.slice(0, 39);
-    const pwdFromDB = hash.slice(39);
+    if (user === null) {
+        res.render('login', { message: "Invalid credentials" })
+        return;
+    }
 
-    const newHash = bscrypt.hashSync(salt, password);
-
-    if (newHash === hash) {
-        // user is authenticated
-    } else {
-        // redirect to login
+    if (bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
+        res.redirect('/profile');
     }
 })
-
 
 module.exports = router;

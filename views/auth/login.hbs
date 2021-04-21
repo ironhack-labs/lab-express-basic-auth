@@ -1,5 +1,9 @@
 <h1>Log In!</h1>
 
+{{#if message}}
+    <p style="color: red">{{message}}</p>
+{{/if}}
+
 <form action="/login" method="post">
     <label for="username">Username or Email: </label>
     <input type="text" name="username" id="username" required>

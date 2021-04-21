@@ -1,8 +1,35 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px 'Roboto', 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+button,
+button a {
+  background: #00b7ff;
+  color: white;
+  font-weight: 600;
+  padding: 20px 40px;
+  border: 0px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.col {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
 }
