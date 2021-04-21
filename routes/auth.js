@@ -34,4 +34,16 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
+
+router.post('/login', (req, res, next) => {
+  // action
+});
+
+router.get('/logout', (req, res, next) => {
+  // action then redirect
+});
+
 module.exports = router;
