@@ -16,6 +16,22 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+// session configuration
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 },
+        saveUninitialized: false,
+        resave: true,
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection
+        })
+    })
+);
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
