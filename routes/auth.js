@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const passport = require('passport');
 const bcrypt = require("bcrypt");
 
 /* GET home page */
@@ -14,6 +15,17 @@ router.get("/login", (req, res, next) => {
 router.get("/profile", (req, res, next) => {
   res.render("profile");
 });
+
+// Post passport
+
+router.post("/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    passReqToCallback: true,
+  })
+);
+
 
 //  Post
 
