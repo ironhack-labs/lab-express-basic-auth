@@ -7,6 +7,35 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+router.get("/profile", (req, res, next) => {
+  res.render("profile");
+});
+
+//  Post
+
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+
+  User.findOne({ username: username }).then((user) => {
+    if (user === null) {
+      // user is not in the db. Redirect to login
+      res.render("login", { message: "Invalid credentials" });
+      return;
+    }
+    // if user is in Db , check the password
+    if (bcrypt.compareSync(password, user.password)) {
+      // check with  hash and log in
+      req.session.user = user;
+      // go to the user profile
+      res.redirect("/profile");
+    }
+  });
+});
+
 router.post("/signup", (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -28,6 +57,16 @@ router.post("/signup", (req, res, next) => {
           res.redirect("/");
         }
       );
+    }
+  });
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      next(error);
+    } else {
+      res.redirect("/");
     }
   });
 });
