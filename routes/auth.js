@@ -2,7 +2,18 @@ const router = require('express').Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcrypt');
 
-router.get('/signup', (req, res, next) => {
+// for pages that make so sense if already logged
+const alreadyLogged = () => {
+  return (req, res, next) => {
+    if (req.session.user) {
+      res.redirect('/private');
+    } else {
+      next();
+    }
+  };
+};
+
+router.get('/signup', alreadyLogged(), (req, res, next) => {
   res.render('signup');
 });
 
@@ -34,8 +45,7 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-router.get('/login', (req, res, next) => {
-  console.log('login username', req.session.user.username);
+router.get('/login', alreadyLogged(), (req, res, next) => {
   res.render('login');
 });
 
