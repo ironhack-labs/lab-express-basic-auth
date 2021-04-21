@@ -35,6 +35,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
+  console.log('login username', req.session.user.username);
   res.render('login');
 });
 
@@ -51,7 +52,7 @@ router.post('/login', (req, res, next) => {
     if (user) {
       if (bcrypt.compareSync(password, user.password)) {
         req.session.user = user;
-        res.redirect('/profile');
+        res.redirect('/private');
         //probably unecessary but better be safe than sorry !
         return;
       }
