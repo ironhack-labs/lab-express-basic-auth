@@ -19,20 +19,21 @@ const app = express();
 require('./configs/db.config');
 
 //session config
-// const session = require('session');
-// const MongoStore = require('connect-mongo')(session);
-// const mongoose = require('./db/index')
-// app.use(
-//     session({
-//         secret: process.env.SESSION_SECRET,
-//         cookie: {maxAge: 1000 * 60 * 60 * 24},
-//         saveUnitialized: false,
-//         resave: true, 
-//         store: new MongoStore({
-//             mongooseConnection: mongoose.connection 
-//         })
-//     })
-// );
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+// const mongoose = require('./configs/db.config')
+ app.use(
+     session({
+         secret: process.env.SESSION_SECRET,
+         cookie: {maxAge: 1000*60*60*24},
+         saveUninitialized: false,
+         resave: true,
+         store: new MongoStore({
+             mongooseConnection : mongoose.connection
+         })
+     })
+ )
+
 //end of session config 
 // Middleware Setup
 app.use(logger('dev'));
@@ -52,7 +53,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const index = require('./routes/index.routes');
 app.use('/', index);
 const auth = require('./routes/auth');
-const MongoStore = require('connect-mongo');
+// const MongoStore = require('connect-mongo');
 app.use('/', auth);
 
 

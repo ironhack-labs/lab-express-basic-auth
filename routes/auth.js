@@ -7,6 +7,28 @@ router.get("/signup", (req, res, next) => {
     res.render("signup");
 });
 
+router.get('/login', (req, res, next)=>{
+    res.render("login");
+})
+
+router.post('/login', (req,res,next)=>{
+    const {username, password} = req.body;
+    console.log(username, password)
+    User.findOne({username: username})
+    .then(foundUser=>{
+        if(foundUser === null){
+            console.log(foundUser)
+            res.render('login', {message: 'INVALID'});
+            return;
+        }
+        if(bcrypt.compareSync(password,foundUser.password)){
+            req.session.user = foundUser;
+            res.redirect('/secretpage')
+        }
+    })
+})
+
+
 router.post('/signup', (req, res, next) => {
     const {
         username,
@@ -41,5 +63,7 @@ router.post('/signup', (req, res, next) => {
         }
     })
 })
+
+
 
 module.exports = router;

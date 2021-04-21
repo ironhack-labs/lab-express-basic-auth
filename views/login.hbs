@@ -1,0 +1,11 @@
+<h1>Here you can log in to a top secret account</h1>
+<form action="/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password">
+    <button type="submit">Log in</button>
+</form>
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
