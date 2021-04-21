@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
     });
   }
 
-  User.findOne({ username: username }).then((user) => {
+  User.findOne({ username }).then((user) => {
     if (user) {
       return res.render('signup', {
         message: 'This username is already taken',
@@ -39,11 +39,31 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  // action
+  const { username, password } = req.body;
+
+  if (!password || !username) {
+    return res.render('login', {
+      message: 'Please enter an Username and a Password',
+    });
+  }
+
+  User.findOne({ username }).then((user) => {
+    if (user) {
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
+        res.redirect('/profile');
+        //probably unecessary but better be safe than sorry !
+        return;
+      }
+    }
+    return res.render('login', { message: 'Wrong credentials' });
+  });
 });
 
 router.get('/logout', (req, res, next) => {
-  // action then redirect
+  req.session.destroy((err) => {
+    res.redirect('/');
+  });
 });
 
 module.exports = router;
