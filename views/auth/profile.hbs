@@ -1,0 +1,21 @@
+<a href="/">Go back</a>
+<br>
+{{#if username}}
+<a href="/main">Main</a>
+<br>
+<a href="/private">Private</a>
+<h2>Welcome, {{ username }}!</h2>
+<p>This is your profile!</p>
+<button>
+  <a href="/profile">Reload the page</a>
+</button>
+{{else}}
+<p>Still no logged in user, sorry!</p>
+{{/if}}
+ 
+ <form action="/logout" method="POST">
+<button type="submit">Logout</button>
+ </form>
+ 
+
+

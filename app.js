@@ -11,10 +11,15 @@ const path = require('path');
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+const isUserLoggedIn = require("./middleware/index");
+
 const app = express();
+
 
 // require database configuration
 require('./configs/db.config');
+
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -31,7 +36,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const index = require('./routes/index.routes');
-app.use('/', index);
+
+app.use('/', require('./routes/index.routes'));
+app.use('/', require('./routes/auth.routes'));
+app.use('/', isUserLoggedIn , require('./routes/user.routes'));
+
+
 
 module.exports = app;

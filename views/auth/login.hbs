@@ -1,0 +1,20 @@
+<section>
+<a href="/">Go back</a>
+
+{{#if errorMessage}}
+
+<p>{{errorMessage}}</p>
+
+{{/if}}
+
+<h1>Login</h1>
+<form action="/login" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" name="username" placeholder="Enter your username" >
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" placeholder="Enter your passowrd *****">
+
+  <button type="submit">Submit</button>
+</form>
+</section>
