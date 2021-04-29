@@ -57,14 +57,14 @@ As you know, it is not enough just to allow users to login. Users should be able
 
 ## Iteration 3 | Protected Routes
 
-At this point, you have implemented the basic authentication in this application. Your next assignment is to create some protected routes. Refresher: users can't visit these routes unless they are authenticated (logged in and exist in the session).
+At this point, you have implemented the basic authentication in this application. Your next assignment is to create the authentication middleware and protect some routes. Refresher: users can't visit these routes unless they are authenticated (logged in and exist in the session).
 
 Let's create two different routes protected by authentication:
 
 - `/main` - Add a funny picture of a cat and a link back to the home page
 - `/private` - Add your favorite `gif` and an `<h1>` denoting the page as private.
 
-Create the views and add the middleware configuration to avoid accessing these routes without being authenticated.
+Create the views and the custom authentication middleware function. Once created, use the middleware and protect the routes to prevent access to users who are not being authenticated.
 
 ## Bonus | The validation
 
