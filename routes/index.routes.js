@@ -107,4 +107,24 @@ router.post('/signup', (req, res) => {
 
 })
 
+// RUTA PRIVADA
+router.get('/private', (req, res) => {
+    const user = req.session.currentUser
+    if (!user) {
+        res.redirect("/login");
+    }
+    res.render('private', {
+        userInSession: req.session.currentUser
+    });
+});
+router.get('/main', (req, res) => {
+    const user = req.session.currentUser
+    if (!user) {
+        res.redirect("/login");
+    }
+    res.render('main', {
+        userInSession: req.session.currentUser
+    });
+});
+
 module.exports = router;
