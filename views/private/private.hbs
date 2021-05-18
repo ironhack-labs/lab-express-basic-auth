@@ -1,0 +1,10 @@
+{{#if userInSession}}
+  <h2>Hey, {{ userInSession.username }}!</h2>
+  <img src="https://media1.tenor.com/images/5ee9505022d4d3c07716f93956030937/tenor.gif?itemid=12340155" alt="doja cat">
+  <button>
+    <a href="/userProfile">Reload the page</a>
+  </button>
+{{else}}
+  <p>How did you get here?</p>
+  <a href="/login">Login</a>
+{{/if}}
