@@ -1,8 +1,17 @@
 {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <a href="/main">funny</a>
-  <a href="/private">ha ha</a>
+  <div>
+    <p>This is your profile page my friend!</p>
+    <button>
+        <a href="/main">funny</a>
+    </button>
+    <button>
+        <a href="/private">ha ha</a>
+    </button>
+  </div>
+  <button>
+    <a href="/">Back home</a>
+  </button>
   <button>
     <a href="/userProfile">Reload the page</a>
   </button>

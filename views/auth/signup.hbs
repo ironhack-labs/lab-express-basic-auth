@@ -9,7 +9,7 @@
 
 
     <label for="input-password"> Password </label>
-    <input type="password" name="password" id="input-password" placeholder="********" required pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/"/>
+    <input type="password" name="password" id="input-password" placeholder="********" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$"/>
 
     <button type="submit">Create account</button>
 

@@ -5,6 +5,17 @@ const User = require('../models/User.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 12;
 
+const comparePassword = async (password, hash) => {
+    try {
+        // Compare password
+        return await bcrypt.compare(password, hash);
+    } catch (error) {
+        next(error);
+    }
+    // Return false if error
+    return false;
+};
+
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 router.post('/signup', async (req, res, next) => {
@@ -46,20 +57,20 @@ router.post('/signup', async (req, res, next) => {
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.post('/login', async (req, res, next) => {
-  const { email, password } = req.body;
-  console.log('SESSION =====> ', req.session);
-  if (email === '' || password === '') {
-    res.render('auth/login', {
-      errorMessage: 'Please enter both, email and password to login.'
-    });
-    return;
-  }
-  try {
+    try {
+    const { email, password } = req.body;
+    console.log('SESSION =====> ', req.session);
+    if (email === '' || password === '') {
+        res.render('auth/login', {
+        errorMessage: 'Please enter both, email and password to login.'
+        });
+        return;
+    }
     const user = await User.findOne({ email });
     if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (comparePassword(password, user.passwordHash)) {
         req.session.currentUser = user;
         res.redirect('/userProfile');
       } else {
