@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/express-basic-auth-dev', {
-    useCreateIndex: true,
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
-  .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
-  .catch(err => console.error('Error connecting to mongo', err));
+  .then(() => console.log(`Successfully connected to the database ${process.env.MONGODB_URI}`))
+  .catch(error => {
+    console.error(`An error ocurred trying to connect to the database ${process.env.MONGODB_URI}: `, error);
+    process.exit(1);
+  });
