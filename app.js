@@ -16,11 +16,17 @@ const app = express();
 // require database configuration
 require('./configs/db.config');
 
+//Routers
+const indexRouter = require('./routes/index.routes')
+const authRouter = require('./routes/auth.routes')
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/', indexRouter);
+app.use('/', authRouter)
 
 // Express View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,5 +39,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 app.use('/', index);
+
+
 
 module.exports = app;
