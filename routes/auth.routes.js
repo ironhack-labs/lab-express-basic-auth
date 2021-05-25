@@ -93,4 +93,22 @@ router.post('/logout', (req, res) => {
     res.redirect('/');
 });
 
+//------MAIN------
+router.get('/main', (req, res)=>{
+  const user = req.session.currentUser
+  if(!user){
+      res.redirect("/login")
+  }
+  res.render('main')
+})
+
+//------PRIVATE------
+router.get('/private', (req, res)=>{
+  const user = req.session.currentUser
+  if(!user){
+      res.redirect("/login")
+  }
+  res.render('private')
+})
+
 module.exports = router
