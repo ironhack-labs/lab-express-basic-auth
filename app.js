@@ -15,6 +15,7 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -33,8 +34,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index.routes');
 const signup = require('./routes/signup.routes');
+const login = require('./routes/login.routes');
 
 app.use('/', index);
 app.use('/', signup);
+app.use('/', login);
+
 
 module.exports = app;
