@@ -2,7 +2,11 @@
 
 # LAB | Basic Auth
 
+<br><br>
+
 ## Introduction
+
+<br>
 
 In this lab, you are going to reinforce the knowledge on how to create basic authorization and authentication in a web app.
 
@@ -25,9 +29,13 @@ In this lab, you are going to reinforce the knowledge on how to create basic aut
 
 - Create Pull Request so your TAs can check up your work.
 
+<br>
+
 ## Instructions
 
 _In this lab, you literally have to recreate materials your instructors went through on the class. The point is not to blindly copy-paste them, but the opposite of that: to go once again, step by step through the process of registering users and authenticating them in the web app. Try to target all the weak spots, everything you missed to grasp during the lecture time, so you can ask your instructors and assistants to push you through the learning process._
+
+<br>
 
 ### Iteration 0 | Initialize the project
 
@@ -40,20 +48,26 @@ $ npm install
 
 Now you are ready to start 🚀
 
+<br>
+
 ## Iteration 1 | Sign Up
 
-We have to create the signup feature - the goal is to enable our users to register in our application. The users have to provide the following information:
+We have to create the _signup_ feature - the goal is to enable our users to register in our application. The users have to provide the following information:
 
-- **Username**: Must be unique in our application, and will identify each user.
-- **Password**: Must be encrypted (you can use the `bcryptjs` npm package).
+- **username**: must be unique in our application, and will identify each user
+- **password**: must be encrypted (you can use the `bcryptjs` npm package).
 
 To complete this first iteration, you have to create the model as well as corresponding routes, and the views.
+
+<br>
 
 ## Iteration 2 | Login
 
 Once the user has signed up, he/she should be able to authenticate themselves. This means the user should be able to login to the application. Your assignment in this iteration is to create corresponding routes as well as the views to let them log in to the application.
 
 As you know, it is not enough just to allow users to login. Users should be able to maintain their "presence" in the application (stay logged in when going from a page to a page, after the refresh), and for that, there should be the user(s) in the session. You have learned that you can use the `express-session` and `connect-mongo` npm packages to create a session.
+
+<br>
 
 ## Iteration 3 | Protected Routes
 
@@ -66,7 +80,11 @@ Let's create two different routes protected by authentication:
 
 Create the views and the custom authentication middleware function. Once created, use the middleware and protect the routes to prevent access to users who are not being authenticated.
 
+<br><br>
+
 ## Bonus | The validation
+
+<br>
 
 ### Validation during the signup process
 
@@ -75,9 +93,13 @@ You should handle validation errors when a user signs up:
 - The fields can't be empty.
 - The username can't be repeated.
 
+<br>
+
 ### Bonus | Validation during the login process
 
 You should check if all the fields are correctly filled before authenticating the user.
+
+<br>
 
 ### Frontend validation
 
@@ -87,8 +109,12 @@ Remember, when a user signs up or logs in, both the username and password fields
 
 Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Data_form_validation) at MDN. See if you can find a _constraint_ that requires the user to fill a field before submission.
 
+<br>
+
 ## Extra Resources
 
 - [HTML5 Form Validations](http://www.the-art-of-web.com/html/html5-form-validation/)
 
-Happy coding! :heart:
+<br><br>
+
+**Happy coding!** :heart:
