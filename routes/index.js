@@ -10,7 +10,7 @@ router.post("/new", userController.create)
 
 router.get("/user/:id", userController.id)
 
-router.get("/user/edit", userController.edit)
-router.post("/user/edit", userController.update)
+router.get("/user/:id/edit", userController.edit)
+router.post("/user/:id/edit", userController.update)
 
 module.exports = router;
