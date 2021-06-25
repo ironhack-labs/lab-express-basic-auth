@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <body>
+<body>
 
-    {{{body}}}
+  <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <a class='navbar-brand' href='/'>{{title}}</a>
+    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+    <div class='collapse navbar-collapse'>
+      <ul class='navbar-nav ml-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' href='/'>Inicio</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='/registro'>Registro</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='/inicio-sesion'>Iniciar sesión</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='/desconectar'>Cerrar sesión</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='/mi-perfil'>Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <script src="/js/script.js"></script>
-  </body>
+  {{{body}}}
+
+  <script src="/js/script.js"></script>
+</body>
 
 </html>
