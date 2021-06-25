@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="" method="POST">
+                <label for="username"> <strong>Usuario:</strong></label>
+                <input type="text" name="username" id="username">
+
+                <label for="password"><strong>Password:</strong></label>
+                <input type="password" name="password" id="password" autocomplete="none">
+                <button class="btn btn-light btn-block" type="submit"> Sign-up</button>
+            </form>
+            {{#if errorMessage}}
+            <div
+                style="margin-top: 20px; padding: 5px; color: white; background: red; text-align: center; font-size: .95em">
+                {{errorMessage}}</div>
+            {{/if}}
+        </div>
+    </div>
+</div>
