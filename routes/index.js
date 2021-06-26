@@ -6,4 +6,9 @@ router.get("/", userController.list);
 router.get("/new", userController.createUser);
 router.post("/new", userController.doCreateUser);
 
+router.get("/login", userController.login);
+router.post("/login", userController.doLogin);
+
+router.get("/profile", userController.viewProfile);
+
 module.exports = router;

@@ -14,15 +14,16 @@ const userSchema = new Schema({
     lowercase: true,
     match: [EMAIL_PATTERN, 'Invalid email pattern']
   },
-  username: {
-    type: String,
-    unique: true,
-    required: [true, "Username is required"]
-  },
+  // username: {
+  //   type: String,
+  //   unique: true,
+  //   required: [true, "Username is required"]
+  // },
   password: {
   type: String,
   unique: true,
-  required: [true, "Password is required"]
+  required: [true, "Password is required"],
+  minlength: [8, "Password needs at least 8 characters"]
   },
 });
 
@@ -36,6 +37,11 @@ userSchema.pre("save", function (next){
     next();
   }
 });
+
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
+
 
 const User = model("User", userSchema);
 
