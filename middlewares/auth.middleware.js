@@ -2,6 +2,7 @@ module.exports.isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
+    console.log("Luci")
     res.redirect("/login");
   }
 };

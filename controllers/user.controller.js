@@ -81,24 +81,20 @@ module.exports.doLogin = (req, res, next) => {
 };
 
 module.exports.profile = (req, res, next) => {
-  console.log(req.session.currentUser);
   res.render("profile");
 };
 module.exports.edit = (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
-    .then((user) => {
-      res.render("edit-user", { user });
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+  res.render("edit-user");
 };
 
 module.exports.update = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, req.body)
+  User.findById(req.session.currentUser._id)
     .then((user) => {
-      res.redirect("/");
+      Object.keys(req.body).forEach((key)=>user[key]=req.body[key])
+      user.save().then((newUser) => {
+        req.session.currentUser = newUser;
+        res.redirect("/profile");
+      });
     })
     .catch((e) => {
       console.error(e);
