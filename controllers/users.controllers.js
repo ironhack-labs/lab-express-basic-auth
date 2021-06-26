@@ -3,6 +3,8 @@ const User = require("../models/User.model");
 
 
 module.exports.list = ((req, res, next) => {
+    
+    console.log(req.session)
     User.find()
         .then((users) => res.render("list", { users }))
         .catch(e => console.error(e))
@@ -40,7 +42,7 @@ module.exports.doCreate = ((req, res, next) => {
 
 module.exports.login = ((req, res, next) => {
     res.render("login")
-})
+});
 
 module.exports.doLogin =((req, res, next) => {
     User.findOne({ email: req.body.email })
@@ -56,7 +58,8 @@ module.exports.doLogin =((req, res, next) => {
             return user.checkPassword(req.body.password)
                 .then((match) => {
                     if (match) {
-                        res.redirect("/list")
+                        req.session.currentUser = user;
+                        res.redirect("/profile")
                     } else {
                         res.render("login", { 
                             errorMessage: "Email or password are invalid",
@@ -68,6 +71,10 @@ module.exports.doLogin =((req, res, next) => {
                 })
            }
         }) .catch(e => next(e))
+});
+
+module.exports.profile = ((req, res, next) => {
+    res.render("profile", {currentUser: req.session.currentUser})
 })
 
 module.exports.index = ((req, res, next) => {

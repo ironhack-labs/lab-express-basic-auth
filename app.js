@@ -26,6 +26,11 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
+//Middleware session -> req.session.currentUser / 
+// cuando estemos en la sesió activa de nuestro currentUser le llegará una cookie que le dice que sesión es 
+// y busca en BD la información de nuestro currentUser
+
+
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
