@@ -23,13 +23,21 @@ router.post('/signup', (req, res) => {
 
   const { username, pwd } = req.body
 
+  if (username.length === 0)
+    res.render('signup', { errorMessage: 'completa los campos tontín' })
+  else if (pwd.length === 0) {
+    res.render('signup', { errorMessage: 'completa los campos tontín' })
+
+  }
+
   // si el username que escribe el cliente ya está cogido, salta error. Sino, regístra el ususario.
   User
     .findOne({ username })
     .then(user => {
 
+
       if (user) {
-        res.render('/signup', { errorMessage: 'Usuario ya registrado' })
+        res.render('signup', { errorMessage: 'Usuario ya registrado' })
         return
       }
 
@@ -58,12 +66,20 @@ router.post('/login', (req, res) => {
 
   const { username, pwd } = req.body
 
+
+
   User //BBDD, dime si hay un usuario con este.
     .findOne({ username })
     // o user === false, es decir, si no está en la BBDD, mensaje de error.
     .then(user => {
 
-      
+      if (username.length === 0)
+        res.render('signup', { errorMessage: 'completa los campos tontín' })
+      else if (pwd.length === 0) {
+        res.render('signup', { errorMessage: 'completa los campos tontín' })
+
+      }
+
       if (!user) {
         res.render('login', { errorMessage: 'Usuario no reconocido' })
         return

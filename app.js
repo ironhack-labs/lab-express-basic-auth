@@ -25,7 +25,7 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 
 require('./config')(app);
-require('./config/session.config')
+require('./config/session.config')(app)//importante requerir el archivo nuevo de config creado, además de pasarle (app), sino las sesiones no funcionan y no podemos guardar los usuarios
 
 
 app.locals.title = `INICIO`;
