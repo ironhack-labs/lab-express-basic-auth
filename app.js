@@ -15,14 +15,20 @@ const hbs = require('hbs');
 
 const app = express();
 
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+
+require('./config')(app);
+require('./config/session.config')(app)//importante requerir el archivo nuevo de config creado, además de pasarle (app), sino las sesiones no funcionan y no podemos guardar los usuarios
+
+
+app.locals.title = `INICIO`;
 
 // 👇 Start handling routes here
 const index = require('./routes/index');
