@@ -6,12 +6,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        {{#if currentUser}}
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
+          <a class="nav-link" aria-current="page" href="/profile">Profile</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+        </li>
+        {{ else }}
          <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/login">Login</a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/signup">Signup</a>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </div>
