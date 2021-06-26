@@ -1,14 +1,5 @@
 <div class="p-5">
-    <form method="POST" action="/new">
-    <div class="mb-3">
-        <label for="email" class="form-label fw-bolder">Email address</label>
-        <input name="email" value="{{user.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" aria-describedby="emailHelp" placeholder="algo@algo.com" required>
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        {{#if errors.email}}
-            <div class="invalid-feedback">
-            {{errors.email}}
-        {{/if}}
-    </div>
+    <form method="POST" action="/login">
     <div class="mb-3">
         <label for="username" class="form-label fw-bolder">Username</label>
         <input name="username" value="{{user.username}}" type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" id="username" aria-describedby="emailHelp" placeholder="algo" required>
@@ -27,6 +18,6 @@
             </div>
         {{/if}}
     </div>
-    <button type="submit" class="btn btn-primary fw-bolder">Register</button>
+    <button type="submit" class="btn btn-primary fw-bolder">Log in</button>
     </form>
 </div>

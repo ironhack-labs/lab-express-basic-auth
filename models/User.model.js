@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const EMAIL_PATTERN =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const SALT_ROUNDS = 10;
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
@@ -11,13 +10,18 @@ const userSchema = new Schema({
     unique: true,
   },
   email: {
-    type: String,
-    match: [EMAIL_PATTERN, "Invalid email pattern"],
-    unique: true,
+      type: String,
+      required: [true, 'Email is required'],
+      unique: true,
+      trim : true,
+      lowercase: true,
+      match: [EMAIL_PATTERN, 'Invalid email pattern']
   },
   password: {
     type: String,
-  },
+    required: [true, 'Password is required'],
+    minlength: [8, 'Password needs at least 8 chars']
+  }
 });
 
 userSchema.pre("save", function (next) {
@@ -30,6 +34,10 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
 
 const User = model("User", userSchema);
 

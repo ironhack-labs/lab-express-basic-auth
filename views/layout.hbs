@@ -28,13 +28,24 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+            {{#if currentUser}}
             <li class="nav-item">
-              <a class="nav-link fw-bolder" href="/">USERS</a>
+              <a class="nav-link fw-bolder" href="/profile">PROFILE</a>
             </li>
+            <li class="nav-item">
+              <form action="/logout" method="POST" class="d-flex align-items-center my-auto">
+                <button class="nav-link btn btn-link fw-bolder">LOGOUT</button>
+              </form>
+            </li>
+            {{else}}
             <li class="nav-item">
               <a class="nav-link fw-bolder" href="/new">NEW USER</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="/login">LOG IN</a>
+            </li>
+            {{/if}}
           </ul>
         </div>
       </div>
