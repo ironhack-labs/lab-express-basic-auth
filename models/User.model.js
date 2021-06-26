@@ -41,6 +41,10 @@ userSchema.pre("save", function(next) {
   }
 })
 
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
+
 const User = model("User", userSchema);
 
 module.exports = User;
