@@ -7,11 +7,11 @@ module.exports.index = (req, res, next) => {
     })
 }
 
-module.exports.newUser = (req, res, next) => {
+module.exports.createUser = (req, res, next) => {
     res.render('new-user')
 }
 
-module.exports.createUser = (req, res, next) => {
+module.exports.docreateUser = (req, res, next) => {
     User.Create('req.body')
     .then(() => {
         res.redirect('/')
