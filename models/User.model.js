@@ -1,34 +1,31 @@
-
-
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 
+const mongoose = require('mongoose');
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const SALT_ROUNDS = 10;
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 
 
-const userSchema = new mongoose.Schema(
-  {
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: [true, "Please enter your user"]
+    required: [true, "Please, enter your username"]
   },
   password: {
     type: String,
     required: true,
-    minlength: [8, "Please enter your password"]
+    minlength: [8, "Please, enter your password"]
   },
   email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    match: [EMAIL_PATTERN, "Please enter your email"]
+    match: [EMAIL_PATTERN, "Please, enter your emailInvalid email pattern"]
   }
-},
-{
+}, {
   timetamps: true
 })
 
