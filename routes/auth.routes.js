@@ -38,8 +38,16 @@ router.post('/signup', (req, res, next) => {
         .catch((err) => {
             next(err)
         })
-
 })
 //-------------------------
+
+//-------- SIGN IN --------
+// Handle GET request to /signin page
+router.get('/signin', (req, res, next) => {
+    res.render('auth/signin.hbs')
+})
+
+//--------------------------
+
 
 module.exports = router;
