@@ -21,14 +21,14 @@ module.exports.doCreate = (req, res, next) => {
   })
   .catch((e) => {
     if (e instanceof mongoose.Error.ValidationError) {
-      res.render('register', {
+      res.render('signup', {
         errors: e.errors,
         user: {
           email: req.body.email
         }
       })
     } else if (e.code === 11000) {
-      res.render('register', {
+      res.render('signup', {
         errors: { email: 'There is already an account registered with this email' },
         user: {
           email: req.body.email

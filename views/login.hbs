@@ -1,18 +1,17 @@
 <form action="/login" method="POST">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input value="{{user.username}}" type="text" name="username" class="form-control {{#if errorMessage}}is-invalid{{/if}}" id="username" required >
+    <input value="{{user.username}}" type="text" name="username" class="form-control z" id="username">
     {{#if errorMessage}}
-     <div class="invalid-feedback"></div>
+    <div class="invalid-feedback">
       {{errorMessage}}
+    </div>
     {{/if}}
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" name="password" class="form-control" id="password">
+    <input type="password" name="password" class="form-control {{#if errorMessage}}is-invalid{{/if}}" id="password">
   </div>
-  <div class="mb-3">
-    
-  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

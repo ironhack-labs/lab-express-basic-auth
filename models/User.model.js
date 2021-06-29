@@ -16,7 +16,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      minlength: [8]
+      minlength: [8],
     },
 
     email: {
@@ -24,7 +24,7 @@ const userSchema = new Schema(
       required: true,
       lowercase: true,
       trim: true,
-      match: [EMAIL_PATTERN]
+      match: [EMAIL_PATTERN],
     },
   },
 
