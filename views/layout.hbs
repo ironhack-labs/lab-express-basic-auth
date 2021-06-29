@@ -8,7 +8,16 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+<a href="/">Home</a>
+{{#if isLoggedIn}}
+<a href="/logout">Log out</a>
+<a href="/profile">profile</a>
+{{else}}
 
+<a href="/signup">Sign up</a>
+<a href="/login">Log in</a>
+
+{{/if}}
   <body>
 
     {{{body}}}
