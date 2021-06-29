@@ -33,7 +33,8 @@ router.post('/signup', (req, res, next) => {
     const hash = bcrypt.hashSync(password, salt);
     User.create({username, password: hash})
         .then(() => {
-            res.redirect('/')
+            // if created, redirect to sign-in page
+            res.redirect('/signin')
         })
         .catch((err) => {
             next(err)
@@ -60,7 +61,7 @@ router.post('/signin', (req, res, next) => {
                 // user.password = hash stored in DB SECOND
                 let isValid = bcrypt.compareSync(password, user.password);
                 if (isValid) {
-                    req.app.locals.isLoggedIn = true;
+                    req.session.loggedInUser = user
                     res.redirect('/profile')
                 } else {
                     // if passwords don't match
@@ -82,7 +83,12 @@ router.post('/signin', (req, res, next) => {
 
 // Handle GET request for profile page
 router.get('/profile', (req, res, next) => {
-    res.render('auth/profile.hbs')
+    if (req.session.loggedInUser) {
+        res.render('auth/profile.hbs')
+    } 
+    else {
+        res.redirect('/signin')
+    }
 })
 
 //--------------------------
