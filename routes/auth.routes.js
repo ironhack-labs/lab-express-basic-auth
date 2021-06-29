@@ -79,7 +79,7 @@ router.post('/signin', (req, res, next) => {
 
 //--------------------------
 
-//-------- PROFILE ---------
+//------ PROFILE PAGE ------
 
 // Handle GET request for profile page
 router.get('/profile', (req, res, next) => {
@@ -92,6 +92,26 @@ router.get('/profile', (req, res, next) => {
 })
 
 //--------------------------
+
+
+//---- PROTECTED ROUTES ----
+// Custom middleware that we can call to make a page private
+function checkLoggedIn(req, res, next) {
+    if (req.session.loggedInUser) {
+        next()
+    } 
+    else {
+        res.redirect('/signup')
+    }
+}
+
+router.get('/main', checkLoggedIn, (req, res, next) => {
+    res.render('main.hbs')
+})
+
+router.get('/private', checkLoggedIn, (req, res, next) => {
+    res.render('private.hbs')
+})
 
 
 
