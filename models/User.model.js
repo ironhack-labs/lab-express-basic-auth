@@ -23,12 +23,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     trim: true,
-    match: [EMAIL_PATTERN, "Please, enter your emailInvalid email pattern"]
+    match: [EMAIL_PATTERN, "Invalid email pattern"]
   }
 }, {
   timetamps: true
 })
 
+// Encriptar contraseña
 userSchema.pre("save", function (next) {
   if (this.isModified("password")) {
     bcrypt.hash(this.password, SALT_ROUNDS).then((hash) => {
@@ -39,6 +40,11 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+// Comparar contraseñas de usuario para ver si es correcta
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
 
 const User = mongoose.model('User', userSchema);
 

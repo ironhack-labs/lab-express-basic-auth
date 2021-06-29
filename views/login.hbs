@@ -1,0 +1,28 @@
+<h1>Login</h1>
+<form action="/login" method="POST">
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" value="{{user.email}}" name="email" class="form-control {{#if errorMessage}}is-invalid{{/if}}" id="email" required />
+    {{#if errorMessage}}
+      <div class="invalid-feedback">
+        {{errorMessage}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      class="form-control {{#if errorMessage}}is-invalid{{/if}}"
+      id="password"
+      required
+    />
+        {{#if errorMessage}}
+      <div class="invalid-feedback">
+        {{errorMessage}}
+      </div>
+    {{/if}}
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>

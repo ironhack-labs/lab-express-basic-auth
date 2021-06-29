@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon -e hbs,css,js server.js"
+    "start": "node app.js",
+    "dev": "nodemon -e hbs,css,js app.js"
   },
   "dependencies": {
     "bcryptjs": "^5.0.1",

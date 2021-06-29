@@ -1,16 +1,34 @@
-<h1>New User :(</h1>
+<h1>New User</h1>
 <form action="/new-user" method="POST">
-  <div>
-    <label for="email">Insert Email Address</label>
-    <input type="email" name="email" />
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" value="{{user.email}}" name="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" required />
+    {{#if errors.email}}
+      <div class="invalid-feedback">
+        {{errors.email}}
+      </div>
+    {{/if}}
   </div>
-  <div>
-    <label for="username">Insert Username</label>
-    <input type="text" name="username" />
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" name="username" class="form-control" required />
   </div>
-  <div>
-    <label for="password">Insert Password</label>
-    <input type="password" name="password" />
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      class="form-control {{#if errors.password}}is-invalid{{/if}}"
+      id="password"
+      required
+    />
+    {{#if errors.password}}
+      <div class="invalid-feedback">
+        {{errors.password}}
+      </div>
+    {{/if}}
+    <small id="passwordHelp" class="form-text text-muted">Your password must be
+      at least 8 characters long</small>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
