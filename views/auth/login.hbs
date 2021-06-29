@@ -1,0 +1,14 @@
+<h1>Login</h1>
+
+<form method="POST" action="/login">
+  <label>Username </label>
+  <input type="text" name="username" placeholder="Enter your username"  >
+
+  <label>Password</label>
+  <input type="password" name="password" placeholder="Enter your Password"  >
+  <button>Log In</button>
+</form>
+
+{{#if error}}
+  <p class="error">{{error}}</p>
+{{/if}}

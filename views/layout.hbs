@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <a href="/">Home</a>
+  {{#if isLoggedIn}}
+    <a href="/logout">Logout</a>
+  {{else}}
+    <a href="/login"> <b>Login</b></a>
+    <a href="/signup"> <b>Signup</b></a>
+  {{/if}}
 
     {{{body}}}
 
