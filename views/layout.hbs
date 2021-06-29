@@ -11,6 +11,29 @@
 
   <body>
 
+ <nav>
+         <ul>
+            <li id="to-left">
+               <p><a href="/"> Home </a></p>
+            </li>
+
+            {{#if isLoggedIn}}
+            <li id="to-right">
+                  <a href="/logout">Logout</a> <span> | </span>
+            </li>
+            {{else}}
+            <li id="to-right">
+               <a href="/signup">Signup</a> <span> | </span>
+            </li>
+            <li id="to-right">
+               <a href="/signin">SignIn</a> <span> | </span>
+            </li>
+            {{/if}}
+         </ul>
+      </nav> 
+      
+
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
