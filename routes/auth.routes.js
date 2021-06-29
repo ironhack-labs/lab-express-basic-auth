@@ -13,6 +13,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
     const {username, password} = req.body
 
+    // check user has filled in all fields
     if (!username || !password) {
         res.render('auth/signup.hbs', {error: 'Please enter all fields'})
         return;
@@ -30,7 +31,7 @@ router.post('/signup', (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     // Uses the salt and the password to create a hashed password
     const hash = bcrypt.hashSync(password, salt);
-    User.create({username, email, password: hash})
+    User.create({username, password: hash})
         .then(() => {
             res.redirect('/')
         })
