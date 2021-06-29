@@ -16,6 +16,7 @@ router.get('/signup',(req,res,next) => {
 
 router.get('/signin', (req,res,next) => {
     res.render('auth/signin.hbs')
+
 })
 
 //SIGN IN & SIGN UP POST REQUESTS
@@ -71,6 +72,7 @@ function checkLoggedIn(req, res, next){
 
 router.get('/main', checkLoggedIn,(req,res,next) => {
     res.render('auth/main.hbs')
+    console.log('local', req.app.locals.isLoggedIn)
 })
 
 router.get('/private', checkLoggedIn, (req,res,next) => {
@@ -78,4 +80,11 @@ router.get('/private', checkLoggedIn, (req,res,next) => {
     console.log(req.app.locals.isLoggedIn)
 })
 
+
+//LOG OUT
+
+router.get('/logout', (req,res,next) => {
+    req.session.destroy()
+    res.redirect('/')
+})
 module.exports = router;
