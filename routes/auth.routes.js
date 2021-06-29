@@ -47,7 +47,46 @@ router.get('/signin', (req, res, next) => {
     res.render('auth/signin.hbs')
 })
 
+// Handle POST request to /signin page and enable login
+router.post('/signin', (req, res, next) => {
+    const {username, password} = req.body
+
+    // check is username is in DB
+    User.findOne({username})
+        .then((user) => {
+            if (user) {
+                // if username exists, check for match against inputted password and hashed password stored in DB
+                // remember password = inputted password FIRST
+                // user.password = hash stored in DB SECOND
+                let isValid = bcrypt.compareSync(password, user.password);
+                if (isValid) {
+                    req.app.locals.isLoggedIn = true;
+                    res.redirect('/profile')
+                } else {
+                    // if passwords don't match
+                    res.render('auth/signin', {error: 'Invalid password'})
+                }
+            } else {
+                // if the inputted username for not exist in the DB
+                res.render('auth/signin', {error: 'Username does not exist. Please check and try again.'})
+            }
+        })
+        .catch((error) => {
+            next(error)
+        })
+})
+
 //--------------------------
+
+//-------- PROFILE ---------
+
+// Handle GET request for profile page
+router.get('/profile', (req, res, next) => {
+    res.render('auth/profile.hbs')
+})
+
+//--------------------------
+
 
 
 module.exports = router;

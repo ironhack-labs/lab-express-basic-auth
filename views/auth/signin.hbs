@@ -7,5 +7,9 @@
   <input type="password" name="password" placeholder="Enter your Password" >
 
   <button>Sign In</button>
-  
+
 </form>
+
+{{#if error}}
+  <p class="error">{{error}}</p>
+{{/if}}
