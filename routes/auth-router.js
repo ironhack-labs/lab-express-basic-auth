@@ -2,8 +2,8 @@ const express = require("express");
 const authRouter = express.Router();
 const User = require("../models/User.model");
 
-const bcrypt = require("bcrypt"); // standard library for cryptography
-const saltRounds = 28; // should change this number to give your website a unique randomness (salt makes it random)
+const bcrypt = require("bcryptjs"); // standard library for cryptography
+const saltRounds = 3; // should change this number to give your website a unique randomness (salt makes it random)
 
 const zxcvbn = require("zxcvbn");
 
@@ -17,6 +17,7 @@ authRouter.get("/signup", (req, res) => {
 authRouter.post("/signup", (req, res, next) => {
   // 1. Get the username and password from req.body
   const { username, password } = req.body;
+  console.log('insdie signup', req.body)
 
   // 2.1 Check if the username and password are provided, if not:
   if (username === "" || password === "") {
