@@ -72,13 +72,13 @@ router.post("/login", async (req, res) => {
       });
       return;
     }
-    res.render("/");
+    res.render("/main");
 
       //Check for Password:
   if (bcrypt.compareSync(password, user.password)){
     // if the Password Matches lets redirect the user to the books page
     req.session.currentUser = user;  // -> here we are initiallizing the session with the current user in case the passwords match
-    res.redirect("/");
+    res.redirect("/main");
     } else{ // If passwords do not match 
     res.render("/", {
         errorMessage: "Invalid login credentials"
