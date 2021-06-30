@@ -1,2 +1,15 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+<br>
+
+{{#if loggedInUser}}
+
+<div>
+    Hello <strong>{{loggedInUser}}</strong>
+</div>
+<br>
+
+{{else}}
+<a href="/login">Login</a>
+{{/if}}
