@@ -1,0 +1,20 @@
+<h2>Login</h2>
+{{!-- Primeira validation pra não dar erro no form --}}
+<form action="/login" method="POST">
+    <label for=""></label>
+    <input type="text" name="username" placeholder="Name" required> 
+    {{!-- O required é pra ter a certeza que será escrito algo neste campo --}}
+
+
+    <label for=""></label>
+    <input type="password" name="password" placeholder="password" required>
+
+    <button type="submit">Login</button>
+
+</form>
+
+{{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+{{/if}}
+
+<p>Don't have an account? Signup <a href="/signup">here</a></p>

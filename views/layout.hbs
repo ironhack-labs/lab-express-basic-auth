@@ -10,7 +10,21 @@
   </head>
 
   <body>
+    {{#if loggedInUser}}
+      <div>
+          Welcome, {{loggedInUser}}
+          <a href="/private">Página privativa</a>
+          <a href="/main">Main</a>
+          <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+      </div>
 
+      {{else}}
+         <a href="/signup">Sign up</a>
+         <a href="/login">Login</a>
+         <a href="/main">Main</a>
+      {{/if}}
     {{{body}}}
 
     <script src="/js/script.js"></script>
