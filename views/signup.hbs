@@ -1,0 +1,16 @@
+<h1>Sign up</h1>
+<form action="/signup" method="POST">
+    <label for="username">Username: </label>
+    <input id="username" type="text" name="username" required minlenght="1" maxlength="20">
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" required minlenght="8" maxlength="20">
+    <button type="submit" disabled>Sign up</button>
+</form>
+
+<ul>
+	<li>Password should have at least 8 characters <span style="visibility: hidden;">✅</span></li>
+</ul>
+
+{{#if message}}
+	<p style="color: red">{{message}}</p>
+{{/if}}
