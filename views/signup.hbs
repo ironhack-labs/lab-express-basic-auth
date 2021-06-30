@@ -1,9 +1,9 @@
 <h1>Sign up</h1>
 <form action="/signup" method="POST">
     <label for="username">Username: </label>
-    <input id="username" type="text" name="username">
+    <input id="username" type="text" name="username" required minlenght="1" maxlength="20">
     <label for="password">Password: </label>
-    <input id="password" type="password" name="password">
+    <input id="password" type="password" name="password" required minlenght="8" maxlength="20">
     <button type="submit" disabled>Sign up</button>
 </form>
 
