@@ -7,7 +7,7 @@ document.addEventListener(
 );
 
 document.querySelector('#password').addEventListener('keyup', e => {
-  if (e.target.value.length > 3) {
+  if (e.target.value.length >= 8) {
     document.querySelector('span').style.visibility = 'visible';
     document.querySelector('button').removeAttribute('disabled');
   } else {

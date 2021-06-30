@@ -18,17 +18,29 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+// session configuration
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = process.env.MONGODB_URI;
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		// for how long is a user automatically logged in 
+		cookie: { maxAge: 1000 * 60 * 60 * 24 },
+		saveUninitialized: false,
+		resave: true,
+		store: MongoStore.create({
+			mongoUrl: DB_URL
+		})
+	})
+)
+// end of session configuration
 
-// 👇 Start handling routes here
+// Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
 
-// this requires all the auth routes
 const auth = require("./routes/auth");
 app.use("/", auth);
 
