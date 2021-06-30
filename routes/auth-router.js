@@ -2,10 +2,12 @@ const express = require("express");
 const authRouter = express.Router();
 const User = require("../models/User.model");
 
+
 const bcrypt = require("bcryptjs"); // standard library for cryptography
 const saltRounds = 3; // should change this number to give your website a unique randomness (salt makes it random)
 
 const zxcvbn = require("zxcvbn");
+
 
 // GET    '/auth/signup'     -  Renders the signup form
 authRouter.get("/signup", (req, res) => {
