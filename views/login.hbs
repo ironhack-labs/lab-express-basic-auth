@@ -1,0 +1,15 @@
+<h2>Already registered? Log in here</h2>
+<form action="/login" method="POST">
+	<label for="username">Username: </label>
+	<input type="text" name="username" id="username">
+	<label for="password">Password: </label>
+	<input type="password" name="password" id="password">
+	<button type="submit">Log in here :)</button>
+	{{!-- <button type="submit" disabled>Sign up</button> --}}
+</form>
+{{!-- <ul>
+	<li>Password is 3 characters long <span style="visibility: hidden;">✅</span></li>
+</ul> --}}
+{{#if message}}
+	<p style="color: red">{{message}}</p>
+{{/if}}
