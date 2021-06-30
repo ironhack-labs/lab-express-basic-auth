@@ -21,7 +21,9 @@ router.post('/register', (req, res)=>{
 
   User
     .create({username:username, password:hashPass})
-    .then((user) => res.redirect('/login'))
+    .then((user) => 
+    //console.log(X)
+    res.redirect('/login'))
     .catch(err => console.log(err))
 })
 
@@ -30,21 +32,52 @@ router.get('/login', (req, res)=>{
   res.render('login')
 })
 
-router.post('/login', (req, res) => {
 
-  const { username, password } = req.body
 
-  User.findOne({ username })
-    .then(user => {
-      if (bcrypt.compareSync(password, user.password) === false) {
-        res.render('auth/login-page', { errorMessage: 'Wrong password' })
-        return
-      } else {
-        req.session.currentUser = user
-        res.render('/profile')
-      }
-    })
-})
+// Jans code //
+
+// routes/index.js
+//const router = require("express").Router();
+​
+// create a middleware to check if the user is logged in
+const loginCheck = () => {
+  return (req, res, next) => {
+    // is there a logged in user
+    if (req.session.user) {
+      // proceed as intended
+      next();
+    } else {
+      // there is no user logged in
+      // we redirect to /login
+      res.redirect('/login');
+    }
+  }
+}
+​
+/* GET home page */
+router.get("/", (req, res, next) => {
+  res.render("index");
+});
+​
+router.get('/profile', loginCheck(), (req, res, next) => {
+  // this is how you access a cookie
+  console.log('this is the cookie: ', req.cookies)
+  // this is how you can set a cookie
+  res.cookie('myCookie', 'hello world');
+  // this is how you delete a cookie
+  res.clearCookie('myCookie');
+  const loggedInUser = req.session.user
+  res.render('profile', { user: loggedInUser });
+});
+​
+// Jans code //
+
+
+
+
+
+
+
 
 /* Route profile */
 router.get('/profile', (req, res)=>{

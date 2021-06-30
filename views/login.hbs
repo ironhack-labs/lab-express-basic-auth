@@ -1,3 +1,5 @@
+<h1> LOGIN </h1>
+
 <form action="login" method="post">
 
     <label for="username">username</label>
@@ -5,6 +7,24 @@
     <label for="password">password</label>
     <input type="password" name="password" id="password">
 
-    <input type="submit" value="login">
+    <input type="submit" value="login"> <br>
+
+    <a href="http://localhost:3000/">Go back</a>
 
 </form>
+
+{{!-- <h1>Log in</h1>
+<form action="/login" method="POST">
+	<label for="username">Username: </label>
+	<input type="text" name="username" id="username">
+​
+	<label for="password">Password: </label>
+	<input type="password" name="password" id="password">
+​
+	<button type="submit">Log in</button>
+	{{!-- <button type="submit" disabled>Sign up</button> --}}
+</form>
+​
+{{#if message}}
+	<p style="color: red">{{message}}</p>
+{{/if}} --}}
