@@ -6,6 +6,7 @@ const loginCheck = () => {
     // is there a logged in user
     if (req.session.user) {
       // proceed as intended
+      console.log('logged username: ' + req.session.user.username)
       next();
     } else {
       // there is no user logged in
@@ -22,13 +23,13 @@ router.get("/", (req, res, next) => {
 
 router.get('/profile', loginCheck(), (req, res, next) => {
   // this is how you access a cookie
-  console.log('this is the cookie: ', req.cookies)
+  console.log('this is the cookie: ', req.cookies);
   // this is how you can set a cookie
-  res.cookie('myCookie', 'hello world');
+  // res.cookie('myCookie', 'hello world');
   // this is how you delete a cookie
-  res.clearCookie('myCookie');
-  const loggedInUser = req.session.user
-  res.render('profile', { user: loggedInUser, title: loggedInUser });
+  // res.clearCookie('myCookie');
+  const loggedInUser = req.session.user;
+  res.render('profile', { user: loggedInUser, title: loggedInUser.username + "'s profile" });
 });
 
 module.exports = router;

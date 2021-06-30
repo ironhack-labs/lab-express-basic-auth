@@ -64,7 +64,7 @@ router.post('/login', (req, res, next) => {
 				return;
 			}
 			//  if the username is correct -> we want to check the password from the input against the hash in the db	
-			// bcrypt.compare either evaluates to true or false
+			// bcrypt.compareSync either evaluates to true or false
 			if (bcrypt.compareSync(password, userFromDB.password)) {
 				// if it matches -> all credentials are correct 
 				//  -> we log the user in
