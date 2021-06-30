@@ -87,7 +87,8 @@ module.exports.doLogin = (req, res, next) => {
                 return user.checkPassword(req.body.password)
                     .then((match) => {
                         if (match) {
-                        res.redirect('/')
+                        req.session.currentUser = user // Para crear la cookie
+                        res.redirect('/profile')
             } else {
                 res.render('login', {
                     errorMessage: 'Invalid email or password',
@@ -100,4 +101,19 @@ module.exports.doLogin = (req, res, next) => {
         }
       })
         .catch((e) => next(e))
+}
+
+// Profile
+module.exports.profile = (req, res, next) => {
+    res.render('profile')
+}
+
+// Main
+module.exports.main = (req, res, next) => {
+    res.render('main')
+}
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/main');
 }
