@@ -9,6 +9,39 @@ const saltRounds = 3; // should change this number to give your website a unique
 const zxcvbn = require("zxcvbn");
 
 
+//GET '/auth/login'
+authRouter.get("/login", (req, res) => {
+  console.log("Inside login")
+  res.render("login-form");
+});
+
+authRouter.post('/login', (req, res) => {
+  const {username, password} = req.body
+
+  if (username === "" || password === "") {
+    res.render("login-form", { errorMessage: "Username and Password are required." });
+    return;
+    }
+  
+  User.findOne({username})
+  .then(user => {
+      if (!user) {
+        res.render("login-form", { errorMessage: "Input invalid" });
+      } else {
+        const encryptedPassword = user.password;
+        const passwordCorrect = bcrypt.compareSync(password, encryptedPassword)
+        
+        if(passwordCorrect){
+          req.session.currentUser = user;
+          res.redirect("/")
+        } else {
+          res.render("login-form", {errorMessage: "Name OR password incorrect"});
+        }
+        }
+    })
+  })
+
+
 // GET    '/auth/signup'     -  Renders the signup form
 authRouter.get("/signup", (req, res) => {
   res.render("signup-form"); // want the user to go to the signup page and want to send back to them a signup form (see signup-form.hbs)
@@ -78,5 +111,16 @@ authRouter.post("/signup", (req, res, next) => {
 
   // X.  Catch errors coming from calling to User collection
 });
+
+
+authRouter.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if(err){
+      res.render("error", { message: "Something went wrong! Yikes!" });
+    }else{
+      res.redirect('/')
+    }
+  })
+})
 
 module.exports = authRouter;

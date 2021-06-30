@@ -18,6 +18,9 @@ const hbs = require('hbs');
 
 const app = express();
 
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+
 
 
 // view engine setup
@@ -35,6 +38,30 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
+//middlewear
+// Checks incoming request: if there is a cookie, and if cookie has valid session id
+
+app.use(
+  session({
+    secret: 'PizzaBytes',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 30 * 24 * 60 * 60 * 1000
+    },
+    store: MongoStore.create({
+      mongoUrl: 'mongodb://localhost/auth-demo'
+    })
+  })
+  );
+
+// we want to make some routes available to only logged in people
+
+
+// catch 404 and forward to error handler
+
+
+
 // default value for title local
 const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
@@ -42,8 +69,12 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
 // 👇 Start handling routes here
+const siteRouter = require('./routes/site-router')
+app.use('/site', siteRouter);
+
 const authRouter = require('./routes/auth-router')
 app.use('/auth', authRouter);
+
 const index = require('./routes/index');
 app.use('/', index);
 
