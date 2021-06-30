@@ -11,6 +11,10 @@ router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
+router.get("/profile", (req, res, next) => {
+  res.render("profile");
+});
+
 router.post("/signup", (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -27,6 +31,35 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/login", (req, res) => res.render("login"));
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+  User.findOne({ username: username })
+    .then((userFromDB) => {
+      if (userFromDB === null) {
+        res.render("login", { message: "Invalid credentials" });
+        return;
+      }
+
+      if (bcryptjs.compareSync(password, userFromDB.password)) {
+        req.session.user = userFromDB;
+        res.redirect("/profile");
+      } else {
+        res.render("login", { message: "Invalid credentials" });
+        return;
+      }
+    })
+    .catch((err) => next(err));
+});
+
+router.get("/logout", (req, res, next) => {
+  // this logs the user out
+  req.session.destroy((err) => {
+    if (err) {
+      next(err);
+    } else {
+      res.redirect("/");
+    }
+  });
+});
 
 module.exports = router;
