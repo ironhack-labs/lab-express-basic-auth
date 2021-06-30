@@ -7,9 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+  
+   <div><a href="/">Home</a></div> 
+   <div><a href="/signup">Signup</a></div> 
+   
   </head>
 
   <body>
+
+{{#if loggedInUser}}
+Welcome
+{{loggedInUser}}
+      <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    {{else}}
+      <a href="/login">Login</a>
+    {{/if}}
 
     {{{body}}}
 
