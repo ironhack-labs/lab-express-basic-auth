@@ -1,0 +1,17 @@
+<h2>Login</h2>
+
+<form action="/login" method="POST">
+    <label>Username</label>
+    <input type="text" name="username" required />
+
+    <label>Password</label>
+    <input type="password" name="password" required />
+
+    <button type="submit">Sign-in</button>
+</form>
+
+{{#if errorMessage}}
+<p>{{errorMessage}}</p>
+{{/if}}
+
+<p>Don't have an account? Go <a href="/signup">here</a> to Sign-up! </p>
