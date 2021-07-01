@@ -28,7 +28,7 @@ router.post('/signup', (req, res)=> {
 	 User.findOne({ username: username })
 		.then(userFromDB => {
 			console.log('userFromDB', userFromDB);
-			/* if (userFromDB !== null) {
+			if (userFromDB !== null) {
 				res.render('signUp', {message: 'Username has already been taken.'})
 				return;
 			
@@ -44,7 +44,7 @@ router.post('/signup', (req, res)=> {
 					.catch(err=>{
 						next(err);
 					})
-			} */
+			}
 		})
 		.catch(err=>console.log(err)); 
 })
