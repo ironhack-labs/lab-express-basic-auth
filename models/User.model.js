@@ -4,11 +4,19 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: {
     type: String,
+    required: true,
     unique: true
   },
-  password: String
-});
+  password: {type: String,
+  required: true
+  },
+  image:{
+    type:String,
+    default:"https://media.giphy.com/media/1431E7VsLJxfqg/giphy.gif"
+  },
+}, {timestamps: true});
 
 const User = model("User", userSchema);
 
 module.exports = User;
+
