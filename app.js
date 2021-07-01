@@ -20,9 +20,22 @@ require('./config')(app);
 
 // session config
 
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo');
-// const DB_URL = "mongodb://localhost/lab-express-basic-auth";
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = process.env.ATLAS_CONNECTION;
+
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		// for how long is a user automatically logged in 
+		cookie: { maxAge: 1000 * 60 * 60 * 24 },
+		saveUninitialized: false,
+		resave: true,
+		store: MongoStore.create({
+			mongoUrl: DB_URL
+		})
+	})
+)
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
