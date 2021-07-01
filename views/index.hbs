@@ -1,2 +1,6 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<ul>
+    {{#each users as |user|}}
+    <li>Email: {{user.email}}, Password: {{user.password}}</li>    
+    {{/each}}
+</ul>
+
