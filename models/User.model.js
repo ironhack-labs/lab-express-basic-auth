@@ -14,11 +14,6 @@ const userSchema = new Schema({
     lowercase: true,
     match: [EMAIL_PATTERN, 'Invalid email pattern']
   },
-  // username: {
-  //   type: String,
-  //   unique: true,
-  //   required: [true, "Username is required"]
-  // },
   password: {
   type: String,
   unique: true,

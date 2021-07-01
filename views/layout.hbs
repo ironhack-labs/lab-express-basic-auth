@@ -19,20 +19,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/new">New user</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Log in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/profile">My profile</a>
-        </li>
-        <li>
-          <form method="POST" action="/logout">
-              <button type="submit" class="btn btn-danger">Log out</button>
-          </form>
-        </li>
+        {{#if currentUser}}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profile">My profile</a>
+          </li>
+          <li>
+            <form method="POST" action="/logout">
+                <button type="submit" class="btn btn-danger">Log out</button>
+            </form>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/new">New user</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/login">Log in</a>
+          </li>
+        {{/if}}
       </ul>
     </div>
   </div>
