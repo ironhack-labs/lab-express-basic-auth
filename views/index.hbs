@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<br>
+{{#if loggedInUser}}
+<h2>Welcome back {{loggedInUser}}!</h2>
+<h3>Go to your secret pages, in the navbar</h3>
+{{else}}
+<h1>Welcome to Ironhack Authenticator Page</h1>
+<h3>Sign Up or Log In!</h3>
+<br>
+<h5>Or don't, I'm not the boss of you.</h5>
+{{/if}}
