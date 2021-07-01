@@ -35,6 +35,7 @@ app.use(
 function getCurrentLoggedUser (req, res, next) {
     if (req.session && req.session.currentUser){ //currentUser tem tudo que tem no model, podemos chamar outras coisas
         app.locals.loggedInUser = req.session.currentUser.username
+        app.locals.loggedId = req.session.currentUser._id
     } else{
         app.locals.loggedInUser = ""
     }

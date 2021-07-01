@@ -18,11 +18,11 @@ router.get("/signup", (req, res)=>{
 })
 
 router.post("/signup", async (req, res)=>{
-    const {username, password} = req.body
+    const {username, image, password} = req.body
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    await User.create({username, password:hashedPassword})
+    await User.create({username, image, password:hashedPassword})
 
     res.redirect("/")
 })
@@ -68,4 +68,9 @@ router.post("/logout", (req, res)=>{
     res.redirect("/")
 })
 
+router.get("/:userId", async (req, res)=>{
+    const userDetail = await User.findById(req.params.userId)
+    res.render("auth/user-detail", userDetail)
+})
+//console.log(req.session.currentUser._id) //O id 
 module.exports = router

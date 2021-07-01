@@ -8,9 +8,15 @@ const userSchema = new Schema({
     unique: true
   },
   password: {type: String,
-  required: true}
+  required: true
+  },
+  image:{
+    type:String,
+    default:"https://media.giphy.com/media/1431E7VsLJxfqg/giphy.gif"
+  },
 }, {timestamps: true});
 
 const User = model("User", userSchema);
 
 module.exports = User;
+
