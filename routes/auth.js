@@ -25,10 +25,10 @@ router.post('/signup', (req, res)=> {
 		return;
 	}
 
-	User.findOne({ username: username })
+	 User.findOne({ username: username })
 		.then(userFromDB => {
 			console.log('userFromDB', userFromDB);
-			if (userFromDB !== null) {
+			/* if (userFromDB !== null) {
 				res.render('signUp', {message: 'Username has already been taken.'})
 				return;
 			
@@ -44,8 +44,9 @@ router.post('/signup', (req, res)=> {
 					.catch(err=>{
 						next(err);
 					})
-			}
+			} */
 		})
+		.catch(err=>console.log(err)); 
 })
 
 // Login
@@ -53,7 +54,7 @@ router.post('/signup', (req, res)=> {
 router.post('/login', (req, res, next)=> {
 	const { username, password } = req.body;
 
-	User.findOne ({ username : useranme })
+	User.findOne ({ username : username })
 		.then(userFromDB => {
 			if (userFromDB === 0) {
 				res.render('login', {message: 'Invalid credentials'});
