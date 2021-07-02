@@ -1,35 +1,51 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
-require('dotenv/config');
+require('dotenv').config();
 
-// ℹ️ Connects to the database
-require('./db');
-
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
 const express = require('express');
+const logger = require('morgan');
+const hbs = require("hbs");
+const createError = require("http-errors");
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
+// Conection to DB
+require("./config/db.config");
 
 const app = express();
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+// Import de la session
+require('./config/session.config')(app);
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+app.use(logger("dev"));
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+app.set("views", __dirname + "/views");
+app.set("view engine", "hbs");
+hbs.registerPartials(__dirname + "/views/partials");
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
+// Para pasar el currentUser a todas las vistas
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser;
+  next();
+})
 
-module.exports = app;
+// Routes
+const routes = require("./config/routes");
+app.use("/", routes);
 
+// Error handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  if (!error.status) {
+    error = createError(500);
+  }
+  res.status(error.status);
+  res.render("error", error);
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
