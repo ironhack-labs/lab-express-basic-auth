@@ -17,8 +17,16 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+// 
+
 // Middleware configuration
+// cuando estemos en la sesió activa de nuestro currentUser le llegará una cookie que le dice que sesión es 
+// y busca en BD la información de nuestro currentUser
+// exportamos una función (app) para que ejecute el Middleware
+
 module.exports = (app) => {
+
+  require("./session.config")(app)
   // In development environment the app logs
   app.use(logger("dev"));
 
@@ -36,4 +44,9 @@ module.exports = (app) => {
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+
+  app.use((req, res, next) => {
+    res.locals.currentUser = req.session.currentUser;
+      next() // para crear un middleware
+  })
 };
