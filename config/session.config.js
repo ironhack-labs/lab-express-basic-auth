@@ -17,7 +17,7 @@ module.exports = (app) => {
             // en store guardamos la sesión en una BD para que sea persistente
             store: MongoStore.create({
                 mongoUrl: MONGO_URI,
-                // ttl: 1000 * 60 * 60 * 24
+                //ttl: 1000 * 60 * 60 * 24
             })
         })
     )

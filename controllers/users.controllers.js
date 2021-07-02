@@ -74,9 +74,14 @@ module.exports.doLogin =((req, res, next) => {
 });
 
 module.exports.profile = ((req, res, next) => {
-    res.render("profile", {currentUser: req.session.currentUser})
+    res.render("profile")
 })
 
 module.exports.index = ((req, res, next) => {
     res.render("index")
+})
+
+module.exports.logout = ((req, res, next) => {
+    req.session.destroy();
+    res.redirect("/")
 })

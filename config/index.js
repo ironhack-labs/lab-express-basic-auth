@@ -44,4 +44,9 @@ module.exports = (app) => {
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+
+  app.use((req, res, next) => {
+    res.locals.currentUser = req.session.currentUser;
+      next() // para crear un middleware
+  })
 };
