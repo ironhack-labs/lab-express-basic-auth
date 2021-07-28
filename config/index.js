@@ -19,6 +19,8 @@ const path = require('path');
 
 const session = require('express-session');
 
+const MongoStore = require('connect-mongo');
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -41,11 +43,38 @@ module.exports = (app) => {
     favicon(path.join(__dirname, '..', 'public', 'images', 'favicon.ico'))
   );
 
-  // app.use(
-  //   session({
-  //     secret: process.env.SESSION_SECRET,
-  //     resave: true,
-  //     saveUninitialized: false,
-  //   })
-  // );
+  const MONGO_URI =
+    process.env.MONGODB_URI || 'mongodb://localhost/lab-express-basic-auth';
+
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: true,
+      saveUninitialized: false,
+      store: MongoStore.create({ mongoUrl: MONGO_URI }),
+    })
+  );
 };
+
+// app.use((req, res, next) => {
+//   if (req.session.currentUser) {
+//     User.findId(req.session.currentUser._id)
+//       .then((userFromDb) => {
+//         res.locals.currentUser = userFromDb;
+//         res.locals.isLoggedIn = true;
+//         next();
+//       })
+//       .catch((err) => {
+//         next(err);
+//       });
+//   } else {
+//     res.locals.currentUser = undefined;
+//     res.locals.isLoggedIn = false;
+//     next();
+//   }
+// });
+
+// app.use((req, res, next) => {
+//   console.log(req.session);
+//   next();
+// });
