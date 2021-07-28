@@ -11,12 +11,16 @@
 
   <body>
 
-    {{{body}}}
+<nav>
 
+    {{#if isLoggedin}}
+    <a href="/user/profile"> {{currentUser.userName}}</a>
+    {{else}}
     <a href="/auth/signin"> Sign in </a>
     <a href="/auth/signup"> Sign up </a>
 
-
+    {{/if}}
+  {{{body}}}
     <script src="/js/script.js"></script>
   </body>
 

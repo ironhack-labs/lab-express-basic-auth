@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
-
-const SALT =15;
+const { isValidObjectId } = require('mongoose');
+//console.log(User);
+const SALT = 15;
 
 router.get("/signin", (req, res, next) => {
 	res.render("auth/signin.hbs");
@@ -18,14 +19,14 @@ router.post("/signup", async (req, res, next) => {
 	try {
 		const user = req.body;
 
-		if (!user.password || !user.username) {
+		if (!user.password || !user.userName) {
 			res.render("auth/signup.hbs", {
 				errorMessage: "username and password plizzzz",
 			});
 			return;
 		}
 
-		const foundUser = await User.findOne({ user: user.username });
+		const foundUser = await User.findOne({ username: user.userName });
 
 		if (foundUser) {
 			res.render("auth/signup.hbs", {
