@@ -27,8 +27,26 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const protected = require('./routes/protected');
+
+const session = require("express-session");
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+
+app.use((req, res, next) => {
+    console.log(req.session);
+    next();
+});
+
 app.use('/auth', auth);
 app.use('/', index);
+app.use('/', protected);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

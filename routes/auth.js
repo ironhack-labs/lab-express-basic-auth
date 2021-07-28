@@ -47,4 +47,36 @@ router.get("/signin", (req, res, next) => {
     res.render("signin.hbs");
 });
 
+
+router.post("/signin", async(req, res, next) => {
+    try {
+        const foundUser = await User.findOne({ username: req.body.username });
+
+        if (!foundUser) {
+            res.render("signin.hbs", {
+                errorMessage: "Wrong",
+            });
+            return;
+        }
+
+        const isValidPassword = bcrypt.compareSync(
+            req.body.password,
+            foundUser.password
+        );
+
+        if (isValidPassword) {
+            req.session.currentUser = {
+                _id: foundUser._id,
+            };
+
+            res.redirect("/");
+        } else {
+            res.render("signin.hbs", {
+                errorMessage: "Bad credentials",
+            });
+            return;
+        }
+    } catch (error) { console.log(error); }
+});
+
 module.exports = router;
