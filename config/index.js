@@ -41,11 +41,11 @@ module.exports = (app) => {
     favicon(path.join(__dirname, '..', 'public', 'images', 'favicon.ico'))
   );
 
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: true,
-      saveUninitialized: false,
-    })
-  );
+  // app.use(
+  //   session({
+  //     secret: process.env.SESSION_SECRET,
+  //     resave: true,
+  //     saveUninitialized: false,
+  //   })
+  // );
 };
