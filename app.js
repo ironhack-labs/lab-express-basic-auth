@@ -3,7 +3,7 @@
 require('dotenv/config');
 
 // ℹ️ Connects to the database
-require('./db');
+require('./db/index');
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -20,7 +20,8 @@ require('./config')(app);
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+const capitalized = (string) =>
+  string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
@@ -28,8 +29,13 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 
+const userRouter = require('./routes/users');
+app.use('/', userRouter);
+
+const authRouter = require('./routes/auth');
+app.use('/', authRouter);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
 module.exports = app;
-
