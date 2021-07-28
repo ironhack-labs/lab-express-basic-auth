@@ -25,7 +25,7 @@ router.post("/signup", async (req, res, next) => {
 			return;
 		}
 
-		const foundUser = await User.findOne({ username: user.username });
+		const foundUser = await User.findOne({ user: user.username });
 
 		if (foundUser) {
 			res.render("auth/signup.hbs", {
