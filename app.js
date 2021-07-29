@@ -13,7 +13,7 @@ const express = require('express');
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
 hbs.registerPartials(__dirname + "/views/partials"); 
-    
+
 const app = express();
 require('./config/session.config')(app);
 
