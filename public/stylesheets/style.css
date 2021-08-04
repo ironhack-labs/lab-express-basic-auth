@@ -1,8 +1,28 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.logo {
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 8px 8px 1px 1px rgba(100, 200, 100, 0.5);
+  margin-bottom: 40px;
+  padding-left: 20px;
+}
+
+.boxshadowwrapper {
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 8px 8px 1px 1px rgba(100, 200, 100, 0.5);
+  margin-bottom: 40px;
+  padding-left: 20px;
+  padding:20px;
+}
+hr{
+  margin:10px 0px 50px 0px;
 }
