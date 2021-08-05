@@ -6,6 +6,8 @@ const saltRounds = 10;
 
 const User = require("../models/User.model");
 
+const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard')
+
 // Iteration#1 Sign Up
 router.get("/signup", (req, res) => res.render("auth/signup"));
 
@@ -84,5 +86,19 @@ router.get('/userProfile', (req, res) => {
   res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
+ 
+router.get('/main', isLoggedIn, (req,res,next)=> {
+  res.render('vip/main')
+})
+
+router.get('/private', isLoggedIn, (req,res,next)=> {
+  res.render('vip/private')
+})
 
 module.exports = router;
