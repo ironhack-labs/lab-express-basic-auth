@@ -11,6 +11,26 @@
 
   <body>
 
+      <nav>
+         <ul class="header">
+         <li id="to-left">
+            <a class="action" href="/">Home</a> <span> | </span>
+            <a class="action" href="/private">Private</a>  <span> | </span>
+            <a class="action" href="/main">Main</a>
+         </li>
+         <li id="to-right">
+            <div class="actions">
+              <a class="action" href="/login">Login</a> <span> | </span>
+              <a class="action" href="/signup">Signup</a> <span> | </span>
+              <form class="logout" action="/logout" method="POST">
+                <button>Logout</button>
+              </form>
+            </div>
+         </li>
+
+         </ul>
+      </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>

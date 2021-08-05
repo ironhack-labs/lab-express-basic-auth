@@ -1,5 +1,9 @@
 <h1>Sign Up</h1>
 
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
+  
 <form action="/signup" method="POST">
     <label>Username
         <input type="text" name="username"></input> 
