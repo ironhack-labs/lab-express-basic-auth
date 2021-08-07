@@ -2,7 +2,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const User = require('../../models/User.model');
 const bcryptjs = require('bcryptjs');
-const saltRounds = 17;
+const saltRounds = 10;
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup-form');
@@ -33,21 +33,23 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   const username = req.body.username;
   const plainPassword = req.body.password;
-  User.find({ username: username }).then((userFromDb) => {
-    const hash = userFromDb[0].passwordHash;
+  User.findOne({ username: username }).then((userFromDb) => {
+    const hash = userFromDb.passwordHash;
     const verifyPassword = bcryptjs.compareSync(plainPassword, hash);
-    return verifyPassword;
-  })
-  .then(verified=>{
-      if(verified){res.redirect('/auth/user-space')}
-      else{
-          res.redirect('/login')
-      }
-  })
+
+    if (verifyPassword) {
+      req.session.currentUser = userFromDb;
+      res.redirect('/auth/user-space');
+    } else {
+      res.redirect('/login');
+    }
+  });
 });
 
-router.get('/auth/user-space',(req,res)=>{
-    res.render('auth/logged-in')
-})
+
+router.get('/auth/user-space', (req, res) => {
+  const session = req.session;
+  res.render('auth/logged-in',{userInSession:session})
+});
 
 module.exports = router;
