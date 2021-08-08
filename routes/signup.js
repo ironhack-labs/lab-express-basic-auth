@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 const User = require("../../models/User.model");
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
@@ -15,7 +14,7 @@ router.post("/signup", (req, res, next) => {
     .then((hash1) => {
       return User.create({
         username: req.body.username,
-        password: hash1,
+        hashedPassword: hash1,
       });
     })
     .then((user) => {
