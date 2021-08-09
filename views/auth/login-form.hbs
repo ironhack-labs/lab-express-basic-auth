@@ -1,32 +1,49 @@
-
 <div class='boxshadowwrapper'>
 
   <h2>Login please!</h2>
 
 </div>
 
-
 <form action='/login' method='POST'>
- <div class="boxshadowwrapper">
-  <label for='input-username' >Username:</label>
-  <input
-    type='text'
-    id='input-username'
-    name='username'
-    placeholder='Your username'
-  />
-</div>
- <div class="boxshadowwrapper">
-  <label for='input-password' >Password:</label>
-  <input
-    type='password'
-    id='input-password'
-    name='password'
-    placeholder='put in your password'
-  />
-</div>
-  <br />
-  <div class="boxshadowwrapper">
-  <button type='submit'>Bring me in!</button>
+  <div class='boxshadowwrapper'>
+    <label for='input-username'>Username:</label>
+    <input
+      type='text'
+      id='input-username'
+      name='username'
+      placeholder='Your username'
+    />
   </div>
+
+  <div class='boxshadowwrapper'>
+    <label for='input-email'>Email:</label>
+    <input
+      type='email'
+      id='input-email'
+      name='email'
+      placeholder='put in your email'
+    />
+  </div>
+
+  <div class='boxshadowwrapper'>
+    <label for='input-password'>Password:</label>
+    <input
+      type='password'
+      id='input-password'
+      name='password'
+      placeholder='put in your password'
+    />
+  </div>
+
+  <br />
+  <div class='boxshadowwrapper'>
+    <button type='submit'>Bring me in!</button>
+  </div>
+
+  {{#if errorMessage}}
+    <div class='boxshadowalert'>
+      <p class='error'>&#128680 {{errorMessage}} &#128680</p>
+    </div>
+  {{/if}}
+
 </form>

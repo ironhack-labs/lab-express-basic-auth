@@ -3,24 +3,41 @@
   <h2>create an account:</h2>
 </div>
 <form action='/signup' method='POST'>
- <div class="boxshadowwrapper">
-  <label for='input-username' >Username:</label>
-  <input
-    type='text'
-    id='input-username'
-    name='username'
-    placeholder='Your username'
-  />
-</div>
- <div class="boxshadowwrapper">
-  <label for='input-password' >Password:</label>
-  <input
-    type='password'
-    id='input-password'
-    name='password'
-    placeholder='make up a password!'
-  />
-</div>
+  <div class='boxshadowwrapper'>
+    <label for='input-username'>Username:</label>
+    <input
+      type='text'
+      id='input-username'
+      name='username'
+      placeholder='Your username'
+    />
+  </div>
+  <div class='boxshadowwrapper'>
+    <label for='input-email'>Email:</label>
+    <input
+      type='email'
+      id='input-email'
+      name='email'
+      placeholder='Put in your Email-adress!'
+    />
+  </div>
+  <div class='boxshadowwrapper'>
+    <label for='input-password'>Password:</label>
+    <input
+      type='password'
+      id='input-password'
+      name='password'
+      placeholder='make up a password!'
+    />
+  </div>
   <br />
-  <button type='submit'>Sign up!</button>
+  {{#if errorMessage}}
+    <div class='boxshadowalert'>
+      <p class='error'>&#128680 {{errorMessage}} &#128680</p>
+    </div>
+  {{/if}}
+  <div class='boxshadowwrapper'>
+    <button type='submit'>Sign up!</button>
+  </div>
+
 </form>

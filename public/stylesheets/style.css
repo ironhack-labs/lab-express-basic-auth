@@ -26,3 +26,12 @@ a {
 hr{
   margin:10px 0px 50px 0px;
 }
+.boxshadowalert{
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 8px 8px 1px 1px rgba(215, 0, 0,0.9);
+  margin-bottom: 40px;
+  padding-left: 20px;
+  padding:20px;
+
+}
