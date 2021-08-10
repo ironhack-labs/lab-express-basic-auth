@@ -16,7 +16,7 @@ module.exports = (app) => {
       store: MongoStore.create({
         mongoUrl: connectDB(),
         // ttl => time to live
-        ttl: 10, // 60sec * 60min * 24h => 1 day
+        // ttl: 60sec * 60min * 24h => 1 day
       }),
     })
   );

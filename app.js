@@ -3,7 +3,7 @@
 require("dotenv/config");
 
 // ℹ️ Connects to the database
-require("./db/index");
+const connectDB = require("./db/index");
 connectDB();
 
 // Handles http requests (express is node js framework)
@@ -13,7 +13,7 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-const connectDB = require("./db/index");
+
 
 const app = express();
 

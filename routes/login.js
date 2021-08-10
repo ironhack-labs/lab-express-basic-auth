@@ -11,9 +11,9 @@ router.post("/login", (req, res) => {
   User.findOne({ username: req.body.username }).then((user) => {
     if (bcryptjs.compareSync(req.body.password, user.hashedPassword)) {
       req.session.currentUser = user;
-      res.redirect("/auth/user-profile");
+      res.render("/auth/user-profile");
     } else {
-      res.redirect("/login");
+      res.render("/login");
     }
   });
 });
