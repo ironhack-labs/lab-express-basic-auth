@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
-const { isLoggedIn, isLoggedOut } = require("../middleware/guard.js");
+const { isLoggedIn } = require("../middleware/guard.js");
 
 router.get("/login", (req, res, next) => {
   res.render("auth/login");
