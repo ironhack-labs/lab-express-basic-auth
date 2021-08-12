@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const User = require("../../models/User.model");
+const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
-const { isLoggedIn, isLoggedOut } = require("../../middleware/guard.js");
+const { isLoggedIn, isLoggedOut } = require("../middleware/guard.js");
 
 router.get("/login", (req, res, next) => {
   res.render("auth/login");
@@ -18,7 +18,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/user-profile", (req,res)=> {
+router.get("/user-profile", (req, res) => {
   if (!req.session.currentUser) {
     res.redirect("/");
   } else {
