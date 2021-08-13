@@ -1,18 +1,33 @@
-<!DOCTYPE html>
 <html lang="en">
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/">#Lab Authentification</a></p>
+        </li>
+        <li id="to-right">
+          <a href="/auth/register">Signup</a>
+          <span> | </span>
+          <a href="/auth/login">Login</a>
+        </li>
+      </ul>
+    </nav>
 
     {{{body}}}
 
+    <hr>
+    <form id="logout-form" action="/auth/logout" method="POST">
+      <button>Logout</button>
+    </form>
     <script src="/js/script.js"></script>
   </body>
 

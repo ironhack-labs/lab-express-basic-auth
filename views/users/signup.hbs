@@ -1,0 +1,24 @@
+<div id="form">
+    <h2>User Registration</h2>
+    <form action="/auth/register" method="POST">
+    <label>Username
+        <input type="text" name="username" />
+    </label>
+<br>
+<br>
+    <label> Email
+        <input type="email" name="email"/>
+    </label>
+
+<label>Password
+    <input type="password" name="password" placeholder="***********"/>
+</label>
+
+<button type="submit">Create account</button>
+
+{{#if errorMessage}}
+<p class="error">{{errorMessage}}</p>
+{{/if}}
+
+    </form>
+</div>
