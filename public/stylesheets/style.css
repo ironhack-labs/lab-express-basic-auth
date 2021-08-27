@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 35%;
+}
+
+#form h2 {
+  text-align: center;
+}
+
+form * {
+  margin: 0.1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: .3rem auto;
+}
