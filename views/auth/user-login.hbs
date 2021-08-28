@@ -1,5 +1,5 @@
 <div>
-    <form action="/auth/login" method="POST">
+  <form action='/auth/login' method='POST'>
     <label>
       Username
       <input type='text' name='username' placeholder='ironhacker' />
@@ -13,6 +13,10 @@
     <button type='submit'>
       Log in
     </button>
-
-    </form>
+    <div class='login-error'>
+      {{#if errorMessage}}
+        {{errorMessage}}
+      {{/if}}
+    </div>
+  </form>
 </div>

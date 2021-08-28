@@ -19,9 +19,13 @@
     </label>
 
     <button type='submit'>
-      Create account
+      CREATE ACCOUNT
     </button>
 
-    {{! error message will be added here }}
+    <h3 class='error-message'>
+      {{#if errorMessage}}
+        {{errorMessage}}
+      {{/if}}
+    </h3>
   </form>
 </div>

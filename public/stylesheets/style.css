@@ -23,6 +23,33 @@ form * {
   margin: 0.1rem;
 }
 
+/* form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.input-field input {
+  padding: 0.8rem;
+}
+
+form .input-field:first-child {
+  margin-bottom: 1.5rem;
+}
+
+form input[type="submit"] {
+  background: linear-gradient(to left, #4776E6, #8e54e9);
+  color: white;
+  border-radius: 4px;
+  margin-top: 2rem;
+  padding: 0.4rem;
+} */
+
+
 label {
   display: flex;
   flex-direction: column;
@@ -31,4 +58,42 @@ label {
 
 nav ul li {
   margin: .3rem auto;
+}
+
+.error-message {
+  color: #fff;
+  background-color: red;
+
+}
+
+
+button {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #FFFFFF;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #4095c6;
+}
+
+@media all and (max-width:30em) {
+  button {
+    display: block;
+    margin: 0.2em auto;
+  }
+}
+
+.login-error {
+  color: white;
+  background: red;
 }
