@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#if username}}
+<h4>{{username}}</h4>
+{{/if}}
+
+{{#if errorMessage}}
+<h5>{{errorMessage}}</h5>
+{{/if}}
