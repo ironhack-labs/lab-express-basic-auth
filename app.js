@@ -18,11 +18,11 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+// Session
+require("./config/session.config")(app)
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+// default value for title local
+app.locals.siteTitle = 'Basic auth lab';
 
 // 👇 Start handling routes here
 const index = require('./routes/index');

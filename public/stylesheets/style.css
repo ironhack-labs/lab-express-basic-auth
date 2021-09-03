@@ -1,8 +1,21 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.navbar {
+  margin-bottom: 30px;
+}
+
+#errorMessage {
+  color: red;
+  margin-top: 10px;
+}
+
+.cat {
+  width: 500px;
+  margin-bottom: 20px;
 }
