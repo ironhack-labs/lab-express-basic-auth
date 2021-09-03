@@ -1,8 +1,36 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  font-family: sans-serif;
+}
+h1, h2, h3 {
+  font-weight: 200;
+}
+.navbar {
+  margin-bottom: 80px;
+}
+#errorMessage {
+  background-color: rgb(255, 222, 222);
+  width: 400px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px;
+  text-align: center;
+  animation: showFromBottom 6s forwards;
+}
+@keyframes  showFromBottom {
+  0% {
+    bottom: -50px
+  }
+  10% {
+    bottom: 10px;
+  }
+  90% {
+    bottom: 10px;
+  }
+  100% {
+    bottom: -50px
+  }
 }
 
-a {
-  color: #00B7FF;
-}
+
