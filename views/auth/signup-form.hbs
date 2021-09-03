@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <br>
+            <br>
+            <h1>Registro de Usuario</h1>
+            <br>
+            <hr>
+            <br>
+            <form method="POST" action="/registro">
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="userName" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="userPwd" >
+                </div>
+                <button type="submit" class="btn btn-danger">Submit</button>
+                <button href="/" class="btn btn-primary">Volver</button>
+            </form>
+
+                {{#if errorMsg}}
+                <p id="errorMessage">{{errorMsg}}</p>
+                {{/if}}
+                
+        </div>
+    </div>
+</div>
