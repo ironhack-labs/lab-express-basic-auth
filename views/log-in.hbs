@@ -1,0 +1,42 @@
+
+<div class="container col-6 justify-content-center">    
+    <h1>Inicio de sesión</h1>
+<hr>
+</div>
+
+<div class="container">
+  <hr />
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form action="/log-in" method="POST">
+        <div class="form-group">
+          <label for="userName">Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            name="user"
+          /></div>
+
+        <div class="form-group">
+          <label for="password">contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="pwd"
+          /></div>
+
+        <button
+          type="submit"
+          class="btn btn-dark btn-block"
+        >Acceder</button>
+      </form>
+    </div>
+  </div>
+
+{{#if errorMsg}}
+{{errorMsg}}
+{{/if}}
+  <hr />
+  <a href="/" class="btn btn-dark">Volver</a></div>
