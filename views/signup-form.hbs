@@ -1,0 +1,21 @@
+<div class="container ">
+    <div class="row justify-content-center">
+
+        <form action="/registro" method="POST">
+            <div class="form-group">
+                <label for="exampleInputUsername">Username</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">Password</label>
+                <input type="password" class="form-control" id="password" name="userPwd">
+            </div>
+            {{#if errorMsg}}
+            <p>
+                {{errorMsg}}
+            </p>
+            {{/if}}
+            <button type="submit" class="btn btn-primary">Registrarme</button>
+        </form>
+    </div>
+</div>
