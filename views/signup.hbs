@@ -1,0 +1,13 @@
+<h1>Signup</h1>
+<form action="/signup" method="POST">
+	<label for="">Username: </label>
+	<input type="text" name="username">
+	<label for="">Password: </label>
+	<input type="password" name="password" id="password">
+	{{!-- <button type="submit" disabled="true">Sign up</button> --}}
+	<button type="submit">Sign up</button>
+</form>
+{{#if message}}
+	<p style="color: red">{{message}}</p>
+{{/if}}
+{{!-- <p>Password is 4 chars long<span style="visibility: hidden"> ✅</span></p> --}}
