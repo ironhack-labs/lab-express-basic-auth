@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 // TODO: Please make sure you edit the user model to 
@@ -28,5 +27,6 @@ const userSchema = new Schema({
 
 const User = model("User", userSchema);
 
-module.exports = model('User', userSchema);
 userSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
+
+module.exports = model('User', userSchema);

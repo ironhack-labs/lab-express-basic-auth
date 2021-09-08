@@ -48,7 +48,7 @@ router.post("/signup", (req, res, next) => {
     })
     .then((userFromDB) => {
       //console.log("new user: ", userFromDB);
-      res.redirect("/userProfile");
+      res.redirect("/userProfile", {"new user": userFromDB});
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -59,34 +59,13 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/userProfile", (req, res) => res.render("users/user-profile"));
 
 router.get('/login', (req, res, next) => res.render('auth/login'));
  
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, theUser, failureDetails) => {
-    if (err) {
-      // Something went wrong authenticating user
-      return next(err);
-    }
- 
-    if (!theUser) {
-      // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
-      res.render('auth/login', { errorMessage: 'Wrong password or username' });
-      return;
-    }
- 
-    // save user in session: req.user
-    req.login(theUser, err => {
-      if (err) {
-        // Session save went bad
-        return next(err);
-      }
- 
-      // All good, we are now logged in and `req.user` is now set
-      res.redirect('/');
-    });
-  })(req, res, next);
+  successRedirect: '/profile',
+	failureRedirect: '/login',
+	passReqToCallback: true
 });
 
 

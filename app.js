@@ -33,7 +33,7 @@ app.use(
       cookie: {
         sameSite: 'none',
         httpOnly: true,
-        { maxAge: 1000 * 60 * 60 * 24 }
+        maxAge: 1000 * 60 * 60 * 24
       },
       store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/db-name'
@@ -43,21 +43,27 @@ app.use(
 
   // end of session config
 
-
+    //passport config 
   const User = require('./models/User.model');
- 
-  const bcrypt = require('bcrypt');
   const passport = require('passport');
   const LocalStrategy = require('passport-local').Strategy;
+  const bcrypt = require('bcrypt');
    
-  passport.serializeUser((user, cb) => cb(null, user._id));
-   
-  passport.deserializeUser((id, cb) => {
-    User.findById(id)
-      .then(user => cb(null, user))
-      .catch(err => cb(err));
+  passport.serializeUser((user, done) => {
+    done(null, user._id);
   });
+  
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
+      .then(userFromDB => {
+        done(null, userFromDB);
+      })
+      .catch(err => {
+        done(err);
+      })
+  })
    
+  //register the local strategy
   passport.use(
     new LocalStrategy(
       { passReqToCallback: true },
@@ -66,17 +72,13 @@ app.use(
         passwordField: 'password' 
       },
       (req, username, password, done) => {
-        User.findOne({ username })
-          .then(user => {
-            if (!user) {
-              return done(null, false, { message: 'Incorrect username' });
+        User.findOne({ username: username })
+          .then(userFromDB => {
+            if (userFromDB === null) {
+              done(null, false, { message: 'Wrong Credentials' });
+            }else {
+              done(null, userFromDB);
             }
-   
-            if (!bcrypt.compareSync(password, user.password)) {
-              return done(null, false, { message: 'Incorrect password' });
-            }
-   
-            done(null, user);
           })
           .catch(err => done(err));
       }
