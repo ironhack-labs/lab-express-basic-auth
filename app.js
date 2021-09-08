@@ -24,6 +24,7 @@ require("./config")(app);
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+
 app.use(
     session({
       secret: process.env.SESSION_SECRET,
@@ -32,7 +33,7 @@ app.use(
       cookie: {
         sameSite: 'none',
         httpOnly: true,
-        maxAge: 60000 // 60 * 1000 ms === 1 min
+        { maxAge: 1000 * 60 * 60 * 24 }
       },
       store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/db-name'
@@ -64,7 +65,7 @@ app.use(
         usernameField: 'username', 
         passwordField: 'password' 
       },
-      (username, password, done) => {
+      (req, username, password, done) => {
         User.findOne({ username })
           .then(user => {
             if (!user) {
