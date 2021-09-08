@@ -1,19 +1,30 @@
-<!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
 
-  <body>
+	<body>
 
-    {{{body}}}
+		<!-- add the navbar code below -->
+		<nav>
+			<ul>
+				<li id="to-right">
+					<a href="/signup">SignUp</a><span>|</span>
+					<a href="/login">LogIn</a><span>|</span>
+					<a href="/">Homepage</a><span>|</span>
+					<a href="/private">PRIVATE</a><span>|</span>
+				</li>
+			</ul>
+		</nav>
 
-    <script src="/js/script.js"></script>
-  </body>
+		{{{body}}}
+
+		<script src="/js/script.js"></script>
+	</body>
 
 </html>
