@@ -1,11 +1,20 @@
 <h1>Login 👀</h1>
-<form action="/login" method="POST">
+<form action="/login" method="POST" id="login">
 <label for="">Username</label>
 <input type="text" name="username" id="username">
 <label for="">Password</label>
 <input type="password" name="password" id="password">
-<button type="submit">Login</button>
+<button type="submit" onclick="resetLogin()">Login</button>
+{{!-- to do: enable button if details are filled in --}}
+{{!-- <button type="submit" disabled="true">Login</button> --}}
 </form>
 {{#if message}}
 <p style="color: red">{{message}}</p>
 {{/if}}
+
+
+<script>
+function resetLogin() {
+  document.getElementById("login").reset();
+}
+</script>
