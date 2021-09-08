@@ -11,12 +11,14 @@ const bcryptjs = require('bcryptjs');
 // 10 saltrounds
 const saltRounds = 10;
 
+// Import for middleware
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 // Home GET
 router.get('/', (req, res) => res.render('index', { title: 'App created with Ironhack generator 🚀' }));
 
 // Signup GET -------------------------------------------------------------
-router.get('/signup', (req, res) => res.render('auth/signup.hbs'));
-
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
 // Signup POST ------------------------------------------------------------
 router.post('/signup', (req, res, next) => {
 	const { username, email, password } = req.body;
@@ -108,9 +110,10 @@ router.post('/login', (req, res, next) => {
 // ---------------------------------------------------------------------------------
 // USER PROFILE - GET
 // ---------------------------------------------------------------------------------
-router.get('/userProfile', (req, res) => {
+router.get('/userProfile', isLoggedIn, (req, res) => {
 	res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
+
 // ---------------------------------------------------------------------------------
 // LOGOUT - POST
 // ---------------------------------------------------------------------------------
