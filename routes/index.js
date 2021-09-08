@@ -17,12 +17,15 @@ const loginCheck = () => {
 
 router.get('/profile', loginCheck(), (req, res, next) => {
   const loggedInUser = req.session.user;
-  console.log(loggedInUser)
   res.render('profile', { user : loggedInUser })
 })
 
 router.get('/main', loginCheck(), (req, res, next) => {
   res.render('main')
+})
+
+router.get('/private', loginCheck(), (req, res, next) => {
+  res.render('private')
 })
 
 module.exports = router;
