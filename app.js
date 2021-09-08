@@ -24,9 +24,14 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+//  Start handling routes here
+const index = require('./routes/index'); // <== already included
+app.use('/', index); // <== already included
+
+// authRouter needs to be added so paste the following lines:
+const authRouter = require('./routes/auth.routes'); // <== has to be added
+app.use('/', authRouter); // <== has to be added
+// ...
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
