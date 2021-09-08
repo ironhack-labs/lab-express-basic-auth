@@ -62,32 +62,25 @@ router.post("/signup", (req, res, next) => {
 
 router.get('/login', (req, res, next) => res.render('auth/login'));
  
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, theUser, failureDetails) => {
-    if (err) {
-      // Something went wrong authenticating user
-      return next(err);
-    }
- 
-    if (!theUser) {
-      // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
-      res.render('auth/login', { errorMessage: 'Wrong password or username' });
-      return;
-    }
- 
-    // save user in session: req.user
-    req.login(theUser, err => {
-      if (err) {
-        // Session save went bad
-        return next(err);
-      }
- 
-      // All good, we are now logged in and `req.user` is now set
-      res.redirect('/');
-    });
-  })(req, res, next);
-});
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/userProfile',
+    failureRedirect: '/login',
+    // passReqToCallback: true
+  })
+);
 
+
+router.get('/logout', (req, res, next) => {
+	req.session.destroy(err => {
+		if (err) {
+			next(err);
+		} else {
+			res.redirect('/');
+		}
+	})
+});
 
 
 module.exports = router;

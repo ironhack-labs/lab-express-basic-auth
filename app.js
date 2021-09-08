@@ -26,64 +26,64 @@ const MongoStore = require('connect-mongo');
 
 
 app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: true,
-      saveUninitialized: false, // <== false if you don't want to save empty session object to the store
-      cookie: {
-        sameSite: 'none',
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24
-      },
-      store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/db-name'
-      })
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
+    cookie: {
+      sameSite: 'none',
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24
+    },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/db-name'
     })
-  );
-
-  // end of session config
-
-    //passport config 
-  const User = require('./models/User.model');
-  const passport = require('passport');
-  const LocalStrategy = require('passport-local').Strategy;
-  const bcrypt = require('bcrypt');
-   
-  passport.serializeUser((user, done) => {
-    done(null, user._id);
-  });
-  
-  passport.deserializeUser((id, done) => {
-    User.findById(id)
-      .then(userFromDB => {
-        done(null, userFromDB);
-      })
-      .catch(err => {
-        done(err);
-      })
   })
-   
-  //register the local strategy
-  passport.use(
-    new LocalStrategy(
-      { passReqToCallback: true },
-      {
-        usernameField: 'username', 
-        passwordField: 'password' 
-      },
-      (req, username, password, done) => {
-        User.findOne({ username: username })
-          .then(userFromDB => {
-            if (userFromDB === null) {
-              done(null, false, { message: 'Wrong Credentials' });
-            }else {
-              done(null, userFromDB);
-            }
-          })
-          .catch(err => done(err));
-      }
-    )
-  );
+);
+
+// end of session config
+
+//passport config 
+const User = require('./models/User.model');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then(userFromDB => {
+      done(null, userFromDB);
+    })
+    .catch(err => {
+      done(err);
+    })
+})
+
+//register the local strategy
+passport.use(
+  new LocalStrategy(
+    // { passReqToCallback: true },
+    {
+      usernameField: 'username',
+      passwordField: 'password'
+    },
+    (username, password, done) => {
+      User.findOne({ username: username })
+        .then(userFromDB => {
+          if (userFromDB === null) {
+            done(null, false, { message: 'Wrong Credentials' });
+          } else {
+            done(null, userFromDB);
+          }
+        })
+        .catch(err => done(err));
+    }
+  )
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
