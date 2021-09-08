@@ -1,4 +1,4 @@
-const bcrype = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const password = '123456';
 
