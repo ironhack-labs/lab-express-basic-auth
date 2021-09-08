@@ -1,12 +1,11 @@
-{{#if userInSession}}
-<h2>Welcome, {{ userInSession.username }}!</h2>
+{{#if user}}
+<p>¡You are registered!</p>
+<h2>Welcome, {{ user.username }}!</h2>
 <p>This is your profile page my friend!</p>
 <button>
     <a href="/userProfile">Reload the page</a>
 </button>
-<form id="logout-form" action="/logout" method="POST">
-    <button>Logout</button>
-</form>
+
 {{else}}
 <p>Still no logged in user, sorry!</p>
 {{/if}}
