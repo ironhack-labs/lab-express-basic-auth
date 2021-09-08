@@ -1,14 +1,23 @@
 <h2>Signup form</h2>
 <form action="/auth/signup" method="POST">
-  <label for="username">Username</label>  <br />
+  <label for="username">Username</label>
+  <br />
   <input type="text" name="username" id="username" />
-  <br />  <br />
-  <label for="email">Email</label>  <br />
+  <br />
+  <br />
+  <label for="email">Email</label>
+  <br />
   <input type="email" name="email" id="email" placeholder="your@email.com" />
-  <br />  <br />
-  <label for="password">Password</label>  <br />
-  <input type="password" name="password" id="password" placeholder="*****" />
+  <br />
+  <br />
+  <label for="password">Password</label>
+  <br />
+  <input type="password" name="password" id="password" placeholder="******" />
   <br />
   <br />
   <button type="submit">Signup</button>
+  <br />
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
 </form>
