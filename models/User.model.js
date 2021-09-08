@@ -18,9 +18,6 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true
-  },
-  {
-    timestamps: true
   }
 });
 
