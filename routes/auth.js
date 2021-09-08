@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require('../models/User.model');
+const bcrypt = require('bcrypt');
 
 router.get("/signup", (req, res, next) => {
   res.render("signup");
@@ -32,6 +33,26 @@ router.post('/signup', (req, res, next) => {
           })
       }
     })
+});
+
+router.get("/login", (req, res, next) => {
+	res.render("login");
+});
+
+router.post('/login', (req, res, next) => {
+	const { username, password } = req.body;
+	User.findOne({ username: username })
+		.then(userFromDB => {
+			if (userFromDB === null) {
+				res.render('login', { message: 'incorrect credentials' })
+			}
+			if (bcrypt.compareSync(password, userFromDB.password)) {
+				req.session.user = userFromDB;
+				res.redirect('/profile');
+			} else {
+				res.render('login', { message: 'incorrect credentials' })
+			}
+		})
 });
 
 module.exports = router;
