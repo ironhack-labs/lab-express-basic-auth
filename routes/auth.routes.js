@@ -13,8 +13,12 @@ const User = require('../models/User.model');
 //require mongoose for FORM VALIDATION
 const mongoose = require('mongoose');
 
+// require auth middleware
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 // GET route ==> to display the signup form to users
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
+
 // POST route ==> to process form data
 router.post('/signup', (req, res, next) => {
     // console.log('The form data: ', req.body);
@@ -58,11 +62,61 @@ router.post('/signup', (req, res, next) => {
             }
         });
   });
+  //////////// L O G I N ///////////
+ 
+// GET login route ==> to display the login form to users
+router.get('/login', (req, res) => res.render('auth/login'));
 
-  //Get route to dispkay the user-profile page
-router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+// POST login route ==> to process form data
+router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
+    //destructuring
+    const { email, password } = req.body;
+   //email and password validation
+    if (email === '' || password === '') {
+      res.render('auth/login', {
+        errorMessage: 'Please enter both, email and password to login.'
+      });
+      return;
+    }
+   
+    User.findOne({ email })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        // when we introduce session, the following line gets replaced with what follows:
+        // res.render('users/user-profile', { user });
+ 
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
 
-module.exports = router;
+  //Get route to display the user-profile page
+  router.get('/userProfile', isLoggedIn, (req, res) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
+  });
+  router.get('/main', isLoggedIn, (req, res) => {
+    res.render('users/main', { userInSession: req.session.currentUser });
+  });
+  router.get('/private', isLoggedIn, (req, res) => {
+    res.render('users/private', { userInSession: req.session.currentUser });
+  });
+
+////////////////LOG OUT///////////////////////
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) next(err);
+        res.redirect('/');
+    });
+    });
 
 
 module.exports = router;
