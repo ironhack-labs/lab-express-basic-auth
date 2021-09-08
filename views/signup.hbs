@@ -1,13 +1,15 @@
-<h1>Signup</h1>
+<h1>Sign up</h1>
 <form action="/signup" method="POST">
-	<label for="">Username: </label>
-	<input type="text" name="username">
-	<label for="">Password: </label>
+	<label for="username">Username: </label>
+	<input type="text" name="username" id="username">
+	<label for="password">Password: </label>
 	<input type="password" name="password" id="password">
-	{{!-- <button type="submit" disabled="true">Sign up</button> --}}
-	<button type="submit">Sign up</button>
+	<button type="submit" disabled="true">Sign up</button>
+	{{!-- <button type="submit">Sign up</button> --}}
 </form>
+<p class ="namecheck"style="color: red" style="visibility: visible">Type Username</p>
+<p class ="passwordcheck"style="color: red" style="visibility: visible">Type Password</p>
 {{#if message}}
 	<p style="color: red">{{message}}</p>
 {{/if}}
-{{!-- <p>Password is 4 chars long<span style="visibility: hidden"> ✅</span></p> --}}
+<p>Password is 4 chars long<span style="visibility: hidden"> ✅</span></p>
