@@ -1,12 +1,14 @@
 <h1>Log In Page</h1>
 <form action="/login" method="POST">
-	<label for="">Username: </label>
-	<input type="text" name="username">
-	<label for="">Password: </label>
+	<label for="username">Username: </label>
+	<input type="text" name="username" id="username">
+	<label for="password">Password: </label>
 	<input type="password" name="password" id="password">
-
-	<button type="submit">Log in 🔑</button>
+	<button type="submit" disabled="true">Log in</button>
+	{{!-- <button type="submit">Sign up</button> --}}
 </form>
+<p class ="namecheck"style="color: red" style="visibility: visible">Type Username</p>
+<p class ="passwordcheck"style="color: red" style="visibility: visible">Type Password</p>
 {{#if message}}
 	<p style="color: red">{{message}}</p>
 {{/if}}
