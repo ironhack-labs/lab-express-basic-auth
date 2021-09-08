@@ -1,18 +1,18 @@
 const { Router } = require("express");
 const router = new Router();
 const mongoose = require("mongoose");
-
 const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
-
-//GET SIGNUP
-router.get("/signup", (req, res) => {
-  res.render("auth/signup");
-});
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
 //GET USERPROFILE
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   res.render("users/user-profile", { user: req.session.currentUser });
+});
+
+//GET SIGNUP
+router.get("/signup", isLoggedOut, (_, res) => {
+  res.render("auth/signup");
 });
 
 //POST SIGNUP
@@ -57,7 +57,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 //GET LOGIN
-router.get("/login", (_, res) => {
+router.get("/login", isLoggedOut, (_, res) => {
   res.render("auth/login");
 });
 
@@ -88,7 +88,7 @@ router.post("/login", (req, res, next) => {
 });
 
 //POST LOGOUT
-router.post("/logout", (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect("/");

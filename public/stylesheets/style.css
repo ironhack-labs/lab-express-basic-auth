@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+#logout {
+  display: inline;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: #00B7FF;
+  text-decoration: underline;
+}
