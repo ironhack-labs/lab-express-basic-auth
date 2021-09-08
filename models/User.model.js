@@ -23,7 +23,7 @@ const userSchema = new Schema({
     uniqueCaseInsensitive: true,
     lowercase: true,
     trim: true
-  }
+  },
 });
 
 const User = model("User", userSchema);

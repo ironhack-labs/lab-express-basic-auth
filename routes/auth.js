@@ -8,6 +8,8 @@ const saltRounds = 10;
 
 const User = require("../models/User.model");
 
+const passport = require('passport');
+
 // GET route ==> to display the signup form to users
 router.get("/signup", (req, res) => res.render("auth/signup"));
 
@@ -58,5 +60,15 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get("/userProfile", (req, res) => res.render("users/user-profile"));
+
+router.get('/login', (req, res, next) => res.render('auth/login'));
+ 
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+);
+
+
 
 module.exports = router;
