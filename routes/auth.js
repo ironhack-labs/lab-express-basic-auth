@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = new Router();
 
+const mongoose = require('mongoose');
+
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
@@ -14,6 +16,12 @@ router.post("/signup", (req, res, next) => {
   // console.log("The form data: ", req.body);
 
   const { username, email, password } = req.body;
+
+  //users must fill all mandatory fields
+  if (!username || !email || !password) {
+    res.render('auth/signup', {errorMessage: 'Please provide all mandatory fields'})
+    return;
+  }
 
   bcryptjs
     .genSalt(saltRounds)
@@ -29,7 +37,17 @@ router.post("/signup", (req, res, next) => {
       //console.log("new user: ", userFromDB);
       res.redirect("/userProfile");
     })
-    .catch((error) => next(error));
+    .catch(error => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.status(500).render('auth/signup', { errorMessage: error.message });
+      } else if (error.code === 11000) {
+        res.status(500).render('auth/signup', {
+           errorMessage: 'Username and email need to be unique. Either username or email is already used.'
+        });
+      } else {
+        next(error);
+      }
+    });
 });
 
 router.get("/userProfile", (req, res) => res.render("users/user-profile"));
