@@ -14,12 +14,19 @@ const saltRounds = 10;
 // Import for middleware
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
-// Home GET
+// ---------------------------------------------------------------------------------
+// INDEX GET
+// ---------------------------------------------------------------------------------
 router.get('/', (req, res) => res.render('index', { title: 'App created with Ironhack generator 🚀' }));
 
-// Signup GET -------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+// SIGNUP GET
+// ---------------------------------------------------------------------------------
 router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
-// Signup POST ------------------------------------------------------------
+
+// ---------------------------------------------------------------------------------
+// SIGNUP POST
+// ---------------------------------------------------------------------------------
 router.post('/signup', (req, res, next) => {
 	const { username, email, password } = req.body;
 
@@ -46,12 +53,8 @@ router.post('/signup', (req, res, next) => {
 		.then((salt) => bcryptjs.hash(password, salt))
 		.then((hashedPassword) => {
 			return User.create({
-				// username: username
 				username,
 				email,
-				// passwordHash => this is the key from the User model
-				//     ^
-				//     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
 				passwordHash: hashedPassword
 			});
 		})
@@ -69,15 +72,17 @@ router.post('/signup', (req, res, next) => {
 			} else {
 				next(error);
 			}
-		}); // close .catch()
+		});
 });
 
 // ---------------------------------------------------------------------------------
-// LOGIN
-// GET route ==> to display the login form to users
-router.get('/login', (req, res) => res.render('auth/login'));
+// LOGIN GET
 // ---------------------------------------------------------------------------------
-// POST route ==> to display the login form to users
+router.get('/login', (req, res) => res.render('auth/login'));
+
+// ---------------------------------------------------------------------------------
+// LOGIN POST
+// ---------------------------------------------------------------------------------
 router.post('/login', (req, res, next) => {
 	console.log('SESSION =====> ', req.session);
 	const { email, password } = req.body;
@@ -95,9 +100,6 @@ router.post('/login', (req, res, next) => {
 				res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
 				return;
 			} else if (bcryptjs.compareSync(password, user.passwordHash)) {
-				// when we introduce session, the following line gets replaced with what follows:
-				// res.render('users/user-profile', { user });
-
 				//******* SAVE THE USER IN THE SESSION ********//
 				req.session.currentUser = user;
 				res.redirect('/userProfile');

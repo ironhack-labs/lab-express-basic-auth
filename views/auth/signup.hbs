@@ -1,27 +1,33 @@
 {{!-- views/auth/signup.hbs --}}
+<div class="container2 d-flex flex-column text-center">
+    <div id="form">
+        <h2>Register</h2>
+        <form action="/signup" method="POST" class="d-flex flex-column">
+            <div class="d-flex flex-column">
+                <label> Username <br>
+                    <input type="text" name="username" class="maxWidthInput" placeholder="ironhacker" required />
+                </label>
 
-<div id="form">
-    <h2>Signup</h2>
-    <form action="/signup" method="POST">
+                <label> Email <br>
+                    <input type="email" name="email" class="maxWidthInput" placeholder="rockstar@ironhack.com"
+                        required />
+                </label>
 
-        <label> Username
-            <input type="text" name="username" placeholder="ironhacker" />
-        </label>
+                <label> Password <br>
+                    <input type="password" class="maxWidthInput" name="password" placeholder="********" required />
+                </label>
+                {{#if errorMessage}}
+                <div class="alert alert-danger" role="alert">
+                    <p class="error">{{errorMessage}}</p>
+                </div>
+                {{/if}}
+                <div>
+                    <button type="submit" class="btn btn-dark maxWidthInput">Create account</button>
+                </div>
+                <br>
 
-        <label> Email
-            <input type="email" name="email" placeholder="rockstar@ironhack.com" />
-        </label>
-
-        <label> Password
-            <input type="password" name="password" placeholder="********" />
-        </label>
-
-        <button type="submit" class="btn btn-dark">Create account</button>
-
-        {{!-- error message will be added here --}}
-        {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-        {{/if}}
-    </form>
+            </div>
+        </form>
+    </div>
+    <a href="/"><button class="btn btn-dark btnInputIndex maxWidthInput">Home</button></a>
 </div>
-<a href="/"><button class="btn btn-dark">Home</button></a>

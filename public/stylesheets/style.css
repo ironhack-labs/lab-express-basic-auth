@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container2{
+  border:1px solid rgb(0, 0, 0);
+}
+
+.btnInputIndex{
+  margin-bottom:10px;
+}
+
+.btnInputIndex:hover{
+  color:red !important;
+}
+
+.maxWidthInput{
+  width: 500px;
+}
+
+
+/* Validation side client */
+input:invalid {
+  border: 2px solid red;
+}
+
+input:invalid:required {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
