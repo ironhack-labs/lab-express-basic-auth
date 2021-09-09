@@ -19,6 +19,23 @@ const app = express();
 require('./config')(app);
 
 // default value for title local
+
+// MONGO DB
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = process.env.MONGODB_URI;
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        coookie: { maxAge: 1000 * 600 * 60 * 24},
+        resave: true,
+        saveUninitialized: false,
+        store: MongoStore.create({
+            mongoUrl: DB_URL
+        })
+    })
+)
 const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
@@ -27,6 +44,11 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/', auth);
+
+// const profile = require('./routes/profile')
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
