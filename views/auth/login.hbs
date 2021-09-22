@@ -1,0 +1,33 @@
+<div>
+    
+    <h2>Iniciar sesión</h2>
+
+    <form action="/auth/login" method="POST">
+        <h2>Username</h2>
+        <input 
+            type="text"
+            name="username"
+            placeholder="userName"
+        />
+
+
+        <h2>Password</h2>
+        <input 
+            type="password"
+            name="password"
+            placeholder="password"
+        />
+
+        <button type="submit">
+            Iniciar sesión
+        </button>
+
+        {{#if errorMessage}}
+            <p style="color: blue;">{{errorMessage}}</p>
+        {{/if}}
+
+
+    </form>
+
+
+</div>
