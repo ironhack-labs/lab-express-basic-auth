@@ -66,7 +66,7 @@ router.post("/login", (req, res) => {
 })
 
 // MIDDLEWARE DETECTOR DE SESIÓN
-router.use((req, res ) => {
+router.use((req, res, next ) => {
   console.log(req.session)
   req.session.currentUser ? next() : res.render('login', { errorMessage: 'Necesitas estar logeado para ver esta página' })
 })
@@ -75,5 +75,11 @@ router.use((req, res ) => {
 router.get("/profile", (req, res) => {
   res.render("profile", req.session.currentUser)
 })
+
+//log out
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => res.redirect('/'))
+})
+
 
 module.exports = router;
