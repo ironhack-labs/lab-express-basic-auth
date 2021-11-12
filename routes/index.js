@@ -13,4 +13,12 @@ router.get("/profile", (req, res) => {
   res.render("profile-page", req.session.currentUser)
 })
 
+router.get("/main", (req, res) => {
+  res.render("main", req.session.currentUser)
+})
+
+router.get("/private", (req, res) => {
+  res.render("private", req.session.currentUser)
+})
+
 module.exports = router;
