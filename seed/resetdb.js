@@ -1,21 +1,26 @@
 // ℹ️ package responsible to make the connection with mongodb
 // https://www.npmjs.com/package/mongoose
 const mongoose = require("mongoose");
+const User = require("../models/User.model");
 
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1/lab-express-basic-auth";
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/lab-express-basic-auth";
 
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+	return User.deleteMany();
   })
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);

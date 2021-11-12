@@ -4,16 +4,18 @@ require('dotenv/config');
 
 // ℹ️ Connects to the database
 require('./db');
+const express = require('express');
+const app = express();
+require('./config/session.config')(app)
+//  const conSession = require('./config/session.congig');
+//  app =conSession(app);
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
-const express = require('express');
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
-
-const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -32,4 +34,3 @@ app.use('/', index);
 require('./error-handling')(app);
 
 module.exports = app;
-
