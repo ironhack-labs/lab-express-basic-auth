@@ -10,12 +10,14 @@ router.get("/", (req, res, next) => {
 
 /* GET /main */
 router.get("/main", isLoggedIn, (req, res) => {
-  res.render("main");
+  const user = req.session.user;
+  res.render("main", {user});
 });
 
 /* GET /private */
 router.get("/private", isLoggedIn, (req, res) => {
-  res.render("private");
+  const user = req.session.user;
+  res.render("private", {user});
 });
 
 module.exports = router;

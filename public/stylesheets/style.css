@@ -1,6 +1,6 @@
 body {
   padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1rem "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -25,7 +25,23 @@ nav li {
 nav a {
   color: white;
   font-size: 1.2rem;
+  font-weight: bold;
   text-decoration: none;
+}
+nav a:hover {
+  color: #0e2b3f;
+}
+nav button {
+  text-transform: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+nav button:hover {
+  background-color: #43a3e6;
+  color:  #0e2b3f;
 }
 #form {
   margin: 30px auto;
@@ -45,7 +61,7 @@ nav a {
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
-  padding: 4px;
+  padding: 10px;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -78,4 +94,11 @@ button:hover {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+}
+.box a {
+  margin-top: 50px;
 }
