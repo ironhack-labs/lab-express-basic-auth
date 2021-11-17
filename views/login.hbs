@@ -1,0 +1,19 @@
+
+{{#if message}}
+    <p class="message">{{message}}</p>
+{{/if}}
+
+<h2>Log in! </h2>
+
+<form action="/auth/login" method="POST">
+  <label for="username">Name: </label>
+  <input type="text" name="username" minlength="3" maxlength="10" required>
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" id="password" required>
+
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<a href="/auth/signup" class="btn marginTop">Sign up instead</a>
+

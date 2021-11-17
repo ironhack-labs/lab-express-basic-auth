@@ -6,3 +6,42 @@ body {
 a {
   color: #00B7FF;
 }
+
+form {
+  border: solid 1px #ccc;
+  padding: 30px 40px;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+form input {
+  border: solid 1px #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn {
+  border: solid 1px sienna;
+  background-color: bisque;
+  color: black;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  display: block;
+  width: max-content;
+}
+
+.marginTop {
+  margin-top: 30px;
+}
+
+.message {
+  background-color: #eaeaea;
+  border: solid 1px #333;
+  padding: 20px 40px;
+  border-radius: 10px;
+  width: 80%;
+}
