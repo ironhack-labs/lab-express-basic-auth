@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
-const colors = require('colors')
 
 const User = require('../models/User')
 
@@ -10,6 +9,10 @@ router.get('/signup', (req, res, next) => {
 
 router.get('/login', (req, res, next) => {
   res.render('login')
+})
+
+router.get('/main', (req, res, next) => {
+  res.render('main')
 })
 
 // middleware to protect a route
@@ -23,6 +26,10 @@ const loginCheck = () => {
     }
   }
 }
+
+router.get('/private', loginCheck(), (req, res, next) => {
+  res.render('private')
+})
 
 router.get('/profile', loginCheck(), async (req, res, next) => {
   // set a cookie if you want
