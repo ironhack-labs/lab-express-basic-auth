@@ -3,6 +3,85 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a, h1 {
+  color: darkgrey;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: pink;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(130, 180, 236);;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: rgb(88, 88, 228);
+}
+
+#form {
+  margin: 2rem auto;
+  width: 380px;
+}
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 1rem;
+  outline: 0;
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  background: pink;
+  border: 1px solid pink;
+  border-radius: 0.2rem;
+  color: rgb(130, 180, 236);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+button:hover {
+  background: rgb(165, 97, 165);
+  color: whitesmoke;
+  transition: .3s ease background;
+}
+
+.error-message {
+  background: rgb(130, 180, 236);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  width: 100%;
 }

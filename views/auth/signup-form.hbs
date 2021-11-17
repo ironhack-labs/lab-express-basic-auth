@@ -1,0 +1,20 @@
+	<form id="form" action="/signup" method="POST">
+    <p>
+       <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Your username"> 
+    </p>
+    
+    <p>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" placeholder="Your username">
+    </p>
+    
+    <button type="submit">Create user</button>
+  </form>
+
+
+{{!-- error message display: --}} 
+<br>
+{{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
