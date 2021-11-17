@@ -11,6 +11,25 @@
 
   <body>
 
+    {{#if user}}
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/main">Main</a></li>
+            <li><a href="/private">Private</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    {{else}}
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+    {{/if}}
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
