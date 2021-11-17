@@ -2,23 +2,29 @@
 <p>Welcome to {{title}}</p>
 
 <div id="container">
-  <a href="/signup">
-    <button>Sign up</button>
-  </a>
 
-  <a href="/login">
-    <button>Login</button>
-  </a>
+  {{#if userIsLoggedIn}}
 
-  <a href="/secret">
-    <button>Protected page (requires authentication!)</button>
-  </a>
+    <a href="/secret">
+      <button>Protected page (requires authentication!)</button>
+    </a>
 
-  <a href="/main">
-    <button>See that cute cat</button>
-  </a>
+    <a href="/logout">
+      <button>Logout</button>
+    </a>
 
-  <a href="/logout">
-    <button>Logout</button>
-  </a>
+  {{else}}
+
+    <a href="/signup">
+      <button>Sign up</button>
+    </a>
+
+    <a href="/login">
+      <button>Login</button>
+    </a>
+
+    <a href="/main">
+      <button>See that cute cat</button>
+    </a>
+  {{/if}}
 </div>
