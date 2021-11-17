@@ -24,6 +24,24 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
+// session configuration
+const session = require('express-session');
+const MongoStore = require('connect-mongo')
+
+const DB_URL = process.env.MONGO_URI
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: DB_URL
+    })
+  })
+)
+
 // 👇 Start handling routes here
 const index = require('./routes/index');
 const authRouter = require('./routes/auth')
