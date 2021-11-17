@@ -2,6 +2,7 @@
 const router = require("express").Router();
 const User = require("./../models/User.model");
 const bcrypt = require("bcryptjs");
+const zxcvbn = require("zxcvbn"); //package to check password strength
 
 const saltRounds = 10;
 
@@ -29,29 +30,29 @@ router.post("/signup", (req, res) => {
       return;
     }
   
-    // Check the password strength (optional)
-    // const passwordCheck = zxcvbn(password);
-    // console.log("passwordCheck", passwordCheck);
+    //Check the password strength (optional)
+    const passwordCheck = zxcvbn(password);
+    console.log("passwordCheck", passwordCheck);
   
-    // if (passwordCheck.score < 3) {
-    //   res.render("auth/signup-form", {
-    //     errorMessage: "Password too weak, try again.",
-    //   });
-      
-    //   return;
-    // }
-  
-    //* Other way to check password strength with Regex
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-  
-    if (!regex.test(password)) {
-      res.status(400).render("auth/signup-form", {
-        errorMessage:
-          "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
+    if (passwordCheck.score < 3) {
+      res.render("auth/signup-form", {
+        errorMessage: "Password too weak, try again.",
       });
-  
+      
       return;
     }
+  
+    // //* Other way to check password strength with Regex
+    // const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+  
+    // if (!regex.test(password)) {
+    //   res.status(400).render("auth/signup-form", {
+    //     errorMessage:
+    //       "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
+    //   });
+  
+    //   return;
+    // }
   
     // Check that the username is not taken
     User.findOne({ username: username })
@@ -136,6 +137,15 @@ router.post("/signup", (req, res) => {
       })
     
     
+  });
+
+  // POST /logout
+
+  router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+      if (err) next(err);
+      res.redirect('/');
+    });
   });
 
 module.exports = router;
