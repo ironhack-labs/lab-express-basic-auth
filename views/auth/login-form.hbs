@@ -1,4 +1,6 @@
-<h1 class="title"> Login form</h1>
+<div class="form-box">
+
+<h1 class="title"> Login Form</h1>
 
 
 <!--  views/auth/signup-form.hbs   -->
@@ -12,13 +14,13 @@
     </br>
 
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" placeholder="Your password">
 
     </br>
-    <button type="submit">Login</button>
+    <button type="submit" class="submit-btn">Login</button>
   </form>
 
-
+</div>
 {{!-- error message display: --}} 
 
 {{#if errorMessage}}
