@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 
 a {
-  color: #00B7FF;
+  font-size: 18px;
+  color: #f3f3f3;
+  background-color: skyblue;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+button {
+  font-size: 18px;
+  color: #f3f3f3;
+  background-color: salmon;
+  border-radius: 5px;
+  border-style: none;
+  padding: 10px 20px;
 }
