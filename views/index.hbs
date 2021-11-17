@@ -1,2 +1,30 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>{{title}} 🚀</h1>
+<p>Welcome to a basic auth page</p>
+
+{{#if userIsLoggedIn}}
+<div id="container">
+  <a href="/main">
+    <button>Main page (requires authentication!)</button>
+  </a>
+
+  <a href="/private">
+    <button>Private page (requires authentication!)</button>
+  </a>
+
+  <a href="/logout">
+    <button>Logout</button>
+  </a>
+</div>
+{{else}}
+
+<div id="container">
+  <a href="/signup">
+    <button>Sign up</button>
+  </a>
+
+  <a href="/login">
+    <button>Login</button>
+  </a>
+
+</div>
+{{/if}}
