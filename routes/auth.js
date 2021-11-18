@@ -26,6 +26,9 @@ router.post("/signup", async (req, res, next) => {
     res.render("users/signup.hbs", {justCreatedUser: createdUser.username})
   } catch (err){
     console.log(err)
+    if (11000 === err.code || 11001 === err.code) {
+      return res.render("users/signup.hbs", {msg: "User already exist"})
+    }
   }
 });
 
