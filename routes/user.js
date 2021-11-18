@@ -14,6 +14,12 @@ router.get('/private', isLoggedIn, (req, res)=>{
   res.render("private.hbs", {username})
 })
 
+router.get('/main', isLoggedIn, (req, res)=>{
+    const {username} = req.session.loggedUser
+    res.render("main.hbs", {username})
+  })
+  
+  
 
 
 module.exports = router;
