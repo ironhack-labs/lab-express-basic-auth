@@ -3,10 +3,10 @@
 <form action="/login" method="POST">
 
     <label>Username:</label>
-    <input type="text" name="username" />
+    <input type="text" name="username" required/>
 
     <label>Password:</label>
-    <input type="password" name="password" />
+    <input type="password" name="password" required/>
 
     <button type="submit">Log In</button>
 
@@ -15,3 +15,5 @@
 {{#if errorMsg}}
 <p>{{errorMsg}}</p>
 {{/if}}
+
+<a href="/">Go back to homepage</a>

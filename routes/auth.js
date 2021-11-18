@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 
+const { isLoggedIn } = require('../middleware/route-guard')
+
 
 //MODELS
 const User = require('../models/User.model.js')
@@ -8,42 +10,38 @@ const User = require('../models/User.model.js')
 
 //ROUTES
 //Signup
-router.get('/signup', (req, res) => {
+router.get('/signup', isLoggedIn, (req, res) => { //Prevent logged in user from signing up
     res.render('./signup.hbs')
 })
 
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body
-    try {
+    const uniqueUserCheck = User.find({ username })
+    if (uniqueUserCheck) {
+        res.render('./signup.hbs', { errorMsg: 'Username already in use' })
+    }
+    else {
         const hashedPassword = await bcrypt.hash(password, 10)
         const newUser = await User.create({ username, password: hashedPassword })
         res.redirect('/')
     }
-    catch (err) {
-        console.log('Error signing up:', err)
-    }
 })
 
 //Login
-router.get('/login', (req, res) => {
-    res.render('login.hbs')
+router.get('/login', isLoggedIn, (req, res) => {
+    res.render('./login.hbs')
 })
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body
-
-    if (!username || !password) {
-        res.render('login', { errorMsg: 'You need to fill all fields' })
-    }
-
     const userFromDB = await User.findOne({ username })
     if (!userFromDB) {
-        res.render('login', { errorMsg: 'User does not exist' })
+        res.render('./login.hbs', { errorMsg: 'User does not exist' })
     }
     else {
         const passwordCheck = await bcrypt.compare(password, userFromDB.password)
         if (!passwordCheck) {
-            res.render('login', { errorMsg: 'Incorrect password' })
+            res.render('./login.hbs', { errorMsg: 'Incorrect password' })
         }
         else {
             req.session.loggedUser = userFromDB

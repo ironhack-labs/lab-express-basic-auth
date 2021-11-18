@@ -33,6 +33,8 @@ app.use('/', index);
 
 app.use('/', require('./routes/auth.js'))
 
+app.use('/', require('./routes/protected.js'))
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 

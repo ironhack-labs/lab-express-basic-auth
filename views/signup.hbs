@@ -3,11 +3,18 @@
 <form action="/signup" method="POST">
 
     <label>Username:</label>
-    <input type="text" name="username" />
+    <input type="text" name="username" required/>
 
     <label>Password:</label>
-    <input type="password" name="password" />
+    <input type="password" name="password" required/>
 
     <button type="submit">Sign Up</button>
 
 </form>
+
+{{#if errorMsg}}
+<p>Error signing up: {{errorMsg}}</p>
+{{/if}}
+
+
+<a href="/">Go back to homepage</a>
