@@ -10,12 +10,20 @@
   </head>
 
   <body>
+   
     <ul>
-      <li><a href="/signup">Sign Up</a></li>
-      <li><a href="/login">Log In</a></li> 
-      <li><a href="/main">Main</a></li>
-      <li><a href="/private">Private</a></li>
+          {{#if userLoggedIn}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/main">Main</a></li>
+            <li><a href="/private">Private</a></li>
+            <li><a href="/logout">Log Out</a></li>
+         {{else}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Log In</a></li> 
+          {{/if}}
     </ul>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>

@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const zxcvbn = require("zxcvbn");
+const userLoggedIn = require("./../middleware/login-confirmation")
+
 
 const SALT_ROUNDS = 10;
   //get /signup
@@ -101,6 +103,18 @@ router.post("/login", (req, res) => {
             });
       })
       
+})
+//get logout
+
+router.get("/logout", userLoggedIn, (req,res) => {
+  req.session.destroy((err) => {
+    if (err){
+      return res.render("error");
+    }
+
+    res.redirect("/");
+
+  })
 })
 
 
