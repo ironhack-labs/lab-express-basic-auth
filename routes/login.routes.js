@@ -25,8 +25,19 @@ router.post("/login", async (req, res) => {
       res.render("login", { errorMsg: "Incorrect password" });
     } else {
       req.session.loggedUser = userFromDB;
-      res.redirect("/users/profile");
+      res.redirect("/main");
     }
+  }
+});
+
+router.post("/logout", async (req, res, next) => {
+  res.clearCookie("connect.sid", { path: "/" });
+
+  try {
+    await req.session.destroy();
+    res.redirect("/");
+  } catch (err) {
+    next(err);
   }
 });
 
