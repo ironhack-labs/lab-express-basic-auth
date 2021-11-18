@@ -18,6 +18,7 @@ router.get("/login", (req, res, next) => {
 /* POST sign up */
 router.post("/signup", async (req, res, next) => {
   const {username, password} = req.body;
+  if(!username || !password) return res.render("users/signup.hbs", {msg: "You need to fill all inputs"})
   try {
     //Encrypt password
     var hashedPassword = await bcrypt.hash(password, 10);
@@ -31,7 +32,7 @@ router.post("/signup", async (req, res, next) => {
 /* POST log in */
 router.post("/login", async (req, res, next) => {
   const {username, password} = req.body;
-  if(!username || !password) res.render("users/login.hbs", {msg: "You need to fill all inputs"})
+  if(!username || !password) return res.render("users/login.hbs", {msg: "You need to fill all inputs"})
   try {
     const userFromDB = await User.findOne({username})
     if(!userFromDB){ 

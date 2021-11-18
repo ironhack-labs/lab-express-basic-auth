@@ -3,13 +3,17 @@
 
 <form action="/users/signup" method="POST">
     <label>Username:</label>
-    <input type="text" name="username"/>
+    <input type="text" name="username" required/>
     
     <label>Password:</label>
-    <input type="password" name="password"/>
+    <input type="password" name="password" required/>
 
     <button type="submit">Sign up</button>
 </form>
+
+{{#if msg}}
+    <h3>{{msg}}</h3>
+{{/if}}
 
 {{#if justCreatedUser}}
     <h3>User {{justCreatedUser}} created succesfully</h3>
