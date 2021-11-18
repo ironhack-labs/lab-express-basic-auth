@@ -9,7 +9,6 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-module.exports = router;
 
 /* POST create new user */
 router.post("/signup", async (req, res) => {
@@ -27,3 +26,5 @@ router.post("/signup", async (req, res) => {
     console.log(err);
   }
 });
+
+module.exports = router;
