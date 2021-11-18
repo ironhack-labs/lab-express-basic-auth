@@ -3,6 +3,7 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
 const path = require("path");
+const hbs = require('hbs');
 
 
 // "connect-mongo" together with "express-session" helps us save the session in the DB
@@ -36,4 +37,6 @@ module.exports = (app) => {
   app.set("view engine", "hbs");
   app.use(express.static(path.join(__dirname, "..", "public")));
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  hbs.registerPartials(path.join(__dirname, "..", "views", "partials"));
+
 };

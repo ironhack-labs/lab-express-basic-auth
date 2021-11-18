@@ -32,6 +32,7 @@ form input {
   text-decoration: none;
   display: block;
   width: max-content;
+  height: 20px;
 }
 
 .marginTop {
@@ -44,4 +45,20 @@ form input {
   padding: 20px 40px;
   border-radius: 10px;
   width: 80%;
+}
+
+.buttons-nav {
+  display: flex;
+}
+.buttons-nav a {
+  margin-right: 20px;
+}
+
+.buttons-nav .private {
+  background-color: lightcyan;
+}
+
+.funnycat {
+  width: 300px;
+  border-radius: 10px;
 }

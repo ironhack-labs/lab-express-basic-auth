@@ -1,0 +1,10 @@
+<div class="buttons-nav">
+    <a class="btn" href="/auth/signup">Sign up</a>
+
+    {{#if loggedUser}}
+        <a href="/auth/logout" class="btn">Log me out!</a>
+    {{else}}
+        <a class="btn" href="/auth/login">Log in</a>
+    {{/if}}
+
+</div>

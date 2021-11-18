@@ -4,9 +4,14 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRound = 7;
 
+const setLoggedUser = (req, res, next) => {
+	if (req.session.loggedInUser) res.locals.loggedUser = req.session.loggedInUser.username
+	next()
+}
+
 // GET /auth/signup
 router.route('/signup')
-	.get((req, res) => {
+	.get(setLoggedUser, (req, res) => {
 		res.render('signup');
 	})
 	.post( (req, res) => {
@@ -31,7 +36,7 @@ router.route('/signup')
 
 
 router.route('/login')
-	.get( (req, res ) => {
+	.get(setLoggedUser, (req, res ) => {
 		res.render('login')
 	})
 	.post( (req, res ) => {
@@ -56,7 +61,7 @@ router.route('/login')
 
 	})
 
-router.get('/logout', (req, res) => {
+router.get('/logout', setLoggedUser, (req, res) => {
     req.session.destroy((err) => {
         if (err) res.redirect('/');
         else res.render('login', { message: "You are logged out!" });
