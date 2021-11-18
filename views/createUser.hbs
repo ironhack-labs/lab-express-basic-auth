@@ -1,0 +1,13 @@
+<form method="POST" action="/signup">
+<label>Username:</label>
+<input type="text" name="username">
+<input type="password" name="password">
+<button type="submit">Create user</button>
+</form>
+{{#if errorMsg}}
+  <h3>{{errorMsg}}</h3>
+{{/if}}
+
+{{#if justCreatedUser}}
+  <h3>User {{justCreatedUser}} created succesfully</h3>
+{{/if}}
