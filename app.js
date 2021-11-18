@@ -22,17 +22,15 @@ require('./config/session.config')(app);
 require("./config")(app);
 
 // default value for title local
-const projectName = "books_app";
+const projectName = "Lab-Express-Basic-Auth";
 const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.title = `${capitalized(projectName)} created by Guillem using IronLauncher`;
 
 // 👇 Start handling routes here
 
 app.use("/", require("./routes/index.js"));
-// app.use("/users", require("./routes/users.js"));
-// app.use("/books", require("./routes/books.js"));
 app.use("/", require("./routes/auth.js"));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
