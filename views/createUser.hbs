@@ -1,0 +1,17 @@
+<h2>Create User</h2>
+
+<form action='/signup' method='POST'>
+
+  <label>Username:</label>
+  <input type='text' name='username' required/>
+
+  <label>Password:</label>
+  <input type='password' name='password' required />
+
+  <button type='submit'>Create User</button>
+
+</form>
+
+{{#if justCreatedUser}}
+  <p>User {{justCreatedUser}} created succesfully</p>
+{{/if}}
