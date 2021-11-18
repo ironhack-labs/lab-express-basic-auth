@@ -28,7 +28,7 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-/* POST sign up */
+/* POST log in */
 router.post("/login", async (req, res, next) => {
   const {username, password} = req.body;
   if(!username || !password) res.render("users/login.hbs", {msg: "You need to fill all inputs"})
@@ -49,6 +49,17 @@ router.post("/login", async (req, res, next) => {
     }
   } catch (err){
     console.log(err)
+  }
+});
+
+/* POST log out */
+router.post("/logout", async (req, res, next) => {
+  res.clearCookie('connect.sid', {path: '/'})
+  try{
+    await req.session.destroy()
+    res.redirect('/')
+  }catch(err){
+    next(err);
   }
 });
 
