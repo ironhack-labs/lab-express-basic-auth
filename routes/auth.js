@@ -50,4 +50,16 @@ router.post('/login', async (req, res) => {
     }
 })
 
+//Logout
+router.post('/logout', async (req, res, next) => {
+    res.clearCookie('connect.sid', { path: '/', })
+    try {
+        await req.session.destroy()
+        res.redirect('/')
+    }
+    catch (err) {
+        next(err)
+    }
+})
+
 module.exports = router
