@@ -16,14 +16,19 @@ router.get('/signup', isLoggedIn, (req, res) => { //Prevent logged in user from 
 
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body
-    const uniqueUserCheck = User.find({ username })
-    if (uniqueUserCheck) {
-        res.render('./signup.hbs', { errorMsg: 'Username already in use' })
+    if (!username || !password) {
+        res.render('./signup.hbs', { errorMsg: 'Please fill all fields' })
     }
     else {
-        const hashedPassword = await bcrypt.hash(password, 10)
-        const newUser = await User.create({ username, password: hashedPassword })
-        res.redirect('/')
+        const uniqueUserCheck = User.find({ username })
+        if (uniqueUserCheck) {
+            res.render('./signup.hbs', { errorMsg: 'Username already in use' })
+        }
+        else {
+            const hashedPassword = await bcrypt.hash(password, 10)
+            const newUser = await User.create({ username, password: hashedPassword })
+            res.redirect('/')
+        }
     }
 })
 
