@@ -1,14 +1,13 @@
 // routes/auth.routes.js
-const mongoose = require("mongoose"); // <== has to be added
+const mongoose = require("mongoose");
 const { Router } = require("express");
 const router = new Router();
 const User = require("../models/User.model");
-// GET route ==> to display the signup form to users
-router.get("/signup", (req, res) => res.render("auth/signup"));
-// routes/auth.routes.js
-// ... we won't make any changes, we will just add a new route
-// (the order really) doesn't matter, but you can keep the logic signup => login => logout
 
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+ 
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
+ 
 router.post('/logout', (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
@@ -28,11 +27,8 @@ router.post('/logout', (req, res, next) => {
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
-// the get route skipped
 
-// POST route ==> to process form data
 router.post("/signup", (req, res, next) => {
-  // console.log("The form data: ", req.body);
 
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
@@ -60,12 +56,8 @@ router.post("/signup", (req, res, next) => {
     .then((salt) => bcryptjs.hash(password, salt))
     .then((hashedPassword) => {
       return User.create({
-        // username: username
         username,
         email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
         passwordHash: hashedPassword,
       });
     })
@@ -84,19 +76,11 @@ router.post("/signup", (req, res, next) => {
       } else {
         next(error);
       }
-    }); // close .catch()
+    }); 
 });
 //********************************************* */
 router.get("/login", (req, res) => res.render("auth/login"));
 //********************************************* */
-// routes/auth.routes.js
-// ... imports and both signup routes stay untouched
-
-//////////// L O G I N ///////////
-
-// GET login route stays unchanged
-
-// POST login route ==> to process form data
 router.post("/login", (req, res, next) => {
   console.log("SESSION =====> ", req.session);
   const { email, password } = req.body;
@@ -116,9 +100,7 @@ router.post("/login", (req, res, next) => {
         });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        //console.log("************************",{user})
-        //res.render('users/user-profile', { user });
-
+       
         req.session.currentUser = user;
         res.redirect("/userProfile");
       } else {
@@ -132,13 +114,10 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
   });
 
-  router.get("/userProfile", (req, res) => {
-    console.log("req.session.currentUser****",req.session.currentUser);
-
-    res.render("users/user-profile", {
-      userInSession: req.session.currentUser,
-    });
+  router.get('/userProfile', isLoggedIn, (req, res) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
-// userProfile route and the module export stay unchanged
-
+//************************************************ */
+ 
+//*********************************************** */
 module.exports = router;
