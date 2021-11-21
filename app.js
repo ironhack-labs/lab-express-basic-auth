@@ -36,6 +36,5 @@ app.use('/', authRouter); // <== has to be added
 require('./error-handling')(app);
 
 
-
 module.exports = app;
 
