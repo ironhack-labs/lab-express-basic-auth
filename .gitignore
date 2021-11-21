@@ -11,3 +11,7 @@ npm-debug.log
 # for maintenance purposes - not best practices
 package-lock.json
 
+# dotenv environment variables file
+.env
+.env.test
+.env.production
