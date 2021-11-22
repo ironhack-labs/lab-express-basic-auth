@@ -1,120 +1,122 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# Nada+
 
-# LAB | Basic Auth
 
-<br><br>
 
-## Introduction
+<img src="C:\Users\Ricardo Franco\Downloads\nada+picture.jpg"  />
+
+
+
+## Description
+
+This is a website of an existing company of natural soup. Here you can find 100% natural products that you can trust. In the website the users can have access to all the details of the products.  Can also, add new product suggestions, edit and delete them.  
+
+
+
+## User Stories
+
+- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
+
+- **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
+
+- **homepage** - As a user I want to be able to access the homepage and view a collection of products, log in, sign up and know more about us
+
+- **sign up** - As a user I want to sign up on the web page so that I can add favorite soaps to my list, suggest new products and review them
+
+- **login** - As a user I want to be able to log in on the web page so that I can get back to my account
+
+- **logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
+
+- **favorite list** - As a user I want to see the list of my favorites and edit and delete them
+
+- **edit user** - As a user I want to be able to edit my profile
+
+  
+
+
 
 <br>
 
-In this lab, you are going to reinforce the knowledge on how to create basic authorization and authentication in a web app.
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_044a7b23c9b4cf082e1c4fadcd12d308.png)
 
-## Requirements
+## Server Routes (Back-end):
 
-- Fork this repo
-- Clone this repo
 
-## Submission
 
-- Upon completion, run the following commands:
+| **Method** | **Route**                    | **Description**                                              | Request  - Body                                          |
+| ---------- | ---------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| `GET`      | `/`                          | Main page route.  Renders home `index` view.                 |                                                          |
+| `GET`      | `/login`                     | Renders `login` form view.                                   |                                                          |
+| `POST`     | `/login`                     | Sends Login form data to the server.                         | { email, password }                                      |
+| `GET`      | `/signup`                    | Renders `signup` form view.                                  |                                                          |
+| `POST`     | `/signup`                    | Sends Sign Up info to the server and creates user in the DB. | {  email, password  }                                    |
+| `GET`      | `/private/edit-profile`      | Private route. Renders `edit-profile` form view.             |                                                          |
+| `PUT`      | `/private/edit-profile`      | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
+| `GET`      | `/private/favorites`         | Private route. Render the `favorites` view.                  |                                                          |
+| `DELETE`   | `/private/favorites/:soapId` | Private route. Deletes the existing favorite from the current user. |                                                          |
+| `GET`      | `/soaps`                     | Renders `soaps-list` view.                                   |                                                          |
+| `GET`      | `/soaps/details/:id`         | Renders `soaps-details` view for the particular soap.        |                                                          |
+|            |                              |                                                              |                                                          |
 
-  ```
-  git add .
-  git commit -m "done"
-  git push origin master
-  ```
 
-- Create Pull Request so your TAs can check up your work.
 
-<br>
 
-## Instructions
 
-_In this lab, you literally have to recreate materials your instructors went through on the class. The point is not to blindly copy-paste them, but the opposite of that: to go once again, step by step through the process of registering users and authenticating them in the web app. Try to target all the weak spots, everything you missed to grasp during the lecture time, so you can ask your instructors and assistants to push you through the learning process._
+## Models
 
-<br>
 
-### Iteration 0 | Initialize the project
 
-After forking and cloning the project, you will have to install all the dependencies:
+User model
 
-```sh
-$ cd lab-express-basic-auth
-$ npm install
+```javascript
+{
+  username: String,
+  email: String,
+  password: String,
+  favorites: [FavoriteId]
+}
+
 ```
 
-Now you are ready to start 🚀
 
-<br>
 
-## Iteration 1 | Sign Up
+Soap model
 
-We have to create the _signup_ feature - the goal is to enable our users to register in our application. The users have to provide the following information:
+```javascript
+{
+  name: String,
+  description: String,
+  durability: String,
+  weight: Number,
+  price: Number
+}
 
-- **username**: must be unique in our application, and will identify each user
-- **password**: must be encrypted (you can use the `bcryptjs` npm package).
+```
 
-To complete this first iteration, you have to create the model as well as corresponding routes, and the views.
 
-<br>
 
-## Iteration 2 | Login
+## Backlog
 
-Once the user has signed up, he/she should be able to authenticate themselves. This means the user should be able to login to the application. Your assignment in this iteration is to create corresponding routes as well as the views to let them log in to the application.
+https://miro.com/app/board/o9J_liYQqSQ=/
 
-As you know, it is not enough just to allow users to login. Users should be able to maintain their "presence" in the application (stay logged in when going from a page to a page, after the refresh), and for that, there should be the user(s) in the session. You have learned that you can use the `express-session` and `connect-mongo` npm packages to create a session.
 
-<br>
 
-## Iteration 3 | Protected Routes
+## Links
 
-At this point, you have implemented the basic authentication in this application. Your next assignment is to create the authentication middleware and protect some routes. Refresher: users can't visit these routes unless they are authenticated (logged in and exist in the session).
 
-Let's create two different routes protected by authentication:
 
-- `/main` - Add a funny picture of a cat and a link back to the home page
-- `/private` - Add your favorite `gif` and an `<h1>` denoting the page as private.
+### Git
 
-Create the views and the custom authentication middleware function. Once created, use the middleware and protect the routes to prevent access to users who are not being authenticated.
+ Repository - https://github.com/PauloFerreira753/Nada.git
 
-<br><br>
 
-## Bonus | The validation
 
-<br>
+### Slides
 
-### Validation during the signup process
+The url to your presentation slides
 
-You should handle validation errors when a user signs up:
+[Slides Link](https://docs.google.com/presentation/d/1P5FIi0vHZBUcgUtmt1M4_lLCO5dwdJ4UOgtJa4ehGfk/edit?usp=sharing)
 
-- The fields can't be empty.
-- The username can't be repeated.
+### Contributors
+Paulo Ferreira - [`<PauloFerreira753>`](https://github.com/person1-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person1-username)
 
-<br>
-
-### Bonus | Validation during the login process
-
-You should check if all the fields are correctly filled before authenticating the user.
-
-<br>
-
-### Frontend validation
-
-Let's add validations to our forms. Remember we have two different forms: sign up and log in.
-
-Remember, when a user signs up or logs in, both the username and password fields must be filled in.
-
-Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Data_form_validation) at MDN. See if you can find a _constraint_ that requires the user to fill a field before submission.
-
-<br>
-
-## Extra Resources
-
-- [HTML5 Form Validations](http://www.the-art-of-web.com/html/html5-form-validation/)
-
-<br><br>
-
-**Happy coding!** :heart:
+Ricardo Franco - [`<RicardoAFranco>`](https://github.com/person2-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person2-username)

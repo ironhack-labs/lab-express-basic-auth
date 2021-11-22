@@ -1,11 +1,190 @@
-<h1>{{title}}</h1>
+{{!-- <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <div id="container">
-  <a href="/signup">
-    <button>Sign up</button>
-  </a>
+  
+  <a href="/about"><button>About Us</button></a>
 
-  <a href="/login">
-    <button>Login</button>
-  </a>
-</div>
+  <a href="/products"><button>Products</button></a>
+
+  <a href="/signup"><button>Sign up</button></a>
+
+  <a href="/login"><button>Login</button></a>
+</div> --}}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<title>Nada+</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/flaticon.css"/>
+	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<nav class="main-navbar">
+			<div class="container d-flex">
+				<div class="logo">
+            <a href="/" class="title">Nada +</a>
+        </div>
+				<div style="flex: 1" class="pt-2 nav-logo-container">
+				</div>
+
+				<div class="mobile-nav-padding"></div>
+
+				<ul class="main-menu">
+          <li><a href="/about">About Us</a></li>
+					<li><a href="/products">Products</a></li>
+					<li><a href="/signup">Sign up</a></li>
+					<li><a href="/login">Log in</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+	<!-- Hero section -->
+	<section class="hero-section">
+		<div class="hero-slider owl-carousel">
+			<div class="hs-item set-bg" data-setbg="img/pic6.jpg">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<span>Sabão Natural</span>
+							<h2>Nada+</h2>
+							<p>Aqui podem encontrar produtos para o cuidado <br>
+								do corpo e cabelo, para lavar e nutrir, respeitando a sua saúde e Natureza.</p>
+							<a href="/products" class="site-btn sb-white">Ver mais</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hs-item set-bg" data-setbg="img/pic1.jpg">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<span>Sabão Natural</span>
+							<h2>Nada+</h2>
+							<p>Sabia que... <br>
+                                todos os produtos que aplicamos na nossa pele deviam ser comestíveis? </p>
+							<a href="/about" class="site-btn sb-white">Sobre nós</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- letest product section -->
+	<section class="top-letest-product-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>Novos produtos</h2>
+			</div>
+			<div class="product-slider owl-carousel">
+				<div class="product-item">
+					<div class="pi-pic">
+						<img src="./img/pic17.jpg" alt="">
+						<div class="pi-links">
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>6,5€</h6>
+						<p>Proteína de Seda</p>
+					</div>
+				</div>
+				<div class="product-item">
+					<div class="pi-pic">
+						<img src="./img/pic2.jpg" alt="">
+						<div class="pi-links">
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>7€</h6>
+						<p>Carvão ativado</p>
+					</div>
+				</div>
+				<div class="product-item">
+					<div class="pi-pic">
+						<img src="./img/pic3.jpg" alt="">
+						<div class="pi-links">
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>7€</h6>
+						<p>Leite de Côco</p>
+					</div>
+				</div>
+				<div class="product-item">
+						<div class="pi-pic">
+							<img src="./img/pic12.jpg" alt="">
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<h6>7€</h6>
+							<p>Argila/Vitamina E,B5 </p>
+						</div>
+					</div>
+				<div class="product-item">
+						<div class="pi-pic">
+							<img src="./img/pic31.jpg" alt="">
+							<div class="pi-links">
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<h6>4,5€</h6>
+							<p>Carvão ativado </p>
+						</div>
+					</div>
+			</div>
+		</div>
+	</section>
+	<!-- letest product section end -->
+
+	<!-- Footer section -->
+	<section class="footer-section">
+		<div class="social-links-warp">
+			<div class="container text-center">
+				<div class="social-links">
+					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer section end -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/main.js"></script>
+
+	</body>
+</html>

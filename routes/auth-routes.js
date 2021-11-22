@@ -3,8 +3,6 @@ const User = require("./../models/User.model");
 const bcrypt = require("bcryptjs");
 const zxcvbn = require("zxcvbn");
 
-const isLoggedIn = require("./../middleware/isLoggedIn");
-
 const saltRounds = 10;
 
 //* ROUTES
@@ -16,11 +14,12 @@ router.get("/signup", (req, res) => {
 
 // POST /signup
 router.post("/signup", (req, res) => {
-    const {username, password} = req.body;
+    const {username, email, password} = req.body;
     const usernameNotProvided = !username || username === "";
+    const emailNotProvided = !email || email === "";
     const passwordNotProvided = !password || password === "";
-    if (usernameNotProvided || passwordNotProvided) {
-        res.render("auth/signup-form", {errorMessage: "Provide username and password"});
+    if (usernameNotProvided || emailNotProvided || passwordNotProvided) {
+        res.render("auth/signup-form", {errorMessage: "Provide username, e-mail and password"});
         return;
     }
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -31,12 +30,15 @@ router.post("/signup", (req, res) => {
     }
     
     // check if the username is not taken
-    User.findOne({username})
+    User.findOne({ $or: [{username}, {email}] })
         .then((foundUser) => {
             if (foundUser) {
-                throw new Error("The username is taken");
+                if (foundUser.username === username) {
+                    throw new Error("This username is already in use");           
+                } else if (foundUser.email === email) {
+                    throw new Error("This email is already registered");
+                }
             }
-
             // generator salt string
             return bcrypt.genSalt(saltRounds);
         })
@@ -46,11 +48,11 @@ router.post("/signup", (req, res) => {
         })
         .then((hashedPassword) => {
             // create new user
-            return User.create({username: username, password: hashedPassword});
+            return User.create({username: username, email: email, password: hashedPassword});
         })
         .then((createdUser) => {
             // redirect to the "/" homepage after successflul signup
-            res.redirect("/");
+            res.redirect("/secret");
         })
         .catch((err) => {
             res.render("auth/signup-form", {errorMessage: err.message || "Error while trying to signup"});
@@ -92,7 +94,7 @@ router.post("/login", (req, res) => {
                 // This line triggers the creation of the session in the DB,
                 // and setting of the cookie with session id that will be sent with the response
                 req.session.user = user;
-                res.redirect("/");
+                res.redirect("/secret");
             }
         })
         .catch((err) => {
