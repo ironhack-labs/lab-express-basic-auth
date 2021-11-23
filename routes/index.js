@@ -22,26 +22,40 @@ router.post("/signup", async (req, res, next) => {
   
   // hashing password
   const saltRounds = 10
-  const salt = await bcryptjs.genSalt(saltRounds)
-  hashedPasswort = await bcryptjs.hash(password, salt)
+  try {
+    const salt = await bcryptjs.genSalt(saltRounds)
+    hashedPasswort = await bcryptjs.hash(password, salt)    
+  } catch (error) {
+    console.log(error);
+  }
 
   //create user with hashed password
-  await User.create({"username": username, "password": hashedPasswort})
-  res.render("login");
+  try {
+    await User.create({"username": username, "password": hashedPasswort})
+    res.render("login");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/signup");
+  }
 });
 
 router.post("/login", async (req, res, next) => {
   const {username, password} = req.body
 
   // verify password
-  const foundUser = await User.findOne({"username": username})
-  const verified = await bcryptjs.compare(password, foundUser.password)
-  
-  if (verified){
-    res.redirect("/private");
-  }
-  else {
-    res.render("login");
+  try {
+    const foundUser = await User.findOne({"username": username})
+    const verified = await bcryptjs.compare(password, foundUser.password)
+    
+    if (verified){
+      res.redirect("/private");
+    }
+    else {
+      res.render("login");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("/login");
   }
 });
 
