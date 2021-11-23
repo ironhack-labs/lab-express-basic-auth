@@ -29,8 +29,8 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // authRouter needs to be added so paste the following lines:
-const authRouter = require('./routes/auth.routes'); // <== has to be added
-app.use('/', authRouter); // <== has to be added
+const authRoutes = require('./routes/auth.routes'); // <== has to be added
+app.use('/', authRoutes); // <== has to be added
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
