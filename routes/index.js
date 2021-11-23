@@ -12,6 +12,13 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
+router.post("/login", (req, res, next) => {
+  res.render("login");
+});
+router.post("/signup", (req, res, next) => {
+  res.render("signup");
+});
+
 
 
 module.exports = router;
