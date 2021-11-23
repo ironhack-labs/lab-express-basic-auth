@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Model = require("../models/User.model")
+const User = require("../models/User.model")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -12,11 +12,14 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-router.post("/login", (req, res, next) => {
-  res.redirect("private");
-});
-router.post("/signup", (req, res, next) => {
+
+router.post("/signup", async (req, res, next) => {
+  const {username, password} = req.body
+  await User.create({"username": username, "password": password})
   res.render("login");
+});
+router.post("/login", async (req, res, next) => {
+  res.redirect("private");
 });
 
 
