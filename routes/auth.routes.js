@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
   if (!user) {
     return res.redirect("/login?err=The user wasn't found");
   }
-  const verify = await bcryptjs.compare(password, user.passwordHash);
+  const verify = await bcryptjs.compareSync(password, user.passwordHash);
   if (verify) {
     return res.redirect("/userProfile")
   }
