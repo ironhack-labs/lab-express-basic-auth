@@ -13,10 +13,10 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  res.render("login");
+  res.redirect("private");
 });
 router.post("/signup", (req, res, next) => {
-  res.render("signup");
+  res.render("login");
 });
 
 
