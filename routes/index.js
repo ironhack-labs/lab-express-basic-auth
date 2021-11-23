@@ -12,6 +12,9 @@ router.get("/login", (req, res, next) => {
 router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
+router.get("/private", (req, res, next) => {
+  res.render("private");
+});
 
 
 router.post("/signup", async (req, res, next) => {
@@ -26,8 +29,20 @@ router.post("/signup", async (req, res, next) => {
   await User.create({"username": username, "password": hashedPasswort})
   res.render("login");
 });
+
 router.post("/login", async (req, res, next) => {
-  res.redirect("private");
+  const {username, password} = req.body
+
+  // verify password
+  const foundUser = await User.findOne({"username": username})
+  const verified = await bcryptjs.compare(password, foundUser.password)
+  
+  if (verified){
+    res.redirect("/private");
+  }
+  else {
+    res.render("login");
+  }
 });
 
 
