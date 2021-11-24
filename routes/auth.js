@@ -11,4 +11,7 @@ const authController = require("./../controllers/authController")
 
 router.get("/signup", authController.viewRegister)
 
+// Enviar datos a la BD del formulario.
+router.post("/signup", authController.register)
+
 module.exports = router 
