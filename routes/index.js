@@ -1,8 +1,10 @@
 const router = require("express").Router();
-
+const authController = require("./../controllers/authController");
 /* GET home page */
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+//Mostrar formulario
+router.get("/", authController.viewRegister);
+
+//Enviar datos del form a la DB
+router.post("/", authController.register);
 
 module.exports = router;
