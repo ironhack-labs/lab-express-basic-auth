@@ -1,14 +1,25 @@
-const { Schema, model } = require("mongoose");
+// ./models/User.js
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema({
-  username: {
-    type: String,
-    
-  },
-  password: String
-});
+// 1. IMPORTACIONES
+const mongoose = require("mongoose")
 
-const User = model("User", userSchema);
+// 2. SCHEMA
 
-module.exports = User;
+const userSchema = mongoose.Schema({
+	username: String,
+	email: {
+		type: String,
+		required: [true, "Email es requerido."], // QUE NO ESTÉ VACÍO
+		match: [/^\S+@\S+\.\S+$/, "Por favor, ingresa un email válido."], // REGEX DEL EMAIL
+		unique: true, // EMAIL ÚNICO EN LA BASE DE DATOS
+		lowercase: true, // MINÚSCULAS
+		trim: true // SIN ESPACIOS VACÍOS
+	},
+	passwordEncriptado: String
+})
+
+// 3. MODELO
+const User = mongoose.model("User", userSchema)
+
+// 4. EXPORTACIÓN
+module.exports = User 
