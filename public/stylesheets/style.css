@@ -1,9 +1,48 @@
 body {
   background-color: pink;
-  padding: 50px;
+  padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: darkorchid;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: darkmagenta}
+
+.button:active {
+  background-color: darkviolet;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.error {
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 40px;
+  text-shadow: 2px 2px 5px violet;
 }

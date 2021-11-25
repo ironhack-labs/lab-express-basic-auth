@@ -3,12 +3,12 @@
 <div class="form">
   <form class="signup-form" action="/auth/signup" method="POST">
     <label for="username">Username: </label>
-    <input type="text" name="username" placeholder="Username" />
+    <input type="text" name="username" placeholder="Username" /><br>
     <label for="email">Email: </label>
-    <input type="text" name="email" placeholder="Email@email.com" />
+    <input type="text" name="email" placeholder="Email@email.com" /><br>
     <label for="password">Password: </label>
-    <input type="password" name="password" placeholder="********" />
-    <button type="submit">Create account</button>
+    <input type="password" name="password" placeholder="********" /><br>
+    <button class = "button" type="submit">Create account</button>
   </form>
 
   {{#if errorMessage}}
