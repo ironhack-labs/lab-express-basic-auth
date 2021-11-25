@@ -1,0 +1,16 @@
+<h1>Welcome to register</h1>
+
+<form action="/auth/signup" method="POST">
+  <label>Name:</label>
+  <input type="text" name="username" placeholder="Your name here"><br>
+  <br>
+  <label>Password:</label>
+  <input type="password" name="password" placeholder="*****">
+  <br><br>
+
+  <button type="submit">Create Account</button>
+
+  {{#if errorMessage}}
+     <p class="ERROR"> {{errorMessage}} </p>
+   {{/if}}
+</form>
