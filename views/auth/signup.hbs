@@ -1,0 +1,24 @@
+
+
+<div class="container_info">
+<div id="form">
+  <h2>Signup</h2>
+
+  <form action="/auth/signup" method="POST">
+    <label>Tu nombre de usuario</label> <br>
+    <input type="text" name="username" placeholder="Usuario" />
+    
+    <br>
+    
+    <label>Password</label> <br>
+	<input type="password" name="password" placeholder="********" />
+<br>
+    <button type="submit" class="btn btn-warning">Crear Usuario</button>
+  </form>
+
+	{{#if errorMessage}}
+		<p class="error">{{errorMessage}}</p>
+	{{/if}}
+
+</div>
+</div>

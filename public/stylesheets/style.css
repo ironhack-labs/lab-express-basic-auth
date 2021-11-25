@@ -1,8 +1,95 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
+  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1{
+  Color:white;
+  font-size: 3rem;
+  font-weight: bolder;
+}
+h2{
+  margin-top:10px;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+p{
+  color: white;
+  font-size:1.5rem;
+}
+
+.btn-primary{
+  font-size:2rem;
+  border-radius: 10px;
+}
+
+.btn-warning{
+  font-size:1.5rem;
+  margin-top:30px;
+}
+
+.container_general{
+  width:100%;
+  height:100vh;
+ 
+  background-image: url(https://i.stack.imgur.com/zIb0C.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.containerinfo{
+  text-align: center;
+  line-height: 6rem;
+  width:600px;
+  height:600px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  
+}
+
+div#form{
+  width:400px;
+  height:400px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  background-color: aliceblue;
+  border-radius: 30px;
+}
+
+form{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  
+}
+
+label{
+  margin:20px;
+  font-size: 1.3rem;
+}
+
+div.container_info{
+  width:100%;
+  height:100vh;
+
+  background-image: url(/images/Papers.co-va92-wallpaper-triangle-fall-orange-pattern-android-large.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
