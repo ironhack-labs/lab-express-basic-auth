@@ -1,0 +1,29 @@
+<form action="/auth/signup" method="POST">
+  <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<div class="group">
+
+					<label style="color: white;" for="user" class="label">Username or Email</label>
+					<input id="user" type="text" class="input" name="username">
+				</div>
+				<div class="group">
+					<label style="color: white;" for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input"  name="password" placeholder="********" data-type="password">
+				</div>
+				<div class="group">
+                    <button type="submit" class="button" value="Sign In">SIGN UP</button>
+				</div>
+                    {{#if errorMessage}}
+                        <p class="error">{{errorMessage}}</p>
+                    {{/if}}
+				<div class="hr"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
