@@ -1,0 +1,33 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<!--Pulling Awesome Font -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+      <form action="/auth/signup" method="POST">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>Welcome back.</h4>
+            <input type="text" id="userName" name="username" class="form-control input-sm chat-input" placeholder="username" />
+            </br>
+            <input id="userPassword" name="password" type="password" class="form-control input-sm chat-input" placeholder="********" />
+            </br>
+            <div class="wrapper">
+            <span class="group-btn">     
+             {{!--    <a href="#" class="btn btn-primary btn-md"> --}}
+                      <button href="#" class="btn btn-primary btn-md" type="submit">Crear cuenta</button><i class="fa fa-sign-in"></i>
+                      {{!-- </a> --}}
+            </span>
+            </div>
+            </div>
+        
+        </div>
+    </div>
+    </form>
+</div>
