@@ -47,7 +47,7 @@ exports.register = async (req, res) => {
         const newUser = await User.create({
             username,
             email,
-            passwordEncriptado
+            password: passwordEncriptado
         })
 
         console.log(newUser)
@@ -61,4 +61,70 @@ exports.register = async (req, res) => {
         })
     }
 
+}
+
+exports.viewLogin = async (req, res) => {
+    res.render("auth/login")
+}
+
+exports.login = async (req, res) => {
+
+    try {
+
+        // 1. Obtención de datos del formulario
+        const email = req.body.email
+        const password = req.body.password
+        const foundUser = await User.findOne ({ email })
+
+        // 2. Validación de usuario encontrado en BD.
+
+        if(!foundUser) {
+            res.render("auth/login", {
+                errorMessage: "Email or password doesn't match"
+            })
+
+            return 
+
+        }
+
+        // 3. Validación de contraseña con la BD. 
+
+        const verifiedPass = await bcryptsjs.compareSync(password, foundUser.password)
+
+        if(!verifiedPass) {
+            res.render("auth/login", {
+                errorMessage: "Email or password wrong. Try again"
+            })
+
+            return
+
+        }
+
+        // 4. Generar la sesión. Enviar una cookie al cliente.
+
+        // a. Establecer persistencia de identidad.
+
+        req.session.currentUser = {
+            _id: foundUser._id,
+            username: foundUser.username,
+            email: foundUser.email
+        }
+
+        // Redireccionar al perfil.
+        res.redirect("/users/profile")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.logout = async (req, res) => {
+    req.session.destroy((error) => {
+        // Borrar la cookie de la BD.
+        if(error) {
+            console.log(error)
+            return
+        }
+        // Redirecciona a home.
+        res.redirect("/")
+    })
 }
