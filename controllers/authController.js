@@ -52,7 +52,7 @@ exports.register = async (req, res) => {
 
         console.log(newUser)
 
-        res.redirect("/")
+        res.redirect("/auth/login")
 
     } catch (error) {
         console.log(error)

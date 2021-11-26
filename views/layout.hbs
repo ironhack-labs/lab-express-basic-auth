@@ -11,26 +11,26 @@
   <body>
 
     <nav>
-      <ul>
+      <ul class="navbar">
         <li>
-          <a href="/">Home</a>
+          <a class="button" href="/">Home</a>
         </li>
         {{#if currentUser}}
           <li>
-            <a href="/users/profile">My profile</a>
+            <a class="button" href="/users/profile">My profile</a>
           </li>
           <li>
             <form action="/auth/logout" method="POST">
-              <button class="button">Log out</button>
+              <button class="logout">Log out</button>
             </form>
           </li>
         {{else}}
-          <li> <a href="/auth/signup">Sign up</a></li>
-          <li> <a href="/auth/login">Login</a></li>
+          <li> <a class="button" href="/auth/signup">Sign up</a></li>
+          <li> <a class="button" href="/auth/login">Log in</a></li>
         {{/if}}
       </ul>
     </nav>
-    
+
     <p class="welcome">Hi
       {{currentUser.username}}, Welcome to Tsukino APP Version 1.0</p>
     {{{body}}}

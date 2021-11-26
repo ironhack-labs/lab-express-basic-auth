@@ -1,7 +1,19 @@
-body {
+html {
   background-color: pink;
-  padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 20px 30px
+}
+
+.navbar {
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
 }
 
 .form {
@@ -13,6 +25,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .button {
@@ -38,6 +54,28 @@ body {
   transform: translateY(4px);
 }
 
+.logout {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: darkorchid;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.logout:hover {background-color: darkmagenta}
+
+.logout:active {
+  background-color: darkviolet;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .error {
   display: flex;
   text-align: center;
@@ -45,4 +83,18 @@ body {
   align-self: center;
   margin-top: 40px;
   text-shadow: 2px 2px 5px violet;
+}
+
+h1 {
+  color: darkmagenta;
+}
+
+.welcome {
+  text-align: center;
+  margin: 30px;
+  font-weight: bold;
+}
+
+input {
+  margin-top: 10px;
 }
