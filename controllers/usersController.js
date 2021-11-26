@@ -1,7 +1,7 @@
 
 // Funcion para mi register (Se exporta a su ruta respectiva)
-exports.register = async (req,res) => {
+exports.profile = async (req,res) => {
 
-	res.send("Estoy en la página de Register")
+	res.render("users/profile")
 
 }

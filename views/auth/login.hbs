@@ -1,20 +1,18 @@
 
 
+
 <h1 style="    text-align: center;
     font-family: emoji;
     font-size: xxx-large;
     margin-top: 40px;
     background-color: chocolate;">
-    Sign Up
+    LOG IN
 </h1>
 
+		
 
 <div style="background-color: antiquewhite;">
-  <form style="text-align: center;" action="/auth/signup" method="POST">
-    <div style="margin: 20%;" class="mb-3">
-      <label for="exampleInputName" class="form-label">Username</label>
-      <input type="text" name="username" placeholder="ironhacker" />
-    </div>
+  <form style="text-align: center;" action="/auth/login" method="POST">
     <div style="margin-top: 5%;" class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
       <input type="email" name="email" placeholder="rockstar@ironhack.com" />
@@ -24,7 +22,7 @@
       <label for="exampleInputPassword1" class="form-label">Password</label>
       <input type="password" name="password" placeholder="********" />
     </div>
-    <button style="margin: 12%;" type="submit" class="btn btn-primary">Submit</button>
+    <button style="margin: 12%;" type="submit" class="btn btn-primary">Iniciar Sesión</button>
 
     {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
@@ -32,3 +30,4 @@
 
   </form>
 </div>
+

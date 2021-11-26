@@ -7,3 +7,6 @@ exports.home = (req, res) => {
 	res.render("./../views/index")
 
 }
+
+
+// REVISAR SI ES SOLAMENTE INDEX EN RENDER

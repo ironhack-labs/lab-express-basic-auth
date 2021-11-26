@@ -83,8 +83,8 @@ exports.register = async (req, res) => {
 
 		console.log(newUser)
 		
-		// 3. Una vez creado el usuario me envia a incio
-		res.redirect("/")
+		// 3. Una vez creado el usuario me envia a login
+		res.redirect("/auth/login")
 
 	} catch (error) {
 
@@ -100,3 +100,92 @@ exports.register = async (req, res) => {
 }
 
 
+
+
+
+exports.viewLogin = async (req, res) => {
+
+	res.render("auth/login")
+}
+
+
+
+exports.login = async (req, res) => {
+
+
+	try {
+
+		// 1. Se obtienen los datos del formulario de iniciar sesion (Por parte de mi usuario)
+		const email = req.body.email
+		const password = req.body.password
+
+
+		// 2. Se valida que el email enviado por usuario coincida con el de la base de datos
+		const foundUser = await User.findOne({ email })
+
+
+		// Si correo no coincide con la base de datos, retorname este error.
+		if(!foundUser){
+			res.render("auth/login", {
+				errorMessage: "Email o contraseña incorrecta, intenta de nuevo"
+			})
+
+			// Para que no se quede colgado, y me de una respuesta
+			return
+		}
+
+
+		// 3. Validacion de contraseña (Ya que previamente se valido que correo existiera en DB)(Compara contraseña enviada con aquella que se encuentra en DB)
+
+		// Aqui se verifica que la contraseña coincida con aquella que ingresa el usuario y se guarda en una variable
+		const verifiedPass = await bcryptjs.compareSync(password, foundUser.passwordEncriptado) 
+
+		// Igual que en el correo, si la contraseña no coincide, retorname este error en la pagina
+		if(!verifiedPass){
+			res.render("auth/login", {
+				errorMessage: "Email o contraseña incorrecta, intenta de nuevo"
+			})
+
+			return
+		}
+
+		// 4. Generar la sesion (Ingreso)
+		
+		// Para que el usuario persista al moverse dentro de la plataforma.
+		// CurrentUser: identifica a mi usuario logeado dentro de la plataforma en DB
+		req.session.currentUser = {
+			// Esta info se almacenara en mi DB una vez que el usuario este logeado.
+			_id: foundUser._id, 
+			username: foundUser.username,
+			email: foundUser.email,
+			mensaje: "Se logroooo!"
+		}
+
+		// REVSIAR SI HAY CONTRADICCION CON CREATE USER
+		// 5. Una vez ya logeado, redireccion a mi user a su profile
+		res.redirect("/users/profile")
+
+
+	} catch (error) {
+		console.log("error")
+	}
+}
+
+
+
+exports.logout = async (req, res) => {
+
+	// La session se termina al igual que los cookies
+	req.session.destroy((error) => {
+
+		// Se checa si hubo algun error al borrar la cookie 
+		if(!error){
+			console.log(error)
+			return
+		}
+
+		// Redireccion al usuario una vez terminada la session al home
+		res.redirect("/")
+
+	})
+}
