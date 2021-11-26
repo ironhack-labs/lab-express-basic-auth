@@ -30,7 +30,7 @@ exports.register = async (req, res) => {
                   passwordEncriptado
             })
             console.log(newUser);
-            res.redirect('/')
+            res.redirect('/auth/login')
 
       } catch (error) {
             console.log(error)
@@ -38,5 +38,54 @@ exports.register = async (req, res) => {
                   errorMessage: "Hubo un error con la validez de tu correo. Intenta nuevamente. No dejes espacios y usa mayúsculas."
             })
       }
+}
+
+exports.viewLogin = async (req, res) => {
+      res.render('auth/login')
+}
+
+exports.login = async (req, res) => {
+      try {
+            // Aqui vamos a traernos los datos que aparecen en el formulario del login.
+            const username = req.body.username
+            const password = req.body.password
+            //Validamos los datos del usuario encontrado en la base de datos.
+            const foundUser = await User.findOne({username})
+            if (!foundUser) {
+                  res.render('auth/login', {
+                      errorMessage: 'Email o contraseña sin coincidencia',
+                  });
+                  return
+            }
+            //Aqui comparamos la contraseña del formulario del login vs la contraseña de la base de datos.
+            const verifiedPass = await bcryptjs.compareSync(password, foundUser.passwordEncriptado,)
+
+            if (!verifiedPass) {
+                  res.render('auth/login', {
+                        errorMessage: "Email o contraseña erronea. Intenta nuevamente"
+                  });
+                  return
+            }
+            //Aqui generamos la persistencia de identidad.
+            req.session.currentUser = {
+                  _id: foundUser._id,
+                  username: foundUser.username,
+            }
+            //Redireccionamos al Home
+            res.redirect('/users/profile')
+      } catch (error) {
+            console.log(error);
+      }
+}
+
+exports.logout = async (req, res) => {
+      req.session.destroy((error) => {
+            // se evalua si hubo algun error al borrar la cookie
+            if (error) {
+                  console.log(error);
+                  return
+            }
+            res.redirect("/")
+      })
 }
 

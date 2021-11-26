@@ -6,14 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
-
+    <nav>
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			{{!-- res.locals.currentUser --}}
+			{{#if currentUser}}
+      <li>
+				<a href="/users/main">Main</a>
+			</li>
+      <li>
+				<a href="/users/private">Private</a>
+			</li>
+			
+			<li>
+				<a href="/users/profile">Mi perfil</a>
+			</li>
+			<li>
+				<form action="/auth/logout" method="POST">
+					<button>Logout</button>
+				</form>
+			</li>
+			<h2>Bienvenido {{currentUser.username}}!!</h2>
+			{{else}}
+			<li>
+				<a href="/auth/signup">Signup</a>
+			</li>
+			<li>
+				<a href="/auth/login">Login</a>
+			</li>
+			{{/if}}
+		</ul>
+	</nav>
+    
     {{{body}}}
 
-    <script src="/js/script.js"></script>
   </body>
 
 </html>

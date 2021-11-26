@@ -9,25 +9,26 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="container">
-      <form action="/auth/signup" method="POST">
+      <form action="/auth/login" method="POST">
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <div class="form-login">
-            <h4>Welcome</h4>
+            <h4>Welcome back.</h4>
             <input type="text" id="userName" name="username" class="form-control input-sm chat-input" placeholder="username" />
             </br>
             <input id="userPassword" name="password" type="password" class="form-control input-sm chat-input" placeholder="********" />
             </br>
             <div class="wrapper">
             <span class="group-btn">     
-             {{!--    <a href="#" class="btn btn-primary btn-md"> --}}
-                      <button href="#" class="btn btn-primary btn-md" type="submit">Create account</button><i class="fa fa-sign-in"></i>
-                      {{!-- </a> --}}
+                      <button href="#" class="btn btn-primary btn-md" type="submit">Sign in</button><i class="fa fa-sign-in"></i>
             </span>
             </div>
             </div>
         
         </div>
     </div>
+    {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+      {{/if}}
     </form>
 </div>
