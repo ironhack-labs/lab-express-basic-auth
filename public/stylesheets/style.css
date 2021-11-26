@@ -93,3 +93,27 @@ div.container_info{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+div.error{
+  width:400px;
+  height:auto;
+  position:absolute;
+  top:450px;
+}
+
+
+p.card-text{
+  color:black;
+  text-align: center;
+}
+
+ifram{
+  width:100%;
+}
+
+div.contenedor{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
