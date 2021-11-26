@@ -1,19 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+	<link rel="stylesheet" href="/stylesheets/index.css">
 
-  <body>
+	<title>Aplicación Autenticación</title>
 
-    {{{body}}}
 
+</head>
+<body>
+	
+	<nav>
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			{{!-- res.locals.currentUser --}}
+			{{#if currentUser}}
+			<p>Hola. Bienvenido a tu Lab: express basic-auth, {{currentUser.username}}</p>
+			<li>
+				<a href="/users/profile">Mi perfil</a>
+			</li>
+			<li>
+				<form action="/auth/logout" method="POST">
+					<button>Logout</button>
+				</form>
+			</li>
+			{{else}}
+			<li>
+				<a href="/auth/signup">Signup</a>
+			</li>
+			<li>
+				<a href="/auth/login">Login</a>
+			</li>
+			{{/if}}
+		</ul>
+	</nav>
+
+	{{{ body }}}
     <script src="/js/script.js"></script>
-  </body>
 
+</body>
 </html>

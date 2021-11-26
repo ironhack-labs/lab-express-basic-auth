@@ -1,0 +1,17 @@
+<h1>Iniciar sesión</h1>
+
+<form action="/auth/login" method="POST">
+
+	<label>Email</label>
+	<input type="email" name="mail" placeholder="hola@hola.com" />
+
+	<label>Password</label>
+	<input type="password" name="password" placeholder="******" />
+
+	<button type="submit">Iniciar sesión</button>
+
+	{{#if errorMessage}}
+	   <p> {{errorMessage}}</p>
+	{{/if}}
+
+</form>

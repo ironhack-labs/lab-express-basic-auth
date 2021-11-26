@@ -1,6 +1,11 @@
+//-------------------  IMPORTACIONES --------------------//
 const User = require("./../models/User.model")
 const bcryptjs = require("bcryptjs")
 
+
+
+//-----------------  ROUTE CONTROLLERS  ------------------//
+//1. CREAR USUARIO
 exports.viewRegister = (req, res) => {
     res.render("auth/signup")
 }
@@ -49,4 +54,59 @@ exports.register = async (req, res) => {
             errorMessage:  "Hubo un error con la validez de tu correo. Intenta nuevamente con uno diferente"
         })
     }
+}
+
+
+//2. INICIAR SESIÓN
+exports.viewLogin = async (req, res) => {
+    res.render("auth/login")
+}
+
+exports.login = async (req, res) => {
+    try {
+        //paso 1: obtención de datos en formulario
+        const mail = req.body.mail
+        const password = req.body.password
+
+        //paso2: verificación de existencia de usuario
+        const foundUser = await User.findOne({mail})
+        if(!foundUser) {
+            res.render("auth/login", {
+                errorMesage: "Email o contraseña sin coincidencias"
+            })
+            return
+        }
+        //paso 3: validar contraseña
+        const verifiedPass = await bcryptjs.compareSync(password, foundUser.passwordEncriptado)
+        if(!verifiedPass) {
+            res.render("auth/login", {
+                errorMessage: "Email o contraseña errónea. Intenta de nuevo"
+            })
+            return
+        }
+        //paso 4: generar la sesión con cookie
+        req.session.currentUser = {
+            _id: foundUser._id,
+            username: foundUser.username,
+            mail: foundUser.mail,
+            mensaje: "You are finally in!"
+        }
+
+        //paso 5: redireccionar a home
+        res.redirect ("/users/profile")
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
+//CERRAR SESIÓN
+exports.logout = async (req, res) =>  {
+    req.session.destroy((error) => {
+        if(error) {
+            console.log(error)
+            return
+        }
+        res.redirect("/")
+    })
 }
