@@ -21,9 +21,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        
+        {{#if currentUser}}
+        <a class="nav-link" aria-current="page" href="/onlyUsers/homeUser">Home</a>
+        <a class="nav-link" aria-current="page" href="/onlyUsers/userProfile">Profile</a>
+       <form action="/auth/logout" method="POST">
+					<button>Logout</button>
+				</form>
+        <h1>Hola {{currentUser.username}} !</h1>
+ 
+        
+
+        {{else}}
         <a class="nav-link" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/auth/signup">Create Account</a>
-       <a class="nav-link" href="/login">Login</a>
+        
+         <a class="nav-link" href="/auth/signup">Create Account</a>
+       <a class="nav-link" href="/auth/login">Login</a>
+
+        {{/if}}
+        
       </div>
     </div>
   </div>

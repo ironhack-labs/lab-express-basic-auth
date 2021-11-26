@@ -1,14 +1,14 @@
-<h1>Bienvenido al Registro</h1>
+<h1>Porfavor verifica tu identidad:</h1>
 
-<form action="/auth/signup" method="POST">
+<form action="/auth/login" method="POST">
   <label>Name:</label>
-  <input type="text" name="username" placeholder="Tu nombre aquí"><br>
+  <input type="text" name="username" placeholder="Your name here"><br>
   <br>
   <label>Password:</label>
   <input type="password" name="password" placeholder="*****">
   <br><br>
 
-  <button type="submit">Create Account</button>
+  <button type="submit">Iniciar sesión</button>
 
   {{#if errorMessage}}
      <p class="ERROR"> {{errorMessage}} </p>

@@ -4,7 +4,7 @@ const bcryptjs = require ("bcryptjs");
 exports.viewRegister = (req, res)=>{
   res.render("auth/signup")
 }
-
+//VALIDACION REGISTRO
 exports.register = async(req, res)=>{
     const username = req.body.username
     const password = req.body.password
@@ -40,9 +40,67 @@ exports.register = async(req, res)=>{
        } catch (error) {
           console.log(error)
           res.status(500).render("auth/signup",{
-              errorMessage: "Hubo un error con la validez de tu correo. Intenta nuevamente. No dejes espacios y usa minúsculas."
+              errorMessage: "Hubo un error con tu password. Intenta nuevamente. No dejes espacios y usa minúsculas."
           }) //estatus code 500, se lanza cuando la verificacion en el try falló
     
        }
 }
 
+exports.viewLogin = async (req, res) =>{
+    res.render("auth/login")
+}
+
+//VALIDACION DE LOGIN
+exports.login = async (req,res)=>{
+    try {
+        //1. obtención de datos del formulario
+      const username = req.body.username
+      const password = req.body.password
+        
+      //   console.log (email, password)
+     
+    //2. validación de usuario encontrado en BD
+    const foundUser = await User.findOne({ username }) //verificacion por email
+    console.log(foundUser)
+
+   if(!foundUser){
+       res.render("auth/login",{
+           errorMessage: "Usuario o contraseña sin coincidencias"
+       })
+       return
+   }
+
+    //3. Validando contraseña :3
+    const verifiedPass = await bcryptjs.compareSync(password, foundUser.passwordEncriptado)
+     
+    if(!verifiedPass){
+        res.render("auth/login",{
+           errorMessage: "Usuario o password incorrecto. Intenta nuevamente" 
+        })
+        return
+    }
+    console.log("verifiedPass:", verifiedPass)
+      
+    //4. (prox) Generación de la sesión por medio de cookie
+    //PERSISTENCIA DE IDENTIDAD: uso de archivo session.js
+   req.session.currentUser = {
+       _id: foundUser._id,
+       username: foundUser.username,
+       mensaje: "USUARIO LOGUEADO ABUEBO"
+   }
+    //5. Redireccionar al home del perfil del usuario
+    res.redirect("/onlyUsers/userProfile")
+} catch (error) {
+        console.log(error)
+}
+}
+
+exports.userLogout = async(req, res)=>{
+    req.session.destroy(err =>{
+        if(err){
+            console.log(err)
+            return next(err)
+        }
+        res.redirect("/")
+    })
+}
