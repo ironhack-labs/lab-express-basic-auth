@@ -1,11 +1,12 @@
-<form action="/auth/signup" method="POST">
+{{!-- <form action="/auth/signup" method="POST">
   <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
-		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+		<a href="/auth/login"><input href="/auth/login" id="tab-2" class="for-pwd"><label class="tab">LogIn</label></a>
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
+
 					<label style="color: white;" for="user" class="label">Username or Email</label>
 					<input id="user" type="text" class="input" name="username">
 				</div>
@@ -20,12 +21,28 @@
                         <p class="error">{{errorMessage}}</p>
                     {{/if}}
 				<div class="hr"></div>
-				<a href="/auth/login"><input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>LogIn</a>
-				<a href="/auth/login"><input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>Home</a>
-				</form>
 			</div>
 			</div>
 		</div>
 	</div>
 </div>
+</form> --}}
+
+<h1>Iniciar Sesion</h1>
+
+<form action="/auth/login" method="POST">
+
+<label>Username</label>
+<input type="text" name="username" placeholder="HolaMundo">
+
+<label>Password</label>
+<input type="password" name="password" placeholder="*****">
+
+<button type="submit">Inicar Sesion</button>
+
+	{{#if errorMessage}}
+		<p>{{errorMessage}}</p>
+	{{/if}}
+
+
 </form>

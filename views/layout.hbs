@@ -1,22 +1,104 @@
-<!DOCTYPE html>
 <html lang="en">
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script
+      src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    ></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <img class="logo" src="/images/ironcoin.PNG" height="40" />LOGO</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar1"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home<span
+                class="sr-only"
+              >(current)</span></a>
+          </li>
+          {{#if currentUser}}
+            <li class="nav-item">
+              <form action="/auth/logout" method="POST">
+                <button class="btn ml-2 btn-warning" href="/auth/logout">LOGOUT</button>
+              </form>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="/users/main"
+                data-toggle="dropdown"
+              >MI PERFIL</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/users/main">Main</a></li>
+                <li><a class="dropdown-item" href="/users/private">Private 👾
+                  </a></li>
+              </ul>
+            </li>
+          {{else}}
+            <li class="nav-item">
+              <a class="btn ml-2 btn-warning" href="/auth/signup">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn ml-2 btn-warning" href="/auth/login">LogIn</a>
+            </li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
   </body>
 
 </html>
+
+    {{!-- <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {{! res.locals.currentUser }}
+        {{#if currentUser}}
+          <p>Hola. Te doy la bienvenida a tu aplicación de 50k USD,
+            {{currentUser.username}}</p>
+          <li>
+            <a href="/users/main">Mi perfil</a>
+          </li>
+          <li>
+            <form action="/auth/logout" method="POST">
+              <button>Logout</button>
+            </form>
+          </li>
+        {{else}}
+          <li>
+            <a href="/auth/signup">Signup</a>
+          </li>
+          <li>
+            <a href="/auth/login">Login</a>
+          </li>
+        {{/if}}
+      </ul>
+    </nav> --}}
