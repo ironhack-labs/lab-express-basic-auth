@@ -15,9 +15,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">HOME</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
         <button
           class="navbar-toggler"
           type="button"
@@ -31,21 +30,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
            <ul class="navbar-nav">
-            <li class="nav-item">
+              <li class="nav-item">
               <a
                 class="nav-link active"
                 aria-current="page"
-                href="/auth/signup"
-              >Sing up</a>
+                href="/"
+              >HOME</a>
             </li>
-             <ul class="navbar-nav">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/auth/login"
-              >Log in</a>
-            </li>
+          {{#if currentUser}}
           <ul class="navbar-nav">
             <li class="nav-item">
               <a
@@ -63,6 +55,24 @@
               </form>
             </li>
           </ul>
+          {{else}}
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/auth/signup"
+              >Sing up</a>
+            </li>
+            
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/auth/login"
+              >Log in</a>
+            </li>
+             </ul>
+          {{/if}}
         </div>
       </div>
     </nav>

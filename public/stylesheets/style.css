@@ -1,8 +1,13 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
 }
-
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+.sign-up {
+  margin-top: 30px;
+}
+.login {
+  margin-top: 30px;
 }
