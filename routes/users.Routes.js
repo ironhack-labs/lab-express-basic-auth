@@ -12,6 +12,8 @@ console.log("El route Guard importado es:", routeGuard.usuarioLoggeado) //<--[Fu
 //Tan pronto el routeGuard.usuarioLoggeado encuentre un next pasa a 👇  la sigueinte funcion
 router.get("/main", routeGuard.usuarioLoggeado, usersController.main)
 
+router.get("/private", routeGuard.usuarioLoggeado, usersController.private)
+
 
 
 
