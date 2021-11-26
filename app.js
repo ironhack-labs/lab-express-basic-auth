@@ -1,22 +1,14 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
+
 require('dotenv/config');
 
-// ℹ️ Connects to the database
 require('./db');
 
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
 const express = require('express');
-
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
-
 const app = express();
-
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
+const hbs = require('hbs');
 require('./config')(app);
+
+const sessionManager = require("./config/session")
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -24,11 +16,27 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
+//MIDDLEWARES
+console.log(sessionManager)
+sessionManager(app)
+
+app.use(express.static("public"))
+
+
+//LAYOUT MIDDLEWARE
+app.use((req, res, next)=>{
+    res.locals.currentUser = req.session.currentUser
+    next()
+})
+
+
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
 app.use("/auth", require("./routes/auth"))
-app.use("/users", require("./routes/index"))
+app.use("/users", require("./routes/users"))
+
 
 
 

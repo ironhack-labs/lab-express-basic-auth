@@ -1,0 +1,21 @@
+<h1>Iniciar sesion</h1>
+
+<form action="/auth/login" method = "POST">
+<label>Name</label>
+	<input type="text" name="username" placeholder="ironhacker" />
+
+	<label>Password</label>
+	<input type="password" name="password" placeholder="******" />
+
+	<button type="submit">Iniciar sesión</button>
+
+	{{#if errorMessage}}
+		<p>{{errorMessage}}</p>
+	{{/if}}
+
+
+
+
+
+
+</form>

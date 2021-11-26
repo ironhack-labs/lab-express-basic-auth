@@ -53,7 +53,7 @@ if(!regex.test(password)){
 
         console.log(newUser)
 
-        res.redirect("/")
+        res.redirect("/auth/login")
     }catch (error){
 
 
@@ -67,6 +67,76 @@ if(!regex.test(password)){
     }
 
 
+}
 
+exports.viewLogin = async (req, res) => {
+
+    res.render("auth/login")
+
+
+}
+
+exports.login = async (req, res) => {
+
+    try{
+    // 1. OBTENCION DE DATOS DEL FORMULARIO
+    const username = req.body.username
+    const password = req.body.password
+
+    // 2. VALIDACION DE USUARIO ENCONTRADO EN BD
+    const foundUser = await User.findOne({username})
+
+    if(!foundUser){
+        res.render("auth/login",{
+            errorMessage: "Usuario o contrasena sin coincidencia"
+        })
+        return
+    }
+
+    // 3. VALIDACION DE CONTRASENA
+    //COMPARAR LA CONTRASENA DEL FORMULARIO
+    // (1) VS LA CONTRASE;A DE LA BASE DE DATOS
+
+    const verifiedPass = await bcryptjs.compareSync(password, foundUser.passwordEncriptado)
+
+    if(!verifiedPass){
+        res.render("auth/login", {
+            errorMessage: "Usuario o contrasena erronea. Intenta nuevamente."
+        })
+        return
+    }
+
+    // 4. GENERAR LA SESION
+    //PERSISTENCIA DE IDENTIDAD
+    req.session.currentUser = {
+        _id: foundUser._id,
+        username: foundUser.username,
+        mensaje: "LO LOGRAMOS"
+
+    }
+
+    //5. REDIRECCIONAR AL HOME
+    res.redirect("/users/profile")
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
+exports.logout = async (req, res)  => {
+
+	req.session.destroy((error) => {
+
+		// SE EVALUÁ SI HUBO UN ERROR AL BORRAR LA COOKIE
+		if(error){
+			console.log(error)
+			return
+		}
+
+		// REDIRECCIONAR HACIA LA PÁGINA DE HOME
+		res.redirect("/")
+
+	})
 
 }
