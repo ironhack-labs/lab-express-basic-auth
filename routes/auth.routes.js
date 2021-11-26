@@ -7,21 +7,22 @@ const bcryptjs = require('bcryptjs');
 //The user model is the blueprint that will be used when new users are created
 const User = require('../models/User.model');
 
+// require (import) middleware functions
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
 // GET route ==> to display the signup form to users
-router.get('/signup', async (req, res, next) => {
-  try {
-    // if there is an err in the url, it will passed to the view 'auth/signup' ans be shown
-    const { err } = req.query;
-    res.render('auth/signup', { err });
-  } catch(error) {
-      console.error(`Something wrong happened, please try again! ${error}`)
-    next(error)
-  }
+// isLoggedOut--> the user doesn't have a current session, and needs to Logged In first, take him/her to this /signup
+//                     .: ADDED :.
+router.get('/signup', isLoggedOut, async (req, res) => {
+  // if there is an err in the url, it will passed to the view 'auth/signup' ans be shown
+  const { err } = req.query;
+  res.render('auth/signup', { err });
 });
 
 // POST route ==> to process form data
-router.post('/signup', async (req, res) => {
+// isLoggedOut--> the user doesn't have a current session, and needs to Logged In first, take him/her to this /signup
+//                      .: ADDED :.
+router.post('/signup', isLoggedOut, async (req, res) => {
   try {
     const { username, email, password } = req.body;
     // console.log("The form data: ", req.body);
@@ -29,6 +30,17 @@ router.post('/signup', async (req, res) => {
     const hassMissingCredentials = !email || !password || !username;
     if (hassMissingCredentials ) {
       return res.redirect("/signup?err=Missing credentials");
+    }
+    // Iteration 2 
+    // make sure passwords are strong:
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+      res // 500 --> server has a problem
+        .status(500) // 400 --> the input is not correct
+        .render('auth/signup', { 
+          err: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' 
+        });
+      return;
     }
     //salt rounds is a number from 0 to 20 that defines the complexity of the salt
     const saltRounds = 10;
@@ -45,22 +57,25 @@ router.post('/signup', async (req, res) => {
     console.log('Newcreated user is: ', newUser);
     res.redirect('/userProfile');
   } catch(error) {
-    console.error(`Something wrong creating with the sign up! ${error}`)
-    return res.redirect("/signup?err=Something went wrong");
+    // Iteration 2 
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(500).render('auth/signup', { errorMessage: error.message });
+    } else if (error.code === 11000) {
+      res.status(500).render('auth/signup', {
+         err: 'Username and email need to be unique. Either username or email is already used.'
+      });
+    } else {
+      next(error);
+    }
   }
 });
 
-
+/////////// LOGIN ////////////
 // GET route ==> to display the login form to users
-router.get('/login', async (req, res) => {
-  try {
+router.get('/login', isLoggedOut, async (req, res) => {
     // if there is an err in the url, it will passed to the view 'auth/login' ans be shown
     const { err } = req.query;
     res.render('auth/login', { err });
-  } catch(error) {
-      console.error(`Something wrong happened, please try again! ${error}`)
-    next(error)
-  }
 });
 
 // POST route ==> to get the login information from the form
@@ -68,7 +83,7 @@ router.post('/login', async (req, res) => {
  try {
   const { email, password } = req.body;
   // console.log("The form data: ", req.body);
-  
+
   const hassMissingCredentials = !email || !password;
   if (hassMissingCredentials ) {
     return res.redirect("/login?err=Missing credentials");
@@ -81,6 +96,8 @@ router.post('/login', async (req, res) => {
   }
   const verify = await bcryptjs.compareSync(password, user.passwordHash);
   if (verify) {
+    //******* SAVE THE USER IN THE SESSION ********//
+    req.session.currentUser = user;
     return res.redirect("/userProfile")
   }
   return res.redirect("/login?err=Something went wrong");
@@ -90,8 +107,52 @@ router.post('/login', async (req, res) => {
  }
 });
 
-// GET route --> user profile, render user-profile.hbs
-router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+
+
+// GET - /userProfile --> when the user has already logged In
+// isLoggedIn--> the user has a current session, or has already logged In, so next(), take the user to the route requested--> GET /userProfile
+//                         .: ADDED :.
+router.get("/userProfile", isLoggedIn,  async ( req, res) => {
+  res.render("users/user-profile", { userInSession: req.session.currentUser });
+});
+
+// POST - logout --> the server is going to destroy or remove the session for the user (the cookie is removed)
+// isLoggedIn--> the user has a current session, or has already logged In, so next(), take the user to the route requested--> POST /logout
+//                         .: ADDED :.
+router.post("/logout",  isLoggedIn, async (req, res, next) => {
+  try {
+    // destroy the session from the server
+    req.session.destroy();
+    res.redirect("/");
+    // req.session.destroy(err => {
+    //   if (err) next(err);
+    //   res.redirect("/");
+    // });
+  } catch(error) {
+    console.error('Something wrong with the logout', error)
+    next(error)
+  }
+});
+
+// GET - only users authenticated (logged in and exist in the session) can visit this /main
+router.get("/main", isLoggedIn, async (req, res, next) => {
+  try {
+    res.render('auth/main');
+  } catch(error) {
+    console.error('Something wrong!, please try again!', error);
+    next(error);
+  }
+});
+
+// GET - only users authenticated (logged in and exist in the session) can visit this /main
+router.get("/private", isLoggedIn, async (req, res, next) => {
+  try {
+    res.render('auth/private');
+  } catch(error) {
+    console.error('Something wrong!, please try again!', error);
+    next(error);
+  }
+});
 
 
 module.exports = router;
