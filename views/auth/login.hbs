@@ -1,21 +1,30 @@
-<h1>Iniciar sesion</h1>
 
-<form action="/auth/login" method = "POST">
-<label>Name</label>
-	<input type="text" name="username" placeholder="ironhacker" />
 
-	<label>Password</label>
-	<input type="password" name="password" placeholder="******" />
 
-	<button type="submit">Iniciar sesión</button>
+<main class="form-signin">
+  <form action="/auth/login" method="POST">
+    <img class="mb-4" src="https://d500.epimg.net/cincodias/imagenes/2018/07/26/album/1532613518_136822_1532613970_noticia_normal.jpg" alt="" width="72" height="57">
+    <h1 id="please"class="h3 mb-3 fw-normal">Please Log in</h1>
 
-	{{#if errorMessage}}
-		<p>{{errorMessage}}</p>
+    <div class="form-floating">
+      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+    <p id="year"class="mt-5 mb-3 text-muted">© 2017–2021</p>
+  </form>
+
+  {{#if errorMessage}}
+		<p class="error">{{errorMessage}}</p>
 	{{/if}}
-
-
-
-
-
-
-</form>
+</main>

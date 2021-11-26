@@ -1,22 +1,4 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-
-  <body>
-
-    {{{body}}}
-
-    <script src="/js/script.js"></script>
-  </body>
-
-</html> --}}
 
 {{!-- ./views/layout.hbs --}}
 <!DOCTYPE html>
@@ -34,58 +16,38 @@
 </head>
 <body>
 	
-	<nav>
-		<ul>
-			<li>
-				<a href="/">Home</a>
-			</li>
-			{{!-- res.locals.currentUser --}}
-			{{#if currentUser}}
-			<p>Hola. ya estas loggeado, {{currentUser.username}}</p>
-			<li>
-				<a href="/users/profile">Mi perfil</a>
-			</li>
-			<li>
-				<form action="/auth/logout" method="POST">
-					<button>Logout</button>
-				</form>
-			</li>
-			{{else}}
-			<li>
-				<a href="/auth/signup">Signup</a>
-			</li>
-			<li>
-				<a href="/auth/login">Login</a>
-			</li>
-			{{/if}}
-		</ul>
-	</nav>
-{{!-- 
-<main class="form-signin">
-  <form>
-    <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Username</label>
+
+
+
+
+
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      
+        
+  {{#if currentUser}}
+  
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="/users/profile" class="nav-link px-2 text-white">Profile</a></li>
+       
+        </ul>
+         <form action="/auth/logout" method="POST"><button class="btn btn-outline-light me-2" >Logout</button></form>
+      
+        {{else}}
+        <div class="text-end">
+          
+          <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='/'">Home</button>
+          <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='/auth/login';">Login</button>
+         <button type="button" class="btn btn-warning" onclick="window.location.href='/auth/signup';">Sign-up</button>
+          {{/if}}
+        </div>
+      </div>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
-  </form>
-</main> --}}
-
-
+  </header>
 
 
 

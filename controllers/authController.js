@@ -60,7 +60,7 @@ if(!regex.test(password)){
         console.log(error)
 
         res.status(500).render("auth/signup",{
-            errorMessage: "Hubo un error con la validez de tu correo. Intenta nuevamente. No dejes espacios y usa minusculas"
+            errorMessage: "Hubo un error con la validez de tu nombre de usuario. Intenta nuevamente. No dejes espacios y usa minusculas"
         })
 
 

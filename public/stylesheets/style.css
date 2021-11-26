@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  padding: 0px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: darkslategrey;
 }
@@ -14,4 +15,17 @@ a {
   margin-left: 500px;;
 
 
+}
+
+.mb-4{
+  margin-left: 130px;
+  margin-top: 50px;
+}
+
+#please{
+  padding-left: 90px;
+
+}
+#year{
+  padding-left: 120px;
 }
