@@ -1,0 +1,28 @@
+<div id="form">
+  <h2>Login</h2>
+  <form action="/auth/login" method="POST">
+    <div class="mb-3 col-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input
+        class="form-control"
+        type="text"
+        name="username"
+        placeholder="ironhacker"
+      />
+    </div>
+    <div class="mb-3 col-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        name="password"
+        placeholder="********"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</div>

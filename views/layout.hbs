@@ -15,6 +15,57 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">HOME</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+           <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/auth/signup"
+              >Sing up</a>
+            </li>
+             <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/auth/login"
+              >Log in</a>
+            </li>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/users/main"
+              >Main Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/private">Private</a>
+            </li>
+            <li class="nav-item">
+              <form action="/auth/logout" method="POST">
+                <button type="submit" class="btn btn-light">Log out</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     {{{body}}}
 
