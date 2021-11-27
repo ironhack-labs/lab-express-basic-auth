@@ -1,3 +1,10 @@
 <h1>This is Private!</h1>
 
+{{#if foundUser}}
+    <p>Username: {{foundUser.username}}</p>
+    <p>Passwort hash: {{foundUser.password}}</p>
+{{else}}
+    <p>No Data available</p>
+{{/if}}
+
 <a href="/private">Reload</a>

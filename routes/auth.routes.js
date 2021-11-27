@@ -12,7 +12,6 @@ router.get("/login", (req, res, next) => {
     res.render("private");
   });
   
-  
   router.post("/signup", async (req, res, next) => {
     const {username, password} = req.body
     
@@ -44,7 +43,7 @@ router.get("/login", (req, res, next) => {
       const verified = await bcryptjs.compare(password, foundUser.password)
       
       if (verified){
-        res.redirect("/private");
+        res.render("private", {foundUser});
       }
       else {
         res.render("login");
