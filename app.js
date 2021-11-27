@@ -17,7 +17,8 @@ const app = express();
 //     |
 //     |-----------------------------|
 // use session here:                 V
-require("./config/session.config")(app);
+//require("./config/session.config")(app);
+require("./config/session.config").sessionInit(app);
 //                                  ^
 //                                  |
 // the "app" that gets passed here is the
