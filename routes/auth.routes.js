@@ -9,7 +9,8 @@ router.get("/login", (req, res, next) => {
     res.render("signup");
   });
   router.get("/private", (req, res, next) => {
-    res.render("private");
+    const userData = req.session.currentUser
+    res.render("private", {userData});
   });
   
   router.post("/signup", async (req, res, next) => {
@@ -45,7 +46,9 @@ router.get("/login", (req, res, next) => {
       const verified = await bcryptjs.compare(password, foundUser.password)
       
       if (verified){
-        res.render("private", {foundUser});
+        // res.render("private", {foundUser});
+        req.session.currentUser = foundUser
+        res.redirect("/private")
       }
       else {
         res.render("login");

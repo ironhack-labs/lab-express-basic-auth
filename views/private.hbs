@@ -1,8 +1,8 @@
 <h1>This is Private!</h1>
 
-{{#if foundUser}}
-    <p>Username: {{foundUser.username}}</p>
-    <p>Passwort hash: {{foundUser.password}}</p>
+{{#if userData}}
+    <p>Username: {{userData.username}}</p>
+    <p>Passwort hash: {{userData.password}}</p>
 {{else}}
     <p>No User Data available</p>
 {{/if}}
