@@ -3,6 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 a {
   color: #00B7FF;
   font-size: xx-large;

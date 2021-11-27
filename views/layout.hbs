@@ -10,9 +10,14 @@
   </head>
 
   <body>
-    <a href="/">Home</a>
-    <a href="/login">login</a>
-    <a href="/signup">Sign Up</a>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/login">login</a>
+      <a href="/signup">Sign Up</a>
+      <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
     <hr>
 
     {{{body}}}
