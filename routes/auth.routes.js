@@ -47,7 +47,8 @@ router.get("/login", (req, res, next) => {
       
       if (verified){
         // res.render("private", {foundUser});
-        req.session.currentUser = foundUser
+        req.session.currentUser = foundUser.username
+        console.log(req.session.currentUser)
         res.redirect("/private")
       }
       else {
