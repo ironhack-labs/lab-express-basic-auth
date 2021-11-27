@@ -1,6 +1,5 @@
 // require session
 const session = require('express-session');
-
 // since we are going to USE this middleware in the app.js,
 // let's export it and have it receive a parameter
 module.exports = app => {
@@ -16,7 +15,7 @@ module.exports = app => {
     session({
       secret: process.env.SESS_SECRET,
       resave: true,
-      saveUninitialized: false,
+      saveUninitialized: true,
       cookie: {
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV === 'production',

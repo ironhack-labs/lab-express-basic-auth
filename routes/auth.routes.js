@@ -36,6 +36,8 @@ router.get("/login", (req, res, next) => {
   
   router.post("/login", async (req, res, next) => {
     const {username, password} = req.body
+
+    console.log("Session--->", req.session);
   
     // verify password
     try {
