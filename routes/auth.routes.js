@@ -24,7 +24,7 @@ router
         const salt = bcrypt.genSaltSync(saltRound);
         // we encrypt the password, adding that salt
         const hashedPwd = bcrypt.hashSync(password, salt);
-
+        ////////
         User.create({ username, password: hashedPwd })
           .then(user =>
             res.render('index', { message: 'User created!!', user: user })
