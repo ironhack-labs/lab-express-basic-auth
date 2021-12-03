@@ -30,6 +30,7 @@ app.locals.title = `${capitalized(projectName)} created by Guillem using IronLau
 
 // 👇 Start handling routes here
 
+// app.use("/", index);
 app.use("/", require("./routes/index.js"));
 app.use("/", require("./routes/auth.js"));
 
