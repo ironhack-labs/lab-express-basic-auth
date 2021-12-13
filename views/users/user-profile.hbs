@@ -1,0 +1,19 @@
+<p>This is your profile page my friend!</p>
+
+{{#if user}}
+
+  <h2>Hola, {{ userInSession.username }}!</h2>
+
+  <p>Bienvenido a tu perfil</p>
+
+  <button>
+
+    {{!-- <a href="/userProfile">Reload the page</a> --}}
+
+  </button>
+
+{{else}}
+
+  <p>Aún no has ingresado.</p>
+
+{{/if}}

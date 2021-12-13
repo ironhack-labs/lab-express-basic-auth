@@ -47,7 +47,7 @@ router.post('/signup', async(req,res)=>{
 })
 
 
-//GET PROFILE URL
+////////////////////GET PROFILE URL WHEN SIGN UP///////////////////
 router.get('/profile/:id',(req,res)=>{
     User.findById(req.params.id)
     .then(user=>{
@@ -56,6 +56,40 @@ router.get('/profile/:id',(req,res)=>{
     .catch(error=>{
         console.log("ERROR EN GET PROFILE",error)
         res.render("ERROR")
+    })
+})
+
+//////////LOGIN//////////
+router.get('/userProfile',(req,res)=>{
+    res.render('users/user-profile')
+})
+
+router.get('/login',(req,res,next)=>{
+    res.render('auth/login',{userInSession: req.session.currentUser})
+})
+
+router.post('/login',(req,res,next)=>{
+    const{email,password} = req.body;
+    if(email === '' || password === ''){
+        res.render('auth/login',{errorMessage:'Por favor, ingresa tu email y password para acceder'})
+        return;
+    }
+
+    User.findOne({email})
+    .then(user=>{
+        if(!user){
+            res.render('auth/login',{errorMessage: 'El email no esta registrado. Ingresa un email válido.'})
+            return
+        } else if (bcryptjs.compareSync(password,user.password)){
+            req.session.currentUser = user;
+            res.redirect('/userProfile')
+            //res.render('users/user-profile')
+        } else {
+            res.render('auth/login',{errorMessage: 'Incorrect password.'})
+        }
+    })
+    .catch(error => {
+        next(error)
     })
 })
 
