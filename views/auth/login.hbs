@@ -1,0 +1,28 @@
+
+<form action="/auth/login" method="POST">
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="text" name="username">
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input class="uk-input" type="text" name="password">
+        </div>
+    </div>
+    <button type="submit">Login</button>
+
+    <p>No tienes cuenta <a href="/auth/signup">registrate</a> </p>
+
+</form>
+
+
+{{#if errorMessage}}
+<div>
+    <p>{{errorMessage}}</p>
+</div>
+{{/if}}

@@ -1,0 +1,33 @@
+<form action="/auth/signup" method="POST">
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="text" name="username" placeholder="Username" required>
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="email" name="email" placeholder="email" required>
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input class="uk-input" type="text" name="password" placeholder="******" required>
+        </div>
+    </div>
+
+    <button type="submit">Signup</button>
+
+</form>
+
+
+{{#if errorMessage}}
+<div>
+    <p>{{errorMessage}}</p>
+</div>
+{{/if}}
