@@ -10,6 +10,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
+    match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
   }
 });
 

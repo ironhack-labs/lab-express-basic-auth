@@ -4,6 +4,8 @@ const User = require('../models/User.model')
 
 const bcryptjs = require('bcryptjs')
 
+const mongoose = require('mongoose')
+
 //GET
 
 router.get('/signup',(req,res)=>{
@@ -14,6 +16,19 @@ router.get('/signup',(req,res)=>{
 //POST
 router.post('/signup', async(req,res)=>{
     const {email,username,password} = req.body
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
+
+    if(!username,!email,!password){
+        res.render('auth/signup',{errorMessage:'Por favor, rellena todos los campos.'})
+        return
+    }
+    if(!regex.test(password)){
+        res.status(500)
+        .render('auth/signup',{errorMessage:'El password no es seguro. Debe contener al menos 5 caracteres, un número, una minúscula y una mayúscula'})
+        return
+      }
+
     try{
         const salt = bcryptjs.genSaltSync(10)
         const hashedPass = bcryptjs.hashSync(password,salt)
@@ -21,8 +36,14 @@ router.post('/signup', async(req,res)=>{
         res.redirect(`/profile/${user._id}`)
     } catch(error){
         console.log("ERROR EN POST USER",error)
-        res.send("ERROR EN POST USER")
-    }
+        if(error instanceof mongoose.Error.ValidationError){
+            res.status(500).render('auth/signup',{errorMessage:error.message})
+        }else if (error.code === 11000){
+            res.status(500).render('auth/signup',{errorMessage: 'El usuario o la contraseña ya existen. Selecciona uno diferente por favor.'})
+        } else {
+            next(error)
+        }
+   }
 })
 
 
