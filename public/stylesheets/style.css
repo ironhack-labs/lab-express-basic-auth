@@ -1,5 +1,10 @@
+html {
+  background-color: black;
+}
+
 body {
-  margin: 0;
+  width: 90vw;
+  margin: 0 auto;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black;
@@ -17,27 +22,36 @@ h1, h2 {
 
 .container {
   padding: 100px !important;
+  width: 60vw;
+  margin: 0 auto;
 }
 
 nav {
   background-color: black !important;
 }
 
-.signup-container input {
-  width: 60vw;
+input {
   margin: 15px 0;
   padding: 18px 15px;
   background-color: black;
   border: 1px solid rgb(68, 68, 68);
   border-radius: 5px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(218, 218, 218);
 }
 
-.signup-container input:focus {
+input:focus {
   border: 2px solid rgb(21, 168, 161);
-  outline: none;
+  outline: none !important;
+}
+
+input:-webkit-autofill {
+  border: 1px solid rgb(21, 168, 161);
+  -webkit-text-fill-color: rgb(218, 218, 218);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 ::placeholder {
@@ -45,12 +59,82 @@ nav {
   font-weight: 100;
 }
 
-.signup-container button {
+button, .login, .signup {
   margin-top: 50px;
   padding: 10px;
   border-radius: 50px;
   border: none;
   color: rgb(0, 0, 0);
   background-color: rgb(20, 141, 135);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+p {
+  margin-top: 40px;
+  color: beige;
+  text-align: center;
   font-size: 1rem;
+}
+
+a {
+  color:black;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.profile p {
+  text-align: left;
+}
+
+nav a {
+  text-transform: capitalize !important;
+  font-size: 1.3rem !important;
+  color: white !important;
+  font-weight: 200;
+}
+
+nav button, .login {
+  margin-top: 22px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
+.uk-navbar-dropdown {
+  background-color: rgba(20, 102, 116, 0.308) !important;
+  margin-top: 0 !important;
+  width: 100px !important;
+}
+
+.uk-navbar-dropdown a {
+  font-size: 0.9rem !important;
+}
+.uk-navbar-dropdown a:hover {
+  color: rgb(168, 168, 168) !important;
+}
+
+.signup {
+  margin-top: 20px;
+}
+.plus {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.navbutton {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.main, .private {
+  background-color: rgb(142, 48, 155);
+  height: 100vh;
+  text-align: center;
+}
+
+.private {
+  background-color: rgb(33, 143, 143);
 }

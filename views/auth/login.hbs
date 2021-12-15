@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Sign in to this portal</h2>
+
+    <form action="/login" method="post" class="uk-flex uk-flex-column">
+
+        <input type="text" name="username" placeholder="Username">
+
+        <input type="password" name="password" placeholder="Password">
+
+        <button type="submit" class="login">Log in</button>
+
+        {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+        {{/if}}
+
+        <p>Or</p>
+        <a href="/signup" class="signup">Sign up</a>
+    </form>
+
+    
+</div>

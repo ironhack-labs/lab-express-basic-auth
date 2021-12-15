@@ -1,4 +1,4 @@
-<div class="container uk-position-top-center">
+<div class="container">
 
     <h2>Create your account</h2>
 
@@ -8,5 +8,9 @@
         <input type="password" name="password" placeholder="Password">
 
         <button>Create account</button>
+
+        {{#if errorMessage}}
+            <p>{{ errorMessage }}</p>
+        {{/if}}
     </form>
 </div>

@@ -13,19 +13,29 @@
   <body>
     <nav class="uk-navbar-container uk-light" uk-navbar>
       <div class="uk-navbar-left">
-    
         <ul class="uk-navbar-nav">
-          <li class="uk-active"><a href="/">Home</a></li>
+          <li><a href="/">Home</a></li>
+          <li class="uk-active">
+            <a href="#" class="plus">☰</a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="/userProfile">Profile</a></li>
+                <li><a href="/main">Main</a></li>
+                <li><a href="/private">Private</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
-    
       </div>
 
       <div class="uk-navbar-right">
-      
         <ul class="uk-navbar-nav">
-          <li><a href="/signup">Signup</a></li>
+          {{#if userInSession}}
+            <li><form action="/logout" method="post"><button class="navbutton">Log out</button></form></li>
+          {{else}}
+            <li><a href="/login">Log in</a></li>
+          {{/if}}
         </ul>
-      
       </div>
     </nav>
     {{{body}}}
