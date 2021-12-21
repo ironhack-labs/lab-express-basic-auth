@@ -6,6 +6,10 @@
     <label> Username
       <input type="text" name="username" placeholder="ironhacker" />
     </label>
+
+    <label> Email
+      <input type="email" name="email" placeholder="ironhack@gmail.com" />
+    </label>
  
     <label> Password
       <input type="password" name="password" placeholder="********" />
@@ -16,3 +20,7 @@
     {{!-- error message will be added here --}}
   </form>
 </div>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}

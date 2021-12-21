@@ -1,7 +1,6 @@
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
-
 // ℹ️ Connects to the database
 require('./db');
 
@@ -17,6 +16,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+require('./config/session.config')(app);
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
