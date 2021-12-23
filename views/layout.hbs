@@ -33,14 +33,17 @@
           {{#if userInSession}}
             <li><form action="/logout" method="post"><button class="navbutton">Log out</button></form></li>
           {{else}}
-            <li><a href="/login">Log in</a></li>
+            <li><form action="/login"><button class="navbutton">Log in</button></form></li>
+            <li><form action="/signup"><button class="navbutton navbuttonD">Sign up</button></form></li>
           {{/if}}
         </ul>
       </div>
     </nav>
     {{{body}}}
 
+    <script src="/js/variables.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/functions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
   </body>

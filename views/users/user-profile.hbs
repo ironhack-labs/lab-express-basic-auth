@@ -1,10 +1,11 @@
 {{#if userInSession}}
+<div class="backDivColored"></div>
 <div class="container profile">
-    <h2>Welcome, {{userInSession.username}}!</h2>
+    <img class="uk-border-circle" src="{{userInSession.profilePicture}}" alt="User's profile picture">
+    <h2 id="profileNameTitle">{{userInSession.name}}</h2>
+    <span id="profileUsernameAt">@{{userInSession.username}}</span> <br>
+    <button class="whiteButton editbtn"><a class="editA" href="/user-profile-edit">Edit profile</a></button>
     <p>This is your profile page.</p>
-    <button>
-        <a href="/userProfile">Reload the page</a>
-    </button>
 </div>
 {{else}}
     <p>Still no logged in user, sorry!</p>

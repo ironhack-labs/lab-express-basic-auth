@@ -1,0 +1,22 @@
+<div class="backDivColored"></div>
+<div class="container profile">
+    <form id="editForm" action="/user-profile-edit/{{userInSession._id}}" method="post" enctype="multipart/form-data">
+        <img class="uk-border-circle" src="{{userInSession.profilePicture}}" alt="User's profile picture"> <br>
+
+        <label for="ppFileUpload">
+            <img id="cameraIcon" src="images/camera.jpeg" alt="">
+            {{!-- <span class="uk-overlay" id="cameraIcon" uk-icon="icon: camera; ratio: 1.5" title="Add picture"></span> --}}
+        </label>
+        <input id="ppFileUpload" type="file" name="profilePicture">
+
+        <span id="nameInputEditForm">Name</span>
+        <input type="text" name="name" value="{{userInSession.name}}">
+        <br>
+
+        <span id="usernameInputEditForm">Username</span>
+        <input type="text" name="username" value="{{userInSession.username}}">
+        <br>
+
+        <button class="whiteButton editbtn" type="submit">Save changes</button>
+    </form>
+</div>

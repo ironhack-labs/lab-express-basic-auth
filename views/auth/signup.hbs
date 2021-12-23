@@ -1,13 +1,18 @@
 <div class="container">
 
-    <h2>Create your account</h2>
+    <h2 id="signupTitle">Sign up!</h2>
 
-    <form action="/signup" method="post" class="signup-container uk-flex uk-flex-column">
-        <input type="text" name="username" placeholder="Username">
+    <form id="signupForm" action="/signup" method="post" class="signup-container uk-flex uk-flex-column">
+        <span id="nameSignupInput">Name</span>
+        <input id="inputName" type="text" name="name" placeholder="Name">
 
-        <input type="password" name="password" placeholder="Password">
+        <span id="emailSignupInput">Email</span>
+        <input id="inputEmail" type="email" name="email" placeholder="Email">
 
-        <button>Create account</button>
+        <input id="inputPassword" type="password" name="password" placeholder="Password">
+        
+        <button id="signupBtn" type="button" disabled>Next</button>
+        <button id="signupCreate" type="submit">Sign up</button>
 
         {{#if errorMessage}}
             <p>{{ errorMessage }}</p>

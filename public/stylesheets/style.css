@@ -24,6 +24,7 @@ h1, h2 {
   padding: 100px !important;
   width: 60vw;
   margin: 0 auto;
+  position: relative;
 }
 
 nav {
@@ -32,7 +33,7 @@ nav {
 
 input {
   margin: 15px 0;
-  padding: 18px 15px;
+  padding: 18px 10px;
   background-color: black;
   border: 1px solid rgb(68, 68, 68);
   border-radius: 5px;
@@ -42,16 +43,30 @@ input {
 }
 
 input:focus {
-  border: 2px solid rgb(21, 168, 161);
   outline: none !important;
 }
 
+.fillingOut {
+  border: 1px solid rgb(68, 68, 68) !important;
+  padding: 25px 9px 11px;
+}
+
+.fillingOut:focus {
+  border: 2px solid rgb(21, 168, 161) !important;
+  outline: none !important;
+  padding: 24px 8px 10px;
+}
+
+.emptyField {
+  border: 2px solid red !important;
+  padding: 24px 8px 10px;
+}
+
+
 input:-webkit-autofill {
-  border: 1px solid rgb(21, 168, 161);
   -webkit-text-fill-color: rgb(218, 218, 218);
-  font-size: 1rem;
-  font-weight: 600;
   transition: background-color 5000s ease-in-out 0s;
+  caret-color: white;
 }
 
 ::placeholder {
@@ -59,20 +74,20 @@ input:-webkit-autofill {
   font-weight: 100;
 }
 
-button, .login, .signup {
+button, .login {
   margin-top: 50px;
   padding: 10px;
   border-radius: 50px;
   border: none;
   color: rgb(0, 0, 0);
-  background-color: rgb(20, 141, 135);
+  background-color: rgb(255, 255, 255);
   font-size: 1.2rem;
   text-align: center;
 }
 
 p {
   margin-top: 40px;
-  color: beige;
+  color: rgb(248, 248, 248);
   text-align: center;
   font-size: 1rem;
 }
@@ -91,12 +106,12 @@ a:hover {
 
 nav a {
   text-transform: capitalize !important;
-  font-size: 1.3rem !important;
+  font-size: 1rem !important;
   color: white !important;
-  font-weight: 200;
+  font-weight: 500;
 }
 
-nav button, .login {
+nav button, .login, .whiteButton {
   margin-top: 22px;
   background-color: black;
   color: white;
@@ -117,7 +132,17 @@ nav button, .login {
 }
 
 .signup {
-  margin-top: 20px;
+  color: rgb(20, 141, 135);
+  font-weight: 700;
+}
+.signup:hover {
+  color: rgb(20, 141, 135);
+  text-decoration: underline;
+}
+#signupQ {
+  color: white;
+  text-align: left;
+  margin-top: 60px;
 }
 .plus {
   font-size: 2rem;
@@ -125,8 +150,14 @@ nav button, .login {
 }
 
 .navbutton {
-  font-size: 1.2rem;
-  margin: 0;
+  font-size: 0.9rem;
+  margin: 0 5px;
+}
+
+.navbuttonD {
+  border: none;
+  background-color: white;
+  color: black;
 }
 
 .main, .private {
@@ -137,4 +168,91 @@ nav button, .login {
 
 .private {
   background-color: rgb(33, 143, 143);
+}
+
+.editbtn {
+  font-size: 0.9rem;
+}
+
+.editA {
+  color: white;
+}
+.editA:hover {
+  color: white;
+}
+
+#ppFileUpload, #inputPassword, #signupCreate {
+  display: none;
+}
+
+.uk-border-circle {
+  background-color: white;
+  width: 150px;
+  height: 150px;
+  border: 4px solid rgb(0, 0, 0);
+}
+
+#cameraIcon {
+  position: absolute;
+  top: 145px;
+  left: 145px;
+  width: 60px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.473);
+}
+
+#cameraIcon:hover {
+  background-color: rgba(255, 255, 255, 0.595);
+}
+
+.backDivColored {
+  position: absolute;
+  height: 180px;
+  width: 90vw;
+  background-color: rgb(105, 214, 178);
+}
+
+#signupBtn:disabled {
+  background-color: rgb(94, 94, 94);
+  color: black;
+}
+#profileUsernameAt {
+  margin-top: 0;
+}
+#profileNameTitle  {
+  margin: 0;
+}
+
+#nameInputEditForm, 
+#usernameInputEditForm, 
+#nameSignupInput,
+#emailSignupInput {
+  position: absolute;
+  left: 110px;
+  top: 270px;
+  font-size: 0.8rem;
+  color: rgb(33, 155, 135);
+  visibility: hidden;
+}
+#usernameInputEditForm {
+  top: 357px;
+}
+#nameSignupInput {
+  top: 181px;
+}
+#emailSignupInput {
+  top: 266px;
+}
+
+/* #signupForm input,  */
+
+#editForm input {
+  padding: 25px 10px 10px;
+  padding: 25px 9px 11px;
+}
+
+
+#signupTitle {
+  font-size: 1.8rem;
 }

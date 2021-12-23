@@ -1,9 +1,9 @@
-<div class="container">
+<div id="signupDivCont" class="container">
     <h2>Sign in to this portal</h2>
 
     <form action="/login" method="post" class="uk-flex uk-flex-column">
 
-        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="email" placeholder="Email">
 
         <input type="password" name="password" placeholder="Password">
 
@@ -13,8 +13,8 @@
             <p class="error">{{errorMessage}}</p>
         {{/if}}
 
-        <p>Or</p>
-        <a href="/signup" class="signup">Sign up</a>
+        
+        <p id="signupQ">Don't have an account? <a href="/signup" class="signup">Sign up</a></p>
     </form>
 
     
