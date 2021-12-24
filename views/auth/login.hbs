@@ -1,0 +1,16 @@
+ <h2>Hello! Please log into your account</h2>
+
+
+<form action="/login" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+
+    <label for="password">Password</label>
+    <input type="password" name="password">
+
+    <button type="submit">Log In</button>
+</form>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}

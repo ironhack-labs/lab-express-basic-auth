@@ -6,7 +6,20 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
+    unique: true,
+    lowercase: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+},
+{
+  timestamps: true,
 });
 
 const User = model("User", userSchema);
