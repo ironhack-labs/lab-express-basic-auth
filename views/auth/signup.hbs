@@ -1,21 +1,36 @@
-<div class="container">
+<div class="container signupCont">
 
-    <h2 id="signupTitle">Sign up!</h2>
+    <h2 id="signupTitle">Create your account</h2>
+
+    {{#if errorMessage}}
+    
+        {{!-- <div class="errorMessageCont">
+            <span>!</span>
+            <h3>Uh oh, something went wrong</h3>
+            <p>{{ errorMessage }}</p>
+            <a class="errorMessageClose">x</a>
+        </div> --}}
+
+        <p id="signupErrMess">
+            Uh oh, something went wrong 
+            <br> <span>{{ errorMessage }}</span>
+            <div id="exclamationMark">!</div>
+            <a href="/signup" id="closeIcon">x</a>
+        </p>
+    {{/if}}
 
     <form id="signupForm" action="/signup" method="post" class="signup-container uk-flex uk-flex-column">
-        <span id="nameSignupInput">Name</span>
+        
+        <span class="label" id="nameSignupInput">Name</span>
         <input id="inputName" type="text" name="name" placeholder="Name">
 
-        <span id="emailSignupInput">Email</span>
+        <span class="label" id="emailSignupInput">Email</span>
         <input id="inputEmail" type="email" name="email" placeholder="Email">
 
+        <span class="label" id="passSignupInput">Password</span>
         <input id="inputPassword" type="password" name="password" placeholder="Password">
         
-        <button id="signupBtn" type="button" disabled>Next</button>
-        <button id="signupCreate" type="submit">Sign up</button>
+        <button id="signupCreate" type="submit" disabled>Sign up</button>
 
-        {{#if errorMessage}}
-            <p>{{ errorMessage }}</p>
-        {{/if}}
     </form>
 </div>

@@ -21,52 +21,28 @@ h1, h2 {
 }
 
 .container {
-  padding: 100px !important;
+  padding:100px !important;
   width: 60vw;
   margin: 0 auto;
   position: relative;
+}
+
+.signupCont {
+  padding-top: 50px !important;
 }
 
 nav {
   background-color: black !important;
 }
 
-input {
-  margin: 15px 0;
-  padding: 18px 10px;
-  background-color: black;
-  border: 1px solid rgb(68, 68, 68);
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: rgb(218, 218, 218);
-}
-
-input:focus {
-  outline: none !important;
-}
-
-.fillingOut {
-  border: 1px solid rgb(68, 68, 68) !important;
-  padding: 25px 9px 11px;
-}
-
-.fillingOut:focus {
-  border: 2px solid rgb(21, 168, 161) !important;
-  outline: none !important;
-  padding: 24px 8px 10px;
-}
-
-.emptyField {
-  border: 2px solid red !important;
-  padding: 24px 8px 10px;
-}
-
-
-input:-webkit-autofill {
-  -webkit-text-fill-color: rgb(218, 218, 218);
-  transition: background-color 5000s ease-in-out 0s;
-  caret-color: white;
+#nameInputEditForm, 
+#usernameInputEditForm {
+  position: absolute;
+  left: 110px;
+  top: 270px;
+  font-size: 0.8rem;
+  color: rgb(33, 155, 135);
+  visibility: hidden;
 }
 
 ::placeholder {
@@ -86,10 +62,10 @@ button, .login {
 }
 
 p {
-  margin-top: 40px;
+  margin-top: 0;
   color: rgb(248, 248, 248);
-  text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 a {
@@ -181,7 +157,7 @@ nav button, .login, .whiteButton {
   color: white;
 }
 
-#ppFileUpload, #inputPassword, #signupCreate {
+#ppFileUpload {
   display: none;
 }
 
@@ -224,28 +200,9 @@ nav button, .login, .whiteButton {
   margin: 0;
 }
 
-#nameInputEditForm, 
-#usernameInputEditForm, 
-#nameSignupInput,
-#emailSignupInput {
-  position: absolute;
-  left: 110px;
-  top: 270px;
-  font-size: 0.8rem;
-  color: rgb(33, 155, 135);
-  visibility: hidden;
-}
 #usernameInputEditForm {
   top: 357px;
 }
-#nameSignupInput {
-  top: 181px;
-}
-#emailSignupInput {
-  top: 266px;
-}
-
-/* #signupForm input,  */
 
 #editForm input {
   padding: 25px 10px 10px;
@@ -255,4 +212,174 @@ nav button, .login, .whiteButton {
 
 #signupTitle {
   font-size: 1.8rem;
+  /* margin-bottom: 110px; */
+}
+
+#signupCreate:disabled {
+  background-color: rgba(126, 126, 126, 0.356);
+}
+
+/* input style */
+input {
+  padding: 18px 10px;
+  margin: 15px 0;
+  
+  border: 1px solid rgb(68, 68, 68);
+  border-radius: 5px;
+  background-color: black;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(218, 218, 218);
+}
+
+input:focus {
+  outline: none !important;
+}
+
+.fillingOut {
+  border: 1px solid rgb(68, 68, 68);
+  padding: 25px 9px 11px;
+}
+
+.fillingOut:focus {
+  border: 2px solid rgb(21, 168, 161);
+  padding: 24px 8px 10px;
+}
+
+.emptyField {
+  border: 2px solid red;
+  padding: 24px 8px 10px;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: rgb(218, 218, 218);
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: white;
+}
+
+/* input labels */
+.label {
+  visibility: visible;
+  position: absolute;
+  left: 10px;
+  font-size: 0.8rem;
+  color: rgb(33, 155, 135);
+  visibility: hidden;
+}
+
+#nameSignupInput {
+  top: 23px;
+}
+#emailSignupInput {
+  top: 109px;
+}
+#passSignupInput {
+  top: 195px
+}
+
+#signupForm {
+  position: relative;
+}
+
+#signupErrMess {
+  /* position: absolute; */
+  top: 28px;
+  width: 60vw;
+  height: 90px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 70px 10px 120px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 0;
+}
+
+/* #signupErrMess:hover {
+  background-color: rgba(255, 255, 255, 0.13);
+} */
+
+#signupErrMess span {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: rgb(179, 179, 179);
+}
+
+#closeIcon {
+  position: absolute;
+  font-weight: 900;
+  color: rgb(224, 224, 224);
+  top: 140px;
+  right: 130px;
+  font-size: 1rem;
+}
+
+#exclamationMark {
+  background-color: rgba(224, 42, 42, 0.952);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 126px;
+  left: 130px;
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 6px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Alert message style  */
+.errorMessageCont {
+  /* Sizing */
+  width: 60vw;
+
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px 70px 25px 120px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.errorMessageCont h3 {
+  margin: 0;
+  font-weight: 600;
+  color: rgb(10, 10, 10);
+}
+
+.errorMessageCont p {
+  font-size: 1rem;
+  font-weight: 200;
+  color: rgb(56, 56, 56);
+  margin: 0;
+}
+
+/* Exclamation style */
+.errorMessageCont span:first-child {
+  background-color: rgb(255, 71, 71);
+  color: white;
+
+  text-align: center;
+  font-size: 45px;
+  font-weight: 900;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 20px;
+
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.errorMessageCont a {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 30px;
+  font-size: 20px;
+  font-weight: 800;
 }

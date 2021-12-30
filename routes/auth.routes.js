@@ -6,6 +6,7 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 const Upload = require('../helper/multer');
+const mongoose = require('mongoose');
 
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
@@ -23,37 +24,52 @@ router.post('/signup', (req, res, next) => {
 
     User.findOne({ email })
         .then(user => {
-            if (!user) {
-              const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}/;
-              if (!regex.test(password)) {
+            if(user) {
                 res.status(500).render("auth/signup", {
                   errorMessage:
-                    "Password must be at least 4 characters and contain at least one number, one lowercase and one uppercase letter.",
+                    "This email has already been registered. Please, try a new one.",
                 });
                 return;
-              }
-            }
-        });
-
-    bcryptjs
-        .genSalt(saltRounds)
-        .then(salt => bcryptjs.hash(password, salt))
-        .then(hashedPassword => {
-            let usernameCreate = email.replace(".com", '').replace('@', '');
-            return User.create({ name, email, username: usernameCreate, passwordHash: hashedPassword });
-        })
-        .then(() => res.redirect('/userProfile'))
-        .catch(err => {
-            if (err.code === 11000) {
-                res
-                    .status(500)
-                    .render('auth/signup', {
-                        errorMessage:
-                          'This email has already been registered. Please, try a new one.'
-                    });
-                    return;
             } else {
-                next(err);
+                const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}/;
+                if (!regex.test(password)) {
+                  res.status(500).render("auth/signup", {
+                    errorMessage:
+                      "Password must be at least 4 characters and contain at least one number, one lowercase and one uppercase letter.",
+                  });
+                  return;
+                }
+
+                bcryptjs
+                  .genSalt(saltRounds)
+                  .then((salt) => bcryptjs.hash(password, salt))
+                  .then((hashedPassword) => {
+                    let usernameCreate = email
+                      .replace(".com", "")
+                      .replace("@", "");
+                    return User.create({
+                      name,
+                      email,
+                      username: usernameCreate,
+                      passwordHash: hashedPassword,
+                    });
+                  })
+                  .then((userFromDB) => res.redirect("/userProfile"))
+                  .catch((err) => {
+                    if (err instanceof mongoose.Error.ValidationError) {
+                      res
+                        .status(500)
+                        .render("auth/signup", { errorMessage: err.message });
+                    } else if (err.code === 11000) {
+                      res.status(500).render("auth/signup", {
+                        errorMessage:
+                          "This email has already been registered. Please, try a new one.",
+                      });
+                      return;
+                    } else {
+                      next(err);
+                    }
+                  });
             }
         });
 });
