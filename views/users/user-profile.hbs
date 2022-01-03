@@ -1,0 +1,11 @@
+{{#if userIn}}
+<h2>Profile</h2>
+<div>
+<img src="{{userIn.profilePicture}}" alt="Usericon">
+<h3>{{userIn.name}}</h3>
+<span>{{userIn.username}}</span>
+<button><a href="/user/profile-edit">Edit Profile</a></button>
+</div>
+{{else}}
+<p>Still no logged, please login</p>
+{{/if}}

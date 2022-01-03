@@ -1,0 +1,15 @@
+<h2>Login</h2>
+
+<div>
+    <form acttion="/login" method="post">
+
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="******">
+
+    <button type="submit">Log in</button>
+
+    {{#if errorMessage}}
+    <p>you are not registered?<a href="signup">Signup</a></p>
+
+    </form>
+</div>

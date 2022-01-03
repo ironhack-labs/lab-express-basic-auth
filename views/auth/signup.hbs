@@ -1,0 +1,23 @@
+<h2>Signup</h2>
+<div>
+<h3>Create your Account</h3>
+
+<form>
+    <span>Name</span>
+    <input type="text" name="name" placeholder="Name">
+    <span>Email</span>
+    <input type="email" name="email" placeholder="Email">
+    <span>Password</span>
+    <input type="password" name="password" placeholder="*****">
+
+    <button type="submit">Sign up</button>
+</form>
+
+{{#if errorMessage}}
+<p>
+    Something went wrong!
+    <br><span>{{errorMessage}}</span>
+    <a href="/signup">close</a>
+</p>
+{{//if}}
+</div>
