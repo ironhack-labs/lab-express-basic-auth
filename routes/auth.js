@@ -78,4 +78,66 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
         });
 });
 
+router.get('/login', isLoggedOut, (req, res, next) => {
+    res.render('auth/login');
+});
+
+router.post('/login', isLoggedOut, (req, res, next) => {
+    const { username, password } = req.body;
+
+    if (!username) {
+        return res
+            .status(400)
+            .render('auth/login', { errorMessage: "Please provide your username." });
+    }
+
+    if (password.length < 8) {
+        return res.status(400).render('auth/login', {
+            errorMessage: "Your password needs to be at least 8 characters long.",
+        });
+    }
+
+    User.findOne({username})
+        .then((user) => {
+            if (!user) {
+                return res
+                    .status(400)
+                    .render('auth/login', { errorMessage: "Wrong credentials." });
+            }
+
+            bcrypt.compare(password, user.password).then((isSamePassword) => {
+                if (!isSamePassword) {
+                    return res
+                        .status(400)
+                        .render('auth/login', { errorMessage: "Wrong credentials." });
+                }
+                req.session.user = user;
+                return res.redirect('/');
+            });
+        })
+        .catch((err) => {
+            return res.status(500).render('login', { errorMessage: err.message });
+        });
+});
+
+router.get('/logout', isLoggedIn, (req, res, next) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res
+                .status(500)
+                .render('auth/logout', { errorMessage: err.message });
+        }
+        res.redirect('/');
+    });
+});
+
+router.get('/main', isLoggedIn, (req, res, next) => {
+    console.log("Calling main");
+    res.render('auth/main');
+});
+
+router.get('/private', isLoggedIn, (req, res, next) => {
+    res.render('auth/private');
+});
+
 module.exports = router;
