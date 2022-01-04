@@ -1,5 +1,7 @@
 html {
   background-color: black;
+  height: fill-available;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -25,6 +27,10 @@ h1, h2 {
   width: 60vw;
   margin: 0 auto;
   position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }
 
 .signupCont {

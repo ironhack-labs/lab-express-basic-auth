@@ -12,12 +12,13 @@ module.exports = app => {
         saveUninitialized: false,
         cookie: {
           httpOnly: true,
-          maxAge: 6e4 * 60,
+          // maxAge: 6e4 * 0.5,
         },
         store: MongoStore.create({
           mongoUrl:
             process.env.MONGODB_URI ||
             "mongodb://localhost/lab-express-basic-auth",
+            ttl: 60 * 60 * 24
         }),
       })
     );
