@@ -121,5 +121,14 @@ router.get('/logout', isLoggedIn, (req, res) => {
       res.redirect('/');
     });
   });
+
+  router.get('/main', isLoggedIn, (req, res) => {
+      res.render('auth/main')
+  });
+
+  router.get('/private', isLoggedIn, (req, res) => {
+      console.log('this is private')
+      res.render('auth/private')
+  })
   
   module.exports = router;
