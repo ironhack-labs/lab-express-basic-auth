@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = new Router();
 
+const { loggedIn } = require('../Middleware/route-guard');
+
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
@@ -34,7 +36,13 @@ router.post('/signup', (req, res, next) => {
         // console.log('Newly created user is: ', userFromDB);
         res.redirect('/login');
         })
-      .catch(error => next(error));
+      .catch(error => {
+        if (error.code === 11000) {
+            res.status(500).render('user/signup-form', {errorMessage: 'user already exists please choose another username'});
+        } else { 
+        next(error);
+        }
+    });
   });
 
 //login
@@ -67,7 +75,11 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 })
 
-//delete
+
+router.get('/main', loggedIn, (req,res,next) => res.render('main.hbs'));
+router.get('/private', loggedIn ,(req,res,next) => res.render('private.hbs'));
+
+
 
 module.exports = router;
 
