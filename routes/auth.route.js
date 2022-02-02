@@ -51,7 +51,7 @@ router.post("/login", (req, res, next) => {
       });
     } else if (bcrypt.compareSync(password, foundUser.password)) {
       req.session.currentUser = foundUser;
-      res.render("user/user-profile", { foundUser });
+      res.redirect("user-profile");
     } else {
       res.render("auth/login.hbs", {
         errorMessage: "Your details don't match",
@@ -61,6 +61,9 @@ router.post("/login", (req, res, next) => {
 });
 
 //USER PROFILE
+router.get("/user-profile", (req, res, next) => {
+  res.render("user/user-profile", { user: req.session.currentUser });
+});
 
 module.exports = router;
 
