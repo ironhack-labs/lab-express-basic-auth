@@ -4,9 +4,10 @@ const bcryptjs = require('bcryptjs');
 const User = require('../models/User.model');
 const saltRounds = 10;
 
-router.get('/signup', (req, res, next) => {
-    res.render('auth/signup');
-});
+/********************* S I G N U P **********************/
+
+router.get('/signup', (req, res, next) => res.render('auth/signup'));
+
 router.post('/signup', (req, res, next) => {
     const {username, password} = req.body;
 
@@ -19,9 +20,26 @@ router.post('/signup', (req, res, next) => {
         })
         .then(userFromDB => {
             console.log('Newly created user is: ', userFromDB);
-            res.redirect('/userProfile');
+            res.redirect('/login');
         })
         .catch(error => next(error));
+
+});
+
+/********************* L O G I N **********************/
+
+router.get('/login', (req, res, next) => res.render('auth/login'));
+
+router.post('/login', (req, res, next) => {
+    const {username, password} = req.body;
+
+    if (username === '' || password === '') {
+        res.render('auth/login', {
+          errorMessage: 'Please enter both, email and password to login.'
+        });
+        return;
+    }
+    
 
 });
 module.exports = router;
