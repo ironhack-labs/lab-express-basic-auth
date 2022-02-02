@@ -11,6 +11,13 @@ router.get("/sign-up", (req, res, next) => {
 
 router.post("/sign-up", (req, res, next) => {
   const { username, password } = req.body;
+  if (!username || !password) {
+    res.render("auth/signup", {
+      errorMessage: "Please enter all required field",
+    });
+    return;
+  }
+
   bcrypt
     .genSalt(10)
     .then((salt) => {
@@ -24,6 +31,11 @@ router.post("/sign-up", (req, res, next) => {
       res.redirect("/");
     })
     .catch((error) => {
+      if (error.code === 11000) {
+        res.status(500).render("auth/signup", {
+          errorMessage: "Username already taken",
+        });
+      }
       console.log(error);
       next(error);
     });
