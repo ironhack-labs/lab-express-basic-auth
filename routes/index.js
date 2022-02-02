@@ -1,8 +1,17 @@
 const router = require("express").Router();
 
-/* GET home page */
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+
+router.get("/main", isLoggedIn, (req, res, next) => {
+  res.render("main");
+})
+
+router.get("/private", isLoggedIn, (req, res, next) => {
+  res.render("private");
+})
 
 module.exports = router;
