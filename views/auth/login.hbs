@@ -1,0 +1,32 @@
+<div id="form">
+  <h2>Login</h2>
+
+  <form action="/login" method="POST">
+    <div class="mb-3">
+      <label class="form-label">
+        Username
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          placeholder="rockstar89"
+        />
+      </label>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="********"
+        />
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
