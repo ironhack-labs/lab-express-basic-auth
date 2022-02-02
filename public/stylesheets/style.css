@@ -12,3 +12,7 @@ a {
   background-color: rgb(177, 46, 46);
   color: white;
 }
+
+input:invalid:focus {
+  border: 1px solid red;
+}
