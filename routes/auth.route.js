@@ -46,11 +46,11 @@ router.post("/login", (req, res, next) => {
 
   User.findOne({ username: username }).then((foundUser) => {
     if (!foundUser) {
-      console.log(foundUser, " doesnt exist");
       res.render("auth/login.hbs", {
         errorMessage: "Your details don't match",
       });
     } else if (bcrypt.compareSync(password, foundUser.password)) {
+      req.session.currentUser = foundUser;
       res.render("user/user-profile", { foundUser });
     } else {
       res.render("auth/login.hbs", {
