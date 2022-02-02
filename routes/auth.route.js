@@ -44,12 +44,13 @@ router.post("/login", (req, res, next) => {
     return;
   }
 
-  User.findOne({ usernam: username }).then((foundUser) => {
+  User.findOne({ username: username }).then((foundUser) => {
     if (!foundUser) {
+      console.log(foundUser, " doesnt exist");
       res.render("auth/login.hbs", {
         errorMessage: "Your details don't match",
       });
-    } else if (bcrypt.compare(password, foundUser.password)) {
+    } else if (bcrypt.compareSync(password, foundUser.password)) {
       res.render("user/user-profile", { foundUser });
     } else {
       res.render("auth/login.hbs", {
