@@ -15,6 +15,9 @@ const hbs = require('hbs');
 
 const app = express();
 
+//requiring the session config
+require('./config/session.config')(app);
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
@@ -31,6 +34,8 @@ app.use('/', index);
 //route for 
 const auth = require("./routes/auth.routes");
 app.use("/", auth);
+
+//route for config session
 
 //app.use("/", require("./routes/auth.routes"));
 
