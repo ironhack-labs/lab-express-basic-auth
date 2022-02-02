@@ -1,0 +1,27 @@
+<h2>Signin</h2>
+<form action="/signin" method="POST">
+  <div class="mb-3">
+    <label for="inputUsername" class="form-label">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputUsername"
+      name="username"
+      placeholder="username"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="inputPassword"
+      name="password"
+      placeholder="*********"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+{{/if}}
