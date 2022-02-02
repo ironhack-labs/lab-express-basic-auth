@@ -3,10 +3,10 @@
 const { Router } = require('express');
 const router = new Router();
 
+const User = require('../models/User.model');
+
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-
-const User = require('../models/User.model');
 
 // GET route to display the signup form to users:
 router.get('/signup', (req, res) => res.render('auth/signup'));
@@ -21,9 +21,6 @@ router.post('/signup', (req, res, next) => {
       .then(hashedPassword => {
         return User.create({
           username,
-          // passwordHash => this is the key from the User model
-          //     ^
-          //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
           passwordHash: hashedPassword
         });
       })
