@@ -1,2 +1,11 @@
-<p>Created account</p>
-<a href="/">Back to home</a>
+{{#if userInSession}}
+<h2>Welcome, {{ userInSession.username }}!</h2>
+<p>This is your profile page my friend!</p>
+<button>
+    <a href="/user/user-profile">Reload the page</a>
+</button>
+<p>Go to home and see what you have access to</p>
+<a href="/">Home</a>
+{{else}}
+<p>Still no logged in user, sorry!</p>
+{{/if}}

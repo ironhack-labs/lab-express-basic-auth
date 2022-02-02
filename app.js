@@ -9,12 +9,15 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+//create express app
+const app = express();
+
+//use session
+require("./config/session.config")(app);
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-
-//create express app
-const app = express();
 
 // ℹ️ This function is getting exported from the config folder.
 // It runs most middlewares
@@ -33,6 +36,12 @@ app.use("/", index);
 
 const userRoute = require("./routes/user.route");
 app.use("/user", userRoute);
+
+const authRoute = require("./routes/auth.route");
+app.use("/auth", authRoute);
+
+const othersRoute = require("./routes/others.route");
+app.use("/others", othersRoute);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

@@ -5,9 +5,14 @@ var saltRounds = 10;
 
 //require model
 let User = require("../models/User.model.js");
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-gard.js");
 
 router.get("/signup", (req, res) => {
   res.render("user/signup.hbs");
+});
+
+router.get("/login", (req, res) => {
+  res.render("auth/login.hbs");
 });
 
 router.post("/signup", (req, res, next) => {
@@ -29,13 +34,13 @@ router.post("/signup", (req, res, next) => {
     })
     .then((userFromDB) => {
       console.log("Newly created user is: ", userFromDB);
-      res.render("user/user-profile.hbs");
+      res.render("auth/login.hbs");
     })
     .catch((error) => next(error));
 });
 
-router.get("/login", (req, res) => {
-  res.render("user/login.hbs");
+router.get("/user-profile", isLoggedIn, (req, res) => {
+  res.render("user/user-profile", { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
