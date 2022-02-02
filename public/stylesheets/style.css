@@ -4,5 +4,11 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.error {
+  padding: 20px;
+  background-color: rgb(177, 46, 46);
+  color: white;
 }
