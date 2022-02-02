@@ -8,7 +8,23 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
+  <nav>
+    <ul>
+      <li id="to-left">
+        <p><a href="/"> Demo page </a></p>
+      </li>
+      <li id="to-right">
+        <a href="/signup">Sign up</a>
+        <span> | </span>
+        <a href="/login">Log in</a>
+        <span> | </span>
+        <form id="logout-form" action="/logout" method="POST">
+          <button>Logout</button><span> | </span>
+        </form>
+        <a href="/userProfile">Profile</a>
+      </li>
+    </ul>
+  </nav>
   <body>
 
     {{{body}}}

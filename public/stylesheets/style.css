@@ -1,8 +1,46 @@
-body {
-  padding: 50px;
+body, html {
+  padding-top: 0;
+  margin-top: 0;
+  top: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+ul {
+  border-bottom: 2px solid #43a3e6;
+  height: 30px;
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+nav {
+  padding: 0;
+  margin: 0;
+  top: 0;
+}
+
+#to-right {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1em;
+}
+ 
+#to-right span {
+  color: #43a3e6;
+  font-size: 1.5em;
+}
+
+#to-left {
+  float: left;
+}
+ 
+#to-left p a {
+  color: #000;
+  font-weight: bold;
+  font-size: 2em;
 }

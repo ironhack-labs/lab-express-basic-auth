@@ -1,0 +1,18 @@
+<div id="form">
+  <h2>Log in</h2>
+  <form action="/login" method="POST">
+
+    <label> Username
+      <input type="text" name="username" placeholder="ironhacker" />
+    </label>
+
+    <label> Password
+      <input type="password" name="password" placeholder="********" />
+    </label>
+
+    <button type="submit">Log in</button>
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
