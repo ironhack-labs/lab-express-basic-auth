@@ -65,6 +65,12 @@ router.get("/user-profile", (req, res, next) => {
   res.render("user/user-profile", { user: req.session.currentUser });
 });
 
+//LOGOUT
+router.post("/logout", (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
 module.exports = router;
 
 // TO CHECK IF THE USER ALREADY EXIST
