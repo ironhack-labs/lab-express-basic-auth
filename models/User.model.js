@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-//const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 
 const EMAIL_PATTERN = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const PASSWORD_PATTERN = /^.{8,}$/i
@@ -24,6 +24,40 @@ const userSchema = new Schema({
   }
 })
 
+userSchema.pre('save', function(next) {
+  const user = this;
+
+  if (user.isModified('password')) {
+    bcrypt.hash(user.password, SALT_ROUNDS)
+      .then((hash) => {
+        user.password = hash
+        next()
+      })
+      .catch(err => next(err))
+  } else {
+    next()
+  }
+})
+
+const User = model('User', userSchema)
+module.exports = User
+
+// ENCRYPTING PASSWORD:
+
+// npm install bcryptjs
+// REQUIRE bcryptjs
+// SET THE NUMBER OF SALT
+// BEFORE SAVING , 
+// IF NOT CREATING OR MODIFYING A PASSWORD => SAVE
+// IF CREATING OR MODIFYING A PASSWORD
+// ENCRYPT THE PASSWORD
+// CHANGE THE VALUE OF USER.PASSWORD TO THE NEW ENCRYPTED ONE
+// => SAVE
+
+
+//const bcrypt = require('bcryptjs')
+// const SALT_ROUNDS = 10
+
 // userSchema.pre('save', function(next) {
 //   const user = this;
 
@@ -37,9 +71,3 @@ const userSchema = new Schema({
 //   } else {
 //     next()
 //   }
-//})
-
-const User = model('User', userSchema)
-module.exports = User
-
-
