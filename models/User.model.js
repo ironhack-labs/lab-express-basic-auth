@@ -9,18 +9,18 @@ const SALT_ROUNDS = 10
 const userSchema = new Schema({
   name: {
     type: String,
-    //required: [true, 'Name is required']
+    required: [true, 'Name is required']
   },
   email: {
     type: String,
-    //required: [true, 'Email is required'],
-    //match: EMAIL_PATTERN,
-    //unique: true
+    required: [true, 'Email is required'],
+    match: [EMAIL_PATTERN, 'wrong mail formatting'],
+    unique: true
   },
   password: {
     type: String,
-    //required: [true, 'Password is required'],
-    //match: [PASSWORD_PATTERN, 'Password must contain at least 8 chars!']
+    required: [true, 'Password is required'],
+    match: [PASSWORD_PATTERN, 'Password must contain at least 8 chars!']
   }
 })
 
