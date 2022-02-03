@@ -1,22 +1,63 @@
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
-
-// ℹ️ Connects to the database
-require('./db');
-
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require('express');
-
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
+const express = require('express'); // => Requerir express para manejar solicitudes HTTP
+const logger = require('morgan'); // => Requerir Morgan para generar logs en consola
+const hbs = require('hbs') // => Requerir handlebars
 
 const app = express();
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+require('./config/db.config'); // => Conecta con la base de datos
+app.use(logger("dev")); // => Mostrar logs
+
+
+
+// Handlebars, vistas y archivo estáticos (no cambian)
+app.set("views", __dirname, "..", "views");
+app.set("view engine", "hbs");
+app.use(express.static(__dirname, "..", "public"));
+hbs.registerPartials(__dirname + "/views/partials");
+app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+
+
+// Acceso a la propiedad `body` de las request
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
+// Configuración rutas
+const routes = require('./config/routes.config');
+app.use('/', routes);
+
+
+
+// Middleware para errores 404 (request a páginas que no existen)
+app.use((req, res, next) => res.status(404).render('errors/not-found'));
+
+
+app.use((err, req, res, next) => {
+    // whenever you call next(err), this middleware will handle the error
+    // always logs the error
+    console.error("ERROR", req.method, req.path, err);
+
+    // only render if the error ocurred before sending the response
+    if (!res.headersSent) {
+      res.status(500).render("errors/internal");
+    }
+});
+
+
+
+// Establece el PUERTO para que nuestra app tenga acceso a él.
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port http://localhost:${PORT}`);
+});
+
+
+
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -24,12 +65,8 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
 
-module.exports = app;
+
+
 
