@@ -1,6 +1,4 @@
-
 require('dotenv/config');
-
 
 require('./db');
 
@@ -12,6 +10,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+hbs.registerPartials(__dirname + "/views/partials");
 
 
 // 👇 Start handling routes here
