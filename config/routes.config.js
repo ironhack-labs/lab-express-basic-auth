@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-// Home 
-router.get("/", (req, res, next) => {
-    res.render("index");
-  });
+const common = require('../controllers/common.controller');
+// Misc routes
+router.get('/', common.home);
 
 module.exports = router;
