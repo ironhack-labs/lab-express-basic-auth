@@ -1,6 +1,6 @@
 require('dotenv/config');
+require('./config/db.config');
 
-require('./db');
 
 const express = require('express');
 
@@ -10,6 +10,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+
 hbs.registerPartials(__dirname + "/views/partials");
 
 
@@ -20,5 +21,13 @@ app.use('/', routes);
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
-module.exports = app;
 
+
+// ℹ️ Sets the PORT for our app to have access to it. If no env has been set, we hard code it to 3000
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port http://localhost:${PORT}`);
+});
+
+module.exports = app;
