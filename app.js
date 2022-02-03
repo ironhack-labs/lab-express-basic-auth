@@ -31,7 +31,7 @@ app.use('/', routes);
 
 
 // Middleware para errores 404 (request a páginas que no existen)
-app.use((req, res, next) => res.status(404).render('./views/errors/not-found'));
+app.use((req, res, next) => res.status(404).render('errors/not-found'));
 
 
 app.use((err, req, res, next) => {
@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
 
     // only render if the error ocurred before sending the response
     if (!res.headersSent) {
-      res.status(500).render("./views/errors/internal");
+      res.status(500).render("errors/internal");
     }
 });
 
