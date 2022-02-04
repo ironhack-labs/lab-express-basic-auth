@@ -17,5 +17,10 @@ router.get('/register', auth.register)
 // register page SUBMIT FORM  the route comes from the submit Button  <form method="POST" action="/register">
 router.post('/register', auth.doRegister)
 
+// login page   the route comes from NAVBAR.HBS link in the navbar
+router.get('/login', auth.login);
+
+// login page SUBMIT FORM  the route comes from the submit Button  <form method="POST" action="/login">
+router.post('/login', auth.doLogin)
 
 module.exports = router;

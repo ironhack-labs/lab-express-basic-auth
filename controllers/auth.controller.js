@@ -1,8 +1,35 @@
 const mongoose = require('mongoose')
 const User = require('../models/User.model')
+const bcrypt = require('bcryptjs')
 
 
+//------------------------------LOG IN -----------------------------
+module.exports.login = (req, res, next) => {
+  res.render('auth/login');
+}
 
+
+module.exports.doLogin = (req, res, next) => {
+  
+  const mail = req.body.email
+  const pw = req.body.password
+  
+
+  console.log(mail,pw)
+  User.findOne({email : mail})
+  .then((user)=> {
+    const verifyPass = bcrypt.compare(pw,user.password )
+    .then((xxx) => {
+      console.log(xxx)
+      res.render('auth/login', {user,pw,xxx})
+    })
+    
+  })
+  .catch(err => next(err))
+}
+
+
+//------------------------------REGISTER -----------------------------
 // go to the register.hbs
 module.exports.register = (req, res, next) => {
     res.render('auth/register');

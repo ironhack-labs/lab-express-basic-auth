@@ -1,0 +1,49 @@
+
+<div class="row justify-content-center mt-4">
+  <div class="col-sm-4">
+    <h1>LOG IN</h1>
+
+    {{!--        FORM         --}}
+    <form method="POST" action="/login">
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Email</label>
+            <input 
+            type="email" 
+            value="{{user.email}}"
+            name="email"
+            class="form-control {{#if errors.email}}is-invalid{{/if}}" 
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Password</label>
+            <input 
+            type="password" 
+            name="password" 
+            class="form-control {{#if errors.password}}is-invalid{{/if}}" 
+            >
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+
+        
+
+    <div>
+        {{#if user}}
+        <p>name :{{user.name}}</p>
+        <p>email :{{user.email}}</p>
+        <p>password : {{user.password}}</p>
+        <p>pw inserted: {{pw}}</p>
+        <p>result {{xxx}}:</p>
+        {{else}}
+        <p>User doesn't exists</p>
+        {{/if}}
+    </div>
+  </div>
+</div>
+
+
+
+
