@@ -1,28 +1,48 @@
+
+<h2 class="form-header">Sign up here: </h2>
 <br />
 <form action="/register" method="POST">
   <div class="col-sm-4">
     <label for="username" class="form-label">User name:</label>
     <input
-      type="string"
+      value="{{user.name}}"
+      type="text"
       name="username"
-      class="form-control"
+      class="form-control {{#if errors.name}}is-invalid{{/if}}"
       placeholder="your username"
     />
+    {{#if errors.name}}
+    <div class="invalid-feedback">{{errors.name}}</div>
+    {{/if}}
   </div>
   <br />
   <div class="col-sm-4">
     <label for="email" class="form-label">Email</label>
     <input 
+        value="{{user.email}}"
         type="email" 
         name="email" 
-        class="form-control" 
+        class="form-control {{#if errors.email}}is-invalid{{/if}}" 
         placeholder="yourname@whatever.com"
     />
+    {{#if errors.email}}
+    <div class="invalid-feedback">{{errors.email}}</div>
+    {{/if}}
   </div>
+  <div id="emailHelp" class="form-text">We'll never share your email with
+      anyone else.</div>
   <br />
   <div class="col-sm-4">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" name="password" />
+    <input 
+    type="password" 
+    class="form-control {{#if errors.password}}is-invalid{{/if}}" 
+    name="password"
+    placeholder="password" 
+    />
+    {{#if errors.password}}
+    <div class="invalid-feedback">{{errors.password}}</div>
+    {{/if}}
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Sign Up</button>

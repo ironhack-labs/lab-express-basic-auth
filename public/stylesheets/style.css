@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.form-header {
+  font-size: 25px;
+}

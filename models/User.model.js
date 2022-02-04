@@ -8,24 +8,29 @@ const EMAIL_PATTERN =
 const PASSWORD_PATTERN = /^.{8,}$/i;
 const SALT_ROUNDS = 10;
 
-const userSchema = new Schema({
-  username: {
-    type: String,
-    required: [true, "Username is a required field"],
-    unique: true,
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: [true, "Username is a required field"],
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Email is a required field"],
+      match: EMAIL_PATTERN,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Password is a required field"],
+      match: [PASSWORD_PATTERN, "Password must contain at least 8 chars!"],
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Email is a required field"],
-    match: EMAIL_PATTERN,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Password is a required field"],
-    match: [PASSWORD_PATTERN, "Password must contain at least 8 chars!"],
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 userSchema.pre("save", function (next) {
   const user = this;
