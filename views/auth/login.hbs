@@ -1,0 +1,38 @@
+
+<div class="mt-4 row justify-content-center">
+  <div class="col-4">
+    <h2 class="text-center">Login</h2>
+    <form autocomplete="off" class="mt-4" method="POST" action="/login">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          value="{{user.email}}"
+          name="email"
+          type="email"
+          class="form-control {{#if errors.email}}is-invalid{{/if}}"
+          placeholder="Enter name"
+        >
+        {{#if errors.email}}
+          <small class="invalid-feedback">
+            {{errors.email}}
+          </small>
+        {{/if}}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          name="password"
+          type="password"
+          class="form-control {{#if errors.password}}is-invalid{{/if}}"
+          placeholder="Password"
+        >
+         {{#if errors.password}}
+          <small class="invalid-feedback">
+            {{errors.password}}
+          </small>
+        {{/if}}
+      </div>
+      <button type="submit" class="btn btn-dark">Login</button>
+    </form>
+  </div>
+</div>
