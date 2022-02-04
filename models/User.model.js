@@ -5,6 +5,7 @@ const PASSWORD_PATTERN = /^.{8,}$/i
 const SALT_ROUNDS = 10;
 
 
+
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
     username: {
@@ -40,6 +41,10 @@ userSchema.pre('save', function(next) {
   }
 })
 
+
+const comparePassword = function(password, userSchema) {
+  return bcrypt.compareSync(password, userSchema.password);
+}
 
 const User = model("User", userSchema);
 
