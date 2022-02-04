@@ -67,7 +67,7 @@ module.exports.doLogin = (req, res, next) => {
                    if (!match) {
                      renderWithLoginErrors()
                    } else {
-                     res.send('you are logged in!')
+                     res.send('correct password, logged in!')
                    }
                  })
              }
