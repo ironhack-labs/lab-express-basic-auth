@@ -1,0 +1,12 @@
+<div>
+    <h1>Private page</h1>
+    {{#if userInSession}}
+        <h2>Welcome, {{ userInSession.username }}!</h2>
+        <img src="images/topSecret.jpeg" alt="Funny cat">
+        <button>
+            <a href="/">Home</a>
+        </button>
+    {{else}}
+        <p>Still no logged in user, sorry!</p>
+    {{/if}}
+</div>

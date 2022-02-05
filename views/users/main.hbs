@@ -1,0 +1,12 @@
+<div>
+    <h2>Main page</h2>
+    {{#if userInSession}}
+        <h2>Welcome, {{ userInSession.username }}!</h2>
+        <img src="images/funnyCat.jpeg" alt="Funny cat">
+        <button>
+            <a href="/">Home</a>
+        </button>
+    {{else}}
+        <p>Still no logged in user, sorry!</p>
+    {{/if}}
+</div>

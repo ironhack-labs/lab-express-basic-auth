@@ -3,6 +3,7 @@ const router = require("express").Router();
 const bcryptjs = require('bcryptjs');
 const User = require('../models/User.model');
 const saltRounds = 10;
+const isLoggedIn = require('../middleware/route-guard');
 
 /********************* S I G N U P **********************/
 
@@ -60,5 +61,13 @@ router.get('/userProfile', (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
+/********************* M A I N **********************/
+router.get('/main', isLoggedIn, (req, res, next) => {
+    res.render('users/main', { userInSession: req.session.currentUser });
+});
 
+/********************* P R I V A T E **********************/
+router.get('/private', isLoggedIn, (req, res, next) => {
+    res.render('users/private', { userInSession: req.session.currentUser });
+});
 module.exports = router;
