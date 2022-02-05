@@ -63,7 +63,9 @@ router.post("/signup", (req, res, next) => {
 });
 
 //Loading User page
-router.get("/users/user-page", (req, res) => res.render("users/user-page"));
+router.get("/users/user-page", (req, res) => {
+  res.render("users/user-page", { userInSession: req.session.currentUser });
+});
 
 //Log in
 //Loading Log in page
@@ -88,12 +90,21 @@ router.post("/login", (req, res) => {
         res.render("login", { errorMessage: "Username is not registered" });
         return;
       } else if (bcryptjs.compareSync(password, user.password)) {
-        res.render("users/user-page", { user });
+        req.session.currentUser = user;
+        res.redirect("users/user-page");
       } else {
         res.render("login", { errorMessage: "Incorrect password" });
       }
     })
     .catch((error) => next(error));
+});
+
+//Logout route
+router.post("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
