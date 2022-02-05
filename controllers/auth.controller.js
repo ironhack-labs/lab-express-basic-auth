@@ -43,7 +43,6 @@ module.exports.login = (req, res, next) => {
 }
 
 
-
 // Tareas a realizar al darle al botón "Login" del formulario anterior
 module.exports.doLogin = (req, res, next) => {
   const { email, password } = req.body;
@@ -61,12 +60,13 @@ module.exports.doLogin = (req, res, next) => {
       if (!userFound) {
         logginWithErrors()
         } else {
-          return userFound.checkPassword(password)
+          return userFound.checkPassword(password) //Con el usuario encontrado, ejecutamos el método Checkpassword pasando la contraseña del body
           .then(match => {
             if (!match) {
               logginWithErrors();
             } else {
-              res.render("auth/profile", { userFound })
+              req.session.userId = userFound.id;
+              res.redirect("/profile")
             }
           })
         }

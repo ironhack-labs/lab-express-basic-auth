@@ -3,6 +3,8 @@ const router = express.Router();
 
 const common = require('../controllers/common.controller');
 const auth = require('../controllers/auth.controller');
+const user = require('../controllers/user.controller');
+const { isAuthenticated } = require('../middlewares/auth.middlewares');
 
 // Misc routes
 router.get('/', common.home);
@@ -14,5 +16,8 @@ router.post('/register', auth.doRegister);
 router.get('/login', auth.login);
 router.post('/login', auth.doLogin);
 /* router.post('/logout', auth.logout); */
+
+
+router.get('/profile', isAuthenticated, user.profile)
 
 module.exports = router;
