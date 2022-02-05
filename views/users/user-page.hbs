@@ -1,5 +1,12 @@
-<h1>Hello</h1>
+{{#if user}}
 
-<div>
-  <p>Welcome to your private page</p>
-</div>
+  <h1>Hello {{user.username}}</h1>
+  <div>
+    <p>Welcome to your private page</p>
+  </div>
+  <button><a href="/users/user-page">Reload page</a></button>
+
+{{else}}
+  <p>The user is not logged in</p>
+  <button><a href="/login">Click here to log in</a></button>
+{{/if}}
