@@ -42,9 +42,11 @@ userSchema.pre('save', function(next) {
 })
 
 
-const comparePassword = function(password, userSchema) {
-  return bcrypt.compareSync(password, userSchema.password);
-}
+
+userSchema.methods.checkPassword = function(password) {
+  return bcrypt.compare(password, this.password) // this.password = la contraseña "hasheada" en la base de datos;
+};
+
 
 const User = model("User", userSchema);
 
