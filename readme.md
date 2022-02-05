@@ -57,7 +57,7 @@ We have to create the _signup_ feature - the goal is to enable our users to regi
 - **username**: must be unique in our application, and will identify each user
 - **password**: must be encrypted (you can use the `bcryptjs` npm package).
 
-To complete this first iteration, you have to create the model as well as corresponding routes, and the views.
+To complete this first iteration, you have to create the model as well as corresponding route, controller and the view.
 
 <br>
 
