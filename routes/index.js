@@ -2,6 +2,7 @@ const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 const mongoose = require("mongoose");
 const res = require("express/lib/response");
+const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard.js');
 const saltRounds = 10;
 const router = require("express").Router();
 
@@ -10,11 +11,11 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -51,12 +52,12 @@ router.post("/signup", (req, res, next) => {
   }
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("auth/login");
 });
 
 
-router.post("/login", (req, res, next) => {
+router.post("/login", isLoggedOut, (req, res, next) => {
   const {email, password} = req.body;
 
   if (email === "" || password ==="") {
@@ -81,13 +82,19 @@ router.post("/login", (req, res, next) => {
 
 });
 
-router.get("/:username", (req, res, next) => {
+router.get("/:username", isLoggedIn, (req, res, next) => {
    
   res.render("users/user-profile", {theUser: req.session.currentUser } );
   
 });
 
-
+router.post("/logout", isLoggedIn, (req, res, next) => {
+  res.locals.userIsConnected = false;
+  req.session.destroy(err => {
+      if (err) next(err);
+      res.redirect('/');
+  });
+})
 
 
 

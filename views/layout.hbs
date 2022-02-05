@@ -15,6 +15,13 @@
   <form class="container-fluid justify-content-start">
     <button class="btn btn-sm" type="button"><a href="/signup">Sign Up</a></button>
     <button class="btn btn-sm" type="button"><a href="/login">Log in</a></button>
+    {{#if userIsConnected}}
+    <form id="logout-form" action="/logout" method="POST">
+          <button class="btn btn-sm">Logout</button>
+                  </form>
+          
+         <button class="btn btn-sm" type="button"><a href="/login">Profile</a></button>
+    {{/if}}
   </form>
 </nav>
         </div>
