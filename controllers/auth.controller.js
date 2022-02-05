@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/User.model.js');
+const bcrypt = require('bcrypt')
 
 module.exports.register = (req, res, next) => {
     res.render('auth/register');
@@ -30,4 +31,40 @@ module.exports.doRegister = (req, res, next) => {
                 next(err);
             }
         });
+};
+
+module.exports.login = (req, res, next) => {
+    res.render('auth/login');
+};
+
+module.exports.doLogin = (req, res, next) => {
+    const { email, password } = req.body;
+
+    User.findOne({ email: email })
+        .then((userFound) => {
+            if(userFound) {
+                return userFound.checkPassword(password)
+                    .then((match) => {
+                        if(!match) {
+                            res.render('auth/login', {
+                                errors: {
+                                    password: 'Invalid email or password',
+                                    email: 'Invalid email or password'
+                                },
+                                user: req.body
+                            });
+                        } else {
+                            res.send('PA DENTRO');
+                        }
+                    })
+            } else {
+                res.render('auth/login', {
+                    errors: {
+                        email: 'Invalid email or password',
+                        password: 'Invalid email or password'
+                    }
+                });
+            }
+        })
+        .catch((e) => next(e));
 }

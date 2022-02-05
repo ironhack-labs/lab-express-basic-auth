@@ -41,6 +41,7 @@ app.use(cookieParser());
 app.set("views", (__dirname, "..", "views"));
 // Sets the view engine to handlebars
 app.set("view engine", "hbs");
+hbs.registerPartials((__dirname, "..", "views/partials"));
 // Handles access to the public folder
 app.use(express.static((__dirname, "..", "public")));
 
