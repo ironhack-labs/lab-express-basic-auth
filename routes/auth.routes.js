@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const User = require('../models/User.model');
 const saltRounds = 10;
 const isLoggedIn = require('../middleware/route-guard');
+const mongoose = require("mongoose");
 
 /********************* S I G N U P **********************/
 
@@ -11,6 +12,13 @@ router.get('/signup', (req, res, next) => res.render('auth/signup'));
 
 router.post('/signup', (req, res, next) => {
     const {username, password} = req.body;
+
+    if (username === '' || password === '') {
+        res.render('auth/signup', {
+          errorMessage: 'Please enter both, email and password to login.'
+        });
+        return;
+    }
 
     bcryptjs
         .genSalt(saltRounds)
@@ -23,7 +31,18 @@ router.post('/signup', (req, res, next) => {
             console.log('Newly created user is: ', userFromDB);
             res.redirect('/login');
         })
-        .catch(error => next(error));
+        .catch(error => {
+
+            if(error instanceof mongoose.Error.ValidationError){
+                res.status(500).render('auth/signup', {errorMessage: error.message});
+
+            } else if (error.code === 11000) {
+                res.status(500).render('auth/signup', {errorMessage: `Username need to be unique. ${username} already exists. Please choose another.`});
+            } else {
+                next(error);
+            }
+            
+        });
 
 });
 
@@ -56,6 +75,8 @@ router.post('/login', (req, res, next) => {
         .catch(error => next(error));
 
 });
+
+/********************* P R O F I L E **********************/
 
 router.get('/userProfile', (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
