@@ -8,10 +8,12 @@ const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 //Mongoose
 const mongoose = require("mongoose");
+//Authentication
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 
 //Routes
 //Loading Sign Up page
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("signup/signup");
 });
 
@@ -63,13 +65,13 @@ router.post("/signup", (req, res, next) => {
 });
 
 //Loading User page
-router.get("/users/user-page", (req, res) => {
+router.get("/users/user-page", isLoggedIn, (req, res) => {
   res.render("users/user-page", { userInSession: req.session.currentUser });
 });
 
 //Log in
 //Loading Log in page
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("login");
 });
 
@@ -100,11 +102,20 @@ router.post("/login", (req, res) => {
 });
 
 //Logout route
-router.post("/logout", (req, res, next) => {
+router.post("/logout", isLoggedOut, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect("/");
   });
+});
+
+//private page
+router.get("/users/main", isLoggedIn, (req, res, next) => {
+  res.render("users/main");
+});
+
+router.get("/users/private", isLoggedIn, (req, res, next) => {
+  res.render("users/private");
 });
 
 module.exports = router;
