@@ -6,15 +6,20 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       {{#if currentUser}}
-      <li class="nav-item btn btn-danger btn-sm ">
+      <li class="nav-item btn btn-danger mr-4 btn-sm ">
           <a class="nav-link text-light" href="/logout">Logout</a>
         </li>
+        <li class="nav-item btn btn-info btn-sm">
+        <a class="nav-link text-light" href="/profile">Profile</a>
       {{else}}  
-      <li class="nav-item btn btn-primary mr-2 btn-sm">
+      <li class="nav-item btn btn-primary mr-4 btn-sm">
         <a class="nav-link text-light" href="/register">Register</a>
       </li>
-        <li class="nav-item btn btn-secondary btn-sm">
+        <li class="nav-item btn btn-secondary mr-4 btn-sm">
         <a class="nav-link text-light" href="/login">Login</a>
+      </li>
+       <li class="nav-item btn btn-info btn-sm">
+        <a class="nav-link text-light" href="{{#if currentUser}}/login{{/if}}/private">Profile</a>
       </li>
       {{/if}}
     </ul>

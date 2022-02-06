@@ -4,7 +4,7 @@ const router = express.Router();
 const common = require('../controllers/common.controller');
 const auth = require('../controllers/auth.controller');
 const user = require('../controllers/user.controller');
-const { isAuthenticated } = require('../middlewares/auth.middlewares');
+const { isAuthenticated, notUser } = require('../middlewares/auth.middlewares');
 
 
 // Misc routes
@@ -20,6 +20,7 @@ router.get('/logout', auth.logout);
 
 //Users routes
 router.get('/profile', isAuthenticated, user.profile);
+router.get('/private', user.private);
 
 module.exports = router;
 
