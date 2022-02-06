@@ -5,7 +5,15 @@ const User = require('../models/User.model')
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  
+  if (req.session.currentUser) {
+    console.log("----------------", req.session.currentUser)
+    res.render("index", { userInSession: req.session.currentUser });
+  } else {
+    console.log("--------------")
+    res.render("index")
+  }
+
 });
 
 router.get("/register", (req, res, next) => {
@@ -45,26 +53,30 @@ router.get("/login", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   const user = { username, password } = req.body;
-
   const renderWithErrors = (errors) => {
     res.render('auth/login', {
       errors: errors,
       user: user
     })
   }
-
   User.findOne({ username: username })
     .then(user => {
       if (!user) {
         renderWithErrors({ username: 'User doesn\'t exist' })
         return
       } else if (bcrypt.compareSync(password, user.password)) {
-        res.send('Logged in!')
+        req.session.currentUser = user
+        res.render("index")
       } else {
         renderWithErrors({ password: 'Incorrect password' })
       }
     })
     .catch(err => next(err))
+});
+
+router.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 

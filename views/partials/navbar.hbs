@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Navbar</a>
+  <form action="/register" method="GET">
+    <button type="submit">Register</button>
+  </form>
+  <form action="/login" method="GET">
+    <button type="submit">Login</button>
+  </form>
+  <form action="/logout" method="POST">
+    <button type="submit">Logout</button>
+  </form>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  {{#if userInSession}}
+  <div class="invalid-feedback">Bienvenido {{userInSession.username}}</div>
+  {{else}}
+  No has iniciado sesión
+  {{/if}}
+</nav>
