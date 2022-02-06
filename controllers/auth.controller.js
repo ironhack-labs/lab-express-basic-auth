@@ -3,7 +3,7 @@ const User = require('../models/User.model');
 
 
 // Pinta página formulario de registro
-module.exports.register = (req, res, next) =>  {
+module.exports.register = (req, res, next) =>  { // register = propiedad del module.exports
     res.render('auth/register')
 }
 
@@ -45,7 +45,7 @@ module.exports.login = (req, res, next) => {
 
 // Tareas a realizar al darle al botón "Login" del formulario anterior
 module.exports.doLogin = (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body; // req.body = datos del formulario de login
 
   const logginWithErrors = () => {
     res.render('auth/login', {
@@ -60,63 +60,27 @@ module.exports.doLogin = (req, res, next) => {
       if (!userFound) {
         logginWithErrors()
         } else {
-          return userFound.checkPassword(password) //Con el usuario encontrado, ejecutamos el método Checkpassword pasando la contraseña del body
+          return userFound.checkPassword(password)
+          //Con el usuario encontrado, ejecutamos el método Checkpassword del model user (requerido en la variable "User"), pasando la contraseña del body
           .then(match => {
             if (!match) {
               logginWithErrors();
             } else {
               req.session.userId = userFound.id;
+              // req.session.userId = "userId" es una clave del objeto session. 
               res.redirect("/profile")
             }
           })
         }
       } 
     )
-    .catch((err) => {
-     console.log(err)
-    })
+    .catch((err) => next(err))
 }
 
 
-
-
-
-
-
-
-
-
-// Tareas a realizar al darle al botón "Login" del formulario anterior
-// module.exports.doLogin = (req, res, next) => {
-//   const { email, password } = req.body;
-// 
-//   /* const logginWithErrors = (errors) => {
-//     res.render('auth/user-profile', {
-//       errors: errors,
-//       user: user
-//     })
-//   } */
-// 
-//   User.findOne({ email: email }) // 2º parámetro = email del req.bdoy
-//     .then((user) => {
-//       console.log(user)
-// 
-//       if (!user) {
-//         res.render('auth/login', { // 2º parámtetro: objeto con clave errors, que a su vez es otro objeto con clave "email"
-//           errors : { // Nombre de la vista
-//             email: 'Email or password invalid!' // Clave de la vista
-//           }
-//          })
-//         } else {
-//           res.render('auth/profile', { user });
-//         }
-//       } 
-//     )
-//     .catch((err) => {
-//      console.log(err)
-//     })
-// }
-//
-
+module.exports.logout = (req, res, next) => {
+  req.session.destroy()
+  res.redirect('/')
+}
 
 

@@ -1,4 +1,4 @@
-<nav>
+{{!-- <nav>
     <ul>
         <li><a href="/register">Register User</a></li>
         <li><a href="/login">Login</a></li>
@@ -6,4 +6,29 @@
             <button>Logout</button>
         </form>
     </ul>
+</nav>
+
+ --}}
+
+<nav class="navbar navbar-expand-lg navbar-default bg-light">
+  <a class="navbar-brand" href="/">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      {{#if currentUser}}
+        <li class="nav-item btn btn-danger btn-sm ">
+          <a class="nav-link text-light" href="/logout">Logout</a>
+        </li>
+      {{else}}
+        <li class="nav-item btn btn-primary mr-2 btn-sm">
+          <a class="nav-link text-light" href="/register">Register</a>
+        </li>
+        <li class="nav-item btn btn-secondary btn-sm">
+          <a class="nav-link text-light" href="/login">Login</a>
+        </li>
+      {{/if}}
+    </ul>
+  </div>
 </nav>

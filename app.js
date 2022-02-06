@@ -61,10 +61,3 @@ app.listen(PORT, () => {
 });
 
 
-
-
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
-
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
