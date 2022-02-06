@@ -1,0 +1,32 @@
+<div class="mt-4 row justify-content-center">
+  <div class="col-4">
+    <h2 class="text-center">LOGIN</h2>
+    <form class="mt-4" method="POST" action="/login">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          value="{{user.email}}"
+          name="email"
+          type="email"
+          class="form-control {{#if errors.email}}is-invalid{{/if}}"
+          placeholder="Enter name"
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          name="password"
+          type="password"
+          class="form-control {{#if errors.email}}is-invalid{{/if}}"
+          placeholder="Password"
+        >
+      </div>
+        {{#if errors.email}}
+          <div class="text-danger text-small mb-2">
+            {{errors.email}}
+          </div>
+        {{/if}}
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
