@@ -38,33 +38,35 @@ module.exports.login = (req, res, next) => {
 }
   
 module.exports.doLogin = (req, res, next) => {
+  const { email, password } = req.body;
 
-  const renderWithLoginErrors = (errors) => {
+  const renderWithErrors = () => {
     res.render('auth/login', {
-      user: req.body,
-        errors: {
-        email: 'Invalid user or password'
-      }
+      errors: { email: "Invalid email or password!" },
+      user: req.body
     })
   }
 
-  User.findOne({ email: req.body.email })
-    .then((user) => {
-      if(!user){
-        renderWithLoginErrors()
+  User.findOne({ email: email })
+    .then(userFound => {
+      if (!userFound) {
+        renderWithErrors()
       } else {
-        return user.checkPassword(req.body.password)
-          .then((match) => {
-            if (!match){
-              renderWithLoginErrors()
+        return userFound.checkPassword(password)
+          .then(match => {
+            if (!match) {
+              renderWithErrors()
             } else {
-              res.render('user/profile')
+              req.session.userId = userFound.id;
+              res.redirect("/profile")
             }
           })
       }
     })
-    .catch((error) => next(error))
+    .catch((err) => next(err))
 }
+
+
 
 module.exports.logout = (req, res, next) => {
   req.session.destroy()
