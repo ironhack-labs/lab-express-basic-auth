@@ -1,2 +1,7 @@
-<h1>Welcom to the Ironclass register form</h1>
+{{#if currentUser}}
+<h1>Welcome {{currentUser.name}}!</h1>
+
+{{else}}
+
 <h2><a href="/register">Register now!</a></h2>
+{{/if}}
