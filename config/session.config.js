@@ -2,7 +2,7 @@ const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const mongoose = require('mongoose')
-const User = require('../models/user.model')
+const User = require('../models/User.model')
 
 const sessionMaxAge = process.env.SESSION_AGE || 7;
 
