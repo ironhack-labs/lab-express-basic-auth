@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
+
 
 const EMAIL_PATTERN = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const PASSWORD_PATTERN = /^.{8,}$/i
@@ -10,7 +11,8 @@ const SALT_ROUNDS = 10
 const userSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Name is required']
+    required: [true, 'Name is required'],
+    minlength: [4, 'name needs at least 4 chars']
   },
   email: {
     type: String,
@@ -42,5 +44,11 @@ userSchema.pre('save', function(next) {
   }
 });
 
+userSchema.methods.checkPassword = function(password) {
+  return bcrypt.compare(password, this.password);
+}
+
+
 const User = mongoose.model("User", userSchema);
 module.exports = User;
+
