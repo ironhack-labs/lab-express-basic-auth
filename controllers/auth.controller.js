@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/User.model.js');
-const bcrypt = require('bcrypt')
+const User = require('../models/User.model');
 
 module.exports.register = (req, res, next) => {
     res.render('auth/register');
@@ -54,7 +53,8 @@ module.exports.doLogin = (req, res, next) => {
                                 user: req.body
                             });
                         } else {
-                            res.send('PA DENTRO');
+                            req.session.userId = userFound._id;
+                            res.redirect('/profile');
                         }
                     })
             } else {
@@ -68,3 +68,8 @@ module.exports.doLogin = (req, res, next) => {
         })
         .catch((e) => next(e));
 }
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
+};

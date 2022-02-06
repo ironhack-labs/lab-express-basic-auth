@@ -36,7 +36,7 @@ app.use(logger("dev"));
 // To have access to `body` property in the request
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 // Normalizes the path to the views folder
 app.set("views", (__dirname, "..", "views"));
 // Sets the view engine to handlebars
@@ -44,6 +44,11 @@ app.set("view engine", "hbs");
 hbs.registerPartials((__dirname, "..", "views/partials"));
 // Handles access to the public folder
 app.use(express.static((__dirname, "..", "public")));
+
+// Middleware to handle user session cookie
+const { sessionConfig, loadUser } = require('./config/session.config');
+app.use(sessionConfig);
+app.use(loadUser);
 
 
 // 👇 Start handling routes here
