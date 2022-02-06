@@ -20,6 +20,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// COOKIES  config/session folder
+const { sessionConfig, loadUser } = require('./config/session.config')
+app.use(sessionConfig)
+app.use(loadUser)
+
 app.use('/', routes);
 
 // error handling folder

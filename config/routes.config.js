@@ -4,23 +4,27 @@ const router = express.Router();
 // controllers folder
 const common = require('../controllers/common.controller');
 const auth = require('../controllers/auth.controller');
+const user = require('../controllers/user.controller');
+const { isAuthenticated } = require('../middlewares/auth.middlewares')
 
 
-// COMMON routes //
+
+// -------  COMMON ROUTES ------- //
 // home page , the route comes from APP.JS => app.use('/', routes);
 router.get('/', common.home);
 
-// AUTH  routes
-// register page, the route comes from NAVBAR.HBS link in the navbar
-router.get('/register', auth.register)
+// -------  AUTH  ROUTES  ------- //
+router.get('/register', auth.register)// the route comes from NAVBAR.HBS link in the navbar
+router.post('/register', auth.doRegister)//the route comes from the submit Button 
 
-// register page SUBMIT FORM  the route comes from the submit Button  <form method="POST" action="/register">
-router.post('/register', auth.doRegister)
+router.get('/login', auth.login);// the route comes from NAVBAR.HBS link in the navbar
+router.post('/login', auth.doLogin)// the route comes from the submit Button 
 
-// login page   the route comes from NAVBAR.HBS link in the navbar
-router.get('/login', auth.login);
+router.get('/logout', auth.logout)
 
-// login page SUBMIT FORM  the route comes from the submit Button  <form method="POST" action="/login">
-router.post('/login', auth.doLogin)
+
+// -------  USER  ROUTES  ------- //
+router.get('/profile', isAuthenticated, user.profile)
+
 
 module.exports = router;

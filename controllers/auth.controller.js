@@ -5,29 +5,39 @@ const bcrypt = require('bcryptjs')
 
 //------------------------------LOG IN -----------------------------
 module.exports.login = (req, res, next) => {
-  res.render('auth/login');
+  res.render('auth/login')
 }
+
 
 
 module.exports.doLogin = (req, res, next) => {
-  
-  const mail = req.body.email
-  const pw = req.body.password
-  
+  const { email, password } = req.body;
 
-  console.log(mail,pw)
-  User.findOne({email : mail})
-  .then((user)=> {
-    const verifyPass = bcrypt.compare(pw,user.password )
-    .then((xxx) => {
-      console.log(xxx)
-      res.render('auth/login', {user,pw,xxx})
+  const renderWithErrors = () => {
+    res.render('auth/login', {
+      errors: { email: "Invalid email or password!" },
+      user: req.body
     })
-    
-  })
-  .catch(err => next(err))
-}
+  }
 
+  User.findOne({ email: email })
+    .then(userFound => {
+      if (!userFound) {
+        renderWithErrors()
+      } else {
+        return userFound.checkPassword(password) // The compare function is inside the model User
+          .then(match => {
+            if (!match) {
+              renderWithErrors()
+            } else {
+              req.session.userId = userFound.id;
+              res.redirect("/profile")
+            }
+          })
+      }
+    })
+    .catch((err) => next(err))
+}
 
 //------------------------------REGISTER -----------------------------
 // go to the register.hbs
@@ -69,6 +79,16 @@ module.exports.doRegister = (req, res, next) => {
       }
     })
 }
+
+
+// LOG OUT
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy()
+  res.redirect('/')
+}
+
+
 
 // create  a user 
 // module.exports.doRegister = (req, res, next) => {
