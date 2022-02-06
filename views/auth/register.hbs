@@ -5,15 +5,16 @@
   <div class="col-sm-4">
     <label for="username" class="form-label">User name:</label>
     <input
-      value="{{user.name}}"
+      value="{{user.username}}"
       type="text"
       name="username"
-      class="form-control {{#if errors.name}}is-invalid{{/if}}"
+      class="form-control {{#if errors.username}}is-invalid{{/if}}"
       placeholder="your username"
-    />
-    {{#if errors.name}}
-    <div class="invalid-feedback">{{errors.name}}</div>
+    >
+     {{#if errors.username}}
+    <div class="invalid-feedback">{{errors.username}}</div>
     {{/if}}
+  
   </div>
   <br />
   <div class="col-sm-4">
@@ -24,7 +25,7 @@
         name="email" 
         class="form-control {{#if errors.email}}is-invalid{{/if}}" 
         placeholder="yourname@whatever.com"
-    />
+    >
     {{#if errors.email}}
     <div class="invalid-feedback">{{errors.email}}</div>
     {{/if}}
@@ -39,7 +40,7 @@
     class="form-control {{#if errors.password}}is-invalid{{/if}}" 
     name="password"
     placeholder="password" 
-    />
+    >
     {{#if errors.password}}
     <div class="invalid-feedback">{{errors.password}}</div>
     {{/if}}
