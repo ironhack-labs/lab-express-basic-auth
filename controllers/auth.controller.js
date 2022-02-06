@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { response } = require('../app')
 const User = require('../models/User.model')
 
 module.exports.register = (req, res, next) => {
@@ -21,7 +20,8 @@ module.exports.doRegister = (req, res, next) => {
       if (userFound) {
         renderWithErrors({ email: 'This email is already in use!' })
       } else {
-        return User.create(user).then(() => res.redirect('/'))
+        // Si se usa return nos podemos ahorrar el catch del then dentro del que esté y pasar al global.
+        return User.create(user).then(() => res.redirect('/login'))
       }
     })
     .catch (err => {
@@ -34,11 +34,39 @@ module.exports.doRegister = (req, res, next) => {
 }
 
 module.exports.login = (req, res, next) => {
-    // pintar vista de login
-
+    res.render('auth/login')
 }
   
 module.exports.doLogin = (req, res, next) => {
 
+  const renderWithLoginErrors = (errors) => {
+    res.render('auth/login', {
+      user: req.body,
+        errors: {
+        email: 'Invalid user or password'
+      }
+    })
+  }
+
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if(!user){
+        renderWithLoginErrors()
+      } else {
+        return user.checkPassword(req.body.password)
+          .then((match) => {
+            if (!match){
+              renderWithLoginErrors()
+            } else {
+              res.render('user/profile')
+            }
+          })
+      }
+    })
+    .catch((error) => next(error))
 }
 
+module.exports.logout = (req, res, next) => {
+  req.session.destroy()
+  res.redirect('/')
+}
