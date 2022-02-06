@@ -25,6 +25,10 @@ router.get('/logout', auth.logout)
 
 // -------  USER  ROUTES  ------- //
 router.get('/profile', isAuthenticated, user.profile)
+router.get('/profile2', isAuthenticated, user.profile2)
+
+router.get('/private', user.private)
+
 
 
 module.exports = router;

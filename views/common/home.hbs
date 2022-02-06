@@ -1,2 +1,7 @@
 <h1>HOME</h1>
-<p>Welcome to LAKSDHALSDHALS</p>
+
+{{#if currentUser}}
+<p>Welcome back "{{currentUser.name}}"</p>
+{{else}}
+<p>Welcome non registered person</p>
+{{/if}}
