@@ -19,7 +19,7 @@ module.exports.doSignup = (req, res, next) => {
     User.findOne({ username: username })
         .then((userFound) => {
             if (userFound) {
-                renderWithErrors({ username: 'This user name is not available.'})
+                renderWithErrors({ username: 'This user name is not available!'})
             } else {
                 return User.create(user)
                     .then(() => res.redirect('/'))

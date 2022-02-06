@@ -1,9 +1,13 @@
 <form action="/signup" method="POST">
     <label>User name</label>
-    <input type="text" name="username" placeholder="user name">
+    <input type="text" name="username" placeholder="user name" {{#if user.username}}value="{{user.username}}"{{/if}}>
     
     <label>Password</label>
-    <input type="password" name="password" placeholder="password">
+    <input type="password" name="password" placeholder="************">
+
+    {{#if errors.username}}
+        <p style="color: red;">{{errors.username}}</p>
+    {{/if}}
 
     <button type="submit">Sign up!</button>
 </form>
