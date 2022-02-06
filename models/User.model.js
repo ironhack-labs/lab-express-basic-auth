@@ -3,21 +3,40 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcryptjs')
 
 const PASSWORD_PATTERN = /^.{8,}$/i
+const SALT_ROUNDS = 10
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    required: true
+    required: [true, 'This field is required!']
   },
   password: {
     type: String,
-    required: true,
-    match: PASSWORD_PATTERN
+    required: [true, 'This field is required!'],
+    match: [PASSWORD_PATTERN, 'The password needs to be at least 8 characters long!']
   }
 });
 
-const User = mongoose.model("User", userSchema);
+userSchema.pre('save', function(next) {
+  const user = this;
+
+  if (user.isModified('password')) {
+    bcrypt.hash(user.password, SALT_ROUNDS)
+    .then((hash) => {
+      user.password = hash
+      next()
+    })
+    .catch(error => next(error))
+  } else {
+    next()
+  }
+})
+
+userSchema.methods.checkPassword = function (password) {
+  return bcrypt.compare(this.password, password)
+}
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
