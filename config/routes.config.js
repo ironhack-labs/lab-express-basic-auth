@@ -20,8 +20,11 @@ router.post('/login', auth.doLogin);
 router.get('/logout', auth.logout);
 
 
+
 // Rutas de usuario
 router.get('/profile', isAuthenticated, user.profile)
+router.get('/private', isAuthenticated, user.private)
+router.get('/main', isAuthenticated, user.main)
 // Cuando se va a la ruta "profiles", se ejecuta la variable "isAuthenticated", que a su vez requiere el módulo "isAuthenticated" del archivo "auth.middlwares". Además, también se ejecuta el código del módulo "profile" del archivo "user.controller".
 
 module.exports = router;
