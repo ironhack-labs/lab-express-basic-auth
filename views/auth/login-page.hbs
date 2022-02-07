@@ -1,0 +1,23 @@
+<div class="row justify-content-center pt-5">
+    <div class="col-md-6">
+        <h2 class="mb-5">Login</h2>
+        <form action="/login" method="POST">
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="pwdInput" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pwdInput" name="userPwd">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-info block">Access</button>
+            </div>
+            {{#if errorMessage}}
+            <div class="bg-danger rounded-2">
+                <p class="py-1 fs-5 mt-2 text-center text-light">{{errorMessage}}</p>
+            </div>
+            {{/if}}
+        </form>
+    </div>
+</div>

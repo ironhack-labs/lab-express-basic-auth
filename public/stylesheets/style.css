@@ -1,8 +1,24 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
 }
 
-a {
-  color: #00B7FF;
+.container {
+  min-height: calc(100vh - 62px - 62px);
+}
+
+.navbar form button {
+  background: transparent;
+  border: none;
+}
+
+.btn-info {
+  background-color: #20c997 !important;
+  border: none;
+  color: white;
+}
+
+footer {
+  background-color: #212529;
 }
