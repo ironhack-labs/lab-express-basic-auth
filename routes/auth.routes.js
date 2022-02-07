@@ -15,9 +15,7 @@ router.post("/sing-up",(req,res,next)=>{
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(password, salt))
-        .then(hashedPassword=> {
-            
-            User.create({username,password:hashedPassword})})
+        .then(hashedPassword=> User.create({username,password:hashedPassword}))
         .then(()=> res.redirect('/'))
         .catch(error => next(error))
 })

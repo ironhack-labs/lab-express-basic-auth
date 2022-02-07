@@ -1,19 +1,40 @@
-<h1>log in</h1>
 
 
-<form action="/auth/log-in" method="POST">
-<label>
-    nombre de usuario
-    <input type="text" name="username">
-</label>
-<label for="pwdInput">
-    contraseña
-    <input type="password" id="pwdInput" name="password">
-</label>
-<input type="submit" value="sing in">
-</form>
-{{#if errorMessage}}
-<div id="error">
-    <p>{{errorMessage}}</p>
+<div class="container">
+
+    <div class=" row justify-content-center">
+
+        <div class="col-md-4">
+            <h1>log in</h1>
+            <br><br>
+           <form action="/auth/log-in" method="POST">
+           <div class="row">
+            <label class="form-label">
+                 usuario
+            </label>
+                <input type="text" class="form-contol" name="username">
+           </div>
+           <div class="row">
+           <label for="pwdInput">
+                 contraseña
+           </label>
+           
+             <input type="password" id="pwdInput" name="password">
+           </div>
+        <br><br>
+         <div class="d-grid gap-2">
+           <input type="submit" class="btn btn-dark block" value="sing in">
+         </div>
+            
+           </form>
+                  {{#if errorMessage}}
+                  <div id="error">
+                 <p>{{errorMessage}}</p>
+                 </div>
+                {{/if}}
+
+        </div>
+     </div>
+        
 </div>
-{{/if}}
+
