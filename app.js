@@ -3,7 +3,7 @@
 require('dotenv/config');
 
 // ℹ️ Connects to the database
-require('./db');
+const connectDB = require('./db/index');
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -17,6 +17,8 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+
+connectDB();
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
