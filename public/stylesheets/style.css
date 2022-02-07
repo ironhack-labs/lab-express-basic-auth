@@ -4,5 +4,10 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #ffff;
+  text-decoration: none;
+}
+
+img{
+  width: 50%;
 }
