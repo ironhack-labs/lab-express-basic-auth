@@ -1,13 +1,18 @@
 <form action="/signup" method="POST">
-    <label>User name</label>
-    <input type="text" name="username" placeholder="user name" {{#if user.username}}value="{{user.username}}"{{/if}}>
+    <label>Username:</label>
+    <input type="text" name="username" placeholder="Write your username" {{#if user.username}}value="{{user.username}}"{{/if}}>
     
-    <label>Password</label>
+    <label>Password:</label>
     <input type="password" name="password" placeholder="************">
 
     {{#if errors.username}}
         <p style="color: red;">{{errors.username}}</p>
     {{/if}}
+
+    {{#if errors.password}}
+     <p style="color: red;">{{errors.password}}</p>
+    {{/if}}
+
 
     <button type="submit">Sign up!</button>
 </form>

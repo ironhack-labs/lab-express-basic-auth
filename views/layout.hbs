@@ -10,8 +10,15 @@
   </head>
 
   <nav>
-    <a href="/signup">Sign up</a>
-    <a href="/login">Log in</a>
+    <a href="/">Home</a>
+    
+    {{#if currentUser}}
+      <a href="/logout">Logout</a>
+    {{else}}
+      <a href="/signup">Sign up</a>
+      <a href="/login">Log in</a>
+    {{/if}}
+    
   </nav>
   <br>
   <body>

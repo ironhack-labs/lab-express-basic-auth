@@ -1,3 +1,3 @@
-module.exports.user = (req, res, next) => {
+module.exports.profile = (req, res, next) => {
     res.render('user/profile')
 }
