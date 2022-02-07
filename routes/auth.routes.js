@@ -39,7 +39,7 @@ router.post('/signup', (req, res, next) => {
             console.log('El hash a crear en la BBDD es', hashedPassword)
             return User.create({ username, password: hashedPassword })
         })
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/login'))
         .catch(error => next(error))
 })
 
