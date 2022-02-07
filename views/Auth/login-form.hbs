@@ -1,0 +1,24 @@
+<div class="d-grid gap-2 col-6 mx-auto">
+    <h1>Sign In</h1>
+    <hr>
+    <form action="/signin" method="POST">
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email</label>
+            <input type="email" class="form-control" id="emailInput" name="email">
+
+        </div>
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-light">Sign In</button>
+        </div>
+        {{#if errorMessage}}
+        <div id="error">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
+
+    </form>
+</div>
