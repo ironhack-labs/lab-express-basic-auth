@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-6 d-flex flex-column align-items-center">
+            <h1 class="form-h1">Registro</h1>
+            <form action="/registro" method="POST">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pwd" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pwd" name="plainPwd" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <input type="submit" class="btn btn-grad form-btn" value="Sign Up">
+                    </div>
+                </div>
+
+                {{#if errorMessage}}
+                <div>
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

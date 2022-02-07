@@ -1,8 +1,70 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.logo{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 40px;
 }
 
-a {
-  color: #00B7FF;
+.navbar{
+    padding: 20px;
 }
+
+.app-title{
+    margin-top: 250px;
+    font-weight: 700;
+    font-size: 4rem;
+}
+
+.form-h1 {
+    margin-top: 100px;
+    font-weight: 700;
+}
+
+form {
+    margin-top: 50px
+}
+
+label{
+    width: 500px;
+}
+
+.form-btn{
+    align-self: center;
+    margin-top: 50px;
+}
+
+.private-h1 {
+    margin-top: 75px;
+    font-weight: 700;
+}
+
+img {
+    margin-top: 50px;
+    width: 400px;
+}
+
+.btn-private{
+    align-self: center;
+    margin-top: 50px;
+}
+
+
+.btn-grad {
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%)
+}
+
+.btn-grad {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    display: block;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+         
