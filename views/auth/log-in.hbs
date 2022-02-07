@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-5 justify-content-center">
+            <h2>Fomulario de entrada</h2>
+
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Email</label>
+                    <input type="email" name="email" id="emailInput">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="pswInput" class="form-label">Contraseña</label>
+                    <input type="password" name="password" id="pswInput">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary block">Entrar</button>
+                </div>
+
+                {{!-- condicional de error --}}
+                {{#if errorMsg}}
+                <div>
+                    <p class="error">{{errorMsg}}</p>
+                </div>
+                {{/if}}
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

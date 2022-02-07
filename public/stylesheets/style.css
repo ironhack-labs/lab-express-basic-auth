@@ -4,5 +4,48 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(0, 183, 255);
+}
+
+.error{
+  font-size: 1.5em;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+nav{
+  border: 2px solid #0d6efd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  
+}
+
+.logout{
+  background-color: #0d6efd;
+  color: white;
+  padding: 8px;
+  margin-right: auto;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items:initial;
+}
+
+label{
+  display: block;
+}
+
+input{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+button{
+  background: none;
+  border: none;
 }
