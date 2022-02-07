@@ -1,0 +1,29 @@
+<h1>log-in</h1>
+<br>
+
+<form action="/logIn" method="POST">
+
+    <label for="username">USERNAME:</label><br>
+    <input type="text" id="username" name="username" placeholder="username">
+
+    <br><br><br>
+
+    <label for="password">PASSWORD:</label>
+    <br>
+    <input type="password" id="password" name="pwd1" placeholder="password">
+
+
+
+    {{#if errorMessage}}
+    <div>
+        <p>{{errorMessage}}</p>
+    </div>
+    {{/if}}
+
+
+    <br><br>
+
+    <input type="submit" value="LOG-IN">
+</form>
+<br>
+<a href="/">[main]</a>

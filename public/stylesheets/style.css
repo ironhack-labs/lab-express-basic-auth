@@ -4,5 +4,23 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color:#00B7FF;
+
 }
+.nav-item{
+  margin-right: 5px;
+}
+.blue {
+  color: white;
+}
+.fine{
+  
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+main{
+  text-align: center;
+}
+/* :valid
+ :invalid */
