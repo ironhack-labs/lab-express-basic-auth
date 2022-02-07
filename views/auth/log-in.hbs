@@ -1,0 +1,19 @@
+<h1>log in</h1>
+
+
+<form action="/auth/log-in" method="POST">
+<label>
+    nombre de usuario
+    <input type="text" name="username">
+</label>
+<label for="pwdInput">
+    contraseña
+    <input type="password" id="pwdInput" name="password">
+</label>
+<input type="submit" value="sing in">
+</form>
+{{#if errorMessage}}
+<div id="error">
+    <p>{{errorMessage}}</p>
+</div>
+{{/if}}
