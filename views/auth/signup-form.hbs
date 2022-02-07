@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4">
+
+            <h1>Register HERE</h1>
+            <hr>
+
+            <form action="/sign-up" method="POST">
+                <div class="mb-2">
+                    <label for="usernameInput" class="form-label">User</label>
+                    <input type="text" class="form-control" id="usernameInput" name="username">
+                </div>
+
+                <div class="mb-2">
+                    <label for="pwdInput" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pwdInput" name="userPwd">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-secondary btn-lg">Register</button>
+                </div>
+            </form>   
+           
+            <br><br>
+            {{#if warningMessage}}
+                <div class="warning">
+                    <p>{{warningMessage}}</p>
+                </div>
+            {{/if}}         
+        </div> 
+    </div>
+
+</div>

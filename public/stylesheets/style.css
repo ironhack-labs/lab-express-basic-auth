@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+.warning {
+  background-color: red;
+  color: white
+}
+
+.center {
+  text-align: center;
+}
+
+.logout-btn {
+  border: none;
+  background: transparent;
+}
+
+.nav-item:hover {
+  background-color: gray;
+}
