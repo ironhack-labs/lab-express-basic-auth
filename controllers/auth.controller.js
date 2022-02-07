@@ -20,7 +20,7 @@ module.exports.doRegister = (req, res, next) => {
         renderWithErrors({ email: 'Email already in use!' })
       } else {
         return User.create(user)
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/login'))
       }
     })
     .catch(err => {
@@ -41,12 +41,12 @@ module.exports.login = (req, res, next) => {
 module.exports.doLogin = (req, res, next) => {
 
 
-    const user = { name, email, password } = req.body;
+    const { email, password } = req.body;
         //hacemos lo mismo que en register, pero esta vez requerimos email
        const renderWithLoginErrors = (errors) => {
          console.log(email)
          res.render('auth/login', {
-           user: user,
+           user: req.body,
            errors: {
              email: 'Invalid user or password'
            }
@@ -55,22 +55,30 @@ module.exports.doLogin = (req, res, next) => {
 
        // buscamos email, en caso de que no lo encuentre (!user) lanzamos error
        User.findOne({ email: email })
-         .then(user => {
-             if (!user) {
+         .then(userFound => {
+             if (!userFound) {
                renderWithLoginErrors()
              } else {
 
                 // checkeamos el match del password. en caso negativo lanzamos error
                 // en caso positivo lanzamos login
-               return user.checkPassword(password)
+               return userFound.checkPassword(password)
                  .then(match => {
                    if (!match) {
                      renderWithLoginErrors()
                    } else {
-                     res.send('correct password, logged in!')
+                       console.log('la creo')
+                    req.session.userId = userFound.id;
+                    res.redirect("/profile")
                    }
                  })
              }
          })
          .catch((error) => next(error))
+     }
+
+     module.exports.logout = (req, res, next) => {
+         req.session.destroy()
+         console.log('logout: ', req.session)
+         res.redirect("/")
      }

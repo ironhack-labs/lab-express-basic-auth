@@ -16,6 +16,10 @@ hbs.registerPartials(__dirname + "/views/partials");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const { sessionConfig, loadUser} = require('./config/session.config')
+app.use(sessionConfig)
+app.use(loadUser)
+
 const routes = require('./config/routes.config');
 app.use('/', routes);
 
