@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.index-div {
+  padding: 50px;
+}
+
+
+#error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+#error p {
+  margin: 0;
+}
+
+
+.user-button {
+  padding: 20px;
+  text-decoration: none;
+  background-color: rgb(67, 140, 235);
+  color: white;
+  border-radius: 30px;
 }
