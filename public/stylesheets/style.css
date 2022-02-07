@@ -1,8 +1,104 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  color: #00B7FF;
+img {
+  width: 100%;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  margin-left: 20px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+.register {
+  margin-top: 100px;
+}
+
+.registerbutton {
+  display: flex;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.warnMessage {
+  background-color: red;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  margin: 10px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile img {
+  align-self: center;
+  width: 50%
+}
+
+.card {
+  border: 1px solid #041562;
+  padding: 100px 40px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 4px #041562;
+  background-color: #EEEEEE;
+
+}
+
+.card form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+
+}
+
+.card form input {
+  text-align: center;
+  background-color: rgba(255, 255, 255, .5);
+  border-radius: 4px;
+}
+
+.card form label {
+  margin: 10px 0;
+}
+
+.profile h1 {
+  margin-bottom: 15px;
+}
+
+@keyframes dissapear {
+  0% {
+    transform: rotateX(90deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    display: none;
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+}
+
+#warnMessage {
+  animation-name: dissapear;
+  animation-duration: 2000ms;
+  animation-fill-mode: forwards;
 }

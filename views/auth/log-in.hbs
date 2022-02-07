@@ -1,0 +1,18 @@
+<div class="col-6 register card">
+    <h2>Log in</h2>
+    <hr>
+    <form action="/login" method="POST">
+        <div class="form-group justify-content-center">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="btn btn-outline-primary registerbutton">LOG IN</button>
+    </form>
+    <div class="warnMessage" id="warnMessage">
+        {{message}}
+    </div>
+</div>
