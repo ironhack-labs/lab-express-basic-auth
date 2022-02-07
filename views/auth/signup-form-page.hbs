@@ -1,0 +1,30 @@
+<div class="container form">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h2>REGISTRÁTE</h2>
+
+            <form action="/signup" method="POST">
+                <div class="mb-3">
+                    <label for="usernameInput" class="form-label">Nombre de usuario:</label>
+                    <input type="text" class="form-control" id="usernameInput" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="passwordInput" name="formPwd" required>
+                </div>
+                <button type="submit" class="btn btn-light">Confirmar registro</button>
+
+                <div class="error">
+                    {{#if sendError}}
+                    <p>{{sendError}}</p>
+                    {{/if}}
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
