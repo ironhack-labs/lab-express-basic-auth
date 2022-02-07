@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#errMessage {
+  background-color: red;
+  color: white;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.index-header {
+  font-size: 3em;
+  text-align: center;
+  margin-top: 6rem;
 }
