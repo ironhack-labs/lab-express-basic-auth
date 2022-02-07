@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const bcryptjs = require('bcryptjs')
 
-const User = require('./../models/User.model')
+const User = require('../models/User.model')
 
 const saltRounds = 10
 
@@ -18,6 +18,13 @@ router.post('/registro', (req, res, next) => {
 
     const { username, password } = req.body
 
+    if (username.lenght === 0 || password.lenght === 0) {
+        res.render('auth/signup-form', {
+            errorMessage: 'Por favor, rellena todos los campos'
+        })
+        return
+    }
+
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(password, salt))
@@ -27,7 +34,7 @@ router.post('/registro', (req, res, next) => {
                 username,
                 password: hashedPassword
             })
-                .then(createUser => res.redirect('/')
+                .then(createUser => res.redirect('/inicio-sesion')
                 )
                 .catch(error => next(error))
         })
@@ -45,6 +52,7 @@ router.get('/inicio-sesion', (req, res, next) => {
 //Log in form (handle)
 
 router.post('/inicio-sesion', (req, res, next) => {
+
     const { username, password } = req.body
 
     if (username.lenght === 0 || password.lenght === 0) {

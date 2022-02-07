@@ -18,6 +18,14 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+
+                <hr>
+                {{#if errorMessage}}
+                <div id="error">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
             </form>
         </div>
     </div>
