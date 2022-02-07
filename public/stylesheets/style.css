@@ -4,10 +4,18 @@ body {
 }
 
 a {
-  color: #ffff;
+  color: #ffff !important;
   text-decoration: none;
 }
 
 img{
   width: 50%;
 }
+
+nav{
+  background-color: #2666CF;
+}
+nav img{
+  width: 20%;
+}
+
