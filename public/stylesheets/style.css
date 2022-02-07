@@ -1,8 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.nav {
+  margin-bottom: 50px;
 }
 
-a {
-  color: #00B7FF;
+.nav form button {
+  background: transparent;
+  border: none;
+  color: blue;
+}
+
+#error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+#error p {
+  margin: 0;
 }
