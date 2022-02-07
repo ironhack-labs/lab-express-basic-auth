@@ -10,6 +10,15 @@ a {
 .nav-item{
   margin-right: 5px;
 }
+.error{
+  color: white;
+  background-color: orangered;
+  width: 175px;
+  
+  text-align: center;
+  padding-top:  10px;
+  padding-bottom: 10px;
+}
 .blue {
   color: white;
 }

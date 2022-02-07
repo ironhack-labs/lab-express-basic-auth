@@ -1,29 +1,30 @@
 <h1>log-in</h1>
 <br>
+<div>
+    <form action="/logIn" method="POST">
 
-<form action="/logIn" method="POST">
+        <label for="username">USERNAME:</label><br>
+        <input type="text" id="username" name="username" placeholder="username">
 
-    <label for="username">USERNAME:</label><br>
-    <input type="text" id="username" name="username" placeholder="username">
+        <br><br><br>
 
-    <br><br><br>
+        <label for="password">PASSWORD:</label>
+        <br>
+        <input type="password" id="password" name="pwd1" placeholder="password">
 
-    <label for="password">PASSWORD:</label>
-    <br>
-    <input type="password" id="password" name="pwd1" placeholder="password">
+        <br><br>
 
-
-
-    {{#if errorMessage}}
-    <div>
-        <p>{{errorMessage}}</p>
-    </div>
-    {{/if}}
+        {{#if errorMessage}}
+        <div class="error">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
 
 
-    <br><br>
+        <br><br>
 
-    <input type="submit" value="LOG-IN">
-</form>
+        <input class="btn btn-primary " type="submit" value="LOG-IN">
+    </form>
+</div>
 <br>
-<a href="/">[main]</a>
+<a class="btn btn-primary btn-dark " href="/">Back</a>

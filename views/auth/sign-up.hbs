@@ -1,33 +1,36 @@
 <h1>sign-up</h1>
 <br>
-<form action="/signUp" method="POST">
+<div>
+    <form action="/signUp" method="POST">
 
-    <label for="username">USERNAME:</label><br>
-    <input type="text" id="username" name="username" placeholder="choose a username">
+        <label for="username">USERNAME:</label><br>
+        <input type="text" id="username" name="username" placeholder="choose a username">
 
-    <br><br><br>
+        <br><br><br>
 
-    <label for="password">PASSWORD:</label>
-    <br>
-    <input type="password" id="password" name="pwd1" placeholder="choose a password">
+        <label for="password">PASSWORD:</label>
+        <br>
+        <input type="password" id="password" name="pwd1" placeholder="choose a password">
 
-    <br><br><br>
+        <br><br><br>
 
-    <label for="passwordconfirm">CONFIRM PASSWORD:</label>
-    <br>
-    <input type="password" id="passwordconfirm" name="pwd2" placeholder="confirm password">
-
-
-    {{#if errorMessage}}
-    <div>
-        <p>{{errorMessage}}</p>
-    </div>
-    {{/if}}
+        <label for="passwordconfirm">CONFIRM PASSWORD:</label>
+        <br>
+        <input type="password" id="passwordconfirm" name="pwd2" placeholder="confirm password">
 
 
-    <br><br>
+        <br><br>
 
-    <input type="submit" value="SIGN UP">
+        {{#if errorMessage}}
+        <div class="error">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
+
+</div>
+<br><br>
+
+<input class="btn btn-primary " type="submit" value="SIGN UP">
 </form>
 <br>
-<a href="/">[main]</a>
+<a class="btn btn-primary btn-dark " href="/">Back</a>

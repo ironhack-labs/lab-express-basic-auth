@@ -39,17 +39,17 @@ router.post("/signUp", (req, res, next) => {
 
     User.findOne({ username })
         .then(result => {
-            if (result.username === username) {
-                res.render("./auth/sign-up", { errorMessage: "the username is already used" })
-                return
-            }
 
             if (username.length === 0 || pwd1.length === 0 || pwd2.length === 0) {
-                res.render("./auth/sign-up", { errorMessage: "please fill al the fields" })
+                res.render("./auth/sign-up", { errorMessage: "Please fill in all the fields" })
+                return
+            }
+            if (result.username === username) {
+                res.render("./auth/sign-up", { errorMessage: "Tis username is already in use" })
                 return
             }
             if (pwd1 !== pwd2) {
-                res.render("./auth/sign-up", { errorMessage: "the passwords do not match" })
+                res.render("./auth/sign-up", { errorMessage: "The passwords do not match" })
                 return
             }
             //pasword encryption
@@ -77,7 +77,7 @@ router.get("/logIn", (req, res, next) => {
 router.post("/logIn", (req, res, next) => {
     const { username, pwd1 } = req.body
     if (username.length === 0 || pwd1.length === 0) {
-        res.render('auth/log-in', { errorMessage: 'fill all the fields' })
+        res.render('auth/log-in', { errorMessage: 'Please, fill in all the fields' })
         return
     }
 
@@ -85,11 +85,11 @@ router.post("/logIn", (req, res, next) => {
         .findOne({ username })
         .then(user => {
             if (!user) {
-                res.render('auth/log-in', { errorMessage: 'user not found' })
+                res.render('auth/log-in', { errorMessage: 'User does not exist' })
                 return
             }
             else if (bcryptjs.compareSync(pwd1, user.password) === false) {
-                res.render('auth/log-in', { errorMessage: 'wrong password' })
+                res.render('auth/log-in', { errorMessage: 'Wrong password' })
                 return
             }
             else {
