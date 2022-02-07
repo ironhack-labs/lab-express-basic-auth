@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Login</h1>
+            <hr>
+
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pwdInput" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pwdInput" name="userPwd" required>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark block">Log in</button>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="error">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
+            </form>
+            <p> Not a member? <a href="/signup">Sign up</a></p>
+        </div>
+
+
+    </div>
+
+</div>
