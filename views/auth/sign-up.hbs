@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+            <h1>Sign up</h1>
+            <p>Please, give all the information needed to register in {{appTitle}}</p>
+            <form class="/sign-up" method="POST">
+                <div class="mb-3">
+                    <label for="nickInput" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="nickInput" name="username" >
+                </div>
+
+                <div class="mb-3">
+                    <label for="pwdInput" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pwdInput" name="password">
+                </div>
+            
+                <button type="submit" class="btn btn-danger">Register</button>
+                <br>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        {{#if errorMessage}}
+                            <div id="error" class="btn btn-danger btn-lg">
+                                <p>{{errorMessage}}</p>
+                            </div>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
