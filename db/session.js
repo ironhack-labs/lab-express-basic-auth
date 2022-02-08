@@ -4,6 +4,7 @@
 // 1. IMPORTACIONES
 
 const session = require("express-session")
+const MongoStore = require("connect-mongo")
 
 
 // 2. FUNCIÓN DE GESTIÓN DE LA SESIÓN
@@ -14,13 +15,16 @@ const sessionManager = (application) => {
 
     //VERIFICAR QUE LA SESIÓN SE GENERE CON SU PALABRA SECRETA, SU TICKET (COOKIE) Y SU EXPIRACIÓN
     application.use(session({
-        secret: "HOLAMUNDO",
+        secret: process.env.SECRET,
         resave: true,
         cookie: {
             maxAge: 8640000, //tiempo de expiración del cookie
             httpOnly: true
         },
-        saveUninitialized: false //para quitar el deprecated
+        saveUninitialized: false, //para quitar el deprecated
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI // !!!!!!!!
+        })
     }))
 }
 
