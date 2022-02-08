@@ -84,4 +84,13 @@ router.get("/profile", async (req, res) => {
   }
 });
 
+/* GET sign in page */
+router.get("/login", async (req, res) => {
+  try {
+    res.render("login");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
