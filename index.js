@@ -3,9 +3,13 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs');
 const connectDB = require('./config/db');
+const sessionManager = require('./config/session');
+
 
 //middlewares
+
 require('dotenv').config();
+sessionManager(app);
 connectDB();
 app.use(express.static('public'))
 app.set('views', __dirname + '/views');
