@@ -20,12 +20,13 @@ router.get("/signup", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   // 1. VERIFICAR QUE LOS DATOS DEL FORMULARIO LLEGUEN AL CONTROLLER
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
+  // console.log(req.body);
 
   // --- VALIDACIONES ---
   // A. VERIFICAR QUE NO HAYA ESPACIOS VACÍOS
-  if (!username || !email || !password) {
-    return res.render("/signup", {
+  if (!username || !password) {
+    return res.render("signup", {
       errorMessage: "Todos los campos deben llenarse.",
     });
   }
@@ -34,7 +35,7 @@ router.post("/signup", async (req, res) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
   if (!regex.test(password)) {
-    return res.render("/signup", {
+    return res.render("signup", {
       errorMessage:
         "Tu contraseña debe incluir 6 caracteres, al menos un número, una minúscula y una mayúscula.",
     });
@@ -52,11 +53,10 @@ router.post("/signup", async (req, res) => {
   try {
     const newUser = await User.create({
       username,
-      email,
       password: hashedPassword,
     });
 
-    console.log(newUser);
+    // console.log(newUser);
 
     return res.redirect("/profile");
   } catch (error) {
@@ -66,7 +66,7 @@ router.post("/signup", async (req, res) => {
 
     // CONFIRMAR SI EL ERROR VIENE DE BASE DE DATOS
     if (error instanceof mongoose.Error.ValidationError) {
-      return res.render("/signup", {
+      return res.render("signup", {
         errorMessage: "Por favor utiliza un correo electrónico real.",
       });
     }
@@ -88,6 +88,49 @@ router.get("/profile", async (req, res) => {
 router.get("/login", async (req, res) => {
   try {
     res.render("login");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+/* POST sign in page */
+router.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const foundUser = await User.findOne({ username });
+    // console.log(foundUser);
+
+    if (!foundUser) {
+      res.render("login", {
+        errorMessage: "User or password not found.",
+      });
+
+      return;
+    }
+
+    const verifiedPass = await bcryptjs.compareSync(
+      password,
+      foundUser.password
+    );
+
+    console.log(verifiedPass);
+
+    if (!verifiedPass) {
+      res.render("login", {
+        errorMessage: "Incorrect user or password.",
+      });
+
+      return;
+    }
+
+    req.session.currentUser = {
+      _id: foundUser._id,
+      username: foundUser.username,
+      msg: "Este es su ticket",
+    };
+
+    return res.redirect("/profile");
   } catch (error) {
     console.log(error);
   }
