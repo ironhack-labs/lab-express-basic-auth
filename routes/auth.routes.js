@@ -18,7 +18,7 @@ router.post('/registro', (req, res, next) => {
 
     const { username, password } = req.body
 
-    if (username.lenght === 0 || password.lenght === 0) {
+    if (username.length === 0 || password.length === 0) {
         res.render('auth/signup-form', {
             errorMessage: 'Por favor, rellena todos los campos'
         })
@@ -55,7 +55,7 @@ router.post('/inicio-sesion', (req, res, next) => {
 
     const { username, password } = req.body
 
-    if (username.lenght === 0 || password.lenght === 0) {
+    if (username.length === 0 || password.length === 0) {
         res.render('auth/login-form', {
             errorMessage: 'Por favor, rellena todos los campos'
         })
