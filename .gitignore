@@ -1,0 +1,5 @@
+#archivos
+.env
+package-lock.json
+#carpetas
+node_modules/
