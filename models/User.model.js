@@ -1,14 +1,31 @@
-const { Schema, model } = require("mongoose");
+// 1.IMPORTACIONES 
+const mongoose = require("mongoose")
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema({
-  username: {
-    type: String,
-    unique: true
-  },
-  password: String
-});
+//2. SCHEMA
+const userSchema = mongoose.Schema( {
+    username: {
+        type: String,
+        trim: true, //No puedes guardar en base se datos si mandas un dato con espacios en blancos
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        lowercase: true,
+        trim: true,
+        match:[/^\S+@\S+\.\S+$/, "Por favor utiliza un email válido."]
+    },
+    password: {
+        type: String,
+        required: true,
+    }
+}, {
+    timestamps: true //Guardar fecha y hora en que se creo un dicumento
+   }
+)
 
-const User = model("User", userSchema);
+// 3. MODEL 
+const User = mongoose.model("User", userSchema)
 
-module.exports = User;
+// 4. EXPORTACIÓN
+module.exports = User

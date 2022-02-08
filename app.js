@@ -1,35 +1,33 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
-require('dotenv/config');
+// 1. IMPORTACIONES
 
-// ℹ️ Connects to the database
-require('./db');
+const express		= require("express")
+const app			= express()
 
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require('express');
+const hbs			= require("hbs")
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
+const connectDB		= require("./db/db")
 
-const app = express();
+const PORT = process.env.PORT || 3000;
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+// 2. MIDDLEWARES
+require("dotenv").config()
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+connectDB()
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+app.use(express.static("public"))
+app.set("views", __dirname + "/views")
+app.set("view engine", "hbs")
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
+app.use(express.urlencoded({ extended: true }))
 
-module.exports = app;
+
+// 3. RUTEO
+app.use("/", require("./routes/index"))
+app.use("/auth", require("./routes/auth"))
+
+
+
+// 4. SERVIDOR
+app.listen(process.env.PORT, () => console.log(`Active server on PORT ${process.env.PORT}`))
 

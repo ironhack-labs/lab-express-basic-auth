@@ -1,3 +1,5 @@
+/*
+
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
@@ -37,3 +39,4 @@ module.exports = (app) => {
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
 };
+*/
