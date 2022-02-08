@@ -1,9 +1,10 @@
+//este es el app.js
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
 
 // ℹ️ Connects to the database
-require('./db');
+const connectDB		= require("./db/index")
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -14,6 +15,7 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+connectDB()
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -32,4 +34,3 @@ app.use('/', index);
 require('./error-handling')(app);
 
 module.exports = app;
-
