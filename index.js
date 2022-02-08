@@ -8,6 +8,7 @@ const app			= express()
 const hbs			= require("hbs")
 
 const connectDB		= require("./config/db")
+const path          = require("path")
 
 
 // 2. MIDDLEWARES
@@ -15,18 +16,22 @@ require("dotenv").config()
 
 connectDB()
 
-app.use(express.static("public"))
+app.use(express.static(path.join( __dirname, "public")))
+
+
+
 app.set("views", __dirname + "/views")
 app.set("view engine", "hbs")
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use("/register", require("./routes/route.users.js"))
+
 
 
 // 3. RUTEO
 app.use("/", require("./routes/index"))
-
+app.get("/register", require("./routes/route.users.js"))
+app.use("/profile", require("./routes/index"))
 
 
 

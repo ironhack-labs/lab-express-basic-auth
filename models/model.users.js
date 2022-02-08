@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
 
     newsletter: {
         type: String,
-        required: true,
+        required: false,
         lowercase: true,
         trim: true,
         match: [/^\S+@\S+\.\S+$/, "Por favor utiliza un email válido."]
@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
 
 //modelo
 
-const User = mongoose.model("user", userSchema)
+const User = mongoose.model("User", userSchema)
 
 
 //exportacion

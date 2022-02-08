@@ -1,23 +1,18 @@
-/*importaciones*/
+/* ./public/css/styles.css */
+
+/* 1. IMPORTACIONES */
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 
+/* 2. ETIQUETAS */
 
-/* etiquetas */
 body {
-
-    font-family: 'Lato', sans-serif;
-
+	font-family: 'Lato', sans-serif;
 }
 
+/* 3. SELECTORES */
 
-/* selectores */
+/* 4. CLASES */
 
-
-
-
-/* clases */
-
-
-
-/* media queries */
+/* 5. MEDIA QUERIES */
