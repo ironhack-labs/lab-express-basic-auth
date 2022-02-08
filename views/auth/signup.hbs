@@ -1,0 +1,56 @@
+<div class="container">
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+      <h1>Registro</h1>
+      <hr />
+
+      <form action="/registro" method="POST">
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">Dirección de correo
+            electronico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="emailInput"
+            name="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="usernameInput" class="form-label">Nick</label>
+          <input
+            type="text"
+            class="form-control"
+            id="usernameInput"
+            name="username"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="pwdInput" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="pwdInput"
+            name="userPwd"
+          />
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-dark block">Enviar registro</button>
+        </div>
+
+        {{#if errorMessage}}
+          <div id="error">
+            <p>{{errorMessage}}</p>
+          </div>
+        {{/if}}
+
+      </form>
+    </div>
+  </div>
+
+</div>
