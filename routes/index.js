@@ -1,8 +1,15 @@
-const router = require("express").Router();
+// ./routes/index.js
 
-/* GET home page */
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+// 1. IMPORTACIONES
+const express			= require("express")
+const router			= express.Router()
 
-module.exports = router;
+const indexController 	= require("./../controllers/indexController")
+
+
+// 2. ROUTER
+// A. HOME
+router.get("/", indexController.getHome)
+
+// 3. EXPORTACIÓN
+module.exports = router
