@@ -1,14 +1,23 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema({
-  username: {
-    type: String,
-    unique: true
+const userSchema = new Schema(
+  {
+    username: {
+      minlength: [5, 'the username must have minimum 5 characters'],
+      type: String,
+      trim: true,
+      required: [true, 'type your username'],
+      unique: true
+    },
+  
+    passwordHash: {
+      type: String,
+      required: [true, 'type your password']
+    }
   },
-  password: String
-});
+  {
+    timestamps: true
+  }
+);
 
-const User = model("User", userSchema);
-
-module.exports = User;
+module.exports = model('User', userSchema);
