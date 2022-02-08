@@ -9,9 +9,13 @@ const connectDB		= require("./db/db")
 
 const PORT = process.env.PORT || 3000;
 
+const sessionManager = require("./db/session")
+
 
 // 2. MIDDLEWARES
 require("dotenv").config()
+
+sessionManager(app)
 
 connectDB()
 

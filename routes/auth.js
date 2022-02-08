@@ -16,7 +16,8 @@ router.post("/signup", authController.signupForm)
 // B. LOGIN - OBTENER PÁGINA
 router.get("/login", authController.login)
 
-
+// B2. LOGIN - ENVIAR FORMULARIO
+router.post("/login", authController.loginForm)
 
 
 
