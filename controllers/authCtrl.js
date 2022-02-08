@@ -32,7 +32,6 @@ exports.registerForm = async (req, res) => {
 	try {
 		const newUser = await User.create({
 			username,
-			email, 
 			password: hashedPassword
 		})
 		console.log(newUser)
@@ -40,7 +39,7 @@ exports.registerForm = async (req, res) => {
 	} catch (error) {
 		if (error instanceof mongoose.Error.ValidationError){
 			return res.render("auth/signup", {
-				errorMessage: "Por favor utiliza un correo electrónico real."
+				errorMessage: "Por favor revisa tu informacion."
 			})
 		}
 		return
