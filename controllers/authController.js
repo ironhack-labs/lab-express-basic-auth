@@ -78,6 +78,7 @@ exports.registerForm = async (req, res) => {
 
 }
 
+
 exports.login = (req, res) => {
 
 	res.render("auth/login")
@@ -129,5 +130,21 @@ exports.loginForm = async (req, res) => {
 	// 5. REDIRECCIÓN AL PROFILE
 	return res.redirect("/profile")
 
+
+}
+
+exports.logout = async (req, res) => {
+
+	req.session.destroy((error) => {
+
+		if(error){
+			console.log(error)
+			return
+		}
+
+		res.redirect("/")
+
+
+	})
 
 }

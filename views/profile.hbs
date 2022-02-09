@@ -1,7 +1,11 @@
 {{!-- ./views/profile.hbs --}}
 
+
+{{currentUser.username}}
+
 <h1>Mi perfil</h1>
 
-<p>Mensage: {{ msg }}</p>
+<p>Mensage: {{ currentUser.msg}}</p>
 
-<p>Tu usuario: {{ username }}</p>
+<p>Tu usuario: {{ currentUser.username }}</p>
+
