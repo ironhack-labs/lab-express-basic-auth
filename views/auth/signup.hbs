@@ -1,5 +1,6 @@
 <h1>Sign up for a profile:</h1>
 <br />
+<p>{{message}}</p>
 <form action='/signup' method='POST'>
   <label for='username'>Username:</label>
   <input
@@ -7,6 +8,7 @@
     name='username'
     id='username'
     placeholder='Enter new username'
+    required
   />
   <label for='password'>Password:</label>
   <input
@@ -14,6 +16,7 @@
     name='password'
     id='password'
     placeholder='Enter password'
+    required
   />
   <button type='submit'>Sign up</button>
 </form>

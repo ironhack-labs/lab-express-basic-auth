@@ -1,1 +1,22 @@
 <h1>Log in to your profile:</h1>
+<br />
+<p>{{message}}</p>
+<form action='/login' method='POST'>
+  <label for='username'>Username:</label>
+  <input
+    type='text'
+    name='username'
+    id='username'
+    placehplder='Enter your username'
+    required
+  />
+  <label for='password'>Password:</label>
+  <input
+    type='text'
+    name='password'
+    id='password'
+    placeholder='Enter your password'
+    required
+  />
+  <button type='submit'>Log in</button>
+</form>
