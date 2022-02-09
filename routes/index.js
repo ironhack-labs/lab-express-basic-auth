@@ -11,5 +11,8 @@ const indexController 	= require("./../controllers/indexController")
 // A. HOME
 router.get("/", indexController.getHome)
 
+// B. PROFILE
+router.get("/profile", indexController.getProfile)
+
 // 3. EXPORTACIÓN
 module.exports = router
