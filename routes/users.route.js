@@ -2,31 +2,17 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
 const saltRounds = 10;
-const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
+const {
+  isLoggedIn,
+  isLoggedOut,
+  checkFields,
+} = require("../middleware/route-guard");
 
-let checkFields = (fields) => {
-  let errors = [];
-  if (!fields.username) {
-    errors.push("You did not include a name!");
-  }
-  if (!fields.password) {
-    errors.push("You need a password");
-  }
-  if (errors.length > 0) {
-    return errors;
-  }
-  return false;
-};
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("signup");
 });
 
-router.post("/signup", (req, res) => {
-  let problem = checkFields(req.body);
-  if (problem) {
-    return res.render("signup", { message: problem });
-  }
-
+router.post("/signup", isLoggedOut, checkFields, (req, res) => {
   const hashedPass = bcrypt.hashSync(
     req.body.password,
     bcrypt.genSaltSync(saltRounds)
@@ -40,22 +26,11 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("login");
 });
 
-router.post("/login", (req, res) => {
-  let errors = [];
-  if (!req.body.username) {
-    errors.push("You did not include a name!");
-  }
-  if (!req.body.password) {
-    errors.push("You need a password");
-  }
-  if (errors.length > 0) {
-    res.json(errors);
-  }
-
+router.post("/login", isLoggedOut, checkFields, (req, res) => {
   User.findOne({ username: req.body.username })
     .then((results) => {
       if (!results) {
@@ -78,7 +53,7 @@ router.post("/login", (req, res) => {
     });
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy();
   res.redirect("login");
 });
