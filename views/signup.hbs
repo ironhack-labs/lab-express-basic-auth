@@ -1,0 +1,13 @@
+<h1>sign up!</h1>
+{{#if message}}
+{{#each message}}
+<p>{{this}}</p>
+{{/each}}
+{{/if}}
+<form action="/users/signup" method="post">
+<label>username</label>
+<input type="text" name="username" required>
+<label>password</label>
+<input type="text" name="password" required>
+<button type="submit">sign up</button>
+</form>

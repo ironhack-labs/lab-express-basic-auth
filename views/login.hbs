@@ -1,0 +1,9 @@
+<h1>log in!</h1>
+{{#if message}}<h3>{{message}}</h3>{{/if}}
+<form action="/users/login" method="post">
+<label>username</label>
+<input type="text" name="username" required>
+<label>password</label>
+<input type="text" name="password" required>
+<button type="submit">login</button>
+</form>
