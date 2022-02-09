@@ -3,6 +3,36 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100vw;
+}
+
+form {
+  width: 50%;
+}
+
+input[type=text], 
+input[type=password], 
+input[type=email] {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form button {
+  border: none;
+  width: 100%;
+  background-color: slateblue;
+  color: white;
+  border-radius: 4px;
+  margin: 16px 0;
+  padding: 10px 15px;
 }

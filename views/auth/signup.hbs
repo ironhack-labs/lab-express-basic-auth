@@ -1,11 +1,15 @@
-<div>
+<div class="form-container">
 
     <h2>Create an Account</h2>
 
     <form action="/signup" method="post">
 
+        {{#if errorMessage}}
+            <p class="error"> {{errorMessage}} </p>
+        {{/if}}
+
         <label for="username">Username</label>
-        <input type="username" name="username">
+        <input type="text" name="username">
 
         <label for="email">Email</label>
         <input type="email" name="email">
@@ -14,7 +18,7 @@
         <input type="password" name="password">
 
         <button type="submit">Create account</button>
-        
+
     </form>
 
 </div>
