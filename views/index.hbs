@@ -1,6 +1,15 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <br />
-<h3><a href='/signup'>Sign up</a></h3>
+{{#if loggedIn}}
+  <h3><a href='/logout'>Logout</a></h3>
+{{/if}}
+{{#unless loggedIn}}
+  <h3><a href='/signup'>Sign up</a></h3>
+  <br />
+  <h3><a href='/login'>Log in</a></h3>
+{{/unless}}
 <br />
-<h3><a href='/login'>Log in</a></h3>
+<h4><a href='/main'>Private pic</a></h4>
+<br />
+<h4><a href='/private'>Private gif</a></h4>
