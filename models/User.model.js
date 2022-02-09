@@ -7,6 +7,9 @@ const userSchema = new Schema({
     unique: true
   },
   password: String
+},{
+  //this obj adds extra properties: creartAt and updateAt
+  timestamps: true,
 });
 
 const User = model("User", userSchema);

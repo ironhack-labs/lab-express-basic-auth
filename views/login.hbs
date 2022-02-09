@@ -1,0 +1,33 @@
+<h1>Login</h1>
+
+<form action="/login" method="POST">
+  <input
+    type="text"
+    name="username"
+    id="username"
+    placeholder="Choose a available username"
+  >
+
+  <b><p>Click on the checkbox to show or hide password: </p></b>
+  <input
+    type="password"
+    name="password"
+    id="typepass"
+    placeholder="password needs to be min 4 char. long"
+  />
+  <input type="checkbox" onclick="Toggle()" />
+  <b>Show Password</b>
+  <script>
+    // Change the type of input to password or text 
+    function Toggle() { var temp
+    = document.getElementById("typepass"); if (temp.type === "password") {
+    temp.type = "text"; } else { temp.type = "password"; } }
+  </script>
+  <br>
+  
+    <button type="submit">Login</button>
+
+    {{#if message}}
+		<p>{{message}}</p>
+	{{/if}}
+    </form>
