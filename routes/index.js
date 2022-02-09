@@ -10,6 +10,8 @@ const indexController 	= require("./../controllers/indexController")
 // A. HOME
 router.get("/", indexController.getHome)
 
+// B. profile
+router.get("/profile", indexController.getProfile)
 
 
 

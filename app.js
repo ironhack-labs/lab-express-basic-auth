@@ -5,6 +5,7 @@ require('dotenv/config');
 
 // ℹ️ Connects to the database
 const connectDB		= require("./db/index")
+const sessionManager = require("./config/session")
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -15,6 +16,8 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+
+sessionManager(app)
 connectDB()
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
