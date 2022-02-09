@@ -1,0 +1,36 @@
+<div></div>
+<br>
+<h3>Sign up</h3>
+<div></div>
+<br>
+
+<form action="/signup" method="post">
+    <div class="mb-3">
+        <label for="username" class="form-label">User name</label>
+        <input type="text" class="form-control" name="username" id="username" >
+        <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" id="password">
+  </div>
+  {{!-- <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="checkOut">
+    <label class="form-check-label" for="checkOut">Check me out</label>
+  </div> --}}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div></div>
+<br>
+{{#if message}}
+<div class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+{{/if}}
+
+{{!-- aria-describedby="emailHelp" --}}

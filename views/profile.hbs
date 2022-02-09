@@ -1,0 +1,10 @@
+{{#if user}}
+<h2>Welcome {{user.username}} You have succesfully logged or signed in!</h2>
+<div></div>
+<br>
+<button>
+        <a href="/profile">Refresh the page to update your details</a>
+</button>
+{{else}}
+<h2>Sorry - you need to login or sign up first!</h2>
+{{/if}}
