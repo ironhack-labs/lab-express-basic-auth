@@ -6,8 +6,16 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
-});
+  password: String,
+  },
+
+  {
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
+  }
+  );
+
+
 
 const User = model("User", userSchema);
 
