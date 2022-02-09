@@ -59,7 +59,7 @@ router.post('/login', (req, res, next) => {
             // check the password against the hash in DB
                             // password from User  vs.  password in DB
             if (bcrypt.compareSync(password, userFromDB.password)) {
-                //console.log('here the error please')
+                console.log('authenticated')
                 // it matches above -> this means that the credentials are correct
                 // req.session.<some key (normally 'user'>)
                 req.session.user = userFromDB
@@ -70,7 +70,14 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/profile', (req, res, next) => {
-    res.render('profile')
+    let user = req.session.user
+    res.render('profile', { user: user})
+});
+
+
+router.get('/logout', (req, res, next) => {
+    req.session.destroy()
+    res.render('index')
 });
 
 
