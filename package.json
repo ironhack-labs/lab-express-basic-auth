@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "mongoose": "^6.1.2",
+    "mongoose-unique-validator": "^3.0.0",
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"
   },

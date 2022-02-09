@@ -12,6 +12,10 @@ body {
   width: 100vw;
 }
 
+.error {
+  color: red;
+}
+
 form {
   width: 50%;
 }

@@ -1,22 +1,25 @@
 const { Schema, model } = require("mongoose");
+uniqueValidator = require('mongoose-unique-validator');
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     username: {
       type: String,
-      unique: true
+      unique: true,
+      required: true
     },
     email: {
       type: String,
       unique: true,
-      required: [true, 'Email is required!'],
+      required: true,
+      // This is done client-side in the HTML form atm:
+      //match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'], 
       trim: true,
       lowercase: true
     },
     pwHash: {
       type: String,
-      required: [true, 'Password is required!']
+      required: true
     } 
   },
   {
@@ -24,6 +27,8 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+// return a mongoose ValidationError in case a username or email already exists
+userSchema.plugin(uniqueValidator, { message: '{PATH} already taken!' });
 
-module.exports = User;
+module.exports = model("User", userSchema);
+
