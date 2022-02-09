@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.2.1"
+  },
+  "name": "lab-express-basic-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GerardoRegalado/lab-express-basic-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GerardoRegalado/lab-express-basic-auth/issues"
+  },
+  "homepage": "https://github.com/GerardoRegalado/lab-express-basic-auth#readme",
+  "description": ""
+}
