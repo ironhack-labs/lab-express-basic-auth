@@ -1,12 +1,17 @@
 const router = require("express").Router();
 const bcrypt = require('bcryptjs');
-const { findOne } = require("../models/User.model.js");
 const User = require('../models/User.model.js')
 
 
 router.get("/signup", (req, res, next) => {
     res.render("signup");
 });
+
+
+router.get('/login', (req, res, next) => {
+	res.render('login')
+});
+
 
 router.post("/signup", (req, res, next) => {
     const { username, password } = req.body
@@ -35,6 +40,37 @@ router.post("/signup", (req, res, next) => {
             }
         })
 
+});
+
+
+router.post('/login', (req, res, next) => {
+    const { username, password } = req.body
+
+    // check if exists a user with that username
+    User.findOne({ username: username })
+        .then(userFromDB => {
+            console.log('user: ', userFromDB)
+            if (userFromDB === null) {
+                // this user does not exist
+                res.render('login', { message: 'This user does not exist' })
+                return
+            }
+            // if username is correct
+            // check the password against the hash in DB
+                            // password from User  vs.  password in DB
+            if (bcrypt.compareSync(password, userFromDB.password)) {
+                //console.log('here the error please')
+                // it matches above -> this means that the credentials are correct
+                // req.session.<some key (normally 'user'>)
+                req.session.user = userFromDB
+                // redirect to the profile page
+                res.redirect('/profile')
+            }
+        })
+});
+
+router.get('/profile', (req, res, next) => {
+    res.render('profile')
 });
 
 
