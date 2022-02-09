@@ -4,11 +4,11 @@ const User = require("../models/User.model");
 const saltRounds = 10;
 
 /* GET signup page */
-router.get("/", (req, res) => {
+router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/", (req, res) => {
+router.post("/signup", (req, res) => {
     const {username, email, password} = req.body;
     bcrypt.genSalt(saltRounds)
     .then((salt) => {
