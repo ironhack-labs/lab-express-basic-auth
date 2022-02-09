@@ -11,7 +11,7 @@ router.post('/signup', (req, res, next) => {
   // Form validation should be added here
   User.findOne({ username: username }).then((retievedUser) => {
     if (retievedUser) {
-      res.redirect('/signup', { message: `Username already taken` });
+      res.render('auth/signup', { message: `Username already taken` });
       return;
     } else {
       const salt = bcrypt.genSaltSync();

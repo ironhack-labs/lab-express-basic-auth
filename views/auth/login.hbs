@@ -9,6 +9,7 @@
     id='username'
     placeholder='Enter your username'
     required
+    pattern='^(?=.{3,20}$)(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9_-]+([^._-])$'
   />
   <label for='password'>Password:</label>
   <input
@@ -17,6 +18,7 @@
     id='password'
     placeholder='Enter your password'
     required
+    pattern='^((?=\\\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$'
   />
   <button type='submit'>Log in</button>
 </form>
