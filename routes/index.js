@@ -16,11 +16,12 @@ router.get("/", indexController.getHome)
 router.get("/register", userController.register)
 router.post("/register", userController.registerForm)
 
-
+//profile
+router.get("/profile", userController.profile)
 
 //LOGIN
 router.get("/login", userController.login)
 
 
 // 3. EXPORTACIÓN
-module.exports = router
+module.exports = router 

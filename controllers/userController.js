@@ -2,6 +2,7 @@
 const express = require("express")
 const res = require("express/lib/response")
 const bcryptjs = require("bcryptjs")
+const User = require("./../model/User")
 
 
 //A. REGISTRO 
@@ -22,15 +23,22 @@ exports.registerForm = async (req,res) => {
     //encriptacion
 
     const hashedPassword = await bcryptjs.hash(password, salt)
-    console.log(hashedPassword)
+    //console.log(hashedPassword)
+
+    
+    const newUser = await User.create({
+        username,
+        password: hashedPassword
+    })
+
+    res.redirect("/profile")
 
 }
 
+exports.profile = (req,res) => {
 
-
-
-
-
+        res.render("profile")
+}
 
 
 
