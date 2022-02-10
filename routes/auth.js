@@ -41,4 +41,29 @@ module.exports = router;
 
 router.get("/login", (req, res) => {
     res.render("auth/login");
-})
+});
+
+router.post("/login", (req, res) => {
+
+    const {username, password} = req.body;
+
+    if (!username || !password) {
+        res.render("auth/login", {errorMessage: "Please provide username/email and password."})
+    }
+
+    User.findOne({"$or": [{"username": username}, {"email": username}]})
+    .then((user) => {
+        console.log(user);
+        if (!user) {
+            res.render("auth/login", {errorMessage: "Username incorrect."});
+        } else if (bcrypt.compareSync(password, user.pwHash)) {
+            res.send("login successful");
+        } else {
+            res.render("auth/login", {errorMessage: "Password incorrect."});
+        }
+    })
+    .catch((err) => {
+        console.log("Something went wrong logging in the User: ", err);
+    });
+
+});
