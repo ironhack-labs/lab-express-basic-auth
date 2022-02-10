@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "hbs": "^4.2.0",
@@ -8,7 +9,6 @@
   "name": "lab-express-basic-auth",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
