@@ -1,8 +1,16 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Arial Narrow";
+  color: grey;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(212, 233, 236), rgb(255, 255, 255));
+  background-repeat: no-repeat;
 }
 
+
 a {
-  color: #00B7FF;
+  color: #a59797;
+}
+
+h1 {
+  color: 15px;
 }
