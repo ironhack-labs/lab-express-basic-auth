@@ -9,11 +9,12 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", (req, res) => {
     
     const {username, email, password} = req.body;
 
     if (!username || !password || !email) {
+        // set username = email in case it is not provided instead
         res.render("auth/signup", {errorMessage: "All fields are mandatory! Please provide email, username and password."});
         return;
     }
@@ -37,3 +38,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 module.exports = router;
+
+router.get("/login", (req, res) => {
+    res.render("auth/login");
+})

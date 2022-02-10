@@ -1,0 +1,23 @@
+<div class="form-container">
+
+    <h2>Login to your account</h2>
+
+    <form action="/login" method="post">
+
+        {{#if errorMessage}}
+            <p class="error"> {{errorMessage}} </p>
+        {{/if}}
+
+        <label for="username">Username or Email</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <p>Don't have an account Yet? Signup <a href="/signup">Here</a> </p>
+
+</div>
