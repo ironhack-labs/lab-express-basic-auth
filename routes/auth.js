@@ -37,8 +37,6 @@ router.post("/signup", (req, res) => {
     });
 });
 
-module.exports = router;
-
 router.get("/login", (req, res) => {
     res.render("auth/login");
 });
@@ -57,7 +55,8 @@ router.post("/login", (req, res) => {
         if (!user) {
             res.render("auth/login", {errorMessage: "Username incorrect."});
         } else if (bcrypt.compareSync(password, user.pwHash)) {
-            res.send("login successful");
+            req.session.currentUser = user;
+            res.redirect("/user-profile");
         } else {
             res.render("auth/login", {errorMessage: "Password incorrect."});
         }
@@ -65,5 +64,15 @@ router.post("/login", (req, res) => {
     .catch((err) => {
         console.log("Something went wrong logging in the User: ", err);
     });
-
 });
+
+router.get("/user-profile", (req, res) => {
+    
+    if (req.session.currentUser) {
+        res.render("auth/user-profile", {user: req.session.currentUser});
+    } else {
+        res.redirect("/login");
+    }
+});
+
+module.exports = router;
