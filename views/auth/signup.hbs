@@ -10,4 +10,7 @@
     <input name="password" type="text" id="" />
     <button type="submit">Create Account</button>
   </form>
+  {{#if errorMessage}}
+    <p>Erhm, excuse me -> {{errorMessage}}</p>
+  {{/if}}
 </div>
