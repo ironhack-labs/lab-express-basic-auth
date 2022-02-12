@@ -1,0 +1,37 @@
+<div id="form">
+  <h2>Signup</h2>
+
+  {{#if errorMessage}}
+    <p class="error">
+      {{errorMessage}}
+    </p>
+  {{/if}}
+
+  <form action="/signup" method="POST">
+    <label>
+      Username
+      <input type="text" name="userName" placeholder="username12" required />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" placeholder="********" required />
+    </label>
+
+    <button type="submit">Create account</button>
+
+  </form>
+  <p>
+    If you don't have an account, click here to sign up:
+    <br />
+    <a href="/signup">Register</a>
+
+  </p>
+
+  <p>
+    Do you already have an account?
+    <br />
+    <a href="/login">Login</a>
+
+  </p>
+</div>
