@@ -2,6 +2,12 @@
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
 
+const bodyParser = require('body-parser');
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const clientP = require('./db/index');
+
+
 // ℹ️ Connects to the database
 require('./db');
 
@@ -14,6 +20,24 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+
+// MIDDLEWARE
+
+// const MONGO_URI='mongodb://127.0.0.1/lab-basic-auth'
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(
+    session({
+      secret: "keyboard cat",
+      resave: true,
+      saveUninitialized: false,
+      cookie: { secure: false },
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+      }),
+    })
+  );
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
