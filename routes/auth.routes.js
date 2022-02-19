@@ -28,4 +28,10 @@ router.post("/signup", (req, res) => {
   .catch(error => console.log(error))
 });
 
+router.get("/login", (_, res) => {
+  res.render('auth/login');
+});
+
+
+
 module.exports = router;
