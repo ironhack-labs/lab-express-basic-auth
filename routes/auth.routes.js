@@ -16,15 +16,15 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 // Sign Up
 
-router.get('/signup', isLoggedOut, (req, res, next) => {
-    res.render('auth/signup');
+router.get('auth/signup', isLoggedOut, (req, res, next) => {
+    res.render('signup');
   });
   
-  router.post('/signup', (req, res, next) => {
+  router.post('auth/signup', (req, res, next) => {
     const { username, password } = req.body;
   
     if (!username || !password) {
-      res.render('auth/signup', {
+      res.render('signup', {
         errorMessage: 'Please provide both username and password',
       });
       return;
@@ -37,11 +37,11 @@ router.get('/signup', isLoggedOut, (req, res, next) => {
         return User.create({ username, password: hashedPassword });
       })
       .then(() => {
-        res.redirect('/auth/profile');
+        res.redirect('/profile');
       })
       .catch((err) => {
         if (err instanceof mongoose.Error.ValidationError) {
-          res.status(500).render('auth/signup', { errorMessage: err.message });
+          res.status(500).render('signup', { errorMessage: err.message });
         } else {
           next(err);
         }
@@ -51,33 +51,33 @@ router.get('/signup', isLoggedOut, (req, res, next) => {
 
 // Profile
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
-  res.render('auth/profile', { user: req.session.currentUser });
+router.get('auth/profile', isLoggedIn, (req, res, next) => {
+  res.render('profile', { user: req.session.currentUser });
 });
 
 
 // Login
 
-router.get('/login', (req, res, next) => {
-    res.render('auth/login');
+router.get('auth/login', (req, res, next) => {
+    res.render('login');
   });
 
-  router.post('/login', (req, res, next) => {
+  router.post('auth/login', (req, res, next) => {
     const { username, password } = req.body;
   
     if (!username || !password) {
-      res.render('auth/login', { errorMessage: 'Please provide both username and password' });
+      res.render('login', { errorMessage: 'Please provide both username and password' });
       return;
     }
     User.findOne({ username }).then((user) => {
         if (!user) {
-          res.render('auth/login', { errorMessage: 'Username not found.' });
+          res.render('login', { errorMessage: 'Username not found.' });
           return;
         } else if (bcrypt.compareSync(password, user.password)) {
           req.session.currentUser = user;
-          res.render('auth/profile', { user });
+          res.render('profile', { user });
         } else {
-          res.render('auth/login', { errorMessage: 'Incorrect password' });
+          res.render('login', { errorMessage: 'Incorrect password' });
         }
       });
     });
