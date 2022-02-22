@@ -28,10 +28,21 @@ router.post("/signup", (req, res) => {
   .catch(error => console.log(error))
 });
 
-router.get("/login", (_, res) => {
-  res.render('auth/login');
-});
+// router.get("/login", (_, res) => {
+//   res.render('auth/login');
+// });
 
+// router.post('/login', (req, res, next) => {
+//     if ( username === '' || password === ''){
+//       res.render('auth/login', { errorMessage: 'Please enter a user name and a password' } 
+//     ) };
+//     return;
+// }
+
+// User.findOne({ username })
+// .then(res.render('/', ))
+// .catch()
+// )
 
 
 module.exports = router;
