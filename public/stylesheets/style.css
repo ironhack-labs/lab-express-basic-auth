@@ -1,8 +1,40 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  color: #0b5ed8;
+  margin-bottom: 30px;
+}
+
+form input {
+  margin: 10px 0;
+}
+
+form label {
+  margin-top: 20px;
+  color: #0b5ed8;
+}
+
+#home-div, #profile-div {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-div p {
+  font-size: 22px;
+}
+
+.home-btns {
+  font-size: 18px;
 }
