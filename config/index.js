@@ -1,3 +1,4 @@
+//Make the sessions last by saving the session information in the mongo database
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
@@ -36,4 +37,22 @@ module.exports = (app) => {
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+
+  const session = require("express-session");
+  const MongoStore = require("connect-mongo");
+
+  app.use(
+    session({
+      secret: process.env.SESSION_KEY,
+      saveUninitialized: false,
+      resave: false,
+      cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+      },
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/basic-auth",
+        ttl: 24 * 60 * 60,
+      }),
+    })
+  );
 };
