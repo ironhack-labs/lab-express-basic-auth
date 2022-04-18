@@ -1,8 +1,43 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.863);
+  color:white
 }
 
 a {
   color: #00B7FF;
+}
+
+.logout-button button {
+  background-color: transparent;
+  border: 0;
+}
+
+.cat-main figure img{
+  width: 400px;
+  object-fit: cover;
+}
+.private-view figure img {
+  width: 400px;
+  object-fit: cover;
+}
+.private-view h1{
+  width: 400px;
+  font-size: 2.69em;
+}
+.index-div{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  margin-top: 15%;
+  text-align: center;
+}
+.main-view,.private-view{
+  display: flex;
+  justify-content: center;
+}
+.btn-inicio{
+  display: flex;
+  justify-content: center;
+  width: 400px;
 }
