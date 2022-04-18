@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1>Sing-in</h1>
+            <hr>
+            <form action="/singin" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Dirección de email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="plainPassword" required>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="error">{{errorMessage}}</div>
+                {{/if}}
+                <button type="submit" class="btn btn-dark">Iniciar sesion</button>
+            </form>
+        </div>
+    </div>
+</div>
