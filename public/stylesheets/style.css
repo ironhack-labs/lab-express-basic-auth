@@ -1,8 +1,68 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  padding: 40px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.mainGeneral {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  padding: 100px;
+  /* background-color: red; */
+
+}
+
+.mainGeneral a {
+  width: 100px;
+  text-align: center;
+  margin-bottom: 50px;
+
+}
+
+.navFormBtn {
+  text-decoration: none;
+  list-style: none;
+  /* padding: 0; */
+  border: none;
+  background: none;
+  outline: none !important;
+  box-shadow: none;
+  color: grey;
+
+  padding: 8px;
+}
+
+nav {
+  align-items: center;
+}
+
+.formGeneral {
+  margin-top: 100px;
+}
+
+.homeMain {
+  padding: 50px;
+}
+
+.profileMain {
+  padding: 50px;
+}
+
+.homeMain a {
+  margin: 5px;
+}
+
+#error {
+  background-color: rgb(255, 205, 205);
+  text-align: center;
+  padding: 5px;
+  margin: 20px 0px;
 }

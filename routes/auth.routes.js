@@ -6,16 +6,19 @@ const User = require('../models/User.model')
 const { isLoggedOut } = require('./../middleware/route-guard')
 
 router.get('/singup', (req, res) => {
-    res.render("singup")
+    res.render("auth/singup")
 })
 
 router.post('/singup', (req, res, next) => {
+
     const { username, email, plainPassword } = req.body
 
     if (email.length === 0 || plainPassword.length === 0 || username.length === 0) {
-        res.render('singup', { errorMessage: 'Rellena todos los campos' })
+        res.render('auth/singup', { errorMessage: 'Rellena todos los campos' })
         return
     }
+    //cerramos sesion si vamos a crear una cuenta nueva
+    req.session.destroy()
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(plainPassword, salt))
@@ -25,7 +28,7 @@ router.post('/singup', (req, res, next) => {
 })
 
 router.get('/singin', isLoggedOut, (req, res) => {
-    res.render('singin')
+    res.render('auth/singin')
 })
 
 router.post('/singin', (req, res, next) => {
@@ -33,7 +36,7 @@ router.post('/singin', (req, res, next) => {
     const { email, plainPassword } = req.body
 
     if (email.length === 0 || plainPassword.length === 0) {
-        res.render('singin', { errorMessage: 'Rellena todos los campos' })
+        res.render('auth/singin', { errorMessage: 'Rellena todos los campos' })
         return
     }
 
@@ -41,12 +44,12 @@ router.post('/singin', (req, res, next) => {
         .findOne({ email })
         .then(user => {
             if (!user) {
-                res.render('singin', { errorMessage: 'Usuario no reconocido' })
+                res.render('auth/singin', { errorMessage: 'Usuario no reconocido' })
                 return
             }
 
             if (!bcryptjs.compareSync(plainPassword, user.password)) {
-                res.render('singin', { errorMessage: 'Contraseña no válida' })
+                res.render('auth/singin', { errorMessage: 'Contraseña no válida' })
                 return
             }
 
@@ -57,7 +60,7 @@ router.post('/singin', (req, res, next) => {
 })
 
 router.post('/logout', (req, res, next) => {
-    req.session.destroy(() => res.redirect('/'))
+    req.session.destroy(() => res.redirect('/singin'))
 })
 
 module.exports = router
