@@ -1,8 +1,52 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 'Helvetica', Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 200;
+}
+
+
+#error {
+  background-color: rgb(255, 205, 205);
+  text-align: center;
+  padding: 5px;
+}
+
+.logout-button button {
+  background-color: transparent;
+  border: 0;
+}
+
+.private {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.gif {
+  width: 600px;
+}
+
+.cat {
+  object-fit: cover;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
 }
