@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.img-cat {
+  width: 500px;
 }
-
-a {
-  color: #00B7FF;
+.btn-cat {
+  width: 150px;
+  height: 35px;
+}
+.gif-cat {
+  width: 500px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
 }
