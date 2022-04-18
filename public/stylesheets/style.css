@@ -1,8 +1,28 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div.container {
+  margin-top: 20px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.main img {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-btn {
+  width: 200px
 }
