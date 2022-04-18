@@ -1,14 +1,19 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+// TO DO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
+    minlength: [3, 'Please introduce a longer username']
   },
-  password: String
-});
+  password: {
+    type: String,
+    required: true
+  }
 
-const User = model("User", userSchema);
+})
 
-module.exports = User;
+const User = model("User", userSchema)
+
+module.exports = User
