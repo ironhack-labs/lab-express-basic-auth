@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: sans-serif;
+    font-weight: 300;
 }
 
-a {
-  color: #00B7FF;
+h1,
+h2,
+h3 {
+    font-weight: 200;
+}
+
+.navbar {
+    margin-bottom: 80px;
+}
+
+#error {
+    background-color: rgb(255, 205, 205);
+    text-align: center;
+    padding: 5px;
+}
+
+.logout-button button {
+    background-color: transparent;
+    border: 0;
+}
+
+img {
+    object-fit: cover;
 }
