@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.navbar {
+  padding: 40px;
+  font-size: 1.5em;
 }
+
+.navbar .container-fluid {
+  background-color: chartreuse;
+}
+
+.nav-link {
+  color: black;
+}
+
+.card {
+  justify-content: center;
+  align-content: center;
+  margin: 40px 40px;
+  padding-left: 260px;
+  width: 800px;
+  height: 300px;
+  border-radius: 20px;
+  background: chartreuse;
+  box-shadow: 15px 15px 30px rgb(199, 255, 142),
+    -15px -15px 30px #ffffff;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.container {
+  padding: 50px;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn {
+  padding: 20px 15px;
+
+}
+
+a {}
