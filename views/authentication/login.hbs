@@ -1,0 +1,38 @@
+<div class="background2">
+
+    <div class=" container">
+
+        <div class="row">
+
+            <div class="col-6">
+                <div class="login">
+                    <h2>Log In</h2>
+
+                    <form action="/login" method="POST">
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="stringPassword">
+                        </div>
+                        <div class="error">
+                            {{#if errorMessage}}
+                            {{errorMessage}}
+                            {{/if}}
+                        </div>
+
+                        <button type="submit" class="createButton">Log In</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

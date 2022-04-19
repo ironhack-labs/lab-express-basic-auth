@@ -1,8 +1,129 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: monospace;
 }
 
-a {
-  color: #00B7FF;
+
+.hero {
+  padding: 220px;
+  text-align: center;
+  background-image: url(/images/ghost.png);
+  background-size: cover;
+}
+
+.heroError {
+  padding: 400px;
+  text-align: center;
+  background-image: url(/images/error.jpg);
+  background-size: cover;
+}
+
+.background {
+  width: 100%;
+  padding: 220px;
+  text-align: center;
+  background-image: url(/images/GITS.jpg);
+  background-size: cover;
+}
+
+.background2 {
+  width: 100%;
+  padding: 220px;
+  text-align: center;
+  background-image: url(/images/login.jpg);
+  background-size: cover;
+}
+
+.background3 {
+  width: 100%;
+  padding: 220px;
+  text-align: center;
+  background-image: url(/images/main.jpg);
+  background-size: cover;
+}
+
+.naming {
+  font-size: 90px;
+}
+
+.naming2 {
+  font-size: 90px;
+  color: aqua;
+}
+
+h2 {
+  font-size: 2.5em;
+  color: white;
+  font-weight: bold;
+}
+
+.login {
+  width: 450px;
+  height: 420px;
+  background-color: rgb(0, 0, 0);
+  padding: 30px;
+  border-radius: 8px;
+  border: 3px solid rgb(255, 213, 0);
+}
+
+.login2 {
+  width: 450px;
+  height: 420px;
+  background-color: rgb(0, 0, 0);
+  padding: 30px;
+  border-radius: 8px;
+  border: 3px solid aqua;
+}
+
+.error {
+  color: rgb(255, 213, 0);
+  margin-bottom: 5px;
+}
+
+label {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: rgb(255, 255, 255)
+}
+
+.createButton {
+  width: 100px;
+  padding: 8px;
+  background-color: rgb(255, 213, 0);
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.createButton2 {
+  width: 100px;
+  padding: 12px;
+  background-color: rgb(0, 0, 0);
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
+  border-radius: 5px;
+  text-decoration: none;
+  color: aqua;
+  border: 3px solid aqua;
+}
+
+.form-control {
+  border: 4px solid rgb(118, 64, 10);
+  border-radius: 8px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(19, 19, 18);
+  color: white;
+}
+
+.nav-item {
+  color: white;
+}
+
+.shodan {
+  width: 1500px;
 }
