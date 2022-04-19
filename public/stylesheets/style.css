@@ -1,8 +1,10 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+footer {
+  background-color: black;
+  color: whitesmoke;
+  text-align: center;
+  padding: 4px;
+  font-size: .7em;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
