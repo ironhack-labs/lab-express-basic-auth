@@ -12,21 +12,21 @@ router.get('/registro', IsLoggedIn, (req, res) => {
 
 router.post('/registro', IsLoggedIn, (req, res, next) => {
 
-    const { username, email, plainPassword } = req.body
+    const { username, plainPassword } = req.body
 
 
     User
-        .findOne({ email })
-        .then(() => {
-            if (email) {
-                res.render('auth/signup-view', { errorMessage: 'Email en uso, prueba con otro o inicia sesión' })
+        .findOne( {username} )
+        .then((user) => {
+            if (user) {
+                res.render('auth/signup-view', { errorMessage: 'Username en uso, prueba con otro o inicia sesión' })
                 return
 
             } else {
                 bcryptjs
                     .genSalt(saltRounds)
                     .then(salt => bcryptjs.hash(plainPassword, salt))
-                    .then(hashedPassword => User.create({ username, email, password: hashedPassword }))
+                    .then(hashedPassword => User.create({ username,password: hashedPassword }))
                     .then(() => res.redirect('/inicio-sesion'))
                     .catch(error => next(error));
             }
@@ -43,15 +43,15 @@ router.get('/inicio-sesion', IsLoggedIn, (req, res) => {
 
 router.post('/inicio-sesion', IsLoggedIn, (req, res, next) => {
 
-    const { email, plainPassword } = req.body
+    const {username, plainPassword } = req.body
 
-    if (email.length === 0 || plainPassword.length === 0) {
+    if (username.length === 0 || plainPassword.length === 0) {
         res.render('auth/login-view', { errorMessage: 'Rellena todos los campos' })
         return
     }
 
     User
-        .findOne({ email })
+        .findOne({ username })
         .then(user => {
             if (!user) {
                 res.render('auth/login-view', { errorMessage: 'Usuario no reconocido' })
@@ -63,7 +63,7 @@ router.post('/inicio-sesion', IsLoggedIn, (req, res, next) => {
                 return
             }
 
-            req.session.currentUser = user          // <= THIS means logging in a user
+            req.session.currentUser = user          
             res.redirect('/mi-perfil')
         })
         .catch(error => next(error));
