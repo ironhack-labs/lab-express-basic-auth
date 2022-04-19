@@ -1,0 +1,18 @@
+<h2>REGISTRITO por favor </h2>
+
+<form action="/registrate" method="POST">
+    <div class="mb-3">
+        <label for="username" class="form-label">User name</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="plainPassword" required>
+    </div>
+    {{#if errorMessage}}
+    <div id="error">{{errorMessage}}</div>
+    {{/if}}
+    <button type="submit" class="btn btn-info">Registrasión</button>
+</form>
+<a href="/">GO HOME</a>

@@ -1,0 +1,16 @@
+<h2>INICIA SESION </h2>
+<form action="/inicia-tu-sesion" method="POST">
+    <div class="mb-3">
+        <label for="username" class="form-label">User name</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="plainPassword" required>
+    </div>
+    {{#if errorMessage}}
+    <div id="error">{{errorMessage}}</div>
+    {{/if}}
+    <button type="submit" class="btn btn-info">Inicializasión</button>
+
+</form>
