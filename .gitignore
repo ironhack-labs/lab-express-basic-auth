@@ -8,6 +8,10 @@ npm-debug.log
 # We are submitting it for learning purposes 
 # .env
 
+.env
+
 # for maintenance purposes - not best practices
 package-lock.json
+
+
 
