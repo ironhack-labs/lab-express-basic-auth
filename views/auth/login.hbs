@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1>Log in</h1>
+            <hr>
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="plainPassword">
+                </div>
+
+                {{#if errorMessage}}
+                <div id="error">{{errorMessage}}</div>
+                {{/if}}
+                <button type="submit" class="btn btn-dark">Log in</button>
+            </form>
+        </div>
+    </div>
+</div>
