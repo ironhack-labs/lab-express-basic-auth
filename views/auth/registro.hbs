@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 mt-5">
+            <h1>Registro</h1>
+            <hr>
+            <form action="/registro" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="plainPassword" required>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="error">{{errorMessage}}</div>
+                {{/if}}
+                <button type="submit" class="btn btn-dark">Registrarme</button>
+            </form>
+        </div>
+    </div>
+</div>
