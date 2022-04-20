@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+#nav-logout {
+  background-color: transparent;
+  color: #00B7FF;
+}
+
+input:invalid {
+  border: 2px dashed black;
+}
+/* input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
+} */
+
+input:valid {
+  border: 2px solid green;
+}

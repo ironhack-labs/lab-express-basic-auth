@@ -1,0 +1,17 @@
+<nav>
+  <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link" id="nav-home" href="/" role="tab">Home</a>
+{{#if userSession}}
+    <a class="nav-item nav-link" id="nav-profile" href="/profile" role="tab">Profile</a>
+    <a class="nav-item nav-link" id="nav-private" href="/main" role="tab">Main</a>
+    <a class="nav-item nav-link" id="nav-private" href="/private" role="tab">Private</a>
+    <form action='/logout' method="POST">
+    <button class="nav-item nav-link" type="submit" id="nav-logout" role="tab">Log Out</button>
+    </form>
+{{else}}
+    <a class="nav-item nav-link disabled" id="nav-private" href="/main" role="tab">Main</a>
+    <a class="nav-item nav-link" id="nav-login" href="/login" role="tab">Login</a>
+    <a class="nav-item nav-link" id="nav-signup" href="/signup" role="tab">Sign Up</a>
+{{/if}}    
+  </div>
+</nav>
