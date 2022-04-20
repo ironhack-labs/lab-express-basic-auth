@@ -45,3 +45,16 @@ a {
 #private-image {
   width: 500px;
 }
+
+.form {
+  border: 1px red solid;
+  border-radius: 10px;
+  background-color: rgba(102, 102, 201, 0.661);
+  width: 400px;
+  margin-top: 15px;
+}
+
+.form div, h2 {
+  margin-bottom: 10px;
+  margin-left: 5px;
+}

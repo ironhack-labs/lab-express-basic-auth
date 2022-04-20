@@ -1,4 +1,4 @@
-<div id="login-form">
+<div class="form">
 
   <h2>Login</h2>
 
@@ -6,7 +6,11 @@
 
     <div>
       <label> Username
+        {{#if user}}
         <input type="text" name="username" value={{user.username}} />
+        {{else}}
+        <input type="text" name="username" />
+        {{/if}}
       </label>
     </div>
 

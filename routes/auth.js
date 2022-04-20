@@ -5,6 +5,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 
 // router.get('/', (req, res, next) => res.render('index.hbs'));
 
@@ -14,7 +16,7 @@ router.get('/login', (req, res, next) => res.render('auth/login'));
 
 router.get('/main', (req, res, next) => res.render('auth/public'));
 
-router.get('/private', (req, res, next) => res.render('auth/private'));
+router.get('/private', isLoggedIn, (req, res, next) => res.render('auth/private'));
 
 router.get('/user', (req, res, next) => {
 
@@ -24,7 +26,7 @@ router.get('/user', (req, res, next) => {
   })
 });
 
-router.get('/userProfile', (req, res, next) => {
+router.get('/userProfile', isLoggedIn, (req, res, next) => {
   console.log('**SESSION**', req.session);
   res.render('users/user-profile', { userInSession: req.session.currentUser});
 });
