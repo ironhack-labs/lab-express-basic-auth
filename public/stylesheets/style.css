@@ -6,3 +6,42 @@ body {
 a {
   color: #00B7FF;
 }
+
+.error {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.new-user {
+  background: green;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+#public-page {
+  background-image: url(/images/Pug-image.png);
+  background-size: cover;
+  color: white;
+}
+
+#private-page {
+  background-color: rgba(0, 0, 0, 0.861);
+}
+
+#private-page-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+#private-image {
+  width: 500px;
+}

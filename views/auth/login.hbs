@@ -1,12 +1,12 @@
-<div id="signup-form">
+<div id="login-form">
 
-  <h2>Signup</h2>
+  <h2>Login</h2>
 
-  <form action="/signup" method="POST">
+  <form action="/login" method="POST">
 
     <div>
       <label> Username
-        <input type="text" name="username" />
+        <input type="text" name="username" value={{user.username}} />
       </label>
     </div>
 
@@ -17,11 +17,15 @@
     </div>
     
     <div>
-      <button type="submit">Create account</button>
+      <button type="submit">Login</button>
     </div>
 
       {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p> 
+      {{/if}}
+
+      {{#if message}}
+      <p class="new-user">{{message}}</p> 
       {{/if}}
 
   </form>
