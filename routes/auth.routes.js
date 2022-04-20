@@ -57,10 +57,9 @@ const { username, password } = req.body;
     }
     try{
         const hashed =  await saltPassword(password);
-
         const newUser = await User.create({username,passwordHash:hashed});
         console.log('User created ', newUser);
-        res.redirect('/profile');
+        res.render('auth/login',{successMessage: `${username} created!  You can now login below`});
     }catch (err){
         if (err instanceof mongoose.Error.ValidationError) {
              res.status(500).render('auth/signup', { errorMessage: err.message, attempt: username });
