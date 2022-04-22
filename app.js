@@ -15,6 +15,11 @@ const hbs = require('hbs');
 
 const app = express();
 
+// //Express.static lets you serve files(images, etc) from specified directory 
+// app.use(express.static('public'));
+
+require('./config/session.config')(app);
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
@@ -30,11 +35,6 @@ app.use('/', index);
 
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
-
-// //Express.static lets you serve files(images, etc) from specified directory 
-// app.use(express.static('public'));
-
-require('./config/session.config')(app);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

@@ -12,8 +12,13 @@ module.exports = app => {
               sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
               secure: process.env.NODE_ENV === 'production',
               httpOnly: true,
-              maxAge: 60000 // 60 * 1000 ms === 10 m
-            }
+              maxAge: 6000 // 60 * 1000 ms === 10 m
+            },
+            store: MongoStore.create({
+                mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/basic-auth'
+            //  ttl => time to live
+            // ttl: 60 * 60 * 24 // 60 sec * 60 min * 24 h => 1day
+            })
         })    
     );
 };
