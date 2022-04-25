@@ -12,16 +12,31 @@ router.get('/signup', isLoggedOut, (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
+
+  // bcrypt hashing then save to database
   bcryptjs
-    .genSalt(saltRounds)
-    .then((salt) => bcryptjs.hash(password, salt))
-    .then((password) => {
-      console.log(`password secured`, password);
+    .hash(password, 10)
+    .then((hashedPassword) => {
+      //  cant use shorthand this way
+      User.create({ username, password: hashedPassword }).then((userfromDB) => {
+        console.log('new user', userfromDB);
+        res.redirect('signup');
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send('failure');
     });
-  User.create({ username, password }).then((userfromDB) => {
-    console.log('new user', userfromDB);
-    res.redirect('signup');
-  });
+  // bcryptjs
+  //   .genSalt(saltRounds)
+  //   .then((salt) => bcryptjs.hash(password, salt))
+  //   .then((password) => {
+  //     console.log(`password secured`, password);
+  //   });
+  // User.create({ username, password }).then((userfromDB) => {
+  //   console.log('new user', userfromDB);
+  //   res.redirect('signup');
+  // });
 });
 
 router.get('/login', isLoggedOut, (req, res, next) => res.render('auth/login'));
@@ -32,8 +47,12 @@ router.get('/userProfile', isLoggedIn, (req, res, next) => {
 });
 
 router.post('/login', isLoggedOut, (req, res, next) => {
+  //  if we do post we gotta find the values in body.
   const { username, password } = req.body;
+  // find user in db based on their username
+  // use bcryptjs to comapre password after we find user in db
 
+  // set user within the session if login is successful
   User.findOne({ username })
     .then((user) => {
       bcryptjs.compareSync(password, user.password);

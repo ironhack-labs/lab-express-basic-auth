@@ -11,7 +11,7 @@
     <label for='password'>
 
       <input
-        type='text'
+        type='password'
         name='password'
         placeholder='your password goes here'
       />
@@ -19,5 +19,10 @@
     </label>
     <button type='submit'>Log In</button>
   </form>
+
+  {{#if error}}
+    <p style='color:red'>{{error}}</p>
+
+  {{/if}}
 
 </div>
