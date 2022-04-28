@@ -1,0 +1,23 @@
+<div id="form">
+  <h2>Login</h2>
+
+  <form action="/auth/login" method="POST">
+
+    <label> username
+      <input type="text" name="username" placeholder="perro@gmail.com" />
+    </label>
+
+    <label>Password
+      <input type="password" name="password" placeholder="********" />
+    </label>
+
+    <button type="submit">Login</button>
+
+{{#if errorMessage}}
+      <p class="alert alert-danger" role="alert">{{errorMessage}}</p>
+{{/if}}
+  </form>
+  <hr>
+<a href="/"><button>Return homepage</button></a>
+
+</div>
