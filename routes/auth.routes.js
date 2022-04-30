@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const User = require('../models/User.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
+const User = require('../models/User.model');
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 
@@ -55,7 +55,7 @@ router.post('/login', (req, res, next) => {
                 res.render('auth/login', { errorMessage: 'Incorrect password.' });
             }
         })
-        .catch(error => next(error));
+        .catch(error => next(error)); 
 })
 
 router.get('/userProfile', isLoggedIn, (req, res, next) => {
