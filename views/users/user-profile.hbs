@@ -1,3 +1,7 @@
 <h1>Welcome {{findedUser.username}}</h1>
 
+{{#if currentUser}}
+    <p>Hola {{currentUser.username}}</p>
+{{/if}}
+
 <a href="/"><button>Return homepage</button></a>
