@@ -11,6 +11,29 @@
 
   <body>
 
+ <nav>
+      <ul>
+        <li id='to-left'>
+          <p><a href='/'> Home </a></p>
+        </li>
+        <li id='to-right'>
+          {{#if user}}
+            |
+            <a href='/logout'>Logout</a>
+   
+          {{else}}
+            <a href='/signup'>Signup</a>
+            |
+         <a href="/profile">Profile</a>
+            <a href='/login'>Login</a>
+          {{/if}}
+
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Welcome {{currentUser.username}}</h1>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
