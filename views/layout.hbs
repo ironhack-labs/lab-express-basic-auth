@@ -1,19 +1,37 @@
-<!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
 
+    <nav>
+
+      <p><a href="/"> Home </a></p>
+      <hr />
+      {{#if user}}
+        <a href="/logout">Logout</a>
+        <hr />
+        <h1>Welcome {{currentUser.username}}</h1>
+        <hr />
+      {{else}}
+        <a href="/signup">Signup</a>
+        <br />
+        <br />
+        <a href="/profile">Profile</a>
+        <br />
+        <br />
+        <a href="/login">Login</a>
+      {{/if}}
+
+    </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
   </body>
-
 </html>
