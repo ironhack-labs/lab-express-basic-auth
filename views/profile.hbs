@@ -1,0 +1,9 @@
+<h2>My profile</h2>
+
+{{#if user}}
+
+  <p>Welcome {{user.username}}</p>
+  <a href='/profile'>Refresh</a>
+  <a href="/logout">Logout</a>
+
+{{/if}}
