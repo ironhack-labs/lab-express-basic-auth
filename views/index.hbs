@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#if user}}
+<h2>Welcome {{user.username}}</h2>
+
+  <a href="/profile">Go to your profile</a>
+  <hr>
+
+<a href="/main">Check out newest info</a>
+<hr>
+<a href="/private">DONT CLICK HERE</a>
+
+
+
+{{else}}
+
+<h2>Welcome Mate</h2>
+  <div class="div1">
+  <div class="div2">
+      <h4>Already have an account? </h4>
+  <h4>Log in <a href="/login">here</a></h4>
+</div>
+
+<div class="div2">
+    <h4>You dont have an account? create your new account 
+         <h4>Create one <a href="/signup">here</a></h4>
+</div>
+</div>
+{{/if}}
