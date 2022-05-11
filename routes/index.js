@@ -6,12 +6,12 @@ router.get("/", (req, res, next) => {
   res.render("index", { user: req.session.currentUser });
 });
 
-router.get("/catz", (req, res, next) => {
-  if (!req.session.currentUser) {
-    res.render("main");
-  } else {
-    res.render("private", { user: req.session.currentUser });
-  }
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+router.get("/private", isLoggedIn, (req, res, next) => {
+  res.render("private", { user: req.session.currentUser });
 });
 
 module.exports = router;
