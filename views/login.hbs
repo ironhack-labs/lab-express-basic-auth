@@ -4,11 +4,16 @@
 
   {{! for the USERNAME }}
   <label for="username">Username: </label>
-  <input type="text" name="username" id="username" />
+  <input type="username" name="username" id="username" />
   {{! for the PASSWORD }}
   <label for="password">Password: </label>
   <input type="password" name="password" id="password" />
 
   <a href="/profile">Log In</a>
+    {{!-- <button type="submit">Login</button> --}}
 
 </form>
+
+{{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+{{/if}}

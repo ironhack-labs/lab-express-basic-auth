@@ -1,14 +1,20 @@
-<h2>Please Sign-Up</h2>
+<h2>Please Sign-Up and create your new account</h2>
 
-<form action="/signup" method="post">
+<div>
+  <form action="/signup" method="post">
 
-  {{! for the USERNAME }}
-  <label for="username">Username: </label>
-  <input type="text" name="username" id="username" />
-  {{! for the PASSWORD }}
-  <label for="password">Password: </label>
-  <input type="password" name="password" id="password" />
+    {{! for the USERNAME }}
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" />
+    {{! for the PASSWORD }}
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" />
 
-  <a href="/login">Sign-Up</a>
-  {{!  <button type="submit">Sing-Up</button> }}
-</form>
+    <a href="/login">Sign-Up</a>
+    {{!  <button type="submit">Sing-Up</button> }}
+  </form>
+
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
+</div>

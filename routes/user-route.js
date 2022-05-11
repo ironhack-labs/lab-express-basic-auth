@@ -18,6 +18,13 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
     res.render("signup", { errorMessage: "All fields are required" });
   }
 
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+  if (!regex.test(password)) {
+    res.status(500).render("signup", {
+      errorMessage: "Password must have 8 characters",
+    });
+  }
+
   bcrypt
     .genSalt(saltRounds)
     .then((salt) => {
@@ -29,7 +36,7 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
         passwordHash: hashedPassword,
       });
     })
-    .then(() => res.redirect("/login"))
+    .then(() => res.redirect("/profile"))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         res.status(500).render("signup", { errorMessage: err.message });
