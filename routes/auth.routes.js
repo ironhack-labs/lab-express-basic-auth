@@ -6,8 +6,6 @@ const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 
 const saltRounds = 10;
 
-/* SIGN UP ROUTES */
-
 /* router.get("/profile", (req, res, next) => {
   res.render(
     "user/profile",
@@ -15,6 +13,8 @@ const saltRounds = 10;
     { user: req.session.currentUser }
   );
 }); */
+
+/* SIGN UP ROUTES */
 
 router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
@@ -119,7 +119,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
 /* LOG OUT */
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect("/");

@@ -1,7 +1,18 @@
+<head> <link rel="stylesheet" href="stylesheets/index.css" /></head>
+
 <nav>
-  <a href="/signup">Sign up </a>
-  <a href="/login">Log in </a>
+
+  {{#if user}}
+    <a href="/">Homepage </a>
+    <a href="/profile">My Profile</a>
+    <a href="/logout">Log out </a>
+  {{else}}
+    <a href="/signup">Sign up </a>
+    <a href="/login">Log in </a>
+
+  {{/if}}
 </nav>
 
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<main>
+  <h1>Welcome to the authentication test app</h1>
+</main>

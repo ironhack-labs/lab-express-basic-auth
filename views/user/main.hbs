@@ -1,3 +1,17 @@
-<a href="/">Homepage</a>
+<head>
+  <link rel="stylesheet" href="/stylesheets/privateAccess.css" />
+</head>
 
-<img src="../images/funny.cat.jpg" alt="" />
+{{#if user}}
+  <nav>
+    <a href="/">Homepage</a>
+    <a href="/profile">My Profile</a>
+    <a href="/profile/private">Private page</a>
+    <a href="/logout">Log out</a>
+  </nav>
+
+  <main>
+    <h1>Leave your computer and give your cat attention!</h1>
+    <img src="../images/funny.cat.jpg" alt="funny-cat" />
+  </main>
+{{/if}}

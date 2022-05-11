@@ -1,3 +1,19 @@
-<h1>This is a private page!</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/privateAccess.css" />
+</head>
 
-<img src="../images/cutecat.webp" alt="cute-cat" />
+{{#if user}}
+  <nav>
+    <a href="/">Homepage</a>
+    <a href="/profile">My Profile</a>
+    <a href="/profile/main">Main page</a>
+    <a href="/logout">Log out</a>
+  </nav>
+
+  <main>
+    <h1>This is a private page</h1>
+    <h3>Here's a surprise:</h3>
+
+    <img src="../images/cutecat.webp" alt="cute-cat" />
+  </main>
+{{/if}}

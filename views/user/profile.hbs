@@ -1,15 +1,18 @@
-<nav>
-  <a href="/signup">Sign up </a>
-  <a href="/login">Log in </a>
-  <a href="/profile/main">Main page</a>
-</nav>
+<head>
+  <link rel="stylesheet" href="stylesheets/profile.css" />
+</head>
 
 {{#if user}}
-  <main>
-    <h1>hello {{user.username}}</h1>
-  </main>
+  <nav>
+    <a href="/">Homepage</a>
+    <a href="/profile/main">Main page</a>
+    <a href="/profile/private">Private page</a>
+    <a href="/logout">Log out</a>
+  </nav>
 
-  <a href="/profile">Refresh</a>
-  <a href="/logout">Log out</a>
+  <main>
+    <h1>hello <em>{{user.username}}</em></h1>
+    <h3>You're now logged in and have access to new pages.</h3>
+  </main>
 
 {{/if}}

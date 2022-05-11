@@ -1,23 +1,29 @@
+<head>
+  <link rel="stylesheet" href="stylesheets/forms.css" />
+</head>
+
 <nav>
+  <a href="/">Homepage</a>
   <a href="/signup">Sign up </a>
   <a href="/login">Log in </a>
 </nav>
 
 <main>
-  <h2>Sign in</h2>
+  <section class="main-section">
+    <h2>Sign in</h2>
 
-  <section class="form">
-    <form action="/login" method="post">
+    <section class="form">
+      <form action="/login" method="post">
 
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" />
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
 
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
 
-      <button type="submit">Sign in</button>
+        <button class="button" type="submit">Sign in</button>
 
-    </form>
+      </form>
+    </section>
   </section>
-
 </main>

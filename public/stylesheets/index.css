@@ -1,0 +1,13 @@
+main {
+  color: white;
+  background-color: #00b7ff;
+  height: 85vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
