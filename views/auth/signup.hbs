@@ -1,5 +1,5 @@
 
-<div id="form">
+<div>
   <h2>Signup</h2>
   <form action="/auth/signup" method="POST">
  
@@ -18,5 +18,8 @@
     <button type="submit">Create User</button>
  
     {{!-- error message will be added here --}}
+    {{#if errorMessage}}
+        <p class="alert alert-danger" role="alert">{{errorMessage}}</p>
+    {{/if}}
   </form>
 </div>
