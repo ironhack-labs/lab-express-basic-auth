@@ -1,0 +1,28 @@
+<h2>Login</h2>
+
+   <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+  <form action="/login" method="post">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" />
+
+    <button type="submit">Login</button>
+
+    <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div>
+
+  </form>
+
+
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
+
+</div>
