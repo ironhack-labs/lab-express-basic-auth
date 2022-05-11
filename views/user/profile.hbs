@@ -1,0 +1,15 @@
+<nav>
+  <a href="/signup">Sign up </a>
+  <a href="/login">Log in </a>
+  <a href="/profile/main">Main page</a>
+</nav>
+
+{{#if user}}
+  <main>
+    <h1>hello {{user.username}}</h1>
+  </main>
+
+  <a href="/profile">Refresh</a>
+  <a href="/logout">Log out</a>
+
+{{/if}}
