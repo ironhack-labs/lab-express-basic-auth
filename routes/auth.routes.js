@@ -8,13 +8,16 @@ const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
-router.get("/userProfile", (req, res) => {
+// require auth middleware
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
+
+router.get("/userProfile", isLoggedIn, (req, res) => {
   console.log(req.session.currentUser);
   res.render("users/user-profile", { userInSession: req.session.currentUser });
 });
 
 // GET route ==> to display the signup form to users
-router.get("/signup", (req, res) => res.render("auth/signup"));
+router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
 
 // POST route ==> to process form data
 router.post("/signup", (req, res, next) => {
@@ -73,5 +76,11 @@ router.post("/login", (req, res, next) => {
     })
     .catch((error) => next(error));
 });
+
+// /main - Add a funny picture of a cat and a link back to the home page
+router.get("/main", (req, res) => res.render("users/main"));
+
+// /private - Add your favorite gif and an <h1> denoting the page as private.
+router.get("/private", (req, res) => res.render("users/private"));
 
 module.exports = router;
