@@ -1,0 +1,26 @@
+<br>
+<h2>Signup to your profile</h2>
+<br>
+<hr>
+<form action="/signup" method="post">
+
+<div class="raw">
+<div>
+    <label for="mail">Email: </label>
+    <input type="email" name="email" id="mail" required>
+</div>
+
+<div class="password">
+    <label for="pass">Password:</label>
+    <input type="password" name="password" id="pass">
+</div>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if }}
+
+<button class="btn btn-dark" id="user"> Create a User</button>
+</div>
+
+</form>
+<hr>
