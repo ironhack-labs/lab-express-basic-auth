@@ -1,9 +1,24 @@
 const router = require('express').Router();
 const bcrypt = require("bcryptjs");
 const User = require('../models/User.model');
+const isLoggedOut = require('../middlewares/isLoggedOut');
 
 const displaySingup = (req, res) => res.render("auth/singup");
 //*function to render singup view
+
+//*logout
+router.get("/logout", (req, res) => {
+	req.session.destroy((error) => {
+		if (error) {
+            const errorMessage = error.message;
+            res.render("auth/logout", {errorMessage});
+            return
+		}
+		res.redirect("/");
+	})
+})
+
+router.use(isLoggedOut);
 
 router.get("/singup", displaySingup);
 //*calling render function
@@ -32,16 +47,8 @@ router.post("/singup", async (req, res, next) => {
             username,
             password: hashedPassword
         })
-        const objectUser = createdUser.toObject();
-        //*transform mongo object into js objetc.
-
-        delete objectUser.password;
-        //*the password won't be visible in the console.
-
-        req.session.currentUser = objectUser;
-        //* to save the new user in the session.
-        console.log('req.session.currentUser', req.session.currentUser);
-        res.redirect("/profile");
+        
+        res.redirect("/singin");
     } catch(error){
         next(error);
     }
@@ -52,7 +59,7 @@ router.get('/singin', (req, res) => {
 });
 
 router.post('/singin', async (req, res, next) => {
-    const { username, password } =req.body;
+    const { username, password } = req.body;
 
     if(!password || !username) {
         const errorMessage = 'Please provide username and password';
@@ -76,8 +83,14 @@ router.post('/singin', async (req, res, next) => {
         }
 
         const objectUser = foundUser.toObject();
+        //*transform mongo object into js objetc.
+
         delete objectUser.password;
+        //*the password won't be visible in the console.
+
         req.session.currentUser = objectUser;
+        //* to save the new user in the session.
+       // console.log('req.session.currentUser', req.session.currentUser);
 
         return res.redirect('/');
 
