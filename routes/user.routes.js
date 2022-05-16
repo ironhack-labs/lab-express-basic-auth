@@ -1,9 +1,9 @@
-const { modelName } = require('../models/User.model')
+const router = require("express").Router()
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
-const router = require('express').Router()
-
-router.get('/accountCreated', (req, res)=>{
-    res.render('users/accountCreated')
+router.get("/userProfile", isLoggedIn, (req, res) => {
+    console.log("Los datos los tenemos aqui en session", req.session)
+    res.render("users/user-profile", { currentUser: req.session.currentUser })
 })
 
 module.exports = router
