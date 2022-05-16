@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require("bcryptjs");
 const User = require('../models/User.model');
 const isLoggedOut = require('../middlewares/isLoggedOut');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 
 const displaySingup = (req, res) => res.render("auth/singup");
 //*function to render singup view
@@ -54,11 +55,11 @@ router.post("/singup", async (req, res, next) => {
     }
 });
 
-router.get('/singin', (req, res) => {
+router.get('/singin', isLoggedOut, (req, res) => {
     res.render('auth/singin');
 });
 
-router.post('/singin', async (req, res, next) => {
+router.post('/singin', isLoggedOut, async (req, res, next) => {
     const { username, password } = req.body;
 
     if(!password || !username) {
@@ -83,7 +84,7 @@ router.post('/singin', async (req, res, next) => {
         }
 
         const objectUser = foundUser.toObject();
-        //*transform mongo object into js objetc.
+        //*transform mongo object into js object.
 
         delete objectUser.password;
         //*the password won't be visible in the console.
@@ -98,6 +99,16 @@ router.post('/singin', async (req, res, next) => {
         next(error);
     }
 
-})
+});
+
+router.use(isLoggedIn);
+
+router.get('/main', isLoggedIn, (req, res) => {
+    res.render('auth/main');
+});
+
+router.get('/private', isLoggedIn, (req, res) => {
+    res.render('auth/private');
+});
 
 module.exports = router;
