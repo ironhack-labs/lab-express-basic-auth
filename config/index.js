@@ -49,7 +49,7 @@ module.exports = (app) => {
     //*this will encrypt the session.
     resave: false,
     //*if false won't keep the user logged in.
-    saveUninitialized: false,
+    saveUninitialized: true,
     //*if false won't save data from users that are not logged in.
     cookie: {
       maxAge: 1000 * 60 * 60 * 2, //*set up the cookien to last for 2hrs.

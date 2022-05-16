@@ -8,7 +8,7 @@ const displaySingup = (req, res) => res.render("auth/singup");
 router.get("/singup", displaySingup);
 //*calling render function
 
-router.post("/singup", async (req, res) => {
+router.post("/singup", async (req, res, next) => {
     const { username, password } = req.body;
 
     if(!password || !username) {
@@ -17,6 +17,7 @@ router.post("/singup", async (req, res) => {
         return
         //*display error message if theres no password or no username.
     }
+
     try {
       const foundUser = await User.findOne({ username }); //*check if user exist in db
         if (foundUser) {
@@ -31,10 +32,59 @@ router.post("/singup", async (req, res) => {
             username,
             password: hashedPassword
         })
+        const objectUser = createdUser.toObject();
+        //*transform mongo object into js objetc.
+
+        delete objectUser.password;
+        //*the password won't be visible in the console.
+
+        req.session.currentUser = objectUser;
+        //* to save the new user in the session.
+        console.log('req.session.currentUser', req.session.currentUser);
         res.redirect("/profile");
     } catch(error){
-        console.log(error);
+        next(error);
     }
 });
+
+router.get('/singin', (req, res) => {
+    res.render('auth/singin');
+});
+
+router.post('/singin', async (req, res, next) => {
+    const { username, password } =req.body;
+
+    if(!password || !username) {
+        const errorMessage = 'Please provide username and password';
+        res.render("auth/singin", { errorMessage });
+        return
+    };
+
+    try {
+        const foundUser = await User.findOne({ username });
+        if (!foundUser) {
+            const errorMessage = 'Wrong credentials';
+            res.render('auth/singin', { errorMessage });
+            return
+        };
+
+        const checkPassword = bcrypt.compareSync(password, foundUser.password); //*compare passwords
+        if (!checkPassword) {
+            const errorMessage = 'Wrong credentials';
+            res.render('auth/singin', { errorMessage });
+            return
+        }
+
+        const objectUser = foundUser.toObject();
+        delete objectUser.password;
+        req.session.currentUser = objectUser;
+
+        return res.redirect('/');
+
+    } catch (error){
+        next(error);
+    }
+
+})
 
 module.exports = router;
