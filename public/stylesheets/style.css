@@ -2,8 +2,13 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+*{
+  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 .main-content {
+  margin-top: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -21,4 +26,45 @@ body {
   justify-content: center;
   align-items: center;
  
+}
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: whitesmoke;
+	padding: 1.5rem 2rem;
+	border-radius: 0.5rem;
+	border: 1px solid gray;
+	gap: 2em;
+}
+.input-container {
+	position: relative;
+	border: 1px solid black;
+	border-radius: 0.2rem;
+}
+label {
+	position: absolute;
+	color: black;
+	top: -6px;
+	background-color: whitesmoke;
+	padding: 0 0.5em;
+}
+
+.form-input {
+	height: 2.8rem;
+	outline: none;
+	border: none;
+	background-color: whitesmoke;
+	border-radius: 0.2rem;
+	font-weight: 500;
+	padding: 0 0.5rem;
+	letter-spacing: 0.1em;
+	color: rgb(68, 68, 68);
+}
+.error {
+	color: rgb(129, 18, 18);
+	background-color: white;
+	padding: 1em;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 6px 9px rgba(0, 0, 0, 0.15);
 }

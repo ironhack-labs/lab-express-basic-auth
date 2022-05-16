@@ -1,12 +1,12 @@
 <br>
-<h2>Signup to create a new profile</h2>
+<h2>Signin to your profile</h2>
 <br>
 <hr>
-<form action="/auth/signup" method="post">
+<form action="/auth/signin" method="post">
 
 <div class="raw">
 <div class="input-container">
-    <label for="mail">Email: </label>
+    <label  for="mail">Email: </label>
     <input class="form-input" type="email" name="email" id="mail" required>
 </div>
 
@@ -19,8 +19,8 @@
     <p class="error">⚠️{{errorMessage}}</p>
 {{/if }}
 
-<button class="btn btn-dark" id="user"> Create a User</button>
+<button class="btn btn-dark" id="user"> Log-in</button>
+</div>
 
 </form>
-</div>
 <hr>
