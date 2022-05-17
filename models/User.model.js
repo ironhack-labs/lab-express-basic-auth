@@ -12,6 +12,9 @@ const userSchema = new Schema(
     type: String,
     required: true,
   },
+  isAdmin: Boolean,
+  isPrivate: Boolean,
+  isMain:Boolean, 
   },
   {
   timestamps: true,

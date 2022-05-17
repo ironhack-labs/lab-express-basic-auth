@@ -1,16 +1,17 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
+const isLoggedOut = require("../middlewares/isLoggedOut");
 
 // const displaySignup = (req, res) => res.render("auth/signup")
 
-router.get("/signup", (req, res) => {
+router.get("/signup",isLoggedOut, (req, res) => {
 	res.render("auth/signup");
 });
 
 // router.get("/signup", displaySignup)
 
-router.post("/signup", async (req, res) => {
+router.post("/signup",isLoggedOut, async (req, res) => {
 	const { email, password } = req.body;
 	//Check the user has filled email and password fields
 	if (!password || !email) {
@@ -53,18 +54,18 @@ router.post("/signup", async (req, res) => {
 		delete objectUser.password;
 		req.session.currentUser = objectUser;
 		
-		res.redirect("/auth/signin")
+		res.redirect("/auth/signin");
 	} catch (e) {
-		console.log(e)
+		console.log(e);
 	}
 });
 
-router.get("/signin", (req,res)=>
+router.get("/signin", isLoggedOut, (req,res)=>
 {
-	res.render("auth/signin")
+	res.render("auth/signin");
 });
 
-router.post("/signin", async (req,res, next)=>{
+router.post("/signin", isLoggedOut, async (req,res, next)=>{
 const { email, password } = req.body;
 
 if(!email ){
@@ -96,8 +97,11 @@ try {
 
 
 router.get("/logout", (req, res, next) =>{
+	
 	req.session.destroy();
-	res.redirect("/auth/signin");
+	res.redirect("/")
+	
 });
+
 
 module.exports = router;
