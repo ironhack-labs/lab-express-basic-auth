@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
-const { isLoggedIn } = require("../middlewares/auth.middlewares");
+/* const { isLoggedIn } = require("../middlewares/auth.middlewares"); */
 
-router.get("/", isLoggedIn, (req, res, next) => {
+// sign-up form
+router.get("/sign-up", (req, res, next) => {
   res.render("auth/sign-up");
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/sign-up", async (req, res, next) => {
   // extract username and password from req.body
   const { username, password } = req.body;
   console.log(req.body);
@@ -61,6 +62,65 @@ router.post("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+// login
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    const message = `Missing username or password`;
+    res.render("auth/login", { message });
+    return;
+  }
+
+  try {
+    // check if username exists
+    const userExists = await User.findOne({ username });
+    if (!userExists) {
+      const message = `User not found`;
+      res.render("auth/login", { message });
+    }
+
+    // check if password matches
+    const passwordMatch = bcrypt.compareSync(password, userExists.password);
+    console.log(passwordMatch);
+    if (passwordMatch) {
+      // create active session QUESTION
+      /*  req.session.loggedInUser = username;
+      req.app.locals.isLoggedIn = true; */
+      res.redirect("/auth/private");
+    } else {
+      const message = `Wrong password`;
+      res.render("auth/login", { message });
+      return;
+    }
+
+    // change userExists to object, delete pw
+    const objectUser = userExists.toObject();
+    delete objectUser.password;
+    // save current user in session
+    req.session.currentUser = objectUser;
+    // create global variable
+    req.app.locals.currentUser = true;
+  } catch (error) {
+    next(error);
+  }
+});
+
+// logout
+router.get("/logout", (req, res, next) => {
+  req.session.destroy();
+  req.app.locals.currentUser = false;
+  res.redirect("/auth/login");
+});
+
+// main
+router.get("/main", (req, res, next) => {
+  res.render("auth/private");
 });
 
 module.exports = router;

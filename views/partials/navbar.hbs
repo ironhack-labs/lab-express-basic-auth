@@ -1,9 +1,12 @@
 <nav>
   <ul class="navbar">
-    <li><a href="/auth/main">Profile</a></li>
-    <li><a href="/auth/logout">Logout</a></li>
-    <li><a href="/auth/sign-up">Register</a></li>
-    <li><a href="/auth/login">Login</a></li>
+    {{#if currentUser}}
+      <li><a href="/auth/private">Profile</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    {{else}}
+      <li><a href="/auth/sign-up">Register</a></li>
+      <li><a href="/auth/login">Login</a></li>
+    {{/if}}
 
   </ul>
 </nav>

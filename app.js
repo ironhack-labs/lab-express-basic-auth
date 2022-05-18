@@ -34,20 +34,11 @@ const index = require("./routes/index");
 app.use("/", index);
 
 // require signup route
-const signup = require("./routes/signup.routes");
-app.use("/auth/sign-up", signup);
+const authApp = require("./routes/auth.routes");
+app.use("/auth/", authApp);
 
-// require main route
-const main = require("./routes/main.routes");
-app.use("/auth/main", main);
-
-// require login route
-const login = require("./routes/login.routes");
-app.use("/auth/login", login);
-
-// require logout route
-const logout = require("./routes/logout.routes");
-app.use("/auth/logout", logout);
+const privateArea = require("./routes/private");
+app.use("/auth/private", privateArea);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
