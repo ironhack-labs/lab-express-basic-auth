@@ -1,0 +1,20 @@
+<h2>Create an Account</h2>
+<div class="container">
+
+<form action="/auth/sign-up" method="post">
+  <div class="col">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required />
+  </div>
+  <div class="col">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required />
+  </div>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+
+  <button>Register</button>
+</form>
+</div>

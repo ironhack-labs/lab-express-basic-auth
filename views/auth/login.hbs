@@ -1,0 +1,19 @@
+<h2>Login to your Account</h2>
+<div class="container">
+<form action="/auth/login" method="post">
+  <div class="col">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required />
+  </div>
+  <div class="col">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required />
+  </div>
+
+  {{#if message}}
+    <p class="error">{{message}}</p>
+  {{/if}}
+
+  <button>Login</button>
+</form>
+</div>
