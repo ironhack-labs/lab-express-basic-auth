@@ -90,22 +90,19 @@ router.post("/login", async (req, res, next) => {
     console.log(passwordMatch);
     if (passwordMatch) {
       // create active session QUESTION
-      /*  req.session.loggedInUser = username;
-      req.app.locals.isLoggedIn = true; */
+      // change userExists to object, delete pw
+      const objectUser = userExists.toObject();
+      delete objectUser.password;
+      // save current user in session
+      req.session.currentUser = objectUser;
+      // create global variable
+      req.app.locals.currentUser = true;
       res.redirect("/auth/private");
     } else {
       const message = `Wrong password`;
       res.render("auth/login", { message });
       return;
     }
-
-    // change userExists to object, delete pw
-    const objectUser = userExists.toObject();
-    delete objectUser.password;
-    // save current user in session
-    req.session.currentUser = objectUser;
-    // create global variable
-    req.app.locals.currentUser = true;
   } catch (error) {
     next(error);
   }
