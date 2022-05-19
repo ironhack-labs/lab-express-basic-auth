@@ -2,7 +2,7 @@
 
 <div id="form">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <form action="/auth/signup" method="POST" enctype="multipart/form-data">
 
     <label> Username
       <input type="text" name="username" placeholder="ironhacker" />
@@ -16,4 +16,8 @@
 
     {{!-- error message will be added here --}}
   </form>
+
+     <p>
+      {{errorMessage}}
+    </p>
 </div>
