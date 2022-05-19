@@ -1,20 +1,20 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
-const SALT_FACTOR = 12;
 const isLoggedOut = require("../middlewares/isLoggedOut");
 const router = require("express").Router();
+
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
 router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
-  console.log(req.file);
+  console.log(req.body);
 
   // check username and password  are fulfill
   if (!username || !password) {
     return res.render("auth/signup", {
-      errorMessage: "Credentials are mondatory!",
+      errorMessage: "Credentials are mandatory!",
     });
   }
 
@@ -38,7 +38,7 @@ router.post("/signup", async (req, res, next) => {
     }
 
     // hash the password
-    const hashedPassword = bcrypt.hashSync(password, SALT_FACTOR);
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
     // create user in the database
     await User.create({
@@ -53,14 +53,15 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.get("/login", isLoggedOut, (req, res, next) => {
+router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
-router.post("/login", isLoggedOut, async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   const { username, email, password } = req.body;
+  console.log(req.body);
 
-  if (!username || !password) {
+  if (!email || !password) {
     return res.render("auth/login", {
       errorMessage: "Credentials are mondatory!",
     });

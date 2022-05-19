@@ -2,22 +2,33 @@
 
 <div id="form">
   <h2>Signup</h2>
-  <form action="/auth/signup" method="POST" enctype="multipart/form-data">
+  <form action="/auth/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" placeholder="ironhacker" />
-    </label>
+        <div class="mb-3">
+          <label for="username" class="form-label">UserName</label>
+          <input required type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input required type="password" class="form-control" id="password" name="password">
+        </div>
 
-    <label> Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button type="submit">Create account</button>
-
-    {{!-- error message will be added here --}}
-  </form>
-
+        <button type="submit" class="btn btn-dark">Create User</button>
+        <a href="/" class="btn btn-dark">Go back</a>
+      </form>
+  <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Users - demo </a></p>
+        </li>
+        <li id="to-right">
+          <a href="auth/signup">Signup</a>
+        </li>
+      </ul>
+    </nav>
+ {{#if errorMessage}}
      <p>
       {{errorMessage}}
     </p>
+     {{/if }}
 </div>
