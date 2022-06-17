@@ -14,6 +14,10 @@ router.post("/signup", (req, res, next) => {
   // console.log("The form data: ", req.body);
 
   const { username, password } = req.body;
+ 
+  if (!username || !password) {
+    res.render("auth/signup", { errorMessage: "All fields are required" });
+  }
 
   bcryptjs
     .genSalt(saltRounds)
