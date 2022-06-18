@@ -1,36 +1,52 @@
 const router = require('express').Router();
-const bcryptjs = require('bcryptjs');
-const saltRound = 10;
 const User = require('../models/User.model');
+const bcryptjs = require('bcryptjs');
 
-router.get('/signup',(req, res, next) => {
-  res.render('../views/signup.hbs')
-})
+
+router.get('/signup',(req, res, next) => res.render('auth/signup'))
 
 router.post('/signup',(req, res, next) => {
-  const {username , password} = req.body
+  const {role, ...restUser} = req.body
+  const salt = bcryptjs.genSaltSync(10)
+  const newPassword = bcryptjs.hashSync(restUser.password, salt)
 
-  bcryptjs
-    .genSalt(saltRound)
-    .then(salt => bcryptjs.hash(password, salt))
-    .then(hashedPswd => {
-      return User.create({
-        username,
-        passwordHash: hashedPswd
-      })
+  User.create({...restUser, password:newPassword})
+  .then(user => res.redirect(`/auth/profile/${user._id}`)) 
+  .catch(error => {
+    console.log('error',error)
+    next()
+  })
+})
+
+router.get('/profile/:id',(req, res, next) => {
+  const {id} = req.params
+  User.findById(id)
+  .then(user => res.render('user/profile',user))
+  .catch(error => {
+    console.log('error',error)
+    next()
+  })
+})
+
+router.get('/login',(req, res, next) => res.render('auth/login'))
+
+router.post('/login',(req, res, next) =>{
+  const {username, password} = req.body
+
+  User.findOne({username})
+    .then(user => {
+      if(!user){res.render('The username or password is incorrect')}
+
+      if(bcryptjs.compareSync(password, user.password)){
+        res.redirect(`/auth/profile/${user._id}`)
+      } else {
+        res.send('The username or password is incorrect')
+      }
     })
-    .then(() => {
-      console.log('a new user was created')
-      res.redirect('/user')
-    })
-    .catch(error =>{
-      console.log(error)
+    .catch(error => {
+      console.log('error',error)
       next()
     })
 })
 
-router.get('/user',(req, res, next) =>{
-  res.render('../views/user.hbs')
-})
-
-module.exports = router
+module.exports = router;
