@@ -1,0 +1,14 @@
+<h1>Sign Up</h1>
+
+{{! el action va hacia la ruta de express no a lavista de hbs}}
+
+<form action="/auth/signup" method="post">
+  <label for="">Username</label>
+  <input type="text" name="username" />
+
+  <label for="">Password</label>
+  <input type="text" name="password" />
+
+  <button type="submit">Sign up</button>
+
+</form>
