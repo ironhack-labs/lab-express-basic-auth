@@ -33,24 +33,7 @@ router.post("/signup",(res,req,next)=>{
         console.log(error)
         next()
     })
-    // const salt= bcryptjs.genSaltSync(saltRounds)
-    // const newPassword = bcryptjs.hashSync(restUser.password, salt)
 
-    // User.create({...restUser, password:newPassword})
-    // .then(user=>{
-    //     console.log("CREATE: ", user)
-    //     res.redirect(`/auth/profile/${user._id}`)
-    // })
-    // .catch(error=>{
-    //     console.log("error", error)
-    //     next()
-    // })
-})
-//get login
-
-//post login
-
-//get profile
 
 //exports
 module.exports=router;
