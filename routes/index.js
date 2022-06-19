@@ -8,6 +8,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get('/sign-up',(req,res,next)=>{
+  if (req.session.currentUser) res.redirect('profile')
   res.render('signUp');
 })
 
@@ -21,8 +22,10 @@ router.post('/sign-up',(req,res,next)=>{
 
   User.create({ username , password: hash })
   .then(userInfo => {
-    console.log('info',userInfo)
-    res.render('success',userInfo)
+    /* console.log('info',userInfo)
+    res.render('success',userInfo) */
+    req.session.currentUser = userInfo;
+    res.redirect(`profile`)
   })
   .catch(error=>{
     console.log('error',error);
@@ -31,6 +34,8 @@ router.post('/sign-up',(req,res,next)=>{
 })
 
 router.get('/log-in',(req,res,next)=>{
+  console.log('Session',req.session)
+  if (req.session.currentUser) res.redirect('profile')
   res.render('logIn');
 })
 
@@ -40,12 +45,30 @@ router.post('/log-in',(req,res,next)=>{
   User.findOne({username})
   .then(user=>{
     if(!user) return res.send('Invalid Credentials')
-    if( bcrypt.compareSync(password, user.password)) return res.render('welcome')
-    else res.send('Invalid Credentials')
+    if( !bcrypt.compareSync(password, user.password)) return res.send('Invalid Credentials')
+    req.session.currentUser = user;
+    res.redirect(`profile`)
   })
   .catch(error=>{
     console.log('error',error)
     next()
+  })
+})
+
+router.get('/profile',(req,res,next)=>{
+  /* const {id} = req.params;
+  User.findById(id)
+  .then(user=>{
+    res.render('welcome',user);
+  }) */
+  if (!req.session.currentUser) res.redirect('log-in')
+  res.render('welcome',req.session.currentUser);
+})
+
+router.get('/log-out',(req,res,next)=>{
+  req.session.destroy((error)=>{
+    if(error) next()
+    res.redirect('log-in')
   })
 })
 
