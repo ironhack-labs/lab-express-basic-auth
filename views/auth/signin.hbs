@@ -1,13 +1,13 @@
-<h2>sign up to create an account </h2>
+<h2>sign in to create an account </h2>
 
- <form action="/signup" method="Post">  
+ <form action="/login" method="Post">  
         <div class="container">   
             <label>Username : </label>   
             <input type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
             <input type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">signup</button> 
-              {{#if errorMessage}}
+            <button type="submit">login</button>   
+{{#if errorMessage}}
       <p class='error'>{{errorMessage}}</p>
     {{/if}}
 </form>     
