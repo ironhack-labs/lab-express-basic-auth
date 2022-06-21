@@ -1,2 +1,14 @@
-<h1>Hi {{username}}</h1>
+<h1>
+    {{#if isSignup}}
+    
+    Hi {{username}}</h1>
 <p>you have successfully created your account 😉</p>
+
+{{else}}
+
+<h1>
+    Welcome {{username}}
+</h1>
+<a href="/auth/logout">Logout</a>
+
+{{/if}}

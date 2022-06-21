@@ -11,6 +11,9 @@ const { removeListener } = require("../app");
 
 //SIGNUP
 router.get("/signup", (req, res, next) => {
+  if (req.session.currentUser) {
+    return res.redirect("/auth/profile");
+  }
   res.render("auth/signup");
 });
 
@@ -32,6 +35,9 @@ router.post("/signup", (req, res, next) => {
 
 //LOGIN
 router.get("/login", (req, res, next) => {
+  if (req.session.currentUser) {
+    return res.redirect("/auth/profile");
+  }
   res.render("auth/login");
 });
 
@@ -47,6 +53,8 @@ router.post("/login", (req, res, next) => {
       } else {
         res.send("user or password incorrect");
       }
+      req.session.currentUser = user;
+      res.redirect("/auth/profile");
     })
 
     .catch((error) => {
@@ -61,12 +69,22 @@ router.get("/profile/:id", (req, res, next) => {
 
   User.findById(id)
     .then((user) => {
-      res.render("user/signupok", user);
+      res.render("user/profile", user);
     })
     .catch((error) => {
       console.log("error en profile", error);
       next();
     });
+});
+
+//Logout
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      next(error);
+    }
+    res.redirect("/auth/login");
+  });
 });
 
 //Export routes
