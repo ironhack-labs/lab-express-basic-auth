@@ -1,18 +1,19 @@
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <h2>Login</h2>
+ 
+  <form action="/login" method="POST">
  
     <label> Username
-      <input type="text" name="username" placeholder="ironhacker" />
+      <input type="text" name="username" placeholder="username" />
     </label>
  
-    <label> Password
+    <label>Password
       <input type="password" name="password" placeholder="********" />
     </label>
  
-    <button type="submit">Create account</button>
-
+    <button type="submit">Login</button>
+ 
     {{#if errorMessage}}
       <p>{{errorMessage}}</p>
     {{/if}}
-
+    
   </form>
