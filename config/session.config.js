@@ -15,14 +15,13 @@ module.exports = (app) => {
   // <== app is just a placeholder here
   // but will become a real "app" in the app.js
   // when this file gets imported/required there
- // app.set('trust proxy', 1);
 
   // use session
   app.use(
     session({
       secret: process.env.SESS_SECRET,
       resave: true,
-      saveUninitialized: true,
+      saveUninitialized: false,
       cookie: {
         httpOnly: true,
         maxAge: 60000 // 60 * 1000 ms === 1 min
