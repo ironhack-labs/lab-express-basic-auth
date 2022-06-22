@@ -16,7 +16,7 @@ module.exports = app => {
       session({
         secret: process.env.SESS_SECRET,
         resave: true,
-        saveUninitialized: true,
+        saveUninitialized: false,
         cookie: {
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
           secure: process.env.NODE_ENV === 'production',

@@ -4,12 +4,14 @@ const router = new Router()
 const bcryptjs = require('bcryptjs')
 const saltRounds =10
 const User = require ('../models/User.model')
+// require auth middleware
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
 // GET route ==> to display the signup form to users
-router.get ('/signup', (req,res) => res.render('signup.hbs'))
+router.get ('/signup', isLoggedOut, (req,res) => res.render('signup.hbs'))
 
 // POST route ==> to process form data
-router.post('/signup', (req, res, next) => { 
+router.post('/signup', isLoggedOut, (req, res, next) => { 
 const {username, password} =req.body;
 
 // make sure users fill all mandatory fields:
@@ -56,10 +58,10 @@ if (!username || !password) {
 //////////// L O G I N ///////////
 
 // GET route ==> to display the login form to users
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', isLoggedOut, (req, res) => res.render('login'));
 
 // POST login route ==> to process form data
-router.post('/login', (req, res, next) => {
+router.post('/login', isLoggedOut, (req, res, next) => {
     console.log('SESSION =====> ', req.session);
     const {username, password} = req.body;
     if (username === '' || password === '') {
@@ -73,7 +75,7 @@ router.post('/login', (req, res, next) => {
       if (!user) {
         res.render('login', { errorMessage: 'Username is not registered. Try with other username.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (bcryptjs.compareSync(password, user.password)) {
         //res.render('users/user-profile', { user });
         req.session.currentUser = user;
         res.redirect('/userProfile');
@@ -84,13 +86,19 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 })
 
-router.get ('/userProfile', (req, res) => {
-    res.render('users/user-profile', {userInSession:req.session.currentUser})
+router.get ('/userProfile', isLoggedIn, (req, res) => {
+    res.render('users/user-profile', {userInSession: req.session.currentUser})
 })
 
-router.post('/logout', (req, res) => {
+router.post('/logout', isLoggedIn, (req, res) => {
     req.session.destroy();
       res.redirect('/');
     });
 
+    router.get ('/main', isLoggedIn, (req, res) => {
+        res.render('users/main', {userInSession: req.session.currentUser})
+    })    
+    router.get ('/private', isLoggedIn, (req, res) => {
+        res.render('users/private', {userInSession: req.session.currentUser})
+    }) 
 module.exports = router
