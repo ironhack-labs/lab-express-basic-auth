@@ -12,4 +12,5 @@ router.get("/userProfile/main", isLoggedIn, (req, res) => {
     res.render("users/main", { userInSession: req.session.currentUser });
   });
 
+  
 module.exports = router;
