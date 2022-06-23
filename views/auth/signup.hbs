@@ -4,16 +4,25 @@
 <form action="/auth/signup" method="post">
 
 <label for="">Username</label>
-<input type="text" name="username">
+<input type="text" name="username" required>
+
+<label for="">email</label>
+<input type="text" name="email" required>
 
 <label for="">Password</label>
-<input type="text" name="password">
+<input type="text" name="password" required>
+
+
 
 <button type="submit">Registrarme</button>
 </form>
 
 
+{{#if errorMessage}}
+<ul>
+    {{#each errorMessage}}
+<li>{{this}}</li>
 
-
-
-</form>
+    {{/each}}
+</ul>
+{{/if}}
