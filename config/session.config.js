@@ -24,7 +24,7 @@ module.exports = app => {
           maxAge: 60000 // 60 * 1000 ms === 1 min
         },
         store: MongoStore.create({
-          mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/basic-auth'
+          mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/lab-express-basic-auth'
       })
 })
     )
