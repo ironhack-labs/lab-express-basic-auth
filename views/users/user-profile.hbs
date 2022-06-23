@@ -16,10 +16,21 @@
 
 {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
+  <h1>This is your profile page my friend!</h1>
   <button>
-    <a href="/userProfile">Reload the page</a>
+    <a href="/userProfile">Reload this page</a>
   </button>
+  <br> <br>
+
+   <button>
+    <a href="/userProfile/main">Main Page</a>
+  </button>
+  <br> <br>
+
+   <button>
+    <a href="/userProfile/private">Private Page</a>
+  </button>
+
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}
