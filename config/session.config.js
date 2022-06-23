@@ -3,6 +3,10 @@
 // require session
 const session = require('express-session');
 
+const MongoStore = require('connect-mongo');
+
+
+
 // since we are going to USE this middleware in the app.js,
 // let's export it and have it receive a parameter
 module.exports = (app) => {
@@ -18,14 +22,16 @@ module.exports = (app) => {
     session({
       secret: process.env.SESS_SECRET,
       resave: true,
-      // PUT THIS TO TRUE !!!!!!!!!
-      saveUninitialized: true,
+      saveUninitialized: false,
       cookie: {
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         maxAge: 60000 * 60, // 60 * 1000 ms === 1 min
       },
+      store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/basic-auth',
+      }),
     })
   );
 };
