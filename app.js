@@ -16,13 +16,14 @@ const hbs = require('hbs');
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
+require("./config/session.config")(app)
 require('./config')(app);
 
 // default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+const projectName = 'Auth_Lab';
+const capitalized = string => string[0].toUpperCase() + string.slice(1);
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+app.locals.title = `${capitalized(projectName)}`;
 
 // 👇 Start handling routes here
 const index = require('./routes/index');
