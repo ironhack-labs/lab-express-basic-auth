@@ -15,6 +15,21 @@ router.post("/sign-up", isLoggedOut, (req, res) => {
 
     const { username, password: plainPassword } = req.body
 
+    if(username.length === 0 || plainPassword.length === 0) {
+        res.render('auth/signup', { errorMessage: 'Please fill in all required fields' })
+        return
+    }
+
+    User
+        .findOne({ username: username })
+        .select({ username: 1 })
+        .then(usernameDB => {
+            if(usernameDB)
+            res.render('auth/signup', { errorMessage: 'Username already exist, try another one' })
+            return
+        })
+        .catch(err => console.log(err))
+
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(plainPassword, salt))
