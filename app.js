@@ -9,13 +9,12 @@ require('./db');
 // https://www.npmjs.com/package/express
 const express = require('express');
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
 
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
+require("./config/session.config")(app)
 require('./config')(app);
 
 // default value for title local
