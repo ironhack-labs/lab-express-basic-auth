@@ -1,8 +1,23 @@
 body {
-  padding: 50px;
+
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+nav input {
+  background: transparent;
+  border: none;
+}
+
+img {
+  width: 100%;
+}
+
+.error {
+  background-color: rgb(255, 195, 195);
+  text-align: center;
+  padding: 10px;
 }
