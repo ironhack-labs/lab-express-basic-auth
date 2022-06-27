@@ -1,8 +1,22 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+}
+
+.main-nav a {
+  margin-left: 20px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.home-page {
+  /* position: relative; */
+  background: url('/images/ludemeula-fernandes-9UUoGaaHtNE-unsplash.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
