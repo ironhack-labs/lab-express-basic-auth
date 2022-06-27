@@ -1,0 +1,21 @@
+<div class="row log">
+    <form action="/login" method="POST" class="white col-md-6">
+        <div class=" mb-3">
+            <label for="Username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="Username" name="username">
+        </div>
+
+        <div class="mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" name="password">
+        </div>
+        {{#if errorMessage}}
+        <div class="error">
+            {{errorMessage}}
+        </div>
+        {{/if}}
+        <button type="submit" class="btn btn-dark">Log in</button>
+
+    </form>
+
+</div>
