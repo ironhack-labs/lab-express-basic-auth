@@ -1,0 +1,20 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+nav input {
+  background: transparent;
+  border: none;
+}
+
+.error-msg {
+  background-color: rgb(255, 172, 172);
+}
+
+img {
+  width: 100%;
+}
