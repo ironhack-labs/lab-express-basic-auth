@@ -1,8 +1,27 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+.img-main {
+  background-image: url(./../images/funny-cat-names-1.jpg);
+  background-repeat: no-repeat;
+  background-position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+
+}
+
+.img-private {
+  background-image: url(./../images/funny-icegif-6.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
 }
