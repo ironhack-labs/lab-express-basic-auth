@@ -18,6 +18,11 @@
 </form>
 
 
+{{#if serrorMessage}}
+   {{serrorMessage}}
+{{/if}}
+
+
 {{#if errorMessage}}
 <ul>
     {{#each errorMessage}}
@@ -25,4 +30,7 @@
 
     {{/each}}
 </ul>
-{{/if}}
+{{/if}} 
+
+<a href="/"> Go back home</a>
+

@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
 
 //rutas para el admin
 
-router.get('/admin/users',isLoggedIn,checkRole(["ADMIN"]), (req, res, next) => {
+router.get('/admin/main',isLoggedIn,checkRole(["ADMIN"]), (req, res, next) => {
 
 console.log("está logeado?", isLoggedIn)
 

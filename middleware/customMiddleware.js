@@ -10,7 +10,7 @@ return (req,res,next)=>{
     if(arrayRoles.includes(role)){
         return next()
     } else {
-        return res.status(403).render("auth/notauth")
+        return res.status(403).render("auth/adminNotAuth")
     }
 
 
