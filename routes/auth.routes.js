@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 
+
+
 router.get("/", (req, res, next) => {
   res.render("index");
 });
@@ -38,7 +40,7 @@ router.post("/signup", (req, res, next) => {
 
 //iteración 2
 
-router.get("/login", (req, res, next) => {
+router.get("/login",(req, res, next) => {
 
   if (req.session.currentUser) {
     return res.redirect(`/auth/profile/${req.session.currentUser._id}`);
@@ -58,7 +60,7 @@ router.post("/login", (req, res, next) => {
        // el usuario es un objeto
 
       req.session.currentUser = user;
-      console.log("la session!: ", req.session);
+      
       
       if (!user) {
         const errorMessage = ["el correo o contraseña es incorrecta"];
@@ -82,6 +84,8 @@ router.get("/profile/:id", (req, res, next) => {
 if (!req.session.currentUser) {
     return res.render("auth/notauth");
   }
+
+  console.log("estoy logeado ", req.session.currentUser);
 
   const { id } = req.params;
 

@@ -20,6 +20,11 @@ const userSchema = new Schema({
     type:String,
     default:"https://pbs.twimg.com/profile_images/1568439274/Foto_G__400x400.jpg"
   },
+    role:{
+     type:String,
+     enum:["ADMIN","STAFF","USER"],
+     default:"USER"
+    }
   },
   {
     timestamps: true,
