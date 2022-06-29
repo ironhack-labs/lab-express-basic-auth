@@ -1,8 +1,82 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(0.25turn, #ece9e6, #ffffff);
 }
 
 a {
-  color: #00B7FF;
+  color: #0f0c29;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 25px;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #fdf9f6, #d4d2cf);
+  box-shadow: 9px 9px 18px #aaa8a6, -9px -9px 18px #ffffff;
+}
+
+.container {
+  height: 50vh;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #fdf9f6, #d4d2cf);
+  box-shadow: 12px 12px 24px #aaa8a6, -12px -12px 24px #ffffff;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  color: #0f0c29;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form label {
+  color: #0f0c29;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+form input {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  border: none;
+  outline: none;
+  stroke: none;
+}
+
+form button {
+  color: #0f0c29;
+  text-transform: uppercase;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #fdf9f6, #d4d2cf);
+  box-shadow: 9px 9px 18px #aaa8a6, -9px -9px 18px #ffffff;
+  cursor: pointer;
+  transition: ease-out 0.8s;
+}
+
+form button:hover {
+  transform: scale(1.06);
+  transition: all ease 0.5s;
+  box-shadow: 9px 9px 18px #aaa8a6, -9px -9px 18px #ffffff;
 }
