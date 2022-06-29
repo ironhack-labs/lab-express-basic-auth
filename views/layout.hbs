@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
+
+  {{#if user}}
+    <p>Welcome <i><b>{{user.username}}</b></i></p>
+  {{/if}}
   <body>
 
     {{{body}}}
