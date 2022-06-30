@@ -26,20 +26,6 @@ const bodyParser = require("body-parser");
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
-
-const auth = require('./routes/auth');
-app.use('/', auth)
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
-
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
@@ -54,6 +40,22 @@ app.use(
 		})
 	})
 )
+
+// 👇 Start handling routes here
+const index = require('./routes/index');
+app.use('/', index);
+
+const auth = require('./routes/auth');
+app.use('/', auth)
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
+require('./error-handling')(app);
+
+
 
 module.exports = app;
 
