@@ -18,5 +18,9 @@ router.get("/", (req, res, next) => {
 router.get("/main", loginCheck(), (req, res, next) => {
   res.render("main");
 });
+router.get("/private", loginCheck(), (req, res, next) => {
+  res.render("private");
+  console.log(username)
+});
 
 module.exports = router;

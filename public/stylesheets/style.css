@@ -19,6 +19,7 @@ a {
   border-radius: 10px;
   background: linear-gradient(145deg, #fdf9f6, #d4d2cf);
   box-shadow: 9px 9px 18px #aaa8a6, -9px -9px 18px #ffffff;
+  transition: all ease 0.5s;
 }
 
 .container {
@@ -75,7 +76,8 @@ form button {
   transition: ease-out 0.8s;
 }
 
-form button:hover {
+form button:hover,
+a:hover {
   transform: scale(1.06);
   transition: all ease 0.5s;
   box-shadow: 9px 9px 18px #aaa8a6, -9px -9px 18px #ffffff;
