@@ -4,8 +4,12 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const UserModel = require('../models/User.model');
 const saltRounds = 10;
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
-router.get('/signup', (req, res) => res.render('auth/signup'))
+// router.get('/signup', (req, res) => res.render('auth/signup'))
+//增加middleware來保護路徑
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
+ 
 
 router.post('/signup', (req, res, next) => {
     //  console.log('The form data:', req.body)
@@ -90,9 +94,16 @@ router.post('/login', (req, res, next) => {
 });
 
 
-router.get('/userProfile', (req, res) => {
+// router.get('/userProfile', (req, res) => {
+//     res.render('users/user-profile', { userInSession: req.session.currentUser });
+// });
+
+//增加middleware來保護路徑
+router.get('/userProfile', isLoggedIn, (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
-});
+  });
+
+
 
 router.post('/logout', (req, res, next) => {
     req.session.destroy(err => {
