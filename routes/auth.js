@@ -7,10 +7,9 @@ const saltRounds = 10;
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
 // router.get('/signup', (req, res) => res.render('auth/signup'))
-//增加middleware來保護路徑
+//增加middleware來保護路徑 當登出可以看見登入
 router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
  
-
 router.post('/signup', (req, res, next) => {
     //  console.log('The form data:', req.body)
     const { username, password } = req.body;
@@ -92,6 +91,15 @@ router.post('/login', (req, res, next) => {
         .catch(error => next(error));
 
 });
+
+
+
+//增加middleware來保護路徑 當登入可以看見此頁
+router.get('/mainPage', isLoggedIn, (req, res) => res.render('users/main'));
+ 
+router.get('/privatePage', isLoggedIn, (req, res) => res.render('users/private'));
+ 
+
 
 
 // router.get('/userProfile', (req, res) => {
