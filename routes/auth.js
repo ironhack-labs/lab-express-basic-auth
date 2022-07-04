@@ -1,23 +1,29 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
-const { request } = require("../app");
+const { isLoggedIn, isLoggedOut } = require("../middleware/middleware");
 
 /* GET home page */
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.get("/userProfile", isLoggedOut, (req, res) => {
+  res.render("auth/user-profile", { userInSession: req.session.currentUser });
+});
+
+router.post("/signup", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
-  // is the password 4+ characters
   if (password.length < 4) {
     res.render("auth/signup", {
       message: "Your password has to be 4 chars min",
     });
     return;
   }
-  // is the username not empty
   if (username.length === 0) {
     res.render("auth/signup", { message: "Your username cannot be empty" });
     return;
@@ -50,10 +56,6 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login");
-});
-
 // router.get("/userProfile", (req, res) => res.render("auth/user-profile"));
 
 router.post("/login", (req, res, next) => {
@@ -74,10 +76,7 @@ router.post("/login", (req, res, next) => {
         return;
       } else if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user; // SESSION
-        res.render("auth/user-profile", {
-          user: user,
-          userInSession: req.session.currentUser,
-        });
+        res.redirect("/userProfile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -85,11 +84,7 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile", (req, res) => {
-  res.render("auth/user-profile", { userInSession: req.session.currentUser });
-});
-
-router.post("/logout", (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect("/");
