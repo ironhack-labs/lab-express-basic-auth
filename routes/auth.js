@@ -5,23 +5,25 @@ const saltRounds = 10;
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
 
-router.get('/signup',(req, res, next) => {
+router.get('/signup', isLoggedOut, (req, res, next) => {
     res.render('signup')
 })
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isLoggedOut, (req, res, next) => {
 	res.render('login');
 });
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
-	res.render('profile');
+	console.log(req.session.user)
+	const user = req.session.user
+	res.render('profile', {user});
 });
 
 router.get('/private', isLoggedIn, (req, res, next) => {
 	res.render('private');
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', isLoggedOut, (req, res, next) => {
     const {username, password} = req.body;
 
     if (password.length < 4) {
@@ -45,7 +47,7 @@ router.post('/signup', (req, res, next) => {
 			//console.log(hash)
             User.create({ username: username, password: hash })
 				.then(createdUser => {
-				console.log(createdUser)
+				//console.log(createdUser)
 				res.redirect('/login')
 				})
 				.catch(err => {
@@ -55,8 +57,12 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
-router.post('/login', (req, res, next) => {
+router.post('/login', isLoggedOut, (req, res, next) => {
 	const { username, password } = req.body
+	if (username === '' || password === '') {
+		res.render('login', { message: 'Please enter both name and password to login.'});
+		return;
+	  }
 	//this is to get the value from the input field!!
 	// do we have a user with that username in the db
 	User.findOne({ username: username })
@@ -66,15 +72,29 @@ router.post('/login', (req, res, next) => {
 				res.render('login', { message: 'Invalid credentials' })
 				return
 			}
-			// username is correct
+			//if the username is correct (if there is a user in DB)
+			//if is not null, it means it is already in DB
 			// check the password from the form against the hash in the db
 			if (bcrypt.compareSync(password, userFromDB.password)) {
 				// the password is correct -> the user can be logged in
 				// req.session is an obj that is provided by express-session
 				req.session.user = userFromDB
+				console.log(userFromDB)
 				res.redirect('/profile')
-			}
+			} else {
+				res.render('login', { message: 'Incorrect password' })
+			  }
 		})
+		.catch( err => next(err))
+});
+
+
+//we have to make a POST request to /logout route
+router.post('/logout', isLoggedIn, (req, res, next) => {
+	req.session.destroy(err => {
+		if(err) next(err);
+		res.redirect('/');
+	});
 });
 
 module.exports = router;

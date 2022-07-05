@@ -6,14 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
 
     {{{body}}}
+    
 
-    <script src="/js/script.js"></script>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+  <script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGVuaXpzYWdhbmFrIiwiYSI6ImNsNThqcHRmaTBxMWszZG5yMTJkeTk4c2YifQ.suT5qrJWvno9EE_N1b2xcw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    center: [13.404954, 52.520008], 
+    zoom: 9,
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  </script>
+
+  <script src="/js/script.js"></script>
+  
   </body>
 
 </html>
