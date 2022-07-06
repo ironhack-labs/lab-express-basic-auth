@@ -11,6 +11,23 @@
 
   <body>
 
+ <nav>
+    {{#if userInSession}}
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Users - demo </a></p>
+        </li>
+        {{else}}
+        <li id="to-right">
+          <a href="/signup">Signup</a>
+          <span> | </span>
+          <a href="/login">Login</a>
+          {{! !!! }}
+        </li>
+      </ul>
+      {{/if}}
+    </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
