@@ -61,6 +61,3 @@ coords.forEach(coord => {
 	}).setLngLat(coord)
 		.addTo(map)
 })
-
-const nav = new mapboxgl.NavigationControl()
-map.addControl(nav, 'top-right')
