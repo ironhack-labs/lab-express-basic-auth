@@ -1,11 +1,10 @@
 const session = require('express-session');
-
-const app = express();
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 
 module.exports = app =>{
     app.set('trust proxy', 1);
 
-require('./config/sessiom.config') (app);
 
 app.use(
     session({
@@ -17,7 +16,10 @@ app.use(
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true,
             maxAge: 6000
-        }
+        },
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/lab-express-basic-auth'
+        })
     })
 );
 };

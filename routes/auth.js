@@ -6,20 +6,26 @@ const UserModel = require('../models/User.model');
 const User = require("../models/User.model");
 const saltRounds = 10;
 
+const { isLoggedIn, isLoggedOut } = require ('../middleware/route-guard.js');
+
 //get the user’s details
-router.get('/userProfile', (req, res) =>{
+router.get('/userProfile', isLoggedIn, (req, res) => {
   res.render('user/user-profile', {userInSession: req.session.currentUser})
 });
 
+
+
 /* GET home page */
-router.get("/signup", (req, res) => res.render("auth/signup"));
+router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
 
 //display the login form to users
 router.get ('/login', (req, res) => res.render('auth/login'));
 
 //POST route
 router.post('/signup', (req, res, next) =>{
-  const { username, password } = req.body;
+
+  const username = req.body.username.trim();
+  const password = req.body.password.trim();
 
   bcryptjs
   .genSalt(saltRounds)
@@ -51,16 +57,20 @@ router.post('/login', (req, res, next) => {
     return;
   }
  
-  User.findOne({ email }) // <== check if there's user with the provided email
+  User.findOne({ username }) // <== check if there's user with the provided email
     .then(user => {
       // <== "user" here is just a placeholder and represents the response from the DB
       if (!user) {
+
         res.render('auth/login', {
           errorMessage: 'Username is not registered. Try with other username.'
         });
         return;
       }
-      else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      else if (bcryptjs.compareSync(password, user.password)) { 
+
+        req.session.currentUser = user;
+        console.log(req.session);
         res.render('users/user-profile', { user });
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
