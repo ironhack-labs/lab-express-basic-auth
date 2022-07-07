@@ -1,0 +1,36 @@
+<div class="container">
+<h1>Registro del usuario</h1>
+
+ <div class="row">
+    <!--
+        action = Es para enviarlo a la ruta
+        method = El metodo http
+    -->
+    <form class="col s12" action="/usuario/nuevo" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" name="usuario" required minlength="1">
+          <label for="icon_prefix">First Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate" name="contrasena" required>
+          <label for="password">Contrasena (al menos 8 carácteres)</label>
+        </div>
+      </div>
+
+{{#if errorDatos}}
+        <div class="card-panel red lighten-2">Verifica tus datos</div>
+      {{/if}}
+
+       <button class="btn waves-effect waves-light" type="submit">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+  </div>
+
+  </div>
