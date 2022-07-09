@@ -1,0 +1,34 @@
+<div class="container">
+<h1>User Registry</h1>
+
+ <div class="row">
+    <form class="col s12" action="/user/new" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" name="user"
+          required minlength="1">
+          <label for="icon_prefix">First Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock</i>
+          <input id="icon_telephone" type="password" class="validate" 
+          name="password" required 
+          minlength="1">
+          <!--pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/"-->
+          <label for="icon_telephone">Password</label>
+        </div>
+      </div>
+      {{#if dataError}}
+        <div class="card-panel red lighten-2">Check your data</div>
+      {{/if}}
+       <button class="btn waves-effect waves-light" type="submit">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+  </div>
+
+  </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -6,10 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
+    <a href="/" class="waves-effect waves-light btn">
+      Home
+    </a>
+    {{#unless user}}
+    <a href="/user/register" class="waves-effect waves-light btn">
+    Register
+    </a>
+    <a href="/user/login" class="waves-effect waves-light btn">
+    Login
+    </a>
+    {{/unless}}
+
+    {{#if user}}
+    <a href="/user/private" class="waves-effect waves-light btn">
+    Private
+    </a>
+    <a href="/user/sign-out" class="waves-effect waves-light btn">
+    Sign Out {{user}}
+    </a>
+    {{/if}}
 
     {{{body}}}
 
