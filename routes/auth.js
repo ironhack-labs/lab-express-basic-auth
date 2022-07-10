@@ -3,17 +3,11 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const { isLoggedIn, isLoggedOut } = require("../middleware/middleware");
 
-/* GET home page */
+///////////////////////////////////////////////////////////////////////
+/////////////////////////// SIGN UP ///////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
-});
-
-router.get("/login", (req, res, next) => {
-  res.render("auth/login");
-});
-
-router.get("/userProfile", isLoggedOut, (req, res) => {
-  res.render("auth/user-profile", { userInSession: req.session.currentUser });
 });
 
 router.post("/signup", isLoggedOut, (req, res, next) => {
@@ -47,7 +41,7 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
       })
         .then((createdUser) => {
           // console.log(createdUser);
-          res.redirect("/");
+          res.redirect("/userProfile");
         })
         .catch((err) => {
           next(err);
@@ -56,9 +50,15 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
   });
 });
 
-// router.get("/userProfile", (req, res) => res.render("auth/user-profile"));
+///////////////////////////////////////////////////////////////////////
+/////////////////////////// LOGIN /////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
-router.post("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
   console.log("SESSION =====> ", req.session);
   if (username === "" || password === "") {
@@ -84,8 +84,20 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
+///////////////////////////////////////////////////////////////////////
+//////////////////////// User Profile /////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+router.get("/userProfile", isLoggedIn, (req, res) => {
+  res.render("auth/user-profile", { userInSession: req.session.currentUser });
+});
+
+///////////////////////////////////////////////////////////////////////
+//////////////////////// Log Out //////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
 router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
+    console.log("workin!!!!!!!!!!!!!!!");
     if (err) next(err);
     res.redirect("/");
   });
