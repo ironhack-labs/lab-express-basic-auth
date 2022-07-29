@@ -1,0 +1,33 @@
+.register{
+    margin-top: 50px;
+}
+
+.center{
+    display: flex;
+    margin-left: 250px;
+
+}
+
+.title{
+    margin-top: 250px;
+    margin-right: 100px;
+}
+.title2{
+    margin-top: 20px;
+    margin-left: 60px;
+}
+.background{
+    margin-top: 80px;
+    width: 40%;
+    border-radius: 15px;
+}
+
+.image-profile{
+    margin-left: 70%;
+    width: 10%;
+    margin-top: -40px;
+}
+
+.register-form{
+    margin-top: 80px;
+}

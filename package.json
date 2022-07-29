@@ -6,8 +6,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js -e hbs,js,css",
-    "seeds": "node ./bin/seedsWithIds.js"
+    "dev": "nodemon app.js -e hbs,js,css"
+    
   },
   "author": "",
   "license": "ISC",

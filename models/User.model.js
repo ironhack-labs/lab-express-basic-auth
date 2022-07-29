@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type : String,
         required: [true, "Email adrees is necesary"],
         unique: true,
-        match: [EMAIL_PATTERN, "Email address already exists, please try again"],
+        match: [EMAIL_PATTERN, "Email adress not valid, please try again"],
     },
     password: {
         type: String,

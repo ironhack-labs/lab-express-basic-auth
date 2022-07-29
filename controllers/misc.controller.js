@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
+const router = require ('express').Router()
 
 module.exports.home = (req, res, next) => {
-  res.redirect("/books");
+  res.render("home");
 };

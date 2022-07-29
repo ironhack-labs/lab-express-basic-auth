@@ -12,3 +12,5 @@ router.post("/register", authController.doRegister)
 
 //USERS
 router.get("/profile", usersController.profile)
+
+module.exports = router
