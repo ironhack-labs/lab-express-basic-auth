@@ -1,31 +1,23 @@
+
 {
+  "name": "books-mongoose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js -e hbs,js,css",
+    "seeds": "node ./bin/seedsWithIds.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "hbs": "^4.2.0",
-    "mongoose": "^6.5.0",
+    "mongoose": "^6.4.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19"
-  },
-  "name": "lab-express-basic-auth",
-  "description": "![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js -e hbs, css, js",
-    "start": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/merJur/lab-express-basic-auth.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/merJur/lab-express-basic-auth/issues"
-  },
-  "homepage": "https://github.com/merJur/lab-express-basic-auth#readme"
+  }
 }

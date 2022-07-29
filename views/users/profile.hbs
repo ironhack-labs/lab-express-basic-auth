@@ -1,0 +1,23 @@
+<h1>Your profile</h1>
+
+<div>
+  <img src="images/userDefault.png" class="image-profile" alt="image-profile" />
+</div>
+
+<div>
+    {{#each users as |user|}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Name</th>
+        <td>{{user.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  {{/each}}
+</div>
