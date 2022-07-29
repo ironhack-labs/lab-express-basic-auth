@@ -1,8 +1,45 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;800&family=Montserrat:wght@100;200;300;800&family=Poppins:wght@100;200;500&family=Roboto+Mono:wght@200;300;400;700&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+/* NAVBAR */
+#navbar {
+  background-color: rgb(15, 15, 15);
 }
+
+#navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+}
+
+
+/* HOME */
+
+h1 { 
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-top: 300px;
+  color: rgb(0, 132, 240)
+}
+
+/* PROFILE */
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+
+
+

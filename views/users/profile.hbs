@@ -1,17 +1,27 @@
-<h2>Hi {{user.firstname}}, welcome to your profile!</h2>
+<h2>Hi {{user.firstname}}! Welcome to your profile</h2>
 
+<div class="d-flex justify-content-around align-items-center">
+    <div class="card bg-primary" style="width: 18rem;">
+        <div class="card-header">
+            PERSONAL DATA:
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">First name: {{user.firstname}}</li>
+            <li class="list-group-item">Last name: {{user.lastname}}</li>
+            <li class="list-group-item">Age: {{user.age}}</li>
+        </ul>
+    </div>
 
-<div>
-    <h3>PERSONAL DATA:</h3>
-    <p>First name: {{user.firstname}}</p>
-    <p>Last name: {{user.lastname}}</p>
-    <p>Age: {{user.age}}</p>
+    <div class="card bg-primary" style="width: 18rem;">
+        <div class="card-header">
+            ACCOUNT DATA:
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">E-mail: {{user.email}}</li>
+            <li class="list-group-item">User name: {{user.username}}</li>
+            <li class="list-group-item">Password: *******</li>
+        </ul>
+    </div>
 </div>
 
-<div>
-    <h3>ACCOUNT DATA:</h3>
-    <p>E-mail: {{user.email}}</p>
-    <p>User name: {{user.username}}</p>
-    <p>Password: {{user.password}}</p>
-</div>
 

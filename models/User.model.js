@@ -1,5 +1,8 @@
 const { Schema, model } = require("mongoose");
 
+const EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 10;
 
@@ -22,6 +25,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'E-mail is required'],
     unique: true,
+    match: EMAIL_PATTERN
   },
   username: {
     type: String,
@@ -30,7 +34,8 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: [true, 'Password is required']
+    required: [true, 'Password is required'],
+    match: PASSWORD_PATTERN
   }  
 });
 
