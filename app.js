@@ -1,35 +1,46 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
-require('dotenv/config');
+//.ENV
+require("dotenv").config();
 
-// ℹ️ Connects to the database
-require('./db');
+//Express/morgan and hbs
+const hbs = require("hbs");
+const express = require("express");
+const logger = require("morgan");
 
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require('express');
+//Database
+require("./config/db.config");
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
-
+//Express server handling requests and responses
 const app = express();
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+//Make public available
+app.use(express.static("public"));
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+//urlencoded é um parser das informações vindas no body da request
+app.use(express.urlencoded({ extended: false }));
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+//log HTTP requests and errors
+app.use(logger("dev"));
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+// creates an absolute path pointing to a folder called "views"
+app.set("views", __dirname + "/views");
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
+// tell our Express app that HBS will be in charge of rendering the HTML
+app.set("view engine", "hbs");
 
-module.exports = app;
+// register the partials
+hbs.registerPartials(__dirname + "/views/partials");
 
+// Routes
+const routes = require("./config/routes.config.js");
+app.use(routes);
+
+app.use((err, req, res, next) => {
+  res.render("error", { err });
+});
+
+// Sets the PORT for our app to have access to it. If no env has been set, we hard code it to 3000
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port http://localhost:${PORT}`);
+});
