@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4 py-5">
+      <h1 class="mb-5 text-center">Register</h1>
+      <form action="/register" method="POST" class="form-floating">
+        <div class="form-floating mb-3">
+          <input 
+            name="name" 
+            type="text" 
+            class="custom-form-control form-control {{#if errors.name}}is-invalid{{/if}}" 
+            id="floatingInput" 
+            placeholder="name"
+            value="{{user.name}}"
+          >
+          <label for="floatingInput">User name</label>
+          {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
+        </div>
+        <div class="form-floating mb-3">
+          <input 
+            name="email" 
+            type="text" 
+            class="custom-form-control form-control {{#if errors.email}}is-invalid{{/if}}" 
+            id="floatingInput" 
+            placeholder="name@example.com"
+            value="{{user.email}}"
+          >
+          <label for="floatingInput">Email address</label>
+          {{#if errors.email}}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}
+        </div>
+        <div class="form-floating mb-3">
+          <input 
+            name="password" 
+            type="password" 
+            class="custom-form-control form-control {{#if errors.password}}is-invalid{{/if}}" 
+            id="floatingPassword" 
+            placeholder="password"
+          >
+          <label for="floatingPassword">Password</label>
+          {{#if errors.password}}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
