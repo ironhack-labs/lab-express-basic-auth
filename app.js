@@ -1,35 +1,28 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
-require('dotenv/config');
+require ("dotenv").config();
 
-// ℹ️ Connects to the database
-require('./db');
+const express = require ('express')
+const logger = require ('morgan')
+const hbs = require ('hbs')
 
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require('express');
+require("./config/db.config")
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
+const app =express()
 
-const app = express();
+app.use(express.static("public"))
+app.use(express.urlencoded({extended :false}))
+app.use(logger("dev"))
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+app.set("views", __dirname + "/views")
+app.set("view engine", "hbs")
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+hbs.registerPartials(__dirname + "/views/partials")
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+const routes = require ("./config/routes.config")
+app.use(routes)
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+app.use((err, req, res, next) => {
+    res.render("error", {err})
+})
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
-
-module.exports = app;
+app.listen(3000, () => console.log("Listening on port 3000 👍"))
 
