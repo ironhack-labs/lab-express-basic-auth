@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col col-sm-8 col-md-6 col-lg-4">
+        <div class="intro-register-img mb-4">
+
+        </div>
+
+        <form action="/signUp" method="POST">
+            <div class="mb-3">    
+                <label for="firstname" class="form-label">First name</label>
+                <input type="text" class="form-control {{#if errors.name}}is-invalid{{/if}}" id="firstname" name="firstname">
+                {{#if errors.firstname}}<div class="invalid-feedback">{{errors.firstname}}</div>{{/if}}
+            </div>
+
+            <div class="mb-3">    
+                <label for="lastname" class="form-label">Last name</label>
+                <input type="text" class="form-control {{#if errors.lastname}}is-invalid{{/if}}" id="lastname" name="lastname">
+                {{#if errors.lastname}}<div class="invalid-feedback">{{errors.lastname}}</div>{{/if}}
+            </div>
+
+            <div class="mb-3">    
+                <label for="age" class="form-label">Age</label>
+                <input type="text" class="form-control {{#if errors.age}}is-invalid{{/if}}" id="age" name="age">
+                {{#if errors.age}}<div class="invalid-feedback">{{errors.age}}</div>{{/if}}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control {{#if errors.email}}is-invalid{{/if}} {{#if errors.emailExist}}is-invalid{{/if}}" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                {{#if errors.email }}<div class="invalid-feedback">{{errors.email}}</div>{{/if}}
+                {{#if errors.emailExist }}<div class="invalid-feedback">{{errors.emailExist}}</div>{{/if}}
+            </div>
+
+            <div class="mb-3">    
+                <label for="username" class="form-label">User name</label>
+                <input type="text" class="form-control {{#if errors.username}}is-invalid{{/if}} {{#if errors.usernameExist}}is-invalid{{/if}}" id="username" name="username">
+                {{#if errors.username}}<div class="invalid-feedback">{{errors.username}}</div>{{/if}}
+                {{#if errors.usernameExist }}<div class="invalid-feedback">{{errors.usernameExist}}</div>{{/if}}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="exampleInputPassword1" name="password">
+                {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary bg-light-green border-0">Register</button>
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/login/google" class="btn btn-danger border-0">
+                    <i class="fa fa-google"></i>
+                    Login with Google
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

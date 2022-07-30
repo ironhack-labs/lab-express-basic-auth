@@ -1,0 +1,25 @@
+<h2>Hi {{user.firstname}}! Welcome to your profile</h2>
+
+<div class="d-flex justify-content-around align-items-center">
+    <div class="card bg-primary" style="width: 18rem;">
+        <div class="card-header">
+            PERSONAL DATA:
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">First name: {{user.firstname}}</li>
+            <li class="list-group-item">Last name: {{user.lastname}}</li>
+            <li class="list-group-item">Age: {{user.age}}</li>
+        </ul>
+    </div>
+
+    <div class="card bg-primary" style="width: 18rem;">
+        <div class="card-header">
+            ACCOUNT DATA:
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">E-mail: {{user.email}}</li>
+            <li class="list-group-item">User name: {{user.username}}</li>
+            <li class="list-group-item">Password: *******</li>
+        </ul>
+    </div>
+</div>
