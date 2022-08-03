@@ -7,10 +7,14 @@
 </div>
 
 <div>
-<input type="password" name="password" id="password" placeholder="Password" />
+<input type="password" name="password" id="password" placeholder="Password" minlength="6" />
 </div>
 
 <button type="submit">Login</button>
+
+{{#if errorMessage}}
+  <h6>{{errorMessage}}</h6>
+{{/if}}
 
 
 </form>
