@@ -1,0 +1,18 @@
+<h2>Login</h2>
+
+<form action="/login" method="post">
+
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" />
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" minlength="8" />
+
+  <button type="submit">Login</button>
+
+</form>
+<a href="/">Back to the home page</a>
+
+{{#if errorMessage}}
+<h6>{{errorMessage}}</h6>
+{{/if}}

@@ -1,0 +1,18 @@
+<h2>Sign Up</h2>
+
+<form action="/signup" method="post">
+
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" />
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" minlength="8" />
+
+  <button type="submit">Sign Up</button>
+
+</form>
+
+{{#if errorMessage}}
+<h1>{{errorMessage}}</h1>
+{{/if}}
+<a href="/">Back to the home page</a>
