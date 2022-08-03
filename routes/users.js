@@ -1,14 +1,16 @@
 const router = require("express").Router();
 
-//CONTROLLERS:
-const authController = require('../controllers/auth.controller');
+//CONTROLLER:
+const usersController = require('../controllers/users.controller');
 
+//MIDDELWARES: 
+const authMiddleware = require('../middlewares/auth.middelware')
 
 //ROUTES:
 
-//SIGN UP 
-router.get('/signUp', authController.signUp);
-router.post('/signUp', authController.doSignUp);
+//PROFILE
+router.get('/profile/:id', authMiddleware.isAuthenticated, usersController.profile);
 
 
+//TO EXPORT ALL ROUTES:
 module.exports = router;

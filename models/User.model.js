@@ -6,7 +6,6 @@ const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 10;
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
   firstname: {
     type: String,
@@ -26,11 +25,6 @@ const userSchema = new Schema({
     required: [true, 'E-mail is required'],
     unique: true,
     match: EMAIL_PATTERN
-  },
-  username: {
-    type: String,
-    unique: true,
-    required: [true, 'Username is required']
   },
   password: {
     type: String,
@@ -55,6 +49,12 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+// METHOD TO COMPARE PASSWORD
+userSchema.methods.checkPassword = function (password) {
+  const user = this;
+  return bcrypt.compare(password, user.password);
+};
 
 const User = model("User", userSchema);
 

@@ -1,13 +1,23 @@
 <nav id="navbar">
     <ul class="navbar-nav d-flex justify-content-around">
       <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link" aria-current="page" href="/">Home</a>
       </li>
-      <li class="nav-item">
+
+    {{#if currentUser}}
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/profile/"{{currentUser.id}}>Profile</a>
+        </li>
+        <li class="nav-item ms-2">
+            <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+        </li>
+    {{else}}
+        <li class="nav-item">
           <a class="nav-link" href="/signUp">Sign In</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="/">Log out</a>
-      </li>
+        </li>
+        <li class="nav-item ms-4">
+           <a class="nav-link" aria-current="page" href="/login">Login</a>
+        </li>
+    {{/if}}    
     </ul>
 </nav>

@@ -17,10 +17,16 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+//Import Session Express file config
+const sessionConfig = require("./session.config");
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
   app.use(logger("dev"));
+
+  //To use session config
+  app.use(sessionConfig);
 
   // To have access to `body` property in the request
   app.use(express.json());

@@ -5,6 +5,7 @@ require('dotenv/config');
 // ℹ️ Connects to the database
 require('./config/db.config');
 
+
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require('express');
@@ -34,6 +35,9 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const home = require('./routes/home');
 app.use('/', home);
+
+const auth = require('./routes/auth');
+app.use('/', auth)
 
 const users = require('./routes/users');
 app.use('/', users)

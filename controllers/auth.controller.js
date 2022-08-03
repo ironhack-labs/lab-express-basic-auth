@@ -10,45 +10,23 @@ module.exports.signUp = (req, res, next) => {
 module.exports.doSignUp = (req, res, next) => {
     const user = req.body;
 
-    User.findOne({$or: [{ email: user.email }, { username: user.username}]})
+    User.findOne({ email: user.email })
     .then((userFound) => {
-      if (userFound) {
-        if (userFound.email === user.email && userFound.username === user.username) {
-            res.render("auth/sign-up", {
-                user,
-                errors: {
-                    emailExist: "This e-mail already exist",
-                    usernameExist: "This user name already exist"
-                }          
-            });
-        } 
-        
-        if(userFound.email === user.email){
+      if (userFound){
             res.render("auth/sign-up", {
                 user,
                 errors: {
                     emailExist: "This e-mail already exist",
                 }          
-            });
-        }
-        
-        if(userFound.username === user.username){
-            res.render("auth/sign-up", {
-                user,
-                errors: {
-                    usernameExist: "This user name already exist"
-                }      
-            });
-        }            
-        return;   
+            });  
       } else {
-        User.create(user)
+        return User.create(user)
         .then((user) => {
-          res.render('users/profile', { user }); // Cuando tenga la ruta de profile hago un redirect
-        });
-        return;
+          const id = user.id
+          res.redirect(`/profile/${id}`);
+        })
       }
-    })
+    })    
     .catch((err) => {
       console.log("errors", err);
       res.render("auth/sign-up", {
@@ -59,4 +37,56 @@ module.exports.doSignUp = (req, res, next) => {
     });
 }
 
+//LOG IN
+module.exports.login = (req, res, next) => {
+  res.render('auth/log-in')
+}
 
+//DO LOGIN
+module.exports.doLogin = (req, res, next) => {
+  console.log("SESSION =====> ", req.session);
+
+  const user = req.body;
+  const { email, password } = req.body;
+
+  User.findOne({ email })
+  .then((userFound) => {
+    if (!userFound){
+      res.render("auth/log-in", {
+        user,
+        errors: {
+          email: "Invalid credentials",
+        }          
+      });
+    } else if (userFound) {
+      userFound.checkPassword(password)
+      .then((match) => {
+          if (match) {
+            req.session.currentUser = userFound;
+            res.redirect(`/profile/${userFound.id}`)
+          } else {
+            res.render("auth/log-in", {
+                user,
+                errors: {
+                  password: "Invalid credentials",
+                }          
+            });
+          }
+      })           
+    } 
+  })
+  .catch((err) => {
+      console.log("errors", err);
+      res.render("auth/log-in", {
+        user,
+        errors: err.errors,
+      });
+      next(err);
+  });  
+}
+
+//LOG OUT
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/login");
+}
