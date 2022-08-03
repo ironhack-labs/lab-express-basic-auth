@@ -1,0 +1,14 @@
+<h1>Profile</h1>
+<h6>Welcome to this app</h6>
+
+
+
+{{#if user}}
+  <h2>Hello {{user.username}}</h2>
+{{else}}
+  <p>oOps!</p>
+  <p>You have to log in in order to access your profile</p>
+  <b>Please, log in.</b>
+{{/if}}
+
+<button><a href="/logout">Log out</a></button>
