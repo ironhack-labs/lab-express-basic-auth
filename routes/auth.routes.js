@@ -2,12 +2,13 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup")
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
 
 
@@ -53,7 +54,7 @@ router.post("/signup", (req, res, next) => {
     })
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("auth/login");
 })
 
@@ -88,15 +89,31 @@ router.post("/login", (req, res, next) => {
     .catch(error => next(error));
 })
 
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
   res.render("auth/profile", { user: req.session.currentUser }); // Again: not sure what is userInSession but copied from student Portal
 })
 
-router.post("/logout", (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
     res.redirect("/");
   })
+})
+
+router.get('/main', (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render('auth/main')
+  } else {
+    res.redirect('/private')
+  }
+})
+
+router.get('/private', (req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect('/login');
+  } else {
+    res.render('auth/private')
+  }
 })
 
 module.exports = router;
