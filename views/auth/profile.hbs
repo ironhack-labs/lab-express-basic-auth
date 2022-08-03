@@ -1,0 +1,11 @@
+<h1>Profile</h1>
+
+{{#if user}}
+<h3>Welcome, {{user.username}}</h3>
+<p>Took a little bit of time, but we're here</p>
+{{else}}
+<p>You're not logged in</p>
+{{/if}}
+{{!-- <a href="/logout">Logout</a> --}}
+<a href="auth/profile">Reload the page</a> {{!--taken from student portal --}}
+<a href="/">Back to the home page</a>
