@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth";
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/lab-express-basic-auth';
 
 mongoose
   .connect(MONGODB_URI, {
@@ -15,9 +15,9 @@ mongoose
     process.exit(0);
   });
 
-process.on("SIGINT", function () {
+process.on('SIGINT', function () {
   mongoose.connection.close(function () {
-    console.log("Mongoose disconnected on app termination");
+    console.log('Mongoose disconnected on app termination');
     process.exit(0);
   });
 });

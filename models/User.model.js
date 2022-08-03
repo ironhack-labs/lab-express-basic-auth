@@ -43,6 +43,11 @@ userSchema.pre('save', function(next) {
     }
 });
 
+userSchema.methods.checkPassword = function (password) {
+    const user = this;
+    return bcrypt.compare(password, user.password);
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
