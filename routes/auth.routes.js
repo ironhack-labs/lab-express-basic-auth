@@ -4,6 +4,8 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
+    router.get('/', isLoggedOut, (req, res, next) => res.render ('auth/index'));
+
 
     router.get('/signup', isLoggedOut, (req, res, next) => {
      res.render('auth/signup') 
@@ -34,7 +36,7 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
           console.log(err);
           res.status(500).render('auth/signup', {
             errorMessage:
-              'Please provide a unique username or email. The one you chose is already taken',
+              'Please provide a unique username or email. The one you chose is already taken.',
           });
         } else {
           next(err);
@@ -52,7 +54,7 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
       
         if (!username || !password) {
           res.render('auth/login', {
-            errorMessage: 'Both fields are required. Please insert a username and a password',
+            errorMessage: 'Both fields are required. Please insert a username and a password.',
           });   
           return;
         }
