@@ -9,13 +9,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/register">Register</a>
         </li>
-        {{!-- <li class="nav-item">
+        {{#if currentUser}}
+        <li class="nav-item">
           <a class="nav-link" href="/profile">Profile</a>
-        </li> --}}
+        </li>
+        {{/if}}
       </ul>
       <div class="d-flex">
+        {{#if currentUser}}
+        <a href="/logout" class="btn btn-outline-danger btn-lg ms-2" type="submit">Logout</a>
+        {{else}}
         <a href="/login" class="btn btn-outline-secondary btn-lg" type="submit">Login</a>
-        <a href="#" class="btn btn-outline-danger btn-lg ms-2" type="submit">Logout</a>
+        {{/if}}
       </div>
     </div>
   </div>

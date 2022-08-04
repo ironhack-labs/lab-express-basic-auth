@@ -9,6 +9,7 @@ const SALT_ROUNDS = 10;
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
+        unique: true,
         requiered: [true, 'Name is requiered'],
         minLength: 5,
     },

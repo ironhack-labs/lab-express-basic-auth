@@ -12,10 +12,13 @@ router.get('/register', authController.register);
 router.post('/register', authController.doRegister);
 
 // LOGIN
-router.get('/login', authController.login);
-router.post('/login', authController.doLogin);
+router.get('/login', authMiddlewares.isNotAuthenticated, authController.login);
+router.post('/login', authMiddlewares.isNotAuthenticated, authController.doLogin);
+
+// LOGOUT
+router.get('/logout', authMiddlewares.isAuthenticated, authController.logout);
 
 // USER 
-router.get('/profile', userController.profile);
+router.get('/profile', authMiddlewares.isAuthenticated, userController.profile);
 
 module.exports = router;

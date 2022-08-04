@@ -21,3 +21,5 @@ process.on('SIGINT', function () {
     process.exit(0);
   });
 });
+
+module.exports.DB = MONGODB_URI;

@@ -7,7 +7,7 @@
           <input 
             name="email" 
             type="text" 
-            class="custom-form-control form-control {{#if error.email}}is-invalid{{/if}}" 
+            class="custom-form-control form-control {{#if error}}is-invalid{{/if}}" 
             id="floatingInput" 
             placeholder="name@example.com"
             value="{{user.email}}"
@@ -18,12 +18,12 @@
           <input 
             name="password" 
             type="password" 
-            class="custom-form-control form-control {{#if error.password}}is-invalid{{/if}}" 
+            class="custom-form-control form-control {{#if error}}is-invalid{{/if}}" 
             id="floatingPassword" 
             placeholder="password"
           >
           <label for="floatingPassword">Password</label>
-          {{#if error.password}}<div class="invalid-feedback">{{ error.password }}</div>{{/if}}
+          {{#if error}}<div class="text-danger text-center my-3">{{ error }}</div>{{/if}}
         </div>
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-success btn-lg">Login</button>

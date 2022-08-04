@@ -8,14 +8,15 @@ module.exports.register = (req, res, next) => {
 
 module.exports.doRegister = (req, res, next) => {
     const user = req.body;
-    User.findOne({ email: user.email })
+    User.findOne({ name: user.name, email: user.email })
         .then((userFound) => {
             if(userFound) {
                 console.log('Ya existe este usuario :' + userFound)
                 res.render('auth/register', {
                     user,
                     errors: {
-                        email: 'This email alredy exist',
+                        name: 'This user already exist',
+                        email: 'This email already exist',
                     },
                 })
             } else {
@@ -27,6 +28,7 @@ module.exports.doRegister = (req, res, next) => {
             }
         })
         .catch(err => {
+            console.log('🔻 🔻 🔻 Fallo al registrarse 🔻 🔻 🔻')
             console.log('errors', err);
             res.render('auth/register', {
                 user,
@@ -47,10 +49,11 @@ module.exports.doLogin = (req, res, next) => {
 
     const renderWithErrors = () => {
         res.render('auth/login', { error: 'Invalid credentials.' });
+        console.log('🔴 🔴 🔴 Fallo en el Login 🔴 🔴 🔴 ')
     };
 
     const { email, password } = req.body;
-
+    
     User.findOne({ email })
     .then((user) => {
       if (!user) {
