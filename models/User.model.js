@@ -5,7 +5,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, "Username is required"],
       unique: true,
     },
     passwordHash: {
@@ -16,6 +16,4 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-const User = model("User", userSchema);
-
-module.exports = User;
+module.exports = model("User", userSchema);
