@@ -14,10 +14,9 @@ module.exports.doRegister = (req, res, next) => {
         res.render("auth/register", {
           user,
           errors: {
-            emailExist: "Email already exist",
+            email: "Email already exist",
           },
         });
-        return;
       } else {
         return User.create(user).then((userCreated) => {
           res.redirect("/profile");
@@ -25,7 +24,6 @@ module.exports.doRegister = (req, res, next) => {
       }
     })
     .catch((err) => {
-      console.log("errors", err);
       res.render("auth/register", {
         user,
         errors: err.errors,
@@ -34,5 +32,44 @@ module.exports.doRegister = (req, res, next) => {
     });
 };
 
-module.exports.login = (req, res, next) => {};
-module.exports.doLogin = (req, res, next) => {};
+module.exports.login = (req, res, next) => {
+  res.render("auth/login");
+};
+
+module.exports.doLogin = (req, res, next) => {
+  console.log("SESSION ========================> ", req.session);
+
+  const renderWithErrors = () => {
+    res.render("auth/login", { error: "Invalid credentials." });
+  };
+
+  const { email, password } = req.body;
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        console.log("no encuentra usuario")
+        renderWithErrors();
+        return;
+      } else if (user) {
+        console.log("encuentra usuario registrado")
+        user.checkPassword(password).then((match) => {
+          if (match) {
+            console.log("hace match")
+            req.session.currentUser = user;
+            res.redirect("/profile");
+          } else {
+            renderWithErrors();
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      console.log("entra al catch");
+      next(error)});
+};
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/login");
+};

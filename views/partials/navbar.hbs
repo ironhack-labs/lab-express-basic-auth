@@ -9,10 +9,25 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/register">Register</a>
-        </li>
-        
+     
+       {{#if currentUser}}
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/profile">Profile</a>
+          </li>
+        {{/if}} 
+
+       {{#if currentUser}}
+          <li class="nav-item ms-2">
+            <a class="nav-link btn btn-danger text-white" aria-current="page" href="/logout">Logout</a>
+          </li>
+        {{else}}
+          <li class="nav-item ms-2">
+            <a class="nav-link btn btn-secondary text-white" aria-current="page" href="/register">Register</a>
+          </li>
+          <li class="nav-item ms-4">
+            <a class="nav-link btn btn-primary text-white" aria-current="page" href="/login">Login</a>
+          </li>
+        {{/if}} 
       </ul>
     </div>
   </div>
