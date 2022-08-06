@@ -1,23 +1,24 @@
 // routes/auth.routes.js
-
 const { Router } = require("express");
 const router = new Router();
 const mongoose = require("mongoose");
+const User = require("../models/User.model");
+
 const bcrypt = require("bcrypt");
-const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
-const User = require("../models/User.model");
+const isLoggedIn = require("../middleware/isLoggedIn.middleware");
+const isLoggedOut = require("../middleware/isLoggedOut.middleware");
 
 // <-------------- SIGNUP ------------------>
 
 // GET route => to display the signup form
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
 // POST route => to process form data
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
   debugger;
   // make sure users fill all mandatory fields:
@@ -65,12 +66,12 @@ router.post("/signup", (req, res, next) => {
 // <--------------- LOGIN ------------------>
 
 // GET route => to display the login form
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
 // POST route => to process form data
-router.post("/login", (req, res, next) => {
+router.post("/login", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === "" || password === "") {
@@ -83,8 +84,6 @@ router.post("/login", (req, res, next) => {
     .then((user) => {
       // If no user with this username, then bring to signup page
       if (!user) {
-        console.log("1");
-
         res.render("auth/signup", {
           errorMessage: "Username is not registered. Please signup.",
         });
@@ -93,7 +92,7 @@ router.post("/login", (req, res, next) => {
       // If there is user in the DB, compare password and redirect to user profile page
       else if (bcrypt.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect("/user/profile");
+        res.redirect("/profile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -103,8 +102,21 @@ router.post("/login", (req, res, next) => {
     });
 });
 
-router.get("/user/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   res.render("user/profile", { userInSession: req.session.currentUser });
+});
+
+router.post("/logout", isLoggedIn, (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
+router.get("/main", isLoggedIn, (req, res) => {
+  res.render("auth/main", { user: req.session.currentUser });
+});
+
+router.get("/private", isLoggedIn, (req, res) => {
+  res.render("auth/private", { user: req.session.currentUser });
 });
 
 module.exports = router;
