@@ -5,6 +5,7 @@ require("dotenv").config();
 const hbs = require("hbs");
 const express = require("express");
 const logger = require("morgan");
+const sessionConfig = require("./config/session.config");
 
 //Database
 require("./config/db.config");
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 //log HTTP requests and errors
 app.use(logger("dev"));
 
+//sesssion config
+app.use(sessionConfig);
+
 // creates an absolute path pointing to a folder called "views"
 app.set("views", __dirname + "/views");
 
@@ -29,6 +33,12 @@ app.set("view engine", "hbs");
 
 // register the partials
 hbs.registerPartials(__dirname + "/views/partials");
+
+//keep current user
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
 
 // Routes
 const routes = require("./config/routes.config.js");
