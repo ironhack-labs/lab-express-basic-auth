@@ -15,8 +15,14 @@ const hbs = require('hbs');
 
 const app = express();
 
+
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+require('./config/session.config')(app);
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
