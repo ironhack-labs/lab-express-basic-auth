@@ -11,10 +11,13 @@
   <body>
     <nav>
       <a href="auth/register">Register</a>
+      <a href="auth/login">Login</a>
+      {{#if isLoggedIn}}
+        <a href="auth/logout">Logout</a>
+        <a href="user/personal">Profile Page</a>
+      {{/if}}
     </nav>
-
     {{{body}}}
-
     <script src="/js/script.js"></script>
   </body>
 

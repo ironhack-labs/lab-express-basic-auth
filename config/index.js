@@ -17,6 +17,12 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+// connecting to MongoDB to create  data
+const MongoStore = require("connect-mongo");
+
+// middleware to create sessions
+const session = require("express-session");
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -35,5 +41,28 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
+
+  app.use(
+    session({
+      name: "Hello world", // name of the cookie
+      secret: process.env.SESSION_SECRET || "super hyper secret", // hashed version of the session id
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl:
+          process.env.MONGODB_URL ||
+          "mongodb://localhost/lab-express-basic-auth", // by default express stores everything as a object. However we want to store it in the database and we have a database url already. Now we have sessions in our application
+      }),
+    })
+  );
+
+  app.use((req, res, next) => {
+    if (req.session.userId) {
+      res.locals.isLoggedIn = true;
+    }
+    next();
+  });
 };
