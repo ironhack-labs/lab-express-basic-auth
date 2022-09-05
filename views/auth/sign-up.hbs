@@ -7,7 +7,12 @@
         <label for="">Password</label>
         <input type="password" name="password" required>
 
-        <button type="submit">Log in</button>
+        <button class="mt-4 btn btn-dark" type="submit">Log in</button>
     </form>
+    <div>
+        {{#if message}}
+        <p class="error">{{message}}</p>
+        {{/if}}
+    </div>
 
 </section>
