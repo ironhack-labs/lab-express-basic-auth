@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <div class="row">
+        <form action="/login" method="post" class="mb-3">
+            <label for="" class="text-white">Username</label>
+            <input type="text" name="username">
+
+            <label for="" class="text-white">Password</label>
+            <input type="password" name="password">
+
+            <button type="submit">Login</button>
+        </form>
+        <div>
+            {{#if errorMessage}}
+            <p class="text-white">{{errorMessage}}</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
