@@ -4,11 +4,23 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: {
     type: String,
+    required: [true, 'Es necesario el username.'],
+    trim: true,
     unique: true
   },
-  password: String
-});
+  password: {
+    type: String,
+    required: [true, 'Se necesita añadir una contraseña'],
+    trim: true
+  }
+},
+  {
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
+    versionKey: false
+  }
+);
 
-const User = model("User", userSchema);
+const userModel = model("User", userSchema);
 
-module.exports = User;
+module.exports = userModel;
