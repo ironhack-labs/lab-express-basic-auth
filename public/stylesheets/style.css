@@ -21,6 +21,16 @@ img {
   width: 100%;
 }
 
+.btns li a:hover {
+  color: blueviolet;
+}
+
+
+
+.btn-log a:hover {
+  color: white;
+}
+
 .main-content {
   display: grid;
   justify-content: center;
