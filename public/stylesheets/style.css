@@ -1,6 +1,50 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+  background-image: url('/images/background.jpg');
+  opacity: 75%;
+}
+
+.homePage {
+  text-align: center;
+  margin: 40px;
+}
+
+.ul {
+  color: white;
+}
+
+input:invalid {
+  border: 2px dashed rgb(255, 0, 0);
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, rgb(249, 179, 190), rgb(34, 186, 34));
+}
+
+input:valid {
+  border: 2px solid rgb(6, 2, 67);
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: white
+}
+
+.formulary {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.button {
+  color: white;
 }
 
 a {
