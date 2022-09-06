@@ -1,13 +1,13 @@
-const nombre = (req, res, next) => {
-    if (req.session.user) {
-        console.log('ESTAS EN EL IF')
-        const name = req.session.user.username
-        return name
-    } else {
-        console.log('ESTAS EN EL ELSEEEEE')
-        const name = ''
-        return name
-    }
-};
+// const nombre = (req, res, next) => {
+//     console.log('holaaaaaaaaa', req.session.user)
+//     let name = null
+//     if (req.session.user) {
+//         console.log('ESTAS EN EL IF')
+//         name = req.session.user.username
 
-module.exports = nombre;
+//     }
+        
+//     next()
+// };
+
+// module.exports = nombre;

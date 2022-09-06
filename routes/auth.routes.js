@@ -2,6 +2,8 @@ const router = require('express').Router();
 const UserModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 
+// const appTemp = app
+
 
 router.get('/signup', (req, res) => {
     res.render('auth/sign-up');
@@ -9,11 +11,14 @@ router.get('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
     const user = req.session.user
+    // app.locals.name = user.username
     res.render('auth/login', user);
 });
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
+    req.app.locals.name = null
+    req.app.locals.disabled = true
     res.redirect('/auth/login');
 });
 

@@ -20,14 +20,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        {{#unless name }}
         <li class="nav-item active">
           <a class="nav-link text-light" href="/auth/signup">Sing up<span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link text-light" href="/auth/login">Login<span class="sr-only"></span></a>
         </li>
+        {{/unless}}
+        {{#if name }}
         <li class="nav-item active">
-          <a class="nav-link text-light" href="/private/main">Main<span class="sr-only"></span></a>
+          <a aria-disabled='true' class="nav-link text-light" href="/private/main">Main<span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link text-light" href="/private/profile">Private<span class="sr-only"></span></a>
@@ -38,11 +41,13 @@
         <li class="nav-item active">
           <a class="nav-link text-light" href="/auth/logout">{{name}}<span class="sr-only"></span></a>
         </li>
+        {{/if}}
       </ul>
     </div>
   </nav>
 
   <h2>{{name}}</h2>
+  {{disabled}}
   <main>
     {{{body}}}
   </main>
