@@ -53,7 +53,7 @@ router.post('/login', (req, res, next) => {
             console.log("hola")
             if (isPassword) {
                 console.log(user)
-                req.session.user = user;
+                // req.session.user = user;
                 res.redirect('/profile');
             } else {
                 res.render('auth/login', {
