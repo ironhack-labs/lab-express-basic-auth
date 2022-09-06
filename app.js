@@ -1,6 +1,7 @@
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
+const isLogedin = require('./middleware/is_logedin.middleware')
 
 // ℹ️ Connects to the database
 require('./db');
@@ -17,6 +18,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+require('./config/session.config')(app);
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -27,6 +29,16 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+const auth = require('./routes/auth.routes');
+app.use('/auth', auth);
+
+
+const private2 = require('./routes/private.routes');
+//const isLogedin = require('./middleware/is_logedin.middleware')
+app.use('/', isLogedin, private2);
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
