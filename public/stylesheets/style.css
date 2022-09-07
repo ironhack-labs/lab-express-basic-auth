@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+.password {
+  width:16%
+}
+
+input::placeholder {
+  opacity: .3;
+  color: grey;
+  size-adjust:inherit;
+}
