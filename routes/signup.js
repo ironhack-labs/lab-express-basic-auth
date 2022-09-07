@@ -2,9 +2,21 @@ const User = require("../models/User.model");
 const router = require("express").Router();
 const bcrypt = require('bcryptjs')
 
+const logoutCheck = function(){
+    return (req, res, next) => {
+      if (req.session.user === undefined) {
+        next()
+      } else {
+        res.redirect('/profile')
+      }
+    }
+  }
+
+
 /* GET home page */
-router.get("/signup", (req, res, next) => {
-  res.render("signup");
+router.get("/signup", logoutCheck(), (req, res, next) => {
+
+  res.render("signup", {session: req.session.user});
 });
 
 
@@ -43,7 +55,5 @@ router.post("/signup", (req, res, next) => {
     })
 
     })    
-
-
 
 module.exports = router;

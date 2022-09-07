@@ -1,4 +1,5 @@
 <a href="/">Home</a>
+
 <h1>Sign Up</h1>
 
 <form action="/signup" method="POST">
@@ -17,3 +18,8 @@
     {{/if}}
 
 </form>
+
+{{#unless session}}
+<div><a href="/login">Already have an account? Login here</a>
+</div>
+{{/unless}}

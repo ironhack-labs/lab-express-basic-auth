@@ -1,5 +1,12 @@
 <h1>Some Service</h1>
+{{#unless session}}
 <a href="/signup">Sign Up</a>
 <a href="/login">Login</a>
+{{/unless}}
+
 <a href="/private">Private</a>
 <a href="/main">Main</a>
+
+{{#if session}}
+<a href="/profile">Profile</a>
+{{/if}}

@@ -20,13 +20,24 @@ const loginCheck = function(){
   }
 }
 
+const logoutCheck = function(){
+  return (req, res, next) => {
+    if (req.session.user === undefined) {
+      next()
+    } else {
+      res.redirect('/profile')
+    }
+  }
+}
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index", {session: req.session.user});
+  console.log(req.session.user)
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", logoutCheck(), (req, res, next) => {
   res.render("login");
 });
 
@@ -75,3 +86,4 @@ User.findOne({username: username})
 
 
 module.exports = router;
+
