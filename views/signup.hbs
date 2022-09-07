@@ -1,13 +1,15 @@
+<h2>Sign Up to this amazing website</h2>
 <form action="/signup" method="post">
     <label for="username">Username:</label>
     <input type="text" name="username" id="username">
     <label for="password">Password:</label>
-    <input type="text" name="password" id="password">
+    <input type="password" name="password" id="password">
     <button type="submit">Register</button>
 </form>
-
-{{#if (message)}}
+{{#if message}}
     {{#each message}}
+    <div>
         {{this}}
+    </div>
     {{/each}}
 {{/if}}
