@@ -1,0 +1,18 @@
+<h1> Signup </h1>
+
+{{!-- oder /auth/signup --> wenn ja, wieso? --}}
+
+{{!-- /auth/signup --> da wir in app.js bestimmt haben, dass vor allen routes in auth.js müssen wir hier auch /auth /.. schre  --}}
+<form action="/auth/signup" method="POST">
+    <label for="">Username: </label>
+	<input type="text" name="username">
+	<label for="">Password: </label>
+	<input type="password" name="password">
+	<button type="submit">Sign me up</button>
+</form>
+
+
+{{#if message}}
+	<h3>{{message}}</h3>
+{{/if}}
+
