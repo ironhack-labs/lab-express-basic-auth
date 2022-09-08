@@ -27,8 +27,39 @@ router.post('/signup', (req, res, next) => {
   .catch(error => next(error));
 });
 
-//////////// ROUTES ////////////
+
+//////////// LOGIN///////////
+router.get('/login', (req, res) => res.render('auth/login'));
+
+router.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+ //console.log(email, password)
+  console.log(req.body)
+  if (username === '' || password === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, email and password to login.'
+    });
+    return;
+  }
+ 
+  User.findOne({ username })
+    .then(user => {
+      //console.log(user)
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        res.render('users/user-profile', { user });
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+
+//////////// OTHER ROUTES ////////////
 router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+
 
 
 
