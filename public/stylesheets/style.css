@@ -4,5 +4,23 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.form-group {
+  width: 80%;
+  margin: 0 auto;
+}
+.form-group label {
+  margin-top: 15px;
+}
+.form-group input {
+  height: 50px;
+}
+.form-group button {
+  margin-top: 15px;
+}
+
+.dashContent {
+  margin: 60px 0;
 }

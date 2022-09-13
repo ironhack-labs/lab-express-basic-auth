@@ -1,0 +1,21 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3"> Dashboard</h1>
+      {{> messages}}
+      <div class=" dashContent card-body">
+        <h2>Welcome, {{ userInSession.username }}!</h2>
+        <p>This is your profile page my friend!</p>
+      </div>
+      <form action="/logout" method="POST">
+        <div class="form-group text-center">
+            <a class="btn btn-info" href="/private">Private</a>
+            <button  type="submit" class="btn btn-success mb-3">Logout</button>
+        </div>
+      </form>
+      <p class="lead mt-4 text-center">
+       <a href="/">Home</a>
+      </p>
+    </div>
+  </div>
+</div>
