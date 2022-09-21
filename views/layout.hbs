@@ -10,8 +10,23 @@
   </head>
 
   <body>
-    <a href="/auth/signup">Signup</a>
-
+    <nav>
+         <ul>
+            <li id="to-right">
+            {{#if userInSession}}
+              <a href="/auth/main">Main</a>
+              <a href="/auth/private">Private</a>
+              <form id="logout-form" action="/auth/logout" method="POST">
+                <button>Logout</button>
+              </form>
+            {{/if}}
+            {{#unless userInSession}}
+              <a href="/auth/signup">Signup</a> <span> | </span>
+              <a href="/auth/login">Login</a> {{!-- !!! --}}
+            {{/unless}}
+            </li>
+         </ul>
+    </nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
