@@ -28,8 +28,11 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 
+//localhost:3000/auth
+const rutasAuth= require("./routes/auth.routes")
+app.use("/auth", rutasAuth)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
 module.exports = app;
-
