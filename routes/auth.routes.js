@@ -6,19 +6,19 @@ const mongoose= require('mongoose');
 const User = require('../models/User.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-
+const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard.js');
 
 
 /////////////////// SIGNUP //////////////////////////////////////
 //Get route to signup page
 
-router.get('/signup', (request, response) =>{
+router.get('/signup',isLoggedOut, (request, response) =>{
     response.render('auth/signup');
 })
 
 // Post route to process form data 
 
-router.post('/signup', (request, response,next) => {
+router.post('/signup',isLoggedOut, (request, response,next) => {
     // console.log('The form data: ',request.body);
     const {username,email, password} = request.body;
       
@@ -72,13 +72,13 @@ router.post('/signup', (request, response,next) => {
 
 // GET ROUTE to display the login form to users
 
-router.get('/login', (request, response) => {
+router.get('/login',isLoggedOut, (request, response) => {
   response.render('auth/login.hbs');
 })
 
 // POSt login route  to process form data
 
-router.post('/login', (request, response, next) =>{
+router.post('/login',isLoggedOut, (request, response, next) =>{
  console.log('SESSION =====>', request.session);
 
  const {email, password} = request.body;
@@ -103,28 +103,18 @@ User.findOne({email})
 
     // save user in the session 
     request.session.CurrentUser = user;
+    console.log(request.session)
     response.redirect('/userProfile')
   } else {
-    response.render('auth/login', {errorMessage: 'Icorrect password.'});
+    response.render('auth/login', {errorMessage: 'Incorrect password.'});
   }
 })
 
-//  User.findOne({username})
-//  .then((user) =>{
-//      console.log(user)
-//     if(!user){
-//       response.render('auth/login', {errorMessage: 'Email is not registered. try with another username.'});
-//       return;
-//     } else if(bcryptjs.compareSync(password, user.passwordHash)){
-//       response.render('users/user-profile', {user});
-//     } else {
-//       response.render('auth/login', {errorMessage: 'incorrect password.'});
-//     }
-//  })
-//  .catch( function(error){
-//   next(error);
-//  })
+});
 
+
+router.get('/userProfile', (request, response) => {
+  response.render('users/user-profile', {userInSession: request.session.CurrentUser});
 });
 
 router.post('/logout', (request, response, next) => {
@@ -135,17 +125,6 @@ router.post('/logout', (request, response, next) => {
     response.redirect('/');
   })
 })
-
-router.get('/userProfile', (request, response) => {
-  response.render('users/user-profile', {userInSession: request.session.CurrentUser});
-});
-
-
-
-
-
-
-
 
 
 
