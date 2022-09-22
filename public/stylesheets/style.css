@@ -59,6 +59,7 @@ form button:hover {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
+  border-radius: 7px;
   width: 100%;
 }
 
