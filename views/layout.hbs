@@ -1,19 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+      integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT'
+      crossorigin='anonymous'
+    />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
-  <body>
+  <body class='bg-dark'>
+    <nav class='navbar navbar-expand-sm navbar-dark bg-dark' aria-label='Third navbar example'>
+      <div class='container-fluid'>
+        <a class='navbar-brand text-primary' href='/'>lab-express-basic-auth</a>
+        <div class="d-flex justify-content-space-between">
+        <ul class='navbar-nav me-auto mb-2 mb-sm-0'>
+          <li class='nav-item'>
+            <a class='nav-link' aria-current='page' href='/login'>Login</a>
+          </li>
+          <li class='nav-item'>
+            <a class='nav-link' aria-current='page' href='/signup'>SignUp</a>
+          </li>
+        </div>
+        </ul>
+      </div>
+    </nav>
 
     {{{body}}}
 
-    <script src="/js/script.js"></script>
+    <script src='/js/script.js'></script>
   </body>
 
 </html>
