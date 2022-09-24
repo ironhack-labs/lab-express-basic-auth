@@ -1,12 +1,22 @@
 <h2>Sign-in page</h2>
+{{#if error}}
+  <h2>{{error}}</h2>
+{{/if}}
 
 <form action="/signup" method="post">
-  <input type="text" name="username" placeholder="Enter Username" value="" />
+  <input
+    type="text"
+    name="username"
+    placeholder="Enter Username"
+    value=""
+    required
+  />
   <input
     type="password"
     name="password"
     placeholder="Enter Password"
     value=""
+    required
   />
   <button type="submit">Submit data!</button>
-</form
+</form>
