@@ -8,6 +8,9 @@ const logger = require("morgan");
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+
 
 // ℹ️ Serves a custom favicon on each request
 // https://www.npmjs.com/package/serve-favicon
@@ -26,6 +29,23 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      resave: true,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/lab-express-basic-auth',
+      }),
+      cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 600000, // 60 * 1000 * 10 ms === 10 min
+      },
+    })
+  );
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
