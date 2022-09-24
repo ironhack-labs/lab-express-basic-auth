@@ -1,5 +1,8 @@
-<h1 class='display-5 text-light m-5'>Profile-Page</h1>
+{{#if userInSession}}
+  <h1 class='display-5 m-5 text-light'>Profile-Page of {{userInSession.username}}</h1>
 
-{{#if username}}
-  <h1 class='display-5 text-light'>Profile-Page<br />of{{username}}</h1>
+  <a class='btn btn-secondary' href='/userprofile'>Reload the page</a>
+{{else}}
+
+  <p>Still no logged in user, sorry!</p>
 {{/if}}

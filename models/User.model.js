@@ -6,8 +6,11 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true,
+    match: [/^[A-Za-z0-9]*$/, 'Please use only letters or numbers.'],
+    unique: true,
+    trim: true,
   },
-  password: {
+  passwordHash: {
     type: String,
     required: true,
   },

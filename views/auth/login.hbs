@@ -1,0 +1,24 @@
+<div class='m-3 p-5 d-flex align-items-center flex-column'>
+  <div>
+    <h1 class='display-5 text-light'>Login</h1>
+  </div>
+  <form class='w-50 mt-2' action='/login' method='POST'>
+    <div class='mb-4'>
+      <label for='username' class='form-label text-secondary'>Username</label>
+      <input type='text' name='username' class='form-control' required />
+    </div>
+    <div class='mb-4'>
+      <label for='password' class='form-label text-secondary'>Password</label>
+      <input type='password' name='password' class='form-control' required />
+    </div>
+    <button type='submit' class='btn btn-secondary'>Sign up</button>
+  </form>
+  {{#if errorMessage}}
+    <div class='card bg-secondary w-50 m-3 p-1'>
+      <div class='card-body'>
+        <h5 class='card-title text-warning'>{{errorHeader}}</h5>
+        <h6 class='card-subtitle mb-2 text-warning'>{{errorMessage}}</h6>
+      </div>
+    </div>
+  {{/if}}
+</div>
