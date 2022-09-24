@@ -17,4 +17,3 @@ mongoose
   });
 
 module.exports = { MONGO_URI };
-// This has to be "enabled" somewhere... and used in session.config

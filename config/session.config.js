@@ -9,7 +9,7 @@ const MongoStore = require('connect-mongo');
 // ADDED: require mongoose
 const mongoose = require('mongoose');
 
-// const MONGO_URI = require('MONGO_URI');
+const { MONGO_URI } = require('../db');
 
 module.exports = (app) => {
   app.set('trust proxy', 1);
@@ -23,11 +23,11 @@ module.exports = (app) => {
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        maxAge: 60000,
+        maxAge: 600000,
       }, // ADDED code below !!!|
       store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/lab-express-basic-auth',
-        // mongoUrl: MONGO_URI,
+        // mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/lab-express-basic-auth',
+        mongoUrl: MONGO_URI,
 
         // ttl => time to live
         // ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day

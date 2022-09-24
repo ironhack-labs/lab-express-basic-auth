@@ -3,15 +3,18 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 12;
 
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 const User = require('../models/User.model');
 
+// Iteration 1
 /* GET SignIn page */
-router.get('/signup', (req, res, next) => {
+router.get('/signup', isLoggedOut, (req, res, next) => {
   res.render('auth/signup');
 });
 
 /* POST SignIn data */
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', isLoggedOut, async (req, res, next) => {
   const { username, password } = req.body;
 
   // Check if Username and password are provided
@@ -31,7 +34,6 @@ router.post('/signup', async (req, res, next) => {
   }
 
   try {
-    // Is this proper async/await? Google!
     const salt = await bcryptjs.genSalt(saltRounds);
     const hashedPassword = await bcryptjs.hash(password, salt);
     await User.create({ username, passwordHash: hashedPassword });
@@ -56,13 +58,14 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
+// Iteration 2
 /* GET LogIn page */
-router.get('/login', (req, res, next) => {
+router.get('/login', isLoggedOut, (req, res, next) => {
   res.render('auth/login');
 });
 
 /* POST LogIn data */
-router.post('/login', async (req, res, next) => {
+router.post('/login', isLoggedOut, async (req, res, next) => {
   console.log('SESSION =====> ', req.session);
 
   const { username, password } = req.body;
@@ -89,7 +92,7 @@ router.post('/login', async (req, res, next) => {
   }
 });
 /* POST Logout */
-router.post('/logout', (req, res, next) => {
+router.post('/logout', isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect('/');
@@ -97,8 +100,17 @@ router.post('/logout', (req, res, next) => {
 });
 
 /* GET Profile-Page */
-router.get('/userprofile', (req, res, next) => {
+router.get('/userprofile', isLoggedIn, (req, res, next) => {
   res.render('user/profile-page', { userInSession: req.session.currentUser });
+});
+
+// Iteration 3
+router.get('/content/main', isLoggedIn, (req, res, next) => {
+  res.render('content/main', { userInSession: req.session.currentUser });
+});
+
+router.get('/content/private', isLoggedIn, (req, res, next) => {
+  res.render('content/private', { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
