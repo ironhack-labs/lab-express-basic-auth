@@ -1,10 +1,7 @@
 {{#if userInSession}}
   <h1 class='display-5 m-5 text-light'>Profile-Page of {{userInSession.username}}</h1>
-
   <a class='btn btn-secondary' href='/content/main'>Main</a>
   <a class='btn btn-secondary' href='/content/private'>Private</a>
-
 {{else}}
-
-  <p>Still no logged in user, sorry!</p>
+  <h1 class='display-5 m-5 text-light'>Smething went wrong, please <a href='/login'>Log in</a>.</p></h1>
 {{/if}}
