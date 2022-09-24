@@ -2,8 +2,9 @@ const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 const router = require("express").Router();
 const saltRounds = 12;
+const { isLoggedIn, isLoggedOut } = require("../middleware/loginCheck");
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
 
@@ -21,7 +22,7 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("auth/login");
 });
 
@@ -50,15 +51,27 @@ router.post("/login", async (req, res, next) => {
     });
   }
   console.log("Username and password match!");
-  req.session.currentUser = {username: existingUser.username};
-  console.log("req.session.currentUser: ", req.session.currentUser)
+  req.session.currentUser = { username: existingUser.username };
+  console.log("req.session.currentUser: ", req.session.currentUser);
   res.redirect("/profile");
 });
 
-router.get("/profile", async (req, res) => {
-  const user = await User.findOne({ username: req.session.currentUser.username });
+router.get("/profile", isLoggedIn, async (req, res) => {
+  const user = await User.findOne({
+    username: req.session.currentUser.username,
+  });
   console.log("user", user);
   res.render("auth/profile", user);
+});
+
+router.post("/logout", (req, res, next) => {
+  console.log("logging out");
+  req.session.destroy((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
