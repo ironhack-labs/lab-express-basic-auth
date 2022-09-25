@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
     });
   }
 
-  const correctPw = await bcrypt.compare(req.body.password, existingUser.password);
+  const correctPw = bcrypt.compare(req.body.password, existingUser.password);
 
   if (!correctPw) {
     return res.render("login", {
@@ -55,15 +55,13 @@ router.post("/login", async (req, res) => {
     email: existingUser.email,
   };
 
-  return res.redirect("profile");
+  return res.redirect("/profile");
 });
 
-//   console.log("correct password!");
-//   req.session.currentUser = {
-//     email: existingUser.email,
-//     subscribed: existingUser.subscribed,
-//   };
-//   return res.redirect("/profile");
-// });
+router.get("/profile", async (req, res) => {
+  const user = await User.findOne({ email: req.session.currentUser.email });
+
+  res.render("profile");
+});
 
 module.exports = router;
