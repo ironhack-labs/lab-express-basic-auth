@@ -26,8 +26,44 @@ router.post("/signup", async (req, res, next) => {
   const newUser = new User({ email, password: hash });
 
   await newUser.save();
-  res.redirect("/");
+  res.render("profile");
 });
 
-module.exports = router;
+router.get("/login", (req, res) => {
+  res.render("login");
+});
 
+router.post("/login", async (req, res) => {
+  const existingUser = await User.findOne({ email: req.body.email });
+
+  if (!existingUser) {
+    console.log("No matching email");
+    return res.render("login", {
+      error: "Please sign up first",
+    });
+  }
+
+  const correctPw = await bcrypt.compare(req.body.password, existingUser.password);
+
+  if (!correctPw) {
+    return res.render("login", {
+      error: "We cannot log you in due to an error. Please try again next week.",
+    });
+  }
+
+  req.session.currentUser = {
+    email: existingUser.email,
+  };
+
+  return res.redirect("profile");
+});
+
+//   console.log("correct password!");
+//   req.session.currentUser = {
+//     email: existingUser.email,
+//     subscribed: existingUser.subscribed,
+//   };
+//   return res.redirect("/profile");
+// });
+
+module.exports = router;

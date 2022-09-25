@@ -1,0 +1,13 @@
+<h3>Please enter your email and a password:</h3>
+
+{{#if error}}
+  <h1>{{error}}</h1>
+  <a href="/signup">Create Account</a>
+  <br />
+{{/if}}
+
+<form action="/login" method="POST" enctype="application/json">
+  <input type="text" value="" name="email" placeholder="Email address" />
+  <input type="password" value="" name="password" placeholder="Choose password" />
+  <button type="submit">Sign In</button>
+</form>

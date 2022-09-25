@@ -37,7 +37,7 @@ _In this lab, you literally have to recreate materials your instructors went thr
 
 <br>
 
-### Iteration 0 | Initialize the project
+### Iteration 0 | Initialize the project 
 
 After forking and cloning the project, you will have to install all the dependencies:
 
