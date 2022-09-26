@@ -1,4 +1,9 @@
-<h3>Please enter your email and a password:</h3>
+<h1>Please enter your email and a password:</h1>
+
+{{#if error}}
+  <h3>{{error}}</h3>
+  <br />
+{{/if}}
 
 <form action="/signup" method="POST" enctype="application/json">
   <input type="text" value="" name="email" placeholder="Email address" />
