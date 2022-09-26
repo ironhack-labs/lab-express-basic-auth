@@ -10,6 +10,25 @@
   </head>
 
   <body>
+  <nav>
+    <ul>
+      <li id="to-left">
+        <p><a href="/"> Home </a></p>
+      </li>
+      <li id="to-right">
+       {{#if userInSession}}
+            <a>Vamo a darle</a>
+            <form id="logout-form" action="/auth/logout" method="POST">
+              <button>Logout</button>
+            </form>
+        {{/if}}
+        {{#unless userInSession}}
+            <a href="/auth/signup">Signup</a> <span> | </span>
+            <a href="/auth/login">Login</a> {{!-- !!! --}}
+        {{/unless}}
+      </li>
+    </ul>
+  </nav>
 
     {{{body}}}
 
