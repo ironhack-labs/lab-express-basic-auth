@@ -18,6 +18,7 @@ const favicon = require("serve-favicon");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
+const { MONGO_URI } = require("../db");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -35,7 +36,7 @@ module.exports = (app) => {
       resave: true,
       saveUninitialized: false,
       store: MongoStore.create({
-        mongoUrl: "mongodb://localhost:27017/lab-express-basic-auth",
+        mongoUrl: MONGO_URI,
       }),
       cookie: {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
