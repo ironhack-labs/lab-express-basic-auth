@@ -1,13 +1,7 @@
 <h1>Signup</h1>
 
 <form action="/signup" method="post">
-  <input type="email" name="email" value="" placeholder="Enter your email" />
-  <input
-    type="password"
-    name="password"
-    value=""
-    placeholder="Enter your password"
-  />
+  <input type="email" name="email" value="" placeholder="Enter your email" required />
+  <input type="password" name="password" value="" placeholder="Enter your password" required minlength="6"/>
   <input type="submit" value="Signup" />
-
 </form>

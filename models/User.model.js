@@ -7,7 +7,13 @@ const userSchema = new Schema({
     unique: true,
     required: true,
   },
-  password: String
+  password: String,
+  name: String,
+  subscribed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 const User = model("User", userSchema);

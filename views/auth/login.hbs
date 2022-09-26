@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+{{#if error}}
+  <h2 style="color: red">{{error}}</h2>
+{{/if}}
+
+<form action="/login" method="post">
+  <input type="email" name="email" value="" placeholder="Enter your email" />
+  <input
+    type="password"
+    name="password"
+    value=""
+    placeholder="Enter your password"
+  />
+  <input type="submit" value="Login" />
+
+</form>
