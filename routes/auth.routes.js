@@ -34,4 +34,36 @@ router.post("/signup", (req, res, next)=>{
 })
 
 
+router.get("/login", (req, res, next)=>{
+    res.render("auth/login")
+})
+
+
+router.post("/login", (req, res, next)=>{
+    const {email, password} = req.body;
+    if(!email || !password){
+        res.render("auth/login", {errorMessage: "Please provide a valid email and password to login"})
+    }
+    User.findOne({email: email})
+    .then(userFromDB=>{
+        if(!userFromDB){
+            res.render("auth/login", {errorMessage: "Email is not registered. Sign up first or try with a registered email"})
+        }
+        else if(bcryptjs.compareSync(password, userFromDB.passwordHash)){
+            req.session.currentUser = userFromDB;
+            res.render("users/profile", {userInSession: req.session.currentUser})
+        }
+        else{
+            res.render("auth/login", {errorMessage: "Incorrect credentials."});
+        }
+    })
+    .catch(error => {
+        console.log("Error getting user details from DB", error)
+        next()
+    })
+
+})
+
+
+
 module.exports = router;
