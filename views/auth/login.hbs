@@ -1,0 +1,15 @@
+<h1>Login</h1>
+<form action="/auth/login" method="post">
+
+    <label for=""> Username
+        <input type="text" name="username" placeholder="ironhacker">
+    </label>
+
+    <label for=""> Passsword
+        <input type="password" name="password" placeholder="********">
+    </label>
+
+    <button type="submit">Create account</button>
+
+    <p>{{errorMessage}}</p>
+</form>
