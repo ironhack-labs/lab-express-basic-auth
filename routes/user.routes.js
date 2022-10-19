@@ -38,12 +38,12 @@ router.post("/signup", async (req, res, next) => {
     }
 
     const salt = await bcryptjs.genSalt(12);
-    const hashPass = await bcryptjs.hash(password,salt);
+    const hashPass = await bcryptjs.hash(password, salt);
 
     let newUser = {
-      username : username,
-      password: hashPass
-    }
+      username: username,
+      password: hashPass,
+    };
 
     await User.create(newUser);
 
@@ -59,11 +59,40 @@ router.get("/login", (req, res, next) => {
 });
 
 // POST => '/auth/login' => recibe credenciales de usuario y valida el mismo
+router.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
 
+  // 1 validaciones Back-End
+  if (!username || !password) {
+    res.render("auth/login.hbs", {
+      errorMessage: "Se deben ingresar caracteres",
+    });
+    return;
+  }
 
+  try {
+    const userForm = await User.findOne({ username: username });
+    if (userForm === null) {
+      res.render("auth/login.hbs", {
+        errorMessage: "Credenciales incorrectas",
+      });
+      return;
+    }
+
+    req.session.activeUser = userForm;
+
+    req.session.save(() => {
+      res.redirect("/profile");
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 // GET => '/auth/logout' => redirecciona home y cierra sesion
 router.get("/logout", (req, res, next) => {
-  res.redirect("/");
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
 });
 
 module.exports = router;

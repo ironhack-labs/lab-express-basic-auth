@@ -1,1 +1,18 @@
-<h3>Acceso</h3>
+<div>
+  <h3>Acceso</h3>
+
+  <form action="/auth/login" method="post">
+    <div>
+      <label for="username">Nombre: </label>
+      <input type="text" name="username" />
+    </div>
+    <div>
+      <label for="password">Contrasena: </label>
+      <input type="password" name="password" />
+    </div>
+    {{errorMessage}}
+    <br>
+    <button>Ingresar!</button>
+  </form>
+
+</div>

@@ -24,6 +24,19 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
+// Aqui se ejecutara el middleware de variables locales para cada ruta que intente acceder el cliente
+app.use((req,res,next)=>{
+    //middle crea una variable para HBS para saber si el usuario esta logeado o no
+    if(req.session.activeUser === undefined){
+        res.locals.isUserActive = false
+    }else{
+        res.locals.isUserActive = true
+    }
+    next()
+})
+
+
+
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
