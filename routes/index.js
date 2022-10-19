@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
 });
 
 const userRoutes = require('./user.routes.js');
-router.use('/user',userRoutes);
+router.use('/auth',userRoutes);
 
 const profileRoutes = require ('./profile.routes.js');
 router.use('/profile', profileRoutes);
