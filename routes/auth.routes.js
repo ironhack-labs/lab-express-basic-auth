@@ -99,6 +99,7 @@ router.post('/signup', async (req, res, next) => {
     });
   });
 
-
+  router.get('/main', isLoggedOut, (req, res) => res.render('main'));
+  router.get('/private', isLoggedIn, (req, res) => res.render('private'));
 
 module.exports = router;
