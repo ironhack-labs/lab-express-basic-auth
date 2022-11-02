@@ -1,0 +1,20 @@
+<h2>Login</h2>
+<form action='/login' method='post'>
+  <label>
+    Username:
+    <input type='text' name='username' id='text' placeholder='pikachu' required />
+  </label>
+
+  <label>
+    Password:
+    <input type='password' name='password' id='password' placeholder='*******' required />
+  </label>
+
+  <button type='submit'>Login</button>
+
+</form>
+
+{{#if errorMessage}}
+
+  <p class='error'>{{errorMessage}} </p>
+{{/if}}
