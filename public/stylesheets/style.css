@@ -4,5 +4,102 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #ff0000;
+}
+
+img {
+  width: 50vw;
+  height: 20vw;
+}
+
+h1 {
+  color: 15px;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+form input,
+form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+form button {
+  background: #d55713;
+  border: 1px solid #d8841c;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%;
+}
+
+form button:hover {
+  background: #fff;
+  color: #ff0000;
+  transition: 0.3s ease background;
+}
+
+.error {
+  background: #eeea1b;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
+ul {
+  border-bottom: 2px solid #e64343;
+  height: 30px;
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+ul li {
+  line-height: 20px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+#logout-form {
+  display: inline;
+}
+
+#logout-form button {
+  width: 120px;
 }
