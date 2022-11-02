@@ -1,0 +1,22 @@
+<h3>Signup</h3>
+<form action="/signup" method="post">
+
+<label>
+    Username:
+    <input type="text" name ="username" id="username" placeholder="jon_snow">
+</label>
+
+<label>
+    Password:
+    <input type="password" name="password" id="password" placeholder="******">
+</label>
+
+<button type ="submit">Signup</button>
+
+{{#if errorMessage}}
+
+<h3 class ='error'>{{errorMessage}}</h3>
+
+{{/if}}
+
+</form>
