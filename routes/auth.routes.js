@@ -30,7 +30,7 @@ router.post('/signup', async (req, res, next) => {
 
         const createdUser = await User.create({ username, password: hashedPassword });
 
-        res.redirect('/');
+        res.redirect('/login');
     } catch (error) {
         console.log(error);
         if (error instanceof mongoose.Error.ValidationError) {
@@ -61,8 +61,6 @@ router.post('/login', async (req, res, next) => {
       res.render('auth/login', {
         errorMessage: 'Username not found',
       });
-      res.redirect('/private');
-
       return;
 
     } else if (bcrypt.compareSync(password, user.password)) {
@@ -81,17 +79,26 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
-router.get('/main', (req, res) => {
+router.get('/main', isLoggedIn, (req, res) => {
     const user = req.session.user;
-    console.log(user);
+    console.log(user);  
     res.render('main', user);
-})
+});
 
-router.get('/private', (req, res) => {
+router.get('/private', isLoggedIn, (req, res) => {
     const user = req.session.user;
     console.log(user);
     res.render('private', user);
 })
+
+router.post('/logout', (req, res, next) => {
+    if (!req.session) res.redirect('/');
+  
+    req.session.destroy((err) => {
+      if (err) next(err);
+      else res.redirect('/');
+    });
+  });
 
 
 module.exports = router;
