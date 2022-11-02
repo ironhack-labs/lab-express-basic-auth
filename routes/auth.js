@@ -46,7 +46,6 @@ router.post("/signup", async (req, res, next) => {
 
 /* INTERATION 2 */
 
-
 router.get("/login", async (req, res, next) => {
     res.render("auth/login")
 })
@@ -86,10 +85,11 @@ router.post("/login", async (req, res, next) => {
     }
     next(error);
   }
+  res.redirect('/profile')
 });
 
-
-
-
+router.get("/profile", async (req,res,next) => {
+    res.render("auth/profile")
+})
 
 module.exports = router;
