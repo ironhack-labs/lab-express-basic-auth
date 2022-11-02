@@ -1,0 +1,44 @@
+<h1>Signup</h1>
+
+<form action="/signup" method="post">
+  <label>
+    Username:
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="ex: PikachuRocks"
+    />
+  </label>
+
+  <label>
+    Email:
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="pikachu@catch.com"
+      required
+    />
+  </label>
+
+  <label>
+    Password:
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="*******"
+      required
+    />
+  </label>
+
+  <button type="submit">Signup</button>
+
+</form>
+
+{{#if errorMessage}}
+
+  <p class="error">{{errorMessage}} </p>
+
+{{/if}}
