@@ -1,0 +1,33 @@
+<div class="login-box">
+  <h2>Signup</h2>
+  <form action="/signup" method="post">
+
+    <div class="user-box">
+      <input type="text" name="username" id="username" required />
+      <label for="username">Username:</label>
+    </div>
+
+    <div class="user-box">
+      <input type="email" name="email" id="email" required />
+      <label for="email">Email:</label>
+    </div>
+
+    <div class="user-box">
+      <input type="password" name="password" id="password" required />
+      <label for="password">Password:</label>
+    </div>
+
+    <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Signup
+    </button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}} </p>
+    {{/if}}
+
+  </form>
+</div>
