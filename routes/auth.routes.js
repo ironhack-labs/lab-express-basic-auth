@@ -2,10 +2,10 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
-/* const { isLoggedOut } = require('..middleware/route-guard') */
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 
-router.get('/signup', (req, res, next) => res.render('auth/signup'))
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'))
 
 router.post('/signup', async(req, res, next) => {
     const {username, password} = req.body;
@@ -45,7 +45,7 @@ router.post('/signup', async(req, res, next) => {
 })
 
 
-router.get('/login', (req, res, next) => res.render('auth/login'))
+router.get('/login',isLoggedOut, (req, res) => res.render('auth/login'))
 
 router.post('/login', async (req, res, next) => {
     const {username, password} = req.body
@@ -65,7 +65,7 @@ router.post('/login', async (req, res, next) => {
             return;
         } else if (bcrypt.compareSync(password, user.password)) {
             req.session.user = user;
-            res.redirect('/')
+            res.redirect('/profile')
         } else {
             res.render('auth/login', {
                 errorMessage: 'The password is wrong, please try again'
@@ -78,5 +78,20 @@ router.post('/login', async (req, res, next) => {
         next(error);
     }
 })
+
+router.get('/profile', isLoggedIn, (req, res) => {
+    const user = req.session.user;
+    res.render('profile', user)
+})
+
+
+router.post('/logout', (req, res, next) => {
+    if (!req.session) res.redirect('/');
+
+    req.session.destroy((error) => {
+    if (error) next(error);
+    else res.redirect('/');
+    });
+});
 
 module.exports = router;
