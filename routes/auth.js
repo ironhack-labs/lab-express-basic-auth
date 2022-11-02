@@ -92,4 +92,13 @@ router.get("/profile", async (req,res,next) => {
     res.render("auth/profile")
 })
 
+router.get("/main", async (req,res,next) => {
+    res.render("auth/main")
+})
+
+
+router.get("/private", async (req,res,next) => {
+    res.render("auth/private")
+})
+
 module.exports = router;
