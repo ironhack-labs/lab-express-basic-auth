@@ -61,6 +61,8 @@ router.post('/login', async (req, res, next) => {
       res.render('auth/login', {
         errorMessage: 'Username not found',
       });
+      res.redirect('/private');
+
       return;
 
     } else if (bcrypt.compareSync(password, user.password)) {
@@ -78,6 +80,18 @@ router.post('/login', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/main', (req, res) => {
+    const user = req.session.user;
+    console.log(user);
+    res.render('main', user);
+})
+
+router.get('/private', (req, res) => {
+    const user = req.session.user;
+    console.log(user);
+    res.render('private', user);
+})
 
 
 module.exports = router;
