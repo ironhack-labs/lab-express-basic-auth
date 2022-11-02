@@ -38,7 +38,7 @@ router.post("/signup", async (req, res, next) => {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render('auth/signup', { errorMessage: "teste"});
     } else if (error.code === 11000) {
-      res.status(500).render('auth/signup', { errorMessage: ' Username or email already exists' });
+      res.status(500).render('auth/signup', { errorMessage: ' Username or password already exists' });
     }
     next(error);
   }
@@ -78,11 +78,11 @@ router.post("/login", async (req, res, next) => {
     } 
     
     }catch (error) {
-    console.log("PROBLEM IN SIGNUP",error)
+    console.log("PROBLEM IN LOG IN",error)
     if (error instanceof mongoose.Error.ValidationError) {
-      res.status(500).render('auth/signup', { errorMessage: "teste2"});
+      res.status(500).render('auth/login', { errorMessage: "teste2"});
     } else if (error.code === 11000) {
-      res.status(500).render('auth/signup', { errorMessage: ' Username or email already exists' });
+      res.status(500).render('auth/login', { errorMessage: ' Username or password already exists' });
     }
     next(error);
   }
