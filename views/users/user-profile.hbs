@@ -1,6 +1,6 @@
 <p>Hola</p>
-{{#if userDb}}
-  <h2>Welcome, {{ userDb.email }}!</h2>
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.email }}!</h2>
   <p>This is your profile page my friend!</p>
 {{else}}
   <p>Still no logged in user, sorry!</p>

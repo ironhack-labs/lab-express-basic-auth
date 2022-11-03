@@ -3,6 +3,8 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard.js');
+
 // GET route ==> to display the signup form to users
  
 router.get('/', (req, res) => {
@@ -35,6 +37,7 @@ router.get("/login", (req, res) => {
   
 router.post("/login", async(req, res) => {
   const { email, password } = req.body
+  console.log('SESSION =====> ', req.session);
 
 
   try {
@@ -43,7 +46,8 @@ router.post("/login", async(req, res) => {
     if (!userDb) {
       res.render("auth/login", { errorMessage: "Email is not registered, Try another one" })
     } else if (bcryptjs.compareSync(password, userDb.password)){
-      res.render("users/user-profile", {userDb})
+      req.session.currentUser = userDb;
+      res.redirect('/signUp/userProfile');
     } else {
       res.render("auth/login", { errorMessage: "Incorrect password, Try again" })
     }
@@ -53,8 +57,9 @@ router.post("/login", async(req, res) => {
 })
   
 
- router.get('/userProfile', (req, res) => {
-    res.render('users/user-profile')
+ router.get('/userProfile', isLoggedIn, (req, res) => {
+  console.log(req.session.currentUser)
+    res.render('users/user-profile', { userInSession: req.session.currentUser })
  });
 
 
