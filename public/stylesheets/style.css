@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
 }
 
-a {
-  color: #00B7FF;
+nav{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 8vh;
+  background-color: black;
+}
+
+.container{
+  padding: 8vh;
+}
+
+.btn {
+  text-decoration: none;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 2px
+}
+
+#welcome-msg {
+  color: aqua;
+  font-size: 1.2rem;
 }

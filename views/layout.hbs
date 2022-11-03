@@ -8,12 +8,27 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
   <body>
-    
+    <nav>
+      {{#if username}}
+      <span id="welcome-msg">welcome {{username}}</span> 
+      <form action="/logout" method="post">
+        <button type="submit" class="btn">Log Out</button>
+      </form>
+      {{/if}}
+      {{#unless username}}
+      <a href="/signup" class="btn">Sign Up</a>
+      <a href="/login/:auth" class="btn">Log In</a>
+      {{/unless}}
+      <a href="/profile" class="btn">My Profile</a>
+    </nav>
+
+    <div class="container">
     {{{body}}}
-  
+    </div>
+
     <script src="/js/script.js"></script>
+
   </body>
 
 </html>

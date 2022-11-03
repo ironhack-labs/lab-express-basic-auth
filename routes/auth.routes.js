@@ -18,10 +18,20 @@ router.post("/signup", async (req, res, next) => {
             res.render("auth/signUp", {errorMessage: "Please insert an username and password"});
             return;
         }
+
+        const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        if (!regex.test(password)) {
+        res.status(500).render('auth/signUp', {
+        errorMessage:
+          'Invalid password, password needs to have at least 6 characters and include an uppercase and lowercase character',
+      });
+    }
         const salt = await bcrypt.genSalt(10);
         const hashPass = await bcrypt.hash(password, salt)
-        const createdUser = await User.create({username, password: hashPass})
-        res.redirect("/profile");
+        const createdUser = await User.create({username, password: hashPass});
+        const createdUserName = createdUser.username;
+
+        res.redirect(`/login/${createdUser.username}`);
     } catch (error) {
         console.log(error);
         if (error instanceof mongoose.Error.ValidationError){
@@ -37,14 +47,24 @@ router.post("/signup", async (req, res, next) => {
 
 //log in
 
-router.get("/login", isLoggedOut, (req, res, next) => res.render("auth/logIn"));
+router.get("/login/:auth", isLoggedOut, (req, res, next) => {
+
+        const name = req.params.auth
+        if(name.length > 5){
+            res.render("auth/logIn", {name});
+        } else {
+            res.render("auth/logIn");
+        }    
+
+
+});
 
 router.post("/login", async (req, res, next) => {
     const {username, password} = req.body;
 
     try {
         if(!username || !password) {
-            res.render("auth/login", {errorMessage: "Please insert an username and password"});
+            res.render("auth/login/", {errorMessage: "Please insert an username and password"});
             return;
         }
         
@@ -79,6 +99,7 @@ router.post("/logout", (req, res, next) =>{
 //profile page
 
 router.get("/profile", isLoggedIn, (req, res, next) => res.render("profile", req.session.user));
+
 
 //games page
 
