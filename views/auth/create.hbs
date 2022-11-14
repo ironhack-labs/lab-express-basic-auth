@@ -1,0 +1,9 @@
+<h2 class="title-page">Create User</h2>
+<form class="register-container" action="/auth/create" method="post">
+    <input class="register-input" type="text" name="username" placeholder="Username" required>
+    <input class="register-input" type="password" name="password" placeholder="Password" required>
+    <button class="register-button" type="submit">Create</button>
+</form>
+{{#if messageError}}
+<h3 class="error-title">{{messageError}}</h3>
+{{/if}}

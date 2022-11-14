@@ -1,0 +1,9 @@
+<h2 class="title-page">Login</h2>
+<form class="login-container" action="/auth/login" method="post">
+    <input class="login-input" type="text" name="username" placeholder="Username" required>
+    <input class="login-input" type="password" name="password" placeholder="Password" required>
+    <button class="login-button" type="submit">Login</button>
+</form>
+{{#if messageError}}
+<h3 class="error-title">{{messageError}}</h3>
+{{/if}}
