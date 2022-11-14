@@ -10,8 +10,24 @@ const userSchema = new Schema({
     required: false,
     unique: true
   },
-  password: String
-});
+  password: {
+    type: String,
+    required: true
+  }
+},
+  {
+    timestamps: true,
+  }
+)
+
+userSchema.pre('save', function (next) {
+  if (this.isNew) {
+    const salt = bcrypt.genSaltSync(SALT_ROUNDS)
+    const hash1 = bcrypt.hashSync(this.password, salt)
+    this.password = hash1
+  }
+  next()
+})
 
 const User = model("User", userSchema);
 
