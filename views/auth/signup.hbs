@@ -1,0 +1,42 @@
+
+
+<div class="row d-flex justify-content-center">
+
+
+    <div class="col-6 bg-light rounded p-5">
+        
+        <h2>Registro</h2>
+        <hr>
+
+        {{#if errorMessage}}
+                <div class="bg-danger rounded text-white text-center">
+                    <p>{{errorMessage}}</p>
+                </div>
+            {{/if}}
+
+        <form class="my-4" action="/registro" method="POST">
+               
+            <div class="mb-3">
+                <label for="username" class="form-label"><strong>Usuario</strong></label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label"><strong>Contraseña</strong></label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label"><strong>Email</strong></label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+       
+            <div class="d-grid mt-5">
+
+            <button type="submit" class="btn btn-dark p-2">Crear usuario</button>
+
+            </div>
+    
+        </form>
+    </div>
+</div>
