@@ -1,0 +1,15 @@
+<h1>Log In</h1>
+<form action="/auth/login" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
+    <label for="">Password</label>
+    <input type="text" name="password" required>
+    <button type="submit">Entra a tu cuenta</button>
+
+</form>
+
+{{#if messageError}}
+<h2>{{messageError}}</h2>
+{{/if}}
+
+<a href="/">Home page</a>
