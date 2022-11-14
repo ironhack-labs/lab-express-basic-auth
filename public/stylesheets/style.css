@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+img {
+  width: 25%;
+  height: 25%;
+}
+
+#error {
+  background-color: rgb(255, 161, 161);
+  padding: 10px;
+  text-align: center;
 }
