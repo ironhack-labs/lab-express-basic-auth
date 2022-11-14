@@ -34,7 +34,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
 			User.create({ username, password: hashedPwd });
 		})
 		.then(() => res.redirect("/login"))
-		.catch((err) => console.log(err));
+		.catch((err) => {
+			console.log(err);
+			if (err.code === 11000) {
+				res.render("auth/signup", { errMsg: "Username already in use." });
+			}
+		});
 });
 
 // Login
