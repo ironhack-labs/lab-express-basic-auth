@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.shari {
+  width: 500px !important;
+  height: auto;
+}
