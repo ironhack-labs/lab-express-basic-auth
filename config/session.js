@@ -17,9 +17,11 @@ module.exports = (app) => {
                 maxAge: 60 * 100000,
             },
             store: MongoStore.signup({
-                mongoUrl: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/auth_oct22',
+                mongoUrl: process.env.MONGODB_URI, //|| 'mongodb://127.0.0.1:27017/auth_oct22',
                 ttl: 60 * 60 * 24
             }),
         })
     )
 }
+
+module.exports = session

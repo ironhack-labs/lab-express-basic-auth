@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
-const User = require('../models/User.model')
 const UserModel = require('../models/User.model')
 
 const SALT_ROUNDS = 10
@@ -22,11 +21,11 @@ router.get('/user', (req, res) => {
 
 // ---- POST ----
 
-router.post('/create', (req, res, next) => {
-    const { username, email, password } = req.body;
+router.post('/signup', (req, res, next) => {
+    const { username, password } = req.body
 
     Bcrypt
-        .genSalt(SALT_ROUNDS)
+        .getSalt(SALT_ROUNDS)
         .then((salt) => {
             return bcrypt.hash(password, salt)
         })

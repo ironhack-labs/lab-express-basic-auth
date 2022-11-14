@@ -27,10 +27,13 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 const auth = require('./routes/auth.routes')
-app.use('/auth.routes', auth.routes)
+app.use('/auth.routes', auth)
 const user = require('./routes/user.routes')
-app.use('/user.routes', user.routes)
-
+app.use('/user.routes', user)
+const session = require('./config/session')
+app.use('/session', session)
+const home = require('./routes/home')
+app.use('/home', home)
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 

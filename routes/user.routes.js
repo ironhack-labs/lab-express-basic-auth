@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
-        if (err) next(err)
+        if (err) { next(err); return; }
         res.redirect('/')
     });
 })
