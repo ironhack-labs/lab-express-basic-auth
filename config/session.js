@@ -3,6 +3,8 @@ const MongoStore = require('connect-mongo')
 const mongoose = require('mongoose')
 
 module.exports = (app) => {
+    app.set('trust proxy', 1)
+
     app.use(
         session({
             secret: process.env.SESS_SECRET,
