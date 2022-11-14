@@ -1,6 +1,7 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
@@ -10,4 +11,5 @@ a {
 img {
   width: 25%;
   height: 25%;
+  margin: 20px
 }

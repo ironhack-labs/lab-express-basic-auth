@@ -12,7 +12,7 @@ const saltRounds = 10
 router.get('/register', (req, res) => {
     res.render('auth/signup')
 })
-router.post('/register', (req, res) => {
+router.post('/register', isLoggedOut, (req, res) => {
 
     const { username, password } = req.body
 
@@ -54,5 +54,6 @@ router.post('/login', isLoggedOut, (req, res) => {
 router.get('/log-out', (req, res) => {
     req.session.destroy(() => res.redirect('/login'))
 })
+
 
 module.exports = router
