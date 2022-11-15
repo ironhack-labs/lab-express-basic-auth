@@ -1,6 +1,10 @@
 body {
-  padding: 50px;
+  padding: 2px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/gatofondoo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white
 }
 
 a {
