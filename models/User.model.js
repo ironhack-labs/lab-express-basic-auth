@@ -7,7 +7,11 @@ const userSchema = new Schema({
     unique: true
   },
   password: String
-});
+},
+  {
+    timestamps: true
+  }
+);
 
 const User = model("User", userSchema);
 
