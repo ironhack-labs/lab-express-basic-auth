@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <form class="w-50" action="/login" method="POST">
+            <div class="mb-4">
+                <label for="user" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="user" name="username">
+            </div>
+            <div class="mb-4">
+                <label for="pass" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="pass" name="password">
+            </div>
+            {{#if errorMessage}}
+            <div class="alert alert-danger" role="alert">
+                {{errorMessage}}
+            </div>
+            {{/if}}
+            <input type="submit" class="btn btn-dark" value="Conectame">
+        </form>
+    </div>
+</div>
