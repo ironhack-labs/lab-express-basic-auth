@@ -4,6 +4,9 @@ require('dotenv/config');
 
 require('./db');
 
+
+const { loggedIn } = require('./middleware/route-guard');
+
 const express = require('express');
 
 const hbs = require('hbs');
@@ -18,6 +21,8 @@ const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+app.locals.logged = loggedIn
+
 
 const index = require('./routes/index');
 const auth = require('./routes/auth.routes')

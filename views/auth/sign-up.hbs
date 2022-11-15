@@ -16,6 +16,10 @@
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
 
+                {{#if err}}
+                <div id="error" class="mb-3 p-2 bg-danger text-light">Both fields are required</div>
+                {{/if}}
+
 
                 <button type="submit" class="btn btn-dark">Submit</button>
             </form>

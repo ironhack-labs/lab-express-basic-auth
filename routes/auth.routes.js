@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10
 const User = require('../models/User.model')
-const { loggedIn, loggedOut } = require('../middleware/route-guard')
+const { loggedIn, loggedOut } = require('../middleware/route-guard');
 
 
 
@@ -27,9 +27,9 @@ router.post("/register", loggedOut, (req, res, next) => {
             res.redirect('/log-in')
 
         })
-        .catch(err => res.redirect('/register'))
-
-
+        .catch(err => {
+            res.render('auth/sign-up', { err })
+        })
 
 });
 
@@ -45,13 +45,13 @@ router.post('/log-in', loggedOut, (req, res, next) => {
     User
         .findOne({ username })
         .then(user => {
-            console.log(user)
+            // console.log(user)
             if (!user) {
-                res.render('auth/log-in', { errorMesage: 'User name not recognized' })
+                res.render('auth/log-in', { errorMessage: 'User name not recognized' })
                 return
             }
 
-            console.log(user.password)
+            // console.log(user.password)
 
             if (!bcryptjs.compareSync(password, user.password)) {
                 res.render('auth/log-in', { errorMessage: 'Incorrect password' })
@@ -62,6 +62,12 @@ router.post('/log-in', loggedOut, (req, res, next) => {
         })
         .catch(err => console.log(err))
 
+})
+
+
+
+router.get('/log-out', (req, res, next) => {
+    req.session.destroy(() => res.redirect('/'))
 })
 
 router.get('/user/main', loggedIn, (req, res, next) => {
