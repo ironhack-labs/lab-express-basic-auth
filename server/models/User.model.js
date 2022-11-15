@@ -6,7 +6,13 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
+  email:{
+    type:String,
+    unique: true,
+    match:/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ ,
+    trim: true
+  },
+  passwordHash: String
 });
 
 const User = model("User", userSchema);
