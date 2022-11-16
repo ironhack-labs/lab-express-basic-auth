@@ -28,8 +28,36 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 
+const authRouter = require("./routes/auth.routes")
+app.use("/", authRouter)
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
+const session = require("express-session")
+
+module.exports = app => {
+
+    app.set("trust proxy", 1)
+
+    app.use(
+        session({
+          secret: process.env.SESS_SECRET,
+          resave: true,
+          saveUninitialized: false,
+          cookie: {
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true,
+            maxAge: 60000 
+          },
+          store: MongoStore.create({
+            mongoUrl: "mongodb://localhost/basic-auth",
+            ttl: 60*60*24*30
+          })
+        })
+      )
+}
+
+
 
 module.exports = app;
 

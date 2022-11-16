@@ -1,0 +1,23 @@
+<div>
+    <h2>Login!</h2>
+
+    <form action="/login" method="POST">
+
+    <label> Username
+        <input type="text" name="username" placeholder="username" required>
+    </label>
+    
+    <label> Password
+        <input type="password" name="passwordHash" placeholder="password" required>
+    </label>
+
+
+    <button type="submit">Login</button>
+
+    </form>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+    
+</div>
