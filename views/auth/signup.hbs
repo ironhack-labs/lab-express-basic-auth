@@ -1,0 +1,37 @@
+<section class="signup">
+    <h2 class="title">Sign up!</h2>
+
+    <div class="form-container">
+        <div class="row">
+            <form id="signup-form" action="/users/signup" method="post" class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input name="username" placeholder="username" id="username" type="text" class="validate">
+                        <label for="username">username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 password-container">
+                        <input name="password" id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                        <div id="show" class="btn-floating btn-large waves-effect waves-light red">
+                            <i class="material-icons ">visibility</i>
+                        </div>
+                        <div id="hide" class="btn-floating btn-large waves-effect waves-light red noShow">
+                            <i class="material-icons  ">visibility_off</i>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light red" type="submit" name="action">sign up
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</section>
+
+
+<script src="/js/showPassword.js"></script>

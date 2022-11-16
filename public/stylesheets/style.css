@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00b7ff;
+}
+
+#signup-form {
+    border: 2px solid #f44336;
+    border-radius: 8px;
+    padding: 2%;
+}
+
+.title {
+    margin-bottom: 40px;
+    padding: 2%;
+    border-bottom: 2px solid #f44336;
+    color: #f44336;
+}
+
+#signup-form input:focus,
+#singup-form label {
+    color: #f44336;
+    border-bottom: 1px solid #f44336;
+    box-shadow: 6px 7px 7px 0.5px rgba(#f44336, 0.1);
+}
+
+label.active {
+    color: #f44336 !important;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#show,
+#hide {
+    position: absolute;
+    right: 20px;
+}
+
+.noShow {
+    display: none;
 }
