@@ -1,0 +1,38 @@
+<div id="form" class="container">
+    <h2>Signup</h2>
+    <form action="/auth/signup" method="POST">
+ 
+        <label> Username
+            <input type="text" name="username" placeholder="username" />
+        </label>
+        <br>
+ 
+        <label> Password
+            <input type="password" id="password" name="password" placeholder="password" />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+        </label>
+        <br>
+    
+        <button type="submit">Create account</button>
+    
+        {{#if message}}
+            <h3 class="error">{{message}}</h3>
+        {{/if}}
+
+    </form>
+
+</div>
+
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    });
+</script>

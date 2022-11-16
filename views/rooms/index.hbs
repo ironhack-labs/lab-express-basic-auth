@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>List of rooms:</h1>
+    <br>
+    {{#each rooms}}
+        <div>
+            <h2>Name: {{name}}</h2>
+            <h2>Price: {{price}}</h2>
+            <h2>Owner: {{owner.username}}</h2>
+            <a href="/rooms/{{_id}}/delete">Delete Room</a>
+        </div>
+        <br>
+    {{/each}}
+    <a href="/rooms/create">Create New Room</a>
+    <br>
+    <a href="/profile">Profile</a>
+</div>

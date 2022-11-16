@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+form i {
+  margin-left: -30px;
+  cursor: pointer;
+}
