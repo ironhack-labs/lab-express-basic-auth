@@ -1,0 +1,24 @@
+<div id="side">
+    <div id="to-right">
+       <a href="/auth/signup">Signup</a> 
+    </div>
+</div>
+<div id="form">
+  <h2>LOGIN</h2>
+  <form action="/auth/login" method="POST">
+ 
+    <label> Username
+      <input type="text" name="username"/>
+    </label>
+ 
+    <label> Password
+      <input type="password" name="password"/>
+    </label>
+ 
+    <button type="submit">Login</button>
+ 
+    {{#if message}}
+        <h3 class="error">{{message}}</h3>
+    {{/if}}
+  </form>
+</div>
