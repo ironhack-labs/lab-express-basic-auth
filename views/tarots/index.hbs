@@ -1,0 +1,11 @@
+<h1>All the tarots</h1>
+{{#each tarots}}
+	<div>
+		<h2>Name: {{name}}</h2>
+		<h2>Price: {{price}}</h2>
+		<h2>Deck name: {{owner.username}}</h2>
+		<a href="/tarots/{{_id}}/delete">Delete this tarot ❌</a>
+	</div>
+{{/each}}
+<a href="/tarots/add">Add a tarot</a>
+<a href="/profile">User profile</a>
