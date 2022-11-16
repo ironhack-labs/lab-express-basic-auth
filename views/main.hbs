@@ -1,0 +1,17 @@
+{{#if user}}
+
+<h1>Hello {{user.username}}</h1>
+
+{{else}}
+<p>No logged</p>
+{{/if}}
+
+<div>
+  <a href="/private" class="btn btn-link">Private Page </a>
+</div>
+<div>
+  <a href="/auth/logout" class="btn btn-link">Log Out</a>
+</div>
+<div>
+  <a href="/" class="btn btn-link">Home </a>
+</div>
