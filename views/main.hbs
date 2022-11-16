@@ -1,0 +1,11 @@
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <img src="https://pngimg.com/uploads/cat/cat_PNG50498.png" alt="cat">
+  <button>
+    <a href="/main">Reload the page</a>
+  </button>
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
+
+<a href="/logout">Log Out</a>
