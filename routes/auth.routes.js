@@ -57,7 +57,7 @@ router.post('/signup', (req, res, next) => {
 
 // GET USER PROFILE ==> to display the profile of a single user
 router.get('/userProfile', isLoggedIn, (req, res) => {
-  res.render('users/user-profile', { user: req.session.currentUser });
+  res.render('users/user-profile', { user: req.session.user });
 });
 
 // ---LOGIN---
@@ -78,12 +78,14 @@ router.post('/login', (req, res, next) => {
 
   User.findOne({email})
   .then(user => {
+
     if (!user) {
       res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
       return;
     } else if (bcryptjs.compareSync(password, user.password)) {
+      req.session.user = user
       res.redirect('/userProfile');
-      console.log(`From POST login, req.session.currentUser is: ${req.session.currentUser}`)
+      console.log(`From POST login, req.session.user is: ${JSON.stringify(req.session.user)}`)
     } else {
       res.render('auth/login', { errorMessage: 'Incorrect password.' });
     }
