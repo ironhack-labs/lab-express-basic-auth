@@ -14,9 +14,36 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+// require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+const session = require("express-session")
+const MongoStore = require('connect-mongo')
+
+// module.exports = app => {
+
+//     // app.set("trust proxy", 1)
+
+    app.use(
+        session({
+          secret: process.env.SESS_SECRET,
+          resave: true,
+          saveUninitialized: false,
+          cookie: {
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true,
+            maxAge: 60000 
+          },
+          store: MongoStore.create({
+            mongoUrl: "mongodb://localhost/lab-express-basic-auth",
+            ttl: 60*60*24*30
+          })
+        })
+      )
+
+      console.log(session)
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -28,8 +55,18 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 
+    // authRouter needs to be added 
+const authRouter = require('./routes/auth.routes'); // <== has to be added
+app.use('/', authRouter);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
+
+
+// }
+
+
+
 
 module.exports = app;
 
