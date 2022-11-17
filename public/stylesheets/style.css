@@ -5,4 +5,14 @@ body {
 
 a {
   color: #00B7FF;
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+form {
+  margin: 30px auto;
+  width: 380px;
 }

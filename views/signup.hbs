@@ -1,0 +1,26 @@
+<div id="side">
+    <div id="to-right">
+        <a href="/login">Log in</a>
+    </div>
+</div>
+<div id="form">
+    
+    <h2>SIGN UP</h2>
+    <form action="/signup" method="POST">
+
+        <label> Username
+            <input type="text" name="username" placeholder="ironhacker">
+        </label>  
+        <br>
+        
+        Password: <input type="password" name="password" id="myInput">
+        <input type="checkbox" onclick="myFunction()">Show Password
+
+        <button type="submit">Create account</button>
+
+        {{#if message}}
+            <h3 class="error">{{message}}</h3>
+        {{/if}}
+    </form>
+
+</div>
