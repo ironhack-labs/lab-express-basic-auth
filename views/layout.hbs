@@ -18,6 +18,26 @@
 
 <body>
 
+  <div class="navbar">
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="right">
+          <li><a href="/">home</a></li>
+          <li><a href="/main">main</a></li>
+          <li><a href="/private">private</a></li>
+          <li><a href="/signup">sign up</a></li>
+          <li><a href="/login">log in</a></li>
+          <li>
+            <form id="logout-form" action="/logout" method="POST">
+              <button class="btn">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
   {{{body}}}
 
   <script src="/js/script.js"></script>

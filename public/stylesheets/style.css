@@ -7,6 +7,10 @@ a {
     color: #00b7ff;
 }
 
+nav .nav-wrapper {
+    max-width: 90vw;
+}
+
 #signup-form {
     border: 2px solid #f44336;
     border-radius: 8px;
@@ -46,4 +50,17 @@ label.active {
 
 .noShow {
     display: none;
+}
+
+.error {
+    background: #f02b63;
+    box-sizing: border-box;
+    color: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.btn {
+    background-color: #f44336 !important;
 }
