@@ -1,8 +1,30 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.passwordSpace{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordSpace input{
+  margin: 0;
+}
+
+.noShow{
+  display: none;
+}
+
+.flx{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,38 @@
+<div id="form" class="flx">
+  <h2>Signup</h2>
+  <div class="flx">
+    <form class="flx" action="/signup" method="POST">
+      <label class="flx">
+        Username
+        </label>
+        <input type="text" name="username" placeholder="ironhacker" />
+      
+      <label class="flx">
+        Password
+        <div class="passwordSpace">
+          <input
+            id="inputPassword"
+            type="password"
+            name="password"
+            placeholder="********"
+          />
+      </label>    
+          <div id="ocultar" class="noShow">
+            <i class="fa-sharp fa-solid fa-eye-slash"></i>
+          </div>
+          <div id="mostrar">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+        </div>
+      </label>
+
+      <button type="submit">Create account
+        <i class="fa-solid fa-user-secret"></i></button>
+
+      {{! error message will be added here }}
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+   </div> 
+</div>

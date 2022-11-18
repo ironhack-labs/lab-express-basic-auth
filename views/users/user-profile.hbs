@@ -1,0 +1,22 @@
+
+{{#if datosUsuario}}
+  <h2>Welcome, {{ datosUsuario.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <iframe src="https://giphy.com/embed/l4JyOCNEfXvVYEqB2" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tipsyelves-welcome-high-five-l4JyOCNEfXvVYEqB2">via GIPHY</a></p>
+  <button>
+    <a href="/userProfile">Reload the page</a>
+  </button>
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
+</script>
