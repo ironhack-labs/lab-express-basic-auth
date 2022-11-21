@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 //Setup of bcryp
 const bcrypt = require("bcrypt");
+//Auth Check
+const { isAuth } = require("../middleware/route-guard");
 
 /* GET signup page */
 router.get("/", (req, res, next) => {
@@ -22,7 +24,8 @@ router.post("/", async (req, res, next) => {
         console.log("🚨 Cant find the user");
         res.render("./auth/login");
       } else if (bcrypt.compareSync(password, user.password)) {
-        res.redirect(`/members`);
+        req.session.isAuth = true;
+        res.redirect(`/main`);
       } else {
         res.render("./auth/login");
       }
