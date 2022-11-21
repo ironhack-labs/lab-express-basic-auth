@@ -13,10 +13,13 @@ router.post("/", async (req, res, next) => {
 
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
-  User.create({ username: userName, password: passwordHash }).then((data) => {
-    console.log("👶 New User Created");
-  });
-  res.render("./auth/signup");
+  User.create({ username: userName, password: passwordHash })
+    .then((data) => {
+      console.log("👶 New User Created");
+    })
+    .then(() => {
+      res.render("./auth/signup");
+    });
 });
 
 module.exports = router;
