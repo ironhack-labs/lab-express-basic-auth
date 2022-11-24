@@ -1,3 +1,35 @@
+// config/session.config.js
+
+// require session
+const session = require("express-session");
+
+// ADDED: require mongostore
+const MongoStore = require("connect-mongo");
+
+// ADDED: require mongoose
+const mongoose = require("mongoose");
+
+
+module.exports = (app) => {
+
+  app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        maxAge: 60000 // 60 * 1000 ms === 1 min
+      }, 
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/basic-auth"
+
+    
+      })
+    })
+  );
+};
+
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
