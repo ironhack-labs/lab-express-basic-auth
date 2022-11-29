@@ -1,30 +1,18 @@
-const User = require("../models/User.model");
-const bcryptjs = require("bcryptjs");
-const saltRounds = 10;
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 
 /* GET home page */
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+router.get("/main", isLoggedIn, (req, res) => {
+  res.render("main");
 });
 
-router.post("/signup", (req, res, next) => {
-  const { username, email, password } = req.body;
-
-  bcryptjs
-    .genSalt(saltRounds)
-    .then((salt) => bcryptjs.hash(password, salt))
-    .then((hashedPassword) => {
-      return User.create({ username, email, passwordHash: hashedPassword });
-    })
-    .then((newUser) =>
-      console.log("Check out this newly created user!", newUser)
-    )
-    .catch((error) => next(error));
+router.get("/private", isLoggedIn, (req, res) => {
+  res.render("private");
 });
 
 module.exports = router;

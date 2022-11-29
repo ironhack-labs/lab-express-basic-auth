@@ -10,6 +10,22 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        </li>
+          <a href="/signup">Signup</a>
+          <br>
+          <a href="/login">Login</a>
+        </li>
+      </ul>
+    </nav>
+
+    {{#if username}}
+   <form action="/logout" method="post">
+      <button type="submit">Logout</button>
+   </form>
+   {{/if}}
+
 
     {{{body}}}
 
