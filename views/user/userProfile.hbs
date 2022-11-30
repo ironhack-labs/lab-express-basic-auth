@@ -1,0 +1,7 @@
+{{#if currentUser}}
+    <h2>Welcome, {{ currentUser.username }}!</h2>
+    <p>This is your profile page my friend! {{currentUser.email}}</p>
+    <img src="https://media.tenor.com/Xw9NRtyNMb4AAAAd/simpson.gif" alt="">
+{{else}}
+    <p>Still no logged in user, sorry!</p>
+{{/if}}

@@ -1,0 +1,32 @@
+<div id="form">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+ 
+    <label> Username
+      <input type="text" name="username" placeholder="ironhacker" />
+    </label>
+ 
+    <label> Email
+      <input type="email" name="email" placeholder="rockstar@ironhack.com" />
+    </label>
+ 
+    <label> Password
+    <div class="passwordSpace">
+      <input id="inputPassword" type="password" name="password" placeholder="********" />
+      <div id="mostrar">
+       <i class="fa-solid fa-eye"></i>
+       </div>
+       <div id="ocultar" class="noShow">
+       <i class="fa-sharp fa-solid fa-eye-slash"></i>
+       </div>
+    </div>
+    </label>
+ 
+    <button type="submit">
+        Create account
+        <i class="fa-solid fa-user-secret"></i>
+        </button>
+ 
+    {{!-- error message will be added here --}}
+  </form>
+</div>
