@@ -1,3 +1,10 @@
-<h1>Welcome back to your profile {{username}}</h1>
+{{#if username}}
+<h1>Welcome to your profile page {{username}}</h1>
+<button>
+    <a href="/auth/profile">Reload the page</a>
+  </button>
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
 
 <!-- <p>Your email is {{email}}</p> --> 
