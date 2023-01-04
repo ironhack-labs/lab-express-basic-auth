@@ -16,7 +16,9 @@ const hbs = require('hbs');
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+require("./config/index")(app);
+require("./config/session.config")(app);// this will make the express server able to add a req.session property for every incoming request
+
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -27,6 +29,9 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+// const indexRoutes = require("./routes/index.routes");
+// app.use("/", indexRoutes);
 
 const authRoutes = require('./routes/auth.routes');
 app.use('/auth', authRoutes)

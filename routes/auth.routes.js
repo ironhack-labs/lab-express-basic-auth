@@ -64,7 +64,7 @@ router.post("/login", isLoggedOut, (req, res) => {
     .then(user => { // --> { username: '', email: '', password: ''} || null
         console.log('user', user)
       if (!user) { // if user is not found in the DB
-        res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
+        res.render('auth/login', { errorMessage: 'Username is not registered.' });
         return;
       } else if (bcrypt.compareSync(password, user.password)) { // if password is correct
         // res.redirect(`/auth/profile/${user.username}`)

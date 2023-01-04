@@ -13,27 +13,30 @@
     {{#if loggedIn}}
       <nav>
          <ul>
-            <li id="to-left">
-            <p><a href="/"> Users - demo </a></p>
-            </li>
-            <li id="to-right">
+            <li> <a href="/"> Users - demo </a></li>
+            <li><a href="/auth/profile">Profile</a></li>
+            <li> <a href="/auth/main">Cat Photo</a></li>
+            <li> <a href="/auth/private">Cat GIF</a></li>
+
+            <li> 
              <form id="logout-form" action="/auth/logout" method="POST">
                <button>Logout</button>
+             </li>
             </form>
-             <a href="/auth/profile">Profile</a> 
-            </li>
          </ul>
       </nav>
      {{else}}
       <nav>
          <ul>
-            <li id="to-left">
-            <p><a href="/"> Users - demo </a></p>
-            </li>
-            <li id="to-right">
+            <li> <a href="/"> Users - demo </a></li>
+            <li>
             <a href="/auth/signup">Signup</a> <span> | </span>
             <a href="/auth/login">Login</a> {{!-- !!! --}}
             </li>
+            <li> <a href="/auth/main">Cat Photo</a></li>
+            <li> <a href="/auth/private">Private page</a></li>
+            
+            
          </ul>
       </nav>
      {{/if}}
