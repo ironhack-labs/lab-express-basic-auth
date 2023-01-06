@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
-a {
-  color: #00B7FF;
+.fondo {
+  width: 75vw;
+  height: 75vh;
+  background: url('https://img.freepik.com/vector-gratis/gente-diminuta-feliz-cerca-enorme-ilustracion-plana-palabra-bienvenida_74855-10808.jpg?w=2000');
+  background-size: cover;
+}
+
+.navbar {
+  background-color: #ECF4FA !important;
+}
+
+form {
+  border: 1px solid #ECF4FA;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: absolute;
+  padding: 70px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
