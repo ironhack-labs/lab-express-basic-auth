@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+
+#signupForm{
+  display: flex;
+  flex-direction: column;
+}
+
+#signupForm > label{
+margin-bottom: 20px;
+}
+
+#signupForm > label > input{
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 200px;
+}
+
+#signupForm > button {
+  width: 150px;
+  padding: 10px;
+  border-style: none;
+  border-radius: 10px;
+  background-color: peachpuff;
+}
+
+#signupForm > button:hover {
+  background-color: darkgray;
+  color:peachpuff ;
+}
