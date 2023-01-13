@@ -38,7 +38,14 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.get('/profile', (req, res) => {
+    const user = req.session.currentUser
+    if (!user) res.redirect('./login')
     res.render('user/profile', req.session.currentUser)
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
 })
 
 module.exports = router
