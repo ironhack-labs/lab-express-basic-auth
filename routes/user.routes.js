@@ -20,6 +20,25 @@ router.post('/signup', async (req, res, next) => {
     }
 })
 
-router.get('/profile', (_, res) => res.render('user/profile'))
+router.get('/login', (_, res) => res.render('user/login'))
+
+router.post('/login', async (req, res, next) => {
+    try {
+        const { username, password } = req.body
+        const [user] = await User.find({ username })
+        if (bcryptjs.compareSync(password, user.hashedPassword)) {
+            req.session.currentUser = user
+            res.redirect('./profile')
+        } else {
+            throw Error('Username or password invalid')
+        }
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/profile', (req, res) => {
+    res.render('user/profile', req.session.currentUser)
+})
 
 module.exports = router
