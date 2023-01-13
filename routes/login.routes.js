@@ -10,6 +10,15 @@ router.get("/signup",(req,res)=>{
     res.render("login/signup")
 })
 
+router.get('/mainpage', (req, res, next) => {
+  res.render('mainpage')
+}) 
+router.get('/private', (req, res, next) => {
+  res.render('private')
+})
+
+
+
 router.post("/signup",(req,res)=>{
     console.log(req.body)
     const {email, password} = req.body
@@ -20,25 +29,22 @@ router.post("/signup",(req,res)=>{
         console.log(salt)
         return bcrypt.hash(password,salt)
     })
-    .then((hashedPassword)=>{
+    .then(hashedPassword=>{
       console.log (hashedPassword)
-      User.create({
+      return User.create({
         email:email,
         encryptedPassword:hashedPassword
       })
-      // res.redirect("/")
-      console.log(email, password)
-      if (email && password){
-        router.get("/mainpage",(req,res)=>{
-          res.render("login/main")
-          res.redirect("/")
-      })
-      router.get("/private",(req,res)=>{
-        res.render("login/private")
-        res.redirect("/private")
     })
-    }
+
+    .then(newUser => {
+      console.log(newUser)
+      if (email && password) {
+        console.log("move to main page)
+        res.redirect("/mainpage")
+      }
     })
+
     .catch((error)=>{
       console.log(error)
   })
