@@ -16,10 +16,6 @@ a {
   border-bottom: 1px solid black;
 }
 
-.header a {
-  padding-right: 20px;
-}
-
 .header h1 {
   padding-left: 20px;
 
@@ -27,6 +23,8 @@ a {
 }
 
 .header-nav-bar a {
+  padding-right: 20px;
+
   font-size: 18px;
 }
 
@@ -34,19 +32,19 @@ a {
   padding-left: 20px;
 }
 
-.home-link {
-  padding-left: 20px;
-}
-
-.signup-container {
+.form-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
+  align-items: center;
   margin-top: 20px;
 }
 
-.signup-form {
+.form-container h2 {
+  padding-left: 40px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,6 +52,14 @@ a {
   gap: 15px;
 }
 
+.form-button {
+  margin-left: 40px;
+}
+
 .profile-page-header {
+  padding-left: 20px;
+}
+
+.profile-page-paragraph {
   padding-left: 20px;
 }
