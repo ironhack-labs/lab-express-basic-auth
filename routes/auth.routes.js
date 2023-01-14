@@ -40,7 +40,9 @@ router.post("/login", (req, res, next) => {
         res.status(500).render("user/login");
       } else if (bcrypt.compareSync(password, user.password)) {
         console.log("User successfully logged in!");
-        res.render("user/profile", user);
+
+        req.session.currentUser = user;
+        res.redirect("/profile");
       } else {
         console.log("Wrong password entered");
         res.render("user/login");
@@ -52,6 +54,15 @@ router.post("/login", (req, res, next) => {
     });
 });
 
+router.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      next(err);
+    }
+    res.redirect("/");
+  });
+});
+
 router.get("/signup", (req, res) => {
   res.render("user/signup");
 });
@@ -61,7 +72,9 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/profile", (req, res) => {
-  res.render("user/profile");
+  const userInSession = req.session.currentUser;
+
+  res.render("user/profile", { userInSession });
 });
 
 module.exports = router;

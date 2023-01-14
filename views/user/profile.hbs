@@ -1,2 +1,6 @@
-<h2 class="profile-page-header">Welcome to your profile</h2>
-<p class="profile-page-paragraph">Logged in as: {{username}}</p>
+{{#if userInSession}}
+  <h2 class="profile-page-header">Welcome to your profile</h2>
+  <p class="profile-page-paragraph">Logged in as: {{userInSession.username}}</p>
+{{else}}
+  <p class="not-logged-in-message">Error: User not logged in</p>
+{{/if}}

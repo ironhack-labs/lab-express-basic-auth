@@ -22,10 +22,31 @@ a {
   font-size: 28px;
 }
 
+.header-nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
 .header-nav-bar a {
   padding-right: 20px;
 
   font-size: 18px;
+}
+
+.header-nav-bar-logout-form {
+  margin-top: 10px;
+}
+
+.header-nav-bar-logout-form button {
+  padding: 10px;
+
+  border-radius: 20px;
+  background-color: #00b7ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 .home-page-header {
@@ -61,5 +82,9 @@ a {
 }
 
 .profile-page-paragraph {
+  padding-left: 20px;
+}
+
+.not-logged-in-message {
   padding-left: 20px;
 }
