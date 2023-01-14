@@ -44,8 +44,8 @@ router.get('/user', (req, res) => {
     })
 })
 
-router.get('/user/:userId', (req, res) => {
-    User.findById(req.params)
+router.get('/user/:id', (req, res) => {
+    User.findById(req.params.id)
     .then((result) => {
         res.render('private/private')
     })
