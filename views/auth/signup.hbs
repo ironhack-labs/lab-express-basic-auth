@@ -2,11 +2,17 @@
 <h2>Sign Up</h2>
 <form action="/signup" method="POST">
 <label>Username
-    <input type="username" name="username" placeholder="username" />
+    <input type="username" name="username" placeholder="username" required />
+</label>
+<label>Email
+    <input type="email" name="email" placeholder="me@gmail.com" required />
 </label>
 <label> Password 
-    <input type="password" name="password" placeholder="********" />
+    <input type="password" name="password" placeholder="********" required />
 </label>
 <button type="submit">Create Account</button>
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </form>
 </div>
