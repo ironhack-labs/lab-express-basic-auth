@@ -1,5 +1,9 @@
 <h1>Sign up</h1>
 
+{{#if errorMessage}}
+<h3>{{errorMessage}}</h3>
+{{/if}}
+
 <form action="/user/signup" method="post">
     <label>
         Username
