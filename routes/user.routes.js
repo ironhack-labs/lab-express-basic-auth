@@ -60,10 +60,8 @@ router.post('/login', async (req, res, next) => {
         if (user && bcryptjs.compareSync(password, user.hashedPassword)) {
             req.session.currentUser = user
             res.redirect('./profile')
-        } else {
-            res.render('user/login', { errorMessage: 'invalid username or password'})
-            return;
-        }
+        } else res.render('user/login', { errorMessage: 'invalid username or password'})
+
     } catch (error) {
         next(error)
     }
@@ -75,8 +73,10 @@ router.get('/profile', (req, res) => {
     res.render('user/profile', req.session.currentUser)
 })
 
-router.get('/logout', (req, res) => {
-    req.session.destroy()
+router.post('/logout', (req, res) => {
+    req.session.destroy(error => {
+        if (error) next(error)
+    })
     res.redirect('/')
 })
 

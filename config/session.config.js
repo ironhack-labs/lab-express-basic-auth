@@ -1,5 +1,8 @@
 const session = require('express-session')
 
+const MongoStore = require('connect-mongo')
+const mongoose = require('mongoose')
+
 module.exports = app => app.use(
     session({
         secret: process.env.SESS_SECRET,
@@ -10,6 +13,9 @@ module.exports = app => app.use(
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true,
             maxAge: 120000,
-        }
+        },
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/lab-express-basic-auth"
+        })
     })
 )
