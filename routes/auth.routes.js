@@ -59,6 +59,8 @@ router.post("/signup", (req, res) => {
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
 
+  //@TODO: Add server side form validation
+
   User.findOne({ username })
     .then((user) => {
       console.log("User attempting to log in: ", user);

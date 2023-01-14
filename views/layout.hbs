@@ -13,12 +13,20 @@
       <h1>Basic user auth page</h1>
       <nav class="header-nav-bar">
         <a href="/">Home</a>
-        <a href="/signup">Sign up</a>
-        <a href="/login">Login</a>
-        <a href="profile">Profile</a>
-        <form class="header-nav-bar-logout-form" action="/logout" method="post">
-          <button type="submit">Log out</button>
-        </form>
+        {{#unless userInSession}}
+          <a href="/signup">Signup</a>
+          <a href="/login">Login</a>
+        {{/unless}}
+        {{#if userInSession}}
+          <a href="profile">Profile</a>
+          <form
+            class="header-nav-bar-logout-form"
+            action="/logout"
+            method="post"
+          >
+            <button type="submit">Log out</button>
+          </form>
+        {{/if}}
       </nav>
     </header>
     {{{body}}}
