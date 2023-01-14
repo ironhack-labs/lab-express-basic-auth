@@ -36,6 +36,10 @@ router.post("/signup", (req, res) => {
     })
 }) 
 
+router.get('/login', (req, res) => {
+    res.render('auth/login')
+})
+
 router.get("/profile", (req, res) => {
     res.render("user/user-profile")
   });
