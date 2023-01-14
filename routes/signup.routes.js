@@ -22,6 +22,10 @@ router.post("/signup", (req, res) => {
     })
     .catch((error) => {
       console.log("An error occured while signing up a user: ", error);
+
+      const showError = true;
+
+      res.render("user/user-signup", { showError });
     });
 });
 

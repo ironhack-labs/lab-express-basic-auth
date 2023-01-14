@@ -8,8 +8,52 @@ a {
   color: #00b7ff;
 }
 
-.nav-bar {
+.header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  border-bottom: 1px solid black;
+}
+
+.header a {
+  padding-right: 20px;
+}
+
+.header h1 {
+  padding-left: 20px;
+
+  font-size: 28px;
+}
+
+.header-nav-bar a {
+  font-size: 18px;
+}
+
+.home-page-header {
+  padding-left: 20px;
+}
+
+.home-link {
+  padding-left: 20px;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.profile-page-header {
+  padding-left: 20px;
 }
