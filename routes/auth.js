@@ -22,7 +22,7 @@ router.post('/signup', (req, res, next) => {
                 username: username, 
                 passwordHash: hashedPassword
             })
-            res.redirect('/profile')
+            res.redirect('/main')
         })
         .catch((error) => {
             console.log(error)
@@ -31,6 +31,27 @@ router.post('/signup', (req, res, next) => {
 
 router.get('/profile', (req, res) => {
     res.render('user-profile')
+})
+
+router.get('/main', (req, res) => {
+    res.render('private/main')
+})
+
+router.get('/user', (req, res) => {
+    User.find()
+    .then((result) => {
+        res.render('user-profile', {result})
+    })
+})
+
+router.get('/user/:userId', (req, res) => {
+    User.findById(req.params)
+    .then((result) => {
+        res.render('private/private')
+    })
+    .catch ((err) => {
+        console.log('The error while rendering user page is: ', err)
+    })
 })
 
 
