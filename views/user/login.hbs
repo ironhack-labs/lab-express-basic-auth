@@ -17,5 +17,9 @@
     <button class="form-button" type="submit">Log in</button>
 
   </form>
-
+  {{#if errorMessage}}
+    <div class="error-message-box">
+      <p>{{errorMessage}}</p>
+    </div>
+  {{/if}}
 </section>

@@ -88,3 +88,11 @@ a {
 .not-logged-in-message {
   padding-left: 20px;
 }
+
+.error-message-box {
+  padding: 5px;
+  width: 50%;
+
+  background-color: red;
+  color: white;
+}

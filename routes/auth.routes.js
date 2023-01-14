@@ -1,11 +1,30 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 const User = require("../models/User.model");
 
 const saltRounds = 10;
 
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    const message =
+      "Both the username and password fields have to be filled in";
+
+    res.render("user/signup", { errorMessage: message });
+    return;
+  }
+
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
+  if (!regex.test(password)) {
+    res.status(500).render("user/signup", {
+      errorMessage:
+        "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+    });
+    return;
+  }
 
   bcrypt
     .genSalt(saltRounds)
@@ -18,14 +37,22 @@ router.post("/signup", (req, res) => {
     .then((user) => {
       console.log("A new user was signed up: ", user);
 
+      req.session.currentUser = user;
+
       res.redirect("/profile");
     })
     .catch((error) => {
       console.log("An error occured while signing up a user: ", error);
 
-      const showError = true;
-
-      res.render("user/signup", { showError });
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.status(500).render("user/signup", {
+          errorMessage: error.errors.username || error.errors.password,
+        });
+      } else if (error.code === 11000) {
+        res.status(500).render("user/signup", {
+          errorMessage: "The entered username already exists",
+        });
+      }
     });
 });
 

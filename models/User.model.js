@@ -4,9 +4,13 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
+    match: [
+      /^[a-zA-Z0-9_.]{4,}$/,
+      "A username can only contain characters between a-z (case-insensitive), 0-9, or . (dot) or _ (underscore). Please try again.",
+    ],
   },
-  password: String
+  password: String,
 });
 
 const User = model("User", userSchema);
