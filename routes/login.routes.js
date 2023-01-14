@@ -40,7 +40,7 @@ router.post("/signup",(req,res)=>{
     .then(newUser => {
       console.log(newUser)
       if (email && password) {
-        console.log("move to main page)
+        console.log("move to main page")
         res.redirect("/mainpage")
       }
     })
