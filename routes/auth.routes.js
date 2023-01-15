@@ -3,9 +3,11 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../models/User.model");
 const saltRounds = 10;
+const mongoose = require("mongoose");
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 
 // SIGN UP
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
@@ -42,6 +44,23 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
+// PROFILE
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("user/user-profile", { userInSession: req.session.currentUser });
+});
+
+//Iteration 3: /main
+
+router.get("/main", isLoggedIn, (req, res) => {
+  res.render("user/main", { userInSession: req.session.currentUser });
+});
+
+//Iteration 3: /private
+
+router.get("/private", isLoggedIn, (req, res) => {
+  res.render("user/private", { userInSession: req.session.currentUser });
+});
+
 router.post("/login", (req, res, next) => {
   console.log('SESSION =====> ', req.session);
   console.log(req.body)
@@ -72,9 +91,15 @@ router.post("/login", (req, res, next) => {
   .catch(error => next(error));
 });
 
-// PROFILE
-router.get("/profile", (req, res) => {
-  res.render("user/user-profile", { userInSession: req.session.currentUser });
+router.get("/about-me",(req,res)=>{
+  res.render("user/about-me",{userInSession:req.session.currentUser})
+})
+
+router.post("/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect("/");
+  });
 });
 
 module.exports = router;

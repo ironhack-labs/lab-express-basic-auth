@@ -1,0 +1,16 @@
+<h1>This is your private page</h1>
+{{#if userInSession}}
+  <h2>Hi, {{userInSession.email}}!</h2>
+  <br />
+  <iframe
+    src="https://giphy.com/embed/26gYCFcNenajfsnVC"
+    width="480"
+    height="480"
+    frameBorder="0"
+    class="giphy-embed"
+    allowFullScreen
+  ></iframe><p><a
+      href="https://giphy.com/gifs/schittscreek-comedy-pop-26gYCFcNenajfsnVC"
+    >via GIPHY</a></p>
+
+{{/if}}
