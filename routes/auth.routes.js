@@ -43,6 +43,8 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res, next) => {
+  console.log('SESSION =====> ', req.session);
+  console.log(req.body)
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -59,9 +61,9 @@ router.post("/login", (req, res, next) => {
         errorMessage: "User not found",
       });
     } else if (bcrypt.compareSync(password, user.passwordHash)) {
-     /*  console.log(req.session)
-      req.session.currentUser = user; */
-      res.redirect("/profile");
+      req.session.currentUser = user;
+      res.redirect("/profile"); 
+      
     } else {
       res.render("auth/login", { 
         errorMessage: "Incorrect password" });
@@ -72,7 +74,7 @@ router.post("/login", (req, res, next) => {
 
 // PROFILE
 router.get("/profile", (req, res) => {
-  res.render("user/user-profile");
+  res.render("user/user-profile", { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
