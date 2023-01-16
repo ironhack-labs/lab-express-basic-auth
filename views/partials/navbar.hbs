@@ -1,0 +1,17 @@
+<nav>
+         <div class="nav-wrapper light-green darken-2">
+            <a href="/" class="brand-logo">Basic Auth Exercise</a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if user}}
+                <li><a href="/user/main">Main</a></li>
+                <li><a href="/user/private">Private</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+            {{else}}
+                <li><a href="/auth/login">Log in</a></li>
+                <li><a href="/auth/signup">Sign up</a></li>
+            {{/if}}
+            </ul>
+
+         </div>
+</nav>

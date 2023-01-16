@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav{
+  background-color: #689f38
+}
+
+.nav-wrapper{
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: #689f38
+}
+
+.container{
+  margin: 40px;
+}
+
+.main{
+  width: 60%;
+}
+
+.private{
+  width: 60%;
+}
