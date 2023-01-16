@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
+
 const User = require("../models/User.model");
+const {
+  isLoggedIn,
+  isLoggedOut,
+} = require("../middleware/route-guard.middleware");
 
 const saltRounds = 10;
 
@@ -102,18 +107,30 @@ router.post("/logout", (req, res) => {
   });
 });
 
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("user/signup");
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("user/login");
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   const userInSession = req.session.currentUser;
 
   res.render("user/profile", { userInSession });
+});
+
+router.get("/main", isLoggedIn, (req, res) => {
+  const userInSession = req.session.currentUser;
+
+  res.render("protected/main", { userInSession });
+});
+
+router.get("/private", isLoggedIn, (req, res) => {
+  const userInSession = req.session.currentUser;
+
+  res.render("protected/private", { userInSession });
 });
 
 module.exports = router;

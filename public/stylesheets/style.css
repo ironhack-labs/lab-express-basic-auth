@@ -62,7 +62,7 @@ a {
 }
 
 .form-container h2 {
-  padding-left: 40px;
+  padding-left: 60px;
 }
 
 .form {
@@ -74,15 +74,24 @@ a {
 }
 
 .form-button {
-  margin-left: 40px;
+  margin-left: 60px;
+
+  cursor: pointer;
+}
+
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
 }
 
 .profile-page-header {
-  padding-left: 20px;
+  margin: 20px 0 0 0;
 }
 
 .profile-page-paragraph {
-  padding-left: 20px;
+  margin: 20px 0 0 0;
 }
 
 .not-logged-in-message {
@@ -96,4 +105,17 @@ a {
   text-align: center;
   background-color: red;
   color: white;
+}
+
+.main-page-container,
+.private-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.main-page-container img,
+.private-page-container img {
+  width: 500px;
 }
