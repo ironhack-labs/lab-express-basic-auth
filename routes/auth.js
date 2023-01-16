@@ -1,11 +1,12 @@
 const User = require('../models/User.model');
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const { render } = require('../app');
 const saltRounds = 5;
 const mongoose = require('mongoose');
+const { isLoggedOut } = require('../middleware/route-guard');
 
-router.get('/signup', (req, res, next) => {
+
+router.get('/signup', isLoggedOut, (req, res, next) => {
     res.render('auth/signup')
 })
 
@@ -52,30 +53,50 @@ if(!regex.test(password)){
         });
 })
 
-router.get('/profile', (req, res) => {
-    res.render('user/user-profile')
+router.get('/login', isLoggedOut, (req, res) => {
+    res.render('auth/login')
 })
 
-router.get('/main', (req, res) => {
-    res.render('private/main')
+router.get('/profile', isLoggedIn,  (req, res) => {
+    console.log('What is in my session: ', req.session.currentUser)
+    res.render('user/user-profile', {userInfo: req.session.currentUser})
 })
 
-router.get('/user', (req, res) => {
-    User.find()
-    .then((result) => {
-        res.render('user-profile', {result})
-    })
-})
+router.post('/login', (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
+    const { username , password } = req.body
+   
+    if (!username || !password ) {
+      res.render('auth/login', {
+        errorMessage: 'Please enter both, username and password to login.'
+      })
+      return
+    }
+   
+    User.findOne({username})
+      .then(user => {
+          console.log(user)
+        if (!user) {
+          res.render('auth/login', { errorMessage: 'Username is not registered. Try with other username.' })
+        } else if (bcrypt.compareSync(password, user.passwordHash)) {
+            req.session.currentUser = user
+            res.redirect('/profile')
+        } else {
+          res.render('auth/login', { errorMessage: 'Incorrect password.' })
+        }
+      })
+      .catch(error => {
+          console.log(error)
+      })
+  });
 
-router.get('/user/:id', (req, res) => {
-    User.findById(req.params.id)
-    .then((result) => {
-        res.render('user/user-profile')
-    })
-    .catch ((err) => {
-        console.log('The error while rendering user page is: ', err)
-    })
-})
+  router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+      if (err) next(err);
+      res.redirect('/');
+    });
+  });
+
 
 
 module.exports = router
