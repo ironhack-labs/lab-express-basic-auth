@@ -93,6 +93,7 @@ a {
   padding: 5px;
   width: 50%;
 
+  text-align: center;
   background-color: red;
   color: white;
 }

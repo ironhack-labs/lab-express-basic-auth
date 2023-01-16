@@ -10,7 +10,7 @@ router.post("/signup", (req, res) => {
 
   if (!username || !password) {
     const message =
-      "Both the username and password fields have to be filled in";
+      "Both the username and password fields have to be filled in.";
 
     res.render("user/signup", { errorMessage: message });
     return;
@@ -50,7 +50,7 @@ router.post("/signup", (req, res) => {
         });
       } else if (error.code === 11000) {
         res.status(500).render("user/signup", {
-          errorMessage: "The entered username already exists",
+          errorMessage: "The entered username already exists.",
         });
       }
     });
@@ -59,14 +59,22 @@ router.post("/signup", (req, res) => {
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
 
-  //@TODO: Add server side form validation
+  if (!username || !password) {
+    res.render("user/login", {
+      errorMessage:
+        "Both the username and password fields have to be filled in.",
+    });
+    return;
+  }
 
   User.findOne({ username })
     .then((user) => {
       console.log("User attempting to log in: ", user);
       if (!user) {
-        console.log("No user found that matches the entered email adress");
-        res.status(500).render("user/login");
+        console.log("No user found that matched the entered username");
+        res.status(500).render("user/login", {
+          errorMessage: "Incorrect username or password.",
+        });
       } else if (bcrypt.compareSync(password, user.password)) {
         console.log("User successfully logged in!");
 
@@ -74,7 +82,9 @@ router.post("/login", (req, res, next) => {
         res.redirect("/profile");
       } else {
         console.log("Wrong password entered");
-        res.render("user/login");
+        res.render("user/login", {
+          errorMessage: "Incorrect username or password.",
+        });
       }
     })
     .catch((error) => {
