@@ -114,9 +114,18 @@ router.post("/login", (req, res) => {
   });
 });
 
-//you can only access the page below if you are logged in, if you are not logged in you will be directed to the login page!
+//This page is accessable for everyone
+
+router.get("/open", (req, res) => {
+  res.render("user/open");
+});
+//you can only access the pages below if you are logged in, if you are not logged in you will be directed to the login page!
 router.get("/testfile", isLoggedIn, (req, res, next) => {
   console.log("Check if session works!");
   res.render("user/testfile", req.session.currentuser);
+});
+
+router.get("/main", isLoggedIn, (req, res, next) => {
+  res.render("user/main", req.session.currentuser);
 });
 module.exports = router;
