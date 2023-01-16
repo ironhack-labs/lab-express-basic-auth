@@ -57,12 +57,14 @@ router.post("/signup", (req, res, next) => {
 
 router.get("/user", (req, res) => {
   console.log("redirect to the userprofile");
+
   res.render("user/userprofile");
 });
 
 //login the user
 router.get("/login", isLoggedOut, (req, res) => {
-  console.log("TRAVELING TO THE LOGIN PAGE");
+  console.log(req.session);
+
   res.render("auth/login");
 });
 
@@ -103,11 +105,18 @@ router.post("/login", (req, res) => {
       console.log("There is an error:", error);
     });
 
+  //Route below is to log out.
   router.post("/logout", (req, res, next) => {
     req.session.destroy((err) => {
       if (err) next(err);
       res.redirect("/login");
     });
   });
+});
+
+//you can only access the page below if you are logged in, if you are not logged in you will be directed to the login page!
+router.get("/testfile", isLoggedIn, (req, res, next) => {
+  console.log("Check if session works!");
+  res.render("user/testfile", req.session.currentuser);
 });
 module.exports = router;
