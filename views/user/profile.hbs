@@ -1,0 +1,15 @@
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+  </button>
+  <form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+  </form>
+  <a href="/main">Go to Main</a>
+  <a href="/private">Go to Private</a>
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}}

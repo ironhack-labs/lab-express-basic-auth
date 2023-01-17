@@ -7,16 +7,16 @@ a {
   color: #00B7FF;
 }
 
-#signupForm{
+.form{
   display: flex;
   flex-direction: column;
 }
 
-#signupForm > label{
+.form > label{
 margin-bottom: 20px;
 }
 
-#signupForm > label > input{
+.form > label > input{
   margin-top: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -24,7 +24,7 @@ margin-bottom: 20px;
   width: 200px;
 }
 
-#signupForm > button {
+.form > button {
   width: 150px;
   padding: 10px;
   border-style: none;
@@ -32,7 +32,14 @@ margin-bottom: 20px;
   background-color: peachpuff;
 }
 
-#signupForm > button:hover {
+.form > button:hover {
   background-color: darkgray;
   color:peachpuff ;
+}
+
+.error{
+  color: white; 
+  background-color: red;
+  padding: 10px;
+  width: 300px;
 }
