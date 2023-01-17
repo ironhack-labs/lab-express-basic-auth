@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
     })
     .then((passwordHashed) => {
       console.log("The hashed password is:", passwordHashed);
-      User.create({
+      return User.create({
         username: username,
         password: passwordHashed,
       });
@@ -39,11 +39,8 @@ router.post("/signup", (req, res, next) => {
       res.redirect("/user");
     })
     .catch((error) => {
-      console.log("There is an error", error);
       if (error instanceof mongoose.Error.ValidationError) {
-        res
-          .status(500)
-          .render("auth/signup", { errormessage: "error signing in" });
+        res.status(500).render("auth/signup", { errormessage: error.message });
       } else if (error.code === 11000) {
         res.render("auth/signup", {
           errormessage:
@@ -94,11 +91,14 @@ router.post("/login", (req, res) => {
         res.render("auth/login", {
           errormessage: "Username not found! Please sign up!",
         });
+        return;
       } else if (bcrypt.compareSync(password, user.password)) {
         req.session.currentuser = user;
         res.redirect("/user");
       } else {
-        res.render("auth/login", { errormessage: "error password" });
+        res.render("auth/login", {
+          errormessage: "Please insert correct password",
+        });
       }
     })
     .catch((error) => {

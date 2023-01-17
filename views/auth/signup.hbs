@@ -1,15 +1,18 @@
 <h1>Hi, welcome! Please sign up!</h1>
 
 <form action="/signup" method="post">
-<label>
+  <label>
     Username
-    <input type="text" name="username" placeholder="Username">
-</label>
+    <input type="text" name="username" placeholder="Username" />
+  </label>
 
-<label>
-Password
-<input type="password" name="password" placeholder="Password">
-</label>
-<button type="submit"> Create user!</button>
+  <label>
+    Password
+    <input type="password" name="password" placeholder="Password" />
+  </label>
+  <button type="submit"> Create user!</button>
 
+  {{#if errormessage}}
+    <p>{{errormessage}}</p>
+  {{/if}}
 </form>
