@@ -128,4 +128,8 @@ router.get("/testfile", isLoggedIn, (req, res, next) => {
 router.get("/main", isLoggedIn, (req, res, next) => {
   res.render("user/main", req.session.currentuser);
 });
+
+router.get("/private", isLoggedIn, (req, res, next) => {
+  res.render("user/private", req.session.currentuser);
+});
 module.exports = router;

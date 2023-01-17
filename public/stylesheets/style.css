@@ -4,5 +4,14 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#cutecat2 {
+  width: 200px;
+  height: 200px;
+}
+
+#pass {
+  font-weight: bolder;
 }
