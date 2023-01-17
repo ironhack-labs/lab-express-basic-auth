@@ -104,13 +104,16 @@ router.post("/login", (req, res) => {
     .catch((error) => {
       console.log("There is an error:", error);
     });
+});
 
-  //Route below is to log out.
-  router.post("/logout", (req, res, next) => {
-    req.session.destroy((err) => {
-      if (err) next(err);
-      res.redirect("/login");
-    });
+//Route below is to log out.
+router.post("/logout", (req, res, next) => {
+  // let timeOut = setTimeout(() => {
+  //   res.render("user/open"), 5000;
+  // });
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.render("auth/logout");
   });
 });
 
@@ -119,7 +122,7 @@ router.post("/login", (req, res) => {
 router.get("/open", (req, res) => {
   res.render("user/open");
 });
-//you can only access the pages below if you are logged in, if you are not logged in you will be directed to the login page!
+//you can only access the pages below if you are logged in, if you are not logged in you will be redirected to the notLoggedIn page!
 router.get("/testfile", isLoggedIn, (req, res, next) => {
   console.log("Check if session works!");
   res.render("user/testfile", req.session.currentuser);

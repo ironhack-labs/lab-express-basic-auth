@@ -1,6 +1,7 @@
 const isLoggedIn = (req, res, next) => {
   if (!req.session.currentuser) {
-    return res.redirect("/login");
+    // return res.redirect("/login");
+    return res.render("auth/notLoggedIn");
   }
   next();
 };
