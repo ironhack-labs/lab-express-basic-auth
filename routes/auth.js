@@ -3,11 +3,12 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const saltRounds = 5;
 const mongoose = require('mongoose');
-const { isLoggedOut } = require('../middleware/route-guard');
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 
-router.get('/signup', isLoggedOut, (req, res, next) => {
-    res.render('auth/signup')
+router.get('/signup', isLoggedOut, (req, res) => {
+    data = {userInSession:req.session.currentUser}
+    res.render('auth/signup', data)
 })
 
 router.post('/signup', (req, res, next) => {
@@ -57,9 +58,9 @@ router.get('/login', isLoggedOut, (req, res) => {
     res.render('auth/login')
 })
 
-router.get('/profile', isLoggedIn,  (req, res) => {
+router.get('/profile', isLoggedIn,  (req, res) => { 
     console.log('What is in my session: ', req.session.currentUser)
-    res.render('user/user-profile', {userInfo: req.session.currentUser})
+    res.render('user/user-profile', {userInSession: req.session.currentUser}) // why is this different than the first object?
 })
 
 router.post('/login', (req, res, next) => {
