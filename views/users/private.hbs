@@ -1,0 +1,15 @@
+{{!-- views/users/user-profile.hbs --}}
+
+{{#if userInfo}}
+  <h2>Welcome, {{ userInfo.username }}!</h2>
+  <p>This is your private page!</p>
+
+<img style="height: 400px; width: 400px"  src="https://assets-global.website-files.com/5f3c19f18169b62a0d0bf387/60d368179f2f6f8d2c071b39_gif2-min.gif" alt="funny animation GIF" width="100%">
+
+  <br>
+  <br>
+    <a class="homeBtn" href="./">Home</a>
+  
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
