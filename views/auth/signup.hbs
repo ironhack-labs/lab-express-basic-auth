@@ -1,12 +1,23 @@
 <div id="form">
-    <h2>Signup</h2>
-    <form action="/signup" method="POST">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
     <label>Username
-        <input name="username" placeholder="enter your username">
+      <input name="username" placeholder="
+      {{#if username}}
+      {{username}}
+      {{/if}}
+      enter your username" required />
     </label>
-     <label>Password
-        <input type="password" name="password" placeholder="*****">
+    <label>Password
+      <input type="password" name="password" placeholder="*****" required />
     </label>
     <button type="submit">Create Account</button>
-    </form>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+    {{#if newUserMessage}}
+      <p>{{newUserMessage}}</p>
+    {{/if}}
+  </form>
 </div>
