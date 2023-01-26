@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const { default: mongoose } = require('mongoose');
 const User = require('../models/User.model')
 
@@ -8,7 +9,6 @@ module.exports.signup = (req, res, next) => {
 module.exports.doSignup = (req, res, next) => {
 
     const renderWithErrors = (errors) => {
-        console.error(errors)
         res.render('user/signup', {
             user: {username: req.body.username},
             errors
@@ -25,7 +25,7 @@ module.exports.doSignup = (req, res, next) => {
                 console.info(`${user.username} has been created!`)
             })
         } else {
-            renderWithErrors({username: 'Sorry! Username alredy in use, try with another one :)'})
+            renderWithErrors({username: 'Sorry! Username already in use, try with another one :)'})
         }
     })
 

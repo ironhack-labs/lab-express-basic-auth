@@ -5,15 +5,15 @@
     <label for="username" class="form-label">Username</label>
     <input id="username" name="username" type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" value="{{user.username}}">
   </div>
-  <div class="invalid-feedback">
-    <p>{{errors.username}}</p>
+  <div>
+    <p style="color: #DC3444;">{{errors.username}}</p>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
     <input id="password" name="password" type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}">
   </div>
-  <div class="invalid-feedback">
-    <p>{{errors.password}}</p>
+  <div>
+    <p style="color: #DC3444;">{{errors.password}}</p>
   </div>
   <button>
     SIGN UP!
