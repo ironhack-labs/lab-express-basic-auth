@@ -28,7 +28,8 @@ module.exports.doSignup = (req, res, next) => {
         res.render("auth/confirmation-user");
       });
     } else {
-      renderWithErrors({username : "Username already in use"})
+      renderWithErrors({username : "Username already in use", 
+      password : "password is required" })
     }
   })
   .catch(err =>{
