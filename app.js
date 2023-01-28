@@ -12,11 +12,21 @@ const express = require('express');
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
+const path = require('path');
+hbs.registerPartials(path.join(__dirname, './views/partials'));
 
-const app = express();
+// Handles sessions
+const { sessionConfig, loggedUser } = require('./config/session.config')
+
+const app = express()
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+
+// Uses sessions
+
+app.use(sessionConfig)
+app.use(loggedUser)
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
