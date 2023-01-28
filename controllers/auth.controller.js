@@ -13,7 +13,28 @@ module.exports.doSignup = (req, res , next) => {
                 email: req.body.email,
                 name: req.body.name
             },
-            errors
+            errors  // DEJO A USER SEPARADO DE ERROR PORQUE SI LE PASO EL REQ.BODY LE PASO TAMBIEN LA CONTRASEÑA. (Indico solo lo que quiero)
         })
     }
+    User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        // lo creo
+        return User.create(req.body)
+          .then(user => {
+            res.redirect('/')
+          })
+      } else {
+        renderWithErrors({ email: 'Email already in use' })
+      }
+    }) // o un usuario || null
+    .catch(err => {
+      if (err instanceof mongoose.Error.ValidationError) {
+        renderWithErrors(err.errors)
+      } else {
+        next(err)
+      }
+    })
+// este catch es para saber si mongoose ha fallado al crear el modelo.
+
 }
