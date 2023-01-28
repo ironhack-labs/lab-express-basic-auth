@@ -1,35 +1,51 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
+const express = require('express');
+const logger = require('morgan');
+const cookieParser = require("cookie-parser");
+const favicon = require("serve-favicon");
+const path = require("path");
+const createError = require('http-errors');
+
 require('dotenv/config');
 
-// ℹ️ Connects to the database
-require('./db');
-
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require('express');
-
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require('hbs');
+const router = require('./config/routes.config');
+require('./config/db.config');
+require('./config/hbs.config');
 
 const app = express();
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require('./config')(app);
+app.use(logger('dev')); // logger de morgan para ver las peticiones que se hacen
+app.use(express.json()); // para que el body de las peticiones se pueda leer y ver en terminal
+app.use(express.urlencoded({ extended: false })); // para que el body de las peticiones se pueda leer
 
-// default value for title local
-const projectName = 'lab-express-basic-auth';
-const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+app.use(cookieParser());
 
-app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+app.set('views', __dirname + '/views');
+app.set('view engine', 'hbs');
 
-// 👇 Start handling routes here
-const index = require('./routes/index');
-app.use('/', index);
+/** Configure static files */
+app.use(express.static(path.join(__dirname, ".", "public")));
+app.use(favicon(path.join(__dirname, ".", "public", "images", "favicon.ico")));
 
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
+/** Router **/
+app.use('/', router)
+
+/**
+ * Error Middlewares
+ */
+
+app.use((req, res, next) => {
+  next(createError(404, 'Page not found'));
+});
+
+app.use((error, req, res, next) => {
+  console.log(error)
+  let status =  error.status || 500;
+
+  res.status(status).render('error', {
+    message: error.message,
+    error: req.app.get('env') === 'development' ? error : {}
+  })
+})
 
 module.exports = app;
 

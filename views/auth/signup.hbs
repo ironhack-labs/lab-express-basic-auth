@@ -1,0 +1,34 @@
+<h1> Sign Up </h1>
+
+<form action = "/signup" method = "POST">
+<div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text" class="form-control form-control {{#if errors.name}}is-invalid{{/if}}" id="name"
+      name="name" value="{{user.name}}" required
+    >
+    <div class="invalid-feedback">
+      <p>{{errors.name}}</p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email" class="form-control form-control {{#if errors.email}}is-invalid{{/if}}" id="email" name="email"
+      aria-describedby="emailHelp" value="{{user.email}}" required
+    >
+    <div class="invalid-feedback">
+      <p>{{errors.email}}</p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      class="form-control {{#if errors.password}}is-invalid{{/if}}"
+      type="password" id="password" name="password" required>
+    <div class="invalid-feedback">
+      <p>{{errors.password}}</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
