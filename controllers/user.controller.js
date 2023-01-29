@@ -1,38 +1,83 @@
 const User = require("../models/User.model");
-// const bcryptjs = require('bcryptjs');
-// const saltRounds = 10;
+const createError = require("http-errors");
+const mongoose = require("mongoose");
 
 module.exports.create = (req, res, next) => {
-res.render("user/form")
-}
+  res.render("user/signup");
+};
 
 module.exports.profile = (req, res, next) => {
-res.render("user/profile")
-}
+  res.render("user/profile");
+};
 
 module.exports.doCreate = (req, res, next) => {
-//const { username, password } = req.body;
+  const renderWithErrors = (errors) => {
+    res.render("user/signup", {
+      user: {
+        email: req.body.email,
+        username: req.body.username,
+      },
+      errors,
+    });
+  };
 
-User.create(req.body)
-.then((user) => res.redirect("/profile"))
-.catch(error => next(error));
-}
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        return User.create(req.body).then((user) => {
+          res.redirect("/login");
+        });
+      } else {
+        renderWithErrors({ email: "Email already in use" });
+      }
+    })
+    .catch((err) => {
+      if (err instanceof mongoose.Error.ValidationError) {
+        renderWithErrors(err.errors);
+      } else {
+        next(err);
+      }
+    });
+};
 
-// bcryptjs.genSalt(saltRounds)
-// .then(salt => bcryptjs.hash(password, salt))
-// .then(hashedPassword => {
-// //     return 
-//     User.create({
-//         username,
-//         password: hashedPassword
-//     });
-// })
-// .then(( )=>{
-//     //console.log('Newly created user is: ', user);
-//     res.redirect("/profile")
-// })
-// .catch(error => next(error));
-// }
+module.exports.login = (req, res, next) => {
+  res.render("user/login");
+};
 
+module.exports.doLogin = (req, res, next) => {
+  const { email, password } = req.body;
 
+  const renderWithErrors = () => {
+    res.render("user/login", {
+      user: { email },
+      errors: { email: "Email or password are incorrect" },
+    });
+  };
 
+  if (!email || !password) {
+    renderWithErrors();
+  }
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        renderWithErrors();
+      } else {
+        return user.checkPassword(password).then((match) => {
+          if (!match) {
+            renderWithErrors();
+          } else {
+            req.session.userId = user.id;
+            res.redirect("/profile");
+          }
+        });
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/login");
+};

@@ -1,0 +1,27 @@
+<div class="login-form">
+  <h3>Sign Up</h3>
+  <form action="/signup" method="POST">
+    <div class="mb-2">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" name="username" id="username" value="{{user.username}}"required>
+    </div>
+    <div>
+      <p style="color:brown">{{errors.username}}</p>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" name="email" value="{{user.email}}" required>
+    </div>
+    <div>
+      <p style="color:brown">{{errors.email}}</p>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label {{#if errors.password}}is-invalid{{/if}}">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+       <div class="">
+      <p style="color:brown">{{errors.password}}</p>
+       </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
