@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
 const path = require("path");
 const createError = require('http-errors');
+const {sessionConfig, loggedUser } = require ("./config/session.config");
 
 require('dotenv/config');
 
@@ -25,6 +26,10 @@ app.set('view engine', 'hbs');
 /** Configure static files */
 app.use(express.static(path.join(__dirname, ".", "public")));
 app.use(favicon(path.join(__dirname, ".", "public", "images", "favicon.ico")));
+
+//session middleware
+app.use(sessionConfig);
+app.use(loggedUser);
 
 /** Router **/
 app.use('/', router)
