@@ -1,0 +1,25 @@
+<h1>Signup</h1>
+
+<form action="/signup" method="POST">
+  <div class="mb-3">
+    <label for="username" class="form-label">Userame</label>
+    <input
+      type="text" class="form-control form-control {{#if errors.username}}is-invalid{{/if}}" id="name"
+      name="username" value="{{user.username}}" required
+    >
+    <div class="invalid-feedback">
+      <p>{{errors.username}}</p>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      class="form-control {{#if errors.password}}is-invalid{{/if}}"
+      type="password" id="password" name="password" required>
+    <div class="invalid-feedback">
+      <p>{{errors.password}}</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
