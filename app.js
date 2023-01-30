@@ -29,7 +29,7 @@ app.use(favicon(path.join(__dirname, ".", "public", "images", "favicon.ico")));
 
 //session middleware
 app.use(sessionConfig);
-app.use(loggedUser);
+app.use(loggedUser); // req.currentUser = undefined || user en sesion. Hay que ponerlo antes de laa ruta SIEMPRE
 
 /** Router **/
 app.use('/', router)

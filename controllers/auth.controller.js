@@ -19,7 +19,7 @@ module.exports.doSignup = (req, res , next) => {
     User.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
-        // lo creo
+        // lo intento crear- la promesa con un return comparte el catch
         return User.create(req.body)
           .then(user => {
             res.redirect('/')
@@ -29,7 +29,7 @@ module.exports.doSignup = (req, res , next) => {
       }
     }) // o un usuario || null
     .catch(err => {
-      if (err instanceof mongoose.Error.ValidationError) {
+      if (err instanceof mongoose.Error.ValidationError) { // verificamos que el error es una instacia de validacion de mongoose
         renderWithErrors(err.errors)
       } else {
         next(err)
@@ -64,9 +64,9 @@ User.finOne ( { email }) //contraseña hasheada => rawPassword
     return user.checkPassword(password)
     .then (match => {
       if (!match) {
-        renderWithErrors()
+        renderWithErrors() // la password esta mal 
       } else {
-        req.session.userId = user.userId
+        req.session.userId = user.userId // la contraseña ha estado bien y coincide con el hasheo
         res.redirect ("/profile")
       }
     })
