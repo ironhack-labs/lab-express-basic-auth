@@ -1,0 +1,39 @@
+
+  <h2>Signup</h2>
+
+  <form action="/signup" method="POST">
+   <div class="mb-3">
+    <label for="username" class="form-label"> User Name </label>
+    <input type="text" name="username" id = "username" placeholder="Your user name" 
+    class="form-control form-control {{#if errors.username}}is-invalid{{/if}}" value="{{user.username}}" required/>
+
+     <div class="invalid-feedback">
+      <p>{{errors.username}}</p>
+      </div>
+
+   </div>
+   
+  <div class="mb-3">
+    <label for="email" class="form-label"> Email</label>
+    <input type="email" name="email" id="email" id="email" placeholder="Your email"
+    class="form-control form-control {{#if errors.email}}is-invalid{{/if}}" value="{{user.email}}" required>
+
+    <div class="invalid-feedback">
+      <p>{{errors.email}}</p>
+    </div>
+
+</div>
+
+    <label for="password" class="form-label"> Password </label>
+    <input type="password" name="password" id="password" placeholder="********" 
+    class="form-control {{#if errors.password}}is-invalid{{/if}}" required/>
+
+    <div class="invalid-feedback">
+      <p>{{errors.password}}</p>
+    </div>
+</div>
+
+    <button type="submit" class="btn btn-primary">Create account</button>
+
+  </form>
+
