@@ -1,6 +1,6 @@
 <h1>Sign Up</h1>
 
-<form action="/user/signup" method="POST">
+<form action="/auth/signup" method="POST">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input id="username" name="username" type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" value="{{user.username}}">

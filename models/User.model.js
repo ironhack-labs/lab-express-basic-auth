@@ -26,8 +26,15 @@ userSchema.pre('save', function(next) {
       next()
     })
     .catch(err => console.error(err))
+  } else {
+    next()
   }
 });
+
+//Comparar contraseña que ingresó el usuario con la que registró al hacer el sign in
+userSchema.methods.checkPassword = function(passwordToCompare) {
+  return bcrypt.compare(passwordToCompare, this.password);
+}
 
 const User = mongoose.model("User", userSchema);
 

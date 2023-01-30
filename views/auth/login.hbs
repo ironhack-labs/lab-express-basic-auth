@@ -1,0 +1,19 @@
+<h1>Log In</h1>
+
+<form action="/auth/login" method="POST">
+  <div>
+    <p style="color: #DC3444;">{{errors.username}}</p>
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input id="username" name="username" type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" value="{{user.username}}">
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input id="password" name="password" type="password" class="form-control {{#if errors.username}}is-invalid{{/if}}">
+  </div>
+  <button>
+    LOG IN!
+  </button>
+</form>

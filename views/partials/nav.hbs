@@ -6,9 +6,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/signup">Sign Up</a>
+        {{#if currentUser}}
+          <li>
+          <a class="nav-link active" aria-current="page" href="/auth/logout">Log Out</a>
         </li>
+        {{else}}
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/auth/signup">Sign Up</a>
+        </li>
+        <li>
+          <a class="nav-link active" aria-current="page" href="/auth/login">Log In</a>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </div>
