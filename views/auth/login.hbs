@@ -1,0 +1,21 @@
+<div id="form">
+    <h2>Login</h2>
+   
+    <form action="/login" method="POST">
+    
+        <label for="username">Username</label>
+            <input {{#if errors.username}}is-invalid{{/if}} type="username" name="username"/>
+            <p>{{errors.username}}</p>
+
+        <label for="password">Password</label>
+            <input {{#if errors.password}}is-invalid{{/if}} type="password" name="password" placeholder="********"/>
+            <p>{{errors.password}}</p>
+
+        <button type="submit">Login</button>
+    
+    {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+    </form>
+</div>

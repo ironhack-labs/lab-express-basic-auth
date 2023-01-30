@@ -1,17 +1,22 @@
-//require session
-const session = require('express-session');
+const expressSession = require("express-session");
+const MongoStore = require("connect-mongo");
+const { DB } = require("../db/index");
 
-module.exports = app => {
-    app.use(
-        session({
-        secret: process.env.SESS_SECRET,
-        resave: true,
-        saveUninitialized: false,
-        cookie: {
-            sameSite: 'none',
-            httpOnly: true,
-            maxAge: 60000 // 60 * 1000 ms === 1 min
-        }
-        })
-    );
-};
+const sessionMaxAge = process.env.SESSION_AGE || 7;
+
+const sessionConfig = expressSession({
+  secret: process.env.COOKIE_SECRET || "Super secret (change it!)",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.COOKIE_SECURE === "true" || false,
+    maxAge: 24 * 3600 * 1000 * sessionMaxAge,
+    httpOnly: true,
+  },
+  store: new MongoStore({
+    mongoUrl: DB,
+    ttl: 24 * 3600 * sessionMaxAge,
+  }),
+});
+
+module.exports = sessionConfig;
