@@ -21,6 +21,7 @@ const app = express();
 // Session middleware
 app.use(sessionConfig);
 app.use(loggerUser);
+// req.currentUser = undefined || user en sesion. Hay que ponerlo antes de laa ruta SIEMPRE
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);

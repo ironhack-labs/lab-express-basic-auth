@@ -25,7 +25,7 @@ module.exports.loggerUser = (req, res,next) => {
     User.findById(userId)
     .then(user=>{
       if(user){
-        req.currentUser = user
+        req.currentUser = user   // para que el usuario este disponible en todas las rutas/controladores
         res.locals.currentUser = user
         next()
       } else{
