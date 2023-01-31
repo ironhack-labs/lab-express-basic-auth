@@ -2,6 +2,10 @@
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 
+module.exports.index =(req, res,next) =>{
+  res.render("index")
+}
+
 module.exports.signup = (req, res, next) => {
   res.render('auth/signup');
 }
@@ -67,9 +71,11 @@ module.exports.doLogin = (req, res, next) => {
       } else {
         return user.checkPassword(password)
           .then(match => {
-            if (!match) {       
+            if (!match) {
+              renderWithErrors()
+            } else {
               req.session.userId = user.id  // la contraseña ha estado bien y coincide con el hasheo
-              res.redirect('user/profile')
+              res.redirect('/profile')
             }
           })
         // Comprobamos que la contraseña sea correcta
@@ -79,6 +85,7 @@ module.exports.doLogin = (req, res, next) => {
       next(err)
     })
 }
+
 
 module.exports.logout = (req, res, next) => {
   req.session.destroy()
