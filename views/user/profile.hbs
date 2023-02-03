@@ -1,0 +1,39 @@
+<h1>Profile</h1>
+
+<h2>Welcome {{currentUser.name}}</h2>
+<p>Your email is {{currentUser.email}}</p>
+
+
+<h3>Your books list</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {{#each currentUser.books as |book|}}
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <p class="card-text">{{book.description}}</p>
+          <p class="card-text">Author: {{book.user.name}}</p>
+          {{!-- <p class="card-text">Author: {{../currentUser.name}}</p> --}}
+          {{!-- book.user.name requiere de populate  en el session config que es donde tengo el find --}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<h3>Books from other people</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {{#each books as |book|}}
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <p class="card-text">{{book.description}}</p>
+          <p class="card-text">Author: {{book.user.name}}</p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

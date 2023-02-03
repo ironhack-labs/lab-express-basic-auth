@@ -1,0 +1,22 @@
+<h1>Create new book</h1>
+
+<form action="/books" method="POST">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text" class="form-control form-control {{#if errors.title}}is-invalid{{/if}}" id="title"
+      name="title" value="{{book.title}}" required
+    >
+    <div class="invalid-feedback">
+      <p>{{errors.title}}</p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control {{#if errors.description}}is-invalid{{/if}}" name="description" id="description" rows="3">{{book.description}}</textarea>
+    <div class="invalid-feedback">
+      <p>{{errors.description}}</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

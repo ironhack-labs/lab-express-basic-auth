@@ -1,19 +1,17 @@
 module.exports.isAuthenticated = (req, res, next) => {
-    // para saber si esta autenticado
-    const autheticated = true
-    if (autheticated) {
-      next()
-    } else {
-      res.redirect('/login')
-    }
+  // para saber si esta autenticado/pasa al siguiente middleware..en routes.config.js
+  if (req.currentUser) {
+    next()
+  } else {
+    res.redirect('/login')
   }
-  
-  module.exports.isNotAuthenticated = (req, res, next) => {
-    // para saber si esta autenticado
-    const autheticated = false
-    if (!autheticated) {
-      next()
-    } else {
-      res.redirect('/')
-    }
+}
+
+module.exports.isNotAuthenticated = (req, res, next) => {
+  // para saber si esta autenticado
+  if (!req.currentUser) {
+    next()
+  } else {
+    res.redirect('/profile')
   }
+}

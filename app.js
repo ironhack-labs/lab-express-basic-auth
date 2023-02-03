@@ -9,7 +9,7 @@ require('./db');
 // https://www.npmjs.com/package/express
 const express = require('express');
 const logger = require('morgan');
-//const createError = require('http-errors');
+const createError = require('http-errors');
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
@@ -35,6 +35,17 @@ app.use('/', router)
 app.use((req, res, next) => {
  next(createError(404, 'Page not found'));
 });
+
+
+app.use((error, req, res, next) => {
+    console.log(error)
+    let status =  error.status || 500;
+  
+    res.status(status).render('error', {
+      message: error.message,
+      error: req.app.get('env') === 'development' ? error : {}
+    })
+  })
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
