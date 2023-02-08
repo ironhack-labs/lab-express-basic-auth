@@ -37,7 +37,8 @@ router.post("/signup", async (req, res) => {
 
       // create new user
       const newUser = await User.create({ username: username, password: hash });
-      res.send(`new user ${username} created`);
+      // res.send(`new user ${username} created`);
+      res.redirect("/profile");
     }
   } catch (err) {
     console.log(err);
@@ -48,6 +49,30 @@ router.post("/signup", async (req, res) => {
 // render login page
 router.get("/login", (req, res, next) => {
   res.render("login");
+});
+
+// submit login
+router.post("/login", async (req, res, next) => {
+  // deconstruct req.body
+  const { username, password } = req.body;
+
+  // find user in database
+  const user = await User.findOne({ username });
+
+  // compare password
+  const result = await bcrypt.compareSync(password, user.password);
+  if (result) {
+    console.log("CONGRATS SUCCESSFUL LOGIN");
+    res.redirect("/profile");
+  } else {
+    console.log("INCORRECT PASSWORD. TRY AGAIN.");
+    res.render("login", { message: "incorrect username or password!" });
+  }
+});
+
+// render profile page
+router.get("/profile", (req, res, next) => {
+  res.render("profile");
 });
 
 module.exports = router;
