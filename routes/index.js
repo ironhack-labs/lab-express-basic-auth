@@ -2,6 +2,23 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
+// Configure session
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+
+router.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: true,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+    }),
+  })
+);
+// End of session configuration
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
@@ -63,6 +80,10 @@ router.post("/login", async (req, res, next) => {
   const result = await bcrypt.compareSync(password, user.password);
   if (result) {
     console.log("CONGRATS SUCCESSFUL LOGIN");
+    req.session.user_id = user._id;
+    console.log("************SESSION BELOW!!!***********");
+    console.log("SESSION BODY", req.session);
+    console.log("SESSION USER ID", req.session.user_id);
     res.redirect("/profile");
   } else {
     console.log("INCORRECT PASSWORD. TRY AGAIN.");
@@ -73,6 +94,15 @@ router.post("/login", async (req, res, next) => {
 // render profile page
 router.get("/profile", (req, res, next) => {
   res.render("profile");
+});
+
+// secret page
+router.get("/secret", (req, res) => {
+  if (!req.session.user_id) {
+    res.send("login first");
+  } else {
+    res.send("you cannot see me unless logged in");
+  }
 });
 
 module.exports = router;
