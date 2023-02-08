@@ -8,9 +8,22 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/profile", isLoggedIn, (req,res,next) => {
-const user = req.session.user
-res.render("profile", {user})
+  const user = req.session.user
+  res.render("profile", {user})
+  
+  })
 
-})
+  router.get("/main", isLoggedIn, (req,res,next) => {
+    const user = req.session.user
+    res.render("main", {user})
+    
+    })
+
+    router.get("/private", isLoggedIn, (req,res,next) => {
+      const user = req.session.user
+      res.render("private", {user})
+      
+      })
+  
 
 module.exports = router;

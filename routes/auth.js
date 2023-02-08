@@ -9,7 +9,7 @@ router.get("/auth/signup", (req, res, next) => {
 router.post("/auth/signup", (req, res, next) => {
     const { username, password } = req.body
 
-    if (username === "") {
+    if (username === "" || password ==="") {
         res.render("signup", { message: "Username cannot be empty" })
         return
     }
@@ -67,6 +67,12 @@ router.post("/auth/login", (req, res, next) => {
         return
       }
     })
+})
+
+router.get("/auth/logout", (req, res, next) => {
+    //Logout user
+    req.session.destroy()
+    res.redirect("/")
 })
 
 
