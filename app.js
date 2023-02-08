@@ -15,6 +15,23 @@ const hbs = require('hbs');
 
 const app = express();
 
+//LA SESIOOONNNN
+// Configure session
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: true,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1/lab-express-basic-auth"
+    })
+  })
+)
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
