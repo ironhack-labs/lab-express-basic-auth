@@ -96,13 +96,31 @@ router.get("/profile", (req, res, next) => {
   res.render("profile");
 });
 
-// secret page
-router.get("/secret", (req, res) => {
+// render main cat page
+router.get("/main", (req, res, next) => {
   if (!req.session.user_id) {
-    res.send("login first");
+    res.send("you are not logged in");
   } else {
-    res.send("you cannot see me unless logged in");
+    res.render("main");
   }
 });
+
+// render private funny page
+router.get("/private", (req, res, next) => {
+  if (!req.session.user_id) {
+    res.send("you are not logged in");
+  } else {
+    res.render("private");
+  }
+});
+
+// secret page
+// router.get("/secret", (req, res) => {
+//   if (!req.session.user_id) {
+//     res.send("login first");
+//   } else {
+//     res.send("you cannot see me unless logged in");
+//   }
+// });
 
 module.exports = router;
