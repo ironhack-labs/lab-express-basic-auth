@@ -1,0 +1,22 @@
+<div id="form"><
+
+<h2>Signup</h2>
+
+
+<form action="/signup" method="POST">
+  <label> Username
+  <input type="text" name="username" required>
+  </label>
+
+  <label> Password
+  <input type="password" name="password" required>
+  </label>
+
+  <button type="submit">Create account</button>
+
+{{#if message}}
+  <h3 class="error">{{message}}</h3>
+{{/if}}
+
+</form>
+</div>
