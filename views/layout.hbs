@@ -1,19 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
   <body>
+    <div class='container'>
+      <nav>
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <li><a href='/main'>Main Page</a></li>
+          <li><a href='/private'>Private Page</a></li>
+          <li><a href='/user/register'>Register</a></li>
+          <li><a href='/user/login'>Login</a></li>
+        </ul>
+      </nav>
+      <section class='main'>
 
-    {{{body}}}
+        {{{body}}}
 
-    <script src="/js/script.js"></script>
+      </section>
+
+      <footer>
+        Carlos Sosa (devcaco) | IronHack RMT-MIA-PTWD-2022
+      </footer>
+    </div>
+
+    <script src='/js/script.js'></script>
   </body>
 
 </html>

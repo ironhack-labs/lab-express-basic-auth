@@ -1,0 +1,31 @@
+<section class='register'>
+  <h1>User Registration</h1>
+  {{#unless isRegistered}}
+    <form action='/user/register' method='post'>
+      <label for='username'>Username</label>
+      <input type='text' name='username' id='username' value='{{username}}' />
+
+      <label for='password'>Password</label>
+      <input type='password' name='password' id='password' value='' />
+
+      <label for='password2'>Confirm Password</label>
+      <input type='password' name='password2' id='password2' />
+
+      <button>Register</button>
+    </form>
+  {{else}}
+    <div class='success'>
+      User Registration Successful!
+    </div>
+  {{/unless}}
+
+  {{#if errorMsg}}
+    <div>
+      {{#each errorMsg}}
+        <div>
+          {{this}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</section>
