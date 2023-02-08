@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const { isLoggedIn } = require("../middleware/route-guard");
+const { route } = require("../app");
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
@@ -53,6 +55,14 @@ router.post("/login", (req, res, next) => {
 router.get("/logout", (req, res, next) => {
   req.session.destroy();
   res.redirect("/");
+});
+
+router.get("/main", (req, res, next) => {
+  res.render("main");
+});
+
+router.get("/private", isLoggedIn, (req, res, next) => {
+  res.render("private");
 });
 
 module.exports = router;
