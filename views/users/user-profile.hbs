@@ -1,0 +1,19 @@
+
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/">Home</a>
+  </button>
+
+  <button>
+    <a href="/private">Private</a>
+  </button>
+
+<img src="https://s2.qwant.com/thumbr/0x380/e/d/8620716dc4343fdd419a420e4ddd69d2cef5d24740e32c75a0ab6b54d6882d/meme-2.jpg?u=https%3A%2F%2Fwelovecatsandkittens.com%2Fwp-content%2Fuploads%2F2017%2F09%2Fmeme-2.jpg&q=0&b=1&p=0&a=0" alt="cat">
+
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}}
