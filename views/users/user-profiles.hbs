@@ -1,0 +1,19 @@
+{{#if userInSession}}
+  <h2>Welcome, {{userInSession.username}}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/private">Privado</a>
+  </button>
+  <button>
+    <a href="/">Regresar al index</a>
+  </button>
+
+  <img
+    src="https://pbs.twimg.com/media/EaLXD5bX0AE_cvl?format=jpg&name=small"
+    alt="gatossss"
+  />
+{{else}}
+
+  <br /><p>Still no logged in user, sorry!</p>
+
+{{/if}}
