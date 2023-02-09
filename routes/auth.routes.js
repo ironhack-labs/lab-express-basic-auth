@@ -12,15 +12,23 @@ router.get('/signup',isLoggedOut, (req, res, next) => res.render('auth/signup'))
 
 // POST route ==> to process form data
 router.post('/signup', (req, res, next) => {
-    console.log('The form data: ', req.body);
     const { username, password } = req.body;
 
     ////////////////////////////////////////////////////////////////////
 // make sure users fill all mandatory fields:
-if (!username ===''|| !password==='') {
+if (!username || !password) {
     res.render('auth/signup', { errorMessage: 'Please provide your username and password to login.' });
     return;
   }
+
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
 
     bcryptjs
         .genSalt(saltRounds)
@@ -29,12 +37,12 @@ if (!username ===''|| !password==='') {
             console.log(`Password hash: ${hashedPassword}`);
             return User.create({
                 username,
-                passwordHash: hashedPassword
+                password: hashedPassword
             })
         })
         .then((newUser) => {
             console.log("nuevo usuario", newUser)
-            const {username,_id}= newUser
+            
             res.redirect("/userProfile")
         })
         .catch(error =>{
@@ -72,7 +80,7 @@ router.post('/login', (req, res, next) => {
         if (!user) {
           res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
           return;
-        } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        } else if (bcryptjs.compareSync(password, user.password)) {
             req.session.currentUser = user;
           //res.render('users/user-profile', {'users/user-profile', { userInSession: req.session.currentUser });
        res.redirect("/userProfile")
@@ -85,6 +93,13 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/userProfile', isLoggedIn, (req, res) => res.render('users/user-profile', { userInSession: req.session.currentUser }));
+
+
+
+router.get('/private', (req,res,next)=>res.render("users/private", { userInSession: req.session.currentUser }))
+
+
+
 
 router.post('/logout', (req, res, next) => {
     req.session.destroy(err => {
