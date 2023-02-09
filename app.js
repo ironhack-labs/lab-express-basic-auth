@@ -3,8 +3,8 @@
 require('dotenv/config');
 
 // ℹ️ Connects to the database
-require('./db');
-
+// require('./db');
+const { MONGO_URI } = require('./db');
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require('express');
@@ -28,7 +28,7 @@ app.use(
       maxAge: 600000,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
+      mongoUrl: MONGO_URI,
     }),
   })
 );
