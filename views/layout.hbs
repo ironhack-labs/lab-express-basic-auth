@@ -11,6 +11,31 @@
 
   <body>
 
+      <!-- add the navbar code below -->
+    <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Users - demo </a></p>
+        </li>
+        {{#unless userInSession}}
+        <li id="to-right">
+          <a href="/signup">Signup</a>
+        </li>
+         <li id="to-right">
+          <a href="/login">Login</a>
+        </li>
+         {{/unless}}
+      {{#if userInSession}}
+
+         <li>
+            <form id="logout-form" action="/logout" method="POST">
+               <button>Logout</button>
+                  </form>
+                     </li>
+      {{/if}}
+      </ul>
+    </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
