@@ -1,0 +1,12 @@
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  
+    <a href="/"><button>Home</button></a>
+    <a href="/private"><button>uyuyuy</button></a>
+    <img src="https://programmerhumor.io/wp-content/uploads/2022/10/programmerhumor-io-programming-memes-874978ffbfe7dee-758x658.jpg" alt="cat">
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}}

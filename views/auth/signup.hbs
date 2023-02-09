@@ -1,0 +1,17 @@
+<div id="form">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+ 
+    <label> Username
+      <input type="text" name="username" placeholder="Usuario" required/>
+    </label>
+ 
+    <label> Password
+      <input type="password" name="password" placeholder="********" required minlength="8"/>
+    </label>
+ 
+    <button type="submit">Crea un Cuenta</button>
+ 
+    {{!-- error message will be added here --}}
+  </form>
+</div>
