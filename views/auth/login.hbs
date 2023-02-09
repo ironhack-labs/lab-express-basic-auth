@@ -9,4 +9,14 @@
 
     <button>Login</button>
   </form>
+
+  {{#if errorMsg}}
+    <div>
+      {{#each errorMsg}}
+        <div>
+          {{this}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
 </section>

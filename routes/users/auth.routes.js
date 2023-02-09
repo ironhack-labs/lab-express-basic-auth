@@ -1,18 +1,54 @@
 const { Router } = require('express');
 const router = new Router();
-
+const User = require('../../models/User.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-
-const User = require('../../models/User.model');
-
-const mongoose = require('mongoose');
-const { bulkSave } = require('../../models/User.model');
+const { isLoggedIn, isLoggedOut } = require('../../middleware/routes-guard');
 
 /* GET home page */
+router.get('/login', isLoggedOut, async (req, res, next) => {
+  res.render('auth/login');
+});
+
 router.get('/register', async (req, res, next) => {
   req.query.R === 'T' ? (isRegistered = true) : (isRegistered = false);
   res.render('auth/register', { isRegistered });
+});
+
+router.get('/logout', async (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
+
+router.post('/login', async (req, res, next) => {
+  console.log('SESSION =====> ', req.session);
+  try {
+    const errorMsg = [];
+    const { username, password } = req.body;
+
+    if (!username) errorMsg.push('Validation Error: username cannot be empty!');
+    if (!password) errorMsg.push('Validation Error: password cannot be empty!');
+
+    if (errorMsg.length) throw new Error(errorMsg);
+
+    const user = await User.findOne({ username });
+    if (!user) throw new Error('Username not found');
+
+    console.log({ user });
+
+    const pwdOk = await bcryptjs.compare(password, user.password);
+
+    if (!pwdOk) throw new Error('Password is invalid');
+
+    req.session.currentUser = user;
+    res.redirect('/user/main');
+  } catch (err) {
+    console.log({ error: err });
+
+    res.status(500).render('auth/login', { errorMsg: err.message.split(',') });
+  }
 });
 
 router.post('/register', async (req, res, next) => {

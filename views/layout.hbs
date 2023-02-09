@@ -13,10 +13,14 @@
       <nav>
         <ul>
           <li><a href='/'>Home</a></li>
-          <li><a href='/main'>Main Page</a></li>
-          <li><a href='/private'>Private Page</a></li>
-          <li><a href='/user/register'>Register</a></li>
-          <li><a href='/user/login'>Login</a></li>
+          <li><a href='/user/main'>Main Page</a></li>
+          <li><a href='/user/private'>Private Page</a></li>
+          {{#unless session.currentUser}}
+            <li><a href='/user/register'>Register</a></li>
+            <li><a href='/user/login'>Login</a></li>
+          {{else}}
+            <li><a href='/user/logout'>Logout</a></li>
+          {{/unless}}
         </ul>
       </nav>
       <section class='main'>

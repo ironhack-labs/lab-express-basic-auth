@@ -101,3 +101,26 @@ form button {
   justify-content: center;
   align-items: center;
 }
+
+.main__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__page img {
+  width: 400px
+}
+
+.private__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+}
+
+.private__page img {
+  width: 200px
+}

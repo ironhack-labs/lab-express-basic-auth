@@ -3,13 +3,19 @@
   {{#unless isRegistered}}
     <form action='/user/register' method='post'>
       <label for='username'>Username</label>
-      <input type='text' name='username' id='username' value='{{username}}' />
+      <input
+        type='text'
+        name='username'
+        id='username'
+        value='{{username}}'
+        required
+      />
 
       <label for='password'>Password</label>
-      <input type='password' name='password' id='password' value='' />
+      <input type='password' name='password' id='password' required />
 
       <label for='password2'>Confirm Password</label>
-      <input type='password' name='password2' id='password2' />
+      <input type='password' name='password2' id='password2' required />
 
       <button>Register</button>
     </form>
