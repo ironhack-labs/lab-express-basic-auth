@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Log in</h1>
+            <hr>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="userName">User</label>
+                    <input type="text" class="form-control" name="userName" id="userName" value="">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" name="pwd" id="pwd" value="">
+                </div>
+                <button class="btn btn-dark btn-block btn-lg">Log in</button>
+            </form>
+            {{#if errorMessage}}
+            <p style="background-color: red; height:2em; margin-top:0.5em; text-align:center; padding-top:0.5em; color:#fff;">{{errorMessage}}</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
