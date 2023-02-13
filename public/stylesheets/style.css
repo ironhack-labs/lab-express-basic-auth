@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+#error {
+  background-color: rgb(255, 193, 193);
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  font-size: .8em;
+}
+
+.image {
+  width: 400px;
+}
