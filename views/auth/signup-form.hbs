@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Regístrate gratis</h1>
+            <hr>
+            <form action="/registro" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                    <div class="form-text">Usa tu fantasía.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Dirección de email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="userPassword">
+                    <div class="form-text">Mínimo 4 caracteres.</div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Registrarme</button>
+                </div>
+                {{#if errorMessage}}
+                <p id="error" class="mt-3">{{errorMessage}}</p>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>
