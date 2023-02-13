@@ -14,12 +14,12 @@ router.get('/registro', isLoggedOut, (req, res) => {
 
 router.post('/registro', (req, res) => {
 
-    const { username, email, userPassword } = req.body
+    const { username, userPassword } = req.body
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(userPassword, salt))
-        .then(passwordHash => User.create({ email, username, password: passwordHash }))
+        .then(passwordHash => User.create({ username, password: passwordHash }))
         .then(user => res.redirect('/'))
         .catch(err => console.log(err))
 })
@@ -30,15 +30,15 @@ router.get('/inicio-sesion', isLoggedOut, (req, res) => {
 
 router.post('/inicio-sesion', (req, res) => {
 
-    const { email, userPassword } = req.body
+    const { username, userPassword } = req.body
 
-    if (email.length === 0 || userPassword.length === 0) {
+    if (username.length === 0 || userPassword.length === 0) {
         res.render('auth/login-form', { errorMessage: 'Complete fields' })
         return
     }
 
     User
-        .findOne({ email })
+        .findOne({ username })
         .then(user => {
 
             if (!user) {
