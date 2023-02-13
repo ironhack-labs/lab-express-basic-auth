@@ -1,0 +1,20 @@
+<h2>Sign in form</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form action="/sign-in" method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="string" class="form-control" id="username" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="userPwd" class="form-label">Password</label>
+                <input type="password" class="form-control" id="userPwd" name="userPwd">
+            </div>
+            {{#if errorMessage}}
+            <p id="errorMessage" class="mt-2">{{errorMessage}}</p>
+            {{/if}}
+            <button type="submit" class="btn btn-success">Sign in</button>
+        </form>
+    </div>
+</div>
