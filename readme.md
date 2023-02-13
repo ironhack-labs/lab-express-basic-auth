@@ -151,19 +151,19 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
 
   ```js
   // IMPORT MONGOOSE
-  const mongoose = require("mongoose");
+  const mongoose = require("mongoose")
 
   // CREATE A SCHEMA - defines the shape of the documents
   const userSchema = new mongoose.Schema({ 
     firstName: String,
     lastName: String 
-  });
+  })
 
   // CREATE THE MODEL
-  const User = mongoose.model('User', schema);
+  const User = mongoose.model('User', schema)
 
   // EXPORT THE MODEL
-  module.exports = User;
+  module.exports = User
   ```
 
   <br>
@@ -301,7 +301,7 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
    ```js
    app.get('/search', (req, res) => {
      // form handling logic
-   });
+   })
    ```
 
    Your form `action` attribute should have the same path and the `method` should be the same:
@@ -315,8 +315,8 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
    ```js
    app.get('/search', (req, res) => {
      // Print the data coming from the form
-     console.log(req.query);
-   });
+     console.log(req.query)
+   })
    ```
 
   3. Check that the `form` tag is properly formatted and that it has an opening and a closing tag. Example: 
@@ -562,7 +562,7 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
    - Inside the *MongoDB* folder, follow this path `Server/4.4/bin`. The version number on your system (`4.4`) may be slightly different for the newer installations.
    - Double-click on the file named **mongod.exe**.
 
-     <details style="font-size: 14px; cursor: pointer; outline: none;">
+     <details style="font-size: 14px cursor: pointer outline: none">
       <summary> Check the image inside </summary>
 
      <br>
@@ -645,7 +645,7 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
    - Inside the *MongoDB* folder, follow this path `Server/4.4/bin`. The version number on your system (`4.4`) may be slightly different for the newer installations.
    - Double-click on the file named **mongod.exe**.
 
-     <details style="font-size: 14px; cursor: pointer; outline: none;">
+     <details style="font-size: 14px cursor: pointer outline: none">
       <summary> Check the image inside </summary>
 
      <br>
@@ -673,7 +673,7 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
   Here's an example of how to set the `timestamps: true` option in a Mongoose schema:
 
   ```js
-  const { Schema, model } = require("mongoose");
+  const { Schema, model } = require("mongoose")
 
   const userSchema = new Schema(
     {
@@ -685,12 +685,12 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
       // this option adds extra properties: `createdAt` and `updatedAt`
       timestamps: true,
     }
-  );
+  )
 
 
-  const User = model("User", userSchema);
+  const User = model("User", userSchema)
 
-  module.exports = User;
+  module.exports = User
   ```
 
   For more information, check: [Mongoose: Timestamps](https://mongoosejs.com/docs/timestamps.html)

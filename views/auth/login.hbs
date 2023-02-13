@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1>Log In</h1>
+        <hr>
+        <form action="/login" method="POST">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="userPwd" class="form-label">Password</label>
+                <input type="password" class="form-control" id="userPwd" name="userPwd">
+            </div>
+            <div>
+                {{#if errorMessage}}
+                <p id="error" class="mt-2 mb-2">{{errorMessage}}</p>
+                {{/if}}
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-dark">Log In</button>
+            </div>
+        </form>
+    </div>
+</div>
