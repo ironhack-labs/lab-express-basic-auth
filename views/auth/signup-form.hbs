@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row d-flex justify-content-center mt-2 ">
+        <div class="col-6">
+            <h1 class="mt-2 text-center">Signup</h1>
+
+            <form method="POST" action="/signup">
+                {{#if emptyName}}
+                <div class="rounded-3 bg-danger text-white  p-1 d-flex justify-content-center align-items-center ">
+                    <p class="mb-0">{{emptyName}}</p>
+                </div>
+                {{/if}}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="name" name="name">
+                </div>
+                {{#if emptyEmail}}
+                <div class="rounded-3 bg-danger text-white  p-1 d-flex justify-content-center align-items-center ">
+                    <p class="mb-0">{{emptyEmail}}</p>
+                </div>
+                {{/if}}
+                {{#if emailUsed}}
+                <div class="rounded-3 bg-danger text-white  p-1 d-flex justify-content-center align-items-center ">
+                    <p class="mb-0">{{emailUsed}}</p>
+                </div>
+                {{/if}}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+                    <div id="email" class="form-text">Email must be unique.</div>
+                </div>
+                {{#if emptyPassword}}
+                <div class="rounded-3 bg-danger text-white  p-1 d-flex justify-content-center align-items-center ">
+                    <p class="mb-0">{{emptyPassword}}</p>
+                </div>
+                {{/if}}
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="userPassword">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
