@@ -1,8 +1,19 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+img {
+    height: 500px;
 }
 
-a {
-  color: #00B7FF;
+#error {
+    background-color: rgb(165, 65, 65);
+    text-align: center;
+    padding: 5px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.nav-link {
+    color: white;
+
+
 }
