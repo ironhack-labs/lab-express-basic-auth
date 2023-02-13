@@ -6,7 +6,10 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
+  password: {
+    type: String,
+    min: 6,
+  }
 });
 
 const User = model("User", userSchema);

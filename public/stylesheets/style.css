@@ -1,8 +1,21 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Mallanna', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+img {
+  width: 30%;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+
+.errorMessage {
+  font-weight: 400;
+  background-color: rgb(236, 167, 150);
+  text-align: center;
+  padding: 5px;
+}
+
+.index {
+  margin: 60px;
+  font-weight: bold;
 }
