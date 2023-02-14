@@ -1,0 +1,23 @@
+<div class="container">
+    <a href="/" class="btn btn-dark mt-4">Ir al inicio</a>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1 class="mt-2">Inicia sesión</h1>
+            <hr>
+            <form action="/login" method="POST">
+                <div class="mb-4">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-4">
+                    <label for="userPass" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="userPass" name="userPass">
+                </div>
+                <button type="submit" class="btn btn-dark mt-2">Iniciar sesión</button>
+                {{#if errorMessage}}
+                <p id="error" class="mt-2">{{errorMessage}}</p>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

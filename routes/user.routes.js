@@ -4,13 +4,18 @@ const bcrypt = require('bcryptjs')
 //Model
 const User = require('./../models/User.model')
 
-// Middlewares
+//Middlewares
 const { isLoggedOut } = require('../middlewares/route-guard')
 const { isLoggedIn } = require('../middlewares/route-guard')
 
-// Homepage
-router.get("/", (req, res, next) => {
-  res.render("index")
+// Main
+router.get('/main', isLoggedIn, (req, res) => {
+    res.render('main')
+})
+
+// Private
+router.get('/private', isLoggedIn, (req, res) => {
+    res.render('private')
 })
 
 module.exports = router
