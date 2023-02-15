@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Authentication</h1>
+<button><a href="/user/register">Register</a></button>
+<button><a href="/user/login">Log In</a></button>
+<h2>Check out this webs:</h2>
+<ul>
+<li><a href="/protected/cat">Funny Cat</a></li>
+<li><a href="/protected/secret">Secret</a></li>
+</ul>
+<button><a href="/user/logout">Log Out?</a></button>
+{{#if error}}
+<h3>{{error}}</h3>
+{{/if}}
