@@ -18,6 +18,7 @@
          <a href="/">Home</a>
          <a href="/main">Main</a>
          <a href="/private">Private</a>
+         <a href="/profile">My Profile</a>
         </div>
          {{#unless username}}
          <div class="right">
@@ -30,7 +31,7 @@
          {{#if username}}
            <div>
          <form action="/logout" method="post">
-             <button type="submit">Log out</button>
+             <button class="out-btn" type="submit">Log out</button>
            </form>
            </div>
           {{/if}}

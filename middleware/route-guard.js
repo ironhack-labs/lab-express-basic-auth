@@ -8,4 +8,4 @@ const isLoggedIn = (req, res, next) => {
     next()
   };
   
-module.exports = {isLoggedOut, isLoggedIn};
+module.exports = isLoggedOut;

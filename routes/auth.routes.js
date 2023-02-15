@@ -4,7 +4,7 @@ const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 //const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard')
 
-const {isLoggedOut, isLoggedIn} = require('../middleware/route-guard')
+const isLoggedOut = require('../middleware/route-guard')
 
 router.get('/signup', (req, res) => res.render('auth/signup'))
 
@@ -60,7 +60,7 @@ router.post('/login', async (req, res, next)=> {
         let user = await User.findOne({username})
 
         if (!user) {
-            res.render('auth/login', {errorMessage: "Account does not exist"})
+            res.render('auth/login', {errorMessage: "Account does not exist, please sign up"})
 
         } else if (bcrypt.compareSync(password, user.password)) {
 
@@ -85,8 +85,8 @@ router.get('/profile', (req, res) => {
 
 
 router.get('/main', isLoggedOut, (req, res, next) => {
-    let view = {layout: false}
-    res.render('main', view)
+    let user = req.session.user
+    res.render('main', user)
 })
 
 router. get('/private', isLoggedOut, (req, res, next) => {

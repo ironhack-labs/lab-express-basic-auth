@@ -1,3 +1,10 @@
-<h1>Welcome {{username}}</h1>
+ <h1>My Profile</h1>
+ {{#if username}}
+ <h2>Welcome {{username}}</h2>
+ <img class="cat" src="{{pictureUrl}}" alt="pic">
+    {{else}}
+     <p style='color: red'>You have to log in or create an account</p>
+    {{/if}}
+
 
 

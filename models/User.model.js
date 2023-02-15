@@ -13,6 +13,11 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
+
+    pictureUrl: {
+      type: String,
+      default: "https://shamelesstale.files.wordpress.com/2016/03/cat-sneeze14.jpg",
+   },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
