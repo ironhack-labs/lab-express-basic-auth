@@ -11,6 +11,31 @@
 
   <body>
 
+<body>
+       <nav class='nav-bar'>
+
+          <div class="left">
+         <a href="/">Home</a>
+         <a href="/main">Main</a>
+         <a href="/private">Private</a>
+        </div>
+         {{#unless username}}
+         <div class="right">
+           <a href="/signup">Sign Up</a>
+           <a href="/login">Log In</a>
+           </div>
+         {{/unless}}
+
+
+         {{#if username}}
+           <div>
+         <form action="/logout" method="post">
+             <button type="submit">Log out</button>
+           </form>
+           </div>
+          {{/if}}
+       </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
