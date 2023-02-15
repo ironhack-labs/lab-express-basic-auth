@@ -11,6 +11,21 @@
 
   <body>
 
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          {{#unless isLoggedIn}}
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Log in</a></li>
+          {{/unless}}
+          {{#if isLoggedIn}}
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+          {{/iff}}
+        </ul>
+      </nav>
+    </header>
     {{{body}}}
 
     <script src="/js/script.js"></script>
