@@ -13,9 +13,9 @@
 
     <nav>
       <a href="/">Home</a>
-      <a href="/signup">Signup</a>
       {{#unless username}}
-        <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
       {{/unless}}
       
        <a href="/main">Main</a>
@@ -23,10 +23,7 @@
 
       {{#if username}}
       <a href="/profile"><h5>{{username}} is logged in</h5></a>
-      {{/if}}
-
-      {{#if username}}
-         <form action="/logout" method="post">
+      <form action="/logout" method="post">
          <button type="submit">Logout</button>
       </form>
       {{/if}}
