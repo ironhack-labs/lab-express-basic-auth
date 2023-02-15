@@ -12,14 +12,20 @@
   <body>
       <nav>
         <a href="/">Home</a>
-        <a href="/signup">Sign Up</a>
-        <a href="/login">Log In</a>
+        {{#unless username}}
+          <a href="/signup">Sign Up</a>
+          <a href="/login">Log In</a>
+        {{/unless}}
         <a href="/main">Main</a>
         <a href="/private">Private</a>
-        <form action="/logout" method="post">
+        {{#if username}}
+          <form action="/logout" method="post">
             <button type="submit">Log out</button>
-         </form>
+          </form>
+          <p>{{username}} is logged in</p>
+         {{/if}}
       </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>

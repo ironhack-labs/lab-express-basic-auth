@@ -94,7 +94,12 @@ router.get('/main', isLoggedOut, (req, res, next) => {
     res.render('main', data)
 });
 
-router.get('/private', isLoggedOut, (req, res, next) => res.render('private'));
+router.get('/private', isLoggedOut, (req, res, next) => {
+    let user = req.session.user;
+    res.render('private', user)
+});
+
+//--------------------------------------------------------------------------- CAUGHT BY MIDDLEWARE PAGE ⤵
 
 router.get('/nope', (req, res) => res.render('nope'));
 
