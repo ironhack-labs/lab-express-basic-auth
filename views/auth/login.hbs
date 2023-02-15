@@ -9,3 +9,7 @@
 
   <button type="submit">Login</button>
 </form>
+
+{{#if errorMessage}}
+  <p style='background-color: red; color:white'> {{errorMessage}}</p>
+{{/if}}
