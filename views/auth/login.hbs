@@ -1,0 +1,29 @@
+<section>
+  {{#if errorMessage}}
+    <p class='error'>{{errorMessage}}</p>
+  {{/if}}
+</section>
+
+<section>
+  <div class="container">
+    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1443&q=80" alt="cat" />
+    <form action='/login' method='post'>
+      <div>
+        <label for='username'>Username: </label>
+        <input type='text' id='username' name='username' placeholder='Username:' />
+      </div>
+      <div>
+        <label for='password'>Password: </label>
+        <input type='password' required id='password' name='password' autocomplete="on" />
+      </div>
+      {{! <div>
+        <label for='email'>Email: </label>
+        <input type='email' id='email' name='email' />
+      </div> }}
+
+      <button>Login</button>
+
+      <p>Need an account? <a href='/signup'>Sign up!</a></p>
+    </form>
+  </div>
+</section>
