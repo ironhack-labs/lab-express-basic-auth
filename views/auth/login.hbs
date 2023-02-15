@@ -1,20 +1,13 @@
-<div>
-  <h2>Log In</h2>
-  <form action="/auth/login" method="POST">
+<h1>Login</h1>
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+<form action='/login' method='post'>
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+  <label for='email'>Email</label>
+  <input type='email' name='email' id='email' required />
 
-    <button type="submit">Log In</button>
+  <label for='password'>Password</label>
+  <input type='password' name='password' id='password' required />
 
+  <button type='submit'>Login</button>
 
-    {{#if errorMessage}}
-      <p>{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+</form>

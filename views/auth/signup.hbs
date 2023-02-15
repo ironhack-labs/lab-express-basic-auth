@@ -1,20 +1,15 @@
-<div>
-  <h2>Sign Up</h2>
-  <form action="/signup" method="POST">
+<h1>Signup</h1>
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+<form action='/signup' method='post'>
+  <label for='username'>Username</label>
+  <input type='text' name='username' id='username' />
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+  <label for='email'>Email</label>
+  <input type='email' name='email' id='email' required />
 
-    <button type="submit">Sign Up</button>
+  <label for='password'>Password</label>
+  <input type='password' name='password' id='password' required />
 
+  <button type='submit'>Create account</button>
 
-    {{#if errorMessage}}
-      <p>{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+</form>
