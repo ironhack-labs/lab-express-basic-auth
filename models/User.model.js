@@ -4,11 +4,21 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
+    trim: true,
+    required: [true, 'Please submit a username'], //for: if the user doesn't input a username, this warning shows up 
   },
-  password: String
-});
+  password: {
+    type: String,
+    required: true,
+  }
+},  {
+  timestamps: true
+}
 
+
+);
+//we gave the model name= User
 const User = model("User", userSchema);
-
+//we export to our project all the data from this model in the form of model name User
 module.exports = User;

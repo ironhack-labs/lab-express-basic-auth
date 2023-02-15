@@ -1,0 +1,27 @@
+{{! Sign Yp Page  }}
+
+<h1>Signup</h1>
+
+{{! we create a form for the login so that our info can be submited, by method post }}
+{{! our URL is /signup }}
+<form action="/signup" method="post">
+
+  {{! important that the name matches the model. so in the model we have username, so here in the name tag, we also have ="username" }}
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" />
+
+  {{! like the username, for the password, is important that it matches what we have on the user model. so password is the write choice here }}
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" />
+
+{{!-- not to forget to put type="submit" since we'll be pushing this data towards    the database --}}
+  <button type="submit">Create an Account</button>
+
+</form>
+
+{{! in case we have the wrong inputs, the error text will appear with the following style! keep in mind, best if we put an ID on this tag <p> and style it on the CSS file }}
+{{#if errorMessage}}
+
+  <p style="background-color: red; color: white">{{errorMessage}}</p>
+
+{{/if}}
