@@ -1,0 +1,19 @@
+<h1>Main</h1>
+<h2>Sign up</h2>
+
+<form action='/main' method='post'>
+  <label for='username'>Username</label>
+  <input type='text' name='username' id='username'required  />
+
+  <label for='password'>Password</label>
+  <input type='password' name='password' id='password' required />
+
+  <button type='submit'>Create account</button>
+
+</form>
+
+<img src="http://placekitten.com/400/500" alt="kitten">
+
+{{#if errorMessage}}
+  <p> {{errorMessage}}</p>
+{{/if}}

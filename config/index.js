@@ -1,6 +1,9 @@
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/farmExpress";
+
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
 const logger = require("morgan");
@@ -16,6 +19,10 @@ const favicon = require("serve-favicon");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
+
+const session = require("express-session");
+
+const MongoStore = require("connect-mongo");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -35,5 +42,17 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || "super hyper secret key",
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: MONGO_URI,
+      }),
+    })
+  );
 };
