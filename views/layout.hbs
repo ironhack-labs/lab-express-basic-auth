@@ -8,9 +8,15 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
   <body>
-
+ <nav>
+      <a href='/'>Home</a>
+      <a href='/signup'>Signup</a>
+      <a href='/login'>Login</a>
+      <form action='/logout' method='post'>
+        <button type='submit'>Logout</button>
+      </form>
+    </nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
