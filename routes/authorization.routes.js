@@ -100,7 +100,8 @@ router.post("/logout", (req, res, next) => {
 
 router.get("/main", isLoggedIn, (req, res, next) => {
   let user = req.session.user;
-  res.render("main", user);
+  if (user) res.render("main", user);
+  else res.render("/");
 });
 
 //END MAIN\\
