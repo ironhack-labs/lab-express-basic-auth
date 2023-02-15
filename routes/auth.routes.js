@@ -6,7 +6,7 @@ const { isLoggedIn, isLoggedOut } = require("../middleware/route.guard");
 
 /* const regex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; */
 
-router.get("/signup", (req, res) => res.render("authentication/signup"));
+router.get("/signup", (req, res, next) => res.render("authentication/signup"));
 
 router.post("/signup", async (req, res, next) => {
   try {
@@ -77,6 +77,14 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.get('/profile', isLoggedIn, (req, res, next)=>{
+  let user = req.session.user;
+  res.render('profile', user)
+})
+
+router.get("/main", isLoggedIn, (req, res) =>{
+  res.render('authentication/main')
+})
 router.get("/private", isLoggedIn, (req, res) => {
   let user = req.session.user;
 
