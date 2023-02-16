@@ -34,6 +34,15 @@ router.post("/signup", async (req, res, next) => {
 
     res.redirect("/");
   } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.render("auth/signup", {
+        errorMessage: error.message,
+      });
+    } else if (error.code === 11000) {
+      res.render("auth/signup", {
+        errorMessage: "Email already registered",
+      });
+    }
     console.log(error);
     next(error);
   }
