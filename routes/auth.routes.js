@@ -54,7 +54,8 @@ res.redirect('/')
 
 
 //Login
-router.get('/login', (req, res) => res.render('auth/login'));
+router.get('/login', isLoggedOut, (req, res) => res.render('auth/login'));
+    
 
 router.post('/login', async (req, res, next) =>{
     try {
