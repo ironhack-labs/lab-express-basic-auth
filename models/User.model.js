@@ -5,11 +5,10 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      unique: true,
-      require: true,
+      unique: [true, "Username already exist"],
+      require: [true, "Field can't be empty"],
     },
-    password: String,
-    require: true,
+    password: { type: String, required: [true, "Please send your password"] },
   },
   {
     timestamps: true,
