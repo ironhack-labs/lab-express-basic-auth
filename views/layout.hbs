@@ -14,13 +14,12 @@
       <nav>
         <ul>
           <li><a href='/'>Home</a></li>
-          {{#unless isLoggedIn}}
-            <li><a href='/signup'>Signup</a></li>
-            <li><a href='/login'>Log in</a></li>
-          {{/unless}}
           {{#if isLoggedIn}}
             <li><a href='/profile'>Profile</a></li>
             <li><a href='/logout'>Logout</a></li>
+          {{else}}
+            <li><a href='/signup'>Signup</a></li>
+            <li><a href='/login'>Log in</a></li>
           {{/if}}
         </ul>
       </nav>

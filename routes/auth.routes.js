@@ -1,14 +1,12 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
-const isAuthenticated = require('./../middlewares/isAuthenticated')
-const exposeUsersToView = require('./../middlewares/exposeUserToView')
 
-router.get('/', async (req, res, next) => {
+router.get('/login', async (req, res, next) => {
   res.render('auth/login')
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   const { username, password } = req.body
   try {
     if (!username || !password) {
@@ -33,7 +31,7 @@ router.post('/', async (req, res, next) => {
       })
     }
     req.session.currentUser = foundUser
-    res.render('profile', { foundUser })
+    res.redirect('/profile')
   } catch (error) {
     next(error)
   }
@@ -42,22 +40,46 @@ router.post('/', async (req, res, next) => {
 // I couldn't put a switch for "Log out" / "Log in"!!!
 // I am not sure if everything is ok or
 
-router.get('/profile', isAuthenticated, (req, res, next) => {
-  if (req.session.currentUser) {
-    res.locals.currentUser = req.session.currentUser
-    res.locals.isLoggedIn = true
-    res.render('profile')
+router.get('/signup', async (req, res, next) => {
+  try {
+    res.render('auth/signup')
+  } catch (error) {
+    next(error)
   }
-  res.locals.isLoggedIn = false
 })
 
-router.get('/logout', (req, res, next) => {
-  req.session.destroy((error) => {
-    if (error) {
-      return next(error)
+router.post('/signup', async (req, res, next) => {
+  const { username, password } = req.body
+  try {
+    if (!username || !password) {
+      return res.render('auth/signup', {
+        errorMessage: 'Please fill out all of the fields!',
+      })
     }
+    if (password.length < 6) {
+      return res.render('auth/signup', {
+        errorMessage: 'Please put a longer password',
+      })
+    }
+    const foundUser = await User.findOne({ username: username })
+    if (foundUser) {
+      return res.render('auth/signup', {
+        errorMessage: 'Theres another one of you!',
+      })
+    }
+
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+    const userToCreate = {
+      username,
+      password: hashedPassword,
+    }
+    const userFromDb = await User.create(userToCreate)
+    console.log(userFromDb)
     res.redirect('/login')
-  })
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router
