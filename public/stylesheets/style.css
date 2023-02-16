@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+.catPicture{
+  width: 400px;
+
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  
+}
+
+.logout{
+  margin-top: 20px;
+}
