@@ -8,5 +8,8 @@ router.get('/', (req, res, next) => {
 router.use('/login', require('./auth.routes'))
 router.use('/signup', require('./user.routes'))
 router.use('/profile', require('./auth.routes'))
+router.use('/login', require('./auth.routes'))
+router.use('/signup', require('./user.routes'))
+router.use('/logout', require('./auth.routes'))
 
 module.exports = router

@@ -1,6 +1,4 @@
 const router = require('express').Router()
-const isAuthenticated = require('./../middlewares/isAuthenticated')
-const exposeUsersToView = require('./../middlewares/exposeUserToView')
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
 
@@ -44,18 +42,6 @@ router.post('/', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-})
-
-// I couldn't put a switch for "Log out" / "Log in"!!!
-// I am not sure if everything is ok or not...
-
-router.get('/profile', isAuthenticated, (req, res, next) => {
-  if (req.session.currentUser) {
-    res.locals.currentUser = req.session.currentUser
-    res.locals.isLoggedIn = true
-    res.render('profile')
-  }
-  res.locals.isLoggedIn = false
 })
 
 module.exports = router
