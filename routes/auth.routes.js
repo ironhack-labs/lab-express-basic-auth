@@ -19,7 +19,7 @@ router.post('/signup',(req, res, next) => {
         return User.create({
             username,  
             email,
-            passwordHash: hashedPassword
+            password: hashedPassword
         })
      })
      .then((userFromDB) => {
