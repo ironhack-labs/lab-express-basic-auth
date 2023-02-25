@@ -33,6 +33,52 @@ try {
 }
 })
 
+router.get('/login', (req,res,next)=> {
+
+    try {
+        res.render('auth/login')
+    } catch (error) {
+        console.log("Error with LOGIN GET", error)
+        next(error)
+    }
+})
+
+router.post('/login', async (req,res, next) => {
+
+    const { username, password } = req.body
+
+
+    try {
+
+        if (username === '' || password === '') {
+            res.render('auth/login', {
+              errorMessage: 'Please enter both username and password to login.'
+            });
+            return;
+          }
+
+          const findUser = await User.findOne({ username })
+
+              if (!findUser) {
+                res.render('auth/login', { errorMessage: 'Username is not registered.' });
+                return;
+              } else if (bcryptjs.compareSync(password, findUser.passwordHash)) {
+                res.render('users/user-profile', { user: findUser });
+              } else {
+                res.render('auth/login', { errorMessage: 'Incorrect password.' });
+              }
+
+
+
+
+    } catch (error) {
+        console.log("The error is with LOGIN POST", error)
+        next(error)
+    }
+})
+
+
+
 
 
 
