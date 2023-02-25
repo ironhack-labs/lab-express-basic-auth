@@ -18,16 +18,20 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res, next) => {
 
     try{
-      const{ username, password } = req.body;
+      const { username, password } = req.body;
       let salt = await bcrypt.genSalt(saltRounds);
       let hashedPassword = await bcrypt.hash(password, salt);
       let newUser = await User.create({username, password: hashedPassword})
 
       console.log(newUser);
+      res.redirect("/user-profile");
     }
     catch(error) {
       next(error);
     }
 })
+
+//GET user profile
+router.get("/user-profile", (req, res) => res.render("/user-profile"));
 
 module.exports = router;
