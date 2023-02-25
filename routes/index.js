@@ -11,8 +11,11 @@ router.get("/", (req, res, next) => {
 
 //GET signup page
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("auth/signup");
 })
+
+//GET user profile
+router.get("/user-profile", (req, res) => res.render("users/user-profile"));
 
 //POST new user
 router.post("/signup", async (req, res, next) => {
@@ -24,14 +27,11 @@ router.post("/signup", async (req, res, next) => {
       let newUser = await User.create({username, password: hashedPassword})
 
       console.log(newUser);
-      res.redirect("/user-profile");
+      res.redirect("/users/user-profile");
     }
     catch(error) {
       next(error);
     }
 })
-
-//GET user profile
-router.get("/user-profile", (req, res) => res.render("/user-profile"));
 
 module.exports = router;
