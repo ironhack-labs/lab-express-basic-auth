@@ -3,10 +3,10 @@
 <form action='/login' method='POST'>
 
 	<label for='username'>Username</label>
-	<input type='text' name='username' id='username' />
+	<input required type='text' name='username' id='username' />
 
 	<label for='password'>Password</label>
-	<input type='password' name='password' id='password' />
+	<input required type='password' name='password' id='password' minlength='6' />
 
 	<button type='submit'>Log in</button>
 

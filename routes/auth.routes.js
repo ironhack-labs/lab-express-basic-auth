@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = new Router();
+const mongoose = require('mongoose')
 
 const bcryptjs = require('bcryptjs');
 
@@ -27,6 +28,19 @@ router.post('/signup', isLoggedOut, async (req, res, next) => {
 
 try {
 
+    if (!username || !password) {
+        res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username and password.' });
+        return;
+      }
+
+      const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
     let hash = await bcryptjs.genSalt(saltRounds)
     let hashedPassword = await bcryptjs.hash(password, hash)
     let user = await User.create({
@@ -37,7 +51,15 @@ try {
 
 
 } catch (error) {
-    next(error)
+    if (error instanceof mongoose.Error.ValidationError) {
+        res.status(500).render('auth/signup', { errorMessage: error.message });
+    } else if (error.code === 11000) {
+        res.status(500).render('auth/signup', {
+            errorMessage: 'Username needs to be unique. Username is already in use.'
+        });
+    } else {
+        next(error);
+    }
 
 }
 })
