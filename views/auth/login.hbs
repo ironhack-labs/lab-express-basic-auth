@@ -1,13 +1,13 @@
-<h2>Sign up Form!</h2>
+<h2>Login Form!</h2>
 
-<form action="" method="POST">
+<form action="/login" method="POST">
   <label for="username">Username:</label>
-  <input type="text" name="username" id="username" placeholder="newUser" />
+  <input type="text" name="username" id="username" placeholder="user" />
 
   <label for="pass">Password</label>
   <input type="password" name="pass" id="pass" />
 
-  <button type="submit">Create User</button>
+  <button type="submit">Access!</button>
   <br>
   {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>

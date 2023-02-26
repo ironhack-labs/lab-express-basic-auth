@@ -6,11 +6,12 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
-//render signup page
+// render signup page
 router.get("/sign-up", (req, res, next) => {
-  res.render("auth/sign-up").catch((err) => next(err));
+  res.render("auth/sign-up");
 });
 
+// create new user
 router.post("/sign-up", (req, res, next) => {
   const { username, pass } = req.body;
 
@@ -27,18 +28,18 @@ router.post("/sign-up", (req, res, next) => {
           password: hashPass,
         });
       })
-      .then((newUser) => {
-        console.log(newUser);
-        res.redirect("/user-profile");
+      .then((user) => {
+        console.log(`New user created: ${user.username}`);
+        res.render("auth/user-profile", { user });
       })
-      .catch(error => {
+      .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
           res
             .status(500)
             .render("auth/sign-up", { errorMessage: error.message });
         } else if (error.code === 11000) {
           res.status(500).render("auth/sign-up", {
-            errorMessage: `Username ${username} is already used.`,
+            errorMessage: `Username ${username.toLowerCase()} is already used.`,
           });
         } else {
           next(error);
@@ -47,8 +48,46 @@ router.post("/sign-up", (req, res, next) => {
   }
 });
 
-router.get("/user-profile", (req, res, next) => {
-  res.render("auth/user-profile");
+// get login page
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
 });
+
+// post login page
+router.post("/login", (req, res, next) => {
+  const { username, pass } = req.body;
+  console.log('SESSION =====> ', req.session);
+
+
+  if (!username || !pass) {
+    res.render("auth/login", { errorMessage: "Please fill in all fields." });
+  }
+
+  User.findOne({ username })
+    .then((user) => {
+      if (!user) {
+        res.render("auth/login", { errorMessage: "Invalid username." });
+        return;
+      } else if (bcrypt.compareSync(pass, user.password)) {
+        //res.render("auth/user-profile", { user });
+
+        req.session.currentUser = user;
+        console.log(req.session.currentUser)
+        res.redirect('/user-profile');
+      } else {
+        res.render("auth/login", { errorMessage: "Invalid password." });
+      }
+    })
+    .catch((error) => next(error));
+});
+
+router.get("/user-profile", (req, res, next) => {
+  res.render("auth/user-profile", { userInSession: req.session.currentUser });
+});
+
+// Private Main Page
+
+// Private Gif Page
+
 
 module.exports = router;
