@@ -6,9 +6,7 @@ const hbs = require('hbs');
 const { discriminator } = require('./models/User.model');
 
 const app = express();
-
-// app.set('view engine', 'handlebars');
-// app.use('views', __dirname + '/views');
+require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -23,6 +21,12 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+const main = require('./routes/main.routes');
+app.use('/', main);
+
+const private = require('./routes/private.routes');
+app.use('/', private);
 
 // 👇 Authorization Routes
 const authRouter = require('./routes/auth.routes');
