@@ -64,7 +64,8 @@ router.post('/login', async (req,res, next) => {
                 res.render('auth/login', { errorMessage: 'Username is not registered.' });
                 return;
             } else if (bcryptjs.compareSync(password, findUser.passwordHash)) {
-                res.render('users/user-profile', { user: findUser });
+                eq.session.currentUser = findUser;
+                res.redirect('/userProfile');
             } else {
                 res.render('auth/login', { errorMessage: 'Incorrect password.' });
             }
