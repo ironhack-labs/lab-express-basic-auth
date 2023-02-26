@@ -18,6 +18,20 @@ router.post('/signup', (req, res, next) => {
     console.log('what the fuck')
    
       const { username, password } = req.body;
+
+      // make sure users fill all mandatory fields:
+  if (!username || !password) {
+    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username and password.' });
+    return;
+  }
+
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
    
     bcryptjs
       .genSalt(saltRounds)
@@ -36,11 +50,49 @@ router.post('/signup', (req, res, next) => {
         console.log('Newly created user is: ', userFromDB);
         res.redirect('userProfile') 
       })
-      .catch(error => next(error)); 
+      .catch(error => {
+        if (error.code === 11000) {
+          res.status(500).render('auth/signup', {
+             errorMessage: 'Username needs to be unique. Username is already used.'
+          });
+        } else {
+          next(error);
+        }
+        }); 
   });
 
-//Get route to redirect to user's page
+//Get login route
+router.get('/login', (req, res) => res.render('auth/login'));
 
+//Post login route (to process form data)
+router.post('/login', (req, res, next) => {
+
+  const { username, password } = req.body;
+
+  console.log('SESSION =====> ', req.session);
+
+  if (username === '' || password === '') {
+    res.render('auth/login', { 
+      errorMessage: 'Please enter both, email and password to login'
+    });
+    return;
+  }
+
+  User.findOne({ username })
+  .then(user => {
+    if (!user) {
+      res.render('auth/login', { errorMessage: 'Username is not registered.' });
+    return;
+    } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      res.render('users/user-profile', { user });
+    } else {
+      res.render('auth/login', { errorMessage: 'Incorrect password.' });
+    }
+  })
+  .catch(error => next(error));
+})
+
+//Get route to redirect to user's page
 router.get('/userProfile', (req, res) => res.render('users/user-profile'));
 
 module.exports = router;

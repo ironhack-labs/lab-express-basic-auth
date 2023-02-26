@@ -12,3 +12,8 @@
 </label>
 <button type="submit">Create account</button>
 </form>
+
+{{!-- error message if user hasn't provided username or password --}}
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
