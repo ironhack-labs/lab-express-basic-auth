@@ -13,6 +13,11 @@ router.get('/userProfile', isLoggedIn, (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
 
+router.get('/main', isLoggedIn, (req,res,next) => res.render('users/main'))
+router.get('/private', isLoggedIn, async (req,res,next) => res.render('users/private'))
+
+
+
 router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
 
 
