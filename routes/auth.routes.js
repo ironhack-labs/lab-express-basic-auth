@@ -6,8 +6,9 @@ const bcryptjs = require('bcryptjs');
 const User = require('../models/User.model');
 const saltRounds = 10;
 
-router.get('/userProfile', (req, res) => res.render('users/user-profile'));
-
+router.get('/userProfile', (req, res) => {
+    res.render('users/user-profile', { userInSession: req.session.currentUser });
+  });
 
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
@@ -64,7 +65,7 @@ router.post('/login', async (req,res, next) => {
                 res.render('auth/login', { errorMessage: 'Username is not registered.' });
                 return;
             } else if (bcryptjs.compareSync(password, findUser.passwordHash)) {
-                eq.session.currentUser = findUser;
+                req.session.currentUser = findUser;
                 res.redirect('/userProfile');
             } else {
                 res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -77,6 +78,16 @@ router.post('/login', async (req,res, next) => {
         console.log("The error is with LOGIN POST", error)
         next(error)
     }
+})
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log("Error with the logout POST");
+            next(err)
+        }
+        res.redirect('/')
+    })
 })
 
 

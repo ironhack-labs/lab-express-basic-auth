@@ -1,11 +1,12 @@
 <h1>This is your profile</h1>
 
-{{#if user}}
+{{#if userInSession}}
 
 	<div class='user-profile'>
-		<h3>Hello, {{user.username}}!!</h3>
+		<h3>Hello, {{userInSession.username}}!!</h3>
 
-		<img src='images/{{user.username}}.png' alt='profile pic' />
+		<img src='images/{{userInSession.username}}.png' alt='profile pic' />
+		<a href='/userProfile'>Reload the page</a>
 
 	</div>
 {{/if}}
