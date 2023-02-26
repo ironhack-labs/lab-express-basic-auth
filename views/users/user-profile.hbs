@@ -1,1 +1,11 @@
 <h1>This is your profile</h1>
+
+{{#if user}}
+
+	<div class='user-profile'>
+		<h3>Hello, {{user.username}}!!</h3>
+
+		<img src='images/{{user.username}}.png' alt='profile pic' />
+
+	</div>
+{{/if}}

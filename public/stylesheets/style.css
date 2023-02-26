@@ -1,8 +1,22 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00b7ff;
+}
+
+.user-profile {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.user-profile img {
+	width: 100px;
+	max-height: 150px;
+	margin-right: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 10px 10px 5px #ccc;
 }
