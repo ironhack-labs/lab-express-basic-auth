@@ -44,6 +44,7 @@ router.get('/login', (req,res,next)=> {
 })
 
 router.post('/login', async (req,res, next) => {
+    console.log('SESSION ====>', req.session)
 
     const { username, password } = req.body
 
@@ -52,21 +53,21 @@ router.post('/login', async (req,res, next) => {
 
         if (username === '' || password === '') {
             res.render('auth/login', {
-              errorMessage: 'Please enter both username and password to login.'
+                errorMessage: 'Please enter both username and password to login.'
             });
             return;
-          }
+        }
 
-          const findUser = await User.findOne({ username })
+        const findUser = await User.findOne({ username })
 
-              if (!findUser) {
+            if (!findUser) {
                 res.render('auth/login', { errorMessage: 'Username is not registered.' });
                 return;
-              } else if (bcryptjs.compareSync(password, findUser.passwordHash)) {
+            } else if (bcryptjs.compareSync(password, findUser.passwordHash)) {
                 res.render('users/user-profile', { user: findUser });
-              } else {
+            } else {
                 res.render('auth/login', { errorMessage: 'Incorrect password.' });
-              }
+            }
 
 
 
