@@ -3,17 +3,20 @@ const router = new Router();
 
 const bcryptjs = require('bcryptjs');
 
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
+
 const User = require('../models/User.model');
 const saltRounds = 10;
 
-router.get('/userProfile', (req, res) => {
+router.get('/userProfile', isLoggedIn, (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
   });
 
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
 
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', isLoggedOut, async (req, res, next) => {
     const { username, password } = req.body;
 
 
@@ -34,7 +37,7 @@ try {
 }
 })
 
-router.get('/login', (req,res,next)=> {
+router.get('/login', isLoggedOut, (req,res,next)=> {
 
     try {
         res.render('auth/login')
@@ -44,7 +47,7 @@ router.get('/login', (req,res,next)=> {
     }
 })
 
-router.post('/login', async (req,res, next) => {
+router.post('/login', isLoggedOut, async (req,res, next) => {
     console.log('SESSION ====>', req.session)
 
     const { username, password } = req.body
@@ -80,7 +83,7 @@ router.post('/login', async (req,res, next) => {
     }
 })
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', isLoggedIn, (req, res, next) => {
     req.session.destroy(err => {
         if (err) {
             console.log("Error with the logout POST");
