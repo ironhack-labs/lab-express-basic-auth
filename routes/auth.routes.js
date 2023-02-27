@@ -69,11 +69,13 @@ router.post('/login', (req, res, next) => {
 
   const { username, password } = req.body;
 
+  console.log('username: ', req.body)
   console.log('SESSION =====> ', req.session);
+  console.log('userInSession: ', req.session.currentUser)
 
   if (username === '' || password === '') {
     res.render('auth/login', { 
-      errorMessage: 'Please enter both, email and password to login'
+      errorMessage: 'Please enter both, username and password to login'
     });
     return;
   }
@@ -84,7 +86,9 @@ router.post('/login', (req, res, next) => {
       res.render('auth/login', { errorMessage: 'Username is not registered.' });
     return;
     } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-      res.render('users/user-profile', { user });
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
     } else {
       res.render('auth/login', { errorMessage: 'Incorrect password.' });
     }
@@ -93,6 +97,11 @@ router.post('/login', (req, res, next) => {
 })
 
 //Get route to redirect to user's page
-router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+// router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+
+router.get('/userProfile', (req, res) => {
+
+  res.render('users/user-profile', { userInSession: req.session.currentUser });
+});
 
 module.exports = router;

@@ -1,6 +1,12 @@
 // require session
 const session = require('express-session');
 
+// ADDED: require mongostore
+const MongoStore = require('connect-mongo');
+ 
+// ADDED: require mongoose
+const mongoose = require('mongoose');
+
 //going to USE this middleware in the app.js, so export and receive it as a parameter
 module.exports = app => {
     //app is a placeholder, becoming real "app" in app.js, when the file gets required there
