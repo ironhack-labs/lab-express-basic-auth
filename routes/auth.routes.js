@@ -69,10 +69,6 @@ router.post('/login', (req, res, next) => {
 
   const { username, password } = req.body;
 
-  console.log('username: ', req.body)
-  console.log('SESSION =====> ', req.session);
-  console.log('userInSession: ', req.session.currentUser)
-
   if (username === '' || password === '') {
     res.render('auth/login', { 
       errorMessage: 'Please enter both, username and password to login'
@@ -96,9 +92,15 @@ router.post('/login', (req, res, next) => {
   .catch(error => next(error));
 })
 
-//Get route to redirect to user's page
-// router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+//Logout post route
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  })
+})
 
+//Get route to redirect to user's page
 router.get('/userProfile', (req, res) => {
 
   res.render('users/user-profile', { userInSession: req.session.currentUser });
