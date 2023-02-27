@@ -28,12 +28,12 @@ router.post('/signup', async (req, res, next) => {
             })
         }
 
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
         const userToCreate = {
             username,
             password: hashedPassword,
-        }
+        };
         const userFromDb = await User.create(userToCreate)
         console.log(userFromDb)
         res.redirect('/login')
@@ -83,6 +83,8 @@ router.get('/logout', (req, res, next) => {
         if (error) {
             return next(error)
         }
-        res.redirect('/login')
+        res.redirect('login')
     })
 })
+
+module.exports = router

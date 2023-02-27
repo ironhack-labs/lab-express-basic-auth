@@ -2,10 +2,10 @@
 <p class="error">{{errorMessage}}</p>
 {{/if}}
 
-<form action="/login" method="post">
+<form action="/auth/login" method="post">
     <div>
         <label for="username">Username: </label>
-        <input type="text" id="username" placeholder="Username" />
+        <input type="text" id="username" name="username" placeholder="Username" />
     </div>
     <div>
         <label for="password">Password: </label>
@@ -14,6 +14,6 @@
     
     <button>Login</button>
 
-    <p>Need an account ? <a href="/signup">Sign up!</a></p>
+    <p>Need an account ? <a href="/auth/signup">Sign up!</a></p>
 
 </form>

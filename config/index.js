@@ -50,7 +50,7 @@ module.exports = (app) => {
       cookie: {
         maxAge: 1000 * 60 * 60 * 12,
       },
-      store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+      store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI || 'mongodb://127.0.0.1/lab-express-basic-auth' })
     })
   )
 };
