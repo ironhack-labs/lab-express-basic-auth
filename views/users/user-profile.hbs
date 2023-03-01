@@ -1,0 +1,23 @@
+<nav>
+    <a href="/main">Main</a> <span> | </span>
+    <a href="/private">Private</a> <span> | </span>
+    <form id="logout-form" action="/logout" method="POST">
+        <button>Logout</button> <span> | </span>
+    </form>
+
+    <a href="/">Go back</a> {{!-- !!! --}}
+
+</nav>
+
+
+{{#if userInSession}}
+<h1>This is your profile</h1>
+
+	<div class='user-profile'>
+		<h3>Hello, {{userInSession.username}}!!</h3>
+
+		<img src='images/{{userInSession.username}}.png' alt='profile pic' />
+		<a href='/userProfile'>Reload the page</a>
+
+	</div>
+{{/if}}
