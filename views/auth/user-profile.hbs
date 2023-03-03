@@ -6,6 +6,11 @@
   <button>
     <a href="/user-profile">Reload the page</a>
   </button>
+  <div>
+    <form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+  </form>
+  </div>
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}
