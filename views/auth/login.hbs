@@ -1,0 +1,22 @@
+
+<div id="form">
+<h1>Login</h1>
+<form action="/login"  method="POST">
+
+ <label> Email  
+   <input type="email"  name="email">
+  </label>
+
+ <label> Password
+ <input type="password"  name="password">
+ </label>
+ <button type="submit">Login</button>
+
+
+  
+ {{#if errorMessage}}
+        <p style="background-color: red; padding: 25px; color: white;">{{ errorMessage }}</p>
+    {{/if}}
+
+</form>
+</div>
