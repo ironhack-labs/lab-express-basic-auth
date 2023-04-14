@@ -141,6 +141,24 @@ Check out the [documentation](https://developer.mozilla.org/en-US/docs/Learn/HTM
 </details>
 
 <details>
+  <summary>When I try to run the app, I get an error "command not found: nodemon"</summary>
+
+  <br>
+  Make sure you have <code>nodemon</code> installed on your machine:
+
+  ```bash
+  npm install -g nodemon
+  ```
+
+  This will install nodemon globally on your system, making it available to all of your projects.
+
+  <br>
+
+  [Back to top](#faqs)
+
+</details>
+
+<details>
   <summary>How to create a Mongoose model?</summary>
 
   <br>
