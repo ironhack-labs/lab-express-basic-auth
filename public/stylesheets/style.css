@@ -1,7 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00b7ff;
 }
@@ -19,4 +18,37 @@ nav div {
   flex-direction: column;
   align-items: center;
   margin: 0 30px;
+}
+
+.index-page {
+  text-align: center;
+  width: 500px;
+  margin-top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.index-page h1 {
+  color: red;
+}
+.signup-container {
+  color: white;
+  background-color: rgb(194, 194, 194);
+  border: 2px solid black;
+  padding: 50px;
+}
+
+.signup-page {
+  width: 400px;
+  text-align: center;
+  margin-top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signup-form {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
