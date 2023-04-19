@@ -1,0 +1,11 @@
+<h1>admin page</h1>
+
+<h2>all registered users</h2>
+
+{{#each allUsers}}
+	<u>
+		<li>user: <b>{{username}}</b></li>
+		<li>role: {{role}}</li>
+	</u>
+	<br>
+{{/each}}

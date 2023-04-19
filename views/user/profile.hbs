@@ -1,2 +1,9 @@
-<h1>{{username}}'s Profile Page</h1>
-<p>Welcome </p>
+<h1>{{userName}}'s Profile Page</h1>
+
+<h2>Welcome</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laudantium debitis temporibus nihil accusantium accusamus, ratione odio! Veritatis quae possimus ipsa quisquam culpa. Quasi iure suscipit reprehenderit, excepturi ipsam nulla.</p>
+
+{{#ifeq userRole 'admin' }}
+	<a href="/admin/show-all-users">show all registered users</a><br>
+{{/ifeq}}
+<a href="/user/logout">Logout</a>
