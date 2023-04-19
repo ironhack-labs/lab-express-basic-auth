@@ -7,6 +7,10 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
+router.get("/profile", (req, res) => {
+  res.render("auth/profile");
+});
+
 router.post("/signup", async (req, res, next) => {
   // const{email,password} = req.body;
 
@@ -22,9 +26,5 @@ router.post("/signup", async (req, res, next) => {
 
   res.redirect("/profile");
 });
-
-// router.get("/profile", (req, res) => {
-//   res.render("auth/profile");
-// });
 
 module.exports = router;
