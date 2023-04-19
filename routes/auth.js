@@ -19,7 +19,6 @@ router.get('/profile', (req, res, next) => {
   }
 })
 
-
 router.post('/signup', (req, res, next) => {
   const {username, password} = req.body
 
@@ -84,5 +83,8 @@ router.post('/login', (req, res, next) => {
     })
     .catch(err => next(err))
 })
-
+router.post('/logout', (req, res, next) => {
+  req.session.destroy()
+  res.redirect("/")
+})
 module.exports = router
