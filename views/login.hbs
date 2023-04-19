@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+
+  <form action="/auth/login" method="POST">
+    <label>
+      Username:
+      <input type="text" name="username">
+    </label>
+
+    <br>
+
+    <label>
+      Password:
+      <input type="password" name="password">
+    </label>
+
+    <br>
+
+    <button type="submit">Login</button>
+
+    {{#if errorMessage}}
+      <p style="color: red">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</body>
+</html>
