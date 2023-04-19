@@ -1,0 +1,16 @@
+<h1>Log in</h1>
+<br>
+<div class="login-container">
+{{#if message}}
+<h3 class="error">{{message}}</h3>
+{{/if}}
+<form action="/auth/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <br><br>
+    <button type="submit" class="button-26" role="button">Log in</button>
+</form>
+</div>
