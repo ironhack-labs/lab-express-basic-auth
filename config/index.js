@@ -17,6 +17,8 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+const bodyParser = require("body-parser");
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -26,6 +28,11 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
@@ -35,5 +42,7 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
 };
