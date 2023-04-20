@@ -51,7 +51,8 @@ router.post( '/user/signup', ( req, res, next ) => {
 	// sign up user
 	const signUpUser = async () => {
 		try {
-			// hash pw
+			// hash pw: [ .hashSync() = synchronous, .has() = asynchronous ]
+			// for salting, it might be better to use async with a promise, since this operation might take a while
 			const salt = await bcryptjs.genSaltSync( 10 );
 			const hash = await bcryptjs.hashSync( password, salt );
 
@@ -75,9 +76,13 @@ router.post( '/user/signup', ( req, res, next ) => {
 			// find user in database
 			const dbUser = await User.findOne( { username } );
 
-			// add a new property to the session object
-			req.session.user = dbUser;
-			req.session.user.password = null;
+			// add a new property (user) to the session object
+			const sessionUser = {
+				_id: dbUser._id,
+				username: dbUser.username,
+				role: dbUser.role,
+			};
+			req.session.sessionUser = sessionUser;
 		} catch ( err ) {
 			next( err );
 		}
@@ -123,9 +128,13 @@ router.post( '/user/login', ( req, res, next ) => {
 
 	// create session to track login
 	const createSession = ( dbUser ) => {
-		// add a new property to the session object
-		req.session.user = dbUser;
-		req.session.user.password = null;
+		// add a new property (user) to the session object
+		const sessionUser = {
+			_id: dbUser._id,
+			username: dbUser.username,
+			role: dbUser.role,
+		};
+		req.session.sessionUser = sessionUser;
 	};
 } );
 
