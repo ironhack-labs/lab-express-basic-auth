@@ -1,0 +1,18 @@
+<form action="/auth/log-in" method="POST">
+
+  <label for="email">Email:</label>
+  <input type="email" name="email" />
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" />
+
+  <button type="submit">Iniciar sesión</button>
+
+</form>
+
+{{#if errorMessage}}
+  <p class="error-message">{{errorMessage}}</p>
+{{/if}}
+
+<p>¿No eres miembro? <a href="/auth/sign-up">¡Regístrate!</a></p>
+<p>Vuelve al <a href="/">Inicio!</a></p>
