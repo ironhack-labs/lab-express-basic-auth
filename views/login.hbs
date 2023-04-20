@@ -1,6 +1,6 @@
 <div>
-  <h2>Sign-up page</h2>
-  <form action="/sign-up" method="POST">
+  <h2>Login page</h2>
+  <form action="/login" method="POST">
     <div>
       <label for="username">Username:</label>
       <input type="text" name="username" />
@@ -9,7 +9,7 @@
       <label for="password">Password:</label>
       <input type="password" name="password" />
     </div>
-    <button type="submit">Sign up</button>
+    <button type="submit">Login</button>
   </form>
   {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>

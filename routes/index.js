@@ -37,4 +37,41 @@ router.post("/sign-up", async (req, res, next) => {
   }
 });
 
+// Log in
+
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+router.post("/login", async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      res.render("login", {
+        errorMessage: "Por favor rellena los campos correctamente.",
+      });
+      return;
+    }
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      res.render("login", {
+        errorMessage: "Usuario o contraseña incorrectos.",
+      });
+      return;
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      res.render("login", {
+        errorMessage: "Usuario o contraseña incorrectos.",
+      });
+      return;
+    }
+
+    req.session.currentUser = user;
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
