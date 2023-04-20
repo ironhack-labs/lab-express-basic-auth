@@ -3,15 +3,11 @@ const User = require("../models/User.model");
 const router = require("express").Router();
 const saltRounds = 12;
 
-router.get("/signup", (req, res, next) => {
+router.get("/auth/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.get("/profile", (req, res) => {
-  res.render("auth/profile");
-});
-
-router.post("/signup", async (req, res, next) => {
+router.post("/auth/signup", async (req, res, next) => {
   try {
     const salt = await bcryptjs.genSalt(saltRounds);
     console.log(salt);
@@ -26,10 +22,10 @@ router.post("/signup", async (req, res, next) => {
     //short way to create and save new user:
     await User.create({ username: req.body.username, password: hash });
 
-    res.redirect("/auth/profile");
+    res.redirect("/profile");
   } catch (err) {
     console.log("there was an error", err);
-    res.redirect("/auth/profile");
+    res.redirect("/profile");
   }
 });
 
