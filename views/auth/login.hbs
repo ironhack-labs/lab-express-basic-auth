@@ -1,22 +1,21 @@
 <div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="post">
+  <h2>Login</h2>
+
+  <form action="/login" method="post">
 
     <label>
       Username
-      <input type="text" name="username" placeholder="Create a username" />
+      <input type="text" name="username" placeholder="Your username" />
     </label>
 
-    <label>
-      Password
+    <label>Password
       <input type="password" name="password" placeholder="***" />
     </label>
 
-    <button type="submit">Create account</button>
+    <button type="submit">Login</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-
   </form>
 </div>
