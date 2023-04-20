@@ -1,8 +1,33 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+    body {
+        padding: 50px;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        font-family: 'Permanent Marker', cursive;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    a {
+        color: #00B7FF;
+    }
+    
+    .navbar {
+        margin-bottom: 20px;
+        background-color: rgb(7, 2, 52);
+        -webkit-box-shadow: 0 8px 6px -6px black;
+        -moz-box-shadow: 0 8px 6px -6px black;
+        box-shadow: 0 8px 6px -6px rgb(4, 32, 115);
+        padding: 20px;
+        text-align: right;
+    }
+    
+    nav a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s ease-in-out;
+        font-family: 'Permanent Marker', cursive;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    nav a:hover {
+        color: #0077cc;
+    }
