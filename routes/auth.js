@@ -17,7 +17,7 @@ router.post('/auth/signup', (req, res, next) => {
   }
 
   const passwordCheck = /[^*?$§]+/gm
-  if (password === passwordCheck && password.length < 5) {
+  if (!passwordCheck.test(password) && password.length < 5) {
     res.render('signup', { message: `don't use weird special characters and smaller password then 5 characters :(` })
     return
   }
@@ -50,10 +50,11 @@ router.post('/auth/login', (req, res, next) => {
 
     User.findOne({ username })
     .then(userFromDB => {
-        if (userFromDB => {
-            res.render('login', { message: 'did you really forget your username?' })
-            return
-        })
+        if (!userFromDB) {
+          res.render('login', { message: 'did you really forget your username?' })
+          return
+        }
+        
 
         if (bcrypt.compareSync(password, userFromDB.password)) {
             req.session.user = userFromDB
