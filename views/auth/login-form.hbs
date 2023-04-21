@@ -1,17 +1,20 @@
-<form action="/auth/log-in" method="POST">
+<h2>Inicia sesión</h2>
+<div class="form">
+  <form action="/auth/log-in" method="POST">
 
-  <label for="email">Email:</label>
-  <input type="email" name="email" />
+    <label for="email">Email:</label>
+    <input type="email" name="email" />
 
-  <label for="password">Password:</label>
-  <input type="password" name="password" />
+    <label for="password">Password:</label>
+    <input type="password" name="password" />
 
-  <button type="submit">Iniciar sesión</button>
+    <button type="submit">Iniciar sesión</button>
 
-</form>
+  </form>
+</div>
 
 {{#if errorMessage}}
-  <p class="error-message">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}
 
 <p>¿No eres miembro? <a href="/auth/sign-up">¡Regístrate!</a></p>

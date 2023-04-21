@@ -1,20 +1,24 @@
-<form action="/auth/sign-up" method="POST">
+<h2>Regístrate</h2>
+<div class="form">
 
-  <label for="email">Email:</label>
-  <input type="email" name="email" />
+  <form action="/auth/sign-up" method="POST">
 
-  <label for="username">Username:</label>
-  <input type="text" name="username" />
+    <label for="email">Email:</label>
+    <input type="email" name="email" />
 
-  <label for="password">Password:</label>
-  <input type="password" name="password" />
+    <label for="username">Username:</label>
+    <input type="text" name="username" />
 
-  <button type="submit">Registrarse</button>
+    <label for="password">Password:</label>
+    <input type="password" name="password" />
 
-</form>
+    <button type="submit">Registrarse</button>
+
+  </form>
+</div>
 
 {{#if errorMessage}}
-  <p class="error-message">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}
 
 <p>¿Ya tienes cuenta? <a href="/auth/log-in">Inicia sesión</a></p>

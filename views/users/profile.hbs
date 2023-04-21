@@ -1,6 +1,19 @@
 {{#if userInSession}}
   <h1 class="auth">Welcome {{userInSession.username}}</h1>
-  <p>This is your profile page</p>
+  <p>Esta es tu página de usuario
+    {{userInSession.username}}, donde te has registrado con el email
+    {{userInSession.email}}.</p>
+  <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe
+      src="https://giphy.com/embed/3oz8xDLuiN1GcDA3xC"
+      width="100%"
+      height="100%"
+      style="position:absolute"
+      frameBorder="0"
+      class="giphy-embed"
+      allowFullScreen
+    ></iframe></div><p><a
+      href="https://giphy.com/gifs/landonmoss-landon-moss-3oz8xDLuiN1GcDA3xC"
+    ></a></p>
   <button>
     <a href="/auth/profile">Reload the page</a>
   </button>
