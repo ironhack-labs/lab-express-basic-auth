@@ -1,0 +1,14 @@
+<h1>My Profile</h1>
+<img src="https://e0.pxfuel.com/wallpapers/243/622/desktop-wallpaper-modern-cat-cool.jpg">
+
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/profile">Reload the page</a>
+  </button>
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}}
