@@ -63,8 +63,10 @@ router.get("/log-in", (req, res, next) => {
 });
 
 router.post("/log-in", async (req, res, next) => {
+  console.log("SESSION =====> ", req.session);
   try {
     const { email, password } = req.body;
+
     if (!email || !password) {
       res.render("auth/login-form", {
         errorMessage: "Se necesitan ambos campos para el log-in.",
@@ -89,16 +91,16 @@ router.post("/log-in", async (req, res, next) => {
     //   return;
     // }
 
-    // req.session.currentUser = user;
-    // console.log(user);
-    // res.redirect("/profile");
+    req.session.currentUser = user;
+    console.log("USER =====> ", user);
+    res.render("users/profile", { user });
   } catch (error) {
     next(error);
   }
 });
 
 router.get("/profile", (req, res, next) => {
-  res.render("users/profile");
+  res.render("users/profile", { user });
 });
 
 router.get("/log-out", (req, res) => {
