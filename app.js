@@ -17,7 +17,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("./config")(app);
-const session = require("./config/session.config")(app);
+require("./config/session.config")(app);
 
 // default value for title local
 const projectName = "lab-express-basic-auth";

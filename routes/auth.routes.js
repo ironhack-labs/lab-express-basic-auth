@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
-// const { isLoggedOut, isLoggedIn } = require("../middlewares/route-guard");
+const { isLoggedOut, isLoggedIn } = require("../middlewares/route-guard.js");
 
 const saltRounds = 10;
 
@@ -91,11 +91,15 @@ router.post("/log-in", async (req, res, next) => {
   }
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   res.render("users/profile", { userInSession: req.session.currentUser });
 });
 
-router.get("/log-out", (req, res) => {
+// router.post("/profile", (req, res) => {
+//   res.render("users/profile", { userInSession: req.session.currentUser });
+// });
+
+router.post("/log-out", (req, res, next) => {
   req.session.destroy(() => res.redirect("/"));
 });
 
