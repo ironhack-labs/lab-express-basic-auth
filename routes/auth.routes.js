@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
 // const { isLoggedOut, isLoggedIn } = require("../middlewares/route-guard");
@@ -13,6 +14,14 @@ router.get("/sign-up", (req, res) => {
 router.post("/sign-up", async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+      res.status(500).render("auth/signup-form", {
+        errorMessage:
+          "El password debe tener al menos 6 caracteres y debe contener un número, una minúscula y una mayúscula.",
+      });
+      return;
+    }
 
     if (!username || !email || !password) {
       res.render("auth/signup-form", {
@@ -34,11 +43,22 @@ router.post("/sign-up", async (req, res, next) => {
     await User.create({ username, email, password: hashedPassword });
     res.redirect("/");
   } catch (error) {
-    next(error);
+    if (error instanceof mongoose.Error.ValidationError) {
+      res
+        .status(500)
+        .render("auth/signup-form", { errorMessage: error.message });
+    } else if (error.code === 11000) {
+      res.status(500).render("auth/signup-form", {
+        errorMessage:
+          "El usuario y el email deben ser únicos, y alguno está en uso.",
+      });
+    } else {
+      next(error);
+    }
   }
 });
 
-router.get("/log-in", async (req, res, next) => {
+router.get("/log-in", (req, res, next) => {
   res.render("auth/login-form");
 });
 
@@ -53,30 +73,32 @@ router.post("/log-in", async (req, res, next) => {
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || !bcrypt.compareSync(password, user.password)) {
       res.render("auth/login-form", {
         errorMessage: "El email y/o la contraseña son incorrectos",
       });
       return;
+    } else if (bcrypt.compareSync(password, user.password)) {
+      res.render("users/profile", { user });
     }
 
-    if (!bcrypt.compareSync(password, user.password)) {
-      res.render("auth/login-form", {
-        errorMessage: "El email y/o la contraseña son incorrectos",
-      });
-      return;
-    }
+    // if (!bcrypt.compareSync(password, user.password)) {
+    //   res.render("auth/login-form", {
+    //     errorMessage: "El email y/o la contraseña son incorrectos",
+    //   });
+    //   return;
+    // }
 
-    req.session.currentUser = user;
-    console.log(user);
-    res.redirect("/");
+    // req.session.currentUser = user;
+    // console.log(user);
+    // res.redirect("/profile");
   } catch (error) {
     next(error);
   }
 });
 
 router.get("/profile", (req, res, next) => {
-  res.render("auth/profile");
+  res.render("users/profile");
 });
 
 router.get("/log-out", (req, res) => {
