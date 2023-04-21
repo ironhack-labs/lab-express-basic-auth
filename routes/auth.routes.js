@@ -7,11 +7,11 @@ const { isLoggedOut, isLoggedIn } = require("../middlewares/route-guard.js");
 
 const saltRounds = 10;
 
-router.get("/sign-up", (req, res) => {
+router.get("/sign-up", isLoggedOut, (req, res) => {
   res.render("auth/signup-form");
 });
 
-router.post("/sign-up", async (req, res, next) => {
+router.post("/sign-up", isLoggedOut, async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -58,11 +58,11 @@ router.post("/sign-up", async (req, res, next) => {
   }
 });
 
-router.get("/log-in", (req, res, next) => {
+router.get("/log-in", isLoggedOut, (req, res, next) => {
   res.render("auth/login-form");
 });
 
-router.post("/log-in", async (req, res, next) => {
+router.post("/log-in", isLoggedOut, async (req, res, next) => {
   console.log("SESSION =====> ", req.session);
   try {
     const { email, password } = req.body;
@@ -95,11 +95,7 @@ router.get("/profile", isLoggedIn, (req, res) => {
   res.render("users/profile", { userInSession: req.session.currentUser });
 });
 
-// router.post("/profile", (req, res) => {
-//   res.render("users/profile", { userInSession: req.session.currentUser });
-// });
-
-router.post("/log-out", (req, res, next) => {
+router.post("/log-out", isLoggedIn, (req, res, next) => {
   req.session.destroy(() => res.redirect("/"));
 });
 
