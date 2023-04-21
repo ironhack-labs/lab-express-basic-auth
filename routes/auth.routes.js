@@ -22,11 +22,32 @@ router.post("/signup", function (req, res, next) {
   })
     .save()
     .then(function () {
-      res.send("ok new user");
+      res.send("vous etes bien inscrits");
     })
     .catch((err) => {
       console.error(err);
     });
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", (req, res, next) => {
+  User.findOne({ email: req.body.email })
+    .then((userFromDb) => {
+      if (userFromDb) {
+        if (bcrypt.compareSync(req.body.password, userFromDb.password)) {
+          req.session.currentUser = userFromDb;
+          res.redirect("/profile");
+        }
+      } else {
+        res.render("auth/login", {
+          errorMessage: "email ou mot de passe érroné",
+        });
+      }
+    })
+    .catch((err) => next(err));
 });
 
 module.exports = router;
