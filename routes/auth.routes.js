@@ -82,25 +82,17 @@ router.post("/log-in", async (req, res, next) => {
       return;
     } else if (bcrypt.compareSync(password, user.password)) {
       res.render("users/profile", { user });
+      req.session.currentUser = user;
+      console.log("USER =====> ", user);
+      res.redirect("/auth/profile");
     }
-
-    // if (!bcrypt.compareSync(password, user.password)) {
-    //   res.render("auth/login-form", {
-    //     errorMessage: "El email y/o la contraseña son incorrectos",
-    //   });
-    //   return;
-    // }
-
-    req.session.currentUser = user;
-    console.log("USER =====> ", user);
-    res.render("users/profile", { user });
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/profile", (req, res, next) => {
-  res.render("users/profile", { user });
+router.get("/profile", (req, res) => {
+  res.render("users/profile", { userInSession: req.session.currentUser });
 });
 
 router.get("/log-out", (req, res) => {
