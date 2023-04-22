@@ -17,6 +17,10 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const { MONGO_URI } = require("../db");
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -26,6 +30,22 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      store: MongoStore.create({ mongoUrl: MONGO_URI}),
+        resave: true,
+        saveUninitialized: false,
+
+      cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 600000, // 60 * 1000 * 10 ms === 10 min
+      },
+    })
+  )
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));

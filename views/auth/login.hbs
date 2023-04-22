@@ -1,0 +1,10 @@
+<h1>Login</h1>
+
+<form action="/login" method="post" >
+<input type="email" name="email" value="" placeholder="Email">
+<input type="password" name="password" value="" placeholder="*********">
+<input type="submit" value="Login">
+</form>
+ {{#if error}}
+ {{error}}
+ {{/if}}
