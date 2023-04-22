@@ -6,11 +6,11 @@ const { rawListeners } = require("../models/User.model");
 const router = require("express").Router();
 
 router.get("/profile", isLoggedIn, (req, res,) => {
-    res.render("profile", {userEmail: req.session.user.email});
+    res.render("profile", {userEmail: req.session.user.email, userLogged: true}, );
 });
 
 router.get("/main", isLoggedIn, (req, res,) => {
-    res.render("main");
+    res.render("main", {userLogged: true});
 });
 
 router.post("/logout", (req, res, next) => {

@@ -1,3 +1,4 @@
+const hbs = require("hbs")
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
@@ -51,6 +52,10 @@ module.exports = (app) => {
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
+
+  //
+  hbs.registerPartials(path.join(__dirname, "..", "views/partials"));
+
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
 

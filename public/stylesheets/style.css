@@ -3,6 +3,21 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+a, button {
   color: #00B7FF;
 }
+
+button {
+  display: inline-block;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+form {
+  display: inline-block;
+}
+
+

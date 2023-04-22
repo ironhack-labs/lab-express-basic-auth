@@ -1,5 +1,6 @@
 const isLoggedOut = (req, res, next) => {
     if (!req.session.user) {
+        let userLogged = false       
         next();
         return;
     }

@@ -1,0 +1,12 @@
+<a href="/">Home</a>
+
+{{#if userLogged}}
+<a href="/profile">Profile</a>
+<a href="/main">Main</a>
+<form action="/logout" method="post">
+<button type="submit">Logout</button>
+</form>
+{{else}}
+<a href="/login">Login</a>
+<a href="/signup">Sigunp</a>
+{{/if}}
