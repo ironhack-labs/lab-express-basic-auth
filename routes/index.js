@@ -17,15 +17,19 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
-
-  bcryptjs
-    .genSalt(saltRounds)
-    .then((salt) => bcryptjs.hash(password, salt))
-    .then((hashedPassword) => {
-      User.create({ username: username, password: hashedPassword });
-    })
-    .catch((error) => next(error));
-  res.redirect("/profile");
+  if(username ==="" || User.find(username) || password==="" ){
+    res.render("signup", { errorMessage: "Username or password incorrect" })
+  }
+  else{
+    bcryptjs
+      .genSalt(saltRounds)
+      .then((salt) => bcryptjs.hash(password, salt))
+      .then((hashedPassword) => {
+        User.create({ username: username, password: hashedPassword });
+      })
+      .catch((error) => next(error));
+    res.redirect("/profile");
+  }
 });
 
 /* Connection Page */
@@ -54,6 +58,22 @@ router.post("/login", (req, res, next) => {
 router.get("/profile", (req, res, next) => {
   if (req.session.currentUser) {
     res.render("profile");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/main", (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render("main");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+router.get("/private", (req, res, next) => {
+  if (req.session.currentUser) {
+    res.render("private");
   } else {
     res.redirect("/login");
   }
