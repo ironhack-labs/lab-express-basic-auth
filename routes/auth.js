@@ -23,7 +23,7 @@ router.post("/signup", async (req, res, next) => {
     //short way to create and save new user:
     await User.create({ username: req.body.username, password: hash });
 
-    res.redirect("/profile"); 
+    res.redirect("/profile");
   } catch (err) {
     console.log("there was an error", err);
     res.redirect("/profile");
@@ -36,7 +36,7 @@ router.get("/login", (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ username: req.body.username });
 
     console.log(user);
 
@@ -79,10 +79,10 @@ router.post("/logout", (req, res, next) => {
 });
 
 router.get("/main", isLoggedIn, (req, res, next) => {
-  res.render("auth/main"); 
+  res.render("auth/main");
 });
 
-router.get("/private", isLoggedIn,(req, res, next) => {
+router.get("/private", isLoggedIn, (req, res, next) => {
   res.render("auth/private");
 });
 
