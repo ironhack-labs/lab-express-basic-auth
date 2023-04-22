@@ -42,10 +42,23 @@ router.get("/log-in", (req, res, next) => {
 router.post("/log-in", async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    const user = await User.find({ username });
+    if (!username || !password) {
+      res.render("auth/login-form", { errorMessage: "Eyyy! Es necesario rellenar todos los campos" });
+      return;
+    }
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      res.render("auth/login-form", { errorMessage: "Usuario o contraseña incorrectos" });
+    }
+
+    if (!bcrypt.compareSync(password, user.password)) {
+      res.render("auth/login-form", { errorMessage: "Usuario o contraseña incorrectos" });
+      return;
+    }
     req.session.currentUser = user;
-    console.log(user);
-    console.log(req.session);
+    // console.log(user);
+    // console.log(req.session);
     res.redirect("/");
   } catch (error) {
     next(error);
