@@ -1,0 +1,9 @@
+<h1>Login</h1>
+<form action="/auth/login" method="post">
+<input type="username" name="username" value="" placeholder="username">
+<input type="password" name="password" value="" placeholder="password">
+<input type="submit" value="Login">
+</form>
+{{#if error}}
+<h2 style="color: red">There was an error in{{error}}</h2>
+{{/if}}
