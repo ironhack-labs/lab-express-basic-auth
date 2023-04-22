@@ -1,4 +1,5 @@
 const bcryptjs = require("bcryptjs");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 const User = require("../models/User.model");
 const router = require("express").Router();
 const saltRounds = 12;
@@ -75,6 +76,14 @@ router.post("/logout", (req, res, next) => {
     }
     res.redirect("/");
   });
+});
+
+router.get("/main", isLoggedIn, (req, res, next) => {
+  res.render("auth/main"); 
+});
+
+router.get("/private", isLoggedIn,(req, res, next) => {
+  res.render("auth/private");
 });
 
 module.exports = router;
