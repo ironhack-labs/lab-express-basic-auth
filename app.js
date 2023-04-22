@@ -12,6 +12,7 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+const router = require("express").Router();
 
 const app = express();
 
@@ -29,8 +30,11 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require("./routes/index");
 app.use("/", index);
 
-const signup = require("./routes/auth/auth.routes");
-app.use("/auth", signup);
+const authRoutes = require("./routes/auth/auth.routes");
+router.use("/auth", authRoutes);
+
+const main = require("./routes/protected.routes");
+app.use("/", main);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

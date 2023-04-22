@@ -4,5 +4,11 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+  text-decoration: none;
+  margin-right: 30px;
+}
+
+button {
+  color: green;
 }
