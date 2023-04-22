@@ -3,11 +3,11 @@ const User = require("../models/User.model");
 const router = require("express").Router();
 const saltRounds = 12;
 
-router.get("/auth/signup", (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/auth/signup", async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
   try {
     const salt = await bcryptjs.genSalt(saltRounds);
     console.log(salt);

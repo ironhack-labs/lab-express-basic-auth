@@ -37,7 +37,7 @@ module.exports = (app) => {
       //MONGO_URI is pulled from dg index.js because it has to be the same database url
       store: MongoStore.create({ mongoUrl: MONGO_URI }),
       resave: true,
-      saveUninitialized: false,
+      saveUninitialized: true,
 
       cookie: {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
