@@ -22,7 +22,7 @@ router.post("/signup", async (req, res, next) => {
     //short way to create and save new user:
     await User.create({ username: req.body.username, password: hash });
 
-    res.redirect("/profile");
+    res.redirect("/profile"); 
   } catch (err) {
     console.log("there was an error", err);
     res.redirect("/profile");
