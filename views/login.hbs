@@ -1,0 +1,23 @@
+<h1>LoGiN!</h1>
+
+<div id="form">
+  <h2>                                         your profile</h2>
+  <form action="/login" method="POST">
+ 
+    <label> Username
+      <input type="text" name="username" placeholder="your user name my friend" />
+    </label>
+ 
+ 
+    <label> Password
+      <input type="password" name="password" placeholder="strong password only" />
+    </label>
+ 
+    <button type="submit">go to my profil</button>
+ 
+    {{!-- error message will be added here --}}
+    {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
