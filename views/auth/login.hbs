@@ -1,0 +1,12 @@
+<h1>Login to our App!</h1>
+
+<form action="/auth/login" method="post">
+  <input type="username" name="username" value=""  />
+  <input type="password" name="password" value=""  />
+
+  <input type="submit" value="Login now" />
+</form>
+
+{{#if error}}
+  <h2 style="color: red;">There was an error logging in... {{error}}</h2>
+{{/if}}

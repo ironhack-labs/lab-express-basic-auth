@@ -18,7 +18,38 @@ router.post("/signup", async (req, res) => {
 const hash = await bcryptjs.hash(req.body.password, salt);
 const user = new User({ username: req.body.username, password: hash });
 await user.save();
+
 res.send("signed up");
 console.log(hash)
 })
+
+router.get("/login", (req, res) => {
+  res.render("auth/login")
+});
+
+router.post("/login", async (req, res, next) => {
+try {
+  const user = await User.findOne({ username: req.body.username})
+  if (!user){
+    return res.render("auth/login", {error: "user non-exist"})
+  } 
+     const passwordMatch = await bcryptjs.compare(req.body.password, user.password);
+if (!passwordMatch){
+  return res.render("auth/login", {error: "password is incorrect"});
+}
+
+  
+
+
+
+res.redirect("profile", { username: user.username })
+} catch(err){
+    console.log(err)
+    next(err)
+  }
+ 
+});
+
+
+
 module.exports = router;
