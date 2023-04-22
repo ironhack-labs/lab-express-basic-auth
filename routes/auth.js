@@ -29,4 +29,42 @@ router.post("/auth/signup", async (req, res, next) => {
   }
 });
 
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    console.log(user);
+
+    if (!user) {
+      return res.render("auth/login", { error: "User not existent" });
+    }
+
+    const passwordsMatch = await bcryptjs.compare(
+      req.body.password,
+      user.password
+    );
+
+    if (!passwordsMatch) {
+      return res.render("auth/login", {
+        error: "Sorry the password is incorrect!",
+      });
+    }
+
+    req.session.user = {
+      email: user.email,
+      // you can adapt this to hold more data and info
+      // admin: user.admin
+    };
+
+    console.log(req.body);
+    res.redirect("/profile");
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
