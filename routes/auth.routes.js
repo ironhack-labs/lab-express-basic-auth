@@ -34,8 +34,8 @@ router.post("/log-in", async (req, res, next) => {
     const { username, password } = req.body;
     const user = await User.find({ username });
     req.session.currentUser = user;
-    // console.log(user)
-    // console.log(req.session)
+    console.log(user)
+    console.log(req.session)
     res.redirect("/");
   } catch (error) {
     next(error);
