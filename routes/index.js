@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/signup", (req, res, next) => {
-  res.render("signup", {});
+  res.render("auth/signup", {});
 });
 
 router.post("/signup", (req, res, next) => {
@@ -32,21 +32,57 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get("/login", function (req, res, next) {
-  res.render("login", {});
+  res.render("auth/login", {});
 });
 
 router.post("/login", function (req, res, next) {
+  console.log("req.session is: ", req.session);
+
   User.findOne({ username: req.body.username })
-    .then((userFromDB) => {
+    .then(function (userFromDB) {
       console.log("userFromDB is", userFromDB);
 
       if (userFromDB) {
         if (bcrypt.compareSync(req.body.password, userFromDB.password)) {
-          res.send("WELCOME");
+          req.session.currentUser = userFromDB;
+          res.redirect("private");
+        } else {
+          res.render("auth/login", {
+            errorMessage: "Wrong !",
+          });
         }
+      } else {
+        res.render("auth/login", {
+          errorMessage: "utilisateur inconnu",
+        });
       }
     })
     .catch((err) => next(err));
 });
 
+router.get("/private", function (req, res, next) {
+  if (req.session.currentUser) {
+    res.render("private", {
+      userFromDB: req.session.currentUser,
+    });
+  } else {
+    res.redirect("login");
+  }
+});
+
+router.get("/main", function (req, res, next) {
+  if (req.session.currentUser) {
+    res.render("main", {
+      userFromDB: req.session.currentUser,
+    });
+  } else {
+    res.redirect("login");
+  }
+});
+
+router.get("/logout", function (req, res, next) {
+  req.session.destroy();
+
+  res.redirect("/");
+});
 module.exports = router;

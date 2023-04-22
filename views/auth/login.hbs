@@ -1,6 +1,6 @@
 <h1>LOGIN</h1>
 
-<form action="/login">
+<form action="/login" method="POST">
   <label>
     <p>Username :</p>
     <input type="text" name="username" />
@@ -12,4 +12,8 @@
   </label>
 
   <div><button>Login</button></div>
+
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
 </form>
