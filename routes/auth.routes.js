@@ -43,9 +43,10 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
         });
       })
       .then(userFromDB => {
+        res.redirect("/userProfile");
         // console.log('Newly created user is: ', userFromDB);
-
-        res.redirect('/userProfile');
+        // res.redirect('users/user-profile', { userInSession: req.session.currentUser });
+        // res.render('/userProfile', { userInSession: req.session.currentUser });
       })
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {

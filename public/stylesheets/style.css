@@ -18,6 +18,7 @@ a {
   color: #00b7ff;
   text-decoration: none;
   font-size: 1.5em;
+
 }
  
 form {
@@ -51,9 +52,9 @@ form button {
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
   text-decoration: none;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   transition: 0.3s ease background;
   width: 100%;
 }
@@ -117,3 +118,18 @@ ul li {
   width: 120px;
 }
 
+#logout-form button {
+  background: none;
+  border: none;
+  color: #00b7ff;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 0;
+  text-decoration: underline;
+  /* text-transform: uppercase; */
+  margin: 0;
+}
+ 
+#logout-form button:hover {
+  color: #43a3e6;
+}
