@@ -6,3 +6,172 @@ body {
 a {
   color: #00B7FF;
 }
+
+h2 {
+  font-size: 48px;
+	color: rgb(6, 106, 117);
+	padding: 2px 0 10px 0;
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+input {
+  outline: none;
+  width: 92%;
+  margin-top: 4px;
+  padding: 10px 5px 10px 32px;
+  border: 1px solid rgb(178, 178, 178);
+  box-sizing: content-box;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+  transition: all 0.2s linear;
+}
+
+input:active, 
+input:focus {
+  border: 1px solid rgba(91, 90, 90, 0.7);
+  background: rgba(238, 236, 240, 0.2);	
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+
+.wrapper {
+width: 60%;
+position: relative;
+right: 0px;
+margin: 0px auto;
+width: 500px;
+}
+
+#subscribe,
+#login {
+  width: 88%;
+  padding: 18px 6% 60px 6%;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid rgba(147, 184, 189, 0.8);
+  box-shadow:	
+		0pt 2px 5px rgba(105, 108, 109,  0.7),	
+		0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+    border-radius: 5px;
+}
+
+::-webkit-input-placeholder {
+  color: rgb(190, 188, 188);
+  font-style: italic;
+}
+
+button {
+  width: 30%;
+  cursor: pointer;
+  background: rgb(61, 157, 179);
+  padding: 8px 5px;
+  font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+  color: #fff;
+	font-size: 24px;	
+	border: 1px solid rgb(28, 108, 122);	
+	margin-bottom: 10px;	
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	border-radius: 3px;	
+  box-shadow:
+		0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+		0px 0px 0px 3px rgb(254, 254, 254),
+		0px 5px 3px 3px rgb(210, 210, 210);
+	transition: all 0.2s linear;
+}
+
+button:hover {
+  background: rgb(74, 179, 198);
+}
+
+button:active,
+button:focus {
+  background: rgb(40, 137, 154);
+  position: relative;
+  top: 1px;
+  border: 1px solid rgb(12, 76, 87);	
+	box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+
+.button {
+  margin-bottom: 20px;
+  padding: 8px 5px;
+
+}
+
+.button a {
+  width: 30%;
+  cursor: pointer;
+  background: rgb(61, 157, 179);
+  padding: 8px 5px;
+	/* margin-bottom: 10px;	 */
+  font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+  color: #fff;
+	font-size: 24px;	
+	border: 1px solid rgb(28, 108, 122);	
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	border-radius: 3px;	
+  box-shadow:
+		0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+		0px 0px 0px 3px rgb(254, 254, 254),
+		0px 5px 3px 3px rgb(210, 210, 210);
+	transition: all 0.2s linear;
+}
+
+.button a:hover {
+  background: rgb(74, 179, 198);
+}
+
+.button a:active,
+.button a:focus {
+  background: rgb(40, 137, 154);
+  position: relative;
+  top: 1px;
+  border: 1px solid rgb(12, 76, 87);	
+	box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+
+.change-link {
+  position: absolute;
+  color: rgb(127, 124, 124);
+  right: 0px;
+	height: 29px;
+	width: 440px;
+  padding: 17px 30px 20px 30px;
+	font-size: 16px	;
+	text-align: right;
+  border-top: 1px solid rgb(219, 229, 232);
+  border-radius: 0 0  5px 5px;
+	background: rgb(225, 234, 235);
+	background: repeating-linear-gradient(-45deg, 
+	rgb(247, 247, 247) , 
+	rgb(247, 247, 247) 15px, 
+	rgb(225, 234, 235) 15px, 
+	rgb(225, 234, 235) 30px, 
+	rgb(247, 247, 247) 30px
+	);
+}
+
+.change-link a {
+  display: inline-block;
+  font-weight: bold;
+  background: rgb(247, 248, 241);
+  padding: 2px 6px;
+  color: rgb(29, 162, 193);
+  margin-left: 10px;
+  text-decoration: none;
+  border: 1px solid rgb(203, 213, 214);
+  border-radius: 4px;
+  transition: all 0.4s  linear;
+}
+
+.change-link a:hover {
+  color: rgb(57, 191, 215);
+	background: rgb(247, 247, 247);
+	border: 1px solid rgb(74, 179, 198);
+}
+
+.change-link a:active {
+  position: relative;
+  top: 1px;
+}

@@ -1,15 +1,31 @@
-<h1>SIGNUP</h1>
+<div class="wrapper">
+  <div id="subscribe" class="animate form">
+    <form action="/signup" method="POST">
+      <h2>Sign up</h2>
 
-<form action="/signup" method="POST">
-  <label>
-    <p>Username :</p>
-    <input type="text" name="username" />
-  </label>
+      <p>
+        <label class="uname">Username :</label>
+        <input type="text" name="username" required placeholder="John Doe" />
+      </p>
 
-  <label>
-    <p>Password :</p>
-    <input type="password" name="password" />
-  </label>
+      <p>
+        <label for="password" class="uname">Password :</label>
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="*********"
+        />
+      </p>
 
-  <div><button>Signup</button></div>
-</form>
+      <div class="button">
+        <button>Sign up</button>
+      </div>
+
+      <div class="change-link">
+        Already a member ?
+        <a href="/login" class="to_register">Go and log in</a>
+      </div>
+    </form>
+  </div>
+</div>

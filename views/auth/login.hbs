@@ -1,19 +1,35 @@
-<h1>LOGIN</h1>
+<div class="wrapper">
+  <div id="login" class="animate form">
+    <form action="/login" method="POST">
+      <h2>Log in</h2>
 
-<form action="/login" method="POST">
-  <label>
-    <p>Username :</p>
-    <input type="text" name="username" />
-  </label>
+      <p>
+        <label for="username" class="uname">Username :</label>
+        <input type="text" name="username" required placeholder="John Doe" />
+      </p>
 
-  <label>
-    <p>Password :</p>
-    <input type="password" name="password" />
-  </label>
+      <p>
+        <label for="password" class="uname">Password :</label>
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="*********"
+        />
+      </p>
 
-  <div><button>Login</button></div>
+      <div class="button">
+        <button>Login</button>
+      </div>
 
-  {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-  {{/if}}
-</form>
+      <div class="change-link">
+        Not a member yet ?
+        <a href="/signup" class="to_register">Join us</a>
+      </div>
+
+      {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+</div>
