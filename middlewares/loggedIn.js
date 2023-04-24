@@ -4,7 +4,7 @@ const isLoggedIn = (req, res, next) => {
       return;
     }
   
-    res.redirect("/views/auth/");
+    res.redirect("/views/auth/main.hbs");
   };
   
   module.exports = isLoggedIn;
