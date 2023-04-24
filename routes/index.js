@@ -7,3 +7,10 @@ router.get("/", (req, res, next) => {
 const authRoutes = require("./auth.routes");
 router.use("/auth", authRoutes);
 module.exports = router;
+
+
+router.get("/profile", (req, res) => {
+  console.log(req.session)
+  console.log(req.session.user)
+  res.render("profile", { username: req.session.user.username})
+})

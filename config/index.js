@@ -1,6 +1,5 @@
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
-const app = require("express")
 
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
@@ -17,10 +16,7 @@ const favicon = require("serve-favicon");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
-
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
-const { MONGO_URI } = require("../db");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -30,20 +26,21 @@ module.exports = (app) => {
   // To have access to `body` property in the request
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-
   app.use(cookieParser());
-app.use(
-  session({
+
+  app.use(session({
     secret: process.env.SESS_SECRET,
+    
     cookie: {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      maxAge: 600000
-    },
-  })
-);
+      maxAge: 60000,
 
+    },
+
+})
+);
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
@@ -52,8 +49,5 @@ app.use(
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(
-    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
-  );
+  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
 };
-module.exports = { MONGO_URI };

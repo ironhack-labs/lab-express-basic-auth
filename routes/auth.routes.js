@@ -35,14 +35,17 @@ try {
   } 
      const passwordMatch = await bcryptjs.compare(req.body.password, user.password);
 if (!passwordMatch){
-  return res.render("auth/login", {error: "password is incorrect"});
+  return res.render("auth/login", {error: "password is incorrect"
+});
 }
 
-  
+ req.session.user = {
+  username: user.username
+ }
 
 
 
-res.redirect("profile", { username: user.username })
+res.redirect("/profile")
 } catch(err){
     console.log(err)
     next(err)
