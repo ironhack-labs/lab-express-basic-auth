@@ -1,6 +1,12 @@
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
+// Session
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose");
+const { MONGO_URI } = require("../db");
+
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
 const logger = require("morgan");
@@ -26,6 +32,22 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  // Add Session
+  app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      store: MongoStore.create({ mongoUrl: MONGO_URI }),
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 60000, // 60 * 1000 ms === 1 min
+      },
+    })
+  );
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
