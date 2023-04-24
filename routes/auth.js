@@ -10,17 +10,18 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
+    const foundUser = await User.findOne({ username: req.body.username });
+    if (foundUser) {
+      res.send("Username is already taken.");
+      return;
+    }
+
     const salt = await bcryptjs.genSalt(saltRounds);
     console.log(salt);
 
     const hash = await bcryptjs.hash(req.body.password, salt);
     console.log(hash);
 
-    // also a way of creating and saving new user:
-    // const newUser = new User({ username: req.body.username, password: hash });
-    // await newUser.save();
-
-    //short way to create and save new user:
     await User.create({ username: req.body.username, password: hash });
 
     res.redirect("/profile");
