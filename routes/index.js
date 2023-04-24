@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const isLoggedIn = require("../middlewares/loggedIn");
+const isLoggedOut = require("../middlewares/loggedOut");
 
 /* GET home page */
-router.get("/", (req, res, next) => {
+router.get("/",  (req, res, next) => {
   res.render("index");
 });
 const authRoutes = require("./auth.routes");
@@ -17,10 +18,6 @@ router.get("/profile", isLoggedIn, (req, res) => {
 })
 
 
-
-router.get("/private", isLoggedIn, (req, res) => {
-  res.redirect("private")
-})
 
 
 module.exports = router;

@@ -1,12 +1,13 @@
 
 const router = require("express").Router();
 const isLoggedIn = require("../middlewares/loggedIn");
+const isLoggedOut = require("../middlewares/loggedOut")
 const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 
 require("../db");
 
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
@@ -23,7 +24,7 @@ res.send("signed up");
 console.log(hash)
 })
 
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login")
 });
 
@@ -54,7 +55,11 @@ if (!passwordMatch){
 });
 
 router.get("/main", isLoggedIn, (req, res) => {
-  res.render("main")
+  res.render("auth/main")
 })
+router.get("/private", isLoggedIn, (req, res) => {
+  res.render("auth/private")
+})
+
 
 module.exports = router;
