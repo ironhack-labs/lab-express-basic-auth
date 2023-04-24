@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-
+const isLoggedIn = require("../middlewares/loggedIn");
 const User = require("../models/User.model");
 const bcryptjs = require("bcryptjs");
 
@@ -45,7 +45,7 @@ if (!passwordMatch){
 
 
 
-res.redirect("/profile")
+ res.redirect("/profile")
 } catch(err){
     console.log(err)
     next(err)
@@ -53,6 +53,8 @@ res.redirect("/profile")
  
 });
 
-
+router.get("/main", isLoggedIn, (req, res) => {
+  res.render("main")
+})
 
 module.exports = router;

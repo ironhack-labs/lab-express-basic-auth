@@ -16,11 +16,11 @@ router.get("/profile", isLoggedIn, (req, res) => {
   res.render("profile", { username: req.session.user.username})
 })
 
-router.get("/main", isLoggedIn, (req, res) => {
-  res.render("main")
-})
 
-router.get("/private")
+
+router.get("/private", isLoggedIn, (req, res) => {
+  res.redirect("private")
+})
 
 
 module.exports = router;
