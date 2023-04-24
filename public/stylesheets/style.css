@@ -2,7 +2,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
-  color: #00b7ff;
+  color: black;
+  text-decoration: none;
 }
 
 nav {
@@ -10,7 +11,7 @@ nav {
   text-align: center;
   display: flex;
   flex-direction: row;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
 }
 nav div {
@@ -20,22 +21,49 @@ nav div {
   margin: 0 30px;
 }
 
-.index-page {
+/* #index-page {
   text-align: center;
   width: 500px;
   margin-top: 100px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+} */
+
+#index-page h1,
+#signup-container h1,
+#login-page h1,
+#profile-page h1 {
+  color: black;
+  margin-top: 50px;
 }
-.index-page h1 {
-  color: red;
+
+#signup-container a:hover {
+  color: aliceblue;
 }
-.signup-container {
+/* .signup-container {
   color: white;
   background-color: rgb(194, 194, 194);
   border: 2px solid black;
   padding: 50px;
+} */
+
+#profile-page a {
+  font-size: 18px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+#main-page,
+#private-page {
+  width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+#main-page img,
+#private-page img {
+  width: 500px;
 }
 
 .signup-page {
@@ -43,14 +71,35 @@ nav div {
   text-align: center;
   margin-top: 100px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 .signup-form {
   width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+}
+
+.signup-form input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.basic-container {
+  width: 500px;
+  background-image: url("/images/desk.jpeg");
+  margin: 30px auto;
+  text-align: center;
+  padding: 30px;
+}
+
+.basic-btn {
+  background-color: aliceblue;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
 }
 
 .signup-form input:required:invalid,
@@ -64,3 +113,8 @@ input:focus:invalid {
   background-position: right top;
   background-repeat: no-repeat;
 }
+
+
+
+
+
