@@ -1,8 +1,23 @@
 const bcryptjs = require("bcryptjs");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const User = require("../models/User.model");
+const isAdmin = require("../middlewares/isAdmin");
 const router = require("express").Router();
 const saltRounds = 12;
+
+router.get("/profile", isLoggedIn, (req, res) => {
+  const isAdmin = req.session.user.admin;
+  console.log(isAdmin);
+  res.render("auth/profile", { isAdmin });
+});
+
+router.get("/main", isLoggedIn, (req, res, next) => {
+  res.render("auth/main");
+});
+
+router.get("/private", isLoggedIn, isAdmin, (req, res, next) => {
+  res.render("auth/private");
+});
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -22,7 +37,11 @@ router.post("/signup", async (req, res, next) => {
     const hash = await bcryptjs.hash(req.body.password, salt);
     console.log(hash);
 
-    await User.create({ username: req.body.username, password: hash });
+    await User.create({
+      username: req.body.username,
+      password: hash,
+      admin: false,
+    });
 
     res.redirect("/profile");
   } catch (err) {
@@ -57,9 +76,8 @@ router.post("/login", async (req, res, next) => {
     }
 
     req.session.user = {
-      email: user.email,
-      // you can adapt this to hold more data and info
-      // admin: user.admin
+      username: user.username,
+      admin: user.admin,
     };
 
     console.log(req.body);
@@ -69,7 +87,7 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.post("/logout", (req, res, next) => {
+router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       next(err);
@@ -77,14 +95,6 @@ router.post("/logout", (req, res, next) => {
     }
     res.redirect("/");
   });
-});
-
-router.get("/main", isLoggedIn, (req, res, next) => {
-  res.render("auth/main");
-});
-
-router.get("/private", isLoggedIn, (req, res, next) => {
-  res.render("auth/private");
 });
 
 module.exports = router;

@@ -9,6 +9,7 @@ const userSchema = new Schema({
   password: String,
   admin: {
     type: Boolean,
+    required: true,
   },
 });
 

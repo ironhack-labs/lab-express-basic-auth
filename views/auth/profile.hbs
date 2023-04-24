@@ -1,9 +1,6 @@
 <h1>Your Profile</h1>
 
 <a href="/main">Main</a>
-
-<a href="/private">Private</a>
-
-<form method="POST" action="/logout">
-  <button type="submit">Logout</button>
-</form>
+{{#if isAdmin}}
+  <a href="/private">Private</a>
+{{/if}}
