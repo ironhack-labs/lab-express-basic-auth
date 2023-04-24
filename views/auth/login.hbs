@@ -1,6 +1,6 @@
-<h1>Signup</h1>
+<h1>Login </h1>
 
-<form action="/auth/signup" method="post">
+<form action="/auth/login" method="post">
   <input
     type="username"
     name="username"
@@ -13,8 +13,10 @@
     value=""
     placeholder="Enter your password"
   />
-  <input type="submit" value="Signup" />
+  <input type="submit" value="Login" />
 
 </form>
-<br />
-<a href="/auth/login"> Or Login</a>
+
+{{#if error}}
+  <h2 style="color: red">{{error}}</h2>
+{{/if}}
