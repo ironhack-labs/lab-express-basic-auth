@@ -52,3 +52,15 @@ nav div {
   flex-direction: column;
   justify-content: center;
 }
+
+.signup-form input:required:invalid,
+input:focus:invalid {
+  background-image: url(/images/redCross.svg.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+.signup-form input:required:valid {
+  background-image: url(/images/greenCheck.jpeg);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
