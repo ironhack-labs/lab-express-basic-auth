@@ -2,7 +2,7 @@
   <h1>Sign up</h1>
   <div class="signup-container">
 
-    <form class="signup-form" action="/signup" method="post">
+    <form name="signupForm" onsubmit="return validateForm()" class="signup-form" action="/signup" method="post">
       <input
         type="username"
         name="username"

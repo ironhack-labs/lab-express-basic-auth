@@ -10,6 +10,32 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
+    function validateForm() {
+			const username = document.forms["signupForm"]["username"].value;
+			const password = document.forms["signupForm"]["password"].value;
+			
+			if (username.length < 1) {
+				alert("Username must be at least 1 characters long");
+				return false;
+			}
+			
+			// Check that email is in a valid format
+			var emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+			if (!emailRegex.test(username)) {
+				alert("Invalid email format");
+				return false;
+			}
+			
+			if (password.length < 1) {
+				alert("Password must be at least 1 character long");
+				return false;
+			}
+			
+			// If all checks pass, return true to submit the form
+			return true;
+		}
+    validateForm(); 
+
     const salt = await bcryptjs.genSalt(saltRounds);
     console.log(salt);
 
