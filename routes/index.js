@@ -1,5 +1,3 @@
-const isLoggedIn = require("../middlewares/isLoggedIn");
-
 const router = require("express").Router();
 
 /* GET home page */
