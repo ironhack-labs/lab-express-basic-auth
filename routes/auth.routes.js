@@ -19,7 +19,13 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-  console.log(req.body);
+  const existingUser = await User.findOne({ email: req.body.email });
+
+  if (existingUser) {
+    return res.render("auth/accexist", {
+      error: "Email already exists"
+    });
+  }
 
   const salt = await bcryptjs.genSalt(12);
   const hash = await bcryptjs.hash(req.body.password, salt);
@@ -27,9 +33,9 @@ router.post("/signup", async (req, res) => {
   const user = new User({ email: req.body.email, password: hash });
   await user.save();
 
-  
-  res.send("signed up");
+  res.render("auth/signupsuccess");
 });
+
 
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
