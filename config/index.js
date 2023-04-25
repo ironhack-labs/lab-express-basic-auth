@@ -8,6 +8,8 @@ const logger = require("morgan");
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 // ℹ️ Serves a custom favicon on each request
 // https://www.npmjs.com/package/serve-favicon
@@ -16,6 +18,7 @@ const favicon = require("serve-favicon");
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
 const path = require("path");
+const { MONGO_URI } = require("../db");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -27,6 +30,24 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
 
+  app.use(
+    session({
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: MONGO_URI,
+      }),
+      secret: process.env.SESS_SECRET,
+      resave: true,
+
+      cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 600000, // 60 * 1000 * 10 ms === 10 min
+      },
+    })
+  );
+
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
@@ -35,5 +56,7 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
 };

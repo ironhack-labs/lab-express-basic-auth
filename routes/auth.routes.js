@@ -56,12 +56,11 @@ router.post("/login", async (req, res) => {
       error: "There was an error logging in!",
     });
   }
-
-  // console.log("correct password!");
-  // req.session.currentUser = {
-  //   email: existingUser.email,
-  //   subscribed: existingUser.subscribed,
-  // };
+  // save the user in the session
+  console.log("correct password!");
+  req.session.currentUser = {
+    username: existingUser.username,
+  };
   return res.redirect("/profile");
 });
 
