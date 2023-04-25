@@ -1,13 +1,13 @@
+const isLoggedIn = require("../middlewares/isLoggedin");
+
 const router = require("express").Router();
 
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
-const authRoutes = require("./auth.routes");
-router.use("/auth", authRoutes);
 
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/profile");
 });
 
