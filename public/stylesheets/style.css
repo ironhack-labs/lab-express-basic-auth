@@ -57,9 +57,13 @@ nav div {
 .red-container button {
   color: white;
 }
+.index-page h2 {
+  padding-top: 100px;
+}
 
 .index-page h1 {
   color: white;
+  padding-top: 100px;
 }
 .white-container {
   background-color: #00b7ff;
@@ -84,4 +88,14 @@ nav div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.signup-form input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+.signup-container {
 }
