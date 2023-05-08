@@ -1,0 +1,16 @@
+<h1>LOG IN</h1>
+<form method="post" action="/login">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+    </div>
+    {{#if errorMessage}}
+    <div id="error">{{errorMessage}}</div>
+    {{/if}}
+    <button type="submit" class="btn btn-primary">Log In</button>
+    <p class="mt-4">Dont have account yet <a href=" /register">Register</a></p>
+</form>
