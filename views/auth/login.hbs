@@ -19,7 +19,10 @@
         </div>
 
         {{#if errorMessage}}
-          <div id="error">{{errorMessage}}</div>
+          <div
+            id="error"
+            class="text-danger text-center p-1 mb-2 fs-6 fw-bold"
+          >¡{{errorMessage}}!</div>
         {{/if}}
 
         <div class="d-grid">
