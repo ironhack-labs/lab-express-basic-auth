@@ -1,0 +1,24 @@
+<div class="container">
+
+    <h2>The Operas</h2>
+    <hr class="mb-3">
+
+
+    <div class="row">
+        {{#each operas}}
+        <div class=" card col-3">
+
+            <div>
+                <img class="card-img-top " src="{{image}}" alt="Card image cap">
+            </div>
+
+            <div class="card-body" style="color: black;">
+                <h5 class="card-title"><strong>{{title}}</strong> </h5>
+                <h6 class="card-title"><strong>Composer:</strong> {{composer}}</h6>
+
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+</div>

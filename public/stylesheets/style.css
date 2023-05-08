@@ -1,8 +1,41 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #000000;
+}
+
+footer {
+  background-color: #050505;
+  color: rgb(250, 248, 248);
+  padding: 10px;
+  font-size: 1em;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%
+}
+
+body {
+
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://www.wfmt.com/cdn-cgi/image/width=1300,quality=80,format=auto,onerror=redirect,metadata=none/wp-content/uploads/2022/04/ButterflyAct-One_010-169-1300x731.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.buttonA {
+  display: flex;
+  justify-content: flex-end;
+
+
+}
+
+.greyBackground {
+  background-color: rgb(241, 12, 12);
+  padding: 50px;
+  margin-top: 30px;
 }
