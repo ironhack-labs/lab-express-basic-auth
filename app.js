@@ -17,6 +17,7 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+require("./config/session.config")(app) // ip config
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -27,6 +28,14 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+const authRoutes = require("./routes/auth.routes")
+app.use("/", authRoutes)
+
+// const userRouter = require("./routes/user.routes")
+// app.use("/", userRouter)  PARA ESTE EJERCICIO NO LO UTILIZO
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
