@@ -1,8 +1,33 @@
 body {
-  padding: 50px;
+  background-color: plum;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.image1 {
+  margin-left: 200px;
+  width: 900px;
+  height: auto;
+}
+
+.centrado {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  margin-bottom: 500px;
+  transform: translate(-50%, -50%);
+  color: bisque;
+  text-decoration: none;
+  font: 90px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.gato1 {
+  width: 300px;
+  height: auto;
+  margin-left: 60px;
+  padding-bottom: 10%;
+}
+
+.btn-mas {
+  margin-bottom: 10%;
+  margin-left: 40%;
 }
