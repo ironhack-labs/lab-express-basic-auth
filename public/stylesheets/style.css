@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url(https://i.pinimg.com/originals/69/3c/68/693c68dab10ce158a8532e4060d6a7ff.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a {
