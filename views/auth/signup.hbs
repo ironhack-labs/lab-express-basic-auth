@@ -1,0 +1,22 @@
+<div class="container">
+
+    <h1>Registrate</h1>
+    <form action="/registro" method="post">
+        <div class="mb-3">
+            <label for="userName" class="form-label">Username</label>
+            <input type="text" class="form-control" id="userName" name="userName">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="plainPassword">
+            <div class="form-text">Mínimo 4 caracteres.</div>
+        </div>
+        {{#if errorMessage}}
+        <div id="error">{{errorMessage}}</div>
+        {{/if}}
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-dark">Registrarme</button>
+        </div>
+    </form>
+</div>
