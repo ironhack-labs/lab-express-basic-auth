@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h1>Esta es la lista de plantas</h1>
+
+    <hr>
+
+    <div class="row justify-content-center">
+
+        {{#each planta}}
+
+        <div class="col-md-4">
+
+            <div class="card mb-5">
+
+                <img class="card-img-top" src="{{imageURL}}" alt="{{title}}">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    {{!-- <h6 class="card-subtitle mb-2 text-muted">{{genre}}</h6> --}}
+                    <p class="card-text">{{specie}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+        <hr>
+
+        <div class="button">
+            <a href="/" class="btn btn-warning">BACK HOME</a> 
+            <a href="/plant/create" class="btn  btn-secondary btn-success">CREATE A NEW PLANT</a>
+        </div>
+    </div>
+
+
+</div>

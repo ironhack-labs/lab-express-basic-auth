@@ -1,8 +1,28 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#index-page {
+  height: 100vh;
+  background-image: url(https://fotos.perfil.com/2020/06/15/jungla-urbana-971618.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  padding-top: 300px;
+  top: 0;
+}
+
+
+h1 {
+  margin-top: 10px;
 }

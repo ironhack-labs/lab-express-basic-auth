@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Aquí creamos nueva planta</h2>
+
+    <hr>
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+
+            <form action="/plant/create" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="specie" class="form-label">Especie</label>
+                    <input type="text" class="form-control" id="specie" name="specie">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageURL" class="form-label">Imagen URL</label>
+                    <input type="text" class="form-control" id="imageURL" name="imageURL">
+                </div>
+
+                <button type="submit" class="my-5 btn btn-success">Crear nueva planta</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
