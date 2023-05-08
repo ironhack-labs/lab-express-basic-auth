@@ -1,0 +1,27 @@
+<div class="container pt-4">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1>LOG IN</h1>
+            <hr>
+
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Dirección de email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                {{#if errorMessage}}
+                <div id="error">{{errorMessage}}</div>
+                {{/if}}
+
+                <button type="submit" class="btn btn-dark">Log In</button>
+            </form>
+
+        </div>
+    </div>
+</div>
