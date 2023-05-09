@@ -31,3 +31,8 @@ body {
   margin-bottom: 10%;
   margin-left: 40%;
 }
+
+.carousel-item {
+  align-items: center;
+
+}
