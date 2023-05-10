@@ -1,2 +1,6 @@
 <h2>User Profile Page</h2>
-<h2>Welcome {{user}}</h2>
+<h2>Welcome {{userInSession.username}}!</h2>
+
+<form action="/logout" method="post">
+<button type="submit">Logout</button>
+</form>

@@ -30,9 +30,8 @@ router.post('/signup', (req,res)=>{
             let salt = await bcryptjs.genSalt(saltRounds);
             let hashedPassword = await bcryptjs.hash(password, salt);
             //create User
-            let user = req.body.username
             await User.create({username, passwordHash: hashedPassword})
-            res.render('user/profile', {user})
+            res.redirect('/login')
         }
         catch(error){
             if(error instanceof mongoose.Error.ValidationError){

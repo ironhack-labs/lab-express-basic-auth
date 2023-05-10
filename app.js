@@ -15,6 +15,8 @@ const hbs = require('hbs');
 const bcrypt = require('bcryptjs');
 
 const app = express();
+// Requiring Session configuration
+require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
