@@ -1,0 +1,26 @@
+<div>
+
+    <h3>Acceder</h3>
+
+    <form action="/auth/login" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username">
+
+      <br>
+
+      <label for="password">Contraseña</label>
+      <input type="password" name="password">
+
+      <br>
+
+      <button>Acceder</button>
+
+    {{#if this.errorMessage}}
+
+    <p style="color: rgb(128, 12, 12)">{{this.errorMessage}}</p>
+
+    {{/if}}
+
+  </form>
+  
+</div>

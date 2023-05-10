@@ -12,6 +12,8 @@ const cookieParser = require("cookie-parser");
 // ℹ️ Serves a custom favicon on each request
 // https://www.npmjs.com/package/serve-favicon
 const favicon = require("serve-favicon");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 // ℹ️ global package used to `normalize` paths amongst different operating systems
 // https://www.npmjs.com/package/path
@@ -36,4 +38,16 @@ module.exports = (app) => {
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7 // (7 dias)   //tiempo de vida de la cookie, siempre es en MILESEGUNDOS
+    },
+    store: new MongoStore({
+      mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/basic-auth",
+      ttl: 60 * 60 * 24 * 7    //tiempo de vida (es segundos) 7 días
+    })
+  }))
 };
