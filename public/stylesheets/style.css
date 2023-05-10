@@ -1,8 +1,77 @@
 body {
-  padding: 50px;
+ 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: beige;
 }
 
-a {
-  color: #00B7FF;
+.content-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#homepage-btns{
+  
+  width: 50%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+#homepage-btns a{
+  background-color: coral;
+  width: 80%;
+  margin: 10px 0;
+  height: 30px;
+
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*---------------Signup--------------------*/
+.content-center form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(224, 223, 223);
+  border-radius: 3px;
+  padding: 5px 20px;
+}
+.content-center label{
+  margin: 5px;
+
+}
+.content-centerlabel span{
+  color: rgb(224, 223, 223);
+}
+#signup-page button{
+  border: none;
+  background-color: rgb(118, 59, 59);
+  border-radius: 3px;
+  padding: 5px 20px;
+
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+#login-page button{
+  border: none;
+  background-color: rgb(4, 86, 49);
+  border-radius: 3px;
+  padding: 5px 20px;
+
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
 }
