@@ -1,0 +1,10 @@
+{{#if userInSession}}
+<h1>Hello, {{userInSession.username}} This is your private Profile!</h1>
+
+<img src="https://qph.cf2.quoracdn.net/main-qimg-baf27392c64acd8a7d12d1f22be392e7.webp">
+
+{{else}}
+<br>
+<p>Still no logged in user</p>
+<img src="https://img.freepik.com/free-vector/cute-cool-cat-wearing-eyeglasses-hoodie-cartoon-vector-icon-illustration-animal-fashion-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-4234.jpg?w=2000">
+{{/if}}
