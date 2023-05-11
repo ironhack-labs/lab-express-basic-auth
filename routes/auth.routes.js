@@ -12,24 +12,22 @@ const User  = require('../models/User.model');
 
 const router = new Router();
 
+// Require Auth Middleware
+const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard');
 
 // SIGNUP //
 
 // GET Route --> display the 'signup' form to the user
-router.get('/signup', (req, res)=>{
-    res.render('auth/signup.hbs');
+router.get('/signup', isLoggedOut, (req, res)=>{
+    res.render('./auth/signup.hbs');
 })
 
 
 // POST Route --> to post info of the form and create a new user
 router.post('/signup', (req,res)=>{
-    // req stands for the request
-    // res stands for the response
     const {username, email, password} = req.body;
 
-
     // Make sure my password is strong 
-
     // Makes sure that you have at least one lowercase letter, one uppercase letter and 6 digits. 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
@@ -48,7 +46,7 @@ router.post('/signup', (req,res)=>{
         try{
         // salt is a random string
         let salt = await bcryptjs.genSalt(saltRounds);
-        // combines salt and password --> FUSION, AHH! 
+        // combines salt and password 
         let hashedPassword = await bcryptjs.hash(password, salt);
         //console.log(`Password hash: ${hashedPassword}`);
 
@@ -77,7 +75,7 @@ router.post('/signup', (req,res)=>{
             res.status(500).render('auth/signup', {errorMessage: error.message});
         } 
         else if (error.code === 11000){
-            res.status(500).render('auth/signup', {errorMessage: 'Username and email must be unique. Choose an username / email that are original, if you may.', });
+            res.status(500).render('auth/signup', {errorMessage: 'Username and email must be unoque. Choose an username / email that are original, if you may.', });
         }
         
         else{
@@ -89,12 +87,12 @@ router.post('/signup', (req,res)=>{
     encriptPassword();
 });
 
-router.get('/userProfile', (req, res)=>{
+router.get('/userProfile', isLoggedIn, (req, res)=>{
     res.render('user/user-profile.hbs', {userInSession: req.session.currentUser});
 });
 
 
-// LOGIN // 
+ // LOGIN // 
 
 // GET Route to display the login form to the user 
 router.get('/login', (req,res)=>{
@@ -132,10 +130,21 @@ router.post('/login', (req,res)=>{
             console.log(error);
         }
     }
-
     manageDb();
 });
-// // POST Route to logout
+
+//MAIN//
+router.get('/main', isLoggedIn, (req,res)=>{
+    res.render('./main.hbs', {userInSession: req.session.currentUser});
+});
+
+//PRIVATE//
+router.get('/private', isLoggedIn, (req,res)=>{
+    res.render('./private.hbs', {userInSession: req.session.currentUser});
+});
+
+
+// POST Route to logout
 router.post('/logout', (req, res)=>{
     // Kill the Session
     req.session.destroy(err=>{
@@ -146,7 +155,6 @@ router.post('/logout', (req, res)=>{
     res.redirect('/');
     })
 })
-
 
 
 /// Export Router
