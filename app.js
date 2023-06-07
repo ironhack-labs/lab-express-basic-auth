@@ -25,6 +25,12 @@ const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerC
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
+app.use((req, res, next) => {
+    console.log("Middleware session", req.session);
+    app.locals.session = req.session; // allow access to session data from layout.hbs
+    next()
+  });
+
 // 👇 Start handling routes here
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/auth.routes'));

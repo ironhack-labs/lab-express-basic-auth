@@ -51,5 +51,9 @@ router.get("/main", (req, res, next) => {
   res.render("auth/main", req.session);
 });
 
+router.get("/private", (req, res, next) => {
+  res.render("auth/private", req.session);
+});
+
 
 module.exports = router;
