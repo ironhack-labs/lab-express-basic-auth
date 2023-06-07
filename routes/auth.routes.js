@@ -27,20 +27,29 @@ router.post("/login", (req, res, next) => {
   const {username, password} = req.body;
   User.findOne({username})
     .then(user => {
+      if (!user) {
+        res.send("Invalid username");
+        return;
+      }
+
       const isSuccess = bcryptjs.compareSync(password, user.password);
-      
-    })
-    .catch(error => {
-      res.send("Error:" + error);
-    })
-  
-  User.create({ username, password: hash})
-    .then(user => {
-      res.send(`user ${user.username} created!`);
+      if (isSuccess) {
+        req.session.currentUser = user.username;
+        res.redirect("/main")
+      } else {
+        res.send("Invalid password");
+        return;
+      }
     })
     .catch(error => {
       res.send("Error:" + error);
     })
 });
+
+router.get("/main", (req, res, next) => {
+  console.log("session:", req.session);
+  res.render("auth/main", req.session);
+});
+
 
 module.exports = router;
