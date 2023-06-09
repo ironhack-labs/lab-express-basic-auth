@@ -37,4 +37,4 @@ router.get("/profile/:username", (req, res, next) => {
         .catch(err => console.log(err)) 
 });
 
-module.export = router;
+module.exports = router;
