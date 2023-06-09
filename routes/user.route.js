@@ -2,6 +2,8 @@ const router = require("express").Router();
 const bcryptjs = require('bcryptjs')
 const UserModel = require("../models/User.model")
 const roundSalt = 10;
+
+
 router.get("/signup", (req,res, next) => {
     res.render("user/signup")
 })
