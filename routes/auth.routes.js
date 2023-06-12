@@ -16,7 +16,12 @@ router.get("/signup", isLoggedOut, (req, res, next) => {
 router.post("/signup", (req, res, next) => {
     console.log('req.body', req.body)
     const { username, email, password } = req.body;
-    
+
+    User.findOne({username})
+    .then(user => {
+      if (user) {
+        res.render('auth/signup', {errorMessage: 'Incorrect password.' } );
+    } else {
 // creating the User with hasshed password
     bcryptjs
     .genSalt(saltRounds)
@@ -29,11 +34,11 @@ router.post("/signup", (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect(`/auth/login`)
-    })
-    .catch(error => next(error));
-
-});
+      res.redirect(`/auth/login`)})
+  }
+ })
+ .catch(error => next(error));
+})
 
 router.get('/profile', isLoggedIn, (req, res) => {
   res.render('auth/profile', { userInSession: req.session.currentUser });
