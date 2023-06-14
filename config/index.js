@@ -17,8 +17,22 @@ const favicon = require("serve-favicon");
 // https://www.npmjs.com/package/path
 const path = require("path");
 
+// Using session
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 // Middleware configuration
 module.exports = (app) => {
+
+  app.use(
+    session({
+      secret: "secret-key", // Add your own secret key for session encryption
+      resave: false,
+      saveUninitialized: false,
+      store: new MongoStore({ mongooseConnection: mongoose.connection }), // Assuming you are using Mongoose
+    })
+  );
+
   // In development environment the app logs
   app.use(logger("dev"));
 
