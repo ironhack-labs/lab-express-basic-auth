@@ -2,13 +2,12 @@ const router = require("express").Router()
 const bcryptjs = require("bcryptjs")
 const User = require("../models/User.model")
 const mongoose = require("mongoose")
+const { isLoggedIn, isLoggedOut, logStatus } = require('../middleware/route-guard')
 
 /* GET home page */
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup")
-})
+router.get("/signup", isLoggedOut, (req, res, next) => res.render("auth/signup"))
 
-router.post('/signup', (req, res, next) => { 
+router.post('/signup',(req, res, next) => { 
   const { username, password } = req.body
 
   const salt = bcryptjs.genSaltSync(12)
@@ -32,7 +31,7 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
-router.get('/login', (req, res, next) => res.render('auth/login'))
+router.get("/login", isLoggedOut, (req, res, next) => res.render("auth/login"))
 
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body
@@ -61,11 +60,20 @@ router.post("/login", (req, res, next) => {
     .catch((err) => next(err))
 })
 
-router.get('/user-profile', (req, res, next) => { 
-  // @ts-ignore
-  console.log('SESSION @ /user-profile',req.res.currentUser)
+router.get('/user-profile', isLoggedIn, logStatus,(req, res, next) => { 
   // @ts-ignore
   res.render('users/user-profile', {userInSession: req.session.currentUser})
+})
+
+router.get('/main', isLoggedIn, logStatus, (req, res, next) => res.render('auth/main'))
+
+router.get("/private", isLoggedIn, logStatus, (req, res, next) => res.render("auth/private"))
+
+router.get('/logout', isLoggedIn, logStatus,(req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err)
+    res.redirect("/")
+  })
 })
 
 module.exports = router
