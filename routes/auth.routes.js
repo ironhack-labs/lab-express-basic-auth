@@ -7,9 +7,11 @@ const saltRounds = 10;
 
 const User = require("../models/User.model");
 
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+
 router.get("/signup", (req, res) => res.render("auth/signup"));
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut,(req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -50,6 +52,14 @@ router.post("/signup", (req, res, next) => {
 
 router.get("/login", (req, res) => res.render("auth/login"));
 
+router.get('/main', isLoggedIn, (req, res) => {
+  res.render('users/main');
+});
+
+router.get('/private', isLoggedIn, (req, res) => {
+  res.render('users/private');
+});
+
 router.post("/login", (req, res, next) => {
   console.log("SESSION =====> ", req.session);
   const { email, password } = req.body;
@@ -78,7 +88,7 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile", (req, res) =>
+router.get("/userProfile", isLoggedIn, (req, res) =>
   res.render("users/user-profile", { userInSession: req.session.currentUser })
 );
 
