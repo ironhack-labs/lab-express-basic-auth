@@ -83,7 +83,7 @@ ul li {
   font-size: 1.5em;
 }
 
-#form h2 {
+.form h2 {
   display: flex;
   justify-content: center;
 }
