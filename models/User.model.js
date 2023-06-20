@@ -4,6 +4,7 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: {
     type: String,
+    minLength: [4, 'Must have at least 4 characters'],
     unique: true,
     required: true,
     trim: true,

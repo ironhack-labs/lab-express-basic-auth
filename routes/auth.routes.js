@@ -7,13 +7,29 @@ const { isLoggedIn, isLoggedOut, logStatus } = require('../middleware/route-guar
 /* GET home page */
 router.get("/signup", isLoggedOut, (req, res, next) => res.render("auth/signup"))
 
-router.post('/signup',(req, res, next) => { 
+router.post('/signup',(req, res, next) => {
   const { username, password } = req.body
 
   const salt = bcryptjs.genSaltSync(12)
   const enctryptedPass = bcryptjs.hashSync(password, salt)
 
-    User.create({ username, passwordHash: enctryptedPass })
+  // Validation of username and password input existance
+  if (username === "" || password === "") {
+    res.render("auth/signup", {
+      errorMessage: "Please provide valid username and password",
+    })
+  }
+
+  // passwor safety validation
+  const regex = /(?=.*\d)(?=.*[A-Z]).{8,}$/
+  if (!regex.test(password)) {
+    return res.status(400).render("auth/signup", {
+      errorMessage:
+        "Password must contain 1 uppercased letter, 1 digit, and larger than 7 characters",
+    })
+  }
+
+  User.create({ username, passwordHash: enctryptedPass })
     .then((userfromDB) => {
       res.redirect("/user-profile")
     })
@@ -21,9 +37,9 @@ router.post('/signup',(req, res, next) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("auth/signup", { errorMessage: error.message })
       } else if (error.code === 11000) {
+        // if user already exists
         res.status(500).render("auth/signup", {
-          errorMessage:
-            "Username and email need to be unique. Either username or email is already used.",
+          errorMessage: "Username is already registered, please try again",
         })
       } else {
         next(error)
@@ -34,35 +50,33 @@ router.post('/signup',(req, res, next) => {
 router.get("/login", isLoggedOut, (req, res, next) => res.render("auth/login"))
 
 router.post("/login", (req, res, next) => {
-  const { email, password } = req.body
+  const { username, password } = req.body
 
-  if (email === "" || password === "") {
+  if (username === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Please enter both, email and password to login.",
     })
   }
 
-  User.findOne({ email })
+  User.findOne({ username })
     .then((user) => {
-      if (!user) {
-        res.render("auth/login", {
-          errorMessage: "Email is not registered. Try with other email.",
-        })
-        return
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      if (user && bcryptjs.compareSync(password, user.passwordHash)) {
         // @ts-ignore
         req.session.currentUser = user
         res.redirect("/user-Profile")
       } else {
-        res.render("auth/login", { errorMessage: "Incorrect password." })
+        res.render("auth/login", {
+          errorMessage: "Incorrect user or password.",
+        })
       }
     })
     .catch((err) => next(err))
 })
 
-router.get('/user-profile', isLoggedIn, logStatus,(req, res, next) => { 
+router.get("/user-profile", isLoggedIn, logStatus,(req, res, next) => {
   // @ts-ignore
-  res.render('users/user-profile', {userInSession: req.session.currentUser})
+  // console.log(req.session.currentUser)
+  res.render("users/user-profile", { userInSession: req.session.currentUser })
 })
 
 router.get('/main', isLoggedIn, logStatus, (req, res, next) => res.render('auth/main'))
@@ -72,6 +86,8 @@ router.get("/private", isLoggedIn, logStatus, (req, res, next) => res.render("au
 router.get('/logout', isLoggedIn, logStatus,(req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err)
+    
+    res.clearCookie('connect.sid')
     res.redirect("/")
   })
 })
