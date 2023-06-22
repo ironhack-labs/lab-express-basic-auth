@@ -1,0 +1,34 @@
+<div class="wrapper">
+    <h2>User Login</h2>
+    <section class="form-section">
+        <form action="/login" method="POST">
+            {{#if errorMessage}}
+                <p class="error-message">{{errorMessage}}</p>
+            {{/if}}
+            <label class="form-label" for="username"> Username: </label>
+            <div>
+                <input 
+                    class="form-field" 
+                    id="username" 
+                    placeholder="username" 
+                    type="text" 
+                    name="username"
+                />
+            </div>
+
+            <label class="form-label" for="password"> password: </label>
+            <div>
+                <input
+                    class="form-field" 
+                    id="password" 
+                    placeholder="password" 
+                    type="password"
+                    name="password"
+                />
+            </div>
+            <div>
+                <button class="pet-form-button" type="submit">Login</button>
+            </div>
+        </form>
+    </section>
+</div>
