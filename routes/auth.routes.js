@@ -31,6 +31,9 @@ router.post('/signup',(req, res, next) => {
 
   User.create({ username, passwordHash: enctryptedPass })
     .then((userfromDB) => {
+      const user = userfromDB
+      // @ts-ignore
+      req.session.currentUser = user
       res.redirect("/user-profile")
     })
     .catch((error) => {
