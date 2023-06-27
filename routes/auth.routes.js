@@ -73,7 +73,7 @@ router.post("/login", (req, res, next) => {
     .catch((err) => next(err))
 })
 
-router.get("/user-profile", isLoggedIn, logStatus,(req, res, next) => {
+router.get("/user-profile", logStatus, isLoggedIn,(req, res, next) => {
   // @ts-ignore
   // console.log(req.session.currentUser)
   res.render("users/user-profile", { userInSession: req.session.currentUser })
