@@ -47,14 +47,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  const { username, password } = req.body;
-
-  if (username === '' || password === '') {
-    res.render('auth/login', {
-      errorMessage: 'Please enter both, username and password to login.'
-    });
-    return;
-  }
+  console.log('SESSION =====> ', req.session);
 
   User.findOne({ username })
     .then(user => {
@@ -63,7 +56,8 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: 'User not found and/or incorrect password.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        res.render('users/user-profile', { user });
+        req.session.currentUser = user;
+        res.redirect('/userProfile');
       } else {
         console.log("Incorrect password. ");
         res.render('auth/login', { errorMessage: 'User not found and/or incorrect password.' });
@@ -75,6 +69,13 @@ router.post('/login', (req, res, next) => {
 router.get('/login', (req, res) => res.render('auth/login'));
 
 router.get('/userProfile', (req, res) => res.render('users/user-profile'));
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
 
 
 module.exports = router;
