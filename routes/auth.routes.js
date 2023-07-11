@@ -110,4 +110,14 @@ router.post('/logout', isLoggedIn, (req, res) => {
 //Login (END)
 
 
+//Iteration 3
+
+router.get('/main', isLoggedIn, (req,res) => {
+    res.render('./auth/main')
+})
+
+router.get('/private', isLoggedIn, (req,res) => {
+    res.render('./auth/private')
+})
+
 module.exports = router;
