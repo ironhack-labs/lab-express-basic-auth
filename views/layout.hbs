@@ -11,6 +11,24 @@
 
   <body>
 
+    <nav>
+        <a href="/">Home</a>
+          <span> | </span>
+        <a href="/profile">Profile</a>
+      {{#if loggedIn}}
+        <span> | </span>
+        <form id="logout-form" action="/logout" method="POST">
+          <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+        </form>
+      {{else}}
+        <span> | </span>
+        <a href="/signup">Signup</a>
+          <span> | </span>
+        <a href="/login">Login</a>
+      {{/if}}
+      
+    </nav>
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
