@@ -15,6 +15,11 @@ const hbs = require('hbs');
 
 const app = express();
 
+//partials
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+hbs.registerPartials(__dirname + '/views/partials');
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
