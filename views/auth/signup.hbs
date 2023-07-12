@@ -1,17 +1,39 @@
 <div id="signup">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username"> Username </label>
-    <input value="{{user.username}}" type="text" id="input-username" name="username" placeholder="Your username" autocomplete="off"/>
- 
-    <label for="input-password"> Password </label>
-    <input type="password" name="password" id="input-password" placeholder="********" autocomplete="off" />
- 
-    <button type="submit">Sign Up</button>
- 
-    {{!-- error message will be added here --}}
+  <form action="/signup" method="POST" class="row g-3 mt-2">
+    <div class="col-md-2">
+      <label for="input-username" class="form-label"> Username </label>
+      <input
+        value="{{user.username}}"
+        type="text"
+        class="form-control"
+        id="input-username"
+        name="username"
+        placeholder="Your username"
+        autocomplete="off"
+        required
+      />
+    </div>
+    <div class="col-md-2">
+      <label for="input-password" class="form-label"> Password </label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        id="input-password"
+        placeholder="********"
+        autocomplete="off"
+        required
+      />
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </div>
+
+    {{! error message will be added here }}
     {{#if error}}
       <p class="error">{{error}}</p>
     {{/if}}
   </form>
+
 </div>
