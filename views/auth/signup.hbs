@@ -1,0 +1,17 @@
+<div id="signup">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+    <label for="input-username"> Username </label>
+    <input value="{{user.username}}" type="text" id="input-username" name="username" placeholder="Your username" autocomplete="off"/>
+ 
+    <label for="input-password"> Password </label>
+    <input type="password" name="password" id="input-password" placeholder="********" autocomplete="off" />
+ 
+    <button type="submit">Sign Up</button>
+ 
+    {{!-- error message will be added here --}}
+    {{#if error}}
+      <p class="error">{{error}}</p>
+    {{/if}}
+  </form>
+</div>
