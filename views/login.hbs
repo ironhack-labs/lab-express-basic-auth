@@ -1,16 +1,8 @@
-<div id="signup" class="container col-xxl-4">
-  <h1>Sign Up</h1>
+<div id="login" class="container col-xxl-4">
+  <h1>Log In</h1>
 
 
-    <form action="/signUp" method="POST">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control {{#if errors.username}}is-invalid{{/if}}" id="username" name="username" value='{{user.username}}'
-          placeholder='Your Username'>
-            <div class="invalid-feedback">
-        <p>{{errors.username}}</p>
-      </div>
-      </div>
+    <form action="/login" method="POST">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" name="email" value='{{user.email}}'
@@ -26,7 +18,7 @@
         <p>{{errors.password}}</p>
       </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign Up</button>
+      <button type="submit" class="btn btn-primary">Log In</button>
 
     </form>
 

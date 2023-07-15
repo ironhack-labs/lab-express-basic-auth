@@ -1,12 +1,26 @@
-const router = require("express").Router();
-const userControllers = require('../controllers/user.controllers')
+const express = require("express");
+const router = express.Router();
+const authRouter = require('./auth.routes')
+const userRouter = require('./user.routes')
+const authMiddleware = require('../middlewares/auth.middlewares');
 
-/* GET home page */
+/*home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get('/signUp', userControllers.signup)
-router.post('/signUp', userControllers.doSignUp)
+router.get('/main', authMiddleware.isNotAuthenticated, (req, res, next) => {
+  res.render("main");
+});
+
+router.get('/private', authMiddleware.isAuthenticated, (req, res, next) => {
+  res.render("private");
+});
+
+router.use('/', authRouter)
+
+router.use('/user', userRouter)
+
+
 
 module.exports = router;
