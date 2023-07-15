@@ -1,22 +1,6 @@
-<div id="signup" class="container col-xxl-4 mt-5">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST" class="row g-3 mt-2">
-    <div class="mb-3">
-      <label for="username" class="form-label"> Username </label>
-      <input
-        value="{{user.username}}"
-        type="text"
-        class="form-control {{#if errors.username}}is-invalid{{/if}}"
-        id="username"
-        name="username"
-        {{! placeholder="Your username" }}
-        autocomplete="off"
-        required
-      />
-      <div class="invalid-feedback">
-        <p>{{errors.username}}</p>
-      </div>
-    </div>
+<div id="login" class="container col-xxl-4 mt-5">
+  <h2>Login</h2>
+  <form action="/login" method="POST" class="row g-3 mt-2">
     <div class="mb-3">
       <label for="email" class="form-label"> Email address </label>
       <input
@@ -48,8 +32,8 @@
         <p>{{errors.password}}</p>
       </div>
     </div>
-    <div >
-      <button class="btn btn-primary" type="submit">Sign Up</button>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Login</button>
     </div>
 
     {{! error message will be added here }}
