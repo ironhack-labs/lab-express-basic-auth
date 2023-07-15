@@ -15,6 +15,8 @@ const hbs = require('hbs');
 
 const app = express();
 
+const {sessionConfig, currentUser} = require('./config/session.config')
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
@@ -23,6 +25,9 @@ const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+
+app.use(sessionConfig)
+app.use(currentUser)
 
 // 👇 Start handling routes here
 const index = require('./routes/index');

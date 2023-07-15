@@ -6,8 +6,12 @@ const SALT_ROUNDS = 10
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true,
     required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -32,6 +36,10 @@ userSchema.pre('save', function(next) {
     next()
   }
 })
+
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
 
 const User = model("User", userSchema);
 
