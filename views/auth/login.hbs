@@ -1,0 +1,22 @@
+<div id="signup" class="container col-xxl-4">
+  <h2>Login</h2>
+  
+  <form action="/login" method="POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" aria-describedby="emailHelp">
+      <div class="invalid-feedback">
+        <p>{{errors.email}}</p>
+      </div>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password">
+      <div class="invalid-feedback">
+        <p>{{errors.password}}</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
