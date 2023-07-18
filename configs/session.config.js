@@ -21,7 +21,7 @@ module.exports.sessionConfig = expressSession({
 
 module.exports.currentUser = (req, res, next) => {
   const userId = req.session.userId;
-
+ 
   if (userId) {
     User.findById(userId)
       .then((user) => {
