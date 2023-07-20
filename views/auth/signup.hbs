@@ -1,0 +1,29 @@
+<div id="form-login">
+  <h2>Log in</h2>
+  <form action="/auth/signup" method="POST">
+    <label>
+      Email
+      <input 
+        type="text" 
+        name="email" 
+        placeholder="Typeyouremail@please.com" />
+    </label>
+    <label>
+      Password
+      <input
+        type="password"
+        name="password"
+        placeholder="Create your password"
+      />
+    </label>
+
+    <button type="submit">Sign up</button>
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+<style>
+  .error { color: #d8000c; background-color: #ffbaba; width: fit-content;
+  padding: 2px;}
+</style>
