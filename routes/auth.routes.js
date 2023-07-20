@@ -12,6 +12,13 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
 
+  if (username === "" || password === "") {
+    res.render("auth/signup", {
+      errorMessage: "Provide both email and password",
+    });
+    return;
+  }
+
   bcryptjs
     .genSalt(saltRounds)
     .then((salt) => bcryptjs.hash(password, salt))
