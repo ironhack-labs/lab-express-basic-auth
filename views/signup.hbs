@@ -1,0 +1,39 @@
+
+
+{{!-- <div id="form">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+
+    <label> Username
+      <input type="text" name="username" placeholder="ironhacker" />
+    </label>
+
+    <label> Password
+      <input type="password" name="password" placeholder="******" />
+    </label> --}}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+
+  <form action="/signup" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <br>
+    <button type="submit">Sign Up</button>
+
+    {{#if errorMessage}}
+    <p> class = "error" {{errorMessage}}</p>
+    {{/if}}
+  </form>
+</body>
+</html>
