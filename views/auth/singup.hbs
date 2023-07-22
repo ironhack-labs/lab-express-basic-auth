@@ -2,8 +2,9 @@
   <h2>Signup</h2>
   <form action="/signup" method="POST">
  
-    <label> Username
-      <input type="text" name="username" placeholder="ironhacker" />
+    <label> Email
+      <input type="email" name="email" placeholder="seeyaindahell@idontlikeyou.com" />
+
     </label>
  
    
@@ -14,6 +15,10 @@
  
     <button type="submit">Create account</button>
  
-    
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
   </form>
 </div>
+
+<h1>{{userInSession.email}} user</h1>
