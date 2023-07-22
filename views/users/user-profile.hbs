@@ -1,1 +1,11 @@
-<p>You have reached the profile page</p>
+{{!-- views/users/user-profile.hbs --}}
+
+{{#if currentUser}}
+  <h2>Welcome, {{ currentUser.email }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/profile">Reload the page</a>
+  </button>
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
