@@ -10,7 +10,13 @@
 
   <body>
 
-    <a href='/signup'>Sign up</a>
+    <div class='auth'>
+      <a class='auth__link auth__link--signup' href='/signup'>Sign up</a>
+      <a class='auth__link auth__link--login' href='/login'>Login</a>
+      <form id='logout-form' action='/logout' method='POST'>
+        <button>Logout</button>
+      </form>
+    </div>
 
     {{{body}}}
 

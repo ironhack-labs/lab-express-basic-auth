@@ -1,13 +1,11 @@
 <div class='form'>
+  <h2 class='form__heading'>Login</h2>
 
-  <h2 class='form__heading'>Sign Up</h2>
-
-  <form class='form__fillout form__fillout--signup' action='/signup' method='POST'>
+  <form class='form__fillout form__fillout--login' action='/login' method='POST'>
 
     <label for='username'>
       Username:
       <input type='text' name='username' placeholder='ironhacker' required='true' minlength='7' />
-
     </label>
 
     <label for='password'>
@@ -16,7 +14,10 @@
 
     </label>
 
-    <button type='submit'>Submit</button>
+    <button type='submit'>Login</button>
 
+    {{#if errorMessage}}
+      <p class='error'>{{errorMessage}}</p>
+    {{/if}}
   </form>
 </div>
