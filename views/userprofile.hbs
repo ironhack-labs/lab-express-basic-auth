@@ -1,0 +1,18 @@
+<h1>My user profile</h1>
+
+{{#if signedInUser}}
+<h5>Username</h5>
+<p>{{signedInUser.username}}</p>
+
+<h5>Password Hash</h5>
+<p>{{signedInUser.passwordHash}}</p>
+
+<form action="/logout" method="POST">
+  <button>Log out</button>
+</form>
+
+{{else}}
+<p>Not logged in</p>
+{{/if}}
+
+<a href="/"><button>Back to home</button></a>

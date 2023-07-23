@@ -8,6 +8,23 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+  
+  <nav>
+    <section>
+      <a href="/">My Web App</a>
+    </section>
+    <section id="buttons">
+      {{#if signedInUser}}
+      <a href="/userprofile">User Profile</a> <span> | </span>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+      </form>
+      {{else}}
+      <a href="/signup">Signup</a> <span> | </span>
+      <a href="/login">Login</a>
+      {{/if}}
+    </section>
+  </nav>
 
   <body>
 

@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(211, 211, 211, 0.427);
+  padding: 20px 20px;
+  text-transform: uppercase;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
+#buttons > a, #buttons > form {
+  padding: 0px 5px;
+}
+
+#errorMessage {
+  color: red;
+}
