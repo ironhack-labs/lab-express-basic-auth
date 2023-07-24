@@ -1,0 +1,44 @@
+<div id="form-login">
+  <h2>Sign up</h2>
+  <form action="/auth/signup" method="POST">
+    <label>
+      Email
+      {{!  <input type="email" name="email" placeholder="rockstar@ironhack.com" />}}
+      {{#if email}}
+        <input
+          {{! required}}
+          type="email"
+          value="{{email}}"
+          name="email"
+          placeholder="rockstar@ironhack.com"
+        />
+      {{else}}
+        <input
+          {{! required}}
+          type="email"
+          name="email"
+          placeholder="rockstar@ironhack.com"
+        />
+      {{/if}}
+    </label>
+    <label>
+      Password
+      <input
+        {{! required}}
+        type="password"
+        name="password"
+        placeholder="Create your password"
+      />
+    </label>
+
+    <button type="submit">Sign up</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+<style>
+  .error { color: #d8000c; background-color: #ffbaba; width: fit-content;
+  padding: 2px;}
+</style>
