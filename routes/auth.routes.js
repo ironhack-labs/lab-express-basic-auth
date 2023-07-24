@@ -11,6 +11,11 @@ router.get("/signup", (req, res) => {
 router.post("/signup", (req, res) => {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+        res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your email and password.' });
+        return;
+    }
+
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(password, salt))
@@ -21,7 +26,7 @@ router.post("/signup", (req, res) => {
             User.create({ email, password: hashedPassword }) // <-- Use hashedPassword aqui
                 .then(() => {
                     console.log(email, hashedPassword);
-                    res.redirect('userProfile');
+                    res.redirect('/auth/userProfile');
                 })
                 .catch(err => {
                     console.error(err);
