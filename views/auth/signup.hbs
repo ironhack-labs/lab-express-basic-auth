@@ -4,9 +4,9 @@
 
   <form class='form__fillout form__fillout--signup' action='/signup' method='POST'>
 
-    <label for='username'>
-      Username:
-      <input type='text' name='username' placeholder='ironhacker' required='true' minlength='7' />
+    <label for='email'>
+      Email:
+      <input type='email' name='email' placeholder='ironhacker' required='true' />
 
     </label>
 
@@ -17,6 +17,8 @@
     </label>
 
     <button type='submit'>Submit</button>
-
+    {{#if errorMessage}}
+      <p class='user__content'>{{errorMessage}}</p>
+    {{/if}}
   </form>
 </div>

@@ -9,8 +9,7 @@ a {
 
 .index {
   text-align: center;
-  background-color: #00b7ff;
-  color: white;
+
   width: 800px;
   height: 600px;
   margin: 100px auto;
@@ -26,23 +25,36 @@ a {
 }
 
 .auth {
-  font-size: 26px;
-  margin: 200px auto;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}
+
+.auth__form {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin-bottom: 0px;
 }
 
 .auth__link {
-  color: white;
   text-decoration: none;
   display: inline-block;
   padding: 10px;
-  background-color: black;
 }
 
+.auth__link--button {
+  background: inherit;
+  border: none;
+  color: #00b7ff;
+}
 /* SIGN UP FORM */
 
 .form {
   text-align: center;
-  margin-top: 150px;
 }
 
 .form__heading {
@@ -54,4 +66,13 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 25px;
+}
+
+.user__content {
+  text-align: center;
+  font-size: 28px;
+}
+
+input {
+  display: inherit;
 }
