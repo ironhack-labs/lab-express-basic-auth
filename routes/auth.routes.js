@@ -50,6 +50,7 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
 });
 
 router.get('/userProfile', isLoggedIn, (req, res) => {
+  console.log(req.session.currentUser);
   res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
@@ -77,7 +78,8 @@ router.post('/login', isLoggedOut, (req, res) => {
         return;
       } else if (bcryptjs.compareSync(password, user.password)) {
         // res.render('users/user-profile', { user });
-        req.session.currentUser = user;
+        const { email, _id } = user;
+        req.session.currentUser = { email, _id };
         res.redirect('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password' });
