@@ -14,10 +14,20 @@
       <ul>
         <li id="to-right">
           {{#if currentUser}}
+
+            <a href="/">Home</a>
+            <span> | </span>
+            <a href="/userProfile">Profile</a>
+            <span> | </span>
+
+            <a href="/main">Roaming</a>
+            <span> | </span>
+            <a href="/private">Private</a>
+            <span> | </span>
+
             <form id="logout-form" action="/logout" method="POST">
               <button>Logout</button>
             </form>
-       
 
           {{else}}
             <a href="/signup">Signup</a>
