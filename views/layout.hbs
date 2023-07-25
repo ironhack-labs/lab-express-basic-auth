@@ -1,19 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
   <body>
+    <nav>
+      <div class='auth'>
+
+        {{#if userInSession}}
+          <form class='auth__form' id='logout-form' action='/logout' method='POST'>
+            <button class='auth__link auth__link--button'>Logout</button>
+          </form>
+          <a class='auth__link auth__link--profile' href='/userProfile'>Profile</a>
+        {{else}}
+          <a class='auth__link auth__link--signup' href='/signup'>Sign up</a>
+          <a class='auth__link auth__link--login' href='/login'>Login</a>
+        {{/if}}
+      </div>
+    </nav>
 
     {{{body}}}
 
-    <script src="/js/script.js"></script>
+    <script src='/js/script.js'></script>
   </body>
 
 </html>

@@ -1,0 +1,23 @@
+<div class='form'>
+  <h2 class='form__heading'>Login</h2>
+
+  <form class='form__fillout form__fillout--login' action='/login' method='POST'>
+
+    <label for='email'>
+      Email:
+      <input type='email' name='email' placeholder='ironhacker@gmail.com' required='true' />
+    </label>
+
+    <label for='password'>
+      Password:
+      <input type='password' name='password' placeholder='*******' />
+
+    </label>
+
+    <button type='submit'>Login</button>
+
+    {{#if errorMessage}}
+      <p class='error'>{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
