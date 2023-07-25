@@ -25,13 +25,13 @@ const userSchema = new Schema(
       required: [true, 'Username is required.'],
       unique: true
     },
-      //     password: {
-      // type: String,
-      // required: [true, 'Password is required.'],
-      // unique: true,
-      // lowercase: true,
-      // trim: true
-    // },
+          password: {
+      type: String,
+      required: [true, 'Password is required.'],
+      unique: true,
+      lowercase: true,
+      trim: true
+    },
     // email: {
     //   type: String,
     //   required: [true, 'Email is required.'],
@@ -39,10 +39,10 @@ const userSchema = new Schema(
     //   lowercase: true,
     //   trim: true
     // // },
-    passwordHash: {
-      type: String,
-      required: [true, 'Password is required.']
-    }
+    // passwordHash: {
+    //   type: String,
+    //   required: [true, 'Password is required.']
+    // }
   },
   {
 
@@ -50,6 +50,20 @@ const userSchema = new Schema(
     
   }
 );
+
+userSchema.pre('save', async function (next) {
+  try {
+    if (!this.isModified('password')) {
+      return next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
 
 module.exports = model('User', userSchema);
 
