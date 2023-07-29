@@ -1,0 +1,13 @@
+{{!-- views/users/user-profile.hbs --}}
+
+{{#if user}}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+
+  <form  action="users/logout" method="POST">
+    <button>Logout</button>
+  </form>
+ 
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
