@@ -8,7 +8,8 @@ require('./db');
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require('express');
-
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
@@ -23,6 +24,24 @@ const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+
+app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      resave: true,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/basic-auth'
+      }),
+      cookie: {
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 60000,
+      },
+    })
+  );
+  
 
 // 👇 Start handling routes here
 const index = require('./routes/index');
