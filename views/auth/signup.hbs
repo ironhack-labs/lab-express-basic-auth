@@ -4,11 +4,14 @@
 
 <form action="/signup" method="POST">
   <label> Username
-    <input type="text" name="username" placeholder="Username" />
+    <input type="text" name="username" placeholder="@Username" />
   </label>
   <label> Password
-    <input type= password name="password" placeholder="********"/>
+    <input type=password name="password" placeholder="********"/>
   </label>
     <button type="submit">Create an account!</button>
+  {{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </form>
 </div>
