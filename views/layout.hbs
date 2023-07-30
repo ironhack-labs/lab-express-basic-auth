@@ -10,7 +10,25 @@
   </head>
 
   <body>
+ <nav>
+    <ul>
+      <li id="to-left">
+        <p><a href="/"> Users - demo </a></p>
+      </li>
 
+      {{#if signedInUser}}  
+          <li id="to-right">          
+          <form id="logout-form" action="/logout" method="POST">
+           <button>Logout</button>
+          </form></li>
+      {{else}}      
+      <li id="to-right">
+        <a href="/signup">Signup</a> <span> | </span>
+        <a href="/login">Login</a>
+      </li>
+      {{/if}}
+    </ul>
+  </nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
