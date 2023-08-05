@@ -6,3 +6,72 @@ body {
 a {
   color: #00B7FF;
 }
+
+h2 {
+  color: darkslategrey;
+}
+
+.login-signup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.login-signup a {
+  margin-right: 10px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1cm;
+}
+
+#form {
+  text-align: center;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+#form h2 {
+  margin-bottom: 20px;
+}
+
+#form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#form input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-left: 0; /* Remover a margem esquerda padrão */
+  margin-right: 0; /* Remover a margem direita padrão */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#form button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#form button:hover {
+  background-color: #45a049;
+}
+
+
+#form input[type="email"],
+#form input[type="password"] {
+  margin-right: 10; 
+}
