@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Registro</h1>
+            <hr>
+            <form action="/register" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                    <div class="form-text">Mínimo 6 caracteres.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="text" class="form-control" id="password" name="plainPassword">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Registrarme</button>
+                </div>
+                <div class="d-grid">
+                    <button><a href="/">Volver a inicio</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
