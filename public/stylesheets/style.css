@@ -3,6 +3,14 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+img {
+  width: 100%;
+}
+
 a {
-  color: #00B7FF;
+  border: 3px solid pink;
+  background-color: pink;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #420060;
 }
