@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form action="/auth/signup" method="POST">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+            <p class="bg-warning">{{errorMessageUsername}}</p>
+            <label for="plainPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+            <p class="bg-warning">{{errorMessagePassword}}</p>
+            <button type="submit" class="btn btn-dark mt-3">Confirm</button>
+
+
+
+        </form>
+        <a href="/" class="btn btn-dark mt-3">Cancel</a>
+    </div>
+</div>
