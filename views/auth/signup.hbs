@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Registro</h1>
+    <hr>
+    <form action="/signup" method="post">
+        <label for="username">Nombre de usuario</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="plainPassword">
+        <button type="submit">Registrarme</button>
+        {{#if errorMessage}}
+        <p id="error">{{errorMessage}}</p>
+        {{/if}}
+
+    </form>
+</div>
