@@ -26,6 +26,12 @@ app.use('/', authRoutes);
 const userRoutes = require('./routes/user.routes');
 app.use('/', userRoutes);
 
+// const main = require('./routes/protect/main.routes')
+// app.use('/', main)
+
+// const private = require('./routes/protect/private.routes')
+// app.use('/', private)
+
 require('./error-handling')(app);
 
 module.exports = app;
