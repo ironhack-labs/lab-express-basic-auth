@@ -1,0 +1,28 @@
+<div class="container">
+
+    <h1>Login</h1>
+
+
+    <form action="/login" method="POST">
+
+        <div>
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username">
+        </div>
+        <div>
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password">
+        </div>
+
+        {{#if errorMessage}}
+        <div class="alert alert-danger" role="alert">
+            <p>{{errorMessage}}</p>
+        </div>
+
+        {{/if}}
+
+        <div class="d-grid mt-3">
+            <button class="btn btn-dark" type="submit">Log in</button>
+        </div>
+    </form>
+</div>
