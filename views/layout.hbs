@@ -1,19 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
   <body>
 
-    {{{body}}}
+    <nav class='navbar navbar-expand-lg navbar-dark shadow fixed-top'>
+      <div class='container-fluid'>
 
-    <script src="/js/script.js"></script>
+        <div class='navbar-nav me-auto'>
+          <a class='navbar-brand' href='/'>Basic Auth |</a>
+          <a class='nav-link active' href='/'>Home</a>
+
+          {{#if loggedUser.username}}
+            <a class='nav-link active' href='/user/main'>Main</a>
+          {{/if}}
+
+          {{#if loggedUser.username}}
+            <a class='nav-link active' href='/user/private'>Private</a>
+          {{/if}}
+        </div>
+
+        <div class='navbar-nav'>
+          {{#unless loggedUser.username}}
+            <a class='nav-link active' href='/sign-up'>Sign Up</a>
+          {{/unless}}
+
+          {{#unless loggedUser.username}}
+            <a class='nav-link active' href='/log-in'>Log In</a>
+          {{/unless}}
+
+          {{#if loggedUser.username}}
+            <a class='nav-link active' href='/log-out'>Log Out</a>
+          {{/if}}
+        </div>
+      </div>
+    </nav>
+
+    <div class='body'>
+      {{{body}}}
+    </div>
+
+    <script src='/js/script.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js'></script>
   </body>
 
 </html>
