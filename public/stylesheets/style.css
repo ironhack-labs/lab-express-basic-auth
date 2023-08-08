@@ -1,8 +1,14 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#error {
+	background: rgb(239, 151, 151);
+	border: 1px solid red;
+	padding: 8px;
+	border-radius: 3px;
 }
