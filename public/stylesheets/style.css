@@ -1,8 +1,121 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-attachment: fixed;
+  background-color: #000000;
+  background-image: url('./../images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+p {
+  font-size: 3em;
+}
+
+.navbar {
+  background-color: #000000;
+}
+
+.body {
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  padding: 10rem;
+}
+
+.btn-dark {
+  background-color: #000000;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#error {
+  background-color: rgb(255, 50, 50);
+  font-size: 1em;
+  padding: 10px;
+  text-align: center;
+}
+
+.main {
+  left: calc(50% - 400px);
+  position: absolute;
+  text-align: center;
+  top: 14%;
+  width: 800px;
+}
+
+.main h2 {
+  font-size: 6em;
+}
+
+.cat1 {
+  bottom: 0;
+  left: calc(50% - 150px);
+  position: absolute;
+}
+
+.cat1 img {
+  width: 300px;
+}
+
+.cat2 {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+}
+
+.cat2 img {
+  width: 250px;
+}
+
+.private {
+  left: calc(50% - 400px);
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  width: 800px;
+}
+
+.private h2 {
+  font-size: 6em;
+}
+
+.btn-warning {
+  border-radius: 100%;
+  font-size: 6em;
+  height: 200px;
+  left: calc(50% - 100px);
+  position: absolute;
+  top: calc(55% - 100px);
+  width: 200px;
+}
+
+.restricted-area {
+  left: 5%;
+  top: 10%;
+  position: absolute;
+}
+
+.restricted-area img {
+  width: 300px;
+}
+
+.dont-press-gif {
+  bottom: 2%;
+  position: absolute;
+  right: 2%;
+}
+
+.dont-press-gif img {
+  width: 400px;
+}
+
+.video {
+  left: calc(50% - 640px);
+  position: absolute;
+  top: 15%;
 }
