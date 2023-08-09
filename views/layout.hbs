@@ -10,7 +10,22 @@
   </head>
 
   <body>
-
+    <nav>
+      <ul style="display: flex; flex-direction:row; justify-content:space-around ; list-style-type: none;  align-items: center;">
+        <li id="to-left">
+          <p><a href="/"> Home</a></p>
+        </li>
+        <li id="to-right" style="display: flex; flex-direction:row; justify-content:space-evenly; align-items: center; width: 400px;">
+          <a href="/signup">Signup</a>
+          <a href="/login">Login</a>
+          <a href="/private">Your private page</a>
+          <a href="/main">cat pic</a>
+          <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
