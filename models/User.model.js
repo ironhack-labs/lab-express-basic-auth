@@ -6,8 +6,26 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
-});
+  email: {
+    type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address'],
+  },
+  password: {
+    type: String,
+    required: true
+}
+},
+  {
+    // this second object adds extra properties: `createdAt` and `updatedAt`    
+    timestamps: true
+  }
+
+
+);
 
 const User = model("User", userSchema);
 
