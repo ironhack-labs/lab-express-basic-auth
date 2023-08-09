@@ -3,6 +3,8 @@ const router = new Router();
 
 const User = require('../models/User.model');
 
+const mongoose = require('mongoose');
+
 const bcryptjs = require('bcryptjs');
 
 // Require auth middleware
@@ -54,6 +56,12 @@ router.post('/signup', async (req, res, next) => {
       next(error);
     }
   }
+});
+
+// LOGIN
+// GET Route to display a Login Form
+router.get('/login', isLoggedIn, (req, res, next) => {
+  res.render('auth/login');
 });
 
 // POST Route to submit the info of the login Form
