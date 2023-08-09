@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +7,22 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
   <body>
-
     {{{body}}}
-
+    <nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/">Home</a></p>
+        </li>
+        <li id="to-right">
+          <a href="/signup">Signup</a>
+          <a href="/login">Login</a>
+          <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
     <script src="/js/script.js"></script>
   </body>
-
 </html>
