@@ -112,14 +112,14 @@ router.post("/login", async (req, res, next) => {
 });
 
 /* LOGOUT SECTION */
-router.post("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) {
-      next(err);
-    }
-    res.redirect("/");
-  });
-});
+// router.post("/logout", (req, res, next) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       next(err);
+//     }
+//     res.redirect("/");
+//   });
+// });
 
 
 
