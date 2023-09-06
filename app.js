@@ -1,3 +1,7 @@
+//to get rid of warning message
+const mongoose = require("mongoose");
+mongoose.set('strictQuery', true);
+
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
@@ -9,11 +13,13 @@ require('./db');
 // https://www.npmjs.com/package/express
 const express = require('express');
 
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
 
 const app = express();
+require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -27,6 +33,15 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 // 👇 Start handling routes here
 const index = require('./routes/index');
 app.use('/', index);
+
+const authRouter = require('./routes/auth.routes'); 
+app.use('/', authRouter);
+
+const mainRouter = require('./routes/main.routes');
+app.use('/', mainRouter);
+
+const privateRouter = require('./routes/private.routes')
+app.use('/', privateRouter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
