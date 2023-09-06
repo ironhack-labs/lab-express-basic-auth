@@ -1,6 +1,8 @@
+
+
 function private(req, res, next) {
   if (!req.session.currentUser) {
-    res.redirect("/");
+     res.render("auth/private");
     return;
   }
   next();

@@ -1,6 +1,6 @@
 function main(req, res, next) {
     if (!req.session.currentUser) {
-      res.redirect("/");
+      res.render("auth/main");
       return;
     }
   

@@ -37,11 +37,11 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes'); 
 app.use('/', authRouter);
 
-const mainRouter = require('./routes/main.routes');
-app.use('/', mainRouter);
+// const mainRouter = require('./routes/main.routes');
+// app.use('/', mainRouter);
 
-const privateRouter = require('./routes/private.routes')
-app.use('/', privateRouter);
+// const privateRouter = require('./routes/private.routes')
+// app.use('/', privateRouter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

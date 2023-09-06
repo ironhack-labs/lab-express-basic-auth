@@ -1,5 +1,8 @@
-const { Router } = require("express");
-const router = new Router();
+// const { Router } = require("express");
+// const router = new Router();
+
+const router = require("express").Router();
+const validator = require('validator'); 
 
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
@@ -11,6 +14,23 @@ router.get("/signup", (req, res) => res.render("auth/signup"));
 
 router.post("/signup", (req, res, next) => {
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.render('auth/signup', {errorMessage: "❌ You can't skip Username & Password!"})
+    return;
+  }
+
+//validator (npm package): Your password needs to be between 8 and 30 characters long and 
+// contain one uppercase letter, one symbol, and a number."
+// MDN -> additional validation constraint
+  if (!validator.isLength(password, {min:8, max:30}) ||
+  !validator.isStrongPassword(password, {minLength:8, minLowercase:1,
+    minUppercase: 1, minNumbers: 1, minSymbols: 1 }))
+{res.status(500).render('auth/signup', {
+  errorMessage: '😅 Your password needs to be between 8 and 30 characters long and contain one uppercase letter, one symbol, and a number.'
+})
+return;
+}
 
   bcryptjs
     .genSalt(saltRounds)
@@ -28,18 +48,11 @@ router.post("/signup", (req, res, next) => {
       res.redirect("/userProfile");
     })
     .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        //form
-        res.status(500).render("auth/signup", { errorMessage: error.message }); //500 (Internal Server Error)
-      } else if (error.code === 11000) {
-        //ducplicate key error: Mongo DB error
-
+      if (error.code === 11000) {
         console.log(
-          " Username and email need to be unique. Either username or email is already used. "
-        );
-
+          "😎 Username needs to be unique. This username is already used. ");
         res.status(500).render("auth/signup", {
-          errorMessage: "User not found and/or incorrect password.",
+          errorMessage: "😎 Username needs to be unique. This username is already used. ",
         });
       } else {
         next(error);
@@ -76,7 +89,7 @@ router.post("/login", (req, res, next) => {
 
   if (username === "" || password === "") {
     res.render("auth/login", {
-      errorMessage: "Please enter both, username and password to login.",
+      errorMessage: "🐣 Please enter both, username and password to login.",
     });
     return;
   }
@@ -86,7 +99,7 @@ router.post("/login", (req, res, next) => {
       if (!user) {
         console.log("username not registered. ");
         res.render("auth/login", {
-          errorMessage: "User not found and/or incorrect password.",
+          errorMessage: "🦨 🦨 🦨 User not found and/or incorrect password.",
         });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
@@ -95,14 +108,12 @@ router.post("/login", (req, res, next) => {
       } else {
         console.log("Incorrect password. ");
         res.render("auth/login", {
-          errorMessage: "User not found and/or incorrect password.",
+          errorMessage: "🥲 User not found and/or incorrect password.",
         });
       }
     })
     .catch((error) => next(error));
 });
-
-//router.get('/userProfile', (req, res) => res.render('users/user-profile'));
 
 router.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
@@ -110,5 +121,16 @@ router.post("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+
+
+const private = require("../middleware/private")
+router.get("/private", private, (req, res) => {
+res.render('auth/private')
+})
+
+const main = require("../middleware/main")
+router.get("/main", main,(req, res) => {
+  res.render('auth/main')
+  })
 
 module.exports = router;
