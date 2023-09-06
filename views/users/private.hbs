@@ -1,0 +1,12 @@
+{{#if userInSession}}
+  <h1>Welcome to the private page {{ userInSession.username }}!</h1>
+  <p>This is for logged in users only</p>
+  <div class="tenor-gif-embed" data-postid="25785248" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/dog-gif-25785248">Dog GIF</a>from <a href="https://tenor.com/search/dog-gifs">Dog GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+  {{!-- <button>
+    <a href="/private">Reload the page</a>
+  </button> --}}
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}}
