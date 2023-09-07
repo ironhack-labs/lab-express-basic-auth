@@ -1,10 +1,11 @@
 function main(req, res, next) {
-    if (!req.session.currentUser) {
-      res.render("auth/main");
-      return;
-    }
-  
-    next(); // next mean, if user is there, go to next (meaning the ) 
+  if (!req.session.currentUser) {
+    res.render("auth/main");
+    return;
   }
 
-  module.exports = main
+  next(); 
+}
+
+module.exports = main;
+

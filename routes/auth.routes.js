@@ -10,9 +10,9 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 
-router.get("/signup", (req, res) => res.render("auth/signup"));
+router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -61,7 +61,7 @@ return;
 });
 
 
-router.get("/userProfile", (req, res) => {
+router.get("/userProfile", isLoggedIn, (req, res) => {
     res.render("users/user-profile", { userInSession: req.session.currentUser });
   });
 
@@ -80,9 +80,9 @@ router.get("/userProfile", (req, res) => {
 // });
 
 
-router.get("/login", (req, res) => res.render("auth/login"));
+router.get("/login", isLoggedOut, (req, res) => res.render("auth/login"));
 
-router.post("/login", (req, res, next) => {
+router.post("/login",isLoggedOut, (req, res, next) => {
   console.log("SESSION =====> ", req.session);
   const { username, password } = req.body;
   console.log(req.body);
@@ -93,6 +93,7 @@ router.post("/login", (req, res, next) => {
     });
     return;
   }
+
 
   User.findOne({ username })
     .then((user) => {
@@ -115,7 +116,7 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.post("/logout", (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
     res.redirect("/");
@@ -128,7 +129,8 @@ router.get("/private", private, (req, res) => {
 res.render('auth/private')
 })
 
-const main = require("../middleware/main")
+const main = require("../middleware/main");
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 router.get("/main", main,(req, res) => {
   res.render('auth/main')
   })
