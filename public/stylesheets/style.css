@@ -4,5 +4,22 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.login-register-form {
+  border: 1px solid #eeeeee;
+  width: 320px;
+  padding: 20px;
+}
+
+.error {
+  color: red;
+}
+
+a {
+  color: #00b7ff;
+  color: #2a653c;
+  text-decoration: none;
+  font-size: 1.4em;
 }
