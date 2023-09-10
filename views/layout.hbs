@@ -5,11 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
+    <title>Lab Demo</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
+<nav>
+      <ul>
+        <li id="to-left">
+          <p><a href="/"> Lab Demo </a></p>
+        </li>
+        <li id="to-right">
+          <a href="/signup">Register</a><span> | </span>
+            <a href="/login">Login</a>
+
+            <form id="logout-form" action="/logout" method="POST">
+          <button>Logout</button> <span> | </span>
+        </form>
+
+            <a href="/userProfile">Profile</a>
+        </li>
+      </ul>
+    </nav>
+
 
     {{{body}}}
 
