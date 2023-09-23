@@ -102,13 +102,6 @@ router.get('/userProfile', (req, res) => {
     res.render('users/user-profile', { userInSession: req.session.currentUser });
 });
 
-router.post('/logout', (req, res, next) => {
-    req.session.destroy(err => {
-      if (err) next(err);
-      res.redirect('/');
-    });
-});
-
 const isAuthenticated = (req, res, next) => {
     if (req.session.currentUser) {
         next();
@@ -117,12 +110,29 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
+// Main
 router.get('/main', isAuthenticated, (req, res) => {
-    res.render('/main', { userInSession: req.session.currentUser });
+  if (req.session.currentUser) {
+    res.render("auth/main", { userInSession: req.session.currentUser });
+  } else {
+    res.redirect("/login");
+  }
 });
 
+// Private
 router.get('/private', isAuthenticated, (req, res) => {
-    res.render('/private', { userInSession: req.session.currentUser });
+  if (req.session.currentUser) {
+    res.render("auth/private", { userInSession: req.session.currentUser });
+  } else {
+    res.redirect("/login"); 
+  }
+});
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+      if (err) next(err);
+      res.redirect('/');
+    });
 });
 
 module.exports = router;
