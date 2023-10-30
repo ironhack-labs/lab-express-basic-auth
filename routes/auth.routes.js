@@ -12,13 +12,12 @@ router.get("/login", (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
-    let response = await UserModel.findOne({ username: req.body.username });
-    if (!response) {
-      const salt = bcryptjs.genSaltSync(12);
+    let response = await UserModel.findOne({ email: req.body.email }); 
+    if (!response) { 
+      const salt = bcryptjs.genSaltSync(12); 
       const hashedPassword = bcryptjs.hashSync(req.body.password, salt);
       const newUser = await UserModel.create({
-        ...req.body,
-        password: hashedPassword,
+      ... req.body, password: hashedPassword,
       });
       res.redirect("/auth/login");
     } else {
@@ -28,4 +27,24 @@ router.post("/signup", async (req, res) => {
     console.log(err);
   }
 });
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  console.log("SESSION =====> ", req.session);
+  const User = await UserModel.findOne({ email: req.body.email });
+  if (!User) {
+    res.render("auth/login", { errorMessage: "Please try again" });
+  } else {
+    const MatchingPassword = bcryptjs.compareSync(
+      req.body.password,
+      User.password
+    );
+    if (MatchingPassword) {
+      req.session.currentUser = User;
+    } else {
+      res.render("auth/login", { errorMessage: "Incorrect Details" });
+    }
+  }
+});
+
 module.exports = router;
