@@ -1,8 +1,37 @@
-body {
+/* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+} */
+
+
+
+.publico {
+  background-image: url('/images/backgroun\ cat.jpeg');
+  height: 100vh;
+  color: white;
+  font-family: Helvetica;
+  padding: 90px;
+  font-weight: bolder;
+
+}
+
+
+.body {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  color: white;
+  font-family: Helvetica;
+
+
+}
+
+.privado {
+  height: 100vh;
+  font-weight: bolder;
+  background-image: url(/images/gif\ bacground.gif);
+  background-repeat: repeat;
 }
