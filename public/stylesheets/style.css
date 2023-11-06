@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+.psw:invalid {
+  border: 4px solid rgb(185, 103, 103);
+}

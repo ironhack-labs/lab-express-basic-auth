@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 mt-5">
+
+            <form action="/login" method="post" class="mb-3">
+                <h1 class="mb-5">Please enter you credentials</h1>
+                <hr>
+                <div class="mb-3 mt-5">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password - at least 8 characters please</label>
+                    <input type="password" class="form-control psw" id="pass" name="password">
+                </div>
+
+                {{#if errMessage}}
+                <p class=" error">{{errMessage}}</p>
+                {{/if}}
+
+                <div class="d-grid gap-2">
+                    <input type="submit" class="btn btn-primary btn-dark" value="Submit">
+                </div>
+            </form>
+
+            <p>Don´t have an account yet? <a href="/signup">Sign Up</a></p>
+        </div>
+    </div>
+</div>
