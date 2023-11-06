@@ -18,7 +18,7 @@ module.exports = app => {
                 maxAge: 60000
             },
             store: MongoStore.create({
-                mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth"
+                mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth";
             })
         })
     );
