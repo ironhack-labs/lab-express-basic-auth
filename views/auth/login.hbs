@@ -1,0 +1,20 @@
+<div id="form">
+    <h1>Login</h1>
+
+    <form action="/inicio-sesion" method="post">
+
+        <label> Username
+            <input type="text" name="username" />
+        </label>
+
+        <label>Password
+            <input type="password" name="password" />
+        </label>
+
+        <button type="submit">Login</button>
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+    </form>
+</div>
