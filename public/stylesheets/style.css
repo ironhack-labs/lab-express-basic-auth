@@ -1,8 +1,10 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  font-family: sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#error {
+  text-align: center;
+  background-color: rgb(255, 203, 203);
+  padding: 8px;
+  font-size: .8em;
 }
