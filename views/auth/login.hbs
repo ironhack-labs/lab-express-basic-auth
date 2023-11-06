@@ -1,0 +1,22 @@
+<h1>Acceso</h1>
+
+<form action="/inicio-sesion" method="POST">
+<div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email"> 
+</div>
+
+<div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"> 
+</div>
+
+                {{#if errorMessage}}
+                <p id="error">{{errorMessage}}</p>
+                {{/if}}
+ <div>
+    <button type="submit">Acceder</button>
+ </div>               
+
+
+</form>
