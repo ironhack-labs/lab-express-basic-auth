@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+#error {
+  text-align: center;
+  background-color: rgb(221, 103, 103);
+  padding: 8px;
+  font-size: .8em;
+  color: white;
+}
