@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1>Sign Up</h1>
+            <hr>
+            <form class="mt-5" action="/signup" method="POST">
+                <div class="mb-3">
+                    <label for="usernm" class="form-label"> Username: </label>
+                    <input type="text" class="form-control" id="usernm" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="pswd" class="form-label">Contraseña: </label>
+                    <input type="password" class="form-control" id="pswd" name="password">
+                </div>
+                {{#if errorMessage}}
+                <div class="d-grid bg-danger justify-content-center my-auto">
+                    <p class="text-light" id="error">{{errorMessage}}</p>
+                </div>
+                {{/if}}
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark mt-3">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
