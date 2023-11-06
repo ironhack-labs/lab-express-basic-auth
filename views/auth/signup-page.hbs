@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 mt-5">
+
+            <form action="/signup" method="post" class="mb-3">
+                <h1 class="mb-5">Welcome!</h1>
+                <hr>
+                <div class="mb-3 mt-5">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password (at least 8 characters please)</label>
+                    <input type="password" class="form-control psw" id="pass" name="plainPassword" required
+                        pattern=".{8,}">
+                </div>
+                <div class="d-grid gap-2">
+                    <input type="submit" class="btn btn-primary btn-dark" value="Submit">
+                </div>
+            </form>
+
+            <p>If you already have an account, please <a href="/login">Log In</a></p>
+        </div>
+    </div>
+</div>
