@@ -1,0 +1,56 @@
+<form action="/sign-up" method="POST">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email">
+
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password">
+    </div>
+    <div class="mb-3">
+        <label for="spiritAnimal" class="form-label">Your spirit animal</label>
+        <input type="text" class="form-control" id="spiritAnimal" name="spiritAnimal">
+    </div>
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Your phone number</label>
+        <input type="number" class="form-control" id="phoneNumber" name="phoneNumber">
+    </div>
+
+    <button type="submit" class="btn btn-success">Sign up!</button>
+</form>
+
+{{!-- username: {
+type: String,
+trim: true,
+unique: true,
+required: [true, 'Es obligatorio el nombre de usuario'],
+minlength: [4, 'Tu nombre de usuario tiene que tener más de 4 carácteres']
+},
+email: {
+type: String,
+required: [true, 'Es obligatorio indicar el e-mail'],
+unique: true,
+lowecase: true,
+trim: true
+},
+password: {
+type: String,
+required: [true, 'Es obligatorio escoger una contraseña'],
+minlength: [4, 'Tu contraseña debe tener más de 8 carácteres']
+},
+spiritAnimal: {
+type: String,
+required: [true, 'Tienes que escoger tu animal espiritual'],
+trim: true,
+
+},
+phoneNumber: {
+type: Number,
+unique: true,
+minlength: [9, 'Tu número tiene que tener 9 carácteres']
+} --}}
