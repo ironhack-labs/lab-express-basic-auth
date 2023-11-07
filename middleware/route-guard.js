@@ -2,7 +2,7 @@ const isLoggedIn = (req, res, next) => {
     if (req.session.currentUser) {
         next()
     } else {
-        res.redirect('/login')
+        res.render('auth/login', { errorMessage: 'Desconectado' })
     }
 }
 
