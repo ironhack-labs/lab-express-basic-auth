@@ -1,0 +1,21 @@
+{{!-- username:
+email:
+passwordHash:
+birthday: String,
+
+profession: String,
+experience: String,
+pet: String --}}
+
+
+<div class="container">
+    <div class="card bg-secondary text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-primary">{{ user.username }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ user.email }}</h5>
+            <p class="card-text"><strong>PROFESION:</strong> {{ user.profession }}</p>
+            <p class="card-text"><strong>EXPERIENCE:</strong> {{ user.experience }}</p>
+            <p class="card-text"><strong>PET:</strong> {{ user.pet }}</p>
+        </div>
+    </div>
+</div>
