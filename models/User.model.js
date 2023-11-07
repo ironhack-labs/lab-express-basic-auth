@@ -1,13 +1,22 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+
 const userSchema = new Schema({
-  username: {
+
+  email: {
     type: String,
-    unique: true
+    required: [true, 'El email de usuario es obligatorio.'],
+    unique: true,
+    lowercase: true,
+    trim: true
   },
-  password: String
+  password: {
+    type: String
+  }
+
 });
+
+
 
 const User = model("User", userSchema);
 
