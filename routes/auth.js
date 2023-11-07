@@ -57,6 +57,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
                 return
             }
             req.session.currentUser = user
+            console.log('SESIÓN INICIADA ->', req.session)
             res.redirect('/')
         })
         .catch(error => console.log(error))
