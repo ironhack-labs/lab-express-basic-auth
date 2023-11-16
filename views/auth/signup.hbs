@@ -14,3 +14,19 @@
 
   <button type="submit">Sign Up</button>
 </form>
+
+<h1>Login</h1>
+
+<form action="/login" method="POST">
+  <label for="loginEmail">Email:</label>
+  <input type="email" id="loginEmail" name="email" required />
+
+  <label for="loginPassword">Password:</label>
+  <input type="password" id="loginPassword" name="password" required />
+
+  <button type="submit">Login</button>
+</form>
+
+{{#if error}}
+  <p>{{error}}</p>
+{{/if}}

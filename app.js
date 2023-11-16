@@ -1,24 +1,33 @@
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require("dotenv/config");
-
-// ℹ️ Connects to the database
+const express = require("express");
+const bodyParser = require("body-parser"); // Include body-parser
+const session = require("express-session");
+const app = express();
 require("./db");
 
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
-const express = require("express");
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+// Set up view engine
+app.set("view engine", "hbs");
 
-// Handles the handlebars
-// https://www.npmjs.com/package/hbs
-const hbs = require("hbs");
+// ℹ️ Connects to the database
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: false, // Change to true if using HTTPS
+      maxAge: 3600000, // 1 hour in milliseconds
+    },
+  })
+);
 
-const app = express();
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// ℹ️ This function is getting exported from the config folder. It runs most middlewares
-require("./config")(app);
+// Parse JSON bodies (as sent by API clients)
+app.use(bodyParser.json());
 
 // default value for title local
 const projectName = "lab-express-basic-auth";
@@ -27,16 +36,8 @@ const capitalized = (string) =>
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+const index = require("./routes/index");
 
-// Define the signup route
-app.get("/signup", (req, res) => {
-  res.render("auth/signup");
-});
-
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require("./error-handling")(app);
+app.use("/", index);
 
 module.exports = app;
