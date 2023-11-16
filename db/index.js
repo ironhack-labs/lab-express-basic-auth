@@ -1,17 +1,40 @@
-// ℹ️ package responsible to make the connection with mongodb
-// https://www.npmjs.com/package/mongoose
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const User = require("../models/User.model");
 
-// ℹ️ Sets the MongoDB URI for our app to have access to it.
-// If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth";
+mongoose.set("strictQuery", false);
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth";
-
+// Connect to MongoDB
 mongoose
-  .connect(MONGO_URI)
-  .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(async (x) => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+
+    // Check if the example user already exists
+    const existingUser = await User.findOne({ username: "example_user" });
+
+    if (!existingUser) {
+      // Hash the password
+      const hashedPassword = bcrypt.hashSync("user_password", 10);
+
+      // Create a new user
+      const newUser = {
+        username: "example_user",
+        email: "example@example.com",
+        passwordHash: hashedPassword,
+      };
+
+      // Create the user
+      await User.create(newUser);
+      console.log("Example user created");
+    } else {
+      console.log("Example user already exists");
+    }
   })
   .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
+    console.error("Error connecting to or creating user in mongo: ", err);
   });
