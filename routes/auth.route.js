@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { isGuest } = require("../middlewares/auth.middleware");
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
@@ -10,9 +11,15 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
+    const findUserName = await User.findOne({ username });
+    console.log("findusername", findUserName);
+
     if (username === "" || password === "") {
-      res.render("/signup", { error: "all fields required" });
+      res.render("auth/signup", { error: "all fields required" });
+    } else if (findUserName) {
+      res.render("auth/signup", { error: "usernameis already exist" });
     }
+
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
     const createUser = await User.create({
@@ -31,7 +38,7 @@ router.post("/signup", async (req, res) => {
 });
 
 router.get("/userprofile", (req, res) => {
-  res.render("user/userprofile");
+  res.render("user/userprofile", { userInSession: req.session.currentUser });
 });
 
 router.get("/login", (req, res) => {
@@ -39,7 +46,6 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log("SESSION =====> ", req.session);
   const { username, password } = req.body;
   if (!username || !password) {
     res.render("auth/login", { error: "all fields are required" });
@@ -51,18 +57,32 @@ router.post("/login", async (req, res) => {
     }
     const { password: hashedPassword } = foundUser;
     const comparePasswords = await bcrypt.compare(password, hashedPassword);
-    console.log(password, hashedPassword);
     if (!comparePasswords) {
       res.render("auth/login", { error: "password is very wrong" });
       return;
+    } else {
+      req.session.currentUser = foundUser;
+      res.redirect("/userprofile");
     }
-    req.session.currentUser = foundUser;
-    res.redirect("/userprofile");
 
     console.log(foundUser);
   } catch (err) {
     console.log(err);
   }
+});
+
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.clearCookie("connect.sid");
+  res.redirect("/login");
+});
+
+router.get("/main", (req, res) => {
+  res.render("user/main");
+});
+
+router.get("/private", isGuest, (req, res) => {
+  res.render("user/private");
 });
 
 module.exports = router;
