@@ -6,6 +6,8 @@ const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 const User = require("../models/User.model");
 
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
+
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res, next) => {
   const { username, email, password } = req.body;
@@ -81,6 +83,11 @@ router.post("/login", (req, res, next) => {
 
 router.get("/userProfile", (req, res) => {
   res.render("users/user-profile", { userInSession: req.session.currentUser });
+});
+router.get("/userProfile", isLoggedIn, (req, res) => {
+  reset.render("users/user-profile", {
+    userInSession: req.session.currentUser,
+  });
 });
 
 router.post("/logout", (req, res, next) => {
