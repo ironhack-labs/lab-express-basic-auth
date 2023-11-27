@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth";
 
+mongoose.set("strictQuery", true)
+
 mongoose
   .connect(MONGO_URI)
   .then((x) => {

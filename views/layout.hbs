@@ -10,6 +10,28 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li id="to-left">
+            <p><a href="/"> basic-auth </a></p>
+        </li>
+        {{#if isLoggedIn}}
+          <li id="to-right">
+            <a href="/user-profile">Profile</a>
+          </li>
+          <li id="to-right">
+            <a href="/logout">Logout</a>
+          </li>
+        {{else}}
+          <li id="to-right">
+              <a href="/signup">Signup</a>
+          </li>
+          <li id="to-right">
+              <a href="/login">Login</a>
+          </li>
+        {{/if}}
+      </ul>
+    </nav>
 
     {{{body}}}
 

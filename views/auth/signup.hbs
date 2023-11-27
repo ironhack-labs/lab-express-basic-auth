@@ -1,0 +1,19 @@
+<div class="form">
+  <h2>Sign Up</h2>
+
+  <form action="/signup" method="post">
+    <label> Username
+      <input type="text" name="username" placeholder="Ironhacker" required="required"/>
+    </label>
+
+    <label>Password
+      <input type="password" name="password" placeholder="********" required="required"/>
+    </label>
+
+    <button type="submit">signup</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
