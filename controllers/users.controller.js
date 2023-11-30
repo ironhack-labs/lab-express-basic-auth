@@ -24,6 +24,7 @@ module.exports.dosignin = (req, res, next) => {
     const renderWithErrors = () => {
       res.render("users/signin", {
         username,
+        password,
         errors: true,
       });
     };
@@ -43,6 +44,17 @@ module.exports.dosignin = (req, res, next) => {
         console.log("usuario o contraseña incorrectos"); 
         renderWithErrors();
       }
+    })
+    .catch((err) => next(err));
+};
+
+
+module.exports.profile = (req, res, next) => {
+  const id = req.params.id;
+
+  User.findById(id)
+    .then((user) => {
+      res.render("users/profile", { user });
     })
     .catch((err) => next(err));
 };
