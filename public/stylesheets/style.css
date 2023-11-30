@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+
+.signup-link {
+  color: #28a745; 
+  font-weight: bold;
+}
+
+
+.signin-link {
+  color: #007bff; 
+  font-weight: bold;
+}
+
+.nav-main {
+  color: azure;
+}
