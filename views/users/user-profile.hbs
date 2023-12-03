@@ -1,0 +1,11 @@
+{{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }} to your own personal space!</h2>
+  <p>Your profile page</p>
+  <button>
+    <a href="/userProfile">Reload</a>
+  </button>
+{{else}}
+  
+  <br><p>You are no logged anymore!</p>
+
+{{/if}}

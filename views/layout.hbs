@@ -10,6 +10,26 @@
   </head>
 
   <body>
+    <nav>
+    <ul>
+      <li id="left">
+        <p><a href="/"> Users - demo </a></p>
+      </li>
+      {{#unless userInSession}}
+      <li id="right">
+        <a href="/signup">Signup</a> <span> | </span>
+        <a href="/login">Login</a>
+      </li>
+      {{else}}
+      <li>
+        <a href="/main">Main</a>
+        <a href="/private">Private</a>
+        <a href="/userProfile">My Profile</a>
+        <a href="/logout">Logout</a>
+      </li>
+      {{/unless}}
+    </ul>
+  </nav>
 
     {{{body}}}
 
