@@ -3,17 +3,11 @@
 
   <form class="container-sm mx-auto" style="max-width: 400px;" action="/register" method="POST">
     <div class="input-group mb-2">
-      <label class="w-100 mb-2" for="username" style="color: #3498db;">User Name</label>
+      <label class="w-100 mb-2" for="username" style="color: #3498db;">Username</label>
       <input type="text" name="username"
-        class="form-control  py-2 ps-4" placeholder="Name"
+        class="form-control  py-2 ps-4 " placeholder="Name"
         aria-label="User name" value="{{ user.username }}">
-    </div>
-
-    <div class="input-group mb-2">
-      <label class="w-100 mb-2" for="email" style="color: #3498db;">Email</label>
-      <input type="text" name="email"
-        class="form-control  py-2 ps-4 "
-        placeholder="Email: user@example.org" aria-label="User email" value="{{ user.email }}">
+     
     </div>
 
     <div class="input-group mb-3">
@@ -21,6 +15,7 @@
       <input type="password" name="password"
         class="form-control  py-2 ps-4"
         placeholder="Password" aria-label="User password">
+
     </div>
 
     <div class="d-grid gap-2">
@@ -28,4 +23,3 @@
     </div>
   </form>
 </div>
-
