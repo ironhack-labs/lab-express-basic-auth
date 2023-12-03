@@ -1,0 +1,19 @@
+<h1 class="mt-5 mb-4">Users List</h1>
+
+<div class="container">
+  <div class="row">
+    {{#each users as |user|}}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="https://picsum.photos/300/300?random=2" class="card-img-top" alt="{{user.username}}">
+          <div class="card-body">
+            <h3 class="card-title">{{user.username}}</h3>
+            <div class="d-flex justify-content-around">
+              <a href="/" class="btn btn-warning mr-2">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

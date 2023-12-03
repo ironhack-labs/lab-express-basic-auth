@@ -4,6 +4,9 @@ require('dotenv/config');
 
 // ℹ️ Connects to the database
 require('./db');
+const { sessionConfig, loggedUser } = require("./config/session.config");
+
+
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -17,6 +20,11 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+
+app.use(sessionConfig);
+app.use(loggedUser);
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';

@@ -1,0 +1,25 @@
+<div id="signup" class="container col-xxl-4">
+  <h1 class="text-center mt-5 mb-4">User Register</h1>
+
+  <form class="container-sm mx-auto" style="max-width: 400px;" action="/register" method="POST">
+    <div class="input-group mb-2">
+      <label class="w-100 mb-2" for="username" style="color: #3498db;">Username</label>
+      <input type="text" name="username"
+        class="form-control  py-2 ps-4 " placeholder="Name"
+        aria-label="User name" value="{{ user.username }}">
+     
+    </div>
+
+    <div class="input-group mb-3">
+      <label class="w-100 mb-2" for="password" style="color: #3498db;">Password</label>
+      <input type="password" name="password"
+        class="form-control  py-2 ps-4"
+        placeholder="Password" aria-label="User password">
+
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary bg-light-green ">Register</button>
+    </div>
+  </form>
+</div>
