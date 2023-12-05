@@ -2,8 +2,14 @@
 // https://www.npmjs.com/package/dotenv
 require('dotenv/config');
 
+
+
 // ℹ️ Connects to the database
 require('./db');
+
+
+const { sessionConfig, loggedUser } = require("./config/session.config");
+
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -14,6 +20,14 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+////////////////
+hbs.registerPartials(__dirname + "/views/partials");
+
+app.use(sessionConfig); 
+app.use(loggedUser);
+///////////////////
+
+
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);

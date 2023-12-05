@@ -1,51 +1,95 @@
-const User = require ('../models/User.model');
+const mongoose = require("mongoose");
+const User = require('../models/User.model');
 
 
 module.exports.signup = (req, res, next) => {
-    res.render('users/signup', { errors : false })
+  res.render('users/signup', { errors: false })
 };
 
 
 module.exports.signin = (req, res, next) => {
-    res.render('users/signin')
+  res.render('users/signin')
 }
 
 module.exports.dosignup = (req, res, next) => {
-    User.create(req.body)
+  User.create(req.body)
     .then(() => {
-        res.redirect("/signin");
-      })
-      .catch((err) => next(err));
+      res.redirect("/signin");
+    })
+    .catch((err) => next(err));
 }
 
 module.exports.dosignin = (req, res, next) => {
-    const { username, password } = req.body;
-  
-    const renderWithErrors = () => {
+  const { username, password } = req.body;
+
+  User.findOne({ username }).then((dbUser) => {
+    if (dbUser) {
       res.render("users/signin", {
-        username,
-        password,
-        errors: true,
+        user: {
+          username,
+          password
+        },
+        errors: {
+          username: "Este nombre de usuario ya esta en uso🥺",
+        },
       });
-    };
-    User.findOne({ username })
-    .then((user) => {
-      if (user) {
-        return user.checkPassword(password).then((match) => {
-          if (match) {
-            console.log("Te has logueado!!");
-            res.redirect(`/profile/${user._id}`);
+    } else {
+      User.create(req.body)
+        .then(() => {
+          res.redirect("/signup");
+        })
+        .catch((err) => {
+          if (err instanceof mongoose.Error.ValidationError) {
+            res.render("users/signin", {
+              user: {
+                username,
+              },
+              errors: err.errors,
+            });
           } else {
-            console.log("usuario o contraseña incorrectos"); 
-            renderWithErrors();
+            next(err);
           }
         });
+    }
+  });
+}
+
+module.exports.dosignup = (req, res, next) => {
+  const { username, password } = req.body;
+  User.findOne({ username }) .then((user) => {
+      if (user) {
+          return user.checkPassword(password)
+              .then((match) => {
+                  if (match) {
+                    req.session.userId = user.id
+                      res.redirect("/profile")
+                  }
+                  else {
+                      console.error("Nombre o contraseña incorrectos")
+                  }
+              })
       } else {
-        console.log("usuario o contraseña incorrectos"); 
-        renderWithErrors();
+          console.error("nombre o contraseña incorrectos")
       }
-    })
-    .catch((err) => next(err));
+  })
+      .catch((err) => next(err));
+}
+
+
+module.exports.main = (req, res, next) => {
+  res.render("protect/main")
+}
+
+module.exports.private = (req, res, next) => {
+  res.render("protect/private")
+}
+
+
+////////////////
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.clearCookie("connect.sid");
+  res.redirect("/");
 };
 
 
