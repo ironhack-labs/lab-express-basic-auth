@@ -1,8 +1,33 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://media.licdn.com/dms/image/D4D1BAQF6jCgAq9OYJw/company-background_10000/0/1658153212870/ironhack_madrid_campus_cover?e=2147483647&v=beta&t=ri4uXiQW6KdFsoYEz5trHUvfJ5mTjx__uCIThmqj54c");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+
+.signup-link {
+  color: #28a745; 
+  font-weight: bold;
+}
+
+
+.signin-link {
+  color: #007bff; 
+  font-weight: bold;
+}
+
+.nav-main {
+  color: azure;
+}
+
+.custom-yellow {
+  color: yellow;
 }
