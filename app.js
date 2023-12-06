@@ -26,6 +26,12 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
 hbs.registerPartials(__dirname + "/views/partials");
 
+const { sessionConfig } = require("./config/session.config");
+app.use(sessionConfig);
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
 
 // 👇 Start handling routes here
 const index = require('./routes/index');

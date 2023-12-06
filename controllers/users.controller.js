@@ -53,6 +53,9 @@ console.log('Datos del cuerpo de la solicitud:', req.body);
     res.render("users/login", { errors: false });
   };
 
+  module.exports.profile = (req, res, next) => {
+    res.render("users/profile");
+  }
 
   module.exports.doLogin = (req, res, next) => {
     const { email, password } = req.body;
@@ -82,12 +85,9 @@ console.log('Datos del cuerpo de la solicitud:', req.body);
                 if (!match) {
                   renderWithErrors();
                 } else {
-                  if (!dbUser.isActive) {
-                    renderWithErrors('User not active');
-                  } else {
-                    req.session.currentUser = dbUser;
+                  req.session.currentUser = dbUser;
                     res.redirect('/profile');
-                  }
+                  
                 }
               })
               .catch((err) => next(err));
@@ -95,5 +95,11 @@ console.log('Datos del cuerpo de la solicitud:', req.body);
         })
         .catch((err) => next(err));
     }
+  };
+
+  module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.clearCookie('connect.sid');
+    res.redirect('/login');
   };
    
