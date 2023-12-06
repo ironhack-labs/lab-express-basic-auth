@@ -12,6 +12,8 @@ router.post("/register", usersController.doRegister);
 router.get("/login", usersController.login);
 router.post("/login", usersController.doLogin);
 router.get("/logout", usersController.logout);
+router.get("/listPlayer", usersController.player);
+
 
 router.get("/profile", usersController.profile);
 

@@ -57,6 +57,10 @@ console.log('Datos del cuerpo de la solicitud:', req.body);
     res.render("users/profile");
   }
 
+  module.exports.player = (req, res, next) => {
+    res.render("users/listPlayer");
+  }
+
   module.exports.doLogin = (req, res, next) => {
     const { email, password } = req.body;
   
