@@ -7,9 +7,12 @@ module.exports.register = (req, res, next) => {
 }   
 
 module.exports.doRegister = (req, res, next) => {
+  console.log('Entrando en doRegister');
+
     const { email } = req.body;
   
     User.findOne({ email }).then((dbUser) => {
+      console.log('Buscando usuario existente:', dbUser);
       if (dbUser) {
         res.render("users/register", {
           user: {
@@ -20,6 +23,8 @@ module.exports.doRegister = (req, res, next) => {
           },
         });
       } else {
+console.log('Datos del cuerpo de la solicitud:', req.body);
+
         User.create(req.body)
           .then(() => {
 
@@ -44,6 +49,51 @@ module.exports.doRegister = (req, res, next) => {
     });
   };
 
-
   module.exports.login = (req, res, next) => {
-    res.render("users/login", { errors: false });};
+    res.render("users/login", { errors: false });
+  };
+
+
+  module.exports.doLogin = (req, res, next) => {
+    const { email, password } = req.body;
+  
+    const renderWithErrors = (msg) => {
+      res.render('users/login', {
+        email,
+        errors: {
+          msg: msg || 'Email or password are incorrect',
+        },
+      });
+    };
+  
+    if (!email || !password) {
+      renderWithErrors();
+    } else {
+      User.findOne({ email })
+        .then((dbUser) => {
+          if (!dbUser) {
+            renderWithErrors();
+          } else {
+            dbUser
+              .checkPassword(password)
+              .then((match) => {
+                console.log('Coincide con la contraseña almacenada:', match);
+
+                if (!match) {
+                  renderWithErrors();
+                } else {
+                  if (!dbUser.isActive) {
+                    renderWithErrors('User not active');
+                  } else {
+                    req.session.currentUser = dbUser;
+                    res.redirect('/profile');
+                  }
+                }
+              })
+              .catch((err) => next(err));
+          }
+        })
+        .catch((err) => next(err));
+    }
+  };
+   
