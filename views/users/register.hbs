@@ -1,0 +1,19 @@
+<div class="container col-xxl-4">
+
+  <h1>Register</h1>
+
+  <form action="/register" method="POST">
+    <div class="mb-3">
+      <label for="username" lass="form-label">Username</label>
+      <input type="text" name="username" placeholder="Username" class="{{#if errors}}is-invalid{{/if}} form-control"/>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" placeholder="Password" class="{{#if errors}}is-invalid{{/if}} form-control"/>
+    </div>
+      {{#if errors}}
+        <small class="d-block mb-3 text-danger"> Please provide a valid username and password</small>
+      {{/if}}
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form> 
+</div>

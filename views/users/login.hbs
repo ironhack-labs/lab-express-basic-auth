@@ -1,0 +1,19 @@
+<div class="container col-xxl-4">
+    <h2>Login</h2>
+
+    <form action="/login" method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input value="{{username}}" type="text" name="username" class="{{#if errors}}is-invalid{{/if}} form-control"
+                id="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="{{#if errors}}is-invalid{{/if}} form-control" id="password">
+        </div>
+        {{#if errors}}
+        <small class="d-block mb-3 text-danger"> Username or password do not match</small>
+        {{/if}}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
