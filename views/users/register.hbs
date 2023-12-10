@@ -1,9 +1,33 @@
-<h1>User register</h1>
+<div id="signup" class="container col-xxl-4">
+  <h1 class="text-center mt-5 mb-4">User Register</h1>
 
-<form action="/register" method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" placeholder="Username" />
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="Password" />
-  <input type="submit" value="Register" />
-</form>
+  <form class="container-sm mx-auto" style="max-width: 400px;" action="/register" method="POST">
+    <div class="input-group mb-2">
+      <label class="w-100 mb-2" for="username" style="color: #3498db;">User Name</label>
+      <input type="text" name="username"
+        class="form-control  py-2 ps-4 {{#if errors.username}}is-invalid{{/if}}" placeholder="Name"
+        aria-label="User name" value="{{ user.username }}">
+      {{#if errors.username}}<div class="invalid-feedback">{{ errors.username }}</div>{{/if}}
+    </div>
+
+    <div class="input-group mb-2">
+      <label class="w-100 mb-2" for="email" style="color: #3498db;">Email</label>
+      <input type="text" name="email"
+        class="form-control  py-2 ps-4 {{#if errors.email}}is-invalid{{/if}}"
+        placeholder="Email: muchacho_registrate@example.org" aria-label="User email" value="{{ user.email }}" required>
+      {{#if errors.email}}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}
+    </div>
+
+    <div class="input-group mb-3">
+      <label class="w-100 mb-2" for="password" style="color: #3498db;">Password</label>
+      <input type="password" name="password"
+        class="form-control  py-2 ps-4 {{#if errors.password}}is-invalid{{/if}}"
+        placeholder="Password 💩" aria-label="User password" required>
+      {{#if errors.password}}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary bg-light-green ">Register</button>
+    </div>
+  </form>
+</div>

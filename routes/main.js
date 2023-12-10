@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const userController = require("../controllers/users.controller");
+const authController = require("../controllers/auth.controller");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -7,9 +7,9 @@ router.get("/", (req, res, next) => {
 });
 
 //GET
-router.get("/register", userController.register);
+router.get("/register", authController.register);
 
 //POST
-router.post("/register", userController.doRegister);
+router.post("/register", authController.doRegister);
 
 module.exports = router;
