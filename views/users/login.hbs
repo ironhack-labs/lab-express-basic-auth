@@ -1,0 +1,20 @@
+<div id="login" class="container col-xxl-4">
+  <h1 class="text-center mt-5 mb-4">Login</h1>
+
+  <form class="container-sm mx-auto" style="max-width: 400px;" action="/login" method="POST">
+    <div class="mb-3">
+      <label for="email" style="color: #3498db;" class="form-label">Email address</label>
+      <input value="{{email}}" type="email" name="email" class="{{#if errors}}is-invalid{{/if}} form-control" id="email" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" style="color: #3498db;" class="form-label">Password</label>
+      <input type="password" name="password" class="{{#if errors}}is-invalid{{/if}} form-control" id="password" required >
+    </div>
+    {{#if errors}}
+      <div class="mb-3">
+        <small class="text-danger">{{errors.msg}}</small>
+      </div>
+    {{/if}}
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

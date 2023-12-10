@@ -26,10 +26,41 @@ module.exports.doRegister = (req, res, next) => {
           email,
           password,
         }); 
-        res.redirect("users/login")
+        res.redirect("/login")
       }
     })
     .catch((err) => {
       console.error(err);
     });
 };
+
+module.exports.login = (req, res, next) => {
+  res.render('users/login', { errors: false});
+}; 
+
+module.exports.dologin = (req, res, next) => {
+  const { email, password } = req.body;
+
+  const renderWithErrors = (msg) => {
+    res.render('users/login', {
+      email, 
+      errors: {
+        msg: msg || 'Email or password are incorrect'
+      }, 
+    });
+  }; 
+
+  if (!email || !password) {
+    renderWithErrors();
+  } else {
+    User.findOne({email}) 
+     .then((dbUser) => {
+      if (!dbUser) {
+        renderWithErrors();
+      } else {
+        res.redirect('/profile');
+      }
+     })
+     .catch((err) => next(err));
+  }
+}
