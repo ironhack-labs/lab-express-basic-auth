@@ -58,9 +58,16 @@ module.exports.dologin = (req, res, next) => {
       if (!dbUser) {
         renderWithErrors();
       } else {
+        req.session.currentUser = dbUser;
         res.redirect('/profile');
       }
      })
      .catch((err) => next(err));
   }
+} 
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy(); 
+  res.clearCookie('connect.sid');
+  res.redirect('/login')
 }

@@ -15,3 +15,17 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);
   });
+
+process.on("SIGINT", () => {
+  mongoose.connection
+    .close()
+    .then(() => {
+      console.log(
+        "Mongoose default connection disconnected through app termination"
+      );
+      process.exit(0);
+    })
+    .catch((err) =>
+      console.log(`Mongoose default connection disconnection error: ${err}`)
+    );
+});
