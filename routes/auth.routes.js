@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
 
     })
     .then(userFromDB => {
-        res.redirect('/home');   
+        res.render('index', { user: userFromDB });
       })
     .catch(error => next(error));
 });
@@ -48,7 +48,7 @@ router.post('/login', (req, res, next) => {
           res.render('auth/login', { errorMessage: 'User not found and/or incorrect password.' });
           return;
         } else if (bcryptjs.compareSync(password, user.password)) {
-          res.redirect('/home');
+          res.render('index', { user: user });
         } else {
           console.log("Incorrect password. ");
           res.render('auth/login', { errorMessage: 'User not found and/or incorrect password.' });
