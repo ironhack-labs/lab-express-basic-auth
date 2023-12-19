@@ -1,12 +1,12 @@
-<h1>Signup page</h1>
+<h1>Login page</h1>
 
 <div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <h2>Login</h2>
+  <form action="/login" method="POST">
 
     <label>
       Username
-      <input type="text" name="username" placeholder="ironhacker" required />
+      <input type="text" name="username" placeholder="ironman" required />
     </label>
 
     <label>
@@ -14,7 +14,7 @@
       <input type="password" name="password" placeholder="********" required />
     </label>
 
-    <button type="submit">Create account</button>
+    <button type="submit">Login</button>
 
     {{#if errorMessage}}
       <p style="color:red;">{{errorMessage}}</p>
