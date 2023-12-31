@@ -3,6 +3,14 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.index {
+  background-image: url('https://i.pinimg.com/564x/bd/da/fc/bddafc029d86df72bef91bba70973c71.jpg');
+  background-size: cover;
+  height: 50rem;
+}
+.users {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
 }

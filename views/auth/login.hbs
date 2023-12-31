@@ -1,0 +1,36 @@
+{{!-- <div id="form">
+  <h2>Login</h2>
+ 
+  <form action="/auth/login" method="POST">
+ 
+    <label> Username
+      <input type="username" name="username" placeholder="ironhacker" />
+    </label>
+ 
+    <label>Password
+      <input type="password" name="password" placeholder="********" />
+    </label>
+ 
+    <button type="submit" class="btn btn-outline-secondary">Login</button>
+ 
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div> --}}
+<h2>Login</h2>
+
+<form action="/auth/login" method="POST">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="username" class="form-control" id="username" name="username" placeholder="ironhacker">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="********">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+  {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</form>
