@@ -1,0 +1,30 @@
+  {{!-- <div id="form">
+    <h2>Sign Up</h2>
+    <form action="/auth/signup" method="POST">
+
+      <label> Username
+        <input type="text" name="username" placeholder="ironhacker" />
+      </label>
+
+      <label> Password
+        <input type="password" name="password" placeholder="********" />
+      </label>
+
+      <button type="submit">Create account</button>
+
+    </form>
+  </div> --}}
+
+<h2>Sign Up</h2>
+
+<form action="/auth/signup" method="POST">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="username" class="form-control" id="username" name="username" placeholder="ironhacker">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="********">
+  </div>
+  <button type="submit" class="btn btn-primary">Create account</button>
+</form>
