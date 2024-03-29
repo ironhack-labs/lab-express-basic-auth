@@ -1,0 +1,22 @@
+{{! views/auth/signup.hbs }}
+
+<div id="form">
+  <h2>Signup</h2>
+  {{! The HTML form’s action attribute defines where to send the form data when a form is submitted. This and the method="POST" tell us that we should create a post route that will handle the form data. }}
+  <form action="/signup" method="POST">
+
+    <label>
+      Username
+      <input type="text" name="username" />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" placeholder="********" />
+    </label>
+
+    <button type="submit">Create account</button>
+
+    {{! error message will be added here }}
+  </form>
+</div>
