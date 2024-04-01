@@ -12,8 +12,24 @@ const express = require('express');
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
 
 const app = express();
+
+app.use(express.static('public'));
+
+const authMiddleware = require('./routes/middleware');
+
+// Import routes and other setup code
+
+app.get('/main', authMiddleware, (req, res) => {
+  res.render('main'); // Render the main view
+});
+
+app.get('/private', authMiddleware, (req, res) => {
+  res.render('private'); // Render the private view
+});
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -30,6 +46,13 @@ app.use('/', index);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
+
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  }));
 
 module.exports = app;
 
