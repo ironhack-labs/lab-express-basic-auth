@@ -1,2 +1,9 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#if currentUser}}
+    <h3>You´re in Session</h3>
+{{else}}
+    <h3>Go 
+        <a href="/login">login</a> 
+        to start your Session</h3>
+{{/if}}
