@@ -18,6 +18,20 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
+// セッションの設定を追加
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'defaultSecret', // 環境変数からセッションシークレットを取得
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: 'mongodb://localhost/lab-express-basic-auth' // データベースのURLを指定
+  })
+}));
+
 // default value for title local
 const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
@@ -32,4 +46,3 @@ app.use('/', index);
 require('./error-handling')(app);
 
 module.exports = app;
-
