@@ -4,6 +4,7 @@ module.exports = (app) => {
     res.status(404).render("not-found");
   });
 
+
   app.use((err, req, res, next) => {
     // whenever you call next(err), this middleware will handle the error
     // always logs the error
