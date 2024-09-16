@@ -13,6 +13,8 @@ const express = require('express');
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
 
+const { sessionConfig, currentUser } = require('./config/session.config')
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
@@ -23,6 +25,9 @@ const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+
+app.use(sessionConfig);
+app.use(currentUser)
 
 // 👇 Start handling routes here
 const index = require('./routes/index');

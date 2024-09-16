@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Profile</h1>
+    {{#if currentUser}}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/images/desktop-wallpaper-compromised-character-gaming-profile-dark-cute-cartoon-boys-thumbnail.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{currentUser.username}}</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id nunc vel libero suscipit fermentum. Aliquam velit nunc, porttitor et lacinia at, pulvinar ac arcu. Vestibulum iaculis pretium ultricies. Ut tincidunt fringilla velit. Etiam at tempus erat. Integer sed commodo risus. Proin feugiat mi ante, vitae feugiat justo finibus non. Phasellus vel odio sollicitudin, laoreet ante non, suscipit ex. Sed egestas arcu sed lectus accumsan posuere sit amet facilisis nibh. Sed maximus tortor id pharetra volutpat. Aliquam erat volutpat. Ut dignissim leo et ligula porta, sit amet porttitor sem sodales. Integer ut tellus tempor, interdum purus at, lobortis eros. Aenean id turpis eu enim vulputate ullamcorper nec quis urna. Donec posuere magna vitae pellentesque convallis. Donec efficitur eu dui a facilisis.
+        <p class="card-text"><small class="text-body-secondary">{{currentUser.email}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+    {{/if}}
+</div>
+
+
