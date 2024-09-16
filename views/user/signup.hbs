@@ -1,0 +1,17 @@
+<h2>Register : </h2>
+
+{{#if errorMessage}}
+<h2>{{errorMessage}}</h2>
+{{/if}}
+<form method="post" action="/signup">
+    <label> Username :
+        <input type="text" name="username" placeholder="Enter your Username">
+    </label>
+
+    <label> Password :
+        <input type="password" name="password" placeholder="Enter your Password">
+    </label>
+    <button type="submit"> Create an Account ! </button>
+</form>
+
+<p>You don't have and Account ? <a href="/login"> You have an Account ?</a></p>
