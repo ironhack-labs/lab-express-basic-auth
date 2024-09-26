@@ -1,0 +1,8 @@
+<h2>Profile</h2>
+
+{{#if currentUser}}
+  <p>Username: {{currentUser.username}}</p>
+  <p>Email: {{currentUser.email}}</p>
+{{else}}
+  <p>No user found</p>
+{{/if}}
