@@ -12,11 +12,15 @@ const express = require('express');
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
+hbs.registerPartials(__dirname + "/views/partials");
 
 const app = express();
+const { sessionConfig, loggedUser } = require("./config/session.config");
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
+app.use(sessionConfig);
+app.use(loggedUser);
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
@@ -32,4 +36,3 @@ app.use('/', index);
 require('./error-handling')(app);
 
 module.exports = app;
-

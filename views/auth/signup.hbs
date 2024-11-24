@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 class="mt-5">Sign Up</h2>
+  <form action="/signup" method="POST">
+    <!-- Email Field -->
+    <div class="form-group mb-3">
+      <label for="email">Email Address</label>
+      <input
+        type="text"
+        class="form-control {{#if errors.email}}is-invalid{{/if}}"
+        id="email"
+        name="email"
+        value="{{user.email}}"
+        placeholder="Enter your email address"
+      />
+      {{#if errors.email}}
+        <div class="invalid-feedback">
+          {{errors.email}}
+        </div>
+      {{/if}}
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group mb-3">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control {{#if errors.password}}is-invalid{{/if}}"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+      />
+      {{#if errors.password}}
+        <div class="invalid-feedback">
+          {{errors.password}}
+        </div>
+      {{/if}}
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+</div>
