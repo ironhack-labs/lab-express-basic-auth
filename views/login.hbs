@@ -1,0 +1,50 @@
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Log In</h3>
+          <form action="/login" method="POST">
+            <!-- Username or Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                value="{{email}}"
+                name="email"
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+                required
+                minlength="8"
+              />
+            </div>
+            <div class="mb-3">
+              <small class="text-danger">{{error}}</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

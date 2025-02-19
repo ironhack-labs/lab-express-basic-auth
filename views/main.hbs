@@ -1,0 +1,12 @@
+<h1 class="p-5">This is the main page, with some cute doggies :)</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each image}}
+  <div class="col">
+    <div class="card">
+      <img src="{{this}}" class="card-img-top" alt="...">
+     
+    </div>
+  </div>
+{{/each}}
+</div>
